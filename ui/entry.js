@@ -23,9 +23,15 @@ export default class Entry extends Component {
     return (
       <View style={styles.entry}>
         <EntryIndex number={this.props.number} />
-        <Text style={styles.entry_navi}>{this.props.navi}</Text>
-        <Text style={styles.entry_pos}>{this.props.pos}</Text>
-        <Text style={styles.entry_en}>{this.props.en}</Text>
+        <Text selectable={true} style={styles.entry_navi}>
+          {this.props.navi}
+        </Text>
+        <Text selectable={true} style={styles.entry_pos}>
+          {this.props.pos}
+        </Text>
+        <Text selectable={true} style={styles.entry_en}>
+          {this.props.en}
+        </Text>
       </View>
     );
   }
