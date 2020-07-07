@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
   },
   entry: {
     padding: 20,
-    fontSize: 18,
     marginVertical: 8,
     marginHorizontal: 16,
     borderWidth: 1,
@@ -60,6 +59,7 @@ const styles = StyleSheet.create({
   },
   entry_pos: { fontStyle: "italic", fontSize: 14, marginLeft: 8, marginTop: 8 },
   entry_en: { fontSize: 14, marginLeft: 8, marginTop: 8 },
+  entry_chevron: { marginLeft: "auto" },
 });
 
 export default styles;
