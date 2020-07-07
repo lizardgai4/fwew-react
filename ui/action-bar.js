@@ -1,23 +1,26 @@
-import React, { Component } from "react";
+import React, { useContext } from "react";
 import { Image, TextInput, View } from "react-native";
 import fwew from "../assets/fwew.png";
 import styles from "./styles";
 
-export default class ActionBar extends Component {
-  state = {
-    query: "",
+// Import Context
+import { AppContext } from "../AppContext";
+
+export default function ActionBar() {
+  const { state, dispatch } = useContext(AppContext);
+  const changeInputValue = (newValue) => {
+    dispatch({ type: "UPDATE_INPUT", data: newValue });
   };
-  render() {
-    return (
-      <View style={styles.action_bar}>
-        <Image source={fwew} style={styles.icon} />
-        <TextInput
-          value={this.state.query}
-          onChangeText={(query) => this.setState({ query })}
-          placeholder={"search..."}
-          style={styles.input}
-        />
-      </View>
-    );
-  }
+
+  return (
+    <View style={styles.action_bar}>
+      <Image source={fwew} style={styles.icon} />
+      <TextInput
+        value={state.inputText}
+        onChangeText={(query) => changeInputValue(query)}
+        placeholder={"search..."}
+        style={styles.input}
+      />
+    </View>
+  );
 }
