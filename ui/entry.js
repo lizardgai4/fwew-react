@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Text, View } from "react-native";
+import { Entypo } from "@expo/vector-icons";
 import styles from "./styles";
 
 class EntryIndex extends Component {
@@ -32,6 +33,12 @@ export default class Entry extends Component {
         <Text selectable={true} style={styles.entry_en}>
           {this.props.en}
         </Text>
+        <Entypo
+          style={styles.entry_chevron}
+          name="chevron-thin-right"
+          size={24}
+          color="black"
+        />
       </View>
     );
   }
