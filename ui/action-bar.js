@@ -4,12 +4,9 @@ import fwew from "../assets/fwew.png";
 import styles from "./styles";
 
 export default class ActionBar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      query: "",
-    };
-  }
+  state = {
+    query: "",
+  };
   render() {
     return (
       <View style={styles.action_bar}>
