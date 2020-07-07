@@ -19,6 +19,9 @@ export default function ActionBar() {
         value={state.inputText}
         onChangeText={(query) => changeInputValue(query)}
         placeholder={"search..."}
+        autoCapitalize={"none"}
+        autoCompleteType={"off"}
+        autoCorrect={false}
         style={styles.input}
       />
     </View>
