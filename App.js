@@ -1,5 +1,5 @@
 import React, { useReducer } from "react";
-import { StatusBar, View } from "react-native";
+import { StatusBar, StyleSheet, View } from "react-native";
 import update from "immutability-helper";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -11,7 +11,6 @@ import { AppContext } from "./AppContext";
 // import UI components
 import ActionBar from "./ui/action-bar";
 import ResultView from "./ui/result-view";
-import styles from "./ui/styles";
 
 // Set up Initial State
 const initialState = {
@@ -40,7 +39,7 @@ function FwewScreen() {
       <StatusBar backgroundColor="#7494BA" />
       <AppContext.Provider value={{ state, dispatch }}>
         <ActionBar search />
-        <ResultView />
+        <ResultView endpoint="fwew" />
       </AppContext.Provider>
     </View>
   );
@@ -53,7 +52,7 @@ function ListScreen() {
       <StatusBar backgroundColor="#7494BA" />
       <AppContext.Provider value={{ state, dispatch }}>
         <ActionBar />
-        <ResultView />
+        <ResultView endpoint="list" />
       </AppContext.Provider>
     </View>
   );
@@ -66,20 +65,7 @@ function RandomScreen() {
       <StatusBar backgroundColor="#7494BA" />
       <AppContext.Provider value={{ state, dispatch }}>
         <ActionBar />
-        <ResultView />
-      </AppContext.Provider>
-    </View>
-  );
-}
-
-function NumberScreen() {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  return (
-    <View style={styles.container}>
-      <StatusBar backgroundColor="#7494BA" />
-      <AppContext.Provider value={{ state, dispatch }}>
-        <ActionBar search />
-        <ResultView />
+        <ResultView endpoint="random" />
       </AppContext.Provider>
     </View>
   );
@@ -93,7 +79,6 @@ function Tabs() {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
-
           switch (route.name) {
             case "Fwew":
               iconName = "search";
@@ -103,9 +88,6 @@ function Tabs() {
               break;
             case "Random":
               iconName = "help-circle";
-              break;
-            case "Number":
-              iconName = "hash";
               break;
           }
           return <Feather name={iconName} size={size} color={color} />;
@@ -119,7 +101,6 @@ function Tabs() {
       <Tab.Screen name="Fwew" component={FwewScreen} />
       <Tab.Screen name="List" component={ListScreen} />
       <Tab.Screen name="Random" component={RandomScreen} />
-      <Tab.Screen name="Number" component={NumberScreen} />
     </Tab.Navigator>
   );
 }
@@ -131,3 +112,11 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+  },
+});
