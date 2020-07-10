@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default async function GetData(endpoint) {
+async function GetData(endpoint) {
   let response;
   try {
     response = await axios.get(endpoint);
@@ -9,3 +9,5 @@ export default async function GetData(endpoint) {
   }
   return response.data;
 }
+
+export default GetData;

@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-export default function EntryIndex(props) {
+function EntryIndex(props) {
   return (
     <View style={styles.entry_index}>
       <Text style={styles.entry_number}>{props.number}</Text>
@@ -24,3 +24,5 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
 });
+
+export default EntryIndex;

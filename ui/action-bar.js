@@ -2,7 +2,7 @@ import React from "react";
 import { Image, Platform, StyleSheet, View } from "react-native";
 import fwew from "../assets/fwew.png";
 
-export default function ActionBar(props) {
+function ActionBar(props) {
   return (
     <View style={styles.action_bar}>
       <Image source={fwew} style={styles.icon} />
@@ -24,3 +24,5 @@ const styles = StyleSheet.create({
   },
   icon: { marginLeft: 8, width: ICON_SIZE, height: ICON_SIZE },
 });
+
+export default ActionBar;

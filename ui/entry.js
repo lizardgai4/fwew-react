@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import EntryIndex from "./entry-index";
 
-export default function Entry(props) {
+function Entry(props) {
   return (
     <View style={styles.entry}>
       <EntryIndex number={props.number} />
@@ -46,3 +46,5 @@ const styles = StyleSheet.create({
   entry_en: { fontSize: 14, marginLeft: 8, marginTop: 8 },
   entry_chevron: { marginLeft: "auto" },
 });
+
+export default Entry;
