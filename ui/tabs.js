@@ -1,9 +1,24 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Feather } from "@expo/vector-icons";
-import FwewScreen from "./fwew-screen";
-import ListScreen from "./list-screen";
-import RandomScreen from "./random-screen";
+import Screen from "./screen";
+
+const ApiRoot = "https://tirea.learnnavi.org/api";
+
+function FwewScreen() {
+  const endpoint = ApiRoot + "/fwew/";
+  return <Screen ApiUrl={endpoint} />;
+}
+
+function ListScreen() {
+  const endpoint = ApiRoot + "/list/";
+  return <Screen ApiUrl={endpoint} />;
+}
+
+function RandomScreen() {
+  const endpoint = ApiRoot + "/random/";
+  return <Screen ApiUrl={endpoint}></Screen>;
+}
 
 const Tab = createBottomTabNavigator();
 
@@ -28,7 +43,6 @@ function Tabs() {
         },
       })}
       tabBarOptions={{
-        // `activeTintColor: "tomato",
         inactiveTintColor: "gray",
       }}
     >

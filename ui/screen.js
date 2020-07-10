@@ -15,10 +15,10 @@ import MyStatusBar from "./status-bar";
 import Entry from "./entry";
 import GetData from "../api";
 
-class FwewScreen extends Component {
+class Screen extends Component {
   constructor(props) {
     super(props);
-    this.ApiUrl = "https://tirea.learnnavi.org/api/fwew/";
+    this.ApiUrl = this.props.ApiUrl;
     this.arrayHolder = [];
     this.state = {
       isLoading: true,
@@ -36,9 +36,9 @@ class FwewScreen extends Component {
 
   async updateData() {
     let json = await GetData(this.state.endpoint);
-    console.log("<FwewScreen componentDidMount>");
+    console.log("<Screen componentDidMount>");
     console.log(json);
-    console.log("</FwewScreen componentDidMount");
+    console.log("</Screen componentDidMount");
     this.setState(
       {
         isLoading: false,
@@ -67,9 +67,9 @@ class FwewScreen extends Component {
   }
 
   render() {
-    console.log("<FwewScreen render>");
+    console.log("<Screen render>");
     console.log(this.state);
-    console.log("</FwewScreen render>");
+    console.log("</Screen render>");
     if (this.state.isLoading) {
       return (
         <SafeAreaView style={styles.container}>
@@ -158,4 +158,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FwewScreen;
+export default Screen;
