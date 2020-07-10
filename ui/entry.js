@@ -7,14 +7,14 @@ export default function Entry(props) {
   return (
     <View style={styles.entry}>
       <EntryIndex number={props.number} />
-      <Text selectable={true} style={styles.entry_navi}>
+      <Text numberOfLines={1} selectable={true} style={styles.entry_navi}>
         {props.navi}
-      </Text>
-      <Text selectable={true} style={styles.entry_pos}>
-        {props.pos}
-      </Text>
-      <Text selectable={true} style={styles.entry_en}>
-        {props.en}
+        <Text selectable={true} style={styles.entry_pos}>
+          {props.pos}
+        </Text>
+        <Text selectable={true} style={styles.entry_en}>
+          {props.en}
+        </Text>
       </Text>
       <Entypo
         style={styles.entry_chevron}
