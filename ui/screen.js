@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {
   ActivityIndicator,
-  Alert,
   FlatList,
   Platform,
   RefreshControl,
@@ -13,13 +12,12 @@ import {
 import ActionBar from "./action-bar";
 import MyStatusBar from "./status-bar";
 import Entry from "./entry";
-import GetData from "../api";
+import axios from "axios";
 
 class Screen extends Component {
   constructor(props) {
     super(props);
     this.ApiUrl = this.props.ApiUrl;
-    this.arrayHolder = [];
     this.state = {
       isLoading: true,
       text: "",
@@ -28,48 +26,37 @@ class Screen extends Component {
     };
   }
 
-  // TODO: try to fix the searchbar so that it's not at least one render ahead
   async onRefresh() {
     this.setState({ data: [] });
-    await this.updateData();
+    this.fetchData(this.state.endpoint);
   }
 
-  async updateData() {
-    let json = await GetData(this.state.endpoint);
-    console.log("<Screen componentDidMount>");
-    console.log(json);
-    console.log("</Screen componentDidMount");
-    this.setState(
-      {
-        isLoading: false,
-        data: json,
-      },
-      () => {
-        this.arrayHolder = json;
-      }
-    );
+  fetchData(endpoint) {
+    axios
+      .get(endpoint)
+      .then((response) => {
+        this.setState({ isLoading: false, data: response.data });
+      })
+      .catch((e) => {
+        this.setState({ isLoading: false, data: [] });
+      });
   }
 
   async componentDidMount() {
-    await this.updateData();
-  }
-
-  GetFlatListItem(name) {
-    Alert.alert(name);
+    this.fetchData(this.state.endpoint);
   }
 
   async searchData(text) {
-    await this.updateData();
-    this.setState({
-      text: text,
-      endpoint: this.ApiUrl + text,
-    });
+    this.setState(
+      {
+        text: text,
+        endpoint: this.ApiUrl + text,
+      },
+      this.fetchData(this.ApiUrl + text)
+    );
   }
 
   render() {
-    console.log("<Screen render>");
-    console.log(this.state);
-    console.log("</Screen render>");
     if (this.state.isLoading) {
       return (
         <SafeAreaView style={styles.container}>
