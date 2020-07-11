@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { Entypo } from "@expo/vector-icons";
 import EntryIndex from "./entry-index";
 
 function Entry(props) {
@@ -16,12 +15,6 @@ function Entry(props) {
           {props.en}
         </Text>
       </Text>
-      <Entypo
-        style={styles.entry_chevron}
-        name="chevron-thin-right"
-        size={24}
-        color="black"
-      />
     </View>
   );
 }
