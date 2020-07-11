@@ -15,7 +15,7 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "bundleIdentifier": "com.fwew.react"
     },
     "web": {
       "favicon": "./assets/favicon.png"
