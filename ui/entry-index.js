@@ -19,6 +19,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
+// the list entry row item number
 function EntryIndex(props) {
   return (
     <View style={styles.entry_index}>

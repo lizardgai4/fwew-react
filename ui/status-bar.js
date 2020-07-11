@@ -19,6 +19,7 @@
 import React from "react";
 import { StyleSheet, View, StatusBar, Platform } from "react-native";
 
+// on iOS / Android: the statusbar at the very top of the screen, where the clock, battery, signal icons, etc. reside
 function MyStatusBar({ backgroundColor, ...props }) {
   return (
     <View style={[styles.statusBar, { backgroundColor }]}>
@@ -27,6 +28,7 @@ function MyStatusBar({ backgroundColor, ...props }) {
   );
 }
 
+// height of the status bar differs for iOS and the various Android devices
 const STATUSBAR_HEIGHT = Platform.OS === "ios" ? 20 : StatusBar.currentHeight;
 
 const styles = StyleSheet.create({

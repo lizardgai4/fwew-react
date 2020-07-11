@@ -20,6 +20,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import Tabs from "./ui/tabs";
 
+// Top level main component
 function App() {
   return (
     <NavigationContainer>
