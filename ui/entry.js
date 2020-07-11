@@ -8,9 +8,9 @@ function Entry(props) {
     <View style={styles.entry}>
       <EntryIndex number={props.number} />
       <Text numberOfLines={1} selectable={true} style={styles.entry_navi}>
-        {props.navi}
+        {props.navi + " "}
         <Text selectable={true} style={styles.entry_pos}>
-          {props.pos}
+          {props.pos + " "}
         </Text>
         <Text selectable={true} style={styles.entry_en}>
           {props.en}
@@ -35,12 +35,12 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     borderColor: "#ddd",
     flexDirection: "row",
-    overflow: "hidden",
   },
   entry_navi: {
     fontWeight: "bold",
     fontSize: 24,
     marginLeft: 16,
+    flex: 1,
   },
   entry_pos: { fontStyle: "italic", fontSize: 14, marginLeft: 8, marginTop: 8 },
   entry_en: { fontSize: 14, marginLeft: 8, marginTop: 8 },
