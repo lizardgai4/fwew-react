@@ -24,6 +24,7 @@ import {
   RefreshControl,
   SafeAreaView,
   StyleSheet,
+  Text,
   TextInput,
   View,
 } from "react-native";
@@ -32,6 +33,7 @@ import MyStatusBar from "./status-bar";
 import Entry from "./entry";
 import axios from "axios";
 
+// The main content area of the app
 class Screen extends Component {
   constructor(props) {
     super(props);
@@ -44,11 +46,13 @@ class Screen extends Component {
     };
   }
 
+  // called when the user pulls down on the word list after it has rendered
   async onRefresh() {
     this.setState({ data: [] });
     this.fetchData(this.state.endpoint);
   }
 
+  // fetches Na'vi word data from the Fwew API and updates the state data accordingly
   fetchData(endpoint) {
     axios
       .get(endpoint)
@@ -61,20 +65,24 @@ class Screen extends Component {
   }
 
   async componentDidMount() {
+    // fetch data and re-render after this component is mounted to the DOM and rendered in initial loading state
     this.fetchData(this.state.endpoint);
   }
 
+  // called whenever the user types or modifies text in the text input of the action bar / app bar
   async searchData(text) {
     this.setState(
       {
         text: text,
         endpoint: this.ApiUrl + text,
       },
+      // use this.ApiUrl + text rather than this.state.endpoint so that the list isn't a render behind the search bar
       this.fetchData(this.ApiUrl + text)
     );
   }
 
   render() {
+    // render activity indicator when loading
     if (this.state.isLoading) {
       return (
         <SafeAreaView style={styles.container}>
@@ -96,6 +104,7 @@ class Screen extends Component {
         </SafeAreaView>
       );
     }
+    // otherwise render content according to data array
     return (
       <View style={styles.container}>
         <MyStatusBar backgroundColor="#537AA8" barStyle="light-content" />
@@ -109,6 +118,7 @@ class Screen extends Component {
           />
         </ActionBar>
         {this.state.data.length > 0 && (
+          // only try to render the list if there is data for it
           <View style={{ flexDirection: "row", flex: 1 }}>
             <FlatList
               data={this.state.data}
@@ -123,9 +133,9 @@ class Screen extends Component {
                   en={item.EN}
                 />
               )}
+              // Pull to Refresh
               refreshControl={
                 <RefreshControl
-                  // refresh control used for the Pull to Refresh
                   refreshing={this.state.isLoading}
                   onRefresh={this.onRefresh.bind(this)}
                 />
@@ -133,11 +143,20 @@ class Screen extends Component {
             />
           </View>
         )}
+        {this.state.data.message && (
+          // for the situation the API returns {message: "no results"}
+          <View style={{ alignItems: "center" }}>
+            <Text>
+              {this.state.data.message}: {this.state.text}
+            </Text>
+          </View>
+        )}
       </View>
     );
   }
 }
 
+// height and top margin of the text input varies on iOS and Android due to the app bar height difference
 const INPUT_HEIGHT = Platform.OS === "ios" ? 32 : 40;
 const INPUT_MARGIN_TOP = Platform.OS === "ios" ? 2 : 4;
 
