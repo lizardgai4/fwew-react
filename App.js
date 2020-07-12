@@ -18,13 +18,13 @@
 }
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import Tabs from "./ui/tabs";
+import TabNavigator from "./ui/tab-navigator";
 
 // Top level main component
 function App() {
   return (
     <NavigationContainer>
-      <Tabs />
+      <TabNavigator />
     </NavigationContainer>
   );
 }

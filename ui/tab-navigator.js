@@ -46,7 +46,7 @@ function RandomScreen() {
 const Tab = createBottomTabNavigator();
 
 // the tab navigation at the bottom of the screen used to jump between the above screens
-function Tabs() {
+function TabNavigator() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -77,4 +77,4 @@ function Tabs() {
   );
 }
 
-export default Tabs;
+export default TabNavigator;
