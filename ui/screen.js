@@ -26,12 +26,15 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from "react-native";
+import axios from "axios";
+import Modal from "react-native-modal";
 import ActionBar from "./action-bar";
 import MyStatusBar from "./status-bar";
 import Entry from "./entry";
-import axios from "axios";
+import ModalContent from "./modal-content";
 
 // The main content area of the app
 class Screen extends Component {
@@ -43,8 +46,17 @@ class Screen extends Component {
       text: "",
       data: [],
       endpoint: this.ApiUrl,
+      isModalVisible: false,
+      selectedItem: {},
     };
   }
+
+  toggleModal = (item) => {
+    this.setState({
+      isModalVisible: !this.state.isModalVisible,
+      selectedItem: item,
+    });
+  };
 
   // called when the user pulls down on the word list after it has rendered
   async onRefresh() {
@@ -126,12 +138,21 @@ class Screen extends Component {
               keyExtractor={(item) => item.ID}
               contentContainerStyle={styles.contentContainer}
               renderItem={({ item, index }) => (
-                <Entry
-                  number={index + 1}
-                  navi={item.Navi}
-                  pos={item.PartOfSpeech}
-                  en={item.EN}
-                />
+                <TouchableOpacity
+                  onPress={() => {
+                    this.toggleModal(item);
+                  }}
+                >
+                  <Entry
+                    number={index + 1}
+                    navi={item.Navi}
+                    ipa={item.IPA}
+                    pos={item.PartOfSpeech}
+                    syllables={item.Syllables}
+                    infixDots={item.InfixDots}
+                    en={item.EN}
+                  />
+                </TouchableOpacity>
               )}
               // Pull to Refresh
               refreshControl={
@@ -151,6 +172,19 @@ class Screen extends Component {
             </Text>
           </View>
         )}
+        <Modal
+          isVisible={this.state.isModalVisible}
+          onBackdropPress={() => this.setState({ isModalVisible: false })}
+          onSwipeComplete={() => this.setState({ isModalVisible: false })}
+          backdropTransitionOutTiming={0}
+        >
+          <ModalContent
+            entry={this.state.selectedItem}
+            // onModalBackButtonPress={() => {
+            //   this.setState({ isModalVisible: false });
+            // }}
+          />
+        </Modal>
       </View>
     );
   }
