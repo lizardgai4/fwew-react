@@ -24,15 +24,26 @@ import EntryIndex from "./entry-index";
 function Entry(props) {
   return (
     <View style={styles.entry}>
-      <EntryIndex number={props.number} />
-      <Text numberOfLines={1} selectable={true} style={styles.entry_navi}>
-        {props.navi + " "}
-        <Text selectable={true} style={styles.entry_pos}>
-          {props.pos + " "}
+      <View style={{ flexDirection: "row" }}>
+        <EntryIndex number={props.number} />
+        <Text numberOfLines={1} selectable={true} style={styles.entry_navi}>
+          {`${props.navi}`}
+          <Text selectable={true} style={styles.entry_ipa}>
+            {` [${props.ipa}]`}
+          </Text>
+          <Text selectable={true} style={styles.entry_pos}>
+            {` ${props.pos}`}
+          </Text>
+          {/* // TODO: show underline stressed syllable and dot style infix locations
+          <Text selectable={true} style={styles.entry_breakdown}>
+            {props.infixDots !== "NULL"
+              ? ` (${props.syllables}, ${props.infixDots})`
+              : ` (${props.syllables})`}
+          </Text> */}
         </Text>
-        <Text selectable={true} style={styles.entry_en}>
-          {props.en}
-        </Text>
+      </View>
+      <Text numberOfLines={1} selectable={true} style={styles.entry_en}>
+        {props.en}
       </Text>
     </View>
   );
@@ -46,7 +57,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 16,
     borderColor: "#ddd",
-    flexDirection: "row",
   },
   entry_navi: {
     fontWeight: "bold",
@@ -54,9 +64,16 @@ const styles = StyleSheet.create({
     marginLeft: 16,
     flex: 1,
   },
-  entry_pos: { fontStyle: "italic", fontSize: 14, marginLeft: 8, marginTop: 8 },
-  entry_en: { fontSize: 14, marginLeft: 8, marginTop: 8 },
-  entry_chevron: { marginLeft: "auto" },
+  entry_ipa: { fontWeight: "normal", fontSize: 14 },
+  entry_pos: {
+    fontWeight: "normal",
+    fontStyle: "italic",
+    fontSize: 14,
+    marginLeft: 8,
+    marginTop: 8,
+  },
+  entry_breakdown: { fontWeight: "normal", fontSize: 14 },
+  entry_en: { fontSize: 14, marginLeft: 8, marginTop: 8, flex: 1 },
 });
 
 export default Entry;
