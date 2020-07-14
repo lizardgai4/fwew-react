@@ -98,7 +98,7 @@ class Screen extends Component {
     if (this.state.isLoading) {
       return (
         <SafeAreaView style={styles.container}>
-          <MyStatusBar backgroundColor="#537AA8" barStyle="dark-content" />
+          <MyStatusBar backgroundColor="#537AA8" barStyle="light-content" />
           <ActionBar>
             <TextInput
               onChangeText={(text) => this.searchData(text)}
