@@ -1,6 +1,8 @@
 # fwew-react
 
-A dictionary app for the Na'vi language from James Cameron's Avatar (2009) on Android and iOS devices written in JavaScript using React Native
+A Na'vi dictionary app written in JavaScript using React Native that runs on Android and iOS devices
+
+The Na'vi language was created by Paul Frommer for the 2009 James Cameron film _Avatar_ and its upcoming sequels.
 
 Uses the [Fwew API](https://github.com/fwew/fwew-api) to fetch dictionary data
 
