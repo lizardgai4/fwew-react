@@ -140,7 +140,7 @@ class Screen extends Component {
                   data={this.state.data}
                   extraData={this.state.endpoint}
                   keyExtractor={(item) => item.ID}
-                  contentContainerStyle={styles.contentContainer}
+                  contentContainerStyle={styles.listContentContainer}
                   renderItem={({ item, index }) => (
                     <TouchableOpacity
                       onPress={() => {
@@ -203,6 +203,9 @@ const INPUT_HEIGHT = Platform.OS === "ios" ? 32 : 40;
 const INPUT_MARGIN_TOP = Platform.OS === "ios" ? 2 : 4;
 
 const styles = StyleSheet.create({
+  safeContainer: {
+    flex: 1,
+  },
   container: {
     flex: 1,
     width: "100%",
@@ -218,7 +221,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderRadius: 16,
   },
-  contentContainer: {
+  listContentContainer: {
     marginTop: 8,
     paddingBottom: 72,
   },
