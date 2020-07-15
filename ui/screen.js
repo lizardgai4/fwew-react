@@ -170,14 +170,14 @@ class Screen extends Component {
         )}
         <Modal
           isVisible={this.state.isModalVisible}
-          onBackdropPress={() => this.setState({ isModalVisible: false })}
-          onSwipeComplete={() => this.setState({ isModalVisible: false })}
+          onBackButtonPress={() => this.toggleModal(this.state.selectedItem)}
+          onSwipeComplete={() => this.toggleModal(this.state.selectedItem)}
           backdropTransitionOutTiming={0}
         >
           <ModalContent
             entry={this.state.selectedItem}
             onModalBackButtonPress={() => {
-              this.setState({ isModalVisible: false });
+              this.toggleModal(this.state.selectedItem);
             }}
           />
         </Modal>
