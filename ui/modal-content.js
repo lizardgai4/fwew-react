@@ -126,13 +126,13 @@ function ModalContent(props) {
           </Text>
         )}
       </View>
-      {/* <View style={styles.modal_button}>
+      <View style={styles.modal_button}>
         <Button
           title={"back"}
           onPress={props.onModalBackButtonPress}
-          color={"#BA9A74"}
+          color={"#537AA8"}
         />
-      </View> */}
+      </View>
     </View>
   );
 }
@@ -161,10 +161,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "normal",
   },
-  // modal_button: {
-  //   flexDirection: "row",
-  //   justifyContent: "space-around",
-  // },
+  modal_button: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
 });
 
 export default ModalContent;

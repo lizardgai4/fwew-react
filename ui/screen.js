@@ -176,9 +176,9 @@ class Screen extends Component {
         >
           <ModalContent
             entry={this.state.selectedItem}
-            // onModalBackButtonPress={() => {
-            //   this.setState({ isModalVisible: false });
-            // }}
+            onModalBackButtonPress={() => {
+              this.setState({ isModalVisible: false });
+            }}
           />
         </Modal>
       </View>
