@@ -16,13 +16,14 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 }
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import {
   ActivityIndicator,
   FlatList,
   Platform,
   RefreshControl,
   SafeAreaView,
+  StatusBar,
   StyleSheet,
   Text,
   TextInput,
@@ -32,7 +33,6 @@ import {
 import axios from "axios";
 import Modal from "react-native-modal";
 import ActionBar from "./action-bar";
-import MyStatusBar from "./status-bar";
 import Entry from "./entry";
 import ModalContent from "./modal-content";
 
@@ -97,91 +97,103 @@ class Screen extends Component {
     // render activity indicator when loading
     if (this.state.isLoading) {
       return (
-        <SafeAreaView style={styles.container}>
-          <MyStatusBar backgroundColor="#537AA8" barStyle="light-content" />
-          <ActionBar>
-            <TextInput
-              onChangeText={(text) => this.searchData(text)}
-              placeholder={"search..."}
-              autoCapitalize={"none"}
-              autoCorrect={false}
-              style={styles.input}
-            />
-          </ActionBar>
-          <ActivityIndicator style={{ marginTop: 16 }} />
-        </SafeAreaView>
+        <Fragment>
+          <SafeAreaView style={{ flex: 0, backgroundColor: "537AA8" }} />
+          <StatusBar barStyle="light-content" />
+          <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+            <View style={{ flex: 1 }}>
+              <ActionBar>
+                <TextInput
+                  onChangeText={(text) => this.searchData(text)}
+                  placeholder={"search..."}
+                  autoCapitalize={"none"}
+                  autoCorrect={false}
+                  style={styles.input}
+                />
+              </ActionBar>
+              <ActivityIndicator style={{ marginTop: 16 }} />
+            </View>
+          </SafeAreaView>
+        </Fragment>
       );
     }
     // otherwise render content according to data array
     return (
-      <View style={styles.container}>
-        <MyStatusBar backgroundColor="#537AA8" barStyle="light-content" />
-        <ActionBar>
-          <TextInput
-            onChangeText={(text) => this.searchData(text)}
-            placeholder={"search..."}
-            autoCapitalize={"none"}
-            autoCorrect={false}
-            style={styles.input}
-          />
-        </ActionBar>
-        {this.state.data.length > 0 && (
-          // only try to render the list if there is data for it
-          <View style={{ flexDirection: "row", flex: 1 }}>
-            <FlatList
-              data={this.state.data}
-              extraData={this.state.endpoint}
-              keyExtractor={(item) => item.ID}
-              contentContainerStyle={styles.contentContainer}
-              renderItem={({ item, index }) => (
-                <TouchableOpacity
-                  onPress={() => {
-                    this.toggleModal(item);
-                  }}
-                >
-                  <Entry
-                    number={index + 1}
-                    navi={item.Navi}
-                    ipa={item.IPA}
-                    pos={item.PartOfSpeech}
-                    syllables={item.Syllables}
-                    infixDots={item.InfixDots}
-                    en={item.EN}
-                  />
-                </TouchableOpacity>
-              )}
-              // Pull to Refresh
-              refreshControl={
-                <RefreshControl
-                  refreshing={this.state.isLoading}
-                  onRefresh={this.onRefresh.bind(this)}
+      <Fragment>
+        <SafeAreaView style={{ flex: 0, backgroundColor: "#537AA8" }} />
+        <StatusBar barStyle="light-content" />
+        <SafeAreaView style={styles.safeContainer}>
+          <View style={styles.container}>
+            <ActionBar>
+              <TextInput
+                onChangeText={(text) => this.searchData(text)}
+                placeholder={"search..."}
+                autoCapitalize={"none"}
+                autoCorrect={false}
+                style={styles.input}
+              />
+            </ActionBar>
+            {this.state.data.length > 0 && (
+              // only try to render the list if there is data for it
+              <View style={{ flexDirection: "row", flex: 1 }}>
+                <FlatList
+                  data={this.state.data}
+                  extraData={this.state.endpoint}
+                  keyExtractor={(item) => item.ID}
+                  contentContainerStyle={styles.contentContainer}
+                  renderItem={({ item, index }) => (
+                    <TouchableOpacity
+                      onPress={() => {
+                        this.toggleModal(item);
+                      }}
+                    >
+                      <Entry
+                        number={index + 1}
+                        navi={item.Navi}
+                        ipa={item.IPA}
+                        pos={item.PartOfSpeech}
+                        syllables={item.Syllables}
+                        infixDots={item.InfixDots}
+                        en={item.EN}
+                      />
+                    </TouchableOpacity>
+                  )}
+                  // Pull to Refresh
+                  refreshControl={
+                    <RefreshControl
+                      refreshing={this.state.isLoading}
+                      onRefresh={this.onRefresh.bind(this)}
+                    />
+                  }
                 />
+              </View>
+            )}
+            {this.state.data.message && (
+              // for the situation the API returns {message: "no results"}
+              <View style={{ alignItems: "center" }}>
+                <Text>
+                  {this.state.data.message}: {this.state.text}
+                </Text>
+              </View>
+            )}
+            <Modal
+              isVisible={this.state.isModalVisible}
+              onBackButtonPress={() =>
+                this.toggleModal(this.state.selectedItem)
               }
-            />
+              onSwipeComplete={() => this.toggleModal(this.state.selectedItem)}
+              backdropTransitionOutTiming={0}
+            >
+              <ModalContent
+                entry={this.state.selectedItem}
+                onModalBackButtonPress={() => {
+                  this.toggleModal(this.state.selectedItem);
+                }}
+              />
+            </Modal>
           </View>
-        )}
-        {this.state.data.message && (
-          // for the situation the API returns {message: "no results"}
-          <View style={{ alignItems: "center" }}>
-            <Text>
-              {this.state.data.message}: {this.state.text}
-            </Text>
-          </View>
-        )}
-        <Modal
-          isVisible={this.state.isModalVisible}
-          onBackButtonPress={() => this.toggleModal(this.state.selectedItem)}
-          onSwipeComplete={() => this.toggleModal(this.state.selectedItem)}
-          backdropTransitionOutTiming={0}
-        >
-          <ModalContent
-            entry={this.state.selectedItem}
-            onModalBackButtonPress={() => {
-              this.toggleModal(this.state.selectedItem);
-            }}
-          />
-        </Modal>
-      </View>
+        </SafeAreaView>
+      </Fragment>
     );
   }
 }
