@@ -18,7 +18,7 @@
 }
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Feather } from "@expo/vector-icons";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Screen from "./screen";
 
 // the root endpoint of the Fwew API
@@ -50,7 +50,7 @@ function TabNavigator() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ color, size }) => {
+        tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           switch (route.name) {
             case "Fwew":
@@ -60,10 +60,10 @@ function TabNavigator() {
               iconName = "list";
               break;
             case "Random":
-              iconName = "help-circle";
+              iconName = focused ? "help" : "help-outline";
               break;
           }
-          return <Feather name={iconName} size={size} color={color} />;
+          return <MaterialIcons name={iconName} size={size} color={color} />;
         },
       })}
       tabBarOptions={{
