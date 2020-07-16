@@ -93,10 +93,10 @@ class Screen extends Component {
     // render activity indicator when loading
     return (
       <Fragment>
-        <SafeAreaView style={{ flex: 0, backgroundColor: "537AA8" }} />
+        <SafeAreaView style={styles.safeStatusBar} />
         <StatusBar barStyle="light-content" />
         <SafeAreaView style={styles.safeContainer}>
-          <View style={styles.container}>
+          <View style={{ flex: 1 }}>
             <ActionBar>
               <TextInput
                 onChangeText={(text) => this.searchData(text)}
@@ -144,6 +144,10 @@ const INPUT_HEIGHT = Platform.OS === "ios" ? 32 : 40;
 const INPUT_MARGIN_TOP = Platform.OS === "ios" ? 2 : 4;
 
 const styles = StyleSheet.create({
+  safeStatusBar: {
+    flex: 0,
+    backgroundColor: "#537AA8",
+  },
   safeContainer: {
     flex: 1,
   },
