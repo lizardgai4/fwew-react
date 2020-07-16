@@ -47,6 +47,7 @@ class Screen extends Component {
     };
   }
 
+  // toggles info modal visible when user taps a list entry or modal backdrop
   toggleModal = (item) => {
     this.setState({
       isModalVisible: !this.state.isModalVisible,
@@ -90,11 +91,13 @@ class Screen extends Component {
   }
 
   render() {
-    // render activity indicator when loading
     return (
       <Fragment>
+        {/* status bar */}
         <SafeAreaView style={styles.safeStatusBar} />
         <StatusBar barStyle="light-content" />
+
+        {/* main content */}
         <SafeAreaView style={styles.safeContainer}>
           <View style={{ flex: 1 }}>
             <ActionBar>
@@ -106,6 +109,11 @@ class Screen extends Component {
                 style={styles.input}
               />
             </ActionBar>
+
+            {/*
+            render activity indicator when loading 
+            render word list when finished loading
+            */}
             {this.state.isLoading ? (
               <ActivityIndicator style={{ marginTop: 16 }} />
             ) : (
@@ -117,6 +125,8 @@ class Screen extends Component {
                 toggleModal={(item) => this.toggleModal(item)}
               />
             )}
+
+            {/* word information modal when user taps an entry in the list */}
             <Modal
               isVisible={this.state.isModalVisible}
               onBackButtonPress={() =>
