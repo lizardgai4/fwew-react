@@ -23,7 +23,6 @@ import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
-  Text,
   TextInput,
   View,
 } from "react-native";
