@@ -19,22 +19,19 @@
 import React, { Component, Fragment } from "react";
 import {
   ActivityIndicator,
-  FlatList,
   Platform,
-  RefreshControl,
   SafeAreaView,
   StatusBar,
   StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
   View,
 } from "react-native";
 import axios from "axios";
 import Modal from "react-native-modal";
 import ActionBar from "./action-bar";
-import Entry from "./entry";
 import ModalContent from "./modal-content";
+import WordList from "./word-list";
 
 // The main content area of the app
 class Screen extends Component {
@@ -95,32 +92,9 @@ class Screen extends Component {
 
   render() {
     // render activity indicator when loading
-    if (this.state.isLoading) {
-      return (
-        <Fragment>
-          <SafeAreaView style={{ flex: 0, backgroundColor: "537AA8" }} />
-          <StatusBar barStyle="light-content" />
-          <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
-            <View style={{ flex: 1 }}>
-              <ActionBar>
-                <TextInput
-                  onChangeText={(text) => this.searchData(text)}
-                  placeholder={"search..."}
-                  autoCapitalize={"none"}
-                  autoCorrect={false}
-                  style={styles.input}
-                />
-              </ActionBar>
-              <ActivityIndicator style={{ marginTop: 16 }} />
-            </View>
-          </SafeAreaView>
-        </Fragment>
-      );
-    }
-    // otherwise render content according to data array
     return (
       <Fragment>
-        <SafeAreaView style={{ flex: 0, backgroundColor: "#537AA8" }} />
+        <SafeAreaView style={{ flex: 0, backgroundColor: "537AA8" }} />
         <StatusBar barStyle="light-content" />
         <SafeAreaView style={styles.safeContainer}>
           <View style={styles.container}>
@@ -133,48 +107,16 @@ class Screen extends Component {
                 style={styles.input}
               />
             </ActionBar>
-            {this.state.data.length > 0 && (
-              // only try to render the list if there is data for it
-              <View style={{ flexDirection: "row", flex: 1 }}>
-                <FlatList
-                  data={this.state.data}
-                  extraData={this.state.endpoint}
-                  keyExtractor={(item) => item.ID}
-                  contentContainerStyle={styles.listContentContainer}
-                  renderItem={({ item, index }) => (
-                    <TouchableOpacity
-                      onPress={() => {
-                        this.toggleModal(item);
-                      }}
-                    >
-                      <Entry
-                        number={index + 1}
-                        navi={item.Navi}
-                        ipa={item.IPA}
-                        pos={item.PartOfSpeech}
-                        syllables={item.Syllables}
-                        infixDots={item.InfixDots}
-                        en={item.EN}
-                      />
-                    </TouchableOpacity>
-                  )}
-                  // Pull to Refresh
-                  refreshControl={
-                    <RefreshControl
-                      refreshing={this.state.isLoading}
-                      onRefresh={this.onRefresh.bind(this)}
-                    />
-                  }
-                />
-              </View>
-            )}
-            {this.state.data.message && (
-              // for the situation the API returns {message: "no results"}
-              <View style={{ alignItems: "center" }}>
-                <Text>
-                  {this.state.data.message}: {this.state.text}
-                </Text>
-              </View>
+            {this.state.isLoading ? (
+              <ActivityIndicator style={{ marginTop: 16 }} />
+            ) : (
+              <WordList
+                data={this.state.data}
+                text={this.state.text}
+                isLoading={this.state.isLoading}
+                onRefresh={() => this.onRefresh()}
+                toggleModal={(item) => this.toggleModal(item)}
+              />
             )}
             <Modal
               isVisible={this.state.isModalVisible}
@@ -220,10 +162,6 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     backgroundColor: "#fff",
     borderRadius: 16,
-  },
-  listContentContainer: {
-    marginTop: 8,
-    paddingBottom: 72,
   },
 });
 
