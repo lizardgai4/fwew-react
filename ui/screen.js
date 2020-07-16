@@ -181,7 +181,7 @@ class Screen extends Component {
               onBackButtonPress={() =>
                 this.toggleModal(this.state.selectedItem)
               }
-              onSwipeComplete={() => this.toggleModal(this.state.selectedItem)}
+              onBackdropPress={() => this.toggleModal(this.state.selectedItem)}
               backdropTransitionOutTiming={0}
             >
               <ModalContent
