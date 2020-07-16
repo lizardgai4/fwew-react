@@ -43,6 +43,13 @@ function ModalContent(props) {
             {props.entry.EN}
           </Text>
         </Text>
+
+        <Text selectable={true} style={styles.modal_label}>
+          {"source: "}
+          <Text selectable={true} style={styles.modal_text}>
+            {props.entry.Source}
+          </Text>
+        </Text>
       </View>
 
       {/* pronunciation data */}
