@@ -37,8 +37,9 @@ const styles = StyleSheet.create({
     height: 56,
     width: "100%",
     backgroundColor: colors.primary,
-    paddingTop: 4,
     flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   icon: {
     marginLeft: 8,

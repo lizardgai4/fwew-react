@@ -166,10 +166,10 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    marginTop: 4,
-    width: "80%",
+    flex: 1,
     paddingLeft: 16,
     marginLeft: 8,
+    marginRight: 8,
     backgroundColor: colors.inputBackground,
     borderRadius: 16,
   },
