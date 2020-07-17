@@ -66,6 +66,7 @@ class Screen extends Component {
 
   // fetches Na'vi word data from the Fwew API and updates the state data accordingly
   fetchData(endpoint) {
+    this.setState({ isLoading: true });
     axios
       .get(endpoint)
       .then((response) => {
