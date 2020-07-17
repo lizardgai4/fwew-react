@@ -17,7 +17,7 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 }
 import React from "react";
-import { Image, Platform, StyleSheet, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import fwew from "../assets/fwew.png";
 
 // the bar at the top of the screen, below the status bar
@@ -30,20 +30,19 @@ function ActionBar(props) {
   );
 }
 
-// height of the main bar at the top of the app, and differs on iOS and Android
-const APPBAR_HEIGHT = Platform.OS === "ios" ? 44 : 56;
-// dimension of the logo image at the left of the app bar / action bar
-const ICON_SIZE = Platform.OS === "ios" ? 32 : 48;
-
 const styles = StyleSheet.create({
   action_bar: {
-    height: APPBAR_HEIGHT,
+    height: 56,
     width: "100%",
     backgroundColor: "#7494BA",
     paddingTop: 4,
     flexDirection: "row",
   },
-  icon: { marginLeft: 8, width: ICON_SIZE, height: ICON_SIZE },
+  icon: {
+    marginLeft: 8,
+    width: 48,
+    height: 48,
+  },
 });
 
 export default ActionBar;

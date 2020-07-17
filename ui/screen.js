@@ -19,7 +19,6 @@
 import React, { Component, Fragment } from "react";
 import {
   ActivityIndicator,
-  Platform,
   SafeAreaView,
   StatusBar,
   StyleSheet,
@@ -149,10 +148,6 @@ class Screen extends Component {
   }
 }
 
-// height and top margin of the text input varies on iOS and Android due to the app bar height difference
-const INPUT_HEIGHT = Platform.OS === "ios" ? 32 : 40;
-const INPUT_MARGIN_TOP = Platform.OS === "ios" ? 2 : 4;
-
 const styles = StyleSheet.create({
   safeStatusBar: {
     flex: 0,
@@ -168,8 +163,8 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
   },
   input: {
-    height: INPUT_HEIGHT,
-    marginTop: INPUT_MARGIN_TOP,
+    height: 40,
+    marginTop: 4,
     width: "80%",
     paddingLeft: 16,
     marginLeft: 8,
