@@ -27,6 +27,10 @@ const colors = {
   modalBorder: "#ddd",
   screenBackground: "#fff",
   inputBackground: "#fff",
+  activeTabBackground: "#fff",
+  activeTabTint: "#7494ba",
+  inactiveTabBackground: "#7494ba",
+  inactiveTabTint: "#fff",
 };
 
 export default colors;

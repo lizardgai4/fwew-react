@@ -19,7 +19,9 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+
 import Screen from "./screen";
+import colors from "./colors";
 
 // the root endpoint of the Fwew API
 // see https://github.com/fwew/fwew-api for more info about the API
@@ -67,7 +69,10 @@ function TabNavigator() {
         },
       })}
       tabBarOptions={{
-        inactiveTintColor: "gray",
+        activeTintColor: colors.activeTabTint,
+        activeBackgroundColor: colors.activeTabBackground,
+        inactiveTintColor: colors.inactiveTabTint,
+        inactiveBackgroundColor: colors.inactiveTabBackground,
       }}
     >
       <Tab.Screen name="Fwew" component={FwewScreen} />
