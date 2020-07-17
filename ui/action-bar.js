@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
   action_bar: {
     height: 56,
     width: "100%",
+    paddingRight: 8,
     backgroundColor: colors.primary,
     flexDirection: "row",
     justifyContent: "space-between",

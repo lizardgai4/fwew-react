@@ -23,10 +23,12 @@ import {
   StatusBar,
   StyleSheet,
   TextInput,
+  TouchableOpacity,
   View,
 } from "react-native";
 import axios from "axios";
 import Modal from "react-native-modal";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 import ActionBar from "./action-bar";
 import ModalContent from "./modal-content";
@@ -109,6 +111,14 @@ class Screen extends Component {
                 autoCorrect={false}
                 style={styles.input}
               />
+              {/* settings button that will open settings modal */}
+              <TouchableOpacity
+                onPress={() => {
+                  // TODO: implement settings button functionality
+                }}
+              >
+                <MaterialIcons name="settings" size={36} color="#fff" />
+              </TouchableOpacity>
             </ActionBar>
 
             {/*
