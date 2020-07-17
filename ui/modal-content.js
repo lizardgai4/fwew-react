@@ -18,6 +18,7 @@
 }
 import React from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
+import colors from "./colors";
 
 // content of the modal which appears when user taps on an entry
 function ModalContent(props) {
@@ -137,7 +138,7 @@ function ModalContent(props) {
         <Button
           title={"back"}
           onPress={props.onModalBackButtonPress}
-          color={"#537AA8"}
+          color={colors.secondary}
         />
       </View>
     </View>
@@ -146,11 +147,11 @@ function ModalContent(props) {
 
 const styles = StyleSheet.create({
   modalContainer: {
-    backgroundColor: "#fff",
+    backgroundColor: colors.modalBackground,
     flexDirection: "column",
     padding: 16,
     borderRadius: 16,
-    borderColor: "#ddd",
+    borderColor: colors.modalBorder,
   },
   modal_group: {
     marginTop: 16,

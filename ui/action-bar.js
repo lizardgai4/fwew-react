@@ -18,7 +18,9 @@
 }
 import React from "react";
 import { Image, StyleSheet, View } from "react-native";
+
 import fwew from "../assets/fwew.png";
+import colors from "./colors";
 
 // the bar at the top of the screen, below the status bar
 function ActionBar(props) {
@@ -34,7 +36,7 @@ const styles = StyleSheet.create({
   action_bar: {
     height: 56,
     width: "100%",
-    backgroundColor: "#7494BA",
+    backgroundColor: colors.primary,
     paddingTop: 4,
     flexDirection: "row",
   },

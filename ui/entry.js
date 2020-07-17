@@ -19,6 +19,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import EntryIndex from "./entry-index";
+import colors from "./colors";
 
 // a list row entry item
 function Entry(props) {
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     borderWidth: 1,
     borderRadius: 16,
-    borderColor: "#ddd",
+    borderColor: colors.entryBorder,
   },
   entry_navi: {
     fontWeight: "bold",

@@ -19,6 +19,8 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
+import colors from "./colors";
+
 // the list entry row item number
 function EntryIndex(props) {
   return (
@@ -34,13 +36,13 @@ const styles = StyleSheet.create({
     width: 32,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#7494BA",
+    backgroundColor: colors.primary,
     borderRadius: 45,
   },
   entry_number: {
     fontWeight: "bold",
     fontSize: 16,
-    color: "#fff",
+    color: colors.entryNumber,
   },
 });
 

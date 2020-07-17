@@ -27,9 +27,11 @@ import {
 } from "react-native";
 import axios from "axios";
 import Modal from "react-native-modal";
+
 import ActionBar from "./action-bar";
 import ModalContent from "./modal-content";
 import WordList from "./word-list";
+import colors from "./colors";
 
 // The main content area of the app
 class Screen extends Component {
@@ -151,7 +153,7 @@ class Screen extends Component {
 const styles = StyleSheet.create({
   safeStatusBar: {
     flex: 0,
-    backgroundColor: "#537AA8",
+    backgroundColor: colors.secondary,
   },
   safeContainer: {
     flex: 1,
@@ -159,7 +161,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: "100%",
-    backgroundColor: "#fff",
+    backgroundColor: colors.screenBackground,
     alignItems: "stretch",
   },
   input: {
@@ -168,7 +170,7 @@ const styles = StyleSheet.create({
     width: "80%",
     paddingLeft: 16,
     marginLeft: 8,
-    backgroundColor: "#fff",
+    backgroundColor: colors.inputBackground,
     borderRadius: 16,
   },
 });
