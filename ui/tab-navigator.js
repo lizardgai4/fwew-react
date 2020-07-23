@@ -30,19 +30,19 @@ const ApiRoot = "https://tirea.learnnavi.org/api";
 // screen where the user can search for specific word(s)
 function FwewScreen() {
   const endpoint = ApiRoot + "/fwew/";
-  return <Screen ApiUrl={endpoint} />;
+  return <Screen screenType="fwew" ApiUrl={endpoint} />;
 }
 
 // screen where the user can list all words (or all words that have given properties)
 function ListScreen() {
   const endpoint = ApiRoot + "/list/";
-  return <Screen ApiUrl={endpoint} />;
+  return <Screen screenType="list" ApiUrl={endpoint} />;
 }
 
 // screen where the user can view a randomized list of words
 function RandomScreen() {
   const endpoint = ApiRoot + "/random/";
-  return <Screen ApiUrl={endpoint}></Screen>;
+  return <Screen screenType="random" ApiUrl={endpoint}></Screen>;
 }
 
 const Tab = createBottomTabNavigator();

@@ -32,6 +32,7 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 import ActionBar from "./action-bar";
 import ModalContent from "./modal-content";
+import Settings from "./settings";
 import WordList from "./word-list";
 import colors from "./colors";
 
@@ -40,15 +41,24 @@ class Screen extends Component {
   constructor(props) {
     super(props);
     this.ApiUrl = this.props.ApiUrl;
+    this.screenType = this.props.screenType;
     this.state = {
       isLoading: true,
       text: "",
       data: [],
       endpoint: this.ApiUrl,
       isModalVisible: false,
+      isSettingsVisible: false,
       selectedItem: {},
     };
   }
+
+  // toggles settings modal visible when user taps the settings icon in the app bar
+  toggleSettings = () => {
+    this.setState({
+      isSettingsVisible: !this.state.isSettingsVisible,
+    });
+  };
 
   // toggles info modal visible when user taps a list entry or modal backdrop
   toggleModal = (item) => {
@@ -113,11 +123,7 @@ class Screen extends Component {
                 style={styles.input}
               />
               {/* settings button that will open settings modal */}
-              <TouchableOpacity
-                onPress={() => {
-                  // TODO: implement settings button functionality
-                }}
-              >
+              <TouchableOpacity onPress={() => this.toggleSettings()}>
                 <MaterialIcons name="settings" size={36} color="#fff" />
               </TouchableOpacity>
             </ActionBar>
@@ -141,6 +147,8 @@ class Screen extends Component {
             {/* word information modal when user taps an entry in the list */}
             <Modal
               isVisible={this.state.isModalVisible}
+              animationIn="slideInLeft"
+              animationOut="slideOutLeft"
               onBackButtonPress={() =>
                 this.toggleModal(this.state.selectedItem)
               }
@@ -149,9 +157,25 @@ class Screen extends Component {
             >
               <ModalContent
                 entry={this.state.selectedItem}
-                onModalBackButtonPress={() => {
-                  this.toggleModal(this.state.selectedItem);
-                }}
+                onModalBackButtonPress={() =>
+                  this.toggleModal(this.state.selectedItem)
+                }
+              />
+            </Modal>
+
+            {/* settings modal when user taps on the settings icon in the app bar */}
+            <Modal
+              isVisible={this.state.isSettingsVisible}
+              animationIn="slideInRight"
+              animationOut="slideOutRight"
+              onBackButtonPress={() => this.toggleSettings()}
+              onBackdropPress={() => this.toggleSettings()}
+              backdropTransitionOutTiming={0}
+            >
+              <Settings
+                // TODO: implement logic for settings to populate the screen
+                screenType={this.screenType}
+                onSettingsBackButtonPress={() => this.toggleSettings()}
               />
             </Modal>
           </View>
