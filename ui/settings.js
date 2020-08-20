@@ -17,8 +17,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 }
 import React from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
-import { TextInput, List } from "react-native-paper";
+import { Button, StyleSheet, Switch, Text, View } from "react-native";
+import { TextInput } from "react-native-paper";
 import ListSettings from "./list-settings";
 import colors from "./colors";
 
@@ -27,6 +27,9 @@ function Settings({ screenType, onSettingsBackButtonPress }) {
   const [posFilterText, setPosFilterText] = React.useState("all");
   const [languageCode, setLanguageCode] = React.useState("en");
   const [numRandomWords, setNumRandomWords] = React.useState("8");
+  const [isReverseEnabled, setIsReverseEnabled] = React.useState(false);
+  const toggleReverseSwitch = () =>
+    setIsReverseEnabled((previousState) => !previousState);
 
   let title = (
     <Text selectable={true} style={styles.modal_navi}>
@@ -50,6 +53,27 @@ function Settings({ screenType, onSettingsBackButtonPress }) {
               setLanguageCode(text);
             }}
           />
+          <Text style={styles.modal_label}>search direction</Text>
+          <View style={styles.modal_row}>
+            <Text>
+              {isReverseEnabled ? "English > Na'vi" : "Na'vi > English"}
+            </Text>
+            <Switch
+              style={{ alignSelf: "flex-end" }}
+              trackColor={{
+                false: colors.switchTrackColorFalse,
+                true: colors.switchTrackColorTrue,
+              }}
+              thumbColor={
+                isReverseEnabled
+                  ? colors.switchThumbColorTrue
+                  : colors.switchThumbColorFalse
+              }
+              ios_backgroundColor={colors.switchIOSBackgroundColor}
+              onValueChange={toggleReverseSwitch}
+              value={isReverseEnabled}
+            />
+          </View>
           <Text style={styles.modal_label}>part of speech filter</Text>
           <TextInput
             mode="outlined"
@@ -133,6 +157,13 @@ const styles = StyleSheet.create({
   },
   modal_row: {
     flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    borderWidth: 1,
+    borderStyle: "solid",
+    borderColor: colors.modalRowBorder,
+    borderRadius: 4,
+    padding: 12,
   },
   dropdown: {
     width: 128,

@@ -17,7 +17,6 @@
       along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 }
 
-//
 const colors = {
   primary: "#7494ba",
   secondary: "#537aa8",
@@ -25,8 +24,14 @@ const colors = {
   entryBorder: "#ddd",
   modalBackground: "#fff",
   modalBorder: "#ddd",
+  modalRowBorder: "#757575",
   screenBackground: "#fff",
   inputBackground: "#fff",
+  switchTrackColorFalse: "#767577",
+  switchTrackColorTrue: "#7494ba",
+  switchThumbColorFalse: "#f4f3f4",
+  switchThumbColorTrue: "#537aa8",
+  switchIOSBackgroundColor: "#3e3e3e",
   activeTabBackground: "#fff",
   activeTabTint: "#7494ba",
   inactiveTabBackground: "#7494ba",
