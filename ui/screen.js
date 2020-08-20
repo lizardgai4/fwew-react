@@ -35,6 +35,7 @@ import ModalContent from "./modal-content";
 import Settings from "./settings";
 import WordList from "./word-list";
 import colors from "./colors";
+import defaultSettings from "./settings";
 
 // The main content area of the app
 class Screen extends Component {
@@ -50,8 +51,16 @@ class Screen extends Component {
       isModalVisible: false,
       isSettingsVisible: false,
       selectedItem: {},
+      settings: defaultSettings,
     };
   }
+
+  // updates the screen settings when user edits settings in the settings modal
+  updateSettings = (settingsObj) => {
+    this.setState({
+      settings: settingsObj,
+    });
+  };
 
   // toggles settings modal visible when user taps the settings icon in the app bar
   toggleSettings = () => {
