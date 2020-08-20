@@ -32,10 +32,10 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 import ActionBar from "./action-bar";
 import EntryModalContent from "./entry-modal-content";
-import Settings from "./settings";
+import SettingsModalContent from "./settings-modal-content";
 import WordList from "./word-list";
 import colors from "./colors";
-import defaultSettings from "./settings";
+import Settings from "./settings";
 
 // The main content area of the app
 class Screen extends Component {
@@ -51,7 +51,7 @@ class Screen extends Component {
       isModalVisible: false,
       isSettingsVisible: false,
       selectedItem: {},
-      settings: defaultSettings,
+      settings: Settings,
     };
   }
 
@@ -181,7 +181,7 @@ class Screen extends Component {
               onBackdropPress={() => this.toggleSettings()}
               backdropTransitionOutTiming={0}
             >
-              <Settings
+              <SettingsModalContent
                 // TODO: implement logic for settings to populate the screen
                 screenType={this.screenType}
                 onSettingsBackButtonPress={() => this.toggleSettings()}
