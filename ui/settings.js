@@ -24,7 +24,9 @@ import colors from "./colors";
 
 // content of the modal which appears when user taps on an entry
 function Settings({ screenType, onSettingsBackButtonPress }) {
-  const [text, setText] = React.useState("");
+  const [posFilterText, setPosFilterText] = React.useState("all");
+  const [languageCode, setLanguageCode] = React.useState("en");
+  const [numRandomWords, setNumRandomWords] = React.useState("8");
 
   let title = (
     <Text selectable={true} style={styles.modal_navi}>
@@ -36,14 +38,29 @@ function Settings({ screenType, onSettingsBackButtonPress }) {
     case "fwew":
       content = (
         <View style={styles.modal_group}>
+          <Text style={styles.modal_label}>language</Text>
+          <TextInput
+            mode="outlined"
+            label="language"
+            value={languageCode}
+            placeholder="en"
+            theme={inputTheme}
+            style={styles.input}
+            onChangeText={(text) => {
+              setLanguageCode(text);
+            }}
+          />
           <Text style={styles.modal_label}>part of speech filter</Text>
           <TextInput
             mode="outlined"
             label="show only..."
-            value="all"
+            value={posFilterText}
             placeholder="all"
             theme={inputTheme}
             style={styles.input}
+            onChangeText={(text) => {
+              setPosFilterText(text);
+            }}
           />
         </View>
       );
@@ -54,14 +71,17 @@ function Settings({ screenType, onSettingsBackButtonPress }) {
     case "random":
       content = (
         <ListSettings>
-          <Text style={styles.modal_label}>how many?</Text>
+          <Text style={styles.modal_label}>number of random words</Text>
           <TextInput
             mode="outlined"
             label="number of random words"
-            value="8"
+            value={numRandomWords}
             placeholder="8"
             theme={inputTheme}
             style={styles.input}
+            onChangeText={(text) => {
+              setNumRandomWords(text);
+            }}
           />
         </ListSettings>
       );

@@ -22,8 +22,21 @@ import { TextInput } from "react-native-paper";
 import colors from "./colors";
 
 function ListSettings(props) {
+  const [languageCode, setLanguageCode] = React.useState("en");
   return (
     <ScrollView style={styles.scrollContainer}>
+      <Text style={styles.modal_label}>language</Text>
+      <TextInput
+        mode="outlined"
+        label="language"
+        value={languageCode}
+        placeholder="en"
+        theme={inputTheme}
+        style={styles.input}
+        onChangeText={(text) => {
+          setLanguageCode(text);
+        }}
+      />
       {props.children}
       <Text style={styles.modal_label}>word</Text>
       <TextInput
