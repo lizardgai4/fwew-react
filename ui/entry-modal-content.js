@@ -21,7 +21,7 @@ import { Button, StyleSheet, Text, View } from "react-native";
 import colors from "./colors";
 
 // content of the modal which appears when user taps on an entry
-function ModalContent(props) {
+function EntryModalContent(props) {
   return (
     <View style={styles.modalContainer}>
       {/* the Na'vi word */}
@@ -175,4 +175,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ModalContent;
+export default EntryModalContent;

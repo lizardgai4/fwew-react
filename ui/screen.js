@@ -31,7 +31,7 @@ import Modal from "react-native-modal";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 import ActionBar from "./action-bar";
-import ModalContent from "./modal-content";
+import EntryModalContent from "./entry-modal-content";
 import Settings from "./settings";
 import WordList from "./word-list";
 import colors from "./colors";
@@ -164,7 +164,7 @@ class Screen extends Component {
               onBackdropPress={() => this.toggleModal(this.state.selectedItem)}
               backdropTransitionOutTiming={0}
             >
-              <ModalContent
+              <EntryModalContent
                 entry={this.state.selectedItem}
                 onModalBackButtonPress={() =>
                   this.toggleModal(this.state.selectedItem)
