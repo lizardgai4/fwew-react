@@ -19,7 +19,7 @@
 import React from "react";
 import { Button, StyleSheet, Switch, Text, View } from "react-native";
 import { TextInput } from "react-native-paper";
-import ListSettings from "./list-settings";
+import ListSettingsModalContent from "./list-settings-modal-content";
 import colors from "./colors";
 
 // content of the modal which appears when user taps on an entry
@@ -90,11 +90,11 @@ function SettingsModalContent({ screenType, onSettingsBackButtonPress }) {
       );
       break;
     case "list":
-      content = <ListSettings />;
+      content = <ListSettingsModalContent />;
       break;
     case "random":
       content = (
-        <ListSettings>
+        <ListSettingsModalContent>
           <Text style={styles.modal_label}>number of random words</Text>
           <TextInput
             mode="outlined"
@@ -107,7 +107,7 @@ function SettingsModalContent({ screenType, onSettingsBackButtonPress }) {
               setNumRandomWords(text);
             }}
           />
-        </ListSettings>
+        </ListSettingsModalContent>
       );
   }
   return (

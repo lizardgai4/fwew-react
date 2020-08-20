@@ -21,7 +21,7 @@ import { ScrollView, StyleSheet, Text } from "react-native";
 import { TextInput } from "react-native-paper";
 import colors from "./colors";
 
-function ListSettings(props) {
+function ListSettingsModalContent(props) {
   const [languageCode, setLanguageCode] = React.useState("en");
   return (
     <ScrollView style={styles.scrollContainer}>
@@ -194,4 +194,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ListSettings;
+export default ListSettingsModalContent;
