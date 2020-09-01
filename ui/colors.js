@@ -36,6 +36,7 @@ const colors = {
   activeTabTint: "#7494ba",
   inactiveTabBackground: "#7494ba",
   inactiveTabTint: "#fff",
+  settingsButtonFill: "#fff",
 };
 
 export default colors;
