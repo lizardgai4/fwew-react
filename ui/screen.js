@@ -43,6 +43,11 @@ class Screen extends Component {
     super(props);
     this.ApiUrl = this.props.ApiUrl;
     this.screenType = this.props.screenType;
+    this.updateSettings.bind(this);
+    this.toggleSettings.bind(this);
+    this.toggleModal.bind(this);
+    this.onRefresh.bind(this);
+    this.searchData.bind(this);
     this.state = {
       isLoading: true,
       text: "",
@@ -56,29 +61,29 @@ class Screen extends Component {
   }
 
   // updates the screen settings when user edits settings in the settings modal
-  updateSettings = (settingsObj) => {
+  updateSettings(settingsObj) {
     this.setState({
       settings: settingsObj,
     });
-  };
+  }
 
   // toggles settings modal visible when user taps the settings icon in the app bar
-  toggleSettings = () => {
+  toggleSettings() {
     this.setState({
       isSettingsVisible: !this.state.isSettingsVisible,
     });
-  };
+  }
 
   // toggles info modal visible when user taps a list entry or modal backdrop
-  toggleModal = (item) => {
+  toggleModal(item) {
     this.setState({
       isModalVisible: !this.state.isModalVisible,
       selectedItem: item,
     });
-  };
+  }
 
   // called when the user pulls down on the word list after it has rendered
-  async onRefresh() {
+  onRefresh() {
     this.setState({ data: [] });
     this.fetchData(this.state.endpoint);
   }
@@ -96,21 +101,19 @@ class Screen extends Component {
       });
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     // fetch data and re-render after this component is mounted to the DOM and rendered in initial loading state
     this.fetchData(this.state.endpoint);
   }
 
   // called whenever the user types or modifies text in the text input of the action bar / app bar
-  async searchData(text) {
-    this.setState(
-      {
-        text: text,
-        endpoint: this.ApiUrl + text,
-      },
-      // use this.ApiUrl + text rather than this.state.endpoint so that the list isn't a render behind the search bar
-      this.fetchData(this.ApiUrl + text)
-    );
+  searchData(text) {
+    this.setState({
+      text: text,
+      endpoint: this.ApiUrl + text,
+    });
+    // use this.ApiUrl + text rather than this.state.endpoint so that the list isn't a render behind the search bar
+    this.fetchData(this.ApiUrl + text);
   }
 
   render() {
