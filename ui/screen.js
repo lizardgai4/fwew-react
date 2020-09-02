@@ -32,10 +32,12 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 import ActionBar from "./action-bar";
 import EntryModalContent from "./entry-modal-content";
-import SettingsModalContent from "./settings-modal-content";
 import WordList from "./word-list";
 import colors from "./colors";
 import Settings from "./settings";
+import FwewSettings from "./fwew-settings";
+import ListSettings from "./list-settings";
+import RandomSettings from "./random-settings";
 
 // The main content area of the app
 class Screen extends Component {
@@ -184,11 +186,21 @@ class Screen extends Component {
               onBackdropPress={() => this.toggleSettings()}
               backdropTransitionOutTiming={0}
             >
-              <SettingsModalContent
-                // TODO: implement logic for settings to populate the screen
-                screenType={this.screenType}
-                onSettingsBackButtonPress={() => this.toggleSettings()}
-              />
+              {this.screenType === "fwew" && (
+                <FwewSettings
+                  onSettingsBackButtonPress={() => this.toggleSettings()}
+                />
+              )}
+              {this.screenType === "list" && (
+                <ListSettings
+                  onSettingsBackButtonPress={() => this.toggleSettings()}
+                />
+              )}
+              {this.screenType === "random" && (
+                <RandomSettings
+                  onSettingsBackButtonPress={() => this.toggleSettings()}
+                />
+              )}
             </Modal>
           </View>
         </SafeAreaView>
