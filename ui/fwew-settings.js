@@ -22,12 +22,15 @@ import { TextInput } from "react-native-paper";
 import colors from "./colors";
 
 // content of the modal which appears when user taps on an entry
-function FwewSettings({ onSettingsBackButtonPress }) {
-  const [posFilterText, setPosFilterText] = React.useState("all");
-  const [languageCode, setLanguageCode] = React.useState("en");
-  const [isReverseEnabled, setIsReverseEnabled] = React.useState(false);
-  const toggleReverseSwitch = () =>
-    setIsReverseEnabled((previousState) => !previousState);
+function FwewSettings({
+  settingsGlobal,
+  settingsFwew,
+  onSettingsBackButtonPress,
+  onUpdateSettingsGlobal,
+  onUpdateSettingsFwew,
+}) {
+  let { languageCode } = settingsGlobal;
+  let { posFilterText, isReverseEnabled } = settingsFwew;
 
   return (
     <View style={styles.modalContainer}>
@@ -44,7 +47,7 @@ function FwewSettings({ onSettingsBackButtonPress }) {
           theme={inputTheme}
           style={styles.input}
           onChangeText={(text) => {
-            setLanguageCode(text);
+            onUpdateSettingsGlobal({ languageCode: text });
           }}
         />
         <Text style={styles.modal_label}>search direction</Text>
@@ -64,8 +67,13 @@ function FwewSettings({ onSettingsBackButtonPress }) {
                 : colors.switchThumbColorFalse
             }
             ios_backgroundColor={colors.switchIOSBackgroundColor}
-            onValueChange={toggleReverseSwitch}
             value={isReverseEnabled}
+            onValueChange={() => {
+              onUpdateSettingsFwew({
+                isReverseEnabled: !isReverseEnabled,
+                posFilterText: posFilterText,
+              });
+            }}
           />
         </View>
         <Text style={styles.modal_label}>part of speech filter</Text>
@@ -77,7 +85,10 @@ function FwewSettings({ onSettingsBackButtonPress }) {
           theme={inputTheme}
           style={styles.input}
           onChangeText={(text) => {
-            setPosFilterText(text);
+            onUpdateSettingsFwew({
+              isReverseEnabled: isReverseEnabled,
+              posFilterText: text,
+            });
           }}
         />
       </View>

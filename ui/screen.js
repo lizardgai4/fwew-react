@@ -34,7 +34,12 @@ import ActionBar from "./action-bar";
 import EntryModalContent from "./entry-modal-content";
 import WordList from "./word-list";
 import colors from "./colors";
-import Settings from "./settings";
+import {
+  SettingsGlobal,
+  SettingsFwew,
+  SettingsList,
+  settingsRandom,
+} from "./settings";
 import FwewSettings from "./fwew-settings";
 import ListSettings from "./list-settings";
 import RandomSettings from "./random-settings";
@@ -45,7 +50,8 @@ class Screen extends Component {
     super(props);
     this.ApiUrl = this.props.ApiUrl;
     this.screenType = this.props.screenType;
-    this.updateSettings.bind(this);
+    this.updateSettingsGlobal.bind(this);
+    this.updateSettingsFwew.bind(this);
     this.toggleSettings.bind(this);
     this.toggleModal.bind(this);
     this.onRefresh.bind(this);
@@ -58,15 +64,40 @@ class Screen extends Component {
       isModalVisible: false,
       isSettingsVisible: false,
       selectedItem: {},
-      settings: Settings,
+      settingsGlobal: SettingsGlobal,
+      settingsFwew: SettingsFwew,
+      settingsList: SettingsList,
+      settingsRandom: settingsRandom,
     };
   }
 
   // updates the screen settings when user edits settings in the settings modal
-  updateSettings(settingsObj) {
-    this.setState({
-      settings: settingsObj,
-    });
+  updateSettingsGlobal(settingsObj) {
+    const { languageCode } = settingsObj;
+    const endpoint = this.state.settingsFwew.isReverseEnabled
+      ? `${this.ApiUrl}r/${languageCode}/${this.state.text}`
+      : `${this.ApiUrl}${this.state.text}`;
+    this.setState(() => ({
+      settingsGlobal: {
+        languageCode: languageCode,
+      },
+      endpoint: endpoint,
+    }));
+  }
+
+  updateSettingsFwew(settingsObj) {
+    const { isReverseEnabled, posFilterText } = settingsObj;
+    const endpoint = isReverseEnabled
+      ? `${this.ApiUrl}r/${this.state.settingsGlobal.languageCode}/${this.state.text}`
+      : `${this.ApiUrl}${this.state.text}`;
+    this.setState(() => ({
+      settingsFwew: {
+        ...this.state.settingsFwew,
+        isReverseEnabled: isReverseEnabled,
+        posFilterText: posFilterText,
+      },
+      endpoint: endpoint,
+    }));
   }
 
   // toggles settings modal visible when user taps the settings icon in the app bar
@@ -110,12 +141,15 @@ class Screen extends Component {
 
   // called whenever the user types or modifies text in the text input of the action bar / app bar
   searchData(text) {
+    const endpoint = this.state.settingsFwew.isReverseEnabled
+      ? `${this.ApiUrl}r/${this.state.settingsGlobal.languageCode}/${text}`
+      : `${this.ApiUrl}${text}`;
     this.setState({
       text: text,
-      endpoint: this.ApiUrl + text,
+      endpoint: endpoint,
     });
     // use this.ApiUrl + text rather than this.state.endpoint so that the list isn't a render behind the search bar
-    this.fetchData(this.ApiUrl + text);
+    this.fetchData(endpoint);
   }
 
   render() {
@@ -188,6 +222,14 @@ class Screen extends Component {
             >
               {this.screenType === "fwew" && (
                 <FwewSettings
+                  settingsGlobal={this.state.settingsGlobal}
+                  settingsFwew={this.state.settingsFwew}
+                  onUpdateSettingsGlobal={(settingsObj) => {
+                    this.updateSettingsGlobal(settingsObj);
+                  }}
+                  onUpdateSettingsFwew={(settingsObj) => {
+                    this.updateSettingsFwew(settingsObj);
+                  }}
                   onSettingsBackButtonPress={() => this.toggleSettings()}
                 />
               )}
