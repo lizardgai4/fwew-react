@@ -156,7 +156,9 @@ class Screen extends Component {
     let data = this.state.data;
     let posFilterText = this.state.settingsFwew.posFilterText;
     if (posFilterText !== "all") {
-      data = data.filter((word) => word.PartOfSpeech === posFilterText);
+      if (Array.isArray(data) && data.length) {
+        data = data.filter((word) => word.PartOfSpeech === posFilterText);
+      }
     }
     return (
       <Fragment>
