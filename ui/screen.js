@@ -153,6 +153,11 @@ class Screen extends Component {
   }
 
   render() {
+    let data = this.state.data;
+    let posFilterText = this.state.settingsFwew.posFilterText;
+    if (posFilterText !== "all") {
+      data = data.filter((word) => word.PartOfSpeech === posFilterText);
+    }
     return (
       <Fragment>
         {/* status bar */}
@@ -184,7 +189,7 @@ class Screen extends Component {
               <ActivityIndicator style={{ marginTop: 16 }} />
             ) : (
               <WordList
-                data={this.state.data}
+                data={data}
                 text={this.state.text}
                 isLoading={this.state.isLoading}
                 onRefresh={() => this.onRefresh()}
