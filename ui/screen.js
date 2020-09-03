@@ -100,6 +100,21 @@ class Screen extends Component {
     }));
   }
 
+  updateSettingsList(settingsObj) {
+    const { word, pos, syllables, stress, words } = settingsObj;
+    this.setState(() => ({
+      settingsList: {
+        word: word ? word : this.state.settingsList.word,
+        pos: pos ? pos : this.state.settingsList.pos,
+        syllables: syllables ? syllables : this.state.settingsList.syllables,
+        stress: stress ? stress : this.state.settingsList.stress,
+        words: words ? words : this.state.settingsList.words,
+      },
+    }));
+    // TODO: update this.state.text and this.state.endpoint
+    // ? How can we build the Fwew API /list/ endpoint query using the settingsList object?
+  }
+
   // toggles settings modal visible when user taps the settings icon in the app bar
   toggleSettings() {
     this.setState({
@@ -160,6 +175,7 @@ class Screen extends Component {
         data = data.filter((word) => word.PartOfSpeech === posFilterText);
       }
     }
+    console.log(this.state.settingsList);
     return (
       <Fragment>
         {/* status bar */}
@@ -242,6 +258,14 @@ class Screen extends Component {
               )}
               {this.screenType === "list" && (
                 <ListSettings
+                  settingsGlobal={this.state.settingsGlobal}
+                  settingsList={this.state.settingsList}
+                  onUpdateSettingsGlobal={(settingsObj) => {
+                    this.updateSettingsGlobal(settingsObj);
+                  }}
+                  onUpdateSettingsList={(settingsObj) => {
+                    this.updateSettingsList(settingsObj);
+                  }}
                   onSettingsBackButtonPress={() => this.toggleSettings()}
                 />
               )}

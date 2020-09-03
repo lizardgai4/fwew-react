@@ -22,8 +22,15 @@ import { TextInput } from "react-native-paper";
 import colors from "./colors";
 
 // content of the modal which appears when user taps on an entry
-function ListSettings({ onSettingsBackButtonPress }) {
-  const [languageCode, setLanguageCode] = React.useState("en");
+function ListSettings({
+  settingsGlobal,
+  settingsList,
+  onSettingsBackButtonPress,
+  onUpdateSettingsGlobal,
+  onUpdateSettingsList,
+}) {
+  let { languageCode } = settingsGlobal;
+  let { word, pos, syllables, stress, words } = settingsList;
 
   return (
     <View style={styles.modalContainer}>
@@ -40,7 +47,7 @@ function ListSettings({ onSettingsBackButtonPress }) {
           theme={inputTheme}
           style={styles.input}
           onChangeText={(text) => {
-            setLanguageCode(text);
+            onUpdateSettingsGlobal({ languageCode: text });
           }}
         />
         <Text style={styles.modal_label}>word</Text>
@@ -49,24 +56,40 @@ function ListSettings({ onSettingsBackButtonPress }) {
           label="word has..."
           theme={inputTheme}
           style={styles.input}
+          value={word.has}
+          onChangeText={(text) => {
+            onUpdateSettingsList({ word: { ...word, has: text } });
+          }}
         />
         <TextInput
           mode="outlined"
           label="word starts with..."
           theme={inputTheme}
           style={styles.input}
+          value={word.starts}
+          onChangeText={(text) => {
+            onUpdateSettingsList({ word: { ...word, starts: text } });
+          }}
         />
         <TextInput
           mode="outlined"
           label="word ends with..."
           theme={inputTheme}
           style={styles.input}
+          value={word.ends}
+          onChangeText={(text) => {
+            onUpdateSettingsList({ word: { ...word, ends: text } });
+          }}
         />
         <TextInput
           mode="outlined"
           label="word is like..."
           theme={inputTheme}
           style={styles.input}
+          value={word.like}
+          onChangeText={(text) => {
+            onUpdateSettingsList({ word: { ...word, like: text } });
+          }}
         />
         <Text style={styles.modal_label}>part of speech</Text>
         <TextInput
@@ -74,30 +97,50 @@ function ListSettings({ onSettingsBackButtonPress }) {
           label="part of speech is..."
           theme={inputTheme}
           style={styles.input}
+          value={pos.is}
+          onChangeText={(text) => {
+            onUpdateSettingsList({ pos: { ...pos, is: text } });
+          }}
         />
         <TextInput
           mode="outlined"
           label="part of speech has..."
           theme={inputTheme}
           style={styles.input}
+          value={pos.has}
+          onChangeText={(text) => {
+            onUpdateSettingsList({ pos: { ...pos, has: text } });
+          }}
         />
         <TextInput
           mode="outlined"
           label="part of speech starts with..."
           theme={inputTheme}
           style={styles.input}
+          value={pos.starts}
+          onChangeText={(text) => {
+            onUpdateSettingsList({ pos: { ...pos, starts: text } });
+          }}
         />
         <TextInput
           mode="outlined"
           label="part of speech ends with..."
           theme={inputTheme}
           style={styles.input}
+          value={pos.ends}
+          onChangeText={(text) => {
+            onUpdateSettingsList({ pos: { ...pos, ends: text } });
+          }}
         />
         <TextInput
           mode="outlined"
           label="part of speech is like..."
           theme={inputTheme}
           style={styles.input}
+          value={pos.like}
+          onChangeText={(text) => {
+            onUpdateSettingsList({ pos: { ...pos, like: text } });
+          }}
         />
         <Text style={styles.modal_label}>syllables</Text>
         <TextInput
@@ -105,30 +148,60 @@ function ListSettings({ onSettingsBackButtonPress }) {
           label="#syllables < ..."
           theme={inputTheme}
           style={styles.input}
+          value={syllables.lessThan}
+          onChangeText={(text) => {
+            onUpdateSettingsList({
+              syllables: { ...syllables, lessThan: text },
+            });
+          }}
         />
         <TextInput
           mode="outlined"
           label="#syllables ≤ ..."
           theme={inputTheme}
           style={styles.input}
+          value={syllables.lessThanEqual}
+          onChangeText={(text) => {
+            onUpdateSettingsList({
+              syllables: { ...syllables, lessThanEqual: text },
+            });
+          }}
         />
         <TextInput
           mode="outlined"
           label="#syllables = ..."
           theme={inputTheme}
           style={styles.input}
+          value={syllables.equal}
+          onChangeText={(text) => {
+            onUpdateSettingsList({
+              syllables: { ...syllables, equal: text },
+            });
+          }}
         />
         <TextInput
           mode="outlined"
           label="#syllables ≥ ..."
           theme={inputTheme}
           style={styles.input}
+          value={syllables.greaterThanEqual}
+          onChangeText={(text) => {
+            onUpdateSettingsList({
+              syllables: { ...syllables, greaterThanEqual: text },
+            });
+          }}
         />
         <TextInput
           mode="outlined"
           label="#syllables > ..."
           theme={inputTheme}
           style={styles.input}
+          value={syllables.greaterThan}
+          onChangeText={(text) => {
+            onUpdateSettingsList({
+              syllables: { ...syllables, greaterThan: text },
+            });
+          }}
         />
         <Text style={styles.modal_label}>stress</Text>
         <TextInput
@@ -136,30 +209,60 @@ function ListSettings({ onSettingsBackButtonPress }) {
           label="stressed syllable < ..."
           theme={inputTheme}
           style={styles.input}
+          value={stress.lessThan}
+          onChangeText={(text) => {
+            onUpdateSettingsList({
+              stress: { ...stress, lessThan: text },
+            });
+          }}
         />
         <TextInput
           mode="outlined"
           label="stressed syllable ≤ ..."
           theme={inputTheme}
           style={styles.input}
+          value={stress.lessThanEqual}
+          onChangeText={(text) => {
+            onUpdateSettingsList({
+              stress: { ...stress, lessThanEqual: text },
+            });
+          }}
         />
         <TextInput
           mode="outlined"
           label="stressed syllable = ..."
           theme={inputTheme}
           style={styles.input}
+          value={stress.equal}
+          onChangeText={(text) => {
+            onUpdateSettingsList({
+              stress: { ...stress, equal: text },
+            });
+          }}
         />
         <TextInput
           mode="outlined"
           label="stressed syllable ≥ ..."
           theme={inputTheme}
           style={styles.input}
+          value={stress.greaterThanEqual}
+          onChangeText={(text) => {
+            onUpdateSettingsList({
+              stress: { ...stress, greaterThanEqual: text },
+            });
+          }}
         />
         <TextInput
           mode="outlined"
           label="stressed syllable > ..."
           theme={inputTheme}
           style={styles.input}
+          value={stress.greaterThan}
+          onChangeText={(text) => {
+            onUpdateSettingsList({
+              stress: { ...stress, greaterThan: text },
+            });
+          }}
         />
         <Text style={styles.modal_label}>words</Text>
         <TextInput
@@ -167,12 +270,24 @@ function ListSettings({ onSettingsBackButtonPress }) {
           label="words first ..."
           theme={inputTheme}
           style={styles.input}
+          value={words.first}
+          onChangeText={(text) => {
+            onUpdateSettingsList({
+              words: { ...words, first: text },
+            });
+          }}
         />
         <TextInput
           mode="outlined"
           label="words last ..."
           theme={inputTheme}
           style={styles.input}
+          value={words.last}
+          onChangeText={(text) => {
+            onUpdateSettingsList({
+              words: { ...words, last: text },
+            });
+          }}
         />
       </ScrollView>
       <View style={styles.modal_button}>
