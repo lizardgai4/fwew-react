@@ -175,11 +175,13 @@ function ListSettings({ onSettingsBackButtonPress }) {
           style={styles.input}
         />
       </ScrollView>
-      <Button
-        title="ok"
-        onPress={onSettingsBackButtonPress}
-        color={colors.secondary}
-      />
+      <View style={styles.modal_button}>
+        <Button
+          title="back"
+          onPress={onSettingsBackButtonPress}
+          color={colors.secondary}
+        />
+      </View>
     </View>
   );
 }
@@ -214,6 +216,10 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: colors.inputBackground,
+  },
+  modal_button: {
+    flexDirection: "row",
+    justifyContent: "center",
   },
 });
 
