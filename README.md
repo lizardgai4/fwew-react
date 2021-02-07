@@ -14,6 +14,7 @@ Uses the [Fwew API](https://github.com/fwew/fwew-api) to fetch dictionary data
 
 ## screenshots
 
+<!-- markdownlint-disable MD033 -->
 <p align="center">
   <img src="/.github/images/example-fwew.png" height="500" />
   <img src="/.github/images/example-list.png" height="500" />
