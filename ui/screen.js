@@ -175,7 +175,6 @@ class Screen extends Component {
         data = data.filter((word) => word.PartOfSpeech === posFilterText);
       }
     }
-    console.log(this.state.settingsList);
     return (
       <Fragment>
         {/* status bar */}
