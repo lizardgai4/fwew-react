@@ -98,7 +98,7 @@ function EntryModalContent(props) {
 
       {/* affixes */}
       <View style={styles.modal_group}>
-        {props.entry.Affixes.Prefix && (
+        {props.entry.Affixes && props.entry.Affixes.Prefix && (
           <Text selectable={true} style={styles.modal_label}>
             {"prefixes: "}
             <Text selectable={true} style={styles.modal_text}>
@@ -107,7 +107,7 @@ function EntryModalContent(props) {
           </Text>
         )}
 
-        {props.entry.Affixes.Infix && (
+        {props.entry.Affixes && props.entry.Affixes.Infix && (
           <Text selectable={true} style={styles.modal_label}>
             {"infixes: "}
             <Text selectable={true} style={styles.modal_text}>
@@ -116,7 +116,7 @@ function EntryModalContent(props) {
           </Text>
         )}
 
-        {props.entry.Affixes.Suffix && (
+        {props.entry.Affixes && props.entry.Affixes.Suffix && (
           <Text selectable={true} style={styles.modal_label}>
             {"suffixes: "}
             <Text selectable={true} style={styles.modal_text}>
@@ -125,7 +125,7 @@ function EntryModalContent(props) {
           </Text>
         )}
 
-        {props.entry.Affixes.Lenition && (
+        {props.entry.Affixes && props.entry.Affixes.Lenition && (
           <Text selectable={true} style={styles.modal_label}>
             {"lenition: "}
             <Text selectable={true} style={styles.modal_text}>
