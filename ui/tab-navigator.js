@@ -67,11 +67,12 @@ function TabNavigator() {
           }
           return <MaterialIcons name={iconName} size={size} color={color} />;
         },
-        "tabBarActiveTintColor": colors.activeTabTint,
-        "tabBarInactiveTintColor": colors.inactiveTabTint,
-        "tabBarActiveBackgroundColor": colors.activeTabBackground,
-        "tabBarInactiveBackgroundColor": colors.inactiveTabBackground,
-        "tabBarStyle": [{ "display": "flex" }, null]
+        tabBarActiveTintColor: colors.activeTabTint,
+        tabBarInactiveTintColor: colors.inactiveTabTint,
+        tabBarActiveBackgroundColor: colors.activeTabBackground,
+        tabBarInactiveBackgroundColor: colors.inactiveTabBackground,
+        tabBarStyle: [{ display: "flex" }, null],
+        headerShown: false
       })}
     >
       <Tab.Screen name="Fwew" component={FwewScreen} />
