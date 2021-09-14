@@ -71,7 +71,9 @@ function TabNavigator() {
         tabBarInactiveTintColor: colors.inactiveTabTint,
         tabBarActiveBackgroundColor: colors.activeTabBackground,
         tabBarInactiveBackgroundColor: colors.inactiveTabBackground,
-        tabBarStyle: [{ display: "flex" }, null],
+        tabBarStyle: [{ display: "flex", backgroundColor: colors.secondary }, null],
+        tabBarIconStyle: { marginTop: 4 },
+        tabBarItemStyle: { paddingBottom: 4 },
         headerShown: false
       })}
     >
