@@ -1,5 +1,6 @@
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 /**
- * This file is part of fwew-react. 
+ * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
  * Copyright (C) 2021  Corey Scheideman <corscheid@gmail.com>
  *
@@ -17,11 +18,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-
 import Screen from "./screen";
 import colors from "./colors";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 // the root endpoint of the Fwew API
 // see https://github.com/fwew/fwew-api for more info about the API
@@ -45,6 +44,12 @@ function RandomScreen() {
   return <Screen screenType="random" ApiUrl={endpoint}></Screen>;
 }
 
+// TODO: screen where the user can update settings
+function SettingsScreen() {
+  const endpoint = "";
+  return <Screen screenType="settings" ApiUrl={endpoint}></Screen>;
+}
+
 const Tab = createBottomTabNavigator();
 
 // the tab navigation at the bottom of the screen used to jump between the above screens
@@ -64,6 +69,9 @@ function TabNavigator() {
             case "Random":
               iconName = focused ? "help" : "help-outline";
               break;
+            case "Settings":
+              iconName = "settings";
+              break;
           }
           return <MaterialIcons name={iconName} size={size} color={color} />;
         },
@@ -80,6 +88,7 @@ function TabNavigator() {
       <Tab.Screen name="Fwew" component={FwewScreen} />
       <Tab.Screen name="List" component={ListScreen} />
       <Tab.Screen name="Random" component={RandomScreen} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
   );
 }
