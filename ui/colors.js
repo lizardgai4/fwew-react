@@ -1,5 +1,5 @@
 /**
- * This file is part of fwew-react. 
+ * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
  * Copyright (C) 2021  Corey Scheideman <corscheid@gmail.com>
  *
@@ -38,6 +38,7 @@ const colors = {
   inactiveTabBackground: "#7494ba",
   inactiveTabTint: "#fff",
   settingsButtonFill: "#fff",
+  actionBarIconFill: "#fff"
 };
 
 export default colors;
