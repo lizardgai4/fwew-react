@@ -109,8 +109,9 @@ const Screen = props => {
 
   // called whenever the user types or modifies text in the text input of the action bar / app bar
   const searchData = text => {
+    const { languageCode } = settingsGlobal
     const endpoint = settingsFwew.isReverseEnabled
-      ? `${ApiUrl}r/${state.settingsGlobal.languageCode}/${text}`
+      ? `${ApiUrl}r/${languageCode}/${text}`
       : `${ApiUrl}${text}`
     setState({
       text: text,
