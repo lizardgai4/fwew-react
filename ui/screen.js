@@ -26,13 +26,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native'
-import React, {
-  Component,
-  Fragment,
-  useContext,
-  useEffect,
-  useState
-} from 'react'
+import React, { Fragment, useContext, useEffect, useState } from 'react'
 
 import ActionBar from './action-bar'
 import EntryModalContent from './entry-modal-content'
@@ -48,7 +42,7 @@ import colors from './colors'
 import fwew from '../assets/fwew.png'
 
 // The main content area of the app
-const Screen = props => {
+const Screen = (props) => {
   const { ApiUrl, screenType } = props
   const [state, setState] = useState({
     isLoading: true,
@@ -63,11 +57,9 @@ const Screen = props => {
     settingsGlobal,
     settingsFwew,
     settingsList,
-    settingsRandom,
     onUpdateSettingsGlobal,
     onUpdateSettingsFwew,
-    onUpdateSettingsList,
-    onUpdateSettingsRandom
+    onUpdateSettingsList
   } = useContext(SettingsContext)
 
   // toggles settings modal visible when user taps the settings icon in the app bar
@@ -78,7 +70,7 @@ const Screen = props => {
   }
 
   // toggles info modal visible when user taps a list entry or modal backdrop
-  const toggleModal = item => {
+  const toggleModal = (item) => {
     setState({
       isModalVisible: !state.isModalVisible,
       selectedItem: item
@@ -92,14 +84,14 @@ const Screen = props => {
   }
 
   // fetches Na'vi word data from the Fwew API and updates the state data accordingly
-  const fetchData = endpoint => {
+  const fetchData = (endpoint) => {
     setState({ isLoading: true })
     axios
       .get(endpoint)
-      .then(response => {
+      .then((response) => {
         setState({ isLoading: false, data: response.data })
       })
-      .catch(e => {
+      .catch((e) => {
         setState({ isLoading: false, data: [] })
       })
   }
@@ -110,7 +102,7 @@ const Screen = props => {
   }, [])
 
   // called whenever the user types or modifies text in the text input of the action bar / app bar
-  const searchData = text => {
+  const searchData = (text) => {
     let endpoint
     if (screenType === 'fwew') {
       const { languageCode } = settingsGlobal
@@ -155,7 +147,7 @@ const Screen = props => {
   const { posFilterText, isReverseEnabled } = settingsFwew
   if (posFilterText !== 'all') {
     if (Array.isArray(data) && data.length) {
-      data = data.filter(word => word.PartOfSpeech === posFilterText)
+      data = data.filter((word) => word.PartOfSpeech === posFilterText)
     }
   }
 
@@ -182,7 +174,7 @@ const Screen = props => {
             </TouchableOpacity>
             <Image source={fwew} style={styles.icon} />
             <TextInput
-              onChangeText={text => searchData(text)}
+              onChangeText={(text) => searchData(text)}
               placeholder={getInputPlaceholderText()}
               autoCapitalize={'none'}
               autoCorrect={false}
@@ -214,7 +206,7 @@ const Screen = props => {
               text={state.text}
               isLoading={state.isLoading}
               onRefresh={() => onRefresh()}
-              toggleModal={item => toggleModal(item)}
+              toggleModal={(item) => toggleModal(item)}
             />
           )}
 

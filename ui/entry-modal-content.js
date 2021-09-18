@@ -1,5 +1,5 @@
 /**
- * This file is part of fwew-react. 
+ * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
  * Copyright (C) 2021  Corey Scheideman <corscheid@gmail.com>
  *
@@ -16,9 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
-import colors from "./colors";
+import React from 'react'
+import { Button, StyleSheet, Text, View } from 'react-native'
+import colors from './colors'
 
 // content of the modal which appears when user taps on an entry
 function EntryModalContent(props) {
@@ -32,21 +32,21 @@ function EntryModalContent(props) {
       {/* part of speech and definition */}
       <View style={styles.modal_group}>
         <Text selectable={true} style={styles.modal_label}>
-          {"part of speech: "}
+          {'part of speech: '}
           <Text selectable={true} style={styles.modal_text}>
             {props.entry.PartOfSpeech}
           </Text>
         </Text>
 
         <Text selectable={true} style={styles.modal_label}>
-          {"definition: "}
+          {'definition: '}
           <Text selectable={true} style={styles.modal_text}>
             {props.entry.EN}
           </Text>
         </Text>
 
         <Text selectable={true} style={styles.modal_label}>
-          {"source: "}
+          {'source: '}
           <Text selectable={true} style={styles.modal_text}>
             {props.entry.Source}
           </Text>
@@ -56,7 +56,7 @@ function EntryModalContent(props) {
       {/* pronunciation data */}
       <View style={styles.modal_group}>
         <Text selectable={true} style={styles.modal_label}>
-          {"IPA: "}
+          {'IPA: '}
           <Text
             selectable={true}
             style={styles.modal_text}
@@ -64,14 +64,14 @@ function EntryModalContent(props) {
         </Text>
 
         <Text selectable={true} style={styles.modal_label}>
-          {"syllables: "}
+          {'syllables: '}
           <Text selectable={true} style={styles.modal_text}>
             {props.entry.Syllables}
           </Text>
         </Text>
 
         <Text selectable={true} style={styles.modal_label}>
-          {"stressed syllable: "}
+          {'stressed syllable: '}
           <Text selectable={true} style={styles.modal_text}>
             {props.entry.Stressed}
           </Text>
@@ -79,16 +79,16 @@ function EntryModalContent(props) {
       </View>
 
       {/* verb infix location data */}
-      {props.entry.InfixLocations !== "NULL" && (
+      {props.entry.InfixLocations !== 'NULL' && (
         <View style={styles.modal_group}>
           <Text selectable={true} style={styles.modal_label}>
-            {"infix slots: "}
+            {'infix slots: '}
             <Text selectable={true} style={styles.modal_text}>
               {props.entry.InfixLocations}
             </Text>
           </Text>
           <Text selectable={true} style={styles.modal_label}>
-            {"infix dots: "}
+            {'infix dots: '}
             <Text selectable={true} style={styles.modal_text}>
               {props.entry.InfixDots}
             </Text>
@@ -100,7 +100,7 @@ function EntryModalContent(props) {
       <View style={styles.modal_group}>
         {props.entry.Affixes && props.entry.Affixes.Prefix && (
           <Text selectable={true} style={styles.modal_label}>
-            {"prefixes: "}
+            {'prefixes: '}
             <Text selectable={true} style={styles.modal_text}>
               {props.entry.Affixes.Prefix}
             </Text>
@@ -109,7 +109,7 @@ function EntryModalContent(props) {
 
         {props.entry.Affixes && props.entry.Affixes.Infix && (
           <Text selectable={true} style={styles.modal_label}>
-            {"infixes: "}
+            {'infixes: '}
             <Text selectable={true} style={styles.modal_text}>
               {props.entry.Affixes.Infix}
             </Text>
@@ -118,7 +118,7 @@ function EntryModalContent(props) {
 
         {props.entry.Affixes && props.entry.Affixes.Suffix && (
           <Text selectable={true} style={styles.modal_label}>
-            {"suffixes: "}
+            {'suffixes: '}
             <Text selectable={true} style={styles.modal_text}>
               {props.entry.Affixes.Suffix}
             </Text>
@@ -127,7 +127,7 @@ function EntryModalContent(props) {
 
         {props.entry.Affixes && props.entry.Affixes.Lenition && (
           <Text selectable={true} style={styles.modal_label}>
-            {"lenition: "}
+            {'lenition: '}
             <Text selectable={true} style={styles.modal_text}>
               {props.entry.Affixes.Lenition}
             </Text>
@@ -136,43 +136,43 @@ function EntryModalContent(props) {
       </View>
       <View style={styles.modal_button}>
         <Button
-          title={"back"}
+          title={'back'}
           onPress={props.onModalBackButtonPress}
           color={colors.secondary}
         />
       </View>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   modalContainer: {
     backgroundColor: colors.modalBackground,
-    flexDirection: "column",
+    flexDirection: 'column',
     padding: 16,
     borderRadius: 16,
-    borderColor: colors.modalBorder,
+    borderColor: colors.modalBorder
   },
   modal_group: {
-    marginTop: 16,
+    marginTop: 16
   },
   modal_navi: {
-    alignSelf: "center",
-    fontWeight: "bold",
-    fontSize: 24,
+    alignSelf: 'center',
+    fontWeight: 'bold',
+    fontSize: 24
   },
   modal_label: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold'
   },
   modal_text: {
     fontSize: 14,
-    fontWeight: "normal",
+    fontWeight: 'normal'
   },
   modal_button: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-  },
-});
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+  }
+})
 
-export default EntryModalContent;
+export default EntryModalContent

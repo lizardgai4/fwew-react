@@ -1,5 +1,5 @@
 /**
- * This file is part of fwew-react. 
+ * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
  * Copyright (C) 2021  Corey Scheideman <corscheid@gmail.com>
  *
@@ -16,10 +16,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
 
-import colors from "./colors";
+import colors from './colors'
 
 // the list entry row item number
 function EntryIndex(props) {
@@ -27,23 +27,23 @@ function EntryIndex(props) {
     <View style={styles.entry_index}>
       <Text style={styles.entry_number}>{props.number}</Text>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   entry_index: {
     height: 32,
     width: 32,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: colors.primary,
-    borderRadius: 45,
+    borderRadius: 45
   },
   entry_number: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 16,
-    color: colors.entryNumber,
-  },
-});
+    color: colors.entryNumber
+  }
+})
 
-export default EntryIndex;
+export default EntryIndex

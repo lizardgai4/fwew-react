@@ -1,5 +1,5 @@
 /**
- * This file is part of fwew-react. 
+ * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
  * Copyright (C) 2021  Corey Scheideman <corscheid@gmail.com>
  *
@@ -16,16 +16,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import EntryIndex from "./entry-index";
-import colors from "./colors";
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import EntryIndex from './entry-index'
+import colors from './colors'
 
 // a list row entry item
 function Entry(props) {
   return (
     <View style={styles.entry}>
-      <View style={{ flexDirection: "row" }}>
+      <View style={{ flexDirection: 'row' }}>
         <EntryIndex number={props.number} />
         <Text numberOfLines={1} selectable={true} style={styles.entry_navi}>
           {`${props.navi}`}
@@ -47,7 +47,7 @@ function Entry(props) {
         {props.en}
       </Text>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -57,24 +57,24 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     borderWidth: 1,
     borderRadius: 16,
-    borderColor: colors.entryBorder,
+    borderColor: colors.entryBorder
   },
   entry_navi: {
-    fontWeight: "bold",
+    fontWeight: 'bold',
     fontSize: 24,
     marginLeft: 16,
-    flex: 1,
+    flex: 1
   },
-  entry_ipa: { fontWeight: "normal", fontSize: 14 },
+  entry_ipa: { fontWeight: 'normal', fontSize: 14 },
   entry_pos: {
-    fontWeight: "normal",
-    fontStyle: "italic",
+    fontWeight: 'normal',
+    fontStyle: 'italic',
     fontSize: 14,
     marginLeft: 8,
-    marginTop: 8,
+    marginTop: 8
   },
-  entry_breakdown: { fontWeight: "normal", fontSize: 14 },
-  entry_en: { fontSize: 14, marginLeft: 8, marginTop: 8, flex: 1 },
-});
+  entry_breakdown: { fontWeight: 'normal', fontSize: 14 },
+  entry_en: { fontSize: 14, marginLeft: 8, marginTop: 8, flex: 1 }
+})
 
-export default Entry;
+export default Entry

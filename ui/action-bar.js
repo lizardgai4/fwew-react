@@ -20,7 +20,6 @@ import { Image, StyleSheet, View } from 'react-native'
 
 import React from 'react'
 import colors from './colors'
-import fwew from '../assets/fwew.png'
 
 // the bar at the top of the screen, below the status bar
 function ActionBar(props) {

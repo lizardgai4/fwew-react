@@ -1,5 +1,5 @@
 /**
- * This file is part of fwew-react. 
+ * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
  * Copyright (C) 2021  Corey Scheideman <corscheid@gmail.com>
  *
@@ -16,10 +16,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React from "react";
-import { Button, StyleSheet, ScrollView, Text, View } from "react-native";
-import { TextInput } from "react-native-paper";
-import colors from "./colors";
+import React from 'react'
+import { Button, StyleSheet, ScrollView, Text, View } from 'react-native'
+import { TextInput } from 'react-native-paper'
+import colors from './colors'
 
 // content of the modal which appears when user taps on an entry
 function ListSettings({
@@ -27,10 +27,10 @@ function ListSettings({
   settingsList,
   onSettingsBackButtonPress,
   onUpdateSettingsGlobal,
-  onUpdateSettingsList,
+  onUpdateSettingsList
 }) {
-  let { languageCode } = settingsGlobal;
-  let { word, pos, syllables, stress, words } = settingsList;
+  let { languageCode } = settingsGlobal
+  let { word, pos, syllables, stress, words } = settingsList
 
   return (
     <View style={styles.modalContainer}>
@@ -47,7 +47,7 @@ function ListSettings({
           theme={inputTheme}
           style={styles.input}
           onChangeText={(text) => {
-            onUpdateSettingsGlobal({ languageCode: text });
+            onUpdateSettingsGlobal({ languageCode: text })
           }}
         />
         <Text style={styles.modal_label}>word</Text>
@@ -58,7 +58,7 @@ function ListSettings({
           style={styles.input}
           value={word.has}
           onChangeText={(text) => {
-            onUpdateSettingsList({ word: { ...word, has: text } });
+            onUpdateSettingsList({ word: { ...word, has: text } })
           }}
         />
         <TextInput
@@ -68,7 +68,7 @@ function ListSettings({
           style={styles.input}
           value={word.starts}
           onChangeText={(text) => {
-            onUpdateSettingsList({ word: { ...word, starts: text } });
+            onUpdateSettingsList({ word: { ...word, starts: text } })
           }}
         />
         <TextInput
@@ -78,7 +78,7 @@ function ListSettings({
           style={styles.input}
           value={word.ends}
           onChangeText={(text) => {
-            onUpdateSettingsList({ word: { ...word, ends: text } });
+            onUpdateSettingsList({ word: { ...word, ends: text } })
           }}
         />
         <TextInput
@@ -88,7 +88,7 @@ function ListSettings({
           style={styles.input}
           value={word.like}
           onChangeText={(text) => {
-            onUpdateSettingsList({ word: { ...word, like: text } });
+            onUpdateSettingsList({ word: { ...word, like: text } })
           }}
         />
         <Text style={styles.modal_label}>part of speech</Text>
@@ -99,7 +99,7 @@ function ListSettings({
           style={styles.input}
           value={pos.is}
           onChangeText={(text) => {
-            onUpdateSettingsList({ pos: { ...pos, is: text } });
+            onUpdateSettingsList({ pos: { ...pos, is: text } })
           }}
         />
         <TextInput
@@ -109,7 +109,7 @@ function ListSettings({
           style={styles.input}
           value={pos.has}
           onChangeText={(text) => {
-            onUpdateSettingsList({ pos: { ...pos, has: text } });
+            onUpdateSettingsList({ pos: { ...pos, has: text } })
           }}
         />
         <TextInput
@@ -119,7 +119,7 @@ function ListSettings({
           style={styles.input}
           value={pos.starts}
           onChangeText={(text) => {
-            onUpdateSettingsList({ pos: { ...pos, starts: text } });
+            onUpdateSettingsList({ pos: { ...pos, starts: text } })
           }}
         />
         <TextInput
@@ -129,7 +129,7 @@ function ListSettings({
           style={styles.input}
           value={pos.ends}
           onChangeText={(text) => {
-            onUpdateSettingsList({ pos: { ...pos, ends: text } });
+            onUpdateSettingsList({ pos: { ...pos, ends: text } })
           }}
         />
         <TextInput
@@ -139,7 +139,7 @@ function ListSettings({
           style={styles.input}
           value={pos.like}
           onChangeText={(text) => {
-            onUpdateSettingsList({ pos: { ...pos, like: text } });
+            onUpdateSettingsList({ pos: { ...pos, like: text } })
           }}
         />
         <Text style={styles.modal_label}>syllables</Text>
@@ -151,8 +151,8 @@ function ListSettings({
           value={syllables.lessThan}
           onChangeText={(text) => {
             onUpdateSettingsList({
-              syllables: { ...syllables, lessThan: text },
-            });
+              syllables: { ...syllables, lessThan: text }
+            })
           }}
         />
         <TextInput
@@ -163,8 +163,8 @@ function ListSettings({
           value={syllables.lessThanEqual}
           onChangeText={(text) => {
             onUpdateSettingsList({
-              syllables: { ...syllables, lessThanEqual: text },
-            });
+              syllables: { ...syllables, lessThanEqual: text }
+            })
           }}
         />
         <TextInput
@@ -175,8 +175,8 @@ function ListSettings({
           value={syllables.equal}
           onChangeText={(text) => {
             onUpdateSettingsList({
-              syllables: { ...syllables, equal: text },
-            });
+              syllables: { ...syllables, equal: text }
+            })
           }}
         />
         <TextInput
@@ -187,8 +187,8 @@ function ListSettings({
           value={syllables.greaterThanEqual}
           onChangeText={(text) => {
             onUpdateSettingsList({
-              syllables: { ...syllables, greaterThanEqual: text },
-            });
+              syllables: { ...syllables, greaterThanEqual: text }
+            })
           }}
         />
         <TextInput
@@ -199,8 +199,8 @@ function ListSettings({
           value={syllables.greaterThan}
           onChangeText={(text) => {
             onUpdateSettingsList({
-              syllables: { ...syllables, greaterThan: text },
-            });
+              syllables: { ...syllables, greaterThan: text }
+            })
           }}
         />
         <Text style={styles.modal_label}>stress</Text>
@@ -212,8 +212,8 @@ function ListSettings({
           value={stress.lessThan}
           onChangeText={(text) => {
             onUpdateSettingsList({
-              stress: { ...stress, lessThan: text },
-            });
+              stress: { ...stress, lessThan: text }
+            })
           }}
         />
         <TextInput
@@ -224,8 +224,8 @@ function ListSettings({
           value={stress.lessThanEqual}
           onChangeText={(text) => {
             onUpdateSettingsList({
-              stress: { ...stress, lessThanEqual: text },
-            });
+              stress: { ...stress, lessThanEqual: text }
+            })
           }}
         />
         <TextInput
@@ -236,8 +236,8 @@ function ListSettings({
           value={stress.equal}
           onChangeText={(text) => {
             onUpdateSettingsList({
-              stress: { ...stress, equal: text },
-            });
+              stress: { ...stress, equal: text }
+            })
           }}
         />
         <TextInput
@@ -248,8 +248,8 @@ function ListSettings({
           value={stress.greaterThanEqual}
           onChangeText={(text) => {
             onUpdateSettingsList({
-              stress: { ...stress, greaterThanEqual: text },
-            });
+              stress: { ...stress, greaterThanEqual: text }
+            })
           }}
         />
         <TextInput
@@ -260,8 +260,8 @@ function ListSettings({
           value={stress.greaterThan}
           onChangeText={(text) => {
             onUpdateSettingsList({
-              stress: { ...stress, greaterThan: text },
-            });
+              stress: { ...stress, greaterThan: text }
+            })
           }}
         />
         <Text style={styles.modal_label}>words</Text>
@@ -273,8 +273,8 @@ function ListSettings({
           value={words.first}
           onChangeText={(text) => {
             onUpdateSettingsList({
-              words: { ...words, first: text },
-            });
+              words: { ...words, first: text }
+            })
           }}
         />
         <TextInput
@@ -285,8 +285,8 @@ function ListSettings({
           value={words.last}
           onChangeText={(text) => {
             onUpdateSettingsList({
-              words: { ...words, last: text },
-            });
+              words: { ...words, last: text }
+            })
           }}
         />
       </ScrollView>
@@ -298,44 +298,44 @@ function ListSettings({
         />
       </View>
     </View>
-  );
+  )
 }
 
 const inputTheme = {
   colors: {
     primary: colors.primary,
-    accent: colors.secondary,
-  },
-};
+    accent: colors.secondary
+  }
+}
 
 const styles = StyleSheet.create({
   scrollContainer: {
-    height: "80%",
-    marginBottom: 16,
+    height: '80%',
+    marginBottom: 16
   },
   modalContainer: {
     backgroundColor: colors.modalBackground,
-    flexDirection: "column",
+    flexDirection: 'column',
     padding: 16,
     borderRadius: 16,
-    borderColor: colors.modalBorder,
+    borderColor: colors.modalBorder
   },
   modal_navi: {
-    alignSelf: "center",
-    fontWeight: "bold",
-    fontSize: 24,
+    alignSelf: 'center',
+    fontWeight: 'bold',
+    fontSize: 24
   },
   modal_label: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold'
   },
   input: {
-    backgroundColor: colors.inputBackground,
+    backgroundColor: colors.inputBackground
   },
   modal_button: {
-    flexDirection: "row",
-    justifyContent: "center",
-  },
-});
+    flexDirection: 'row',
+    justifyContent: 'center'
+  }
+})
 
-export default ListSettings;
+export default ListSettings

@@ -1,5 +1,5 @@
 /**
- * This file is part of fwew-react. 
+ * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
  * Copyright (C) 2021  Corey Scheideman <corscheid@gmail.com>
  *
@@ -16,10 +16,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React from "react";
-import { Button, StyleSheet, Switch, Text, View } from "react-native";
-import { TextInput } from "react-native-paper";
-import colors from "./colors";
+import React from 'react'
+import { Button, StyleSheet, Switch, Text, View } from 'react-native'
+import { TextInput } from 'react-native-paper'
+import colors from './colors'
 
 // content of the modal which appears when user taps on an entry
 function FwewSettings({
@@ -27,10 +27,10 @@ function FwewSettings({
   settingsFwew,
   onSettingsBackButtonPress,
   onUpdateSettingsGlobal,
-  onUpdateSettingsFwew,
+  onUpdateSettingsFwew
 }) {
-  let { languageCode } = settingsGlobal;
-  let { posFilterText, isReverseEnabled } = settingsFwew;
+  let { languageCode } = settingsGlobal
+  let { posFilterText, isReverseEnabled } = settingsFwew
 
   return (
     <View style={styles.modalContainer}>
@@ -47,7 +47,7 @@ function FwewSettings({
           theme={inputTheme}
           style={styles.input}
           onChangeText={(text) => {
-            onUpdateSettingsGlobal({ languageCode: text });
+            onUpdateSettingsGlobal({ languageCode: text })
           }}
         />
         <Text style={styles.modal_label}>search direction</Text>
@@ -56,10 +56,10 @@ function FwewSettings({
             {isReverseEnabled ? "English > Na'vi" : "Na'vi > English"}
           </Text>
           <Switch
-            style={{ alignSelf: "flex-end" }}
+            style={{ alignSelf: 'flex-end' }}
             trackColor={{
               false: colors.switchTrackColorFalse,
-              true: colors.switchTrackColorTrue,
+              true: colors.switchTrackColorTrue
             }}
             thumbColor={
               isReverseEnabled
@@ -71,8 +71,8 @@ function FwewSettings({
             onValueChange={() => {
               onUpdateSettingsFwew({
                 isReverseEnabled: !isReverseEnabled,
-                posFilterText: posFilterText,
-              });
+                posFilterText: posFilterText
+              })
             }}
           />
         </View>
@@ -87,8 +87,8 @@ function FwewSettings({
           onChangeText={(text) => {
             onUpdateSettingsFwew({
               isReverseEnabled: isReverseEnabled,
-              posFilterText: text,
-            });
+              posFilterText: text
+            })
           }}
         />
       </View>
@@ -100,54 +100,54 @@ function FwewSettings({
         />
       </View>
     </View>
-  );
+  )
 }
 
 const inputTheme = {
   colors: {
     primary: colors.primary,
-    accent: colors.secondary,
-  },
-};
+    accent: colors.secondary
+  }
+}
 
 const styles = StyleSheet.create({
   modalContainer: {
     backgroundColor: colors.modalBackground,
-    flexDirection: "column",
+    flexDirection: 'column',
     padding: 16,
     borderRadius: 16,
-    borderColor: colors.modalBorder,
+    borderColor: colors.modalBorder
   },
   modal_group: {
     marginTop: 16,
-    marginBottom: 16,
+    marginBottom: 16
   },
   modal_navi: {
-    alignSelf: "center",
-    fontWeight: "bold",
-    fontSize: 24,
+    alignSelf: 'center',
+    fontWeight: 'bold',
+    fontSize: 24
   },
   modal_label: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold'
   },
   modal_row: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     borderWidth: 1,
-    borderStyle: "solid",
+    borderStyle: 'solid',
     borderColor: colors.modalRowBorder,
     borderRadius: 4,
-    padding: 12,
+    padding: 12
   },
   input: {
-    backgroundColor: colors.inputBackground,
+    backgroundColor: colors.inputBackground
   },
   modal_button: {
-    flexDirection: "row",
-    justifyContent: "center",
-  },
-});
+    flexDirection: 'row',
+    justifyContent: 'center'
+  }
+})
 
-export default FwewSettings;
+export default FwewSettings

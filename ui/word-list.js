@@ -36,7 +36,7 @@ function WordList({ data, isLoading, onRefresh, text, toggleModal }) {
         <FlatList
           data={data}
           extraData={text}
-          keyExtractor={item => item.ID}
+          keyExtractor={(item) => item.ID}
           contentContainerStyle={styles.listContentContainer}
           renderItem={({ item, index }) => (
             <TouchableOpacity
