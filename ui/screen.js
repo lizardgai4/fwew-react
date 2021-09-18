@@ -54,10 +54,10 @@ const Screen = (props) => {
     settingsGlobal,
     settingsFwew,
     settingsList,
-    onUpdateSettingsGlobal,
     onUpdateSettingsFwew,
     onUpdateSettingsList
   } = useContext(SettingsContext)
+  const { isReverseEnabled } = settingsFwew
 
   // toggles settings modal visible when user taps the settings icon in the app bar
   const toggleSettings = () => {
@@ -75,7 +75,7 @@ const Screen = (props) => {
     let endpoint
     if (screenType === 'fwew') {
       const { languageCode } = settingsGlobal
-      endpoint = settingsFwew.isReverseEnabled
+      endpoint = isReverseEnabled
         ? `${apiUrl}r/${languageCode}/${text}`
         : `${apiUrl}${text}`
     } else {
@@ -117,7 +117,6 @@ const Screen = (props) => {
   }
 
   const toggleReverse = () => {
-    const { isReverseEnabled } = settingsFwew
     onUpdateSettingsFwew({
       ...settingsFwew,
       isReverseEnabled: !isReverseEnabled
@@ -139,12 +138,6 @@ const Screen = (props) => {
     }
   }
 
-  const { posFilterText, isReverseEnabled } = settingsFwew
-  if (posFilterText !== 'all') {
-    if (Array.isArray(data) && data.length) {
-      data = data.filter((word) => word.PartOfSpeech === posFilterText)
-    }
-  }
   return (
     <Fragment>
       {/* status bar */}
@@ -198,6 +191,7 @@ const Screen = (props) => {
               isLoading={isLoading}
               onRefresh={onRefresh}
               toggleModal={toggleModal}
+              posFilterEnabled={screenType === 'fwew'}
             />
           )}
 

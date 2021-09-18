@@ -24,17 +24,40 @@ import {
   TouchableOpacity,
   View
 } from 'react-native'
-
+import { SettingsContext } from '../context'
 import Entry from './entry'
-import React from 'react'
+import React, { useContext } from 'react'
 
-function WordList({ data, isLoading, onRefresh, text, toggleModal }) {
+function WordList({
+  data,
+  isLoading,
+  onRefresh,
+  text,
+  toggleModal,
+  posFilterEnabled
+}) {
+  const { settingsFwew } = useContext(SettingsContext)
+  const { posFilterText } = settingsFwew
+
+  // part of speech filtering
+  const filterData = () => {
+    if (!posFilterEnabled) {
+      return data
+    }
+    if (posFilterText !== 'all') {
+      if (Array.isArray(data) && data.length) {
+        return data.filter((word) => word.PartOfSpeech === posFilterText)
+      }
+    }
+    return data
+  }
+
   // only try to render the list if there is data for it
   if (data && data.length > 0) {
     return (
       <View style={styles.listContainer}>
         <FlatList
-          data={data}
+          data={filterData()}
           extraData={text}
           keyExtractor={(item) => item.ID}
           contentContainerStyle={styles.listContentContainer}
