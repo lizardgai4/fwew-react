@@ -69,9 +69,11 @@ function WordList({ data, isLoading, onRefresh, text, toggleModal }) {
     return (
       // for the situation the API returns {message: "no results"}
       <View style={{ alignItems: 'center' }}>
-        <Text>
-          {data.message}: {text}
-        </Text>
+        {text ? (
+          <Text>
+            {data.message}: {text}
+          </Text>
+        ) : null}
       </View>
     )
   } else {
