@@ -116,6 +116,7 @@ const Screen = (props) => {
     fetchData(getEndpoint(text))
   }
 
+  // called whenever the user clicks the swap button or toggles the switch in Fwew Settings to reverse search direction
   const toggleReverse = () => {
     onUpdateSettingsFwew({
       ...settingsFwew,
@@ -123,6 +124,7 @@ const Screen = (props) => {
     })
   }
 
+  // sets the search bar placeholder text depending on the currently selected tab / screen
   const getInputPlaceholderText = () => {
     switch (screenType) {
       case 'fwew':
