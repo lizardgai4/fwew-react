@@ -24,30 +24,30 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 // the root endpoint of the Fwew API
 // see https://github.com/fwew/fwew-api for more info about the API
-const ApiRoot = 'https://tirea.learnnavi.org/api'
+const apiRoot = 'https://tirea.learnnavi.org/api'
 
 // screen where the user can search for specific word(s)
 function FwewScreen() {
-  const endpoint = ApiRoot + '/fwew/'
-  return <Screen screenType="fwew" ApiUrl={endpoint} />
+  const endpoint = apiRoot + '/fwew/'
+  return <Screen screenType="fwew" apiUrl={endpoint} />
 }
 
 // screen where the user can list all words (or all words that have given properties)
 function ListScreen() {
-  const endpoint = ApiRoot + '/list/'
-  return <Screen screenType="list" ApiUrl={endpoint} />
+  const endpoint = apiRoot + '/list/'
+  return <Screen screenType="list" apiUrl={endpoint} />
 }
 
 // screen where the user can view a randomized list of words
 function RandomScreen() {
-  const endpoint = ApiRoot + '/random/'
-  return <Screen screenType="random" ApiUrl={endpoint}></Screen>
+  const endpoint = apiRoot + '/random/'
+  return <Screen screenType="random" apiUrl={endpoint}></Screen>
 }
 
 // TODO: screen where the user can update settings
 function SettingsScreen() {
   const endpoint = ''
-  return <Screen screenType="settings" ApiUrl={endpoint}></Screen>
+  return <Screen screenType="settings" apiUrl={endpoint}></Screen>
 }
 
 const Tab = createBottomTabNavigator()

@@ -44,7 +44,7 @@ import fwew from '../assets/fwew.png'
 
 // The main content area of the app
 const Screen = (props) => {
-  const { ApiUrl, screenType } = props
+  const { apiUrl, screenType } = props
   const [isLoading, setIsLoading] = useState(true)
   const [text, setText] = useState('')
   const [data, setData] = useState([])
@@ -77,10 +77,10 @@ const Screen = (props) => {
     if (screenType === 'fwew') {
       const { languageCode } = settingsGlobal
       endpoint = settingsFwew.isReverseEnabled
-        ? `${ApiUrl}r/${languageCode}/${text}`
-        : `${ApiUrl}${text}`
+        ? `${apiUrl}r/${languageCode}/${text}`
+        : `${apiUrl}${text}`
     } else {
-      endpoint = `${ApiUrl}${text}`
+      endpoint = `${apiUrl}${text}`
     }
     return endpoint
   }
@@ -108,7 +108,7 @@ const Screen = (props) => {
 
   // fetch data and re-render after this component is mounted to the DOM and rendered in initial loading state
   useEffect(() => {
-    fetchData(`${ApiUrl}${text}`)
+    fetchData(getEndpoint())
   }, [])
 
   // called whenever the user types or modifies text in the text input of the action bar / app bar
