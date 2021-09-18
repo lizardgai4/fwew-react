@@ -228,18 +228,14 @@ const Screen = (props) => {
           >
             {screenType === 'fwew' && (
               <FwewSettings
-                settingsGlobal={settingsGlobal}
                 settingsFwew={settingsFwew}
-                onUpdateSettingsGlobal={onUpdateSettingsGlobal}
                 onUpdateSettingsFwew={onUpdateSettingsFwew}
                 onSettingsBackButtonPress={toggleSettings}
               />
             )}
             {screenType === 'list' && (
               <ListSettings
-                settingsGlobal={settingsGlobal}
                 settingsList={settingsList}
-                onUpdateSettingsGlobal={onUpdateSettingsGlobal}
                 onUpdateSettingsList={onUpdateSettingsList}
                 onSettingsBackButtonPress={toggleSettings}
               />

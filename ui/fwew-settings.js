@@ -23,13 +23,10 @@ import colors from './colors'
 
 // content of the modal which appears when user taps on an entry
 function FwewSettings({
-  settingsGlobal,
   settingsFwew,
   onSettingsBackButtonPress,
-  onUpdateSettingsGlobal,
   onUpdateSettingsFwew
 }) {
-  let { languageCode } = settingsGlobal
   let { posFilterText, isReverseEnabled } = settingsFwew
 
   return (
@@ -38,18 +35,6 @@ function FwewSettings({
         fwew | settings
       </Text>
       <View style={styles.modal_group}>
-        <Text style={styles.modal_label}>language</Text>
-        <TextInput
-          mode="outlined"
-          label="language"
-          value={languageCode}
-          placeholder="en"
-          theme={inputTheme}
-          style={styles.input}
-          onChangeText={(text) => {
-            onUpdateSettingsGlobal({ languageCode: text })
-          }}
-        />
         <Text style={styles.modal_label}>search direction</Text>
         <View style={styles.modal_row}>
           <Text>

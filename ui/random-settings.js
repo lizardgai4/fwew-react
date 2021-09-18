@@ -23,7 +23,6 @@ import colors from './colors'
 
 // content of the modal which appears when user taps on an entry
 function RandomSettings({ onSettingsBackButtonPress }) {
-  const [languageCode, setLanguageCode] = React.useState('en')
   const [numRandomWords, setNumRandomWords] = React.useState('8')
 
   return (
@@ -32,18 +31,6 @@ function RandomSettings({ onSettingsBackButtonPress }) {
         random | settings
       </Text>
       <ScrollView style={styles.scrollContainer}>
-        <Text style={styles.modal_label}>language</Text>
-        <TextInput
-          mode="outlined"
-          label="language"
-          value={languageCode}
-          placeholder="en"
-          theme={inputTheme}
-          style={styles.input}
-          onChangeText={(text) => {
-            setLanguageCode(text)
-          }}
-        />
         <Text style={styles.modal_label}>number of random words</Text>
         <TextInput
           mode="outlined"

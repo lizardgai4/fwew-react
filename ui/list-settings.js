@@ -23,13 +23,10 @@ import colors from './colors'
 
 // content of the modal which appears when user taps on an entry
 function ListSettings({
-  settingsGlobal,
   settingsList,
   onSettingsBackButtonPress,
-  onUpdateSettingsGlobal,
   onUpdateSettingsList
 }) {
-  let { languageCode } = settingsGlobal
   let { word, pos, syllables, stress, words } = settingsList
 
   return (
@@ -38,18 +35,6 @@ function ListSettings({
         list | settings
       </Text>
       <ScrollView style={styles.scrollContainer}>
-        <Text style={styles.modal_label}>language</Text>
-        <TextInput
-          mode="outlined"
-          label="language"
-          value={languageCode}
-          placeholder="en"
-          theme={inputTheme}
-          style={styles.input}
-          onChangeText={(text) => {
-            onUpdateSettingsGlobal({ languageCode: text })
-          }}
-        />
         <Text style={styles.modal_label}>word</Text>
         <TextInput
           mode="outlined"
