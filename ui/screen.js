@@ -109,10 +109,15 @@ const Screen = props => {
 
   // called whenever the user types or modifies text in the text input of the action bar / app bar
   const searchData = text => {
-    const { languageCode } = settingsGlobal
-    const endpoint = settingsFwew.isReverseEnabled
-      ? `${ApiUrl}r/${languageCode}/${text}`
-      : `${ApiUrl}${text}`
+    let endpoint
+    if (screenType === 'fwew') {
+      const { languageCode } = settingsGlobal
+      endpoint = settingsFwew.isReverseEnabled
+        ? `${ApiUrl}r/${languageCode}/${text}`
+        : `${ApiUrl}${text}`
+    } else {
+      endpoint = `${ApiUrl}${text}`
+    }
     setState({
       text: text,
       endpoint: endpoint
@@ -127,6 +132,21 @@ const Screen = props => {
       ...settingsFwew,
       isReverseEnabled: !isReverseEnabled
     })
+  }
+
+  const getInputPlaceholderText = () => {
+    switch (screenType) {
+      case 'fwew':
+        return `search ${isReverseEnabled ? 'English' : "Na'vi"}...`
+      case 'list':
+        return 'word starts r and pos is vtr.'
+      case 'random':
+        return '10/pos is vtr.'
+      case 'settings':
+        return ''
+      default:
+        return 'search...'
+    }
   }
 
   let data = state.data
@@ -149,9 +169,7 @@ const Screen = props => {
           <ActionBar>
             <TextInput
               onChangeText={text => searchData(text)}
-              placeholder={`search ${
-                isReverseEnabled ? 'English' : "Na'vi"
-              }...`}
+              placeholder={getInputPlaceholderText()}
               autoCapitalize={'none'}
               autoCorrect={false}
               style={styles.input}
