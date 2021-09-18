@@ -22,7 +22,6 @@ import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
-  Text,
   TextInput,
   TouchableOpacity,
   View
