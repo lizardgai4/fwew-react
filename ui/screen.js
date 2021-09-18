@@ -45,15 +45,12 @@ import fwew from '../assets/fwew.png'
 // The main content area of the app
 const Screen = (props) => {
   const { ApiUrl, screenType } = props
-  const [state, setState] = useState({
-    isLoading: true,
-    text: '',
-    data: [],
-    endpoint: ApiUrl,
-    isModalVisible: false,
-    isSettingsVisible: false,
-    selectedItem: {}
-  })
+  const [isLoading, setIsLoading] = useState(true)
+  const [text, setText] = useState('')
+  const [data, setData] = useState([])
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [isSettingsVisible, setIsSettingsVisible] = useState(false)
+  const [selectedItem, setSelectedItem] = useState({})
   const {
     settingsGlobal,
     settingsFwew,
@@ -65,44 +62,17 @@ const Screen = (props) => {
 
   // toggles settings modal visible when user taps the settings icon in the app bar
   const toggleSettings = () => {
-    setState({ ...state, isSettingsVisible: !state.isSettingsVisible })
+    setIsSettingsVisible(!isSettingsVisible)
   }
 
   // toggles info modal visible when user taps a list entry or modal backdrop
   const toggleModal = (item) => {
-    setState({
-      ...state,
-      isModalVisible: !state.isModalVisible,
-      selectedItem: item
-    })
+    setIsModalVisible(!isModalVisible)
+    setSelectedItem(item)
   }
 
-  // called when the user pulls down on the word list after it has rendered
-  const onRefresh = () => {
-    setState({ ...state, data: [] })
-    fetchData(state.endpoint)
-  }
-
-  // fetches Na'vi word data from the Fwew API and updates the state data accordingly
-  const fetchData = (endpoint) => {
-    setState({ ...state, isLoading: true })
-    axios
-      .get(endpoint)
-      .then((response) => {
-        setState({ ...state, isLoading: false, data: response.data })
-      })
-      .catch((e) => {
-        setState({ ...state, isLoading: false, data: [] })
-      })
-  }
-
-  // fetch data and re-render after this component is mounted to the DOM and rendered in initial loading state
-  useEffect(() => {
-    fetchData(state.endpoint)
-  }, [])
-
-  // called whenever the user types or modifies text in the text input of the action bar / app bar
-  const searchData = (text) => {
+  // calculates API endpoint for data fetching
+  const getEndpoint = (text) => {
     let endpoint
     if (screenType === 'fwew') {
       const { languageCode } = settingsGlobal
@@ -112,9 +82,39 @@ const Screen = (props) => {
     } else {
       endpoint = `${ApiUrl}${text}`
     }
-    setState({ ...state, text, endpoint })
-    // use ApiUrl + text rather than state.endpoint so that the list isn't a render behind the search bar
-    fetchData(endpoint)
+    return endpoint
+  }
+
+  // called when the user pulls down on the word list after it has rendered
+  const onRefresh = () => {
+    setData([])
+    fetchData(getEndpoint())
+  }
+
+  // fetches Na'vi word data from the Fwew API and updates the state data accordingly
+  const fetchData = (endpoint) => {
+    setIsLoading(true)
+    axios
+      .get(endpoint)
+      .then((response) => {
+        setIsLoading(false)
+        setData(response.data)
+      })
+      .catch((e) => {
+        setIsLoading(false)
+        setData([])
+      })
+  }
+
+  // fetch data and re-render after this component is mounted to the DOM and rendered in initial loading state
+  useEffect(() => {
+    fetchData(`${ApiUrl}${text}`)
+  }, [])
+
+  // called whenever the user types or modifies text in the text input of the action bar / app bar
+  const searchData = (text) => {
+    setText(text)
+    fetchData(getEndpoint(text))
   }
 
   const toggleReverse = () => {
@@ -140,14 +140,13 @@ const Screen = (props) => {
     }
   }
 
-  let data = state.data
   const { posFilterText, isReverseEnabled } = settingsFwew
   if (posFilterText !== 'all') {
     if (Array.isArray(data) && data.length) {
       data = data.filter((word) => word.PartOfSpeech === posFilterText)
     }
   }
-
+  console.log(getEndpoint())
   return (
     <Fragment>
       {/* status bar */}
@@ -192,13 +191,13 @@ const Screen = (props) => {
             render activity indicator when loading
             render word list when finished loading
             */}
-          {state.isLoading ? (
+          {isLoading ? (
             <ActivityIndicator style={{ marginTop: 16 }} />
           ) : (
             <WordList
               data={data}
-              text={state.text}
-              isLoading={state.isLoading}
+              text={text}
+              isLoading={isLoading}
               onRefresh={onRefresh}
               toggleModal={toggleModal}
             />
@@ -206,22 +205,22 @@ const Screen = (props) => {
 
           {/* word information modal when user taps an entry in the list */}
           <Modal
-            isVisible={state.isModalVisible}
+            isVisible={isModalVisible}
             animationIn="slideInRight"
             animationOut="slideOutRight"
-            onBackButtonPress={() => toggleModal(state.selectedItem)}
-            onBackdropPress={() => toggleModal(state.selectedItem)}
+            onBackButtonPress={() => toggleModal(selectedItem)}
+            onBackdropPress={() => toggleModal(selectedItem)}
             backdropTransitionOutTiming={0}
           >
             <EntryModalContent
-              entry={state.selectedItem}
-              onModalBackButtonPress={() => toggleModal(state.selectedItem)}
+              entry={selectedItem}
+              onModalBackButtonPress={() => toggleModal(selectedItem)}
             />
           </Modal>
 
           {/* settings modal when user taps on the settings icon in the app bar */}
           <Modal
-            isVisible={state.isSettingsVisible}
+            isVisible={isSettingsVisible}
             animationIn="slideInLeft"
             animationOut="slideOutLeft"
             onBackButtonPress={toggleSettings}
