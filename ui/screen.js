@@ -146,7 +146,6 @@ const Screen = (props) => {
       data = data.filter((word) => word.PartOfSpeech === posFilterText)
     }
   }
-  console.log(getEndpoint())
   return (
     <Fragment>
       {/* status bar */}
