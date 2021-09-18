@@ -22,6 +22,7 @@ import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
+  Text,
   TextInput,
   TouchableOpacity,
   View
@@ -64,14 +65,13 @@ const Screen = (props) => {
 
   // toggles settings modal visible when user taps the settings icon in the app bar
   const toggleSettings = () => {
-    setState({
-      isSettingsVisible: !state.isSettingsVisible
-    })
+    setState({ ...state, isSettingsVisible: !state.isSettingsVisible })
   }
 
   // toggles info modal visible when user taps a list entry or modal backdrop
   const toggleModal = (item) => {
     setState({
+      ...state,
       isModalVisible: !state.isModalVisible,
       selectedItem: item
     })
@@ -79,25 +79,25 @@ const Screen = (props) => {
 
   // called when the user pulls down on the word list after it has rendered
   const onRefresh = () => {
-    setState({ data: [] })
+    setState({ ...state, data: [] })
     fetchData(state.endpoint)
   }
 
   // fetches Na'vi word data from the Fwew API and updates the state data accordingly
   const fetchData = (endpoint) => {
-    setState({ isLoading: true })
+    setState({ ...state, isLoading: true })
     axios
       .get(endpoint)
       .then((response) => {
-        setState({ isLoading: false, data: response.data })
+        setState({ ...state, isLoading: false, data: response.data })
       })
       .catch((e) => {
-        setState({ isLoading: false, data: [] })
+        setState({ ...state, isLoading: false, data: [] })
       })
   }
 
+  // fetch data and re-render after this component is mounted to the DOM and rendered in initial loading state
   useEffect(() => {
-    // fetch data and re-render after this component is mounted to the DOM and rendered in initial loading state
     fetchData(state.endpoint)
   }, [])
 
@@ -112,10 +112,7 @@ const Screen = (props) => {
     } else {
       endpoint = `${ApiUrl}${text}`
     }
-    setState({
-      text: text,
-      endpoint: endpoint
-    })
+    setState({ ...state, text, endpoint })
     // use ApiUrl + text rather than state.endpoint so that the list isn't a render behind the search bar
     fetchData(endpoint)
   }
@@ -162,10 +159,7 @@ const Screen = (props) => {
         <View style={{ flex: 1 }}>
           <ActionBar>
             {/* settings button that will open settings modal */}
-            <TouchableOpacity
-              style={styles.menu}
-              onPress={() => toggleSettings()}
-            >
+            <TouchableOpacity style={styles.menu} onPress={toggleSettings}>
               <MaterialIcons
                 name="menu"
                 size={36}
@@ -174,7 +168,7 @@ const Screen = (props) => {
             </TouchableOpacity>
             <Image source={fwew} style={styles.icon} />
             <TextInput
-              onChangeText={(text) => searchData(text)}
+              onChangeText={searchData}
               placeholder={getInputPlaceholderText()}
               autoCapitalize={'none'}
               autoCorrect={false}
@@ -182,7 +176,7 @@ const Screen = (props) => {
             />
             {/* Fwew Search direction toggle */}
             {screenType === 'fwew' && (
-              <TouchableOpacity onPress={() => toggleReverse()}>
+              <TouchableOpacity onPress={toggleReverse}>
                 <MaterialIcons
                   name={
                     isReverseEnabled ? 'swap-horizontal-circle' : 'swap-horiz'
@@ -205,8 +199,8 @@ const Screen = (props) => {
               data={data}
               text={state.text}
               isLoading={state.isLoading}
-              onRefresh={() => onRefresh()}
-              toggleModal={(item) => toggleModal(item)}
+              onRefresh={onRefresh}
+              toggleModal={toggleModal}
             />
           )}
 
@@ -230,8 +224,8 @@ const Screen = (props) => {
             isVisible={state.isSettingsVisible}
             animationIn="slideInLeft"
             animationOut="slideOutLeft"
-            onBackButtonPress={() => toggleSettings()}
-            onBackdropPress={() => toggleSettings()}
+            onBackButtonPress={toggleSettings}
+            onBackdropPress={toggleSettings}
             backdropTransitionOutTiming={0}
           >
             {screenType === 'fwew' && (
@@ -240,7 +234,7 @@ const Screen = (props) => {
                 settingsFwew={settingsFwew}
                 onUpdateSettingsGlobal={onUpdateSettingsGlobal}
                 onUpdateSettingsFwew={onUpdateSettingsFwew}
-                onSettingsBackButtonPress={() => toggleSettings()}
+                onSettingsBackButtonPress={toggleSettings}
               />
             )}
             {screenType === 'list' && (
@@ -249,13 +243,11 @@ const Screen = (props) => {
                 settingsList={settingsList}
                 onUpdateSettingsGlobal={onUpdateSettingsGlobal}
                 onUpdateSettingsList={onUpdateSettingsList}
-                onSettingsBackButtonPress={() => toggleSettings()}
+                onSettingsBackButtonPress={toggleSettings}
               />
             )}
             {screenType === 'random' && (
-              <RandomSettings
-                onSettingsBackButtonPress={() => toggleSettings()}
-              />
+              <RandomSettings onSettingsBackButtonPress={toggleSettings} />
             )}
           </Modal>
         </View>
