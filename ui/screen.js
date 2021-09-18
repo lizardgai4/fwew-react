@@ -18,6 +18,7 @@
  */
 import {
   ActivityIndicator,
+  Image,
   SafeAreaView,
   StatusBar,
   StyleSheet,
@@ -44,6 +45,7 @@ import { SettingsContext } from '../context'
 import WordList from './word-list'
 import axios from 'axios'
 import colors from './colors'
+import fwew from '../assets/fwew.png'
 
 // The main content area of the app
 const Screen = props => {
@@ -167,6 +169,18 @@ const Screen = props => {
       <SafeAreaView style={styles.safeContainer}>
         <View style={{ flex: 1 }}>
           <ActionBar>
+            {/* settings button that will open settings modal */}
+            <TouchableOpacity
+              style={styles.menu}
+              onPress={() => toggleSettings()}
+            >
+              <MaterialIcons
+                name="menu"
+                size={36}
+                color={colors.actionBarIconFill}
+              />
+            </TouchableOpacity>
+            <Image source={fwew} style={styles.icon} />
             <TextInput
               onChangeText={text => searchData(text)}
               placeholder={getInputPlaceholderText()}
@@ -186,14 +200,6 @@ const Screen = props => {
                 />
               </TouchableOpacity>
             )}
-            {/* settings button that will open settings modal */}
-            <TouchableOpacity onPress={() => toggleSettings()}>
-              <MaterialIcons
-                name="menu"
-                size={36}
-                color={colors.actionBarIconFill}
-              />
-            </TouchableOpacity>
           </ActionBar>
 
           {/*
@@ -215,8 +221,8 @@ const Screen = props => {
           {/* word information modal when user taps an entry in the list */}
           <Modal
             isVisible={state.isModalVisible}
-            animationIn="slideInLeft"
-            animationOut="slideOutLeft"
+            animationIn="slideInRight"
+            animationOut="slideOutRight"
             onBackButtonPress={() => toggleModal(state.selectedItem)}
             onBackdropPress={() => toggleModal(state.selectedItem)}
             backdropTransitionOutTiming={0}
@@ -230,8 +236,8 @@ const Screen = props => {
           {/* settings modal when user taps on the settings icon in the app bar */}
           <Modal
             isVisible={state.isSettingsVisible}
-            animationIn="slideInRight"
-            animationOut="slideOutRight"
+            animationIn="slideInLeft"
+            animationOut="slideOutLeft"
             onBackButtonPress={() => toggleSettings()}
             onBackdropPress={() => toggleSettings()}
             backdropTransitionOutTiming={0}
@@ -267,6 +273,14 @@ const Screen = props => {
 }
 
 const styles = StyleSheet.create({
+  menu: {
+    marginLeft: 8
+  },
+  icon: {
+    marginLeft: 8,
+    width: 48,
+    height: 48
+  },
   safeStatusBar: {
     flex: 0,
     backgroundColor: colors.secondary

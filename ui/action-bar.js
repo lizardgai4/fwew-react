@@ -1,5 +1,5 @@
 /**
- * This file is part of fwew-react. 
+ * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
  * Copyright (C) 2021  Corey Scheideman <corscheid@gmail.com>
  *
@@ -16,37 +16,27 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, StyleSheet, View } from 'react-native'
 
-import fwew from "../assets/fwew.png";
-import colors from "./colors";
+import React from 'react'
+import colors from './colors'
+import fwew from '../assets/fwew.png'
 
 // the bar at the top of the screen, below the status bar
 function ActionBar(props) {
-  return (
-    <View style={styles.action_bar}>
-      <Image source={fwew} style={styles.icon} />
-      {props.children}
-    </View>
-  );
+  return <View style={styles.action_bar}>{props.children}</View>
 }
 
 const styles = StyleSheet.create({
   action_bar: {
     height: 56,
-    width: "100%",
+    width: '100%',
     paddingRight: 8,
     backgroundColor: colors.primary,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  icon: {
-    marginLeft: 8,
-    width: 48,
-    height: 48,
-  },
-});
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  }
+})
 
-export default ActionBar;
+export default ActionBar
