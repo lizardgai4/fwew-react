@@ -1,5 +1,5 @@
 /**
- * This file is part of fwew-react. 
+ * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
  * Copyright (C) 2021  Corey Scheideman <corscheid@gmail.com>
  *
@@ -16,17 +16,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import TabNavigator from "./ui/tab-navigator";
+import { NavigationContainer } from '@react-navigation/native'
+import React from 'react'
+import { SettingsStore } from './context'
+import TabNavigator from './ui/tab-navigator'
 
 // Top level main component
-function App() {
-  return (
+const App = () => (
+  <SettingsStore>
     <NavigationContainer>
       <TabNavigator />
     </NavigationContainer>
-  );
-}
+  </SettingsStore>
+)
 
-export default App;
+export default App

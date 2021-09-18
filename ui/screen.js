@@ -25,13 +25,13 @@ import {
   TouchableOpacity,
   View
 } from 'react-native'
-import React, { Component, Fragment } from 'react'
-import {
-  SettingsFwew,
-  SettingsGlobal,
-  SettingsList,
-  settingsRandom
-} from './settings'
+import React, {
+  Component,
+  Fragment,
+  useContext,
+  useEffect,
+  useState
+} from 'react'
 
 import ActionBar from './action-bar'
 import EntryModalContent from './entry-modal-content'
@@ -40,266 +40,211 @@ import ListSettings from './list-settings'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Modal from 'react-native-modal'
 import RandomSettings from './random-settings'
+import { SettingsContext } from '../context'
 import WordList from './word-list'
 import axios from 'axios'
 import colors from './colors'
 
 // The main content area of the app
-class Screen extends Component {
-  constructor(props) {
-    super(props)
-    this.ApiUrl = this.props.ApiUrl
-    this.screenType = this.props.screenType
-    this.updateSettingsGlobal.bind(this)
-    this.updateSettingsFwew.bind(this)
-    this.toggleSettings.bind(this)
-    this.toggleModal.bind(this)
-    this.onRefresh.bind(this)
-    this.searchData.bind(this)
-    this.state = {
-      isLoading: true,
-      text: '',
-      data: [],
-      endpoint: this.ApiUrl,
-      isModalVisible: false,
-      isSettingsVisible: false,
-      selectedItem: {},
-      settingsGlobal: SettingsGlobal,
-      settingsFwew: SettingsFwew,
-      settingsList: SettingsList,
-      settingsRandom: settingsRandom
-    }
-  }
-
-  // updates the screen settings when user edits settings in the settings modal
-  updateSettingsGlobal(settingsObj) {
-    const { languageCode } = settingsObj
-    const endpoint = this.state.settingsFwew.isReverseEnabled
-      ? `${this.ApiUrl}r/${languageCode}/${this.state.text}`
-      : `${this.ApiUrl}${this.state.text}`
-    this.setState(() => ({
-      settingsGlobal: {
-        languageCode: languageCode
-      },
-      endpoint: endpoint
-    }))
-  }
-
-  updateSettingsFwew(settingsObj) {
-    const { isReverseEnabled, posFilterText } = settingsObj
-    const endpoint = isReverseEnabled
-      ? `${this.ApiUrl}r/${this.state.settingsGlobal.languageCode}/${this.state.text}`
-      : `${this.ApiUrl}${this.state.text}`
-    this.setState(() => ({
-      settingsFwew: {
-        ...this.state.settingsFwew,
-        isReverseEnabled: isReverseEnabled,
-        posFilterText: posFilterText
-      },
-      endpoint: endpoint
-    }))
-  }
-
-  updateSettingsList(settingsObj) {
-    const { word, pos, syllables, stress, words } = settingsObj
-    this.setState(() => ({
-      settingsList: {
-        word: word ? word : this.state.settingsList.word,
-        pos: pos ? pos : this.state.settingsList.pos,
-        syllables: syllables ? syllables : this.state.settingsList.syllables,
-        stress: stress ? stress : this.state.settingsList.stress,
-        words: words ? words : this.state.settingsList.words
-      }
-    }))
-    // TODO: update this.state.text and this.state.endpoint
-    // ? How can we build the Fwew API /list/ endpoint query using the settingsList object?
-  }
+const Screen = props => {
+  const { ApiUrl, screenType } = props
+  const [state, setState] = useState({
+    isLoading: true,
+    text: '',
+    data: [],
+    endpoint: ApiUrl,
+    isModalVisible: false,
+    isSettingsVisible: false,
+    selectedItem: {}
+  })
+  const {
+    settingsGlobal,
+    settingsFwew,
+    settingsList,
+    settingsRandom,
+    onUpdateSettingsGlobal,
+    onUpdateSettingsFwew,
+    onUpdateSettingsList,
+    onUpdateSettingsRandom
+  } = useContext(SettingsContext)
 
   // toggles settings modal visible when user taps the settings icon in the app bar
-  toggleSettings() {
-    this.setState({
-      isSettingsVisible: !this.state.isSettingsVisible
+  const toggleSettings = () => {
+    setState({
+      isSettingsVisible: !state.isSettingsVisible
     })
   }
 
   // toggles info modal visible when user taps a list entry or modal backdrop
-  toggleModal(item) {
-    this.setState({
-      isModalVisible: !this.state.isModalVisible,
+  const toggleModal = item => {
+    setState({
+      isModalVisible: !state.isModalVisible,
       selectedItem: item
     })
   }
 
-  // toggles the search direction
-  toggleReverse() {
-    const { posFilterText, isReverseEnabled } = this.state.settingsFwew
-    this.updateSettingsFwew({
-      isReverseEnabled: !isReverseEnabled,
-      posFilterText: posFilterText
-    })
-  }
-
   // called when the user pulls down on the word list after it has rendered
-  onRefresh() {
-    this.setState({ data: [] })
-    this.fetchData(this.state.endpoint)
+  const onRefresh = () => {
+    setState({ data: [] })
+    fetchData(state.endpoint)
   }
 
   // fetches Na'vi word data from the Fwew API and updates the state data accordingly
-  fetchData(endpoint) {
-    this.setState({ isLoading: true })
+  const fetchData = endpoint => {
+    setState({ isLoading: true })
     axios
       .get(endpoint)
       .then(response => {
-        this.setState({ isLoading: false, data: response.data })
+        setState({ isLoading: false, data: response.data })
       })
       .catch(e => {
-        this.setState({ isLoading: false, data: [] })
+        setState({ isLoading: false, data: [] })
       })
   }
 
-  componentDidMount() {
+  useEffect(() => {
     // fetch data and re-render after this component is mounted to the DOM and rendered in initial loading state
-    this.fetchData(this.state.endpoint)
-  }
+    fetchData(state.endpoint)
+  }, [])
 
   // called whenever the user types or modifies text in the text input of the action bar / app bar
-  searchData(text) {
-    const endpoint = this.state.settingsFwew.isReverseEnabled
-      ? `${this.ApiUrl}r/${this.state.settingsGlobal.languageCode}/${text}`
-      : `${this.ApiUrl}${text}`
-    this.setState({
+  const searchData = text => {
+    const endpoint = settingsFwew.isReverseEnabled
+      ? `${ApiUrl}r/${state.settingsGlobal.languageCode}/${text}`
+      : `${ApiUrl}${text}`
+    setState({
       text: text,
       endpoint: endpoint
     })
-    // use this.ApiUrl + text rather than this.state.endpoint so that the list isn't a render behind the search bar
-    this.fetchData(endpoint)
+    // use ApiUrl + text rather than state.endpoint so that the list isn't a render behind the search bar
+    fetchData(endpoint)
   }
 
-  render() {
-    let data = this.state.data
-    const { posFilterText, isReverseEnabled } = this.state.settingsFwew
-    if (posFilterText !== 'all') {
-      if (Array.isArray(data) && data.length) {
-        data = data.filter(word => word.PartOfSpeech === posFilterText)
-      }
+  const toggleReverse = () => {
+    const { isReverseEnabled } = settingsFwew
+    onUpdateSettingsFwew({
+      ...settingsFwew,
+      isReverseEnabled: !isReverseEnabled
+    })
+  }
+
+  let data = state.data
+  const { posFilterText, isReverseEnabled } = settingsFwew
+  if (posFilterText !== 'all') {
+    if (Array.isArray(data) && data.length) {
+      data = data.filter(word => word.PartOfSpeech === posFilterText)
     }
-    return (
-      <Fragment>
-        {/* status bar */}
-        <SafeAreaView style={styles.safeStatusBar} />
-        <StatusBar barStyle="light-content" />
+  }
 
-        {/* main content */}
-        <SafeAreaView style={styles.safeContainer}>
-          <View style={{ flex: 1 }}>
-            <ActionBar>
-              <TextInput
-                onChangeText={text => this.searchData(text)}
-                placeholder={`search ${isReverseEnabled ? "English" : "Na'vi"}...`}
-                autoCapitalize={"none"}
-                autoCorrect={false}
-                style={styles.input}
+  return (
+    <Fragment>
+      {/* status bar */}
+      <SafeAreaView style={styles.safeStatusBar} />
+      <StatusBar barStyle="light-content" />
+
+      {/* main content */}
+      <SafeAreaView style={styles.safeContainer}>
+        <View style={{ flex: 1 }}>
+          <ActionBar>
+            <TextInput
+              onChangeText={text => searchData(text)}
+              placeholder={`search ${
+                isReverseEnabled ? 'English' : "Na'vi"
+              }...`}
+              autoCapitalize={'none'}
+              autoCorrect={false}
+              style={styles.input}
+            />
+            {/* Fwew Search direction toggle */}
+            {screenType === 'fwew' && (
+              <TouchableOpacity onPress={() => toggleReverse()}>
+                <MaterialIcons
+                  name={
+                    isReverseEnabled ? 'swap-horizontal-circle' : 'swap-horiz'
+                  }
+                  size={36}
+                  color={colors.actionBarIconFill}
+                />
+              </TouchableOpacity>
+            )}
+            {/* settings button that will open settings modal */}
+            <TouchableOpacity onPress={() => toggleSettings()}>
+              <MaterialIcons
+                name="menu"
+                size={36}
+                color={colors.actionBarIconFill}
               />
-              {/* Search direction toggle */}
-              <TouchableOpacity onPress={() => this.toggleReverse()}>
-                <MaterialIcons
-                  name={isReverseEnabled ? "swap-horizontal-circle" : "swap-horiz"}
-                  size={36}
-                  color={colors.actionBarIconFill}
-                />
-              </TouchableOpacity>
-              {/* settings button that will open settings modal */}
-              <TouchableOpacity onPress={() => this.toggleSettings()}>
-                <MaterialIcons
-                  name="menu"
-                  size={36}
-                  color={colors.actionBarIconFill}
-                />
-              </TouchableOpacity>
-            </ActionBar>
+            </TouchableOpacity>
+          </ActionBar>
 
-            {/*
+          {/*
             render activity indicator when loading
             render word list when finished loading
             */}
-            {this.state.isLoading ? (
-              <ActivityIndicator style={{ marginTop: 16 }} />
-            ) : (
-              <WordList
-                data={data}
-                text={this.state.text}
-                isLoading={this.state.isLoading}
-                onRefresh={() => this.onRefresh()}
-                toggleModal={item => this.toggleModal(item)}
+          {state.isLoading ? (
+            <ActivityIndicator style={{ marginTop: 16 }} />
+          ) : (
+            <WordList
+              data={data}
+              text={state.text}
+              isLoading={state.isLoading}
+              onRefresh={() => onRefresh()}
+              toggleModal={item => toggleModal(item)}
+            />
+          )}
+
+          {/* word information modal when user taps an entry in the list */}
+          <Modal
+            isVisible={state.isModalVisible}
+            animationIn="slideInLeft"
+            animationOut="slideOutLeft"
+            onBackButtonPress={() => toggleModal(state.selectedItem)}
+            onBackdropPress={() => toggleModal(state.selectedItem)}
+            backdropTransitionOutTiming={0}
+          >
+            <EntryModalContent
+              entry={state.selectedItem}
+              onModalBackButtonPress={() => toggleModal(state.selectedItem)}
+            />
+          </Modal>
+
+          {/* settings modal when user taps on the settings icon in the app bar */}
+          <Modal
+            isVisible={state.isSettingsVisible}
+            animationIn="slideInRight"
+            animationOut="slideOutRight"
+            onBackButtonPress={() => toggleSettings()}
+            onBackdropPress={() => toggleSettings()}
+            backdropTransitionOutTiming={0}
+          >
+            {screenType === 'fwew' && (
+              <FwewSettings
+                settingsGlobal={settingsGlobal}
+                settingsFwew={settingsFwew}
+                onUpdateSettingsGlobal={onUpdateSettingsGlobal}
+                onUpdateSettingsFwew={onUpdateSettingsFwew}
+                onSettingsBackButtonPress={() => toggleSettings()}
               />
             )}
-
-            {/* word information modal when user taps an entry in the list */}
-            <Modal
-              isVisible={this.state.isModalVisible}
-              animationIn="slideInLeft"
-              animationOut="slideOutLeft"
-              onBackButtonPress={() =>
-                this.toggleModal(this.state.selectedItem)
-              }
-              onBackdropPress={() => this.toggleModal(this.state.selectedItem)}
-              backdropTransitionOutTiming={0}
-            >
-              <EntryModalContent
-                entry={this.state.selectedItem}
-                onModalBackButtonPress={() =>
-                  this.toggleModal(this.state.selectedItem)
-                }
+            {screenType === 'list' && (
+              <ListSettings
+                settingsGlobal={settingsGlobal}
+                settingsList={settingsList}
+                onUpdateSettingsGlobal={onUpdateSettingsGlobal}
+                onUpdateSettingsList={onUpdateSettingsList}
+                onSettingsBackButtonPress={() => toggleSettings()}
               />
-            </Modal>
-
-            {/* settings modal when user taps on the settings icon in the app bar */}
-            <Modal
-              isVisible={this.state.isSettingsVisible}
-              animationIn="slideInRight"
-              animationOut="slideOutRight"
-              onBackButtonPress={() => this.toggleSettings()}
-              onBackdropPress={() => this.toggleSettings()}
-              backdropTransitionOutTiming={0}
-            >
-              {this.screenType === 'fwew' && (
-                <FwewSettings
-                  settingsGlobal={this.state.settingsGlobal}
-                  settingsFwew={this.state.settingsFwew}
-                  onUpdateSettingsGlobal={settingsObj => {
-                    this.updateSettingsGlobal(settingsObj)
-                  }}
-                  onUpdateSettingsFwew={settingsObj => {
-                    this.updateSettingsFwew(settingsObj)
-                  }}
-                  onSettingsBackButtonPress={() => this.toggleSettings()}
-                />
-              )}
-              {this.screenType === 'list' && (
-                <ListSettings
-                  settingsGlobal={this.state.settingsGlobal}
-                  settingsList={this.state.settingsList}
-                  onUpdateSettingsGlobal={settingsObj => {
-                    this.updateSettingsGlobal(settingsObj)
-                  }}
-                  onUpdateSettingsList={settingsObj => {
-                    this.updateSettingsList(settingsObj)
-                  }}
-                  onSettingsBackButtonPress={() => this.toggleSettings()}
-                />
-              )}
-              {this.screenType === 'random' && (
-                <RandomSettings
-                  onSettingsBackButtonPress={() => this.toggleSettings()}
-                />
-              )}
-            </Modal>
-          </View>
-        </SafeAreaView>
-      </Fragment>
-    )
-  }
+            )}
+            {screenType === 'random' && (
+              <RandomSettings
+                onSettingsBackButtonPress={() => toggleSettings()}
+              />
+            )}
+          </Modal>
+        </View>
+      </SafeAreaView>
+    </Fragment>
+  )
 }
 
 const styles = StyleSheet.create({

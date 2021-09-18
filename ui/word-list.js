@@ -1,5 +1,5 @@
 /**
- * This file is part of fwew-react. 
+ * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
  * Copyright (C) 2021  Corey Scheideman <corscheid@gmail.com>
  *
@@ -16,31 +16,32 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React from "react";
 import {
   FlatList,
   RefreshControl,
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
-} from "react-native";
-import Entry from "./entry";
+  View
+} from 'react-native'
+
+import Entry from './entry'
+import React from 'react'
 
 function WordList({ data, isLoading, onRefresh, text, toggleModal }) {
   // only try to render the list if there is data for it
-  if (data.length > 0) {
+  if (data && data.length > 0) {
     return (
       <View style={styles.listContainer}>
         <FlatList
           data={data}
           extraData={text}
-          keyExtractor={(item) => item.ID}
+          keyExtractor={item => item.ID}
           contentContainerStyle={styles.listContentContainer}
           renderItem={({ item, index }) => (
             <TouchableOpacity
               onPress={() => {
-                toggleModal(item);
+                toggleModal(item)
               }}
             >
               <Entry
@@ -63,30 +64,30 @@ function WordList({ data, isLoading, onRefresh, text, toggleModal }) {
           }
         />
       </View>
-    );
-  } else if (data.message) {
+    )
+  } else if (data && data.message) {
     return (
       // for the situation the API returns {message: "no results"}
-      <View style={{ alignItems: "center" }}>
+      <View style={{ alignItems: 'center' }}>
         <Text>
           {data.message}: {text}
         </Text>
       </View>
-    );
+    )
   } else {
-    return null;
+    return null
   }
 }
 
 const styles = StyleSheet.create({
   listContainer: {
-    flexDirection: "row",
-    flex: 1,
+    flexDirection: 'row',
+    flex: 1
   },
   listContentContainer: {
     marginTop: 8,
-    paddingBottom: 72,
-  },
-});
+    paddingBottom: 72
+  }
+})
 
-export default WordList;
+export default WordList

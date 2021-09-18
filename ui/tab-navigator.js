@@ -1,4 +1,3 @@
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 /**
  * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
@@ -17,40 +16,41 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React from "react";
-import Screen from "./screen";
-import colors from "./colors";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import React from 'react'
+import Screen from './screen'
+import colors from './colors'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 // the root endpoint of the Fwew API
 // see https://github.com/fwew/fwew-api for more info about the API
-const ApiRoot = "https://tirea.learnnavi.org/api";
+const ApiRoot = 'https://tirea.learnnavi.org/api'
 
 // screen where the user can search for specific word(s)
 function FwewScreen() {
-  const endpoint = ApiRoot + "/fwew/";
-  return <Screen screenType="fwew" ApiUrl={endpoint} />;
+  const endpoint = ApiRoot + '/fwew/'
+  return <Screen screenType="fwew" ApiUrl={endpoint} />
 }
 
 // screen where the user can list all words (or all words that have given properties)
 function ListScreen() {
-  const endpoint = ApiRoot + "/list/";
-  return <Screen screenType="list" ApiUrl={endpoint} />;
+  const endpoint = ApiRoot + '/list/'
+  return <Screen screenType="list" ApiUrl={endpoint} />
 }
 
 // screen where the user can view a randomized list of words
 function RandomScreen() {
-  const endpoint = ApiRoot + "/random/";
-  return <Screen screenType="random" ApiUrl={endpoint}></Screen>;
+  const endpoint = ApiRoot + '/random/'
+  return <Screen screenType="random" ApiUrl={endpoint}></Screen>
 }
 
 // TODO: screen where the user can update settings
 function SettingsScreen() {
-  const endpoint = "";
-  return <Screen screenType="settings" ApiUrl={endpoint}></Screen>;
+  const endpoint = ''
+  return <Screen screenType="settings" ApiUrl={endpoint}></Screen>
 }
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator()
 
 // the tab navigation at the bottom of the screen used to jump between the above screens
 function TabNavigator() {
@@ -58,28 +58,31 @@ function TabNavigator() {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
+          let iconName
           switch (route.name) {
-            case "Fwew":
-              iconName = "search";
-              break;
-            case "List":
-              iconName = "list";
-              break;
-            case "Random":
-              iconName = focused ? "help" : "help-outline";
-              break;
-            case "Settings":
-              iconName = "settings";
-              break;
+            case 'Fwew':
+              iconName = 'search'
+              break
+            case 'List':
+              iconName = 'list'
+              break
+            case 'Random':
+              iconName = focused ? 'help' : 'help-outline'
+              break
+            case 'Settings':
+              iconName = 'settings'
+              break
           }
-          return <MaterialIcons name={iconName} size={size} color={color} />;
+          return <MaterialIcons name={iconName} size={size} color={color} />
         },
         tabBarActiveTintColor: colors.activeTabTint,
         tabBarInactiveTintColor: colors.inactiveTabTint,
         tabBarActiveBackgroundColor: colors.activeTabBackground,
         tabBarInactiveBackgroundColor: colors.inactiveTabBackground,
-        tabBarStyle: [{ display: "flex", backgroundColor: colors.secondary }, null],
+        tabBarStyle: [
+          { display: 'flex', backgroundColor: colors.secondary },
+          null
+        ],
         tabBarIconStyle: { marginTop: 4 },
         tabBarItemStyle: { paddingBottom: 4 },
         headerShown: false
@@ -90,7 +93,7 @@ function TabNavigator() {
       <Tab.Screen name="Random" component={RandomScreen} />
       <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
-  );
+  )
 }
 
-export default TabNavigator;
+export default TabNavigator

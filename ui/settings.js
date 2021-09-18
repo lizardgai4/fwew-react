@@ -1,5 +1,5 @@
 /**
- * This file is part of fwew-react. 
+ * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
  * Copyright (C) 2021  Corey Scheideman <corscheid@gmail.com>
  *
@@ -19,99 +19,99 @@
 
 /**
  * Global settings
- * 
+ *
  * languageCode: the default language code of the application
  */
-export const SettingsGlobal = {
-  languageCode: "en",
-};
+export const settingsGlobal = {
+  languageCode: 'en'
+}
 
 /**
  * Fwew Settings
- * 
+ *
  * isReverseEnabled: the default search direction
  * posFilterText: the default value of the part of speech filter
  */
-export const SettingsFwew = {
+export const settingsFwew = {
   isReverseEnabled: false,
-  posFilterText: "all",
-};
+  posFilterText: 'all'
+}
 
 /**
  * List Settings
- * 
+ *
  * values for each what/cond/spec in List
  */
-export const SettingsList = {
+export const settingsList = {
   word: {
-    has: "",
-    starts: "",
-    ends: "",
-    like: "",
+    has: '',
+    starts: '',
+    ends: '',
+    like: ''
   },
   pos: {
-    is: "",
-    has: "",
-    starts: "",
-    ends: "",
-    like: "",
+    is: '',
+    has: '',
+    starts: '',
+    ends: '',
+    like: ''
   },
   syllables: {
-    lessThan: "0",
-    lessThanEqual: "0",
-    equal: "0",
-    greaterThanEqual: "0",
-    greaterThan: "0",
+    lessThan: '0',
+    lessThanEqual: '0',
+    equal: '0',
+    greaterThanEqual: '0',
+    greaterThan: '0'
   },
   stress: {
-    lessThan: "0",
-    lessThanEqual: "0",
-    equal: "0",
-    greaterThanEqual: "0",
-    greaterThan: "0",
+    lessThan: '0',
+    lessThanEqual: '0',
+    equal: '0',
+    greaterThanEqual: '0',
+    greaterThan: '0'
   },
   words: {
-    first: "0",
-    last: "0",
-  },
-};
+    first: '0',
+    last: '0'
+  }
+}
 
 /**
  * Random Settings
- * 
+ *
  * values for each what/cond/spec in Random
  */
 export const settingsRandom = {
-  numRandomWords: "8",
+  numRandomWords: '8',
   word: {
-    has: "",
-    starts: "",
-    ends: "",
-    like: "",
+    has: '',
+    starts: '',
+    ends: '',
+    like: ''
   },
   pos: {
-    is: "",
-    has: "",
-    starts: "",
-    ends: "",
-    like: "",
+    is: '',
+    has: '',
+    starts: '',
+    ends: '',
+    like: ''
   },
   syllables: {
-    lessThan: "0",
-    lessThanEqual: "0",
-    equal: "0",
-    greaterThanEqual: "0",
-    greaterThan: "0",
+    lessThan: '0',
+    lessThanEqual: '0',
+    equal: '0',
+    greaterThanEqual: '0',
+    greaterThan: '0'
   },
   stress: {
-    lessThan: "0",
-    lessThanEqual: "0",
-    equal: "0",
-    greaterThanEqual: "0",
-    greaterThan: "0",
+    lessThan: '0',
+    lessThanEqual: '0',
+    equal: '0',
+    greaterThanEqual: '0',
+    greaterThan: '0'
   },
   words: {
-    first: "0",
-    last: "0",
-  },
-};
+    first: '0',
+    last: '0'
+  }
+}
