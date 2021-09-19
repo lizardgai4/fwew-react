@@ -16,35 +16,36 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+
 import EntryIndex from './entry-index'
+import React from 'react'
 import colors from './colors'
 
 // a list row entry item
-function Entry(props) {
+function Entry({ number, navi, ipa, pos, /* infixDots, syllables, */ en }) {
   return (
     <View style={styles.entry}>
       <View style={{ flexDirection: 'row' }}>
-        <EntryIndex number={props.number} />
+        <EntryIndex number={number} />
         <Text numberOfLines={1} selectable={true} style={styles.entry_navi}>
-          {`${props.navi}`}
+          {`${navi}`}
           <Text selectable={true} style={styles.entry_ipa}>
-            {` [${props.ipa}]`}
+            {` [${ipa}]`}
           </Text>
           <Text selectable={true} style={styles.entry_pos}>
-            {` ${props.pos}`}
+            {` ${pos}`}
           </Text>
           {/* // TODO: show underline stressed syllable and dot style infix locations
           <Text selectable={true} style={styles.entry_breakdown}>
-            {props.infixDots !== "NULL"
-              ? ` (${props.syllables}, ${props.infixDots})`
-              : ` (${props.syllables})`}
+            {infixDots !== 'NULL'
+              ? ` (${syllables}, ${infixDots})`
+              : ` (${syllables})`}
           </Text> */}
         </Text>
       </View>
       <Text numberOfLines={1} selectable={true} style={styles.entry_en}>
-        {props.en}
+        {en}
       </Text>
     </View>
   )
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
     marginTop: 8
   },
   entry_breakdown: { fontWeight: 'normal', fontSize: 14 },
-  entry_en: { fontSize: 14, marginLeft: 8, marginTop: 8, flex: 1 }
+  entry_en: { fontSize: 16, marginLeft: 0, marginTop: 8, flex: 1 }
 })
 
 export default Entry

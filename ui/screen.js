@@ -18,25 +18,20 @@
  */
 import {
   ActivityIndicator,
-  Image,
   SafeAreaView,
   StatusBar,
   StyleSheet,
   TextInput,
-  TouchableOpacity,
   View
 } from 'react-native'
-import React, { Fragment, useContext, useEffect, useState } from 'react'
+import React, { Fragment, useState } from 'react'
 
 import ActionBar from './action-bar'
 import EntryModalContent from './entry-modal-content'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Modal from 'react-native-modal'
-import { SettingsContext } from '../context'
 import WordList from './word-list'
 import axios from 'axios'
 import colors from './colors'
-import fwew from '../assets/fwew.png'
 
 // The main content area of the app
 const Screen = ({ apiUrl, screenType }) => {
@@ -45,8 +40,6 @@ const Screen = ({ apiUrl, screenType }) => {
   const [data, setData] = useState([])
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [selectedItem, setSelectedItem] = useState({})
-  const { settingsGlobal, settingsFwew } = useContext(SettingsContext)
-  const { isReverseEnabled } = settingsFwew
 
   // toggles info modal visible when user taps a list entry or modal backdrop
   const toggleModal = (item) => {
@@ -74,7 +67,7 @@ const Screen = ({ apiUrl, screenType }) => {
         setIsLoading(false)
         setData(response.data)
       })
-      .catch((e) => {
+      .catch((_e) => {
         setIsLoading(false)
         setData([])
       })
@@ -110,7 +103,6 @@ const Screen = ({ apiUrl, screenType }) => {
       <SafeAreaView style={styles.safeContainer}>
         <View style={{ flex: 1 }}>
           <ActionBar>
-            <Image source={fwew} style={styles.icon} />
             <TextInput
               onChangeText={searchData}
               placeholder={getInputPlaceholderText()}
@@ -146,10 +138,7 @@ const Screen = ({ apiUrl, screenType }) => {
             onBackdropPress={() => toggleModal(selectedItem)}
             backdropTransitionOutTiming={0}
           >
-            <EntryModalContent
-              entry={selectedItem}
-              onModalBackButtonPress={() => toggleModal(selectedItem)}
-            />
+            <EntryModalContent entry={selectedItem} />
           </Modal>
         </View>
       </SafeAreaView>
@@ -158,14 +147,6 @@ const Screen = ({ apiUrl, screenType }) => {
 }
 
 const styles = StyleSheet.create({
-  menu: {
-    marginLeft: 8
-  },
-  icon: {
-    marginLeft: 8,
-    width: 48,
-    height: 48
-  },
   safeStatusBar: {
     flex: 0,
     backgroundColor: colors.secondary
@@ -173,12 +154,6 @@ const styles = StyleSheet.create({
   safeContainer: {
     flex: 1,
     backgroundColor: colors.screenBackground
-  },
-  container: {
-    flex: 1,
-    width: '100%',
-    backgroundColor: colors.screenBackground,
-    alignItems: 'stretch'
   },
   input: {
     height: 40,

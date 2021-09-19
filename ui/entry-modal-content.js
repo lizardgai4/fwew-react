@@ -16,12 +16,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+
+import React from 'react'
 import colors from './colors'
 
 // content of the modal which appears when user taps on an entry
-function EntryModalContent({ entry, onModalBackButtonPress }) {
+function EntryModalContent({ entry }) {
   return (
     <View style={styles.modalContainer}>
       {/* the Na'vi word */}

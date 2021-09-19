@@ -24,9 +24,10 @@ import {
   TouchableOpacity,
   View
 } from 'react-native'
-import { SettingsContext } from '../context'
-import Entry from './entry'
 import React, { useContext } from 'react'
+
+import Entry from './entry'
+import { SettingsContext } from '../context'
 
 function WordList({
   data,

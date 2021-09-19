@@ -18,7 +18,6 @@
  */
 import {
   ActivityIndicator,
-  Image,
   SafeAreaView,
   StatusBar,
   StyleSheet,
@@ -36,7 +35,6 @@ import { SettingsContext } from '../context'
 import WordList from './word-list'
 import axios from 'axios'
 import colors from './colors'
-import fwew from '../assets/fwew.png'
 
 // screen where the user can search for specific word(s)
 const FwewScreen = () => {
@@ -80,7 +78,7 @@ const FwewScreen = () => {
         setIsLoading(false)
         setData(response.data)
       })
-      .catch((e) => {
+      .catch((_e) => {
         setIsLoading(false)
         setData([])
       })
@@ -120,7 +118,6 @@ const FwewScreen = () => {
       <SafeAreaView style={styles.safeContainer}>
         <View style={{ flex: 1 }}>
           <ActionBar>
-            <Image source={fwew} style={styles.icon} />
             <TextInput
               onChangeText={searchData}
               placeholder={getInputPlaceholderText()}
@@ -166,10 +163,7 @@ const FwewScreen = () => {
             onBackdropPress={() => toggleModal(selectedItem)}
             backdropTransitionOutTiming={0}
           >
-            <EntryModalContent
-              entry={selectedItem}
-              onModalBackButtonPress={() => toggleModal(selectedItem)}
-            />
+            <EntryModalContent entry={selectedItem} />
           </Modal>
         </View>
       </SafeAreaView>
@@ -178,14 +172,6 @@ const FwewScreen = () => {
 }
 
 const styles = StyleSheet.create({
-  menu: {
-    marginLeft: 8
-  },
-  icon: {
-    marginLeft: 8,
-    width: 48,
-    height: 48
-  },
   safeStatusBar: {
     flex: 0,
     backgroundColor: colors.secondary
@@ -193,12 +179,6 @@ const styles = StyleSheet.create({
   safeContainer: {
     flex: 1,
     backgroundColor: colors.screenBackground
-  },
-  container: {
-    flex: 1,
-    width: '100%',
-    backgroundColor: colors.screenBackground,
-    alignItems: 'stretch'
   },
   input: {
     height: 40,
