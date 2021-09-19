@@ -23,7 +23,7 @@ import React from 'react'
 import colors from './colors'
 
 // a list row entry item
-function Entry({ number, navi, ipa, pos, /* infixDots, syllables, */ en }) {
+function Entry({ number, navi, ipa, pos, infixDots, syllables, en }) {
   return (
     <View style={styles.entry}>
       <View style={{ flexDirection: 'row' }}>
@@ -36,12 +36,12 @@ function Entry({ number, navi, ipa, pos, /* infixDots, syllables, */ en }) {
           <Text selectable={true} style={styles.entry_pos}>
             {` ${pos}`}
           </Text>
-          {/* // TODO: show underline stressed syllable and dot style infix locations
+          {/* // TODO: show underline stressed syllable and dot style infix locations */}
           <Text selectable={true} style={styles.entry_breakdown}>
             {infixDots !== 'NULL'
               ? ` (${syllables}, ${infixDots})`
               : ` (${syllables})`}
-          </Text> */}
+          </Text>
         </Text>
       </View>
       <Text numberOfLines={1} selectable={true} style={styles.entry_en}>
