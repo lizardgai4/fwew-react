@@ -38,14 +38,16 @@ import axios from 'axios'
 import colors from './colors'
 import fwew from '../assets/fwew.png'
 
-// The main content area of the app
-const Screen = ({ apiUrl, screenType }) => {
+// screen where the user can search for specific word(s)
+const FwewScreen = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [text, setText] = useState('')
   const [data, setData] = useState([])
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [selectedItem, setSelectedItem] = useState({})
-  const { settingsGlobal, settingsFwew } = useContext(SettingsContext)
+  const { settingsGlobal, settingsFwew, onUpdateSettingsFwew } = useContext(
+    SettingsContext
+  )
   const { isReverseEnabled } = settingsFwew
 
   // toggles info modal visible when user taps a list entry or modal backdrop
@@ -56,7 +58,11 @@ const Screen = ({ apiUrl, screenType }) => {
 
   // calculates API endpoint for data fetching
   const getEndpoint = (text) => {
-    return `${apiUrl}${text}`
+    const apiUrl = 'https://tirea.learnnavi.org/api/fwew/'
+    const { languageCode } = settingsGlobal
+    return isReverseEnabled
+      ? `${apiUrl}r/${languageCode}/${text}`
+      : `${apiUrl}${text}`
   }
 
   // called when the user pulls down on the word list after it has rendered
@@ -82,7 +88,7 @@ const Screen = ({ apiUrl, screenType }) => {
 
   // fetch data and re-render after this component is mounted to the DOM and rendered in initial loading state
   useEffect(() => {
-    fetchData(getEndpoint())
+    fetchData('https://tirea.learnnavi.org/api/list/')
   }, [])
 
   // called whenever the user types or modifies text in the text input of the action bar / app bar
@@ -91,18 +97,17 @@ const Screen = ({ apiUrl, screenType }) => {
     fetchData(getEndpoint(text))
   }
 
+  // called whenever the user clicks the swap button or toggles the switch in Fwew Settings to reverse search direction
+  const toggleReverse = () => {
+    onUpdateSettingsFwew({
+      ...settingsFwew,
+      isReverseEnabled: !isReverseEnabled
+    })
+  }
+
   // sets the search bar placeholder text depending on the currently selected tab / screen
   const getInputPlaceholderText = () => {
-    switch (screenType) {
-      case 'list':
-        return 'word starts r and pos is vtr.'
-      case 'random':
-        return '10/pos is vtr.'
-      case 'settings':
-        return ''
-      default:
-        return 'search...'
-    }
+    return `search ${isReverseEnabled ? 'English' : "Na'vi"}...`
   }
 
   return (
@@ -123,6 +128,16 @@ const Screen = ({ apiUrl, screenType }) => {
               autoCorrect={false}
               style={styles.input}
             />
+            {/* Fwew Search direction toggle */}
+            <TouchableOpacity onPress={toggleReverse}>
+              <MaterialIcons
+                name={
+                  isReverseEnabled ? 'swap-horizontal-circle' : 'swap-horiz'
+                }
+                size={36}
+                color={colors.actionBarIconFill}
+              />
+            </TouchableOpacity>
           </ActionBar>
 
           {/*
@@ -138,7 +153,7 @@ const Screen = ({ apiUrl, screenType }) => {
               isLoading={isLoading}
               onRefresh={onRefresh}
               toggleModal={toggleModal}
-              posFilterEnabled={false}
+              posFilterEnabled={true}
             />
           )}
 
@@ -196,4 +211,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Screen
+export default FwewScreen

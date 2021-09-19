@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import FwewScreen from './FwewScreen'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import React from 'react'
 import Screen from './screen'
@@ -25,12 +26,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 // the root endpoint of the Fwew API
 // see https://github.com/fwew/fwew-api for more info about the API
 const apiRoot = 'https://tirea.learnnavi.org/api'
-
-// screen where the user can search for specific word(s)
-function FwewScreen() {
-  const endpoint = apiRoot + '/fwew/'
-  return <Screen screenType="fwew" apiUrl={endpoint} />
-}
 
 // screen where the user can list all words (or all words that have given properties)
 function ListScreen() {
