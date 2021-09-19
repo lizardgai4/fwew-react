@@ -35,29 +35,29 @@ export class SettingsStore extends React.Component {
     settingsRandom
   }
 
-  updateSettingsGlobal = newSettingsGlobal => {
-    this.setState(state => ({
+  updateSettingsGlobal = (newSettingsGlobal) => {
+    this.setState((state) => ({
       ...this.state,
       settingsGlobal: newSettingsGlobal
     }))
   }
 
-  updateSettingsFwew = newSettingsFwew => {
-    this.setState(state => ({
+  updateSettingsFwew = (newSettingsFwew) => {
+    this.setState((state) => ({
       ...this.state,
       settingsFwew: newSettingsFwew
     }))
   }
 
-  updateSettingsList = newSettingsList => {
-    this.setState(state => ({
+  updateSettingsList = (newSettingsList) => {
+    this.setState((state) => ({
       ...this.state,
       settingsFwew: newSettingsList
     }))
   }
 
-  updateSettingsRandom = newSettingsRandom => {
-    this.setState(state => ({
+  updateSettingsRandom = (newSettingsRandom) => {
+    this.setState((state) => ({
       ...this.state,
       settingsFwew: newSettingsRandom
     }))
@@ -85,6 +85,25 @@ export class SettingsStore extends React.Component {
       >
         {this.props.children}
       </SettingsContext.Provider>
+    )
+  }
+}
+
+export const StateContext = React.createContext()
+
+export class StateStore extends React.Component {
+  state = { dataCache: [] }
+
+  updateDataCache = (newDataCache) => {
+    this.setState((state) => ({ dataCache: newDataCache }))
+  }
+
+  render() {
+    const { dataCache } = this.state
+    return (
+      <StateContext.Provider value={{ dataCache }}>
+        {this.props.children}
+      </StateContext.Provider>
     )
   }
 }
