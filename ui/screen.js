@@ -80,11 +80,6 @@ const Screen = ({ apiUrl, screenType }) => {
       })
   }
 
-  // fetch data and re-render after this component is mounted to the DOM and rendered in initial loading state
-  useEffect(() => {
-    fetchData(getEndpoint())
-  }, [])
-
   // called whenever the user types or modifies text in the text input of the action bar / app bar
   const searchData = (text) => {
     setText(text)
