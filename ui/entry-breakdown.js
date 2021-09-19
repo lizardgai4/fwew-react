@@ -20,22 +20,42 @@ import { StyleSheet, Text } from 'react-native'
 
 import React from 'react'
 
-function Stressed({ syllables }) {
-  return <Text>{syllables}</Text>
+function Underline({ children }) {
+  return <Text style={styles.underline}>{children}</Text>
 }
 
-function EntryBreakdown({ syllables, infixDots }) {
+function Stressed({ stressed, children }) {
+  const syllables = children
+
+  if (syllables.includes('-')) {
+    return <Text>{children}</Text>
+  }
+
+  const syllableArray = syllables.split(/[ -]/)
+  const stressedIndex = parseInt(stressed, 10)
+  const stressedSyllable = syllableArray[stressedIndex - 1]
+
+  if (stressedSyllable.includes(' ')) {
+    const tmp = stressedSyllable.split(' ')
+    tmp[0] = <Underline>tmp[0]</Underline>
+  }
+
+  return <Text style={{ flexDirection: 'row' }}>{children}</Text>
+}
+
+function EntryBreakdown({ stressed, syllables, infixDots }) {
   return (
     <Text selectable={true} style={styles.entry_breakdown}>
       {'('}
-      <Stressed syllables={syllables} />
+      <Stressed stressed={stressed}>{syllables}</Stressed>
       {infixDots !== 'NULL' ? `, ${infixDots})` : ')'}
     </Text>
   )
 }
 
 const styles = StyleSheet.create({
-  entry_breakdown: { fontWeight: 'normal', fontSize: 14 }
+  entry_breakdown: { fontWeight: 'normal', fontSize: 14 },
+  underline: { textDecorationLine: 'underline' }
 })
 
 export default EntryBreakdown

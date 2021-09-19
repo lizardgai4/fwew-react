@@ -73,6 +73,7 @@ function WordList({
                 navi={item.Navi}
                 ipa={item.IPA}
                 pos={item.PartOfSpeech}
+                stressed={item.Stressed}
                 syllables={item.Syllables}
                 infixDots={item.InfixDots}
                 en={item.EN}

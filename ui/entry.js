@@ -24,7 +24,7 @@ import React from 'react'
 import colors from './colors'
 
 // a list row entry item
-function Entry({ number, navi, ipa, pos, infixDots, syllables, en }) {
+function Entry({ number, navi, ipa, pos, infixDots, stressed, syllables, en }) {
   return (
     <View style={styles.entry}>
       <View style={{ flexDirection: 'row' }}>
@@ -37,7 +37,11 @@ function Entry({ number, navi, ipa, pos, infixDots, syllables, en }) {
           <Text selectable={true} style={styles.entry_pos}>
             {` ${pos}`}
           </Text>
-          <EntryBreakdown syllables={syllables} infixDots={infixDots} />
+          <EntryBreakdown
+            stressed={stressed}
+            syllables={syllables}
+            infixDots={infixDots}
+          />
         </Text>
       </View>
       <Text numberOfLines={1} selectable={true} style={styles.entry_en}>
