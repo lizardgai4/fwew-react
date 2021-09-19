@@ -18,6 +18,7 @@
  */
 import { StyleSheet, Text, View } from 'react-native'
 
+import EntryBreakdown from './entry-breakdown'
 import EntryIndex from './entry-index'
 import React from 'react'
 import colors from './colors'
@@ -36,12 +37,7 @@ function Entry({ number, navi, ipa, pos, infixDots, syllables, en }) {
           <Text selectable={true} style={styles.entry_pos}>
             {` ${pos}`}
           </Text>
-          {/* // TODO: show underline stressed syllable and dot style infix locations */}
-          <Text selectable={true} style={styles.entry_breakdown}>
-            {infixDots !== 'NULL'
-              ? ` (${syllables}, ${infixDots})`
-              : ` (${syllables})`}
-          </Text>
+          <EntryBreakdown syllables={syllables} infixDots={infixDots} />
         </Text>
       </View>
       <Text numberOfLines={1} selectable={true} style={styles.entry_en}>
