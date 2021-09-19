@@ -37,7 +37,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: colors.primary,
-    borderRadius: 45
+    borderRadius: 45,
+    borderWidth: 1,
+    borderColor: colors.secondary
   },
   entry_number: {
     fontWeight: 'bold',

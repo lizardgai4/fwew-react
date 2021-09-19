@@ -17,16 +17,16 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import React from 'react'
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import colors from './colors'
 
 // content of the modal which appears when user taps on an entry
-function EntryModalContent(props) {
+function EntryModalContent({ entry, onModalBackButtonPress }) {
   return (
     <View style={styles.modalContainer}>
       {/* the Na'vi word */}
       <Text selectable={true} style={styles.modal_navi}>
-        {props.entry.Navi}
+        {entry.Navi}
       </Text>
 
       {/* part of speech and definition */}
@@ -34,21 +34,21 @@ function EntryModalContent(props) {
         <Text selectable={true} style={styles.modal_label}>
           {'part of speech: '}
           <Text selectable={true} style={styles.modal_text}>
-            {props.entry.PartOfSpeech}
+            {entry.PartOfSpeech}
           </Text>
         </Text>
 
         <Text selectable={true} style={styles.modal_label}>
           {'definition: '}
           <Text selectable={true} style={styles.modal_text}>
-            {props.entry.EN}
+            {entry.EN}
           </Text>
         </Text>
 
         <Text selectable={true} style={styles.modal_label}>
           {'source: '}
           <Text selectable={true} style={styles.modal_text}>
-            {props.entry.Source}
+            {entry.Source}
           </Text>
         </Text>
       </View>
@@ -60,37 +60,37 @@ function EntryModalContent(props) {
           <Text
             selectable={true}
             style={styles.modal_text}
-          >{`[${props.entry.IPA}]`}</Text>
+          >{`[${entry.IPA}]`}</Text>
         </Text>
 
         <Text selectable={true} style={styles.modal_label}>
           {'syllables: '}
           <Text selectable={true} style={styles.modal_text}>
-            {props.entry.Syllables}
+            {entry.Syllables}
           </Text>
         </Text>
 
         <Text selectable={true} style={styles.modal_label}>
           {'stressed syllable: '}
           <Text selectable={true} style={styles.modal_text}>
-            {props.entry.Stressed}
+            {entry.Stressed}
           </Text>
         </Text>
       </View>
 
       {/* verb infix location data */}
-      {props.entry.InfixLocations !== 'NULL' && (
+      {entry.InfixLocations !== 'NULL' && (
         <View style={styles.modal_group}>
           <Text selectable={true} style={styles.modal_label}>
             {'infix slots: '}
             <Text selectable={true} style={styles.modal_text}>
-              {props.entry.InfixLocations}
+              {entry.InfixLocations}
             </Text>
           </Text>
           <Text selectable={true} style={styles.modal_label}>
             {'infix dots: '}
             <Text selectable={true} style={styles.modal_text}>
-              {props.entry.InfixDots}
+              {entry.InfixDots}
             </Text>
           </Text>
         </View>
@@ -98,48 +98,41 @@ function EntryModalContent(props) {
 
       {/* affixes */}
       <View style={styles.modal_group}>
-        {props.entry.Affixes && props.entry.Affixes.Prefix && (
+        {entry.Affixes && entry.Affixes.Prefix && (
           <Text selectable={true} style={styles.modal_label}>
             {'prefixes: '}
             <Text selectable={true} style={styles.modal_text}>
-              {props.entry.Affixes.Prefix}
+              {entry.Affixes.Prefix}
             </Text>
           </Text>
         )}
 
-        {props.entry.Affixes && props.entry.Affixes.Infix && (
+        {entry.Affixes && entry.Affixes.Infix && (
           <Text selectable={true} style={styles.modal_label}>
             {'infixes: '}
             <Text selectable={true} style={styles.modal_text}>
-              {props.entry.Affixes.Infix}
+              {entry.Affixes.Infix}
             </Text>
           </Text>
         )}
 
-        {props.entry.Affixes && props.entry.Affixes.Suffix && (
+        {entry.Affixes && entry.Affixes.Suffix && (
           <Text selectable={true} style={styles.modal_label}>
             {'suffixes: '}
             <Text selectable={true} style={styles.modal_text}>
-              {props.entry.Affixes.Suffix}
+              {entry.Affixes.Suffix}
             </Text>
           </Text>
         )}
 
-        {props.entry.Affixes && props.entry.Affixes.Lenition && (
+        {entry.Affixes && entry.Affixes.Lenition && (
           <Text selectable={true} style={styles.modal_label}>
             {'lenition: '}
             <Text selectable={true} style={styles.modal_text}>
-              {props.entry.Affixes.Lenition}
+              {entry.Affixes.Lenition}
             </Text>
           </Text>
         )}
-      </View>
-      <View style={styles.modal_button}>
-        <Button
-          title={'back'}
-          onPress={props.onModalBackButtonPress}
-          color={colors.secondary}
-        />
       </View>
     </View>
   )
@@ -168,10 +161,6 @@ const styles = StyleSheet.create({
   modal_text: {
     fontSize: 14,
     fontWeight: 'normal'
-  },
-  modal_button: {
-    flexDirection: 'row',
-    justifyContent: 'space-around'
   }
 })
 

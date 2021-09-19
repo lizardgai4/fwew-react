@@ -30,11 +30,8 @@ import React, { Fragment, useContext, useEffect, useState } from 'react'
 
 import ActionBar from './action-bar'
 import EntryModalContent from './entry-modal-content'
-import FwewSettings from './fwew-settings'
-import ListSettings from './list-settings'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Modal from 'react-native-modal'
-import RandomSettings from './random-settings'
 import { SettingsContext } from '../context'
 import WordList from './word-list'
 import axios from 'axios'
@@ -48,21 +45,10 @@ const Screen = (props) => {
   const [text, setText] = useState('')
   const [data, setData] = useState([])
   const [isModalVisible, setIsModalVisible] = useState(false)
-  const [isSettingsVisible, setIsSettingsVisible] = useState(false)
   const [selectedItem, setSelectedItem] = useState({})
-  const {
-    settingsGlobal,
-    settingsFwew,
-    settingsList,
-    onUpdateSettingsFwew,
-    onUpdateSettingsList
-  } = useContext(SettingsContext)
+  const { settingsGlobal, settingsFwew, onUpdateSettingsFwew } =
+    useContext(SettingsContext)
   const { isReverseEnabled } = settingsFwew
-
-  // toggles settings modal visible when user taps the settings icon in the app bar
-  const toggleSettings = () => {
-    setIsSettingsVisible(!isSettingsVisible)
-  }
 
   // toggles info modal visible when user taps a list entry or modal backdrop
   const toggleModal = (item) => {
@@ -150,14 +136,6 @@ const Screen = (props) => {
       <SafeAreaView style={styles.safeContainer}>
         <View style={{ flex: 1 }}>
           <ActionBar>
-            {/* settings button that will open settings modal */}
-            <TouchableOpacity style={styles.menu} onPress={toggleSettings}>
-              <MaterialIcons
-                name="menu"
-                size={36}
-                color={colors.actionBarIconFill}
-              />
-            </TouchableOpacity>
             <Image source={fwew} style={styles.icon} />
             <TextInput
               onChangeText={searchData}
@@ -211,34 +189,6 @@ const Screen = (props) => {
               onModalBackButtonPress={() => toggleModal(selectedItem)}
             />
           </Modal>
-
-          {/* settings modal when user taps on the settings icon in the app bar */}
-          <Modal
-            isVisible={isSettingsVisible}
-            animationIn="slideInLeft"
-            animationOut="slideOutLeft"
-            onBackButtonPress={toggleSettings}
-            onBackdropPress={toggleSettings}
-            backdropTransitionOutTiming={0}
-          >
-            {screenType === 'fwew' && (
-              <FwewSettings
-                settingsFwew={settingsFwew}
-                onUpdateSettingsFwew={onUpdateSettingsFwew}
-                onSettingsBackButtonPress={toggleSettings}
-              />
-            )}
-            {screenType === 'list' && (
-              <ListSettings
-                settingsList={settingsList}
-                onUpdateSettingsList={onUpdateSettingsList}
-                onSettingsBackButtonPress={toggleSettings}
-              />
-            )}
-            {screenType === 'random' && (
-              <RandomSettings onSettingsBackButtonPress={toggleSettings} />
-            )}
-          </Modal>
         </View>
       </SafeAreaView>
     </Fragment>
@@ -259,7 +209,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.secondary
   },
   safeContainer: {
-    flex: 1
+    flex: 1,
+    backgroundColor: colors.screenBackground
   },
   container: {
     flex: 1,

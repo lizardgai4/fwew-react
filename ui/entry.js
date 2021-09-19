@@ -55,9 +55,10 @@ const styles = StyleSheet.create({
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
-    borderWidth: 1,
+    borderWidth: 1.5,
     borderRadius: 16,
-    borderColor: colors.entryBorder
+    backgroundColor: colors.entryBackground,
+    borderColor: colors.secondary
   },
   entry_navi: {
     fontWeight: 'bold',
