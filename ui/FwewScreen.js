@@ -120,6 +120,7 @@ const FwewScreen = () => {
         <View style={{ flex: 1 }}>
           <ActionBar>
             <View style={styles.parent}>
+              {/* search bar */}
               <TextInput
                 onChangeText={searchData}
                 placeholder={getInputPlaceholderText()}
@@ -129,6 +130,7 @@ const FwewScreen = () => {
                 clearButtonMode="always"
                 value={text}
               />
+              {/* search bar clear input button */}
               {Platform.OS === 'android' && (
                 <TouchableOpacity
                   style={styles.closeButtonParent}
