@@ -131,19 +131,20 @@ const FwewScreen = () => {
                 value={text}
               />
               {/* search bar clear input button */}
-              {Platform.OS === 'android' && (
-                <TouchableOpacity
-                  style={styles.closeButtonParent}
-                  onPress={() => searchData('')}
-                >
-                  <MaterialIcons
-                    style={styles.closeButton}
-                    name="cancel"
-                    size={18}
-                    color={'#fff'}
-                  />
-                </TouchableOpacity>
-              )}
+              {Platform.OS === 'android' &&
+                (text != null && text.length > 0 ? (
+                  <TouchableOpacity
+                    style={styles.closeButtonParent}
+                    onPress={() => searchData('')}
+                  >
+                    <MaterialIcons
+                      style={styles.closeButton}
+                      name="cancel"
+                      size={18}
+                      color={'#fff'}
+                    />
+                  </TouchableOpacity>
+                ) : null)}
             </View>
             {/* Fwew Search direction toggle */}
             <TouchableOpacity onPress={toggleReverse}>
