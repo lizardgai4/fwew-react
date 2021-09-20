@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.screenBackground
   },
   parent: {
-    width: '75%',
+    width: '85%',
     borderColor: colors.secondary,
     backgroundColor: colors.inputBackground,
     borderRadius: 16,
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
     marginLeft: 8,
     marginRight: 8,
-    width: '90%'
+    width: '100%'
   },
   closeButton: {
     color: colors.inputCloseButton,
