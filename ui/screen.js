@@ -62,7 +62,7 @@ const Screen = ({ apiUrl, screenType }) => {
   const fetchData = (endpoint) => {
     setIsLoading(true)
     axios
-      .get(endpoint)
+      .get(encodeURI(endpoint))
       .then((response) => {
         setIsLoading(false)
         setData(response.data)
