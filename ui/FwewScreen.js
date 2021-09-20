@@ -18,6 +18,7 @@
  */
 import {
   ActivityIndicator,
+  Platform,
   SafeAreaView,
   StatusBar,
   StyleSheet,
@@ -118,13 +119,30 @@ const FwewScreen = () => {
       <SafeAreaView style={styles.safeContainer}>
         <View style={{ flex: 1 }}>
           <ActionBar>
-            <TextInput
-              onChangeText={searchData}
-              placeholder={getInputPlaceholderText()}
-              autoCapitalize={'none'}
-              autoCorrect={false}
-              style={styles.input}
-            />
+            <View style={styles.parent}>
+              <TextInput
+                onChangeText={searchData}
+                placeholder={getInputPlaceholderText()}
+                autoCapitalize={'none'}
+                autoCorrect={false}
+                style={styles.input}
+                clearButtonMode="always"
+                value={text}
+              />
+              {Platform.OS === 'android' && (
+                <TouchableOpacity
+                  style={styles.closeButtonParent}
+                  onPress={() => searchData('')}
+                >
+                  <MaterialIcons
+                    style={styles.closeButton}
+                    name="cancel"
+                    size={18}
+                    color={'#fff'}
+                  />
+                </TouchableOpacity>
+              )}
+            </View>
             {/* Fwew Search direction toggle */}
             <TouchableOpacity onPress={toggleReverse}>
               <MaterialIcons
@@ -180,14 +198,33 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.screenBackground
   },
+  parent: {
+    width: '75%',
+    borderColor: colors.secondary,
+    backgroundColor: colors.inputBackground,
+    borderRadius: 16,
+    borderWidth: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
   input: {
     height: 40,
     flex: 1,
     paddingLeft: 16,
     marginLeft: 8,
     marginRight: 8,
-    backgroundColor: colors.inputBackground,
-    borderRadius: 16
+    width: '90%'
+  },
+  closeButton: {
+    color: colors.inputCloseButton,
+    height: 18,
+    width: 18,
+    marginRight: 8
+  },
+  closeButtonParent: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 5
   }
 })
 

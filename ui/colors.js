@@ -41,7 +41,8 @@ const colors = {
   inactiveTabBackground: '#7494ba',
   inactiveTabTint: '#fff',
   settingsButtonFill: '#fff',
-  actionBarIconFill: '#fff'
+  actionBarIconFill: '#fff',
+  inputCloseButton: '#ccc'
 }
 
 export default colors

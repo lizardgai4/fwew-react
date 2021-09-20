@@ -40,6 +40,8 @@ function Stressed({ stressed, children }) {
     tmp[0] = <Underline>tmp[0]</Underline>
   }
 
+  // TODO: return Text JSX.Element with appropriate underlining
+
   return <Text style={{ flexDirection: 'row' }}>{children}</Text>
 }
 
