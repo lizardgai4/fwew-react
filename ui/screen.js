@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     flex: 1,
-    paddingLeft: 16,
+    paddingLeft: 8,
     marginLeft: 8,
     marginRight: 8,
     width: '100%'
