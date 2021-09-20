@@ -21,7 +21,7 @@ import {
   settingsGlobal,
   settingsList,
   settingsRandom
-} from '../ui/settings'
+} from './settings'
 
 import React from 'react'
 
