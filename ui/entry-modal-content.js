@@ -19,6 +19,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 
 import React from 'react'
+import Stressed from '../components/Stressed'
 import colors from './colors'
 
 // content of the modal which appears when user taps on an entry
@@ -67,7 +68,7 @@ function EntryModalContent({ entry }) {
         <Text selectable={true} style={styles.modal_label}>
           {'syllables: '}
           <Text selectable={true} style={styles.modal_text}>
-            {entry.Syllables}
+            <Stressed stressed={entry.Stressed}>{entry.Syllables}</Stressed>
           </Text>
         </Text>
 
