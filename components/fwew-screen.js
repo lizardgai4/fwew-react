@@ -93,7 +93,11 @@ const FwewScreen = () => {
   // called whenever the user types or modifies text in the text input of the action bar / app bar
   const searchData = (text) => {
     setText(text)
-    fetchData(getEndpoint(text))
+    if (text === '') {
+      fetchData('https://tirea.learnnavi.org/api/list/')
+    } else {
+      fetchData(getEndpoint(text))
+    }
   }
 
   // called whenever the user clicks the swap button or toggles the switch in Fwew Settings to reverse search direction
