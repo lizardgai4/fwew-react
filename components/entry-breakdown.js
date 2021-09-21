@@ -30,7 +30,7 @@ import Stressed from './stressed'
 function EntryBreakdown({ stressed, syllables, infixDots }) {
   return (
     <Text selectable={true} style={styles.entry_breakdown}>
-      {'('}
+      {' ('}
       <Stressed stressed={stressed}>{syllables}</Stressed>
       {infixDots !== 'NULL' ? `, ${infixDots})` : ')'}
     </Text>
