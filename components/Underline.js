@@ -19,27 +19,14 @@
 import { StyleSheet, Text } from 'react-native'
 
 import React from 'react'
-import Stressed from '../components/Stressed'
 
-/**
- * Entry Breakdown component
- *
- * Includes syllabification with stressed syllable underlined
- * for verbs also includes infix dots
- */
-function EntryBreakdown({ stressed, syllables, infixDots }) {
-  return (
-    <Text selectable={true} style={styles.entry_breakdown}>
-      {'('}
-      <Stressed stressed={stressed}>{syllables}</Stressed>
-      {infixDots !== 'NULL' ? `, ${infixDots})` : ')'}
-    </Text>
-  )
+// Underline Text component
+function Underline({ children }) {
+  return <Text style={styles.underline}>{children}</Text>
 }
 
 const styles = StyleSheet.create({
-  entry_breakdown: { fontWeight: 'normal', fontSize: 14 },
   underline: { textDecorationLine: 'underline' }
 })
 
-export default EntryBreakdown
+export default Underline
