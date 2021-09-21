@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import FwewScreen from './FwewScreen'
+import FwewScreen from './fwew-screen'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import React from 'react'
 import Screen from './screen'

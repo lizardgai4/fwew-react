@@ -19,7 +19,7 @@
 import { StyleSheet, Text } from 'react-native'
 
 import React from 'react'
-import Stressed from '../components/Stressed'
+import Stressed from '../components/stressed'
 
 /**
  * Entry Breakdown component
