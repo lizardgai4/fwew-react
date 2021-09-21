@@ -16,10 +16,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import React, { Fragment } from 'react'
 import { StyleSheet, Text } from 'react-native'
 
-import React from 'react'
 import Underline from './underline'
+
+/**
+ * Ensures all items in an array have unique keys
+ */
+function withKeys(arr) {
+  return arr.map((item, index) => <Fragment key={index}>{item}</Fragment>)
+}
 
 /**
  * Stressed syllables component
@@ -39,7 +46,7 @@ function Stressed({ stressed, children }) {
 
   syllableArray[stressedIndex - 1] = <Underline>{stressedSyllable}</Underline>
 
-  return <Text style={styles.stressed}>{syllableArray}</Text>
+  return <Text style={styles.stressed}>{withKeys(syllableArray)}</Text>
 }
 
 const styles = StyleSheet.create({
