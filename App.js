@@ -19,7 +19,7 @@
 import { NavigationContainer } from '@react-navigation/native'
 import React from 'react'
 import { SettingsStore } from './context'
-import TabNavigator from './ui/tab-navigator'
+import TabNavigator from './components/tab-navigator'
 
 // Top level main component
 const App = () => (

@@ -19,7 +19,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 
 import React from 'react'
-import Stressed from '../components/stressed'
+import Stressed from './stressed'
 import colors from './colors'
 
 // content of the modal which appears when user taps on an entry
