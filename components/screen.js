@@ -37,7 +37,7 @@ import colors from './colors'
 
 // The main content area of the app
 const Screen = ({ apiUrl, screenType }) => {
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const [text, setText] = useState('')
   const [data, setData] = useState([])
   const [isModalVisible, setIsModalVisible] = useState(false)
