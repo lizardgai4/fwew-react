@@ -29,6 +29,24 @@ function withKeys(arr) {
 }
 
 /**
+ * joins items in an array with char in between
+ *
+ * Much like Array.prototype.join, but for React Components
+ */
+function join(arr, char) {
+  return arr.map((item, index) =>
+    index > 0 ? (
+      <Text>
+        {char}
+        {item}
+      </Text>
+    ) : (
+      <Text>{item}</Text>
+    )
+  )
+}
+
+/**
  * Stressed syllables component
  *
  * A Text element of given syllabification with stressed syllable underlined
@@ -46,7 +64,9 @@ function Stressed({ stressed, children }) {
 
   syllableArray[stressedIndex - 1] = <Underline>{stressedSyllable}</Underline>
 
-  return <Text style={styles.stressed}>{withKeys(syllableArray)}</Text>
+  return (
+    <Text style={styles.stressed}>{withKeys(join(syllableArray, '-'))}</Text>
+  )
 }
 
 const styles = StyleSheet.create({
