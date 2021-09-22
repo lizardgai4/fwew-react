@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   modal_text: {
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: 'normal'
   }
 })
