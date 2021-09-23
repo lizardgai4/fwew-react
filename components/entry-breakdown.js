@@ -38,7 +38,7 @@ function EntryBreakdown({ stressed, syllables, infixDots }) {
 }
 
 const styles = StyleSheet.create({
-  entry_breakdown: { fontWeight: 'normal', fontSize: 14 },
+  entry_breakdown: { fontWeight: 'normal', fontSize: 18 },
   underline: { textDecorationLine: 'underline' }
 })
 

@@ -24,24 +24,21 @@ import React from 'react'
 import colors from './colors'
 
 // a list row entry item
-function Entry({ number, navi, ipa, pos, infixDots, stressed, syllables, en }) {
+function Entry({ number, navi, pos, infixDots, stressed, syllables, en }) {
   return (
     <View style={styles.entry}>
       <View style={{ flexDirection: 'row' }}>
         <EntryIndex number={number} />
         <Text numberOfLines={1} selectable={true} style={styles.entry_navi}>
           {`${navi}`}
-          <Text selectable={true} style={styles.entry_ipa}>
-            {` [${ipa}]`}
-          </Text>
-          <Text selectable={true} style={styles.entry_pos}>
-            {` ${pos}`}
-          </Text>
           <EntryBreakdown
             stressed={stressed}
             syllables={syllables}
             infixDots={infixDots}
           />
+          <Text selectable={true} style={styles.entry_pos}>
+            {` ${pos}`}
+          </Text>
         </Text>
       </View>
       <Text numberOfLines={1} selectable={true} style={styles.entry_en}>
@@ -67,16 +64,14 @@ const styles = StyleSheet.create({
     marginLeft: 16,
     flex: 1
   },
-  entry_ipa: { fontWeight: 'normal', fontSize: 14 },
   entry_pos: {
     fontWeight: 'normal',
     fontStyle: 'italic',
-    fontSize: 14,
+    fontSize: 18,
     marginLeft: 8,
     marginTop: 8
   },
-  entry_breakdown: { fontWeight: 'normal', fontSize: 14 },
-  entry_en: { fontSize: 16, marginLeft: 0, marginTop: 8, flex: 1 }
+  entry_en: { fontSize: 18, marginLeft: 0, marginTop: 8, flex: 1 }
 })
 
 export default Entry
