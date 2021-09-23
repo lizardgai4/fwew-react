@@ -17,6 +17,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import {
+  SettingsFwew,
+  SettingsGlobal,
+  SettingsList,
+  SettingsRandom
+} from '../lib/interfaces/settings'
+import {
   settingsFwew,
   settingsGlobal,
   settingsList,
@@ -25,40 +31,57 @@ import {
 
 import React from 'react'
 
-export const SettingsContext = React.createContext()
+/* Settings Context */
+
+interface ISettingsContext {
+  settingsGlobal: SettingsGlobal
+  settingsFwew: SettingsFwew
+  settingsList: SettingsList
+  settingsRandom: SettingsRandom
+  onUpdateSettingsGlobal?: (s: SettingsGlobal) => void
+  onUpdateSettingsFwew?: (s: SettingsFwew) => void
+  onUpdateSettingsList?: (s: SettingsList) => void
+  onUpdateSettingsRandom?: (s: SettingsRandom) => void
+}
+
+const defaultStateSettings = {
+  settingsGlobal,
+  settingsFwew,
+  settingsList,
+  settingsRandom
+}
+
+export const SettingsContext = React.createContext<ISettingsContext>(
+  defaultStateSettings
+)
 
 export class SettingsStore extends React.Component {
-  state = {
-    settingsGlobal,
-    settingsFwew,
-    settingsList,
-    settingsRandom
-  }
+  state: ISettingsContext = defaultStateSettings
 
-  updateSettingsGlobal = (newSettingsGlobal) => {
+  updateSettingsGlobal = (newSettingsGlobal: SettingsGlobal): void => {
     this.setState((state) => ({
-      ...this.state,
+      ...state,
       settingsGlobal: newSettingsGlobal
     }))
   }
 
-  updateSettingsFwew = (newSettingsFwew) => {
+  updateSettingsFwew = (newSettingsFwew: SettingsFwew): void => {
     this.setState((state) => ({
-      ...this.state,
+      ...state,
       settingsFwew: newSettingsFwew
     }))
   }
 
-  updateSettingsList = (newSettingsList) => {
+  updateSettingsList = (newSettingsList: SettingsList): void => {
     this.setState((state) => ({
-      ...this.state,
+      ...state,
       settingsFwew: newSettingsList
     }))
   }
 
-  updateSettingsRandom = (newSettingsRandom) => {
+  updateSettingsRandom = (newSettingsRandom: SettingsRandom): void => {
     this.setState((state) => ({
-      ...this.state,
+      ...state,
       settingsFwew: newSettingsRandom
     }))
   }
@@ -89,13 +112,23 @@ export class SettingsStore extends React.Component {
   }
 }
 
-export const StateContext = React.createContext()
+/* State / Data Context */
+
+interface IStateContext {
+  dataCache: string[]
+}
+
+const defaultStateData = {
+  dataCache: []
+}
+
+export const StateContext = React.createContext<IStateContext>(defaultStateData)
 
 export class StateStore extends React.Component {
-  state = { dataCache: [] }
+  state: IStateContext = defaultStateData
 
-  updateDataCache = (newDataCache) => {
-    this.setState((state) => ({ dataCache: newDataCache }))
+  updateDataCache = (newDataCache: string[]) => {
+    this.setState((state) => ({ ...state, dataCache: newDataCache }))
   }
 
   render() {

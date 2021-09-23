@@ -1,10 +1,12 @@
+import { Word } from './interfaces/word'
+
 /**
  * compress digraphs so that each phoneme is represented by exactly one unique character
  *
  * @param word Na'vi string to be compressed
  * @return word with every every digraph replaced by a unique substitute
  */
-export function compress(word) {
+export function compress(word: string): string {
   const compressed = {
     aw: '0',
     ay: '1',
@@ -31,7 +33,7 @@ export function compress(word) {
  * @param b Fwew Word object
  * @return -1 if a is to be sorted before b, 1 if a is to be sorted after b, 0 otherwise
  */
-export function compareWords(a, b) {
+export function compareWords(a: Word, b: Word): number {
   const sortOrderCompressed = "'a01äe23fhiìjk4l5mn6op7r8st9Quvwyz-".split('')
   const compressedA = compress(a.Navi.toLowerCase())
   const compressedB = compress(b.Navi.toLowerCase())

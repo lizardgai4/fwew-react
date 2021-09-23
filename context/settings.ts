@@ -17,12 +17,19 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import {
+  SettingsFwew,
+  SettingsGlobal,
+  SettingsList,
+  SettingsRandom
+} from '../lib/interfaces/settings'
+
 /**
  * Global settings
  *
  * languageCode: the default language code of the application
  */
-export const settingsGlobal = {
+export const settingsGlobal: SettingsGlobal = {
   languageCode: 'en'
 }
 
@@ -32,7 +39,7 @@ export const settingsGlobal = {
  * isReverseEnabled: the default search direction
  * posFilterText: the default value of the part of speech filter
  */
-export const settingsFwew = {
+export const settingsFwew: SettingsFwew = {
   isReverseEnabled: false,
   posFilterText: 'all'
 }
@@ -42,7 +49,7 @@ export const settingsFwew = {
  *
  * values for each what/cond/spec in List
  */
-export const settingsList = {
+export const settingsList: SettingsList = {
   word: {
     has: '',
     starts: '',
@@ -81,7 +88,7 @@ export const settingsList = {
  *
  * values for each what/cond/spec in Random
  */
-export const settingsRandom = {
+export const settingsRandom: SettingsRandom = {
   numRandomWords: '8',
   word: {
     has: '',

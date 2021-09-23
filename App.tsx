@@ -22,7 +22,7 @@ import { SettingsStore } from './context'
 import TabNavigator from './components/tab-navigator'
 
 // Top level main component
-const App = () => (
+const App = (): JSX.Element => (
   <SettingsStore>
     <NavigationContainer>
       <TabNavigator />
