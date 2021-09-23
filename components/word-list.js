@@ -28,6 +28,7 @@ import React, { useContext } from 'react'
 
 import Entry from './entry'
 import { SettingsContext } from '../context'
+import { compareWords } from '../lib'
 
 function WordList({
   data,
@@ -50,7 +51,7 @@ function WordList({
         return data.filter((word) => word.PartOfSpeech === posFilterText)
       }
     }
-    data.sort((a, b) => a.Syllables.localeCompare(b.Syllables))
+    data.sort(compareWords)
     return data
   }
 
