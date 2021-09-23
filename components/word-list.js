@@ -50,6 +50,7 @@ function WordList({
         return data.filter((word) => word.PartOfSpeech === posFilterText)
       }
     }
+    data.sort((a, b) => a.Syllables.localeCompare(b.Syllables))
     return data
   }
 
