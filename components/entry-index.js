@@ -1,3 +1,5 @@
+import { StyleSheet, Text, View } from 'react-native'
+
 /**
  * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
@@ -17,15 +19,17 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-
 import colors from './colors'
 
 // the list entry row item number
-function EntryIndex(props) {
+function EntryIndex({ number }) {
   return (
     <View style={styles.entry_index}>
-      <Text style={styles.entry_number}>{props.number}</Text>
+      <Text
+        style={number < 1000 ? styles.entry_number : styles.entry_number_large}
+      >
+        {number}
+      </Text>
     </View>
   )
 }
@@ -44,6 +48,11 @@ const styles = StyleSheet.create({
   entry_number: {
     fontWeight: 'bold',
     fontSize: 16,
+    color: colors.entryNumber
+  },
+  entry_number_large: {
+    fontWeight: 'bold',
+    fontSize: 12,
     color: colors.entryNumber
   }
 })
