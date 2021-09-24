@@ -27,14 +27,19 @@ export interface SettingsFwew {
 }
 
 interface WordWhat {
-  has: string
   starts: string
   ends: string
+  has: string
   like: string
+  notStarts: string
+  notEnds: string
+  notHas: string
+  notLike: string
 }
 
 interface PosWhat extends WordWhat {
   is: string
+  notIs: string
 }
 
 interface NumWhat {
@@ -43,6 +48,7 @@ interface NumWhat {
   equal: string
   greaterThanEqual: string
   greaterThan: string
+  notEqual: string
 }
 
 interface WordsWhat {
