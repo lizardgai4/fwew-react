@@ -38,8 +38,13 @@ import WordList from './word-list'
 import axios from 'axios'
 import colors from './colors'
 
+interface ScreenProps {
+  apiUrl: string
+  screenType: 'list' | 'random' | 'settings'
+}
+
 // The main content area of the app
-const Screen = ({ apiUrl, screenType }) => {
+const Screen = ({ apiUrl, screenType }: ScreenProps): JSX.Element => {
   const [isLoading, setIsLoading] = useState(false)
   const [text, setText] = useState('')
   const [data, setData] = useState([] as Word[])
