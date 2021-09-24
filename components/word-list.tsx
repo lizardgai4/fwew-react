@@ -43,7 +43,7 @@ interface WordListProps {
 }
 
 /**
- * WordList Copmonent
+ * WordList Component
  *
  * A list of Fwew Word Results showing some basic data on each word
  */
