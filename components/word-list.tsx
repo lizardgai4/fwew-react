@@ -93,10 +93,7 @@ function WordList({
           )}
           // Pull to Refresh
           refreshControl={
-            <RefreshControl
-              refreshing={isLoading}
-              onRefresh={onRefresh.bind(this)}
-            />
+            <RefreshControl refreshing={isLoading} onRefresh={onRefresh} />
           }
         />
       </View>

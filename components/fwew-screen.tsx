@@ -64,6 +64,9 @@ const FwewScreen = (): JSX.Element => {
 
   // calculates API endpoint for data fetching
   const getEndpoint = (text?: string): string => {
+    if (!text) {
+      return 'https://tirea.learnnavi.org/api/list/'
+    }
     const apiUrl = 'https://tirea.learnnavi.org/api/fwew/'
     const { languageCode } = settingsGlobal
     return isReverseEnabled
@@ -74,7 +77,7 @@ const FwewScreen = (): JSX.Element => {
   // called when the user pulls down on the word list after it has rendered
   const onRefresh = () => {
     setData([])
-    fetchData(getEndpoint())
+    fetchData(getEndpoint(text))
   }
 
   // fetches Na'vi word data from the Fwew API and updates the state data accordingly

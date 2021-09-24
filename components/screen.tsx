@@ -61,7 +61,7 @@ const Screen = ({ apiUrl, screenType }) => {
   // called when the user pulls down on the word list after it has rendered
   const onRefresh = () => {
     setData([])
-    fetchData(getEndpoint())
+    fetchData(getEndpoint(text))
   }
 
   // fetches Na'vi word data from the Fwew API and updates the state data accordingly
