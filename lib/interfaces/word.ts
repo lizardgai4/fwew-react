@@ -17,6 +17,11 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+/**
+ * Fwew Word Affixes
+ *
+ * contains arrays for Prefix, Infix, Suffix, and Lenition
+ */
 export interface Affixes {
   Prefix: string[]
   Infix: string[]
@@ -24,6 +29,11 @@ export interface Affixes {
   Lenition: string[]
 }
 
+/**
+ * Fwew Word
+ *
+ * Contains all the data for a Fwew Word entry
+ */
 export interface Word {
   ID: string
   Navi: string

@@ -51,31 +51,42 @@ export const settingsFwew: SettingsFwew = {
  */
 export const settingsList: SettingsList = {
   word: {
-    has: '',
     starts: '',
     ends: '',
-    like: ''
+    has: '',
+    like: '',
+    notStarts: '',
+    notEnds: '',
+    notHas: '',
+    notLike: ''
   },
   pos: {
-    is: '',
-    has: '',
     starts: '',
     ends: '',
-    like: ''
+    is: '',
+    has: '',
+    like: '',
+    notStarts: '',
+    notEnds: '',
+    notIs: '',
+    notHas: '',
+    notLike: ''
   },
   syllables: {
     lessThan: '0',
     lessThanEqual: '0',
     equal: '0',
     greaterThanEqual: '0',
-    greaterThan: '0'
+    greaterThan: '0',
+    notEqual: '0'
   },
   stress: {
     lessThan: '0',
     lessThanEqual: '0',
     equal: '0',
     greaterThanEqual: '0',
-    greaterThan: '0'
+    greaterThan: '0',
+    notEqual: '0'
   },
   words: {
     first: '0',
@@ -91,31 +102,42 @@ export const settingsList: SettingsList = {
 export const settingsRandom: SettingsRandom = {
   numRandomWords: '8',
   word: {
-    has: '',
     starts: '',
     ends: '',
-    like: ''
+    has: '',
+    like: '',
+    notStarts: '',
+    notEnds: '',
+    notHas: '',
+    notLike: ''
   },
   pos: {
-    is: '',
-    has: '',
     starts: '',
     ends: '',
-    like: ''
+    is: '',
+    has: '',
+    like: '',
+    notStarts: '',
+    notEnds: '',
+    notIs: '',
+    notHas: '',
+    notLike: ''
   },
   syllables: {
     lessThan: '0',
     lessThanEqual: '0',
     equal: '0',
     greaterThanEqual: '0',
-    greaterThan: '0'
+    greaterThan: '0',
+    notEqual: '0'
   },
   stress: {
     lessThan: '0',
     lessThanEqual: '0',
     equal: '0',
     greaterThanEqual: '0',
-    greaterThan: '0'
+    greaterThan: '0',
+    notEqual: '0'
   },
   words: {
     first: '0',

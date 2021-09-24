@@ -17,16 +17,19 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+/** Global Application Settings */
 export interface SettingsGlobal {
   languageCode: string
 }
 
+/** Fwew Screen Settings */
 export interface SettingsFwew {
   isReverseEnabled: boolean
   posFilterText: string
 }
 
-interface WordWhat {
+/** List Options for word operator */
+interface ListWordOptions {
   starts: string
   ends: string
   has: string
@@ -37,12 +40,14 @@ interface WordWhat {
   notLike: string
 }
 
-interface PosWhat extends WordWhat {
+/** List Options for pos operator */
+interface ListPartOfSpeechOptions extends ListWordOptions {
   is: string
   notIs: string
 }
 
-interface NumWhat {
+/** List Options for syllables or stress operator */
+interface ListSyllablesOrStressOptions {
   lessThan: string
   lessThanEqual: string
   equal: string
@@ -51,19 +56,22 @@ interface NumWhat {
   notEqual: string
 }
 
-interface WordsWhat {
+/** List Options for words operator */
+interface ListWordsOptions {
   first: string
   last: string
 }
 
+/** List Screen Settings */
 export interface SettingsList {
-  word: WordWhat
-  pos: PosWhat
-  syllables: NumWhat
-  stress: NumWhat
-  words: WordsWhat
+  word: ListWordOptions
+  pos: ListPartOfSpeechOptions
+  syllables: ListSyllablesOrStressOptions
+  stress: ListSyllablesOrStressOptions
+  words: ListWordsOptions
 }
 
+/** Random Screen Settings */
 export interface SettingsRandom extends SettingsList {
   numRandomWords: string
 }
