@@ -40,7 +40,7 @@ import colors from './colors'
 
 interface ScreenProps {
   apiUrl: string
-  screenType: 'list' | 'random' | 'settings'
+  screenType: 'list' | 'random'
 }
 
 // The main content area of the app
@@ -102,8 +102,6 @@ const Screen = ({ apiUrl, screenType }: ScreenProps): JSX.Element => {
         return 'word starts r and pos is vtr.'
       case 'random':
         return '10/pos is vtr.'
-      case 'settings':
-        return ''
       default:
         return 'search...'
     }
