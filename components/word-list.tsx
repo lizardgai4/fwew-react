@@ -101,7 +101,7 @@ function WordList({
   } else if (err && err.message) {
     return (
       // for the situation the API returns {message: "no results"}
-      <View style={{ alignItems: 'center' }}>
+      <View style={styles.fallbackView}>
         {text ? (
           <Text>
             {err.message}: {text}
@@ -122,6 +122,9 @@ const styles = StyleSheet.create({
   listContentContainer: {
     marginTop: 8,
     paddingBottom: 72
+  },
+  fallbackView: {
+    alignItems: 'center'
   }
 })
 

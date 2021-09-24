@@ -16,45 +16,42 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Image, StyleSheet, View } from 'react-native'
+import React, { Fragment } from 'react'
+import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native'
 
-import React from 'react'
+import ActionBar from './action-bar'
 import colors from './colors'
-import fwew from '../assets/fwew.png'
 
-interface ActionBarProps {
-  children?: JSX.Element | JSX.Element[]
-}
-
-/**
- * ActionBar Component
- *
- * The bar at the top of the screen, below the status bar
- */
-function ActionBar({ children }: ActionBarProps): JSX.Element {
+function SettingsScreen(): JSX.Element {
   return (
-    <View style={styles.action_bar}>
-      <Image source={fwew} style={styles.icon} />
-      {children}
-    </View>
+    <Fragment>
+      {/* status bar */}
+      <SafeAreaView style={styles.safeStatusBar} />
+      <StatusBar barStyle="light-content" />
+
+      {/* main content */}
+      <SafeAreaView style={styles.safeContainer}>
+        <View style={styles.mainView}>
+          <ActionBar />
+          <Text>Settings</Text>
+        </View>
+      </SafeAreaView>
+    </Fragment>
   )
 }
 
 const styles = StyleSheet.create({
-  action_bar: {
-    height: 56,
-    width: '100%',
-    paddingRight: 8,
-    backgroundColor: colors.primary,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
+  safeStatusBar: {
+    flex: 0,
+    backgroundColor: colors.secondary
   },
-  icon: {
-    marginLeft: 8,
-    width: 48,
-    height: 48
+  safeContainer: {
+    flex: 1,
+    backgroundColor: colors.screenBackground
+  },
+  mainView: {
+    flex: 1
   }
 })
 
-export default ActionBar
+export default SettingsScreen

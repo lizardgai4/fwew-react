@@ -136,7 +136,7 @@ const FwewScreen = (): JSX.Element => {
 
       {/* main content */}
       <SafeAreaView style={styles.safeContainer}>
-        <View style={{ flex: 1 }}>
+        <View style={styles.mainView}>
           <ActionBar>
             <View style={styles.parent}>
               {/* search bar */}
@@ -182,7 +182,7 @@ const FwewScreen = (): JSX.Element => {
             render word list when finished loading
             */}
           {isLoading ? (
-            <ActivityIndicator style={{ marginTop: 16 }} />
+            <ActivityIndicator style={styles.activityIndicator} />
           ) : (
             <WordList
               data={data}
@@ -221,6 +221,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.screenBackground
   },
+  mainView: {
+    flex: 1
+  },
   parent: {
     width: '75%',
     borderColor: colors.secondary,
@@ -248,6 +251,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 5
+  },
+  activityIndicator: {
+    marginTop: 16
   }
 })
 

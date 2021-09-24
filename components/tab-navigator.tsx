@@ -20,6 +20,7 @@ import FwewScreen from './fwew-screen'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import React from 'react'
 import Screen from './screen'
+import SettingsScreen from './settings-screen'
 import colors from './colors'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
@@ -37,12 +38,6 @@ function ListScreen(): JSX.Element {
 function RandomScreen(): JSX.Element {
   const endpoint = apiRoot + '/random/'
   return <Screen screenType="random" apiUrl={endpoint}></Screen>
-}
-
-// TODO: screen where the user can update settings
-function SettingsScreen(): JSX.Element {
-  const endpoint = ''
-  return <Screen screenType="settings" apiUrl={endpoint}></Screen>
 }
 
 const Tab = createBottomTabNavigator()
