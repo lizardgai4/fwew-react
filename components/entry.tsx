@@ -21,28 +21,41 @@ import { StyleSheet, Text, View } from 'react-native'
 import EntryBreakdown from './entry-breakdown'
 import EntryIndex from './entry-index'
 import React from 'react'
+import { Word } from '../lib/interfaces/word'
 import colors from './colors'
 
-// a list row entry item
-function Entry({ number, navi, pos, infixDots, stressed, syllables, en }) {
+interface EntryProps {
+  number: number
+  word: Word
+}
+
+/**
+ * Entry Component
+ *
+ * a list row entry item
+ */
+function Entry({
+  number,
+  word: { Navi, PartOfSpeech, InfixDots, Stressed, Syllables, EN }
+}: EntryProps) {
   return (
     <View style={styles.entry}>
-      <View style={{ flexDirection: 'row' }}>
+      <View style={styles.row}>
         <EntryIndex number={number} />
         <Text numberOfLines={1} selectable={true} style={styles.entry_navi}>
-          {`${navi}`}
+          {`${Navi}`}
           <EntryBreakdown
-            stressed={stressed}
-            syllables={syllables}
-            infixDots={infixDots}
+            stressed={Stressed}
+            syllables={Syllables}
+            infixDots={InfixDots}
           />
           <Text selectable={true} style={styles.entry_pos}>
-            {` ${pos}`}
+            {` ${PartOfSpeech}`}
           </Text>
         </Text>
       </View>
       <Text numberOfLines={1} selectable={true} style={styles.entry_en}>
-        {en}
+        {EN}
       </Text>
     </View>
   )
@@ -57,6 +70,9 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     backgroundColor: colors.entryBackground,
     borderColor: colors.secondary
+  },
+  row: {
+    flexDirection: 'row'
   },
   entry_navi: {
     fontWeight: 'bold',

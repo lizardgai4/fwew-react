@@ -20,10 +20,19 @@ import { StyleSheet, Text, View } from 'react-native'
 
 import React from 'react'
 import Stressed from './stressed'
+import { Word } from '../lib/interfaces/word'
 import colors from './colors'
 
-// content of the modal which appears when user taps on an entry
-function EntryModalContent({ entry }) {
+interface EntryModalContentProps {
+  entry: Word
+}
+
+/**
+ * EntryModalContent Component
+ *
+ * Content of the modal which appears when user taps on an entry in the word list
+ */
+function EntryModalContent({ entry }: EntryModalContentProps): JSX.Element {
   return (
     <View style={styles.modalContainer}>
       {/* the Na'vi word */}

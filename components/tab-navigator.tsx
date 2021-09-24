@@ -25,22 +25,22 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 // the root endpoint of the Fwew API
 // see https://github.com/fwew/fwew-api for more info about the API
-const apiRoot = 'https://tirea.learnnavi.org/api'
+const apiRoot: string = 'https://tirea.learnnavi.org/api'
 
 // screen where the user can list all words (or all words that have given properties)
-function ListScreen() {
+function ListScreen(): JSX.Element {
   const endpoint = apiRoot + '/list/'
   return <Screen screenType="list" apiUrl={endpoint} />
 }
 
 // screen where the user can view a randomized list of words
-function RandomScreen() {
+function RandomScreen(): JSX.Element {
   const endpoint = apiRoot + '/random/'
   return <Screen screenType="random" apiUrl={endpoint}></Screen>
 }
 
 // TODO: screen where the user can update settings
-function SettingsScreen() {
+function SettingsScreen(): JSX.Element {
   const endpoint = ''
   return <Screen screenType="settings" apiUrl={endpoint}></Screen>
 }
@@ -48,12 +48,12 @@ function SettingsScreen() {
 const Tab = createBottomTabNavigator()
 
 // the tab navigation at the bottom of the screen used to jump between the above screens
-function TabNavigator() {
+function TabNavigator(): JSX.Element {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
-          let iconName
+          let iconName: string
           switch (route.name) {
             case 'Fwew':
               iconName = 'search'

@@ -16,61 +16,42 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React, { Fragment } from 'react'
 import { StyleSheet, Text } from 'react-native'
+import { join, withKeys } from '../lib'
 
+import React from 'react'
 import Underline from './underline'
 
-/**
- * Ensures all items in an array have unique keys
- */
-function withKeys(arr) {
-  return arr.map((item, index) => <Fragment key={index}>{item}</Fragment>)
+interface StressedProps {
+  stressed: string
+  children: string
 }
 
 /**
- * joins items in an array with char in between
- *
- * Much like Array.prototype.join, but for React Components
- */
-function join(arr, char) {
-  return arr.map((item, index) =>
-    index > 0 ? (
-      <Text>
-        {char}
-        {item}
-      </Text>
-    ) : (
-      <Text>{item}</Text>
-    )
-  )
-}
-
-/**
- * Stressed syllables component
+ * Stressed Component
  *
  * A Text element of given syllabification with stressed syllable underlined
  */
-function Stressed({ stressed, children }) {
+function Stressed({ stressed, children }: StressedProps): JSX.Element {
   const syllables = children
 
   if (!syllables.includes('-')) {
     return <Text>{children}</Text>
   }
 
-  const syllableArray = syllables.split(/[ -]/)
+  const syllableArray: Array<string | JSX.Element> = syllables.split(/[ -]/)
   const stressedIndex = parseInt(stressed, 10)
   const stressedSyllable = syllableArray[stressedIndex - 1]
 
   syllableArray[stressedIndex - 1] = <Underline>{stressedSyllable}</Underline>
 
   return (
-    <Text style={styles.stressed}>{withKeys(join(syllableArray, '-'))}</Text>
+    <Text style={styles.flexRow}>{withKeys(join(syllableArray, '-'))}</Text>
   )
 }
 
 const styles = StyleSheet.create({
-  stressed: { flexDirection: 'row' }
+  flexRow: { flexDirection: 'row' }
 })
 
 export default Stressed

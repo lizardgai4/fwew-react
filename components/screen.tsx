@@ -18,6 +18,7 @@
  */
 import {
   ActivityIndicator,
+  Platform,
   SafeAreaView,
   StatusBar,
   StyleSheet,
@@ -29,8 +30,10 @@ import React, { Fragment, useState } from 'react'
 
 import ActionBar from './action-bar'
 import EntryModalContent from './entry-modal-content'
+import { FwewError } from '../lib/interfaces/fwew-error'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Modal from 'react-native-modal'
+import { Word } from '../lib/interfaces/word'
 import WordList from './word-list'
 import axios from 'axios'
 import colors from './colors'
@@ -39,18 +42,19 @@ import colors from './colors'
 const Screen = ({ apiUrl, screenType }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [text, setText] = useState('')
-  const [data, setData] = useState([])
+  const [data, setData] = useState([] as Word[])
+  const [err, setErr] = useState({} as FwewError)
   const [isModalVisible, setIsModalVisible] = useState(false)
-  const [selectedItem, setSelectedItem] = useState({})
+  const [selectedItem, setSelectedItem] = useState({} as Word)
 
   // toggles info modal visible when user taps a list entry or modal backdrop
-  const toggleModal = (item) => {
+  const toggleModal = (item: Word): void => {
     setIsModalVisible(!isModalVisible)
     setSelectedItem(item)
   }
 
   // calculates API endpoint for data fetching
-  const getEndpoint = (text) => {
+  const getEndpoint = (text?: string): string => {
     return `${apiUrl}${text}`
   }
 
@@ -61,13 +65,18 @@ const Screen = ({ apiUrl, screenType }) => {
   }
 
   // fetches Na'vi word data from the Fwew API and updates the state data accordingly
-  const fetchData = (endpoint) => {
+  const fetchData = (endpoint: string): void => {
     setIsLoading(true)
     axios
       .get(encodeURI(endpoint))
       .then((response) => {
         setIsLoading(false)
-        setData(response.data)
+        if (Array.isArray(response.data)) {
+          setData(response.data)
+        } else {
+          setErr(response.data)
+          setData([])
+        }
       })
       .catch((_e) => {
         setIsLoading(false)
@@ -76,13 +85,13 @@ const Screen = ({ apiUrl, screenType }) => {
   }
 
   // called whenever the user types or modifies text in the text input of the action bar / app bar
-  const searchData = (text) => {
+  const searchData = (text: string): void => {
     setText(text)
     fetchData(getEndpoint(text))
   }
 
   // sets the search bar placeholder text depending on the currently selected tab / screen
-  const getInputPlaceholderText = () => {
+  const getInputPlaceholderText = (): string => {
     switch (screenType) {
       case 'list':
         return 'word starts r and pos is vtr.'
@@ -143,6 +152,7 @@ const Screen = ({ apiUrl, screenType }) => {
           ) : (
             <WordList
               data={data}
+              err={err}
               text={text}
               isLoading={isLoading}
               onRefresh={onRefresh}

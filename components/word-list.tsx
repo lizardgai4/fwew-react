@@ -27,22 +27,40 @@ import {
 import React, { useContext } from 'react'
 
 import Entry from './entry'
+import { FwewError } from '../lib/interfaces/fwew-error'
 import { SettingsContext } from '../context'
+import { Word } from '../lib/interfaces/word'
 import { compareWords } from '../lib'
 
+interface WordListProps {
+  data: Word[]
+  err: FwewError
+  isLoading: boolean
+  onRefresh: () => void
+  text: string
+  toggleModal: (item: Word) => void
+  posFilterEnabled: boolean
+}
+
+/**
+ * WordList Copmonent
+ *
+ * A list of Fwew Word Results showing some basic data on each word
+ */
 function WordList({
   data,
+  err,
   isLoading,
   onRefresh,
   text,
   toggleModal,
   posFilterEnabled
-}) {
+}: WordListProps): JSX.Element {
   const { settingsFwew } = useContext(SettingsContext)
   const { posFilterText } = settingsFwew
 
   // part of speech filtering
-  const filterData = () => {
+  const filterData = (): Word[] => {
     if (!posFilterEnabled) {
       return data
     }
@@ -70,15 +88,7 @@ function WordList({
                 toggleModal(item)
               }}
             >
-              <Entry
-                number={index + 1}
-                navi={item.Navi}
-                pos={item.PartOfSpeech}
-                stressed={item.Stressed}
-                syllables={item.Syllables}
-                infixDots={item.InfixDots}
-                en={item.EN}
-              />
+              <Entry number={index + 1} word={item} />
             </TouchableOpacity>
           )}
           // Pull to Refresh
@@ -91,13 +101,13 @@ function WordList({
         />
       </View>
     )
-  } else if (data && data.message) {
+  } else if (err && err.message) {
     return (
       // for the situation the API returns {message: "no results"}
       <View style={{ alignItems: 'center' }}>
         {text ? (
           <Text>
-            {data.message}: {text}
+            {err.message}: {text}
           </Text>
         ) : null}
       </View>

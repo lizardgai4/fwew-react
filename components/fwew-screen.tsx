@@ -30,33 +30,40 @@ import React, { Fragment, useContext, useEffect, useState } from 'react'
 
 import ActionBar from './action-bar'
 import EntryModalContent from './entry-modal-content'
+import { FwewError } from '../lib/interfaces/fwew-error'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Modal from 'react-native-modal'
 import { SettingsContext } from '../context'
+import { Word } from '../lib/interfaces/word'
 import WordList from './word-list'
 import axios from 'axios'
 import colors from './colors'
 
-// screen where the user can search for specific word(s)
-const FwewScreen = () => {
+/**
+ * FwewScreen Component
+ *
+ * Screen where the user can search for specific word(s)
+ */
+const FwewScreen = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState(true)
   const [text, setText] = useState('')
-  const [data, setData] = useState([])
+  const [data, setData] = useState([] as Word[])
+  const [err, setErr] = useState({} as FwewError)
   const [isModalVisible, setIsModalVisible] = useState(false)
-  const [selectedItem, setSelectedItem] = useState({})
+  const [selectedItem, setSelectedItem] = useState({} as Word)
   const { settingsGlobal, settingsFwew, onUpdateSettingsFwew } = useContext(
     SettingsContext
   )
   const { isReverseEnabled } = settingsFwew
 
   // toggles info modal visible when user taps a list entry or modal backdrop
-  const toggleModal = (item) => {
+  const toggleModal = (item: Word): void => {
     setIsModalVisible(!isModalVisible)
     setSelectedItem(item)
   }
 
   // calculates API endpoint for data fetching
-  const getEndpoint = (text) => {
+  const getEndpoint = (text?: string): string => {
     const apiUrl = 'https://tirea.learnnavi.org/api/fwew/'
     const { languageCode } = settingsGlobal
     return isReverseEnabled
@@ -71,13 +78,18 @@ const FwewScreen = () => {
   }
 
   // fetches Na'vi word data from the Fwew API and updates the state data accordingly
-  const fetchData = (endpoint) => {
+  const fetchData = (endpoint: string): void => {
     setIsLoading(true)
     axios
       .get(endpoint)
       .then((response) => {
         setIsLoading(false)
-        setData(response.data)
+        if (Array.isArray(response.data)) {
+          setData(response.data)
+        } else {
+          setErr(response.data)
+          setData([])
+        }
       })
       .catch((_e) => {
         setIsLoading(false)
@@ -91,7 +103,7 @@ const FwewScreen = () => {
   }, [])
 
   // called whenever the user types or modifies text in the text input of the action bar / app bar
-  const searchData = (text) => {
+  const searchData = (text: string): void => {
     setText(text)
     if (text === '') {
       fetchData('https://tirea.learnnavi.org/api/list/')
@@ -101,7 +113,7 @@ const FwewScreen = () => {
   }
 
   // called whenever the user clicks the swap button or toggles the switch in Fwew Settings to reverse search direction
-  const toggleReverse = () => {
+  const toggleReverse = (): void => {
     onUpdateSettingsFwew({
       ...settingsFwew,
       isReverseEnabled: !isReverseEnabled
@@ -109,7 +121,7 @@ const FwewScreen = () => {
   }
 
   // sets the search bar placeholder text depending on the currently selected tab / screen
-  const getInputPlaceholderText = () => {
+  const getInputPlaceholderText = (): string => {
     return `search ${isReverseEnabled ? 'English' : "Na'vi"}...`
   }
 
@@ -171,6 +183,7 @@ const FwewScreen = () => {
           ) : (
             <WordList
               data={data}
+              err={err}
               text={text}
               isLoading={isLoading}
               onRefresh={onRefresh}

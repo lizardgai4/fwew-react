@@ -1,5 +1,3 @@
-import { StyleSheet, Text, View } from 'react-native'
-
 /**
  * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
@@ -18,43 +16,40 @@ import { StyleSheet, Text, View } from 'react-native'
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React from 'react'
-import colors from './colors'
+import { StyleSheet, Text } from 'react-native'
 
-// the list entry row item number
-function EntryIndex({ number }) {
+import React from 'react'
+import Stressed from './stressed'
+
+interface EntryBreakdownProps {
+  stressed: string
+  syllables: string
+  infixDots: string
+}
+
+/**
+ * EntryBreakdown Component
+ *
+ * Includes syllabification with stressed syllable underlined
+ * for verbs also includes infix dots
+ */
+function EntryBreakdown({
+  stressed,
+  syllables,
+  infixDots
+}: EntryBreakdownProps): JSX.Element {
   return (
-    <View style={styles.entry_index}>
-      <Text
-        style={number < 1000 ? styles.entry_number : styles.entry_number_large}
-      >
-        {number}
-      </Text>
-    </View>
+    <Text selectable={true} style={styles.entry_breakdown}>
+      {' ('}
+      <Stressed stressed={stressed}>{syllables}</Stressed>
+      {infixDots !== 'NULL' ? `, ${infixDots})` : ')'}
+    </Text>
   )
 }
 
 const styles = StyleSheet.create({
-  entry_index: {
-    height: 32,
-    width: 32,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: colors.primary,
-    borderRadius: 45,
-    borderWidth: 1,
-    borderColor: colors.secondary
-  },
-  entry_number: {
-    fontWeight: 'bold',
-    fontSize: 16,
-    color: colors.entryNumber
-  },
-  entry_number_large: {
-    fontWeight: 'bold',
-    fontSize: 12,
-    color: colors.entryNumber
-  }
+  entry_breakdown: { fontWeight: 'normal', fontSize: 18 },
+  underline: { textDecorationLine: 'underline' }
 })
 
-export default EntryIndex
+export default EntryBreakdown

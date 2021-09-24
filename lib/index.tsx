@@ -1,3 +1,6 @@
+import React, { Fragment } from 'react'
+
+import { Text } from 'react-native'
 import { Word } from './interfaces/word'
 
 /**
@@ -58,4 +61,38 @@ export function compareWords(a: Word, b: Word): number {
     return 1
   }
   return 0
+}
+
+/**
+ * Ensures all items in an array have unique keys
+ *
+ * @param arr an array of JSX Elements
+ * @return the given array with unique key props
+ */
+export function withKeys(arr: JSX.Element[]): JSX.Element[] {
+  return arr.map((item, index) => <Fragment key={index}>{item}</Fragment>)
+}
+
+/**
+ * joins items in an array with char in between, much like Array.prototype.join,
+ * but for React Native Text
+ *
+ * @param arr a mixed array of strings and/or Text Elements
+ * @param str the string to place between all the array items
+ * @return array of Text Elements, with a Text containing `str` in between each
+ */
+export function join(
+  arr: Array<string | JSX.Element>,
+  str: string
+): JSX.Element[] {
+  return arr.map((item, index) =>
+    index > 0 ? (
+      <Text>
+        {str}
+        {item}
+      </Text>
+    ) : (
+      <Text>{item}</Text>
+    )
+  )
 }

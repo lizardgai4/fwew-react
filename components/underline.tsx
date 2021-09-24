@@ -20,8 +20,16 @@ import { StyleSheet, Text } from 'react-native'
 
 import React from 'react'
 
-// Underline Text component
-function Underline({ children }) {
+interface UnderlineProps {
+  children: string | JSX.Element | JSX.Element[]
+}
+
+/**
+ * Underline Component
+ *
+ * Underlines given Text / string
+ */
+function Underline({ children }: UnderlineProps): JSX.Element {
   return <Text style={styles.underline}>{children}</Text>
 }
 

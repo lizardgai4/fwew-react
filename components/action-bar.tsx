@@ -22,12 +22,20 @@ import React from 'react'
 import colors from './colors'
 import fwew from '../assets/fwew.png'
 
-// the bar at the top of the screen, below the status bar
-function ActionBar(props) {
+interface ActionBarProps {
+  children: JSX.Element | JSX.Element[]
+}
+
+/**
+ * ActionBar Component
+ *
+ * The bar at the top of the screen, below the status bar
+ */
+function ActionBar({ children }: ActionBarProps): JSX.Element {
   return (
     <View style={styles.action_bar}>
       <Image source={fwew} style={styles.icon} />
-      {props.children}
+      {children}
     </View>
   )
 }

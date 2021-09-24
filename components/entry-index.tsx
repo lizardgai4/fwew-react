@@ -16,30 +16,53 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { StyleSheet, Text } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 
 import React from 'react'
-import Stressed from './stressed'
+import colors from './colors'
+
+interface EntryIndexProps {
+  number: number
+}
 
 /**
- * Entry Breakdown component
+ * EntryIndex Component
  *
- * Includes syllabification with stressed syllable underlined
- * for verbs also includes infix dots
+ * The list entry row item number
  */
-function EntryBreakdown({ stressed, syllables, infixDots }) {
+function EntryIndex({ number }: EntryIndexProps): JSX.Element {
   return (
-    <Text selectable={true} style={styles.entry_breakdown}>
-      {' ('}
-      <Stressed stressed={stressed}>{syllables}</Stressed>
-      {infixDots !== 'NULL' ? `, ${infixDots})` : ')'}
-    </Text>
+    <View style={styles.entry_index}>
+      <Text
+        style={number < 1000 ? styles.entry_number : styles.entry_number_large}
+      >
+        {number}
+      </Text>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
-  entry_breakdown: { fontWeight: 'normal', fontSize: 18 },
-  underline: { textDecorationLine: 'underline' }
+  entry_index: {
+    height: 32,
+    width: 32,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.primary,
+    borderRadius: 45,
+    borderWidth: 1,
+    borderColor: colors.secondary
+  },
+  entry_number: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    color: colors.entryNumber
+  },
+  entry_number_large: {
+    fontWeight: 'bold',
+    fontSize: 12,
+    color: colors.entryNumber
+  }
 })
 
-export default EntryBreakdown
+export default EntryIndex

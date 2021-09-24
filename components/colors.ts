@@ -17,8 +17,14 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-// Color configuration for styles
-const colors = {
+interface ColorConfig {
+  readonly [key: string]: string
+}
+
+/**
+ * Global Color configuration for application-wide styles
+ */
+const colors: ColorConfig = {
   primary: '#7494ba',
   secondary: '#537aa8',
   statusBar: '#76a853',
