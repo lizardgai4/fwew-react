@@ -16,23 +16,35 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React, { Fragment, useContext } from 'react'
-import { SafeAreaView, StatusBar, StyleSheet, View } from 'react-native'
+import React, { Fragment, useContext, useState } from 'react'
+import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native'
 
 import ActionBar from './action-bar'
+import EntryModalContent from './entry-modal-content'
+import Modal from 'react-native-modal'
 import { StateContext } from '../context'
+import { Word } from '../lib/interfaces/word'
 import WordList from './word-list'
 import colors from './colors'
 
 function SavedScreen(): JSX.Element {
   const { dataCache } = useContext(StateContext)
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [selectedItem, setSelectedItem] = useState({} as Word)
   const data = [...dataCache]
   const err = { message: null }
   const isLoading = false
-  const onRefresh = () => {}
   const text = ''
-  const toggleModal = () => {}
   const posFilterEnabled = false
+
+  // toggles info modal visible when user taps a list entry or modal backdrop
+  const toggleModal = (item: Word): void => {
+    setIsModalVisible(!isModalVisible)
+    setSelectedItem(item)
+  }
+
+  // called when the user pulls down on the word list after it has rendered
+  const onRefresh = () => {}
 
   return (
     <Fragment>
@@ -43,7 +55,11 @@ function SavedScreen(): JSX.Element {
       {/* main content */}
       <SafeAreaView style={styles.safeContainer}>
         <View style={styles.mainView}>
-          <ActionBar />
+          <ActionBar>
+            <View style={styles.titleParent}>
+              <Text style={styles.title}>Saved Words</Text>
+            </View>
+          </ActionBar>
           <WordList
             data={data}
             err={err}
@@ -53,6 +69,17 @@ function SavedScreen(): JSX.Element {
             toggleModal={toggleModal}
             posFilterEnabled={posFilterEnabled}
           />
+          {/* word information modal when user taps an entry in the list */}
+          <Modal
+            isVisible={isModalVisible}
+            animationIn="slideInRight"
+            animationOut="slideOutRight"
+            onBackButtonPress={() => toggleModal(selectedItem)}
+            onBackdropPress={() => toggleModal(selectedItem)}
+            backdropTransitionOutTiming={0}
+          >
+            <EntryModalContent entry={selectedItem} />
+          </Modal>
         </View>
       </SafeAreaView>
     </Fragment>
@@ -70,6 +97,16 @@ const styles = StyleSheet.create({
   },
   mainView: {
     flex: 1
+  },
+  titleParent: {
+    marginRight: 48,
+    flex: 1,
+    alignItems: 'center'
+  },
+  title: {
+    color: colors.actionBarTitle,
+    fontWeight: 'bold',
+    fontSize: 20
   }
 })
 

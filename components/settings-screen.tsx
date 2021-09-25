@@ -32,8 +32,11 @@ function SettingsScreen(): JSX.Element {
       {/* main content */}
       <SafeAreaView style={styles.safeContainer}>
         <View style={styles.mainView}>
-          <ActionBar />
-          <Text>Settings</Text>
+          <ActionBar>
+            <View style={styles.titleParent}>
+              <Text style={styles.title}>Settings</Text>
+            </View>
+          </ActionBar>
         </View>
       </SafeAreaView>
     </Fragment>
@@ -51,6 +54,16 @@ const styles = StyleSheet.create({
   },
   mainView: {
     flex: 1
+  },
+  titleParent: {
+    marginRight: 48,
+    flex: 1,
+    alignItems: 'center'
+  },
+  title: {
+    color: colors.actionBarTitle,
+    fontWeight: 'bold',
+    fontSize: 20
   }
 })
 
