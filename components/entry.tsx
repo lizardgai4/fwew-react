@@ -16,11 +16,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { StyleSheet, Text, View } from 'react-native'
+import React, { useContext } from 'react'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 import EntryBreakdown from './entry-breakdown'
 import EntryIndex from './entry-index'
-import React from 'react'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import { StateContext } from '../context'
 import { Word } from '../lib/interfaces/word'
 import colors from './colors'
 
@@ -34,14 +36,41 @@ interface EntryProps {
  *
  * a list row entry item
  */
-function Entry({
-  number,
-  word: { Navi, PartOfSpeech, InfixDots, Stressed, Syllables, EN }
-}: EntryProps) {
+function Entry({ number, word }: EntryProps) {
+  const { Navi, PartOfSpeech, InfixDots, Stressed, Syllables, EN } = word
+  const { dataCache, onUpdateDataCache } = useContext(StateContext)
+
+  const toggleSaved = (): void => {
+    const isSaved = dataCache.has(word)
+    const newDataCache = new Set<Word>([...dataCache])
+
+    if (!isSaved) {
+      newDataCache.add(word)
+    } else {
+      newDataCache.delete(word)
+    }
+
+    onUpdateDataCache(newDataCache)
+  }
+
   return (
     <View style={styles.entry}>
       <View style={styles.row}>
-        <EntryIndex number={number} />
+        {dataCache.has(word) ? (
+          <TouchableOpacity onPress={toggleSaved}>
+            <View style={styles.circle}>
+              <MaterialIcons
+                name="star"
+                size={18}
+                color={colors.entryIndexIconFill}
+              />
+            </View>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity onPress={toggleSaved}>
+            <EntryIndex number={number} />
+          </TouchableOpacity>
+        )}
         <Text numberOfLines={1} selectable={true} style={styles.entry_navi}>
           {`${Navi}`}
           <EntryBreakdown
@@ -62,6 +91,14 @@ function Entry({
 }
 
 const styles = StyleSheet.create({
+  circle: {
+    width: 32,
+    height: 32,
+    backgroundColor: colors.primary,
+    borderRadius: 16,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   entry: {
     padding: 20,
     marginVertical: 8,

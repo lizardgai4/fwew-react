@@ -19,6 +19,7 @@
 import FwewScreen from './fwew-screen'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import React from 'react'
+import SavedScreen from './saved-screen'
 import Screen from './screen'
 import SettingsScreen from './settings-screen'
 import colors from './colors'
@@ -59,6 +60,9 @@ function TabNavigator(): JSX.Element {
             case 'Random':
               iconName = focused ? 'help' : 'help-outline'
               break
+            case 'Saved':
+              iconName = 'star'
+              break
             case 'Settings':
               iconName = 'settings'
               break
@@ -81,6 +85,7 @@ function TabNavigator(): JSX.Element {
       <Tab.Screen name="Fwew" component={FwewScreen} />
       <Tab.Screen name="List" component={ListScreen} />
       <Tab.Screen name="Random" component={RandomScreen} />
+      <Tab.Screen name="Saved" component={SavedScreen} />
       <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
   )

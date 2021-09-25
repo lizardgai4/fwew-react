@@ -16,17 +16,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import { SettingsStore, StateStore } from './context'
+
 import { NavigationContainer } from '@react-navigation/native'
 import React from 'react'
-import { SettingsStore } from './context'
 import TabNavigator from './components/tab-navigator'
 
 // Top level main component
 const App = (): JSX.Element => (
   <SettingsStore>
-    <NavigationContainer>
-      <TabNavigator />
-    </NavigationContainer>
+    <StateStore>
+      <NavigationContainer>
+        <TabNavigator />
+      </NavigationContainer>
+    </StateStore>
   </SettingsStore>
 )
 

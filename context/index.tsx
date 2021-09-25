@@ -30,6 +30,7 @@ import {
 } from './settings'
 
 import React from 'react'
+import { Word } from '../lib/interfaces/word'
 
 /* Settings Context */
 
@@ -44,7 +45,7 @@ interface ISettingsContext {
   onUpdateSettingsRandom?: (s: SettingsRandom) => void
 }
 
-const defaultStateSettings = {
+const defaultStateSettings: ISettingsContext = {
   settingsGlobal,
   settingsFwew,
   settingsList,
@@ -115,11 +116,12 @@ export class SettingsStore extends React.Component {
 /* State / Data Context */
 
 interface IStateContext {
-  dataCache: string[]
+  dataCache: Set<Word>
+  onUpdateDataCache?: (c: Set<Word>) => void
 }
 
-const defaultStateData = {
-  dataCache: []
+const defaultStateData: IStateContext = {
+  dataCache: new Set<Word>()
 }
 
 export const StateContext = React.createContext<IStateContext>(defaultStateData)
@@ -127,14 +129,19 @@ export const StateContext = React.createContext<IStateContext>(defaultStateData)
 export class StateStore extends React.Component {
   state: IStateContext = defaultStateData
 
-  updateDataCache = (newDataCache: string[]) => {
+  updateDataCache = (newDataCache: Set<Word>) => {
     this.setState((state) => ({ ...state, dataCache: newDataCache }))
   }
 
   render() {
     const { dataCache } = this.state
     return (
-      <StateContext.Provider value={{ dataCache }}>
+      <StateContext.Provider
+        value={{
+          dataCache,
+          onUpdateDataCache: this.updateDataCache
+        }}
+      >
         {this.props.children}
       </StateContext.Provider>
     )

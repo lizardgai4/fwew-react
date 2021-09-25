@@ -31,6 +31,7 @@ import React, { Fragment, useState } from 'react'
 import ActionBar from './action-bar'
 import EntryModalContent from './entry-modal-content'
 import { FwewError } from '../lib/interfaces/fwew-error'
+import ListForm from './list-form'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Modal from 'react-native-modal'
 import { Word } from '../lib/interfaces/word'
@@ -92,7 +93,11 @@ const Screen = ({ apiUrl, screenType }: ScreenProps): JSX.Element => {
   // called whenever the user types or modifies text in the text input of the action bar / app bar
   const searchData = (text: string): void => {
     setText(text)
-    fetchData(getEndpoint(text))
+    if (text === '') {
+      setData([])
+    } else {
+      fetchData(getEndpoint(text))
+    }
   }
 
   // sets the search bar placeholder text depending on the currently selected tab / screen
@@ -163,6 +168,8 @@ const Screen = ({ apiUrl, screenType }: ScreenProps): JSX.Element => {
               posFilterEnabled={false}
             />
           )}
+
+          {screenType === 'list' && !text && <ListForm />}
 
           {/* word information modal when user taps an entry in the list */}
           <Modal
