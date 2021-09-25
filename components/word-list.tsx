@@ -28,8 +28,10 @@ import React, { useContext } from 'react'
 
 import Entry from './entry'
 import { FwewError } from '../lib/interfaces/fwew-error'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { SettingsContext } from '../context'
 import { Word } from '../lib/interfaces/word'
+import colors from './colors'
 import { compareWords } from '../lib'
 
 interface WordListProps {
@@ -103,9 +105,16 @@ function WordList({
       // for the situation the API returns {message: "no results"}
       <View style={styles.fallbackView}>
         {text ? (
-          <Text>
-            {err.message}: {text}
-          </Text>
+          <View style={styles.msgParent}>
+            <MaterialIcons
+              name="error"
+              size={48}
+              color={colors.infoMessageIcon}
+            />
+            <Text style={styles.msgText}>
+              {err.message}: {text}
+            </Text>
+          </View>
         ) : null}
       </View>
     )
@@ -124,9 +133,17 @@ const styles = StyleSheet.create({
     paddingBottom: 72
   },
   fallbackView: {
+    flex: 1
+  },
+  msgParent: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  msgText: {
+    marginTop: 8,
+    marginLeft: 16,
+    marginRight: 16
   }
 })
 

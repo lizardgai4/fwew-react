@@ -50,7 +50,8 @@ const colors: ColorConfig = {
   actionBarIconFill: '#fff',
   actionBarTitle: '#fff',
   inputCloseButton: '#ccc',
-  entryIndexIconFill: '#fff'
+  entryIndexIconFill: '#fff',
+  infoMessageIcon: '#98b0cd'
 }
 
 export default colors

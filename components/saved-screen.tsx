@@ -21,6 +21,7 @@ import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native'
 
 import ActionBar from './action-bar'
 import EntryModalContent from './entry-modal-content'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Modal from 'react-native-modal'
 import { StateContext } from '../context'
 import { Word } from '../lib/interfaces/word'
@@ -74,8 +75,13 @@ function SavedScreen(): JSX.Element {
             />
           ) : (
             <View style={styles.msgParent}>
-              <Text>
-                to Save a word, tap on the blue number circle of an entry
+              <MaterialIcons
+                name="info"
+                size={48}
+                color={colors.infoMessageIcon}
+              />
+              <Text style={styles.msgText}>
+                to save or un-save a word, tap the number on an entry
               </Text>
             </View>
           )}
@@ -123,6 +129,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  msgText: {
+    marginTop: 8,
+    marginLeft: 16,
+    marginRight: 16
   }
 })
 
