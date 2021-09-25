@@ -60,15 +60,26 @@ function SavedScreen(): JSX.Element {
               <Text style={styles.title}>Saved Words</Text>
             </View>
           </ActionBar>
-          <WordList
-            data={data}
-            err={err}
-            isLoading={isLoading}
-            onRefresh={onRefresh}
-            text={text}
-            toggleModal={toggleModal}
-            posFilterEnabled={posFilterEnabled}
-          />
+
+          {/* word list or instructional message */}
+          {data.length > 0 ? (
+            <WordList
+              data={data}
+              err={err}
+              isLoading={isLoading}
+              onRefresh={onRefresh}
+              text={text}
+              toggleModal={toggleModal}
+              posFilterEnabled={posFilterEnabled}
+            />
+          ) : (
+            <View style={styles.msgParent}>
+              <Text>
+                to Save a word, tap on the blue number circle of an entry
+              </Text>
+            </View>
+          )}
+
           {/* word information modal when user taps an entry in the list */}
           <Modal
             isVisible={isModalVisible}
@@ -107,6 +118,11 @@ const styles = StyleSheet.create({
     color: colors.actionBarTitle,
     fontWeight: 'bold',
     fontSize: 20
+  },
+  msgParent: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 })
 

@@ -124,7 +124,9 @@ const styles = StyleSheet.create({
     paddingBottom: 72
   },
   fallbackView: {
-    alignItems: 'center'
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 })
 
