@@ -18,9 +18,11 @@
  */
 
 import {
+  Language,
   SettingsFwew,
   SettingsFwewDisplayNames,
   SettingsGlobal,
+  SettingsGlobalDisplayNames,
   SettingsList,
   SettingsListOperatorDisplayNames,
   SettingsRandom,
@@ -33,13 +35,13 @@ import {
  * languageCode: the default language code of the application
  */
 export const settingsGlobal: SettingsGlobal = {
-  languageCode: 'en'
+  languageCode: Language.EN
 }
 
 /**
  * Global settings items display names
  */
-export const settingsGlobalDisplayNames: SettingsGlobal = {
+export const settingsGlobalDisplayNames: SettingsGlobalDisplayNames = {
   languageCode: 'language code'
 }
 

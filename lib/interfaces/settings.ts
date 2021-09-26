@@ -17,8 +17,25 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+export enum Language {
+  DE = 'de',
+  EN = 'en',
+  ET = 'et',
+  FR = 'fr',
+  HU = 'hu',
+  NL = 'nl',
+  PL = 'pl',
+  RU = 'ru',
+  SV = 'sv'
+}
+
 /** Global Application Settings */
 export interface SettingsGlobal {
+  languageCode: Language
+}
+
+/** Global Settings Display Names */
+export interface SettingsGlobalDisplayNames {
   languageCode: string
 }
 
