@@ -17,3 +17,9 @@ web-build/
 
 # Android Studio
 .idea
+
+# Build output
+dist/*
+
+# Shell scripts
+*.sh
