@@ -18,15 +18,18 @@
  */
 import {
   FlatList,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
   RefreshControl,
   StyleSheet,
   Text,
   TouchableOpacity,
   View
 } from 'react-native'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 
 import Entry from './entry'
+import { FAB } from 'react-native-paper'
 import { FwewError } from '../lib/interfaces/fwew-error'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { SettingsContext } from '../context'
@@ -60,6 +63,13 @@ function WordList({
 }: WordListProps): JSX.Element {
   const { settingsFwew } = useContext(SettingsContext)
   const { posFilterText } = settingsFwew
+  const flatListRef = React.useRef()
+  const [scrollOffset, setScrollOffset] = useState(0)
+
+  const scrollToTop = () => {
+    // @ts-ignore
+    flatListRef.current.scrollToOffset({ animated: true, offset: 0 })
+  }
 
   // part of speech filtering
   const filterData = (): Word[] => {
@@ -75,15 +85,24 @@ function WordList({
     return data
   }
 
+  // handle scroll event
+  const handleScroll = (
+    event: NativeSyntheticEvent<NativeScrollEvent>
+  ): void => {
+    setScrollOffset(event.nativeEvent.contentOffset.y)
+  }
+
   // only try to render the list if there is data for it
   if (data && data.length > 0) {
     return (
-      <View style={styles.listContainer}>
+      <View>
         <FlatList
+          ref={flatListRef}
           data={filterData()}
           extraData={text}
           keyExtractor={(item) => `k0_${item.ID}`}
           contentContainerStyle={styles.listContentContainer}
+          onScroll={(e) => handleScroll(e)}
           renderItem={({ item, index }) => (
             <TouchableOpacity
               onPress={() => {
@@ -97,6 +116,13 @@ function WordList({
           refreshControl={
             <RefreshControl refreshing={isLoading} onRefresh={onRefresh} />
           }
+        />
+        {/* @ts-ignore */}
+        <FAB
+          style={styles.fab}
+          icon="arrow-up"
+          onPress={scrollToTop}
+          visible={scrollOffset > 0}
         />
       </View>
     )
@@ -124,10 +150,6 @@ function WordList({
 }
 
 const styles = StyleSheet.create({
-  listContainer: {
-    flexDirection: 'row',
-    flex: 1
-  },
   listContentContainer: {
     marginTop: 8,
     paddingBottom: 72
@@ -144,6 +166,13 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginLeft: 16,
     marginRight: 16
+  },
+  fab: {
+    position: 'absolute',
+    margin: 16,
+    right: 0,
+    bottom: 0,
+    backgroundColor: colors.accent
   }
 })
 
