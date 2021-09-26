@@ -90,3 +90,9 @@ export interface SettingsListOperatorDisplayNames {
 export interface SettingsRandom extends SettingsList {
   numRandomWords: string
 }
+
+/** Random Settings items display names */
+export interface SettingsRandomOperatorDisplayNames
+  extends SettingsListOperatorDisplayNames {
+  numRandomWords: string
+}

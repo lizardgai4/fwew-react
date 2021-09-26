@@ -34,6 +34,7 @@ import { FwewError } from '../lib/interfaces/fwew-error'
 import ListForm from './list-form'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Modal from 'react-native-modal'
+import RandomForm from './random-form'
 import { Word } from '../lib/interfaces/word'
 import WordList from './word-list'
 import axios from 'axios'
@@ -170,6 +171,7 @@ const Screen = ({ apiUrl, screenType }: ScreenProps): JSX.Element => {
           )}
 
           {screenType === 'list' && !text && <ListForm />}
+          {screenType === 'random' && !text && <RandomForm />}
 
           {/* word information modal when user taps an entry in the list */}
           <Modal

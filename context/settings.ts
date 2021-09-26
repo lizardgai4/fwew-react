@@ -23,7 +23,8 @@ import {
   SettingsGlobal,
   SettingsList,
   SettingsListOperatorDisplayNames,
-  SettingsRandom
+  SettingsRandom,
+  SettingsRandomOperatorDisplayNames
 } from '../lib/interfaces/settings'
 
 /**
@@ -174,7 +175,7 @@ export const settingsListOperatorDisplayNames: SettingsListOperatorDisplayNames 
  * values for each what/cond/spec in Random
  */
 export const settingsRandom: SettingsRandom = {
-  numRandomWords: '8',
+  numRandomWords: '10',
   word: {
     starts: '',
     ends: '',
@@ -247,23 +248,33 @@ export const settingsRandomDisplayNames = {
     notLike: 'is not like'
   },
   syllables: {
-    lessThan: '<',
-    lessThanEqual: '≤',
-    equal: '=',
-    greaterThanEqual: '≥',
-    greaterThan: '>',
-    notEqual: '≠'
+    lessThan: 'less than (<)',
+    lessThanEqual: 'at most (≤)',
+    equal: 'exactly (=)',
+    greaterThanEqual: 'at least (≥)',
+    greaterThan: 'more than (>)',
+    notEqual: 'exactly not (≠)'
   },
   stress: {
-    lessThan: '<',
-    lessThanEqual: '≤',
-    equal: '=',
-    greaterThanEqual: '≥',
-    greaterThan: '>',
-    notEqual: '≠'
+    lessThan: 'less than (<)',
+    lessThanEqual: 'at most (≤)',
+    equal: 'exactly (=)',
+    greaterThanEqual: 'at least (≥)',
+    greaterThan: 'more than (>)',
+    notEqual: 'exactly not (≠)'
   },
   words: {
-    first: 'first',
-    last: 'last'
+    first: 'first #',
+    last: 'last #'
   }
+}
+
+/** List Settings items display names */
+export const settingsRandomOperatorDisplayNames: SettingsRandomOperatorDisplayNames = {
+  numRandomWords: 'number of random words',
+  word: 'word shape',
+  pos: 'part of speech',
+  syllables: 'number of syllables',
+  stress: 'stressed syllable',
+  words: 'words released'
 }

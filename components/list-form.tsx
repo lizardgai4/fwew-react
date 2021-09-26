@@ -54,7 +54,6 @@ function ListForm(): JSX.Element {
                               index2
                             ]
                           }
-                          left={(_props) => <View></View>}
                           right={(_props) => (
                             <TextInput
                               style={styles.textInput}
