@@ -32,10 +32,14 @@ function ListForm(): JSX.Element {
         <ScrollView>
           <List.AccordionGroup>
             {Object.keys(settingsList).map((key1, index) => (
-              <List.Accordion title={key1} id={index.toString()} key={index}>
+              <List.Accordion
+                title={key1}
+                id={`s_${index}`}
+                key={`k1_${index}`}
+              >
                 {Object.keys(settingsList[key1]).map((key2, index2) => (
-                  <TouchableOpacity>
-                    <List.Item title={key2} key={index2} />
+                  <TouchableOpacity key={`k2_${index2}`}>
+                    <List.Item title={key2} />
                   </TouchableOpacity>
                 ))}
               </List.Accordion>

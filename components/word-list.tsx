@@ -82,7 +82,7 @@ function WordList({
         <FlatList
           data={filterData()}
           extraData={text}
-          keyExtractor={(item) => item.ID}
+          keyExtractor={(item) => `k0_${item.ID}`}
           contentContainerStyle={styles.listContentContainer}
           renderItem={({ item, index }) => (
             <TouchableOpacity
