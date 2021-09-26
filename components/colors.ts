@@ -27,6 +27,7 @@ interface ColorConfig {
 const colors: ColorConfig = {
   primary: '#7494ba',
   secondary: '#537aa8',
+  text: '#000',
   statusBar: '#76a853',
   entryNumber: '#fff',
   entryBorder: '#ddd',

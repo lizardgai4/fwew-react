@@ -28,6 +28,12 @@ export interface SettingsFwew {
   posFilterText: string
 }
 
+/** Fwew Settings Display Names */
+export interface SettingsFwewDisplayNames {
+  isReverseEnabled: string
+  posFilterText: string
+}
+
 /** List Options for word operator */
 interface ListWordOptions {
   starts: string
@@ -69,6 +75,15 @@ export interface SettingsList {
   syllables: ListSyllablesOrStressOptions
   stress: ListSyllablesOrStressOptions
   words: ListWordsOptions
+}
+
+/** List Settings items display names */
+export interface SettingsListOperatorDisplayNames {
+  word: string
+  pos: string
+  syllables: string
+  stress: string
+  words: string
 }
 
 /** Random Screen Settings */

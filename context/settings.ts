@@ -19,8 +19,10 @@
 
 import {
   SettingsFwew,
+  SettingsFwewDisplayNames,
   SettingsGlobal,
   SettingsList,
+  SettingsListOperatorDisplayNames,
   SettingsRandom
 } from '../lib/interfaces/settings'
 
@@ -34,6 +36,13 @@ export const settingsGlobal: SettingsGlobal = {
 }
 
 /**
+ * Global settings items display names
+ */
+export const settingsGlobalDisplayNames: SettingsGlobal = {
+  languageCode: 'language code'
+}
+
+/**
  * Fwew Settings
  *
  * isReverseEnabled: the default search direction
@@ -42,6 +51,14 @@ export const settingsGlobal: SettingsGlobal = {
 export const settingsFwew: SettingsFwew = {
   isReverseEnabled: false,
   posFilterText: 'all'
+}
+
+/**
+ * Fwew Settings items display names
+ */
+export const settingsFwewDisplayNames: SettingsFwewDisplayNames = {
+  isReverseEnabled: 'reverse',
+  posFilterText: 'part of speech filter'
 }
 
 /**
@@ -95,6 +112,63 @@ export const settingsList: SettingsList = {
 }
 
 /**
+ * List Settings item display names
+ */
+export const settingsListDisplayNames: SettingsList = {
+  word: {
+    starts: 'starts with',
+    ends: 'ends with',
+    has: 'has',
+    like: 'is like',
+    notStarts: 'does not start with',
+    notEnds: 'does not end with',
+    notHas: 'does not have',
+    notLike: 'is not like'
+  },
+  pos: {
+    starts: 'starts with',
+    ends: 'ends with',
+    is: 'is exactly',
+    has: 'has',
+    like: 'is like',
+    notStarts: 'does not start with',
+    notEnds: 'does not end with',
+    notIs: 'is exactly not',
+    notHas: 'does not have',
+    notLike: 'is not like'
+  },
+  syllables: {
+    lessThan: 'less than (<)',
+    lessThanEqual: 'at most (≤)',
+    equal: 'exactly (=)',
+    greaterThanEqual: 'at least (≥)',
+    greaterThan: 'more than (>)',
+    notEqual: 'exactly not (≠)'
+  },
+  stress: {
+    lessThan: 'less than (<)',
+    lessThanEqual: 'at most (≤)',
+    equal: 'exactly (=)',
+    greaterThanEqual: 'at least (≥)',
+    greaterThan: 'more than (>)',
+    notEqual: 'exactly not (≠)'
+  },
+  words: {
+    first: 'first #',
+    last: 'last #'
+  }
+}
+
+/** List Settings items display names */
+export const settingsListOperatorDisplayNames: SettingsListOperatorDisplayNames = {
+  word: 'word shape',
+  pos: 'part of speech',
+  syllables: 'number of syllables',
+  stress: 'stressed syllable',
+  words: 'words released'
+}
+
+/**
  * Random Settings
  *
  * values for each what/cond/spec in Random
@@ -142,5 +216,54 @@ export const settingsRandom: SettingsRandom = {
   words: {
     first: '0',
     last: '0'
+  }
+}
+
+/**
+ * Random Settings item display names
+ */
+export const settingsRandomDisplayNames = {
+  numRandomWords: '# random words',
+  word: {
+    starts: 'starts with',
+    ends: 'ends with',
+    has: 'has',
+    like: 'is like',
+    notStarts: 'does not start with',
+    notEnds: 'does not end with',
+    notHas: 'does not have',
+    notLike: 'is not like'
+  },
+  pos: {
+    starts: 'starts with',
+    ends: 'ends with',
+    is: 'is exactly',
+    has: 'has',
+    like: 'is like',
+    notStarts: 'does not start with',
+    notEnds: 'does not end with',
+    notIs: 'is exactly not',
+    notHas: 'does not have',
+    notLike: 'is not like'
+  },
+  syllables: {
+    lessThan: '<',
+    lessThanEqual: '≤',
+    equal: '=',
+    greaterThanEqual: '≥',
+    greaterThan: '>',
+    notEqual: '≠'
+  },
+  stress: {
+    lessThan: '<',
+    lessThanEqual: '≤',
+    equal: '=',
+    greaterThanEqual: '≥',
+    greaterThan: '>',
+    notEqual: '≠'
+  },
+  words: {
+    first: 'first',
+    last: 'last'
   }
 }
