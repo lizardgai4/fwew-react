@@ -95,7 +95,7 @@ function WordList({
   // only try to render the list if there is data for it
   if (data && data.length > 0) {
     return (
-      <View>
+      <View style={styles.listContainer}>
         <FlatList
           ref={flatListRef}
           data={filterData()}
@@ -150,6 +150,10 @@ function WordList({
 }
 
 const styles = StyleSheet.create({
+  listContainer: {
+    flexDirection: 'row',
+    flex: 1
+  },
   listContentContainer: {
     marginTop: 8,
     paddingBottom: 72
