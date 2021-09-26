@@ -20,6 +20,7 @@ import React, { Fragment } from 'react'
 import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native'
 
 import ActionBar from './action-bar'
+import SettingsForm from './settings-form'
 import colors from './colors'
 
 function SettingsScreen(): JSX.Element {
@@ -37,6 +38,7 @@ function SettingsScreen(): JSX.Element {
               <Text style={styles.title}>Settings</Text>
             </View>
           </ActionBar>
+          <SettingsForm />
         </View>
       </SafeAreaView>
     </Fragment>
