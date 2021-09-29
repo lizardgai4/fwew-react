@@ -94,8 +94,10 @@ const styles = StyleSheet.create({
   circle: {
     width: 32,
     height: 32,
-    backgroundColor: colors.primary,
+    backgroundColor: colors.accent,
     borderRadius: 16,
+    borderWidth: 1,
+    borderColor: colors.accentDark,
     justifyContent: 'center',
     alignItems: 'center'
   },

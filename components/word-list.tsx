@@ -120,6 +120,7 @@ function WordList({
         {/* @ts-ignore */}
         <FAB
           style={styles.fab}
+          color={colors.buttonText}
           icon="arrow-up"
           onPress={scrollToTop}
           visible={scrollOffset > 0}
@@ -176,7 +177,9 @@ const styles = StyleSheet.create({
     margin: 16,
     right: 0,
     bottom: 0,
-    backgroundColor: colors.accent
+    backgroundColor: colors.accent,
+    borderWidth: 1,
+    borderColor: colors.accentDark
   }
 })
 
