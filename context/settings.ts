@@ -29,6 +29,10 @@ import {
   SettingsRandomOperatorDisplayNames
 } from '../lib/interfaces/settings'
 
+// the root endpoint of the Fwew API
+// see https://github.com/fwew/fwew-api for more info about the API
+export const apiRoot: string = 'https://tirea.learnnavi.org/api'
+
 /** Array of all supported language codes */
 export const Languages: Language[] = [
   Language.DE,

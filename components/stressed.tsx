@@ -20,12 +20,8 @@ import { StyleSheet, Text } from 'react-native'
 import { join, withKeys } from '../lib'
 
 import React from 'react'
+import { StressedProps } from '../lib/interfaces/props'
 import Underline from './underline'
-
-interface StressedProps {
-  stressed: string
-  children: string
-}
 
 /**
  * Stressed Component

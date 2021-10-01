@@ -16,22 +16,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import { IStateContext } from '../lib/interfaces/state-context'
 import React from 'react'
 import { Word } from '../lib/interfaces/word'
 
-/* State / Data Context */
-
-interface IStateContext {
-  dataCache: Set<Word>
-  onUpdateDataCache?: (c: Set<Word>) => void
-}
-
+/** Default state of the State Context */
 const defaultStateData: IStateContext = {
   dataCache: new Set<Word>()
 }
 
+/** State Context */
 export const StateContext = React.createContext<IStateContext>(defaultStateData)
 
+/** State Context Store */
 export class StateStore extends React.Component {
   state: IStateContext = defaultStateData
 

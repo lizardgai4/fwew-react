@@ -16,22 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { StyleSheet, Text } from 'react-native'
+import { Word } from './word'
 
-import React from 'react'
-import { UnderlineProps } from '../lib/interfaces/props'
-
-/**
- * Underline Component
- *
- * Underlines given Text / string
- */
-function Underline({ children }: UnderlineProps): JSX.Element {
-  return <Text style={styles.underline}>{children}</Text>
+export interface IStateContext {
+  dataCache: Set<Word>
+  onUpdateDataCache?: (c: Set<Word>) => void
 }
-
-const styles = StyleSheet.create({
-  underline: { textDecorationLine: 'underline' }
-})
-
-export default Underline

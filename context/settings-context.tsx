@@ -29,21 +29,10 @@ import {
   settingsRandom
 } from './settings'
 
+import { ISettingsContext } from '../lib/interfaces/settings-context'
 import React from 'react'
 
-/* Settings Context */
-
-interface ISettingsContext {
-  settingsGlobal: SettingsGlobal
-  settingsFwew: SettingsFwew
-  settingsList: SettingsList
-  settingsRandom: SettingsRandom
-  onUpdateSettingsGlobal?: (s: SettingsGlobal) => void
-  onUpdateSettingsFwew?: (s: SettingsFwew) => void
-  onUpdateSettingsList?: (s: SettingsList) => void
-  onUpdateSettingsRandom?: (s: SettingsRandom) => void
-}
-
+/** Default state of the Settings Context */
 const defaultStateSettings: ISettingsContext = {
   settingsGlobal,
   settingsFwew,
@@ -51,10 +40,12 @@ const defaultStateSettings: ISettingsContext = {
   settingsRandom
 }
 
+/** Settings Context */
 export const SettingsContext = React.createContext<ISettingsContext>(
   defaultStateSettings
 )
 
+/** Settings Context Store */
 export class SettingsStore extends React.Component {
   state: ISettingsContext = defaultStateSettings
 

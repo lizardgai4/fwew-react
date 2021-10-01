@@ -17,9 +17,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-interface ColorConfig {
-  readonly [key: string]: string
-}
+import { ColorConfig } from './interfaces/color-config'
 
 /**
  * Global Color configuration for application-wide styles

@@ -22,15 +22,11 @@ import { deleteById, includes } from '../lib'
 
 import EntryBreakdown from './entry-breakdown'
 import EntryIndex from './entry-index'
+import { EntryProps } from '../lib/interfaces/props'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { StateContext } from '../context'
 import { Word } from '../lib/interfaces/word'
-import colors from './colors'
-
-interface EntryProps {
-  number: number
-  word: Word
-}
+import colors from '../lib/colors'
 
 /**
  * Entry Component

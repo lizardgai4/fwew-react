@@ -35,15 +35,11 @@ import ListForm from './list-form'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Modal from 'react-native-modal'
 import RandomForm from './random-form'
+import { ScreenProps } from '../lib/interfaces/props'
 import { Word } from '../lib/interfaces/word'
 import WordList from './word-list'
 import axios from 'axios'
-import colors from './colors'
-
-interface ScreenProps {
-  apiUrl: string
-  screenType: 'list' | 'random'
-}
+import colors from '../lib/colors'
 
 // The main content area of the app
 const Screen = ({ apiUrl, screenType }: ScreenProps): JSX.Element => {

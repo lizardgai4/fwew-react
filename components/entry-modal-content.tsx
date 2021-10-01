@@ -18,14 +18,10 @@
  */
 import { StyleSheet, Text, View } from 'react-native'
 
+import { EntryModalContentProps } from '../lib/interfaces/props'
 import React from 'react'
 import Stressed from './stressed'
-import { Word } from '../lib/interfaces/word'
-import colors from './colors'
-
-interface EntryModalContentProps {
-  entry: Word
-}
+import colors from '../lib/colors'
 
 /**
  * EntryModalContent Component

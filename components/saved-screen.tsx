@@ -26,7 +26,7 @@ import Modal from 'react-native-modal'
 import { StateContext } from '../context'
 import { Word } from '../lib/interfaces/word'
 import WordList from './word-list'
-import colors from './colors'
+import colors from '../lib/colors'
 
 function SavedScreen(): JSX.Element {
   const { dataCache } = useContext(StateContext)

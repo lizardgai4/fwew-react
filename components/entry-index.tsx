@@ -18,12 +18,9 @@
  */
 import { StyleSheet, Text, View } from 'react-native'
 
+import { EntryIndexProps } from '../lib/interfaces/props'
 import React from 'react'
-import colors from './colors'
-
-interface EntryIndexProps {
-  number: number
-}
+import colors from '../lib/colors'
 
 /**
  * EntryIndex Component

@@ -30,22 +30,12 @@ import React, { useContext, useState } from 'react'
 
 import Entry from './entry'
 import { FAB } from 'react-native-paper'
-import { FwewError } from '../lib/interfaces/fwew-error'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { SettingsContext } from '../context'
 import { Word } from '../lib/interfaces/word'
-import colors from './colors'
+import { WordListProps } from '../lib/interfaces/props'
+import colors from '../lib/colors'
 import { compareWords } from '../lib'
-
-interface WordListProps {
-  data: Word[]
-  err: FwewError
-  isLoading: boolean
-  onRefresh: () => void
-  text: string
-  toggleModal: (item: Word) => void
-  posFilterEnabled: boolean
-}
 
 /**
  * WordList Component

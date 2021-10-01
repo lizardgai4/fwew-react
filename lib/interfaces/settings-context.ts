@@ -16,42 +16,23 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Image, StyleSheet, View } from 'react-native'
-
-import { ActionBarProps } from '../lib/interfaces/props'
-import React from 'react'
-import colors from '../lib/colors'
-import fwew from '../assets/fwew.png'
+import {
+  SettingsFwew,
+  SettingsGlobal,
+  SettingsList,
+  SettingsRandom
+} from './settings'
 
 /**
- * ActionBar Component
- *
- * The bar at the top of the screen, below the status bar
+ * interface for SettingsContext
  */
-function ActionBar({ children }: ActionBarProps): JSX.Element {
-  return (
-    <View style={styles.action_bar}>
-      <Image source={fwew} style={styles.icon} />
-      {children}
-    </View>
-  )
+export interface ISettingsContext {
+  settingsGlobal: SettingsGlobal
+  settingsFwew: SettingsFwew
+  settingsList: SettingsList
+  settingsRandom: SettingsRandom
+  onUpdateSettingsGlobal?: (s: SettingsGlobal) => void
+  onUpdateSettingsFwew?: (s: SettingsFwew) => void
+  onUpdateSettingsList?: (s: SettingsList) => void
+  onUpdateSettingsRandom?: (s: SettingsRandom) => void
 }
-
-const styles = StyleSheet.create({
-  action_bar: {
-    height: 56,
-    width: '100%',
-    paddingRight: 8,
-    backgroundColor: colors.primary,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  },
-  icon: {
-    marginLeft: 8,
-    width: 48,
-    height: 48
-  }
-})
-
-export default ActionBar

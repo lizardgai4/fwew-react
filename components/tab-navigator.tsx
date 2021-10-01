@@ -22,12 +22,9 @@ import React from 'react'
 import SavedScreen from './saved-screen'
 import Screen from './screen'
 import SettingsScreen from './settings-screen'
-import colors from './colors'
+import { apiRoot } from '../context/settings'
+import colors from '../lib/colors'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-
-// the root endpoint of the Fwew API
-// see https://github.com/fwew/fwew-api for more info about the API
-const apiRoot: string = 'https://tirea.learnnavi.org/api'
 
 // screen where the user can list all words (or all words that have given properties)
 function ListScreen(): JSX.Element {

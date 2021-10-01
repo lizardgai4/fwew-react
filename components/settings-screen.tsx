@@ -21,7 +21,7 @@ import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native'
 
 import ActionBar from './action-bar'
 import SettingsForm from './settings-form'
-import colors from './colors'
+import colors from '../lib/colors'
 
 function SettingsScreen(): JSX.Element {
   return (

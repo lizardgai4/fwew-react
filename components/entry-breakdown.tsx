@@ -18,14 +18,9 @@
  */
 import { StyleSheet, Text } from 'react-native'
 
+import { EntryBreakdownProps } from '../lib/interfaces/props'
 import React from 'react'
 import Stressed from './stressed'
-
-interface EntryBreakdownProps {
-  stressed: string
-  syllables: string
-  infixDots: string
-}
 
 /**
  * EntryBreakdown Component

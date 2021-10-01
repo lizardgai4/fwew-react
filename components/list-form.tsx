@@ -25,7 +25,7 @@ import {
 } from '../context/settings'
 
 import { SettingsContext } from '../context'
-import colors from './colors'
+import colors from '../lib/colors'
 
 function ListForm(): JSX.Element {
   const { settingsList } = useContext(SettingsContext)

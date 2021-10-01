@@ -37,7 +37,7 @@ import { SettingsContext } from '../context'
 import { Word } from '../lib/interfaces/word'
 import WordList from './word-list'
 import axios from 'axios'
-import colors from './colors'
+import colors from '../lib/colors'
 
 /**
  * FwewScreen Component
