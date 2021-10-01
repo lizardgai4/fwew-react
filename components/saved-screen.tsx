@@ -58,7 +58,7 @@ function SavedScreen(): JSX.Element {
         <View style={styles.mainView}>
           <ActionBar>
             <View style={styles.titleParent}>
-              <Text style={styles.title}>Saved Words</Text>
+              <Text style={styles.title}>saved words</Text>
             </View>
           </ActionBar>
 

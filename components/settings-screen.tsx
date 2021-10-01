@@ -35,7 +35,7 @@ function SettingsScreen(): JSX.Element {
         <View style={styles.mainView}>
           <ActionBar>
             <View style={styles.titleParent}>
-              <Text style={styles.title}>Settings</Text>
+              <Text style={styles.title}>settings</Text>
             </View>
           </ActionBar>
           <SettingsForm />
