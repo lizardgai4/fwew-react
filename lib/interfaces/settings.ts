@@ -17,16 +17,17 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+/** Supported Language codes */
 export enum Language {
-  DE = 'de',
-  EN = 'en',
-  ET = 'et',
-  FR = 'fr',
-  HU = 'hu',
-  NL = 'nl',
-  PL = 'pl',
-  RU = 'ru',
-  SV = 'sv'
+  DE = 'de', // Deutsch
+  EN = 'en', // English
+  ET = 'et', // Eesti
+  FR = 'fr', // Français
+  HU = 'hu', // Magyar
+  NL = 'nl', // Nederlands
+  PL = 'pl', // Polski
+  RU = 'ru', // Русский
+  SV = 'sv' // Svenska
 }
 
 /** Global Application Settings */
