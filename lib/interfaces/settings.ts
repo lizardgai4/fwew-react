@@ -30,6 +30,11 @@ export enum Language {
   SV = 'sv' // Svenska
 }
 
+/** type for languageNames, the array of language display names */
+export type LanguageNames = {
+  [K in Language]: string
+}
+
 /** Global Application Settings */
 export interface SettingsGlobal {
   languageCode: Language
