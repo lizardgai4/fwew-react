@@ -17,7 +17,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import React, { useContext } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 
 import { Card } from 'react-native-paper'
 import { Language } from '../lib/interfaces/settings'
@@ -25,6 +25,7 @@ import { Languages } from '../lib/settings'
 import { RadioButton } from 'react-native-paper'
 import { SettingsContext } from '../context'
 import colors from '../lib/colors'
+import { languageNames } from '../lib/settings'
 
 function SettingsForm(): JSX.Element {
   const { settingsGlobal, onUpdateSettingsGlobal } = useContext(SettingsContext)
@@ -38,13 +39,14 @@ function SettingsForm(): JSX.Element {
   return (
     // @ts-ignore
     <Card style={styles.card}>
+      {/* @ts-ignore */}
+      <Card.Title title="language" subtitle="default language of results" />
       <Card.Content>
-        <Text>Language</Text>
         <RadioButton.Group onValueChange={updateLanguage} value={languageCode}>
           {Languages.map((language, index) => (
             <View key={index}>
               <RadioButton.Item
-                label={language}
+                label={languageNames[language]}
                 value={language}
                 color={colors.accent}
               />
