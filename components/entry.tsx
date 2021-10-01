@@ -18,6 +18,7 @@
  */
 import React, { useContext } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { deleteById, includes } from '../lib'
 
 import EntryBreakdown from './entry-breakdown'
 import EntryIndex from './entry-index'
@@ -41,13 +42,13 @@ function Entry({ number, word }: EntryProps) {
   const { dataCache, onUpdateDataCache } = useContext(StateContext)
 
   const toggleSaved = (): void => {
-    const isSaved = dataCache.has(word)
+    const isSaved = includes(dataCache, word)
     const newDataCache = new Set<Word>([...dataCache])
 
     if (!isSaved) {
       newDataCache.add(word)
     } else {
-      newDataCache.delete(word)
+      deleteById(newDataCache, word.ID)
     }
 
     onUpdateDataCache(newDataCache)
@@ -56,7 +57,7 @@ function Entry({ number, word }: EntryProps) {
   return (
     <View style={styles.entry}>
       <View style={styles.row}>
-        {dataCache.has(word) ? (
+        {includes(dataCache, word) ? (
           <TouchableOpacity onPress={toggleSaved}>
             <View style={styles.circle}>
               <MaterialIcons

@@ -114,3 +114,34 @@ export function join(
     )
   )
 }
+
+/**
+ * checks for the containment of a given Word in a Set of Word by ID
+ *
+ * @param wordSet a Set of Fwew Word
+ * @param word a Fwew Word
+ * @return true if the word is in wordSet (by ID), false otherwise
+ */
+export function includes(wordSet: Set<Word>, word: Word): boolean {
+  for (const w of wordSet) {
+    if (w.ID === word.ID) {
+      return true
+    }
+  }
+  return false
+}
+
+/**
+ * deletes a Word from a Set by ID
+ *
+ * @param wordSet a Set of Fwew Word
+ * @param id the Id of the Word to delete
+ */
+export function deleteById(wordSet: Set<Word>, id: string): void {
+  for (const w of wordSet) {
+    if (w.ID === id) {
+      wordSet.delete(w)
+      break
+    }
+  }
+}
