@@ -22,7 +22,7 @@ import React from 'react'
 import SavedScreen from './saved-screen'
 import Screen from './screen'
 import SettingsScreen from './settings-screen'
-import { apiRoot } from '../context/settings'
+import { apiRoot } from '../lib/settings'
 import colors from '../lib/colors'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 

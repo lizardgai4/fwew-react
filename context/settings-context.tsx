@@ -27,7 +27,7 @@ import {
   settingsGlobal,
   settingsList,
   settingsRandom
-} from './settings'
+} from '../lib/settings'
 
 import { ISettingsContext } from '../lib/interfaces/settings-context'
 import React from 'react'

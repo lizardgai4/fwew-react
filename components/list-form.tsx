@@ -22,7 +22,7 @@ import { ScrollView, StyleSheet, TextInput, View } from 'react-native'
 import {
   settingsListDisplayNames,
   settingsListOperatorDisplayNames
-} from '../context/settings'
+} from '../lib/settings'
 
 import { SettingsContext } from '../context'
 import colors from '../lib/colors'

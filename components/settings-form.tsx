@@ -21,7 +21,7 @@ import { StyleSheet, Text, View } from 'react-native'
 
 import { Card } from 'react-native-paper'
 import { Language } from '../lib/interfaces/settings'
-import { Languages } from '../context/settings'
+import { Languages } from '../lib/settings'
 import { RadioButton } from 'react-native-paper'
 import { SettingsContext } from '../context'
 import colors from '../lib/colors'
