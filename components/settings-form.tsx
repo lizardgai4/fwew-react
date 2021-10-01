@@ -16,37 +16,44 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Card, List } from 'react-native-paper'
+import { Image, StyleSheet, Text, View } from 'react-native'
 import React, { useContext } from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
 
+import { Card } from 'react-native-paper'
+import { Language } from '../lib/interfaces/settings'
+import { Languages } from '../context/settings'
+import { RadioButton } from 'react-native-paper'
 import { SettingsContext } from '../context'
 import colors from './colors'
 
 function SettingsForm(): JSX.Element {
-  const { settingsGlobal } = useContext(SettingsContext)
+  const { settingsGlobal, onUpdateSettingsGlobal } = useContext(SettingsContext)
+  const { languageCode } = settingsGlobal
+
+  const updateLanguage = (language: string): void => {
+    const newSettingsGlobal = { languageCode: language }
+    onUpdateSettingsGlobal(newSettingsGlobal)
+  }
 
   return (
     // @ts-ignore
     <Card style={styles.card}>
       <Card.Content>
-        {/* @ts-ignore */}
-        <List.Section>
-          {/* @ts-ignore */}
-          <List.Accordion
-            title={'language'}
-            description={`current value: ${settingsGlobal.languageCode}`}
-            titleStyle={styles.sectionTitle}
-            id={`s_0`}
-            key={`k1_0`}
-          >
-            {/* @ts-ignore */}
-            <TouchableOpacity>
-              {/* @ts-ignore */}
-              <List.Item title={settingsGlobal.languageCode} />
-            </TouchableOpacity>
-          </List.Accordion>
-        </List.Section>
+        <Text>Language</Text>
+        <RadioButton.Group
+          onValueChange={(language) => updateLanguage(language)}
+          value={languageCode}
+        >
+          {Languages.map((language, index) => (
+            <View key={index}>
+              <RadioButton.Item
+                label={language}
+                value={language}
+                color={colors.accent}
+              />
+            </View>
+          ))}
+        </RadioButton.Group>
       </Card.Content>
     </Card>
   )

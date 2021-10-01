@@ -29,6 +29,19 @@ import {
   SettingsRandomOperatorDisplayNames
 } from '../lib/interfaces/settings'
 
+/** Array of all supported language codes */
+export const Languages: Language[] = [
+  Language.DE,
+  Language.EN,
+  Language.ET,
+  Language.FR,
+  Language.HU,
+  Language.NL,
+  Language.PL,
+  Language.RU,
+  Language.SV
+]
+
 /**
  * Global settings
  *
