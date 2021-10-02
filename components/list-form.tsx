@@ -18,94 +18,214 @@
  */
 import { Card, List } from 'react-native-paper'
 import React, { useContext, useState } from 'react'
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View
+} from 'react-native'
 
+import { FAB } from 'react-native-paper'
+import If from './if'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { SettingsContext } from '../context'
 import colors from '../lib/colors'
 import { ui } from '../lib/i18n'
 
 function ListForm(): JSX.Element {
-  const { settingsGlobal } = useContext(SettingsContext)
+  const { settingsList, settingsGlobal } = useContext(SettingsContext)
   const { languageCodeUI } = settingsGlobal
   const strings = ui[languageCodeUI].listRandomForm
   const [what, setWhat] = useState('')
+  const [cond, setCond] = useState('')
+  const [spec, setSpec] = useState('')
+  const [array, setArray] = useState([])
+
+  interface ListWCS {
+    what: string
+    cond: string
+    spec: string
+  }
+
+  const clearValues = (): void => {
+    setWhat('')
+    setCond('')
+    setSpec('')
+    setArray([])
+  }
+
+  const add = (item: ListWCS): void => {
+    setArray([...array, item])
+  }
 
   return (
-    // @ts-ignore
-    <Card style={styles.card}>
+    <View style={styles.listFormContainer}>
       {/* @ts-ignore */}
-      <Card.Title title={'list...'} />
-      <Card.Content>
-        <Text>{`${what}`}</Text>
-        <ScrollView>
+      <Card style={styles.card}>
+        {/* @ts-ignore */}
+        <Card.Title title={'list...'} />
+        <Card.Content>
+          <Text style={styles.selections}>{`${what} ${cond} ${spec}`}</Text>
+          <Text>
+            {array.map((wcs) => `${wcs.what} ${wcs.cond} ${wcs.spec} `)}
+          </Text>
+          <If condition={!what}>
+            <View>
+              {/* @ts-ignore */}
+              <List.Item
+                title={strings.word}
+                onPress={() => setWhat('word')}
+                right={(_props) => (
+                  <MaterialIcons name="chevron-right" size={28} />
+                )}
+              />
+              {/* @ts-ignore */}
+              <List.Item
+                title={strings.pos}
+                onPress={() => setWhat('pos')}
+                right={(_props) => (
+                  <MaterialIcons name="chevron-right" size={28} />
+                )}
+              />
+              {/* @ts-ignore */}
+              <List.Item
+                title={strings.syllables}
+                onPress={() => setWhat('syllables')}
+                right={(_props) => (
+                  <MaterialIcons name="chevron-right" size={28} />
+                )}
+              />
+              {/* @ts-ignore */}
+              <List.Item
+                title={strings.stress}
+                onPress={() => setWhat('stress')}
+                right={(_props) => (
+                  <MaterialIcons name="chevron-right" size={28} />
+                )}
+              />
+              {/* @ts-ignore */}
+              <List.Item
+                title={strings.words}
+                onPress={() => setWhat('words')}
+                right={(_props) => (
+                  <MaterialIcons name="chevron-right" size={28} />
+                )}
+              />
+            </View>
+          </If>
           <View>
-            {/* @ts-ignore */}
-            <List.Item
-              title={strings.word}
-              onPress={() => setWhat('word')}
-              right={(_props) => (
-                <MaterialIcons name="chevron-right" size={28} />
-              )}
-            />
-            {/* @ts-ignore */}
-            <List.Item
-              title={strings.pos}
-              onPress={() => setWhat('pos')}
-              right={(_props) => (
-                <MaterialIcons name="chevron-right" size={28} />
-              )}
-            />
-            {/* @ts-ignore */}
-            <List.Item
-              title={strings.syllables}
-              onPress={() => setWhat('syllables')}
-              right={(_props) => (
-                <MaterialIcons name="chevron-right" size={28} />
-              )}
-            />
-            {/* @ts-ignore */}
-            <List.Item
-              title={strings.stress}
-              onPress={() => setWhat('stress')}
-              right={(_props) => (
-                <MaterialIcons name="chevron-right" size={28} />
-              )}
-            />
-            {/* @ts-ignore */}
-            <List.Item
-              title={strings.words}
-              onPress={() => setWhat('words')}
-              right={(_props) => (
-                <MaterialIcons name="chevron-right" size={28} />
-              )}
-            />
+            {!!what &&
+              !cond &&
+              Object.keys(settingsList[what]).map((item, idx) => (
+                // @ts-ignore
+                <List.Item
+                  key={idx}
+                  title={item}
+                  onPress={() => setCond(item)}
+                  right={(_props) => (
+                    <MaterialIcons name="chevron-right" size={28} />
+                  )}
+                />
+              ))}
           </View>
-        </ScrollView>
-      </Card.Content>
-    </Card>
+          <If condition={!!what && !!cond}>
+            <TextInput
+              style={styles.textInput}
+              value={spec}
+              onChangeText={(text) => setSpec(text)}
+            />
+          </If>
+          <View style={styles.buttonGroup}>
+            <If condition={!!what || !!cond || !!spec}>
+              <TouchableOpacity
+                style={styles.buttonClear}
+                onPress={clearValues}
+              >
+                <Text style={styles.buttonText}>clear</Text>
+              </TouchableOpacity>
+            </If>
+            <If condition={!!what && !!cond && !!spec}>
+              <TouchableOpacity style={styles.buttonSearch}>
+                <Text style={styles.buttonText}>search</Text>
+              </TouchableOpacity>
+            </If>
+          </View>
+        </Card.Content>
+      </Card>
+      {/* @ts-ignore */}
+      <FAB
+        style={styles.fab}
+        color={colors.buttonText}
+        icon="plus"
+        onPress={() => add({ what, cond, spec })}
+        visible={!!what && !!cond && !!spec}
+      />
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
+  listFormContainer: {
+    height: '92%'
+  },
   card: {
     margin: 16,
     borderRadius: 16,
     borderColor: colors.secondary,
     borderWidth: 1.5,
-    maxHeight: '88%'
+    maxHeight: '100%'
   },
-  sectionTitle: {
-    fontWeight: 'bold',
-    color: colors.text
+  selections: {
+    fontSize: 16
   },
   textInput: {
-    width: '50%',
+    marginTop: 16,
+    height: 48,
     borderWidth: 1,
     borderRadius: 8,
     borderColor: colors.secondary,
     paddingLeft: 8,
     paddingRight: 8
+  },
+  buttonGroup: {
+    marginTop: 16,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  buttonClear: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 80,
+    height: 48,
+    backgroundColor: colors.buttonNegative,
+    borderWidth: 1,
+    borderColor: colors.buttonNegativeBorder,
+    borderRadius: 8
+  },
+  buttonSearch: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 80,
+    height: 48,
+    backgroundColor: colors.accent,
+    borderWidth: 1,
+    borderColor: colors.accentDark,
+    borderRadius: 8
+  },
+  buttonText: {
+    fontSize: 20,
+    color: colors.buttonText
+  },
+  fab: {
+    position: 'absolute',
+    margin: 16,
+    right: 0,
+    bottom: 0,
+    backgroundColor: colors.accent,
+    borderWidth: 1,
+    borderColor: colors.accentDark
   }
 })
 
