@@ -27,7 +27,7 @@ import { Word } from './interfaces/word'
  * @param word Na'vi string to be compressed
  * @return word with every every digraph replaced by a unique substitute
  */
-export function compress(word: string): string {
+function compress(word: string): string {
   const compressed = {
     aw: '0',
     ay: '1',
@@ -54,7 +54,7 @@ export function compress(word: string): string {
  * @param b Fwew Word object
  * @return -1 if a is to be sorted before b, 1 if a is to be sorted after b, 0 otherwise
  */
-export function compareWords(a: Word, b: Word): number {
+function compareWords(a: Word, b: Word): number {
   const sortOrderCompressed = "'a01äe23fhiìjk4l5mn6op7r8st9Quvwyz-".split('')
   const compressedA = compress(a.Navi.toLowerCase())
   const compressedB = compress(b.Navi.toLowerCase())
@@ -87,7 +87,7 @@ export function compareWords(a: Word, b: Word): number {
  * @param arr an array of JSX Elements
  * @return the given array with unique key props
  */
-export function withKeys(arr: JSX.Element[]): JSX.Element[] {
+function withKeys(arr: JSX.Element[]): JSX.Element[] {
   return arr.map((item, index) => <Fragment key={index}>{item}</Fragment>)
 }
 
@@ -99,10 +99,7 @@ export function withKeys(arr: JSX.Element[]): JSX.Element[] {
  * @param str the string to place between all the array items
  * @return array of Text Elements, with a Text containing `str` in between each
  */
-export function join(
-  arr: Array<string | JSX.Element>,
-  str: string
-): JSX.Element[] {
+function join(arr: Array<string | JSX.Element>, str: string): JSX.Element[] {
   return arr.map((item, index) =>
     index > 0 ? (
       <Text>
@@ -122,7 +119,7 @@ export function join(
  * @param word a Fwew Word
  * @return true if the word is in wordSet (by ID), false otherwise
  */
-export function includes(wordSet: Set<Word>, word: Word): boolean {
+function includes(wordSet: Set<Word>, word: Word): boolean {
   for (const w of wordSet) {
     if (w.ID === word.ID) {
       return true
@@ -137,7 +134,7 @@ export function includes(wordSet: Set<Word>, word: Word): boolean {
  * @param wordSet a Set of Fwew Word
  * @param id the Id of the Word to delete
  */
-export function deleteById(wordSet: Set<Word>, id: string): void {
+function deleteById(wordSet: Set<Word>, id: string): void {
   for (const w of wordSet) {
     if (w.ID === id) {
       wordSet.delete(w)
@@ -145,3 +142,5 @@ export function deleteById(wordSet: Set<Word>, id: string): void {
     }
   }
 }
+
+export { compress, compareWords, withKeys, join, includes, deleteById }
