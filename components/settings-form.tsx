@@ -17,7 +17,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import React, { useContext } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { ScrollView, StyleSheet, View } from 'react-native'
 
 import { Card } from 'react-native-paper'
 import { Language } from '../lib/interfaces/settings'
@@ -27,34 +27,80 @@ import { SettingsContext } from '../context'
 import colors from '../lib/colors'
 import { languageNames } from '../lib/settings'
 
+/**
+ * SettingsForm Component
+ *
+ * Provides screen to view and update global application settings
+ */
 function SettingsForm(): JSX.Element {
   const { settingsGlobal, onUpdateSettingsGlobal } = useContext(SettingsContext)
-  const { languageCode } = settingsGlobal
+  const { languageCode, languageCodeUI } = settingsGlobal
 
-  const updateLanguage = (language: Language): void => {
-    const newSettingsGlobal = { languageCode: language }
+  // update the default language of fwew/list/random results
+  const updateResultsLanguage = (language: Language): void => {
+    const newSettingsGlobal = { ...settingsGlobal, languageCode: language }
+    onUpdateSettingsGlobal(newSettingsGlobal)
+  }
+
+  // update the default language of the app UI
+  const updateUILanguage = (language: Language): void => {
+    const newSettingsGlobal = { ...settingsGlobal, languageCodeUI: language }
     onUpdateSettingsGlobal(newSettingsGlobal)
   }
 
   return (
-    // @ts-ignore
-    <Card style={styles.card}>
+    <ScrollView>
+      {/* UI Language Setting */}
       {/* @ts-ignore */}
-      <Card.Title title="language" subtitle="default language of results" />
-      <Card.Content>
-        <RadioButton.Group onValueChange={updateLanguage} value={languageCode}>
-          {Languages.map((language, index) => (
-            <View key={index}>
-              <RadioButton.Item
-                label={languageNames[language]}
-                value={language}
-                color={colors.accent}
-              />
-            </View>
-          ))}
-        </RadioButton.Group>
-      </Card.Content>
-    </Card>
+      <Card style={styles.card}>
+        {/* @ts-ignore */}
+        <Card.Title
+          title="app language"
+          subtitle="default app interface language"
+        />
+        <Card.Content>
+          <RadioButton.Group
+            onValueChange={updateResultsLanguage}
+            value={languageCode}
+          >
+            {Languages.map((language, index) => (
+              <View key={index}>
+                <RadioButton.Item
+                  label={languageNames[language]}
+                  value={language}
+                  color={colors.accent}
+                />
+              </View>
+            ))}
+          </RadioButton.Group>
+        </Card.Content>
+      </Card>
+      {/* Results Language Setting */}
+      {/* @ts-ignore */}
+      <Card style={styles.card}>
+        {/* @ts-ignore */}
+        <Card.Title
+          title="results language"
+          subtitle="default language of results"
+        />
+        <Card.Content>
+          <RadioButton.Group
+            onValueChange={updateUILanguage}
+            value={languageCodeUI}
+          >
+            {Languages.map((language, index) => (
+              <View key={index}>
+                <RadioButton.Item
+                  label={languageNames[language]}
+                  value={language}
+                  color={colors.accent}
+                />
+              </View>
+            ))}
+          </RadioButton.Group>
+        </Card.Content>
+      </Card>
+    </ScrollView>
   )
 }
 

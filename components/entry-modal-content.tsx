@@ -16,12 +16,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import React, { useContext } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
 import { EntryModalContentProps } from '../lib/interfaces/props'
-import React from 'react'
+import { SettingsContext } from '../context'
 import Stressed from './stressed'
 import colors from '../lib/colors'
+import { ui } from '../lib/i18n'
 
 /**
  * EntryModalContent Component
@@ -29,6 +31,10 @@ import colors from '../lib/colors'
  * Content of the modal which appears when user taps on an entry in the word list
  */
 function EntryModalContent({ entry }: EntryModalContentProps): JSX.Element {
+  const { settingsGlobal } = useContext(SettingsContext)
+  const { languageCodeUI } = settingsGlobal
+  const strings = ui[languageCodeUI].entryModalContent
+
   return (
     <View style={styles.modalContainer}>
       {/* the Na'vi word */}
@@ -39,21 +45,21 @@ function EntryModalContent({ entry }: EntryModalContentProps): JSX.Element {
       {/* part of speech and definition */}
       <View style={styles.modal_group}>
         <Text selectable={true} style={styles.modal_label}>
-          {'part of speech: '}
+          {`${strings.partOfSpeech}: `}
           <Text selectable={true} style={styles.modal_text}>
             {entry.PartOfSpeech}
           </Text>
         </Text>
 
         <Text selectable={true} style={styles.modal_label}>
-          {'definition: '}
+          {`${strings.definition}: `}
           <Text selectable={true} style={styles.modal_text}>
             {entry.EN}
           </Text>
         </Text>
 
         <Text selectable={true} style={styles.modal_label}>
-          {'source: '}
+          {`${strings.source}: `}
           <Text selectable={true} style={styles.modal_text}>
             {entry.Source}
           </Text>
@@ -63,7 +69,7 @@ function EntryModalContent({ entry }: EntryModalContentProps): JSX.Element {
       {/* pronunciation data */}
       <View style={styles.modal_group}>
         <Text selectable={true} style={styles.modal_label}>
-          {'IPA: '}
+          {`${strings.ipa}: `}
           <Text
             selectable={true}
             style={styles.modal_text}
@@ -71,14 +77,14 @@ function EntryModalContent({ entry }: EntryModalContentProps): JSX.Element {
         </Text>
 
         <Text selectable={true} style={styles.modal_label}>
-          {'syllables: '}
+          {`${strings.syllables}: `}
           <Text selectable={true} style={styles.modal_text}>
             <Stressed stressed={entry.Stressed}>{entry.Syllables}</Stressed>
           </Text>
         </Text>
 
         <Text selectable={true} style={styles.modal_label}>
-          {'stressed syllable: '}
+          {`${strings.stressedSyllable}: `}
           <Text selectable={true} style={styles.modal_text}>
             {entry.Stressed}
           </Text>
@@ -89,13 +95,13 @@ function EntryModalContent({ entry }: EntryModalContentProps): JSX.Element {
       {entry.InfixLocations !== 'NULL' && (
         <View style={styles.modal_group}>
           <Text selectable={true} style={styles.modal_label}>
-            {'infix slots: '}
+            {`${strings.infixSlots}: `}
             <Text selectable={true} style={styles.modal_text}>
               {entry.InfixLocations}
             </Text>
           </Text>
           <Text selectable={true} style={styles.modal_label}>
-            {'infix dots: '}
+            {`${strings.infixDots}: `}
             <Text selectable={true} style={styles.modal_text}>
               {entry.InfixDots}
             </Text>
@@ -107,7 +113,7 @@ function EntryModalContent({ entry }: EntryModalContentProps): JSX.Element {
       <View style={styles.modal_group}>
         {entry.Affixes && entry.Affixes.Prefix && (
           <Text selectable={true} style={styles.modal_label}>
-            {'prefixes: '}
+            {`${strings.prefixes}: `}
             <Text selectable={true} style={styles.modal_text}>
               {entry.Affixes.Prefix}
             </Text>
@@ -116,7 +122,7 @@ function EntryModalContent({ entry }: EntryModalContentProps): JSX.Element {
 
         {entry.Affixes && entry.Affixes.Infix && (
           <Text selectable={true} style={styles.modal_label}>
-            {'infixes: '}
+            {`${strings.infixes}: `}
             <Text selectable={true} style={styles.modal_text}>
               {entry.Affixes.Infix}
             </Text>
@@ -125,7 +131,7 @@ function EntryModalContent({ entry }: EntryModalContentProps): JSX.Element {
 
         {entry.Affixes && entry.Affixes.Suffix && (
           <Text selectable={true} style={styles.modal_label}>
-            {'suffixes: '}
+            {`${strings.suffixes}: `}
             <Text selectable={true} style={styles.modal_text}>
               {entry.Affixes.Suffix}
             </Text>
@@ -134,7 +140,7 @@ function EntryModalContent({ entry }: EntryModalContentProps): JSX.Element {
 
         {entry.Affixes && entry.Affixes.Lenition && (
           <Text selectable={true} style={styles.modal_label}>
-            {'lenition: '}
+            {`${strings.lenition}: `}
             <Text selectable={true} style={styles.modal_text}>
               {entry.Affixes.Lenition}
             </Text>

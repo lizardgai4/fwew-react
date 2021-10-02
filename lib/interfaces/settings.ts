@@ -38,6 +38,7 @@ export type LanguageNames = {
 /** Global Application Settings */
 export interface SettingsGlobal {
   languageCode: Language
+  languageCodeUI: Language
 }
 
 /** Global Settings Display Names */

@@ -66,7 +66,8 @@ export const languageNames: LanguageNames = {
  * languageCode: the default language code of the application
  */
 export const settingsGlobal: SettingsGlobal = {
-  languageCode: Language.EN
+  languageCode: Language.EN,
+  languageCodeUI: Language.EN
 }
 
 /**
