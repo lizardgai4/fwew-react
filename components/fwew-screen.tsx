@@ -32,7 +32,7 @@ import ActionBar from './action-bar'
 import EntryModalContent from './entry-modal-content'
 import { FwewError } from '../lib/interfaces/fwew-error'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import Modal from 'react-native-modal'
+import { Modal } from 'react-native-paper'
 import { SettingsContext } from '../context'
 import { Word } from '../lib/interfaces/word'
 import WordList from './word-list'
@@ -202,12 +202,9 @@ const FwewScreen = (): JSX.Element => {
 
           {/* word information modal when user taps an entry in the list */}
           <Modal
-            isVisible={isModalVisible}
-            animationIn="slideInRight"
-            animationOut="slideOutRight"
-            onBackButtonPress={() => toggleModal(selectedItem)}
-            onBackdropPress={() => toggleModal(selectedItem)}
-            backdropTransitionOutTiming={0}
+            visible={isModalVisible}
+            onDismiss={() => toggleModal(selectedItem)}
+            contentContainerStyle={styles.modalContainerStyle}
           >
             <EntryModalContent entry={selectedItem} />
           </Modal>
@@ -259,6 +256,9 @@ const styles = StyleSheet.create({
   },
   activityIndicator: {
     marginTop: 16
+  },
+  modalContainerStyle: {
+    padding: 16
   }
 })
 
