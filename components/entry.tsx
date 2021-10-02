@@ -37,7 +37,7 @@ function Entry({ number, word }: EntryProps) {
   const { Navi, PartOfSpeech, InfixDots, Stressed, Syllables } = word
   const { dataCache, onUpdateDataCache } = useContext(StateContext)
   const { settingsGlobal } = useContext(SettingsContext)
-  const { languageCode, languageCodeUI } = settingsGlobal
+  const { languageCode } = settingsGlobal
 
   const toggleSaved = (): void => {
     const isSaved = includes(dataCache, word)
