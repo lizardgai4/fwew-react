@@ -17,15 +17,13 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { IfProps } from '../lib/interfaces/props'
-import React from 'react'
-import { View } from 'react-native'
 
 /**
  * If component: for easy conditional rendering
  */
 function If({ condition, children }: IfProps): JSX.Element {
   const shouldRender = typeof condition === 'function' ? condition() : condition
-  if (shouldRender) return <View>{children}</View>
+  if (shouldRender) return children
   return null
 }
 
