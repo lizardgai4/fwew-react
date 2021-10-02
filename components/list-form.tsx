@@ -17,8 +17,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { Card, List } from 'react-native-paper'
-import React, { useContext, useState } from 'react'
 import {
+  Dimensions,
   ScrollView,
   StyleSheet,
   Text,
@@ -26,7 +26,9 @@ import {
   TouchableOpacity,
   View
 } from 'react-native'
+import React, { useContext, useState } from 'react'
 
+import Constants from 'expo-constants'
 import { FAB } from 'react-native-paper'
 import If from './if'
 import { ListWCS } from '../lib/interfaces/list-wcs'
@@ -34,6 +36,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { SettingsContext } from '../context'
 import colors from '../lib/colors'
 import { ui } from '../lib/i18n'
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 
 function ListForm(): JSX.Element {
   const { settingsList, settingsGlobal } = useContext(SettingsContext)
@@ -43,6 +46,12 @@ function ListForm(): JSX.Element {
   const [cond, setCond] = useState('')
   const [spec, setSpec] = useState('')
   const [array, setArray] = useState([])
+  const windowHeight = Dimensions.get('window').height
+  const statusBarHeight = Constants.statusBarHeight
+  const actionBarHeight = 56
+  const tabBarHeight = useBottomTabBarHeight()
+  const scrollViewHeight =
+    windowHeight - statusBarHeight - actionBarHeight - tabBarHeight
 
   const deleteItem = (index: number): void => {
     const newArray = [
@@ -86,16 +95,17 @@ function ListForm(): JSX.Element {
 
   return (
     <View>
-      <ScrollView style={styles.listFormContainer}>
+      <ScrollView style={{ height: scrollViewHeight }}>
         {array.map((wcs, idx) => (
           // @ts-ignore
           <Card style={styles.card} key={`${idx}_wcs`}>
             {/* @ts-ignore */}
             <Card.Title title={idx === 0 ? 'list...' : 'and...'} />
             <Card.Content>
-              <Text
-                style={styles.selections}
-              >{`${wcs.what} ${wcs.cond} ${wcs.spec}`}</Text>
+              <Text style={styles.selections}>
+                {`${wcs.what && strings[wcs.what]} ${wcs.cond &&
+                  strings[wcs.cond]} ${wcs.spec}`}
+              </Text>
               <View>
                 <If condition={!wcs.what}>
                   <View>
@@ -135,9 +145,13 @@ function ListForm(): JSX.Element {
                   />
                 </If>
                 <View style={styles.buttonGroup}>
-                  <If condition={!!wcs.what || !!wcs.cond || !!wcs.spec}>
+                  <If
+                    condition={
+                      idx !== 0 || !!wcs.what || !!wcs.cond || !!wcs.spec
+                    }
+                  >
                     <TouchableOpacity
-                      style={styles.buttonClear}
+                      style={styles.buttonDelete}
                       onPress={() => deleteItem(idx)}
                     >
                       <Text style={styles.buttonText}>delete</Text>
@@ -145,7 +159,10 @@ function ListForm(): JSX.Element {
                   </If>
                   <If
                     condition={
-                      idx === array.length - 1 && !!what && !!cond && !!spec
+                      idx === array.length - 1 &&
+                      !!wcs.what &&
+                      !!wcs.cond &&
+                      !!wcs.spec
                     }
                   >
                     <TouchableOpacity style={styles.buttonSearch}>
@@ -171,9 +188,6 @@ function ListForm(): JSX.Element {
 }
 
 const styles = StyleSheet.create({
-  listFormContainer: {
-    height: '92%'
-  },
   card: {
     margin: 16,
     borderRadius: 16,
@@ -196,9 +210,9 @@ const styles = StyleSheet.create({
   buttonGroup: {
     marginTop: 16,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'flex-end'
   },
-  buttonClear: {
+  buttonDelete: {
     alignItems: 'center',
     justifyContent: 'center',
     width: 80,
@@ -213,6 +227,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: 80,
     height: 48,
+    marginLeft: 16,
     backgroundColor: colors.accent,
     borderWidth: 1,
     borderColor: colors.accentDark,
