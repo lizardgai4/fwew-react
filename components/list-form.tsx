@@ -73,46 +73,16 @@ function ListForm(): JSX.Element {
           </Text>
           <If condition={!what}>
             <View>
-              {/* @ts-ignore */}
-              <List.Item
-                title={strings.word}
-                onPress={() => setWhat('word')}
-                right={(_props) => (
-                  <MaterialIcons name="chevron-right" size={28} />
-                )}
-              />
-              {/* @ts-ignore */}
-              <List.Item
-                title={strings.pos}
-                onPress={() => setWhat('pos')}
-                right={(_props) => (
-                  <MaterialIcons name="chevron-right" size={28} />
-                )}
-              />
-              {/* @ts-ignore */}
-              <List.Item
-                title={strings.syllables}
-                onPress={() => setWhat('syllables')}
-                right={(_props) => (
-                  <MaterialIcons name="chevron-right" size={28} />
-                )}
-              />
-              {/* @ts-ignore */}
-              <List.Item
-                title={strings.stress}
-                onPress={() => setWhat('stress')}
-                right={(_props) => (
-                  <MaterialIcons name="chevron-right" size={28} />
-                )}
-              />
-              {/* @ts-ignore */}
-              <List.Item
-                title={strings.words}
-                onPress={() => setWhat('words')}
-                right={(_props) => (
-                  <MaterialIcons name="chevron-right" size={28} />
-                )}
-              />
+              {Object.keys(settingsList).map((item, idx) => (
+                <List.Item
+                  key={`${idx}_what`}
+                  title={strings[item]}
+                  onPress={() => setWhat(item)}
+                  right={(_props) => (
+                    <MaterialIcons name="chevron-right" size={28} />
+                  )}
+                />
+              ))}
             </View>
           </If>
           <View>
