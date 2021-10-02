@@ -29,6 +29,7 @@ import {
 
 import { FAB } from 'react-native-paper'
 import If from './if'
+import { ListWCS } from '../lib/interfaces/list-wcs'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { SettingsContext } from '../context'
 import colors from '../lib/colors'
@@ -43,12 +44,6 @@ function ListForm(): JSX.Element {
   const [spec, setSpec] = useState('')
   const [array, setArray] = useState([])
 
-  interface ListWCS {
-    what: string
-    cond: string
-    spec: string
-  }
-
   const clearValues = (): void => {
     setWhat('')
     setCond('')
@@ -56,81 +51,126 @@ function ListForm(): JSX.Element {
     setArray([])
   }
 
-  const add = (item: ListWCS): void => {
-    setArray([...array, item])
+  const deleteItem = (index: number): void => {
+    const newArray = [
+      ...array.slice(0, index),
+      ...array.slice(index + 1, array.length)
+    ]
+    setWhat('')
+    setCond('')
+    setSpec('')
+    setArray(newArray)
+  }
+
+  const updateWhat = (index: number, what: string): void => {
+    const newArray = [...array]
+    newArray[index].what = what
+    setWhat(what)
+    setArray(newArray)
+  }
+
+  const updateCond = (index: number, cond: string): void => {
+    const newArray = [...array]
+    newArray[index].cond = cond
+    setCond(cond)
+    setArray(newArray)
+  }
+
+  const updateSpec = (index: number, spec: string): void => {
+    const newArray = [...array]
+    newArray[index].spec = spec
+    setSpec(spec)
+    setArray(newArray)
+  }
+
+  const add = (): void => {
+    setWhat('')
+    setCond('')
+    setSpec('')
+    const newWcs = { what: '', cond: '', spec: '' }
+    setArray([...array, newWcs])
   }
 
   return (
-    <View style={styles.listFormContainer}>
-      {/* @ts-ignore */}
-      <Card style={styles.card}>
+    <View>
+      <ScrollView style={styles.listFormContainer}>
+        {array.map((wcs, idx) => (
+          // @ts-ignore
+          <Card style={styles.card} key={`${idx}_wcs`}>
+            {/* @ts-ignore */}
+            <Card.Title title={idx === 0 ? 'list...' : 'and...'} />
+            <Card.Content>
+              <Text
+                style={styles.selections}
+              >{`${wcs.what} ${wcs.cond} ${wcs.spec}`}</Text>
+              <View>
+                <If condition={!wcs.what}>
+                  <View>
+                    {Object.keys(settingsList).map((item, index) => (
+                      <List.Item
+                        key={`${index}_what`}
+                        title={strings[item]}
+                        onPress={() => updateWhat(idx, item)}
+                        right={(_props) => (
+                          <MaterialIcons name="chevron-right" size={28} />
+                        )}
+                      />
+                    ))}
+                  </View>
+                </If>
+                <View>
+                  {!!wcs.what &&
+                    !wcs.cond &&
+                    Object.keys(settingsList[wcs.what]).map((item, index) => (
+                      // @ts-ignore
+                      <List.Item
+                        key={`${index}_cond`}
+                        title={strings[item]}
+                        onPress={() => updateCond(idx, item)}
+                        right={(_props) => (
+                          <MaterialIcons name="chevron-right" size={28} />
+                        )}
+                      />
+                    ))}
+                </View>
+                <If condition={!!what && !!cond}>
+                  <TextInput
+                    style={styles.textInput}
+                    value={wcs.spec}
+                    onChangeText={(text) => updateSpec(idx, text)}
+                  />
+                </If>
+                <View style={styles.buttonGroup}>
+                  <If condition={!!wcs.what || !!wcs.cond || !!wcs.spec}>
+                    <TouchableOpacity
+                      style={styles.buttonClear}
+                      onPress={() => deleteItem(idx)}
+                    >
+                      <Text style={styles.buttonText}>delete</Text>
+                    </TouchableOpacity>
+                  </If>
+                  <If
+                    condition={
+                      idx === array.length - 1 && !!what && !!cond && !!spec
+                    }
+                  >
+                    <TouchableOpacity style={styles.buttonSearch}>
+                      <Text style={styles.buttonText}>search</Text>
+                    </TouchableOpacity>
+                  </If>
+                </View>
+              </View>
+            </Card.Content>
+          </Card>
+        ))}
         {/* @ts-ignore */}
-        <Card.Title title={'list...'} />
-        <Card.Content>
-          <Text style={styles.selections}>{`${what} ${cond} ${spec}`}</Text>
-          <Text>
-            {array.map((wcs) => `${wcs.what} ${wcs.cond} ${wcs.spec} `)}
-          </Text>
-          <If condition={!what}>
-            <View>
-              {Object.keys(settingsList).map((item, idx) => (
-                <List.Item
-                  key={`${idx}_what`}
-                  title={strings[item]}
-                  onPress={() => setWhat(item)}
-                  right={(_props) => (
-                    <MaterialIcons name="chevron-right" size={28} />
-                  )}
-                />
-              ))}
-            </View>
-          </If>
-          <View>
-            {!!what &&
-              !cond &&
-              Object.keys(settingsList[what]).map((item, idx) => (
-                // @ts-ignore
-                <List.Item
-                  key={idx}
-                  title={item}
-                  onPress={() => setCond(item)}
-                  right={(_props) => (
-                    <MaterialIcons name="chevron-right" size={28} />
-                  )}
-                />
-              ))}
-          </View>
-          <If condition={!!what && !!cond}>
-            <TextInput
-              style={styles.textInput}
-              value={spec}
-              onChangeText={(text) => setSpec(text)}
-            />
-          </If>
-          <View style={styles.buttonGroup}>
-            <If condition={!!what || !!cond || !!spec}>
-              <TouchableOpacity
-                style={styles.buttonClear}
-                onPress={clearValues}
-              >
-                <Text style={styles.buttonText}>clear</Text>
-              </TouchableOpacity>
-            </If>
-            <If condition={!!what && !!cond && !!spec}>
-              <TouchableOpacity style={styles.buttonSearch}>
-                <Text style={styles.buttonText}>search</Text>
-              </TouchableOpacity>
-            </If>
-          </View>
-        </Card.Content>
-      </Card>
-      {/* @ts-ignore */}
+      </ScrollView>
       <FAB
         style={styles.fab}
         color={colors.buttonText}
         icon="plus"
-        onPress={() => add({ what, cond, spec })}
-        visible={!!what && !!cond && !!spec}
+        onPress={add}
+        visible={!what || !!spec}
       />
     </View>
   )
