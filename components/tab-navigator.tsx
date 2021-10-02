@@ -76,7 +76,8 @@ function TabNavigator(): JSX.Element {
         ],
         tabBarIconStyle: { marginTop: 4 },
         tabBarItemStyle: { paddingBottom: 4 },
-        headerShown: false
+        headerShown: false,
+        tabBarHideOnKeyboard: true
       })}
     >
       <Tab.Screen name="Fwew" component={FwewScreen} />
