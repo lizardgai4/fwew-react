@@ -92,3 +92,11 @@ export interface WordListProps {
   toggleModal: (item: Word) => void
   posFilterEnabled: boolean
 }
+
+/**
+ * props for If component
+ */
+export interface IfProps {
+  condition: (() => boolean) | boolean
+  children: JSX.Element | JSX.Element[]
+}
