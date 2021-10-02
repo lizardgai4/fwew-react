@@ -17,6 +17,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import React, { useContext } from 'react'
+import { SettingsContext, StateContext } from '../context'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { deleteById, includes } from '../lib'
 
@@ -24,7 +25,6 @@ import EntryBreakdown from './entry-breakdown'
 import EntryIndex from './entry-index'
 import { EntryProps } from '../lib/interfaces/props'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import { StateContext } from '../context'
 import { Word } from '../lib/interfaces/word'
 import colors from '../lib/colors'
 
@@ -34,8 +34,10 @@ import colors from '../lib/colors'
  * a list row entry item
  */
 function Entry({ number, word }: EntryProps) {
-  const { Navi, PartOfSpeech, InfixDots, Stressed, Syllables, EN } = word
+  const { Navi, PartOfSpeech, InfixDots, Stressed, Syllables } = word
   const { dataCache, onUpdateDataCache } = useContext(StateContext)
+  const { settingsGlobal } = useContext(SettingsContext)
+  const { languageCode, languageCodeUI } = settingsGlobal
 
   const toggleSaved = (): void => {
     const isSaved = includes(dataCache, word)
@@ -81,7 +83,7 @@ function Entry({ number, word }: EntryProps) {
         </Text>
       </View>
       <Text numberOfLines={1} selectable={true} style={styles.entry_en}>
-        {EN}
+        {word[languageCode.toUpperCase()]}
       </Text>
     </View>
   )
