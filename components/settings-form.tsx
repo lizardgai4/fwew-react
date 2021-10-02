@@ -60,8 +60,8 @@ function SettingsForm(): JSX.Element {
         />
         <Card.Content>
           <RadioButton.Group
-            onValueChange={updateResultsLanguage}
-            value={languageCode}
+            onValueChange={updateUILanguage}
+            value={languageCodeUI}
           >
             {Languages.map((language, index) => (
               <View key={index}>
@@ -85,8 +85,8 @@ function SettingsForm(): JSX.Element {
         />
         <Card.Content>
           <RadioButton.Group
-            onValueChange={updateUILanguage}
-            value={languageCodeUI}
+            onValueChange={updateResultsLanguage}
+            value={languageCode}
           >
             {Languages.map((language, index) => (
               <View key={index}>
