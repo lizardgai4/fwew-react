@@ -94,7 +94,7 @@ function ListForm(): JSX.Element {
   }
 
   return (
-    <View>
+    <View style={styles.mainView}>
       <ScrollView style={{ height: scrollViewHeight }}>
         {array.map((wcs, idx) => (
           // @ts-ignore
@@ -188,8 +188,12 @@ function ListForm(): JSX.Element {
 }
 
 const styles = StyleSheet.create({
+  mainView: {
+    marginTop: 8
+  },
   card: {
-    margin: 16,
+    marginVertical: 8,
+    marginHorizontal: 16,
     borderRadius: 16,
     borderColor: colors.secondary,
     borderWidth: 1.5,
