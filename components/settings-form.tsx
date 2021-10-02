@@ -54,7 +54,7 @@ function SettingsForm(): JSX.Element {
         {/* @ts-ignore */}
         <Card.Title
           title="app language"
-          subtitle="default app interface language"
+          subtitle="default language of app interface"
         />
         <Card.Content>
           <RadioButton.Group
