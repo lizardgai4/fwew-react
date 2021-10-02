@@ -227,7 +227,8 @@ const styles = StyleSheet.create({
     marginTop: 16
   },
   modalContainerStyle: {
-    padding: 16
+    padding: 16,
+    shadowOpacity: 0
   }
 })
 

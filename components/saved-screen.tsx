@@ -22,7 +22,7 @@ import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native'
 import ActionBar from './action-bar'
 import EntryModalContent from './entry-modal-content'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import Modal from 'react-native-modal'
+import { Modal } from 'react-native-paper'
 import { StateContext } from '../context'
 import { Word } from '../lib/interfaces/word'
 import WordList from './word-list'
@@ -88,12 +88,9 @@ function SavedScreen(): JSX.Element {
 
           {/* word information modal when user taps an entry in the list */}
           <Modal
-            isVisible={isModalVisible}
-            animationIn="slideInRight"
-            animationOut="slideOutRight"
-            onBackButtonPress={() => toggleModal(selectedItem)}
-            onBackdropPress={() => toggleModal(selectedItem)}
-            backdropTransitionOutTiming={0}
+            visible={isModalVisible}
+            onDismiss={() => toggleModal(selectedItem)}
+            contentContainerStyle={styles.modalContainerStyle}
           >
             <EntryModalContent entry={selectedItem} />
           </Modal>
@@ -134,6 +131,10 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginLeft: 16,
     marginRight: 16
+  },
+  modalContainerStyle: {
+    padding: 16,
+    shadowOpacity: 0
   }
 })
 
