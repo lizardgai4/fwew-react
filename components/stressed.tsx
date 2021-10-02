@@ -29,6 +29,8 @@ import Underline from './underline'
  * A Text element of given syllabification with stressed syllable underlined
  */
 function Stressed({ stressed, children }: StressedProps): JSX.Element {
+  if (!stressed || !children) return null
+
   const syllables = children
 
   if (!syllables.includes('-')) {
