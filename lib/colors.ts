@@ -51,7 +51,6 @@ const colors: ColorConfig = {
   inputCloseButton: '#ccc',
   entryIndexIconFill: '#fff',
   infoMessageIcon: '#98b0cd',
-  // accent: '#7cba74',
   accent: '#9dd197',
   accentDark: '#64a853'
 }
