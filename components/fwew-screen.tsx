@@ -38,6 +38,8 @@ import { Word } from '../lib/interfaces/word'
 import WordList from './word-list'
 import axios from 'axios'
 import colors from '../lib/colors'
+import { languageNames } from '../lib/settings'
+import { ui } from '../lib/i18n'
 
 /**
  * FwewScreen Component
@@ -55,6 +57,9 @@ const FwewScreen = (): JSX.Element => {
     SettingsContext
   )
   const { isReverseEnabled } = settingsFwew
+  const { languageCodeUI } = settingsGlobal
+  const strings = ui[languageCodeUI].fwewScreen
+  const languageUIName = languageNames[languageCodeUI]
 
   // toggles info modal visible when user taps a list entry or modal backdrop
   const toggleModal = (item: Word): void => {
@@ -125,7 +130,7 @@ const FwewScreen = (): JSX.Element => {
 
   // sets the search bar placeholder text depending on the currently selected tab / screen
   const getInputPlaceholderText = (): string => {
-    return `search ${isReverseEnabled ? 'English' : "Na'vi"}...`
+    return `${strings.search} ${isReverseEnabled ? languageUIName : "Na'vi"}...`
   }
 
   return (

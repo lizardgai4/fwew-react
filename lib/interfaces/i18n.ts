@@ -36,9 +36,15 @@ interface EntryModalContentStrings {
   lenition: string
 }
 
+/** interface for FwewScreen component strings */
+interface FwewScreenStrings {
+  search: string
+}
+
 /** type for Internationalized UI */
 export type UI = {
   [k in Language]: {
     entryModalContent: EntryModalContentStrings
+    fwewScreen: FwewScreenStrings
   }
 }

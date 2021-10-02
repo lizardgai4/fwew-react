@@ -34,6 +34,9 @@ export const ui: UI = {
       infixes: 'Infixe',
       suffixes: 'Suffixe',
       lenition: 'Lenition'
+    },
+    fwewScreen: {
+      search: 'suche auf'
     }
   },
   en: {
@@ -50,6 +53,9 @@ export const ui: UI = {
       infixes: 'infixes',
       suffixes: 'suffixes',
       lenition: 'lenition'
+    },
+    fwewScreen: {
+      search: 'search'
     }
   },
   et: {
@@ -66,6 +72,9 @@ export const ui: UI = {
       infixes: 'infixes',
       suffixes: 'suffixes',
       lenition: 'lenition'
+    },
+    fwewScreen: {
+      search: 'search'
     }
   },
   fr: {
@@ -82,6 +91,9 @@ export const ui: UI = {
       infixes: 'infixes',
       suffixes: 'suffixes',
       lenition: 'lenition'
+    },
+    fwewScreen: {
+      search: 'search'
     }
   },
   hu: {
@@ -98,6 +110,9 @@ export const ui: UI = {
       infixes: 'infixes',
       suffixes: 'suffixes',
       lenition: 'lenition'
+    },
+    fwewScreen: {
+      search: 'search'
     }
   },
   nl: {
@@ -114,6 +129,9 @@ export const ui: UI = {
       infixes: 'infixes',
       suffixes: 'suffixes',
       lenition: 'lenition'
+    },
+    fwewScreen: {
+      search: 'search'
     }
   },
   pl: {
@@ -130,6 +148,9 @@ export const ui: UI = {
       infixes: 'infixes',
       suffixes: 'suffixes',
       lenition: 'lenition'
+    },
+    fwewScreen: {
+      search: 'search'
     }
   },
   ru: {
@@ -146,6 +167,9 @@ export const ui: UI = {
       infixes: 'infixes',
       suffixes: 'suffixes',
       lenition: 'lenition'
+    },
+    fwewScreen: {
+      search: 'search'
     }
   },
   sv: {
@@ -162,6 +186,9 @@ export const ui: UI = {
       infixes: 'infixes',
       suffixes: 'suffixes',
       lenition: 'lenition'
+    },
+    fwewScreen: {
+      search: 'search'
     }
   }
 }
