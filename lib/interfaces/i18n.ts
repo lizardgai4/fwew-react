@@ -16,7 +16,24 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Language } from './settings'
+
+/** Supported Language codes */
+export enum Language {
+  DE = 'de', // Deutsch
+  EN = 'en', // English
+  ET = 'et', // Eesti
+  FR = 'fr', // Français
+  HU = 'hu', // Magyar
+  NL = 'nl', // Nederlands
+  PL = 'pl', // Polski
+  RU = 'ru', // Русский
+  SV = 'sv' // Svenska
+}
+
+/** type for languageNames, the array of language display names */
+export type LanguageNames = {
+  [K in Language]: string
+}
 
 /** Internationalized UI strings */
 
@@ -47,4 +64,25 @@ export type UI = {
     entryModalContent: EntryModalContentStrings
     fwewScreen: FwewScreenStrings
   }
+}
+
+/** Fwew Settings Display Names */
+export interface SettingsFwewDisplayNames {
+  isReverseEnabled: string
+  posFilterText: string
+}
+
+/** List Settings items display names */
+export interface SettingsListOperatorDisplayNames {
+  word: string
+  pos: string
+  syllables: string
+  stress: string
+  words: string
+}
+
+/** Random Settings items display names */
+export interface SettingsRandomOperatorDisplayNames
+  extends SettingsListOperatorDisplayNames {
+  numRandomWords: string
 }

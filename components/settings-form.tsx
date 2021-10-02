@@ -16,16 +16,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import { Card, RadioButton } from 'react-native-paper'
+import { Languages, languageNames } from '../lib/i18n'
 import React, { useContext } from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
 
-import { Card } from 'react-native-paper'
-import { Language } from '../lib/interfaces/settings'
-import { Languages } from '../lib/settings'
-import { RadioButton } from 'react-native-paper'
+import { Language } from '../lib/interfaces/i18n'
 import { SettingsContext } from '../context'
 import colors from '../lib/colors'
-import { languageNames } from '../lib/settings'
 
 /**
  * SettingsForm Component

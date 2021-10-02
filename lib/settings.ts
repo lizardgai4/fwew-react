@@ -16,49 +16,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
 import {
-  Language,
   SettingsFwew,
-  SettingsFwewDisplayNames,
   SettingsGlobal,
-  SettingsGlobalDisplayNames,
   SettingsList,
-  SettingsListOperatorDisplayNames,
-  SettingsRandom,
-  SettingsRandomOperatorDisplayNames
-} from '../lib/interfaces/settings'
+  SettingsRandom
+} from './interfaces/settings'
 
-import { LanguageNames } from '../lib/interfaces/settings'
+import { Language } from './interfaces/i18n'
 
-// the root endpoint of the Fwew API
-// see https://github.com/fwew/fwew-api for more info about the API
+/**
+ * the root endpoint of the Fwew API
+ * see https://github.com/fwew/fwew-api for more info about the API
+ */
 export const apiRoot: string = 'https://tirea.learnnavi.org/api'
-
-/** Array of all supported language codes */
-export const Languages: Language[] = [
-  Language.DE,
-  Language.EN,
-  Language.ET,
-  Language.FR,
-  Language.HU,
-  Language.NL,
-  Language.PL,
-  Language.RU,
-  Language.SV
-]
-
-export const languageNames: LanguageNames = {
-  de: `Deutsch`,
-  en: `English`,
-  et: `Eesti`,
-  fr: `Français`,
-  hu: `Magyar`,
-  nl: `Nederlands`,
-  pl: `Polski`,
-  ru: `Русский`,
-  sv: `Svenska`
-}
 
 /**
  * Global settings
@@ -71,13 +42,6 @@ export const settingsGlobal: SettingsGlobal = {
 }
 
 /**
- * Global settings items display names
- */
-export const settingsGlobalDisplayNames: SettingsGlobalDisplayNames = {
-  languageCode: 'language code'
-}
-
-/**
  * Fwew Settings
  *
  * isReverseEnabled: the default search direction
@@ -86,14 +50,6 @@ export const settingsGlobalDisplayNames: SettingsGlobalDisplayNames = {
 export const settingsFwew: SettingsFwew = {
   isReverseEnabled: false,
   posFilterText: 'all'
-}
-
-/**
- * Fwew Settings items display names
- */
-export const settingsFwewDisplayNames: SettingsFwewDisplayNames = {
-  isReverseEnabled: 'reverse',
-  posFilterText: 'part of speech filter'
 }
 
 /**
@@ -147,63 +103,6 @@ export const settingsList: SettingsList = {
 }
 
 /**
- * List Settings item display names
- */
-export const settingsListDisplayNames: SettingsList = {
-  word: {
-    starts: 'starts with',
-    ends: 'ends with',
-    has: 'has',
-    like: 'is like',
-    notStarts: 'does not start with',
-    notEnds: 'does not end with',
-    notHas: 'does not have',
-    notLike: 'is not like'
-  },
-  pos: {
-    starts: 'starts with',
-    ends: 'ends with',
-    is: 'is exactly',
-    has: 'has',
-    like: 'is like',
-    notStarts: 'does not start with',
-    notEnds: 'does not end with',
-    notIs: 'is exactly not',
-    notHas: 'does not have',
-    notLike: 'is not like'
-  },
-  syllables: {
-    lessThan: 'less than (<)',
-    lessThanEqual: 'at most (≤)',
-    equal: 'exactly (=)',
-    greaterThanEqual: 'at least (≥)',
-    greaterThan: 'more than (>)',
-    notEqual: 'exactly not (≠)'
-  },
-  stress: {
-    lessThan: 'less than (<)',
-    lessThanEqual: 'at most (≤)',
-    equal: 'exactly (=)',
-    greaterThanEqual: 'at least (≥)',
-    greaterThan: 'more than (>)',
-    notEqual: 'exactly not (≠)'
-  },
-  words: {
-    first: 'first #',
-    last: 'last #'
-  }
-}
-
-/** List Settings items display names */
-export const settingsListOperatorDisplayNames: SettingsListOperatorDisplayNames = {
-  word: 'word shape',
-  pos: 'part of speech',
-  syllables: 'number of syllables',
-  stress: 'stressed syllable',
-  words: 'words released'
-}
-
-/**
  * Random Settings
  *
  * values for each what/cond/spec in Random
@@ -252,63 +151,4 @@ export const settingsRandom: SettingsRandom = {
     first: '0',
     last: '0'
   }
-}
-
-/**
- * Random Settings item display names
- */
-export const settingsRandomDisplayNames = {
-  numRandomWords: '# random words',
-  word: {
-    starts: 'starts with',
-    ends: 'ends with',
-    has: 'has',
-    like: 'is like',
-    notStarts: 'does not start with',
-    notEnds: 'does not end with',
-    notHas: 'does not have',
-    notLike: 'is not like'
-  },
-  pos: {
-    starts: 'starts with',
-    ends: 'ends with',
-    is: 'is exactly',
-    has: 'has',
-    like: 'is like',
-    notStarts: 'does not start with',
-    notEnds: 'does not end with',
-    notIs: 'is exactly not',
-    notHas: 'does not have',
-    notLike: 'is not like'
-  },
-  syllables: {
-    lessThan: 'less than (<)',
-    lessThanEqual: 'at most (≤)',
-    equal: 'exactly (=)',
-    greaterThanEqual: 'at least (≥)',
-    greaterThan: 'more than (>)',
-    notEqual: 'exactly not (≠)'
-  },
-  stress: {
-    lessThan: 'less than (<)',
-    lessThanEqual: 'at most (≤)',
-    equal: 'exactly (=)',
-    greaterThanEqual: 'at least (≥)',
-    greaterThan: 'more than (>)',
-    notEqual: 'exactly not (≠)'
-  },
-  words: {
-    first: 'first #',
-    last: 'last #'
-  }
-}
-
-/** List Settings items display names */
-export const settingsRandomOperatorDisplayNames: SettingsRandomOperatorDisplayNames = {
-  numRandomWords: 'number of random words',
-  word: 'word shape',
-  pos: 'part of speech',
-  syllables: 'number of syllables',
-  stress: 'stressed syllable',
-  words: 'words released'
 }

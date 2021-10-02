@@ -38,7 +38,7 @@ import { Word } from '../lib/interfaces/word'
 import WordList from './word-list'
 import axios from 'axios'
 import colors from '../lib/colors'
-import { languageNames } from '../lib/settings'
+import { languageNames } from '../lib/i18n'
 import { ui } from '../lib/i18n'
 
 /**

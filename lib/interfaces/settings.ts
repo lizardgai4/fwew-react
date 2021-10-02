@@ -16,24 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-
-/** Supported Language codes */
-export enum Language {
-  DE = 'de', // Deutsch
-  EN = 'en', // English
-  ET = 'et', // Eesti
-  FR = 'fr', // Français
-  HU = 'hu', // Magyar
-  NL = 'nl', // Nederlands
-  PL = 'pl', // Polski
-  RU = 'ru', // Русский
-  SV = 'sv' // Svenska
-}
-
-/** type for languageNames, the array of language display names */
-export type LanguageNames = {
-  [K in Language]: string
-}
+import { Language } from './i18n'
 
 /** Global Application Settings */
 export interface SettingsGlobal {
@@ -41,20 +24,9 @@ export interface SettingsGlobal {
   languageCodeUI: Language
 }
 
-/** Global Settings Display Names */
-export interface SettingsGlobalDisplayNames {
-  languageCode: string
-}
-
 /** Fwew Screen Settings */
 export interface SettingsFwew {
   isReverseEnabled: boolean
-  posFilterText: string
-}
-
-/** Fwew Settings Display Names */
-export interface SettingsFwewDisplayNames {
-  isReverseEnabled: string
   posFilterText: string
 }
 
@@ -101,22 +73,7 @@ export interface SettingsList {
   words: ListWordsOptions
 }
 
-/** List Settings items display names */
-export interface SettingsListOperatorDisplayNames {
-  word: string
-  pos: string
-  syllables: string
-  stress: string
-  words: string
-}
-
 /** Random Screen Settings */
 export interface SettingsRandom extends SettingsList {
-  numRandomWords: string
-}
-
-/** Random Settings items display names */
-export interface SettingsRandomOperatorDisplayNames
-  extends SettingsListOperatorDisplayNames {
   numRandomWords: string
 }
