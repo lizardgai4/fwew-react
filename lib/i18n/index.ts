@@ -16,16 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import {
-  Language,
-  LanguageNames,
-  SettingsFwewDisplayNames,
-  SettingsListOperatorDisplayNames,
-  SettingsRandomOperatorDisplayNames,
-  UI
-} from '../interfaces/i18n'
-
-import { SettingsList } from '../interfaces/settings'
+import { Language, LanguageNames, UI } from '../interfaces/i18n'
 
 /** Array of all supported language codes */
 export const Languages: Language[] = [
@@ -71,6 +62,32 @@ export const ui: UI = {
     },
     fwewScreen: {
       search: 'suche auf'
+    },
+    listRandomForm: {
+      word: 'word shape',
+      pos: 'part of speech',
+      syllables: 'number of syllables',
+      stress: 'stressed syllable',
+      words: 'words released',
+      starts: 'starts with',
+      ends: 'ends with',
+      is: 'is exactly',
+      has: 'has',
+      like: 'is like',
+      notStarts: 'does not start with',
+      notEnds: 'does not end with',
+      notIs: 'is exactly not',
+      notHas: 'does not have',
+      notLike: 'is not like',
+      lessThan: 'less than (<)',
+      lessThanEqual: 'at most (≤)',
+      equal: 'exactly (=)',
+      greaterThanEqual: 'at least (≥)',
+      greaterThan: 'more than (>)',
+      notEqual: 'exactly not (≠)',
+      first: 'first #',
+      last: 'last #',
+      numRandomWords: '# random words'
     }
   },
   en: {
@@ -90,6 +107,32 @@ export const ui: UI = {
     },
     fwewScreen: {
       search: 'search'
+    },
+    listRandomForm: {
+      word: 'word shape',
+      pos: 'part of speech',
+      syllables: 'number of syllables',
+      stress: 'stressed syllable',
+      words: 'words released',
+      starts: 'starts with',
+      ends: 'ends with',
+      is: 'is exactly',
+      has: 'has',
+      like: 'is like',
+      notStarts: 'does not start with',
+      notEnds: 'does not end with',
+      notIs: 'is exactly not',
+      notHas: 'does not have',
+      notLike: 'is not like',
+      lessThan: 'less than (<)',
+      lessThanEqual: 'at most (≤)',
+      equal: 'exactly (=)',
+      greaterThanEqual: 'at least (≥)',
+      greaterThan: 'more than (>)',
+      notEqual: 'exactly not (≠)',
+      first: 'first #',
+      last: 'last #',
+      numRandomWords: '# random words'
     }
   },
   et: {
@@ -109,6 +152,32 @@ export const ui: UI = {
     },
     fwewScreen: {
       search: 'search'
+    },
+    listRandomForm: {
+      word: 'word shape',
+      pos: 'part of speech',
+      syllables: 'number of syllables',
+      stress: 'stressed syllable',
+      words: 'words released',
+      starts: 'starts with',
+      ends: 'ends with',
+      is: 'is exactly',
+      has: 'has',
+      like: 'is like',
+      notStarts: 'does not start with',
+      notEnds: 'does not end with',
+      notIs: 'is exactly not',
+      notHas: 'does not have',
+      notLike: 'is not like',
+      lessThan: 'less than (<)',
+      lessThanEqual: 'at most (≤)',
+      equal: 'exactly (=)',
+      greaterThanEqual: 'at least (≥)',
+      greaterThan: 'more than (>)',
+      notEqual: 'exactly not (≠)',
+      first: 'first #',
+      last: 'last #',
+      numRandomWords: '# random words'
     }
   },
   fr: {
@@ -128,6 +197,32 @@ export const ui: UI = {
     },
     fwewScreen: {
       search: 'search'
+    },
+    listRandomForm: {
+      word: 'word shape',
+      pos: 'part of speech',
+      syllables: 'number of syllables',
+      stress: 'stressed syllable',
+      words: 'words released',
+      starts: 'starts with',
+      ends: 'ends with',
+      is: 'is exactly',
+      has: 'has',
+      like: 'is like',
+      notStarts: 'does not start with',
+      notEnds: 'does not end with',
+      notIs: 'is exactly not',
+      notHas: 'does not have',
+      notLike: 'is not like',
+      lessThan: 'less than (<)',
+      lessThanEqual: 'at most (≤)',
+      equal: 'exactly (=)',
+      greaterThanEqual: 'at least (≥)',
+      greaterThan: 'more than (>)',
+      notEqual: 'exactly not (≠)',
+      first: 'first #',
+      last: 'last #',
+      numRandomWords: '# random words'
     }
   },
   hu: {
@@ -147,6 +242,32 @@ export const ui: UI = {
     },
     fwewScreen: {
       search: 'search'
+    },
+    listRandomForm: {
+      word: 'word shape',
+      pos: 'part of speech',
+      syllables: 'number of syllables',
+      stress: 'stressed syllable',
+      words: 'words released',
+      starts: 'starts with',
+      ends: 'ends with',
+      is: 'is exactly',
+      has: 'has',
+      like: 'is like',
+      notStarts: 'does not start with',
+      notEnds: 'does not end with',
+      notIs: 'is exactly not',
+      notHas: 'does not have',
+      notLike: 'is not like',
+      lessThan: 'less than (<)',
+      lessThanEqual: 'at most (≤)',
+      equal: 'exactly (=)',
+      greaterThanEqual: 'at least (≥)',
+      greaterThan: 'more than (>)',
+      notEqual: 'exactly not (≠)',
+      first: 'first #',
+      last: 'last #',
+      numRandomWords: '# random words'
     }
   },
   nl: {
@@ -166,6 +287,32 @@ export const ui: UI = {
     },
     fwewScreen: {
       search: 'search'
+    },
+    listRandomForm: {
+      word: 'word shape',
+      pos: 'part of speech',
+      syllables: 'number of syllables',
+      stress: 'stressed syllable',
+      words: 'words released',
+      starts: 'starts with',
+      ends: 'ends with',
+      is: 'is exactly',
+      has: 'has',
+      like: 'is like',
+      notStarts: 'does not start with',
+      notEnds: 'does not end with',
+      notIs: 'is exactly not',
+      notHas: 'does not have',
+      notLike: 'is not like',
+      lessThan: 'less than (<)',
+      lessThanEqual: 'at most (≤)',
+      equal: 'exactly (=)',
+      greaterThanEqual: 'at least (≥)',
+      greaterThan: 'more than (>)',
+      notEqual: 'exactly not (≠)',
+      first: 'first #',
+      last: 'last #',
+      numRandomWords: '# random words'
     }
   },
   pl: {
@@ -185,6 +332,32 @@ export const ui: UI = {
     },
     fwewScreen: {
       search: 'search'
+    },
+    listRandomForm: {
+      word: 'word shape',
+      pos: 'part of speech',
+      syllables: 'number of syllables',
+      stress: 'stressed syllable',
+      words: 'words released',
+      starts: 'starts with',
+      ends: 'ends with',
+      is: 'is exactly',
+      has: 'has',
+      like: 'is like',
+      notStarts: 'does not start with',
+      notEnds: 'does not end with',
+      notIs: 'is exactly not',
+      notHas: 'does not have',
+      notLike: 'is not like',
+      lessThan: 'less than (<)',
+      lessThanEqual: 'at most (≤)',
+      equal: 'exactly (=)',
+      greaterThanEqual: 'at least (≥)',
+      greaterThan: 'more than (>)',
+      notEqual: 'exactly not (≠)',
+      first: 'first #',
+      last: 'last #',
+      numRandomWords: '# random words'
     }
   },
   ru: {
@@ -204,6 +377,32 @@ export const ui: UI = {
     },
     fwewScreen: {
       search: 'search'
+    },
+    listRandomForm: {
+      word: 'word shape',
+      pos: 'part of speech',
+      syllables: 'number of syllables',
+      stress: 'stressed syllable',
+      words: 'words released',
+      starts: 'starts with',
+      ends: 'ends with',
+      is: 'is exactly',
+      has: 'has',
+      like: 'is like',
+      notStarts: 'does not start with',
+      notEnds: 'does not end with',
+      notIs: 'is exactly not',
+      notHas: 'does not have',
+      notLike: 'is not like',
+      lessThan: 'less than (<)',
+      lessThanEqual: 'at most (≤)',
+      equal: 'exactly (=)',
+      greaterThanEqual: 'at least (≥)',
+      greaterThan: 'more than (>)',
+      notEqual: 'exactly not (≠)',
+      first: 'first #',
+      last: 'last #',
+      numRandomWords: '# random words'
     }
   },
   sv: {
@@ -223,130 +422,32 @@ export const ui: UI = {
     },
     fwewScreen: {
       search: 'search'
+    },
+    listRandomForm: {
+      word: 'word shape',
+      pos: 'part of speech',
+      syllables: 'number of syllables',
+      stress: 'stressed syllable',
+      words: 'words released',
+      starts: 'starts with',
+      ends: 'ends with',
+      is: 'is exactly',
+      has: 'has',
+      like: 'is like',
+      notStarts: 'does not start with',
+      notEnds: 'does not end with',
+      notIs: 'is exactly not',
+      notHas: 'does not have',
+      notLike: 'is not like',
+      lessThan: 'less than (<)',
+      lessThanEqual: 'at most (≤)',
+      equal: 'exactly (=)',
+      greaterThanEqual: 'at least (≥)',
+      greaterThan: 'more than (>)',
+      notEqual: 'exactly not (≠)',
+      first: 'first #',
+      last: 'last #',
+      numRandomWords: '# random words'
     }
   }
-}
-
-/**
- * Fwew Settings items display names
- */
-export const settingsFwewDisplayNames: SettingsFwewDisplayNames = {
-  isReverseEnabled: 'reverse',
-  posFilterText: 'part of speech filter'
-}
-
-/**
- * List Settings item display names
- */
-export const settingsListDisplayNames: SettingsList = {
-  word: {
-    starts: 'starts with',
-    ends: 'ends with',
-    has: 'has',
-    like: 'is like',
-    notStarts: 'does not start with',
-    notEnds: 'does not end with',
-    notHas: 'does not have',
-    notLike: 'is not like'
-  },
-  pos: {
-    starts: 'starts with',
-    ends: 'ends with',
-    is: 'is exactly',
-    has: 'has',
-    like: 'is like',
-    notStarts: 'does not start with',
-    notEnds: 'does not end with',
-    notIs: 'is exactly not',
-    notHas: 'does not have',
-    notLike: 'is not like'
-  },
-  syllables: {
-    lessThan: 'less than (<)',
-    lessThanEqual: 'at most (≤)',
-    equal: 'exactly (=)',
-    greaterThanEqual: 'at least (≥)',
-    greaterThan: 'more than (>)',
-    notEqual: 'exactly not (≠)'
-  },
-  stress: {
-    lessThan: 'less than (<)',
-    lessThanEqual: 'at most (≤)',
-    equal: 'exactly (=)',
-    greaterThanEqual: 'at least (≥)',
-    greaterThan: 'more than (>)',
-    notEqual: 'exactly not (≠)'
-  },
-  words: {
-    first: 'first #',
-    last: 'last #'
-  }
-}
-
-/** List Settings items display names */
-export const settingsListOperatorDisplayNames: SettingsListOperatorDisplayNames = {
-  word: 'word shape',
-  pos: 'part of speech',
-  syllables: 'number of syllables',
-  stress: 'stressed syllable',
-  words: 'words released'
-}
-
-/**
- * Random Settings item display names
- */
-export const settingsRandomDisplayNames = {
-  numRandomWords: '# random words',
-  word: {
-    starts: 'starts with',
-    ends: 'ends with',
-    has: 'has',
-    like: 'is like',
-    notStarts: 'does not start with',
-    notEnds: 'does not end with',
-    notHas: 'does not have',
-    notLike: 'is not like'
-  },
-  pos: {
-    starts: 'starts with',
-    ends: 'ends with',
-    is: 'is exactly',
-    has: 'has',
-    like: 'is like',
-    notStarts: 'does not start with',
-    notEnds: 'does not end with',
-    notIs: 'is exactly not',
-    notHas: 'does not have',
-    notLike: 'is not like'
-  },
-  syllables: {
-    lessThan: 'less than (<)',
-    lessThanEqual: 'at most (≤)',
-    equal: 'exactly (=)',
-    greaterThanEqual: 'at least (≥)',
-    greaterThan: 'more than (>)',
-    notEqual: 'exactly not (≠)'
-  },
-  stress: {
-    lessThan: 'less than (<)',
-    lessThanEqual: 'at most (≤)',
-    equal: 'exactly (=)',
-    greaterThanEqual: 'at least (≥)',
-    greaterThan: 'more than (>)',
-    notEqual: 'exactly not (≠)'
-  },
-  words: {
-    first: 'first #',
-    last: 'last #'
-  }
-}
-
-/** List Settings items display names */
-export const settingsRandomOperatorDisplayNames: SettingsRandomOperatorDisplayNames = {
-  numRandomWords: 'number of random words',
-  word: 'word shape',
-  pos: 'part of speech',
-  syllables: 'number of syllables',
-  stress: 'stressed syllable',
-  words: 'words released'
 }

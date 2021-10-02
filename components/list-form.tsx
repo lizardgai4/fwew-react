@@ -17,57 +17,70 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { Card, List } from 'react-native-paper'
-import React, { useContext } from 'react'
-import { ScrollView, StyleSheet, TextInput, View } from 'react-native'
-import {
-  settingsListDisplayNames,
-  settingsListOperatorDisplayNames
-} from '../lib/i18n'
+import React, { useContext, useState } from 'react'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
 
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { SettingsContext } from '../context'
 import colors from '../lib/colors'
+import { ui } from '../lib/i18n'
 
 function ListForm(): JSX.Element {
-  const { settingsList } = useContext(SettingsContext)
+  const { settingsGlobal } = useContext(SettingsContext)
+  const { languageCodeUI } = settingsGlobal
+  const strings = ui[languageCodeUI].listRandomForm
+  const [what, setWhat] = useState('')
 
   return (
     // @ts-ignore
     <Card style={styles.card}>
+      {/* @ts-ignore */}
+      <Card.Title title={'list...'} />
       <Card.Content>
+        <Text>{`${what}`}</Text>
         <ScrollView>
-          <List.AccordionGroup>
-            {Object.keys(settingsListOperatorDisplayNames).map(
-              (key1, index) => (
-                <List.Accordion
-                  title={Object.values(settingsListOperatorDisplayNames)[index]}
-                  titleStyle={styles.sectionTitle}
-                  id={`s_${index}`}
-                  key={`k1_${index}`}
-                >
-                  {Object.keys(settingsListDisplayNames[key1]).map(
-                    (key2, index2) => (
-                      <View key={`k2_${index2}`}>
-                        {/* @ts-ignore */}
-                        <List.Item
-                          title={
-                            Object.values(settingsListDisplayNames[key1])[
-                              index2
-                            ]
-                          }
-                          right={(_props) => (
-                            <TextInput
-                              style={styles.textInput}
-                              value={settingsList[key1][key2]}
-                            />
-                          )}
-                        />
-                      </View>
-                    )
-                  )}
-                </List.Accordion>
-              )
-            )}
-          </List.AccordionGroup>
+          <View>
+            {/* @ts-ignore */}
+            <List.Item
+              title={strings.word}
+              onPress={() => setWhat('word')}
+              right={(_props) => (
+                <MaterialIcons name="chevron-right" size={28} />
+              )}
+            />
+            {/* @ts-ignore */}
+            <List.Item
+              title={strings.pos}
+              onPress={() => setWhat('pos')}
+              right={(_props) => (
+                <MaterialIcons name="chevron-right" size={28} />
+              )}
+            />
+            {/* @ts-ignore */}
+            <List.Item
+              title={strings.syllables}
+              onPress={() => setWhat('syllables')}
+              right={(_props) => (
+                <MaterialIcons name="chevron-right" size={28} />
+              )}
+            />
+            {/* @ts-ignore */}
+            <List.Item
+              title={strings.stress}
+              onPress={() => setWhat('stress')}
+              right={(_props) => (
+                <MaterialIcons name="chevron-right" size={28} />
+              )}
+            />
+            {/* @ts-ignore */}
+            <List.Item
+              title={strings.words}
+              onPress={() => setWhat('words')}
+              right={(_props) => (
+                <MaterialIcons name="chevron-right" size={28} />
+              )}
+            />
+          </View>
         </ScrollView>
       </Card.Content>
     </Card>

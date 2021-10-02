@@ -58,31 +58,38 @@ interface FwewScreenStrings {
   search: string
 }
 
-/** type for Internationalized UI */
-export type UI = {
-  [k in Language]: {
-    entryModalContent: EntryModalContentStrings
-    fwewScreen: FwewScreenStrings
-  }
-}
-
-/** Fwew Settings Display Names */
-export interface SettingsFwewDisplayNames {
-  isReverseEnabled: string
-  posFilterText: string
-}
-
-/** List Settings items display names */
-export interface SettingsListOperatorDisplayNames {
+interface ListRandomFormStrings {
   word: string
   pos: string
   syllables: string
   stress: string
   words: string
+  starts: string
+  ends: string
+  is: string
+  has: string
+  like: string
+  notStarts: string
+  notEnds: string
+  notIs: string
+  notHas: string
+  notLike: string
+  lessThan: string
+  lessThanEqual: string
+  equal: string
+  greaterThanEqual: string
+  greaterThan: string
+  notEqual: string
+  first: string
+  last: string
+  numRandomWords: string
 }
 
-/** Random Settings items display names */
-export interface SettingsRandomOperatorDisplayNames
-  extends SettingsListOperatorDisplayNames {
-  numRandomWords: string
+/** type for Internationalized UI */
+export type UI = {
+  [k in Language]: {
+    entryModalContent: EntryModalContentStrings
+    fwewScreen: FwewScreenStrings
+    listRandomForm: ListRandomFormStrings
+  }
 }
