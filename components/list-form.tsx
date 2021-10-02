@@ -44,13 +44,6 @@ function ListForm(): JSX.Element {
   const [spec, setSpec] = useState('')
   const [array, setArray] = useState([])
 
-  const clearValues = (): void => {
-    setWhat('')
-    setCond('')
-    setSpec('')
-    setArray([])
-  }
-
   const deleteItem = (index: number): void => {
     const newArray = [
       ...array.slice(0, index),
@@ -87,7 +80,7 @@ function ListForm(): JSX.Element {
     setWhat('')
     setCond('')
     setSpec('')
-    const newWcs = { what: '', cond: '', spec: '' }
+    const newWcs: ListWCS = { what: '', cond: '', spec: '' }
     setArray([...array, newWcs])
   }
 
@@ -107,6 +100,7 @@ function ListForm(): JSX.Element {
                 <If condition={!wcs.what}>
                   <View>
                     {Object.keys(settingsList).map((item, index) => (
+                      // @ts-ignore
                       <List.Item
                         key={`${index}_what`}
                         title={strings[item]}
@@ -163,8 +157,8 @@ function ListForm(): JSX.Element {
             </Card.Content>
           </Card>
         ))}
-        {/* @ts-ignore */}
       </ScrollView>
+      {/* @ts-ignore */}
       <FAB
         style={styles.fab}
         color={colors.buttonText}
