@@ -191,7 +191,7 @@ function ListForm(): JSX.Element {
         color={colors.buttonText}
         icon="plus"
         onPress={add}
-        visible={!what || !!spec}
+        visible={array.length === 0 || (!!what && !!cond && !!spec)}
       />
     </View>
   )
