@@ -19,6 +19,7 @@
 import { Card, List } from 'react-native-paper'
 import {
   Dimensions,
+  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -37,6 +38,7 @@ import { SettingsContext } from '../context'
 import colors from '../lib/colors'
 import { ui } from '../lib/i18n'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
+import { useKeyboard } from '@react-native-community/hooks'
 
 function ListForm(): JSX.Element {
   const { settingsList, settingsGlobal } = useContext(SettingsContext)
@@ -50,8 +52,13 @@ function ListForm(): JSX.Element {
   const statusBarHeight = Constants.statusBarHeight
   const actionBarHeight = 56
   const tabBarHeight = useBottomTabBarHeight()
+  const keyboard = useKeyboard()
   const scrollViewHeight =
-    windowHeight - statusBarHeight - actionBarHeight - tabBarHeight
+    windowHeight -
+    statusBarHeight -
+    actionBarHeight -
+    (Platform.OS === 'ios' && keyboard.keyboardShown ? 0 : tabBarHeight) -
+    (keyboard.keyboardShown ? keyboard.keyboardHeight : 0)
 
   const deleteItem = (index: number): void => {
     const newArray = [
