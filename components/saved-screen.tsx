@@ -23,13 +23,18 @@ import ActionBar from './action-bar'
 import EntryModalContent from './entry-modal-content'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { Modal } from 'react-native-paper'
+import { SettingsContext } from '../context'
 import { StateContext } from '../context'
 import { Word } from '../lib/interfaces/word'
 import WordList from './word-list'
 import colors from '../lib/colors'
+import { ui } from '../lib/i18n'
 
 function SavedScreen(): JSX.Element {
   const { dataCache } = useContext(StateContext)
+  const { settingsGlobal } = useContext(SettingsContext)
+  const { languageCodeUI } = settingsGlobal
+  const strings = ui[languageCodeUI].savedScreen
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [selectedItem, setSelectedItem] = useState({} as Word)
   const data = [...dataCache]
@@ -58,7 +63,7 @@ function SavedScreen(): JSX.Element {
         <View style={styles.mainView}>
           <ActionBar>
             <View style={styles.titleParent}>
-              <Text style={styles.title}>saved words</Text>
+              <Text style={styles.title}>{strings.title}</Text>
             </View>
           </ActionBar>
 
@@ -80,9 +85,7 @@ function SavedScreen(): JSX.Element {
                 size={48}
                 color={colors.infoMessageIcon}
               />
-              <Text style={styles.msgText}>
-                to save or un-save a word, tap the number on an entry
-              </Text>
+              <Text style={styles.msgText}>{strings.infoText}</Text>
             </View>
           )}
 

@@ -88,11 +88,17 @@ interface ListRandomFormStrings {
   and: string
 }
 
+interface SavedScreenStrings {
+  title: string
+  infoText: string
+}
+
 /** interface for a UI Translation */
 interface UITranslation {
   entryModalContent: EntryModalContentStrings
   fwewScreen: FwewScreenStrings
   listRandomForm: ListRandomFormStrings
+  savedScreen: SavedScreenStrings
 }
 
 /** type for Internationalized UI */

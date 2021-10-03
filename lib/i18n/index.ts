@@ -91,6 +91,10 @@ export const ui: UI = {
       numRandomWords: '# random words',
       list: 'list',
       and: 'and'
+    },
+    savedScreen: {
+      title: 'saved words',
+      infoText: 'to save or un-save a word, tap the number on an entry'
     }
   },
   en: {
@@ -138,6 +142,10 @@ export const ui: UI = {
       numRandomWords: '# random words',
       list: 'list',
       and: 'and'
+    },
+    savedScreen: {
+      title: 'saved words',
+      infoText: 'to save or un-save a word, tap the number on an entry'
     }
   },
   et: {
@@ -185,6 +193,10 @@ export const ui: UI = {
       numRandomWords: '# random words',
       list: 'list',
       and: 'and'
+    },
+    savedScreen: {
+      title: 'saved words',
+      infoText: 'to save or un-save a word, tap the number on an entry'
     }
   },
   fr: {
@@ -232,6 +244,10 @@ export const ui: UI = {
       numRandomWords: '# random words',
       list: 'list',
       and: 'and'
+    },
+    savedScreen: {
+      title: 'saved words',
+      infoText: 'to save or un-save a word, tap the number on an entry'
     }
   },
   hu: {
@@ -279,6 +295,10 @@ export const ui: UI = {
       numRandomWords: '# random words',
       list: 'list',
       and: 'and'
+    },
+    savedScreen: {
+      title: 'saved words',
+      infoText: 'to save or un-save a word, tap the number on an entry'
     }
   },
   nl: {
@@ -326,6 +346,10 @@ export const ui: UI = {
       numRandomWords: '# random words',
       list: 'list',
       and: 'and'
+    },
+    savedScreen: {
+      title: 'saved words',
+      infoText: 'to save or un-save a word, tap the number on an entry'
     }
   },
   pl: {
@@ -373,6 +397,10 @@ export const ui: UI = {
       numRandomWords: '# random words',
       list: 'list',
       and: 'and'
+    },
+    savedScreen: {
+      title: 'saved words',
+      infoText: 'to save or un-save a word, tap the number on an entry'
     }
   },
   ru: {
@@ -420,6 +448,10 @@ export const ui: UI = {
       numRandomWords: '# random words',
       list: 'list',
       and: 'and'
+    },
+    savedScreen: {
+      title: 'saved words',
+      infoText: 'to save or un-save a word, tap the number on an entry'
     }
   },
   sv: {
@@ -467,6 +499,10 @@ export const ui: UI = {
       numRandomWords: '# random words',
       list: 'list',
       and: 'and'
+    },
+    savedScreen: {
+      title: 'saved words',
+      infoText: 'to save or un-save a word, tap the number on an entry'
     }
   }
 }
