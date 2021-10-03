@@ -170,7 +170,6 @@ const Screen = ({ apiUrl, screenType }: ScreenProps): JSX.Element => {
           <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={styles.mainView}
-            keyboardVerticalOffset={0}
           >
             {screenType === 'list' && !text && <ListForm />}
             {screenType === 'random' && !text && <RandomForm />}
