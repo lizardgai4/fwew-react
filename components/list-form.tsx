@@ -40,6 +40,10 @@ import { ui } from '../lib/i18n'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 import { useKeyboard } from '@react-native-community/hooks'
 
+/**
+ * ListForm component
+ * The interactive form to fill out when creating List queries on Fwew
+ */
 function ListForm(): JSX.Element {
   const { settingsList, settingsGlobal } = useContext(SettingsContext)
   const { languageCodeUI } = settingsGlobal
@@ -60,6 +64,7 @@ function ListForm(): JSX.Element {
     (Platform.OS === 'ios' && keyboard.keyboardShown ? 0 : tabBarHeight) -
     (keyboard.keyboardShown ? keyboard.keyboardHeight : 0)
 
+  /** function to handle the delete button on a card */
   const deleteItem = (index: number): void => {
     const newArray = [
       ...array.slice(0, index),
@@ -71,6 +76,7 @@ function ListForm(): JSX.Element {
     setArray(newArray)
   }
 
+  /** function to handle the selection of a List what-operator on a card */
   const updateWhat = (index: number, what: string): void => {
     const newArray = [...array]
     newArray[index].what = what
@@ -78,6 +84,7 @@ function ListForm(): JSX.Element {
     setArray(newArray)
   }
 
+  /** function to handle the selection of a List condition (cond) on a card */
   const updateCond = (index: number, cond: string): void => {
     const newArray = [...array]
     newArray[index].cond = cond
@@ -85,6 +92,7 @@ function ListForm(): JSX.Element {
     setArray(newArray)
   }
 
+  /** function to hanlde the entering of a user's specification on a card */
   const updateSpec = (index: number, spec: string): void => {
     const newArray = [...array]
     newArray[index].spec = spec
@@ -92,6 +100,7 @@ function ListForm(): JSX.Element {
     setArray(newArray)
   }
 
+  /** function to handle the Floating Action Button press to add a card */
   const add = (): void => {
     setWhat('')
     setCond('')
