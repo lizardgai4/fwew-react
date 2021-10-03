@@ -140,7 +140,7 @@ function ListForm(): JSX.Element {
                       />
                     ))}
                 </View>
-                <If condition={!!what && !!cond}>
+                <If condition={!!wcs.what && !!wcs.cond}>
                   <TextInput
                     style={styles.textInput}
                     value={wcs.spec}
