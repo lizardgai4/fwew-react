@@ -18,6 +18,7 @@
  */
 import {
   ActivityIndicator,
+  KeyboardAvoidingView,
   Platform,
   SafeAreaView,
   StatusBar,
@@ -166,8 +167,14 @@ const Screen = ({ apiUrl, screenType }: ScreenProps): JSX.Element => {
             />
           )}
 
-          {screenType === 'list' && !text && <ListForm />}
-          {screenType === 'random' && !text && <RandomForm />}
+          <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            style={styles.mainView}
+            keyboardVerticalOffset={0}
+          >
+            {screenType === 'list' && !text && <ListForm />}
+            {screenType === 'random' && !text && <RandomForm />}
+          </KeyboardAvoidingView>
 
           {/* word information modal when user taps an entry in the list */}
           <Modal
