@@ -119,7 +119,9 @@ function ListForm(): JSX.Element {
             key={`${idx}_wcs`}
           >
             {/* @ts-ignore */}
-            <Card.Title title={idx === 0 ? 'list...' : 'and...'} />
+            <Card.Title
+              title={idx === 0 ? `${strings.list}...` : `${strings.and}...`}
+            />
             <Card.Content>
               <Text style={styles.selections}>
                 {`${wcs.what && strings[wcs.what]} ${wcs.cond &&

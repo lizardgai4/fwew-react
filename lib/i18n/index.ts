@@ -87,7 +87,9 @@ export const ui: UI = {
       notEqual: 'is exactly not (≠)',
       first: '# oldest words',
       last: '# newest words',
-      numRandomWords: '# random words'
+      numRandomWords: '# random words',
+      list: 'list',
+      and: 'and'
     }
   },
   en: {
@@ -132,7 +134,9 @@ export const ui: UI = {
       notEqual: 'is exactly not (≠)',
       first: '# oldest words',
       last: '# newest words',
-      numRandomWords: '# random words'
+      numRandomWords: '# random words',
+      list: 'list',
+      and: 'and'
     }
   },
   et: {
@@ -177,7 +181,9 @@ export const ui: UI = {
       notEqual: 'is exactly not (≠)',
       first: '# oldest words',
       last: '# newest words',
-      numRandomWords: '# random words'
+      numRandomWords: '# random words',
+      list: 'list',
+      and: 'and'
     }
   },
   fr: {
@@ -222,7 +228,9 @@ export const ui: UI = {
       notEqual: 'is exactly not (≠)',
       first: '# oldest words',
       last: '# newest words',
-      numRandomWords: '# random words'
+      numRandomWords: '# random words',
+      list: 'list',
+      and: 'and'
     }
   },
   hu: {
@@ -267,7 +275,9 @@ export const ui: UI = {
       notEqual: 'is exactly not (≠)',
       first: '# oldest words',
       last: '# newest words',
-      numRandomWords: '# random words'
+      numRandomWords: '# random words',
+      list: 'list',
+      and: 'and'
     }
   },
   nl: {
@@ -312,7 +322,9 @@ export const ui: UI = {
       notEqual: 'is exactly not (≠)',
       first: '# oldest words',
       last: '# newest words',
-      numRandomWords: '# random words'
+      numRandomWords: '# random words',
+      list: 'list',
+      and: 'and'
     }
   },
   pl: {
@@ -357,7 +369,9 @@ export const ui: UI = {
       notEqual: 'is exactly not (≠)',
       first: '# oldest words',
       last: '# newest words',
-      numRandomWords: '# random words'
+      numRandomWords: '# random words',
+      list: 'list',
+      and: 'and'
     }
   },
   ru: {
@@ -402,7 +416,9 @@ export const ui: UI = {
       notEqual: 'is exactly not (≠)',
       first: '# oldest words',
       last: '# newest words',
-      numRandomWords: '# random words'
+      numRandomWords: '# random words',
+      list: 'list',
+      and: 'and'
     }
   },
   sv: {
@@ -447,7 +463,9 @@ export const ui: UI = {
       notEqual: 'is exactly not (≠)',
       first: '# oldest words',
       last: '# newest words',
-      numRandomWords: '# random words'
+      numRandomWords: '# random words',
+      list: 'list',
+      and: 'and'
     }
   }
 }

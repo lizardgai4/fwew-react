@@ -83,6 +83,8 @@ interface ListRandomFormStrings {
   first: string
   last: string
   numRandomWords: string
+  list: string
+  and: string
 }
 
 /** type for Internationalized UI */
