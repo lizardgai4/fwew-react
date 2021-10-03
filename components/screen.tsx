@@ -106,7 +106,7 @@ const Screen = ({ apiUrl, screenType }: ScreenProps): JSX.Element => {
       case 'random':
         return '10/pos is vtr.'
       default:
-        return 'search...'
+        return ''
     }
   }
 
