@@ -94,11 +94,14 @@ function ListForm(): JSX.Element {
   }
 
   return (
-    <View style={styles.mainView}>
-      <ScrollView style={{ height: scrollViewHeight }}>
+    <View>
+      <ScrollView style={[{ height: scrollViewHeight }, styles.scrollView]}>
         {array.map((wcs, idx) => (
           // @ts-ignore
-          <Card style={styles.card} key={`${idx}_wcs`}>
+          <Card
+            style={idx < array.length - 1 ? styles.card : styles.lastCard}
+            key={`${idx}_wcs`}
+          >
             {/* @ts-ignore */}
             <Card.Title title={idx === 0 ? 'list...' : 'and...'} />
             <Card.Content>
@@ -188,11 +191,20 @@ function ListForm(): JSX.Element {
 }
 
 const styles = StyleSheet.create({
-  mainView: {
-    marginTop: 8
+  scrollView: {
+    paddingTop: 8
   },
   card: {
     marginVertical: 8,
+    marginHorizontal: 16,
+    borderRadius: 16,
+    borderColor: colors.secondary,
+    borderWidth: 1.5,
+    maxHeight: '100%'
+  },
+  lastCard: {
+    marginTop: 8,
+    marginBottom: 96,
     marginHorizontal: 16,
     borderRadius: 16,
     borderColor: colors.secondary,
