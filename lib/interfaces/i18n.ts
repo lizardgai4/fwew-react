@@ -58,6 +58,7 @@ interface FwewScreenStrings {
   search: string
 }
 
+/** interface for ListForm and RandomForm component strings */
 interface ListRandomFormStrings {
   word: string
   pos: string
@@ -87,11 +88,14 @@ interface ListRandomFormStrings {
   and: string
 }
 
+/** interface for a UI Translation */
+interface UITranslation {
+  entryModalContent: EntryModalContentStrings
+  fwewScreen: FwewScreenStrings
+  listRandomForm: ListRandomFormStrings
+}
+
 /** type for Internationalized UI */
 export type UI = {
-  [k in Language]: {
-    entryModalContent: EntryModalContentStrings
-    fwewScreen: FwewScreenStrings
-    listRandomForm: ListRandomFormStrings
-  }
+  [k in Language]: UITranslation
 }

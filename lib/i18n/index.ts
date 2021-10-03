@@ -31,6 +31,7 @@ export const Languages: Language[] = [
   Language.SV
 ]
 
+/* Map of language codes to language names for the settings page */
 export const languageNames: LanguageNames = {
   de: `Deutsch`,
   en: `English`,
