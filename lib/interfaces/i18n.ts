@@ -112,7 +112,7 @@ interface TabNavigatorStrings {
 }
 
 /** interface for a UI Translation */
-interface UITranslation {
+export interface UITranslation {
   entryModalContent: EntryModalContentStrings
   fwewScreen: FwewScreenStrings
   listRandomForm: ListRandomFormStrings
