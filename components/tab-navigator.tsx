@@ -16,15 +16,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import React, { useContext } from 'react'
+
 import FwewScreen from './fwew-screen'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import React from 'react'
 import SavedScreen from './saved-screen'
 import Screen from './screen'
+import { SettingsContext } from '../context'
 import SettingsScreen from './settings-screen'
 import { apiRoot } from '../lib/settings'
 import colors from '../lib/colors'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { ui } from '../lib/i18n'
 
 // screen where the user can list all words (or all words that have given properties)
 function ListScreen(): JSX.Element {
@@ -42,6 +45,10 @@ const Tab = createBottomTabNavigator()
 
 // the tab navigation at the bottom of the screen used to jump between the above screens
 function TabNavigator(): JSX.Element {
+  const { settingsGlobal } = useContext(SettingsContext)
+  const { languageCodeUI } = settingsGlobal
+  const strings = ui[languageCodeUI].tabNavigator
+
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -79,11 +86,11 @@ function TabNavigator(): JSX.Element {
         headerShown: false
       })}
     >
-      <Tab.Screen name="Fwew" component={FwewScreen} />
-      <Tab.Screen name="List" component={ListScreen} />
-      <Tab.Screen name="Random" component={RandomScreen} />
-      <Tab.Screen name="Saved" component={SavedScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen name={strings.fwew} component={FwewScreen} />
+      <Tab.Screen name={strings.list} component={ListScreen} />
+      <Tab.Screen name={strings.random} component={RandomScreen} />
+      <Tab.Screen name={strings.saved} component={SavedScreen} />
+      <Tab.Screen name={strings.settings} component={SettingsScreen} />
     </Tab.Navigator>
   )
 }

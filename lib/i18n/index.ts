@@ -102,6 +102,13 @@ export const ui: UI = {
       appLanguageDesc: 'default language of app interface',
       resultsLanguage: 'results laguage',
       resultsLanguageDesc: 'default language of results'
+    },
+    tabNavigator: {
+      fwew: 'Fwew',
+      list: 'List',
+      random: 'Random',
+      saved: 'Saved',
+      settings: 'Settings'
     }
   },
   en: {
@@ -160,6 +167,13 @@ export const ui: UI = {
       appLanguageDesc: 'default language of app interface',
       resultsLanguage: 'results laguage',
       resultsLanguageDesc: 'default language of results'
+    },
+    tabNavigator: {
+      fwew: 'Fwew',
+      list: 'List',
+      random: 'Random',
+      saved: 'Saved',
+      settings: 'Settings'
     }
   },
   et: {
@@ -218,6 +232,13 @@ export const ui: UI = {
       appLanguageDesc: 'default language of app interface',
       resultsLanguage: 'results laguage',
       resultsLanguageDesc: 'default language of results'
+    },
+    tabNavigator: {
+      fwew: 'Fwew',
+      list: 'List',
+      random: 'Random',
+      saved: 'Saved',
+      settings: 'Settings'
     }
   },
   fr: {
@@ -276,6 +297,13 @@ export const ui: UI = {
       appLanguageDesc: 'default language of app interface',
       resultsLanguage: 'results laguage',
       resultsLanguageDesc: 'default language of results'
+    },
+    tabNavigator: {
+      fwew: 'Fwew',
+      list: 'List',
+      random: 'Random',
+      saved: 'Saved',
+      settings: 'Settings'
     }
   },
   hu: {
@@ -334,6 +362,13 @@ export const ui: UI = {
       appLanguageDesc: 'default language of app interface',
       resultsLanguage: 'results laguage',
       resultsLanguageDesc: 'default language of results'
+    },
+    tabNavigator: {
+      fwew: 'Fwew',
+      list: 'List',
+      random: 'Random',
+      saved: 'Saved',
+      settings: 'Settings'
     }
   },
   nl: {
@@ -392,6 +427,13 @@ export const ui: UI = {
       appLanguageDesc: 'default language of app interface',
       resultsLanguage: 'results laguage',
       resultsLanguageDesc: 'default language of results'
+    },
+    tabNavigator: {
+      fwew: 'Fwew',
+      list: 'List',
+      random: 'Random',
+      saved: 'Saved',
+      settings: 'Settings'
     }
   },
   pl: {
@@ -450,6 +492,13 @@ export const ui: UI = {
       appLanguageDesc: 'default language of app interface',
       resultsLanguage: 'results laguage',
       resultsLanguageDesc: 'default language of results'
+    },
+    tabNavigator: {
+      fwew: 'Fwew',
+      list: 'List',
+      random: 'Random',
+      saved: 'Saved',
+      settings: 'Settings'
     }
   },
   ru: {
@@ -508,6 +557,13 @@ export const ui: UI = {
       appLanguageDesc: 'default language of app interface',
       resultsLanguage: 'results laguage',
       resultsLanguageDesc: 'default language of results'
+    },
+    tabNavigator: {
+      fwew: 'Fwew',
+      list: 'List',
+      random: 'Random',
+      saved: 'Saved',
+      settings: 'Settings'
     }
   },
   sv: {
@@ -566,6 +622,13 @@ export const ui: UI = {
       appLanguageDesc: 'default language of app interface',
       resultsLanguage: 'results laguage',
       resultsLanguageDesc: 'default language of results'
+    },
+    tabNavigator: {
+      fwew: 'Fwew',
+      list: 'List',
+      random: 'Random',
+      saved: 'Saved',
+      settings: 'Settings'
     }
   }
 }

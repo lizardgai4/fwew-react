@@ -103,6 +103,14 @@ interface SettingsScreenStrings {
   resultsLanguageDesc: string
 }
 
+interface TabNavigatorStrings {
+  fwew: string
+  list: string
+  random: string
+  saved: string
+  settings: string
+}
+
 /** interface for a UI Translation */
 interface UITranslation {
   entryModalContent: EntryModalContentStrings
@@ -110,6 +118,7 @@ interface UITranslation {
   listRandomForm: ListRandomFormStrings
   savedScreen: SavedScreenStrings
   settingsScreen: SettingsScreenStrings
+  tabNavigator: TabNavigatorStrings
 }
 
 /** type for Internationalized UI */
