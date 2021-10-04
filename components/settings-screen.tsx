@@ -16,26 +16,30 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React, { Fragment } from 'react'
+import React, { Fragment, useContext } from 'react'
 import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native'
 
 import ActionBar from './action-bar'
+import { SettingsContext } from '../context'
 import SettingsForm from './settings-form'
 import colors from '../lib/colors'
+import { ui } from '../lib/i18n'
 
 function SettingsScreen(): JSX.Element {
+  const { settingsGlobal } = useContext(SettingsContext)
+  const { languageCodeUI } = settingsGlobal
+  const strings = ui[languageCodeUI].settingsScreen
   return (
     <Fragment>
       {/* status bar */}
       <SafeAreaView style={styles.safeStatusBar} />
       <StatusBar barStyle="light-content" />
-
       {/* main content */}
       <SafeAreaView style={styles.safeContainer}>
         <View style={styles.mainView}>
           <ActionBar>
             <View style={styles.titleParent}>
-              <Text style={styles.title}>settings</Text>
+              <Text style={styles.title}>{strings.title}</Text>
             </View>
           </ActionBar>
           <SettingsForm />

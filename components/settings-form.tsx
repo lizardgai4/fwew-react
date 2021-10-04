@@ -17,7 +17,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { Card, RadioButton } from 'react-native-paper'
-import { Languages, languageNames } from '../lib/i18n'
+import { Languages, languageNames, ui } from '../lib/i18n'
 import React, { useContext } from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
 
@@ -33,6 +33,7 @@ import colors from '../lib/colors'
 function SettingsForm(): JSX.Element {
   const { settingsGlobal, onUpdateSettingsGlobal } = useContext(SettingsContext)
   const { languageCode, languageCodeUI } = settingsGlobal
+  const strings = ui[languageCodeUI].settingsScreen
 
   // update the default language of fwew/list/random results
   const updateResultsLanguage = (language: Language): void => {
@@ -53,8 +54,8 @@ function SettingsForm(): JSX.Element {
       <Card style={styles.card}>
         {/* @ts-ignore */}
         <Card.Title
-          title="app language"
-          subtitle="default language of app interface"
+          title={strings.appLanguage}
+          subtitle={strings.appLanguageDesc}
         />
         <Card.Content>
           <RadioButton.Group
@@ -78,8 +79,8 @@ function SettingsForm(): JSX.Element {
       <Card style={styles.card}>
         {/* @ts-ignore */}
         <Card.Title
-          title="results language"
-          subtitle="default language of results"
+          title={strings.resultsLanguage}
+          subtitle={strings.resultsLanguageDesc}
         />
         <Card.Content>
           <RadioButton.Group

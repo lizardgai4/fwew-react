@@ -88,9 +88,19 @@ interface ListRandomFormStrings {
   and: string
 }
 
+/** interface for SavedScreen component strings */
 interface SavedScreenStrings {
   title: string
   infoText: string
+}
+
+/** interface for SettingsScreen / SettingsForm component strings */
+interface SettingsScreenStrings {
+  title: string
+  appLanguage: string
+  appLanguageDesc: string
+  resultsLanguage: string
+  resultsLanguageDesc: string
 }
 
 /** interface for a UI Translation */
@@ -99,6 +109,7 @@ interface UITranslation {
   fwewScreen: FwewScreenStrings
   listRandomForm: ListRandomFormStrings
   savedScreen: SavedScreenStrings
+  settingsScreen: SettingsScreenStrings
 }
 
 /** type for Internationalized UI */

@@ -95,6 +95,13 @@ export const ui: UI = {
     savedScreen: {
       title: 'saved words',
       infoText: 'to save or un-save a word, tap the number on an entry'
+    },
+    settingsScreen: {
+      title: 'settings',
+      appLanguage: 'app language',
+      appLanguageDesc: 'default language of app interface',
+      resultsLanguage: 'results laguage',
+      resultsLanguageDesc: 'default language of results'
     }
   },
   en: {
@@ -146,6 +153,13 @@ export const ui: UI = {
     savedScreen: {
       title: 'saved words',
       infoText: 'to save or un-save a word, tap the number on an entry'
+    },
+    settingsScreen: {
+      title: 'settings',
+      appLanguage: 'app language',
+      appLanguageDesc: 'default language of app interface',
+      resultsLanguage: 'results laguage',
+      resultsLanguageDesc: 'default language of results'
     }
   },
   et: {
@@ -197,6 +211,13 @@ export const ui: UI = {
     savedScreen: {
       title: 'saved words',
       infoText: 'to save or un-save a word, tap the number on an entry'
+    },
+    settingsScreen: {
+      title: 'settings',
+      appLanguage: 'app language',
+      appLanguageDesc: 'default language of app interface',
+      resultsLanguage: 'results laguage',
+      resultsLanguageDesc: 'default language of results'
     }
   },
   fr: {
@@ -248,6 +269,13 @@ export const ui: UI = {
     savedScreen: {
       title: 'saved words',
       infoText: 'to save or un-save a word, tap the number on an entry'
+    },
+    settingsScreen: {
+      title: 'settings',
+      appLanguage: 'app language',
+      appLanguageDesc: 'default language of app interface',
+      resultsLanguage: 'results laguage',
+      resultsLanguageDesc: 'default language of results'
     }
   },
   hu: {
@@ -299,6 +327,13 @@ export const ui: UI = {
     savedScreen: {
       title: 'saved words',
       infoText: 'to save or un-save a word, tap the number on an entry'
+    },
+    settingsScreen: {
+      title: 'settings',
+      appLanguage: 'app language',
+      appLanguageDesc: 'default language of app interface',
+      resultsLanguage: 'results laguage',
+      resultsLanguageDesc: 'default language of results'
     }
   },
   nl: {
@@ -350,6 +385,13 @@ export const ui: UI = {
     savedScreen: {
       title: 'saved words',
       infoText: 'to save or un-save a word, tap the number on an entry'
+    },
+    settingsScreen: {
+      title: 'settings',
+      appLanguage: 'app language',
+      appLanguageDesc: 'default language of app interface',
+      resultsLanguage: 'results laguage',
+      resultsLanguageDesc: 'default language of results'
     }
   },
   pl: {
@@ -401,6 +443,13 @@ export const ui: UI = {
     savedScreen: {
       title: 'saved words',
       infoText: 'to save or un-save a word, tap the number on an entry'
+    },
+    settingsScreen: {
+      title: 'settings',
+      appLanguage: 'app language',
+      appLanguageDesc: 'default language of app interface',
+      resultsLanguage: 'results laguage',
+      resultsLanguageDesc: 'default language of results'
     }
   },
   ru: {
@@ -452,6 +501,13 @@ export const ui: UI = {
     savedScreen: {
       title: 'saved words',
       infoText: 'to save or un-save a word, tap the number on an entry'
+    },
+    settingsScreen: {
+      title: 'settings',
+      appLanguage: 'app language',
+      appLanguageDesc: 'default language of app interface',
+      resultsLanguage: 'results laguage',
+      resultsLanguageDesc: 'default language of results'
     }
   },
   sv: {
@@ -503,6 +559,13 @@ export const ui: UI = {
     savedScreen: {
       title: 'saved words',
       infoText: 'to save or un-save a word, tap the number on an entry'
+    },
+    settingsScreen: {
+      title: 'settings',
+      appLanguage: 'app language',
+      appLanguageDesc: 'default language of app interface',
+      resultsLanguage: 'results laguage',
+      resultsLanguageDesc: 'default language of results'
     }
   }
 }
