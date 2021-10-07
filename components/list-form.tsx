@@ -64,6 +64,18 @@ function ListForm(): JSX.Element {
     (Platform.OS === 'ios' && keyboard.keyboardShown ? 0 : tabBarHeight) -
     (keyboard.keyboardShown ? keyboard.keyboardHeight : 0)
 
+  /** function to handle the back button on a card */
+  const navigateBack = (index: number, wcs: ListWCS): void => {
+    if (wcs.what && wcs.cond) {
+      updateSpec(index, '')
+      updateCond(index, '')
+    } else if (wcs.what && !wcs.cond && !wcs.spec) {
+      updateWhat(index, '')
+    } else {
+      deleteItem(index)
+    }
+  }
+
   /** function to handle the delete button on a card */
   const deleteItem = (index: number): void => {
     const newArray = [
@@ -163,9 +175,27 @@ function ListForm(): JSX.Element {
                     style={styles.textInput}
                     value={wcs.spec}
                     onChangeText={(text) => updateSpec(idx, text)}
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    clearButtonMode="always"
                   />
                 </If>
                 <View style={styles.buttonGroup}>
+                  <If condition={!!wcs.what}>
+                    <TouchableOpacity
+                      style={styles.buttonBack}
+                      onPress={() => navigateBack(idx, wcs)}
+                    >
+                      <View style={styles.buttonView}>
+                        <MaterialIcons
+                          name="chevron-left"
+                          size={24}
+                          color={colors.buttonText}
+                        />
+                        <Text style={styles.buttonText}>back</Text>
+                      </View>
+                    </TouchableOpacity>
+                  </If>
                   <If
                     condition={
                       idx !== 0 || !!wcs.what || !!wcs.cond || !!wcs.spec
@@ -175,7 +205,14 @@ function ListForm(): JSX.Element {
                       style={styles.buttonDelete}
                       onPress={() => deleteItem(idx)}
                     >
-                      <Text style={styles.buttonText}>delete</Text>
+                      <View style={styles.buttonView}>
+                        <MaterialIcons
+                          name="delete"
+                          size={24}
+                          color={colors.buttonText}
+                        />
+                        <Text style={styles.buttonText}>delete</Text>
+                      </View>
                     </TouchableOpacity>
                   </If>
                   <If
@@ -187,7 +224,14 @@ function ListForm(): JSX.Element {
                     }
                   >
                     <TouchableOpacity style={styles.buttonSearch}>
-                      <Text style={styles.buttonText}>search</Text>
+                      <View style={styles.buttonView}>
+                        <MaterialIcons
+                          name="search"
+                          size={24}
+                          color={colors.buttonText}
+                        />
+                        <Text style={styles.buttonText}>search</Text>
+                      </View>
                     </TouchableOpacity>
                   </If>
                 </View>
@@ -246,21 +290,40 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end'
   },
-  buttonDelete: {
+  buttonView: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  buttonBack: {
     alignItems: 'center',
     justifyContent: 'center',
     width: 80,
     height: 48,
-    backgroundColor: colors.buttonNegative,
+    paddingHorizontal: 8,
+    backgroundColor: colors.accent,
     borderWidth: 1,
-    borderColor: colors.buttonNegativeBorder,
+    borderColor: colors.accentDark,
+    borderRadius: 8
+  },
+  buttonDelete: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 96,
+    height: 48,
+    paddingHorizontal: 8,
+    marginLeft: 16,
+    backgroundColor: colors.accent,
+    borderWidth: 1,
+    borderColor: colors.accentDark,
     borderRadius: 8
   },
   buttonSearch: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: 80,
+    width: 96,
     height: 48,
+    paddingHorizontal: 8,
     marginLeft: 16,
     backgroundColor: colors.accent,
     borderWidth: 1,

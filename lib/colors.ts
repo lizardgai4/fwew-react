@@ -52,9 +52,7 @@ const colors: ColorConfig = {
   entryIndexIconFill: '#fff',
   infoMessageIcon: '#98b0cd',
   accent: '#9dd197',
-  accentDark: '#64a853',
-  buttonNegative: '#d29898',
-  buttonNegativeBorder: '#b95f5f'
+  accentDark: '#64a853'
 }
 
 export default colors
