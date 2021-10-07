@@ -100,3 +100,10 @@ export interface IfProps {
   condition: (() => boolean) | boolean
   children: JSX.Element | JSX.Element[]
 }
+
+/**
+ * props for the Bold component
+ */
+export interface BoldProps {
+  children: string | JSX.Element | JSX.Element[]
+}
