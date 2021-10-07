@@ -16,9 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { StyleSheet, Text } from 'react-native'
-
 import React from 'react'
+import { Text } from 'react-native'
 import { UnderlineProps } from '../lib/interfaces/props'
 
 /**
@@ -27,11 +26,7 @@ import { UnderlineProps } from '../lib/interfaces/props'
  * Underlines given Text / string
  */
 function Underline({ children }: UnderlineProps): JSX.Element {
-  return <Text style={styles.underline}>{children}</Text>
+  return <Text style={{ textDecorationLine: 'underline' }}>{children}</Text>
 }
-
-const styles = StyleSheet.create({
-  underline: { textDecorationLine: 'underline' }
-})
 
 export default Underline
