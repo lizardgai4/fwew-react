@@ -301,9 +301,9 @@ const styles = StyleSheet.create({
     width: 80,
     height: 48,
     paddingHorizontal: 8,
-    backgroundColor: colors.accent,
+    backgroundColor: colors.primary,
     borderWidth: 1,
-    borderColor: colors.accentDark,
+    borderColor: colors.secondary,
     borderRadius: 8
   },
   buttonDelete: {
@@ -313,9 +313,9 @@ const styles = StyleSheet.create({
     height: 48,
     paddingHorizontal: 8,
     marginLeft: 16,
-    backgroundColor: colors.accent,
+    backgroundColor: colors.primary,
     borderWidth: 1,
-    borderColor: colors.accentDark,
+    borderColor: colors.secondary,
     borderRadius: 8
   },
   buttonSearch: {
