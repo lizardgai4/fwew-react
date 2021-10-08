@@ -143,4 +143,37 @@ function deleteById(wordSet: Set<Word>, id: string): void {
   }
 }
 
-export { compress, compareWords, withKeys, join, includes, deleteById }
+/**
+ * converts given numeric condition (comparison operator) to the symbol version
+ *
+ * @param cond string representing condition of numeric comparison
+ * @return symbol representation of cond
+ */
+function condToSymbol(cond: string): string {
+  switch (cond) {
+    case 'lessThan':
+      return '<'
+    case 'lessThanEqual':
+      return '<='
+    case 'equal':
+      return '='
+    case 'greaterThanEqual':
+      return '>='
+    case 'greaterThan':
+      return '>'
+    case 'notEqual':
+      return '!='
+    default:
+      return cond
+  }
+}
+
+export {
+  compress,
+  compareWords,
+  withKeys,
+  join,
+  includes,
+  deleteById,
+  condToSymbol
+}
