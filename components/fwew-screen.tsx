@@ -46,7 +46,7 @@ import { ui } from '../lib/i18n'
  *
  * Screen where the user can search for specific word(s)
  */
-const FwewScreen = (): JSX.Element => {
+function FwewScreen(): JSX.Element {
   const [isLoading, setIsLoading] = useState(true)
   const [text, setText] = useState('')
   const [data, setData] = useState([] as Word[])

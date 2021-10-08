@@ -47,7 +47,7 @@ import colors from '../lib/colors'
  *
  * The layout and logic for List and Random screens
  */
-const Screen = ({ apiUrl, screenType }: ScreenProps): JSX.Element => {
+function Screen({ apiUrl, screenType }: ScreenProps): JSX.Element {
   const [isLoading, setIsLoading] = useState(false)
   const [text, setText] = useState('')
   const [data, setData] = useState([] as Word[])
