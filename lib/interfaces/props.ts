@@ -107,3 +107,7 @@ export interface IfProps {
 export interface BoldProps {
   children: string | JSX.Element | JSX.Element[]
 }
+
+export interface ListFormProps {
+  onSearch: (searchText: string) => void
+}

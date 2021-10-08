@@ -32,10 +32,12 @@ import React, { useContext, useState } from 'react'
 import Constants from 'expo-constants'
 import { FAB } from 'react-native-paper'
 import If from './if'
+import { ListFormProps } from '../lib/interfaces/props'
 import { ListWCS } from '../lib/interfaces/list-wcs'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { SettingsContext } from '../context'
 import colors from '../lib/colors'
+import { condToSymbol } from '../lib'
 import { ui } from '../lib/i18n'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 import { useKeyboard } from '@react-native-community/hooks'
@@ -44,7 +46,7 @@ import { useKeyboard } from '@react-native-community/hooks'
  * ListForm component
  * The interactive form to fill out when creating List queries on Fwew
  */
-function ListForm(): JSX.Element {
+function ListForm({ onSearch }: ListFormProps): JSX.Element {
   const { settingsList, settingsGlobal } = useContext(SettingsContext)
   const { languageCodeUI } = settingsGlobal
   const strings = ui[languageCodeUI].listRandomForm
@@ -119,6 +121,25 @@ function ListForm(): JSX.Element {
     setSpec('')
     const newWcs: ListWCS = { what: '', cond: '', spec: '' }
     setArray([...array, newWcs])
+  }
+
+  /** function to handle the search button press to start a List query search */
+  const handleSearch = (): void => {
+    if (array.length === 0) return
+    if (array.length === 1) {
+      const { what, cond, spec } = array[0]
+      onSearch(`${what} ${condToSymbol(cond)} ${spec}`)
+      return
+    }
+    let searchString = ''
+    array.forEach((wcs: ListWCS, index: number) => {
+      const { what, cond, spec } = wcs
+      if (index != 0) {
+        searchString += ' and '
+      }
+      searchString += `${what} ${condToSymbol(cond)} ${spec}`
+    })
+    onSearch(searchString)
   }
 
   return (
@@ -223,7 +244,10 @@ function ListForm(): JSX.Element {
                       !!wcs.spec
                     }
                   >
-                    <TouchableOpacity style={styles.buttonSearch}>
+                    <TouchableOpacity
+                      style={styles.buttonSearch}
+                      onPress={handleSearch}
+                    >
                       <View style={styles.buttonView}>
                         <MaterialIcons
                           name="search"
@@ -270,8 +294,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     borderRadius: 16,
     borderColor: colors.secondary,
-    borderWidth: 1.5,
-    maxHeight: '100%'
+    borderWidth: 1.5
   },
   selections: {
     fontSize: 16
