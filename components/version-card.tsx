@@ -29,6 +29,11 @@ import axios from 'axios'
 import colors from '../lib/colors'
 import { ui } from '../lib/i18n'
 
+/**
+ * VersionCard component
+ *
+ * Displays Fwew version information
+ */
 function VersionCard(): JSX.Element {
   const [version, setVersion] = useState({} as ApiVersion)
   const { settingsGlobal } = useContext(SettingsContext)

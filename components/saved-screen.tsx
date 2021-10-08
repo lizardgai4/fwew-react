@@ -30,6 +30,11 @@ import WordList from './word-list'
 import colors from '../lib/colors'
 import { ui } from '../lib/i18n'
 
+/**
+ * SavedScreen component
+ *
+ * Displays list of entries saved by the user
+ */
 function SavedScreen(): JSX.Element {
   const { dataCache } = useContext(StateContext)
   const { settingsGlobal } = useContext(SettingsContext)

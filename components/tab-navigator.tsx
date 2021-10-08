@@ -29,13 +29,19 @@ import colors from '../lib/colors'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { ui } from '../lib/i18n'
 
-// screen where the user can list all words (or all words that have given properties)
+/**
+ * ListScreen component
+ * screen where the user can list all words (or all words that have given properties)
+ */
 function ListScreen(): JSX.Element {
   const endpoint = apiRoot + '/list/'
   return <Screen screenType="list" apiUrl={endpoint} />
 }
 
-// screen where the user can view a randomized list of words
+/**
+ * RandomScreen component
+ * screen where the user can view a randomized list of words
+ */
 function RandomScreen(): JSX.Element {
   const endpoint = apiRoot + '/random/'
   return <Screen screenType="random" apiUrl={endpoint}></Screen>
@@ -43,7 +49,10 @@ function RandomScreen(): JSX.Element {
 
 const Tab = createBottomTabNavigator()
 
-// the tab navigation at the bottom of the screen used to jump between the above screens
+/**
+ * TabNavigator component
+ * the tab navigation at the bottom of the screen used to jump between screens
+ */
 function TabNavigator(): JSX.Element {
   const { settingsGlobal } = useContext(SettingsContext)
   const { languageCodeUI } = settingsGlobal

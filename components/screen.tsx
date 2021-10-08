@@ -42,7 +42,11 @@ import WordList from './word-list'
 import axios from 'axios'
 import colors from '../lib/colors'
 
-// The main content area of the app
+/**
+ * Screen component
+ *
+ * The layout and logic for List and Random screens
+ */
 const Screen = ({ apiUrl, screenType }: ScreenProps): JSX.Element => {
   const [isLoading, setIsLoading] = useState(false)
   const [text, setText] = useState('')
