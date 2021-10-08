@@ -64,7 +64,9 @@ const ru: UITranslation = {
     last: '# newest words',
     numRandomWords: '# random words',
     list: 'list',
-    and: 'and'
+    and: 'and',
+    random: 'random',
+    where: 'where'
   },
   savedScreen: {
     title: 'saved words',

@@ -181,7 +181,7 @@ function Screen({ apiUrl, screenType }: ScreenProps): JSX.Element {
                 <ListForm onSearch={searchData} />
               </If>
               <If condition={screenType === 'random'}>
-                <RandomForm />
+                <RandomForm onSearch={searchData} />
               </If>
             </KeyboardAvoidingView>
           </If>
