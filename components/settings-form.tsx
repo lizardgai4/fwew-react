@@ -111,8 +111,7 @@ const styles = StyleSheet.create({
     margin: 16,
     borderRadius: 16,
     borderColor: colors.secondary,
-    borderWidth: 1.5,
-    maxHeight: '88%'
+    borderWidth: 1.5
   },
   sectionTitle: {
     fontWeight: 'bold',

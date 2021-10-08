@@ -320,8 +320,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     borderRadius: 16,
     borderColor: colors.secondary,
-    borderWidth: 1.5,
-    maxHeight: '100%'
+    borderWidth: 1.5
   },
   lastCard: {
     marginTop: 8,
