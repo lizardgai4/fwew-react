@@ -23,6 +23,7 @@ import { ScrollView, StyleSheet, View } from 'react-native'
 
 import { Language } from '../lib/interfaces/i18n'
 import { SettingsContext } from '../context'
+import VersionCard from './version-card'
 import colors from '../lib/colors'
 
 /**
@@ -49,6 +50,8 @@ function SettingsForm(): JSX.Element {
 
   return (
     <ScrollView>
+      {/* Version Information */}
+      <VersionCard />
       {/* UI Language Setting */}
       {/* @ts-ignore */}
       <Card style={styles.card}>

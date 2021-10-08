@@ -83,6 +83,11 @@ const ru: UITranslation = {
     random: 'Random',
     saved: 'Saved',
     settings: 'Settings'
+  },
+  versionCard: {
+    title: 'about fwew',
+    subtitle: 'version information',
+    dictionary: 'dictionary'
   }
 }
 

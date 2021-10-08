@@ -103,12 +103,20 @@ interface SettingsScreenStrings {
   resultsLanguageDesc: string
 }
 
+/** interface for TabNavigator Buttom Tab labels */
 interface TabNavigatorStrings {
   fwew: string
   list: string
   random: string
   saved: string
   settings: string
+}
+
+/** interface for Settings Screen Version Card */
+interface VersionCardStrings {
+  title: string
+  subtitle: string
+  dictionary: string
 }
 
 /** interface for a UI Translation */
@@ -119,6 +127,7 @@ export interface UITranslation {
   savedScreen: SavedScreenStrings
   settingsScreen: SettingsScreenStrings
   tabNavigator: TabNavigatorStrings
+  versionCard: VersionCardStrings
 }
 
 /** type for Internationalized UI */
