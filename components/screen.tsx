@@ -32,6 +32,7 @@ import React, { Fragment, useState } from 'react'
 import ActionBar from './action-bar'
 import EntryModalContent from './entry-modal-content'
 import { FwewError } from '../lib/interfaces/fwew-error'
+import If from './if'
 import ListForm from './list-form'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { Modal } from 'react-native-paper'
@@ -171,13 +172,19 @@ function Screen({ apiUrl, screenType }: ScreenProps): JSX.Element {
             />
           )}
 
-          <KeyboardAvoidingView
-            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-            style={styles.mainView}
-          >
-            {screenType === 'list' && !text && <ListForm />}
-            {screenType === 'random' && !text && <RandomForm />}
-          </KeyboardAvoidingView>
+          <If condition={!text}>
+            <KeyboardAvoidingView
+              behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+              style={styles.mainView}
+            >
+              <If condition={screenType === 'list'}>
+                <ListForm onSearch={searchData} />
+              </If>
+              <If condition={screenType === 'random'}>
+                <RandomForm />
+              </If>
+            </KeyboardAvoidingView>
+          </If>
 
           {/* word information modal when user taps an entry in the list */}
           <Modal
