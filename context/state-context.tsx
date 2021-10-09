@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { IStateContext } from '../lib/interfaces/state-context'
 import React from 'react'
 import { Word } from '../lib/interfaces/word'
@@ -32,8 +33,31 @@ export const StateContext = React.createContext<IStateContext>(defaultStateData)
 export class StateStore extends React.Component {
   state: IStateContext = defaultStateData
 
+  componentDidMount() {
+    this.getStateData().then((stateData) => {
+      this.setState((state) => ({ ...state, ...stateData }))
+    })
+  }
+
+  getStateData = async (): Promise<IStateContext> => {
+    try {
+      const savedWordsArr: Word[] = JSON.parse(
+        await AsyncStorage.getItem('savedWords')
+      )
+      if (savedWordsArr != null) {
+        return { savedWords: new Set(savedWordsArr) }
+      } else {
+        return defaultStateData
+      }
+    } catch (e) {
+      // error reading value
+    }
+  }
+
   updateSavedWords = (newSavedWords: Set<Word>): void => {
-    this.setState((state) => ({ ...state, savedWords: newSavedWords }))
+    const newState: IStateContext = { savedWords: newSavedWords }
+    this.setState((state) => ({ ...state, ...newState }))
+    AsyncStorage.setItem('savedWords', JSON.stringify([...newState.savedWords]))
   }
 
   render() {
