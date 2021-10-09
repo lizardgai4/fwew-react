@@ -37,7 +37,7 @@ import { ListWCS } from '../lib/interfaces/list-wcs'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { SettingsContext } from '../context'
 import colors from '../lib/colors'
-import { condToSymbol } from '../lib'
+import { convertCond } from '../lib'
 import { ui } from '../lib/i18n'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 import { useKeyboard } from '@react-native-community/hooks'
@@ -135,7 +135,7 @@ function RandomForm({ onSearch }: ListFormProps): JSX.Element {
       } else {
         searchString += ' and '
       }
-      searchString += `${what} ${condToSymbol(cond)} ${spec}`
+      searchString += `${what} ${convertCond(cond)} ${spec}`
     })
     onSearch(searchString)
   }

@@ -144,12 +144,13 @@ function deleteById(wordSet: Set<Word>, id: string): void {
 }
 
 /**
- * converts given numeric condition (comparison operator) to the symbol version
+ * converts given camelCase formatted condition (comparison operator) to the
+ * format used in Fwew List/Random
  *
  * @param cond string representing condition of numeric comparison
  * @return symbol representation of cond
  */
-function condToSymbol(cond: string): string {
+function convertCond(cond: string): string {
   switch (cond) {
     case 'lessThan':
       return '<'
@@ -163,6 +164,16 @@ function condToSymbol(cond: string): string {
       return '>'
     case 'notEqual':
       return '!='
+    case 'notStarts':
+      return 'not-starts'
+    case 'notEnds':
+      return 'not-ends'
+    case 'notIs':
+      return 'not-is'
+    case 'notHas':
+      return 'not-has'
+    case 'notLike':
+      return 'not-like'
     default:
       return cond
   }
@@ -175,5 +186,5 @@ export {
   join,
   includes,
   deleteById,
-  condToSymbol
+  convertCond
 }
