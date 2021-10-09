@@ -72,8 +72,3 @@ export interface SettingsList {
   stress: ListSyllablesOrStressOptions
   words: ListWordsOptions
 }
-
-/** Random Screen Settings */
-export interface SettingsRandom extends SettingsList {
-  numRandomWords: string
-}

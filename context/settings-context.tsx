@@ -19,15 +19,9 @@
 import {
   SettingsFwew,
   SettingsGlobal,
-  SettingsList,
-  SettingsRandom
+  SettingsList
 } from '../lib/interfaces/settings'
-import {
-  settingsFwew,
-  settingsGlobal,
-  settingsList,
-  settingsRandom
-} from '../lib/settings'
+import { settingsFwew, settingsGlobal, settingsList } from '../lib/settings'
 
 import { ISettingsContext } from '../lib/interfaces/settings-context'
 import React from 'react'
@@ -36,8 +30,7 @@ import React from 'react'
 const defaultStateSettings: ISettingsContext = {
   settingsGlobal,
   settingsFwew,
-  settingsList,
-  settingsRandom
+  settingsList
 }
 
 /** Settings Context */
@@ -70,31 +63,17 @@ export class SettingsStore extends React.Component {
     }))
   }
 
-  updateSettingsRandom = (newSettingsRandom: SettingsRandom): void => {
-    this.setState((state) => ({
-      ...state,
-      settingsFwew: newSettingsRandom
-    }))
-  }
-
   render() {
-    const {
-      settingsGlobal,
-      settingsFwew,
-      settingsList,
-      settingsRandom
-    } = this.state
+    const { settingsGlobal, settingsFwew, settingsList } = this.state
     return (
       <SettingsContext.Provider
         value={{
           settingsGlobal,
           settingsFwew,
           settingsList,
-          settingsRandom,
           onUpdateSettingsGlobal: this.updateSettingsGlobal,
           onUpdateSettingsFwew: this.updateSettingsFwew,
-          onUpdateSettingsList: this.updateSettingsList,
-          onUpdateSettingsRandom: this.updateSettingsRandom
+          onUpdateSettingsList: this.updateSettingsList
         }}
       >
         {this.props.children}
