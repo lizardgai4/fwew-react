@@ -131,7 +131,7 @@ function RandomForm({ onSearch }: ListFormProps): JSX.Element {
     array.forEach((wcs: ListWCS, index: number) => {
       const { what, cond, spec } = wcs
       if (index === 0) {
-        searchString += '/'
+        searchString += ' where '
       } else {
         searchString += ' and '
       }

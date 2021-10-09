@@ -64,6 +64,9 @@ function Screen({ apiUrl, screenType }: ScreenProps): JSX.Element {
 
   // calculates API endpoint for data fetching
   const getEndpoint = (text?: string): string => {
+    if (screenType === 'random') {
+      return `${apiUrl}${text.replace(/^(\d+) where /, '$1/')}`
+    }
     return `${apiUrl}${text}`
   }
 
@@ -109,7 +112,7 @@ function Screen({ apiUrl, screenType }: ScreenProps): JSX.Element {
       case 'list':
         return 'word starts r and pos is vtr.'
       case 'random':
-        return '10/pos is vtr.'
+        return '10 where pos is vtr.'
       default:
         return ''
     }
