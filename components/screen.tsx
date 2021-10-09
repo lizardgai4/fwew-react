@@ -140,20 +140,19 @@ function Screen({ apiUrl, screenType }: ScreenProps): JSX.Element {
                 value={text}
               />
               {/* search bar clear input button */}
-              {Platform.OS !== 'ios' &&
-                (text != null && text.length > 0 ? (
-                  <TouchableOpacity
-                    style={styles.closeButtonParent}
-                    onPress={() => searchData('')}
-                  >
-                    <MaterialIcons
-                      style={styles.closeButton}
-                      name="cancel"
-                      size={18}
-                      color={'#fff'}
-                    />
-                  </TouchableOpacity>
-                ) : null)}
+              <If condition={Platform.OS !== 'ios' && !!text}>
+                <TouchableOpacity
+                  style={styles.closeButtonParent}
+                  onPress={() => searchData('')}
+                >
+                  <MaterialIcons
+                    style={styles.closeButton}
+                    name="cancel"
+                    size={18}
+                    color={'#fff'}
+                  />
+                </TouchableOpacity>
+              </If>
             </View>
           </ActionBar>
           <KeyboardAvoidingView

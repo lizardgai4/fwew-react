@@ -31,6 +31,7 @@ import React, { Fragment, useContext, useEffect, useState } from 'react'
 import ActionBar from './action-bar'
 import EntryModalContent from './entry-modal-content'
 import { FwewError } from '../lib/interfaces/fwew-error'
+import If from './if'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { Modal } from 'react-native-paper'
 import { SettingsContext } from '../context'
@@ -155,20 +156,19 @@ function FwewScreen(): JSX.Element {
                 value={text}
               />
               {/* search bar clear input button */}
-              {Platform.OS !== 'ios' &&
-                (text != null && text.length > 0 ? (
-                  <TouchableOpacity
-                    style={styles.closeButtonParent}
-                    onPress={() => searchData('')}
-                  >
-                    <MaterialIcons
-                      style={styles.closeButton}
-                      name="cancel"
-                      size={18}
-                      color={'#fff'}
-                    />
-                  </TouchableOpacity>
-                ) : null)}
+              <If condition={Platform.OS !== 'ios' && !!text}>
+                <TouchableOpacity
+                  style={styles.closeButtonParent}
+                  onPress={() => searchData('')}
+                >
+                  <MaterialIcons
+                    style={styles.closeButton}
+                    name="cancel"
+                    size={18}
+                    color={'#fff'}
+                  />
+                </TouchableOpacity>
+              </If>
             </View>
             {/* Fwew Search direction toggle */}
             <TouchableOpacity onPress={toggleReverse}>
@@ -181,14 +181,10 @@ function FwewScreen(): JSX.Element {
               />
             </TouchableOpacity>
           </ActionBar>
-
-          {/*
-            render activity indicator when loading
-            render word list when finished loading
-            */}
-          {isLoading ? (
+          <If condition={isLoading}>
             <ActivityIndicator style={styles.activityIndicator} />
-          ) : (
+          </If>
+          <If condition={!isLoading}>
             <WordList
               data={data}
               err={err}
@@ -198,8 +194,7 @@ function FwewScreen(): JSX.Element {
               toggleModal={toggleModal}
               posFilterEnabled={true}
             />
-          )}
-
+          </If>
           {/* word information modal when user taps an entry in the list */}
           <Modal
             visible={isModalVisible}

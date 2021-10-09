@@ -21,6 +21,7 @@ import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native'
 
 import ActionBar from './action-bar'
 import EntryModalContent from './entry-modal-content'
+import If from './if'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { Modal } from 'react-native-paper'
 import { SettingsContext } from '../context'
@@ -73,7 +74,7 @@ function SavedScreen(): JSX.Element {
           </ActionBar>
 
           {/* word list or instructional message */}
-          {data.length > 0 ? (
+          <If condition={data.length > 0}>
             <WordList
               data={data}
               err={err}
@@ -83,7 +84,8 @@ function SavedScreen(): JSX.Element {
               toggleModal={toggleModal}
               posFilterEnabled={posFilterEnabled}
             />
-          ) : (
+          </If>
+          <If condition={data.length === 0}>
             <View style={styles.msgParent}>
               <MaterialIcons
                 name="info"
@@ -92,7 +94,7 @@ function SavedScreen(): JSX.Element {
               />
               <Text style={styles.msgText}>{strings.infoText}</Text>
             </View>
-          )}
+          </If>
 
           {/* word information modal when user taps an entry in the list */}
           <Modal

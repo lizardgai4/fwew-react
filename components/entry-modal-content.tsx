@@ -20,6 +20,7 @@ import React, { useContext } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
 import { EntryModalContentProps } from '../lib/interfaces/props'
+import If from './if'
 import { SettingsContext } from '../context'
 import Stressed from './stressed'
 import colors from '../lib/colors'
@@ -92,7 +93,7 @@ function EntryModalContent({ entry }: EntryModalContentProps): JSX.Element {
       </View>
 
       {/* verb infix location data */}
-      {entry.InfixLocations !== 'NULL' && (
+      <If condition={entry.InfixLocations !== 'NULL'}>
         <View style={styles.modal_group}>
           <Text selectable={true} style={styles.modal_label}>
             {`${strings.infixSlots}: `}
@@ -107,45 +108,45 @@ function EntryModalContent({ entry }: EntryModalContentProps): JSX.Element {
             </Text>
           </Text>
         </View>
-      )}
+      </If>
 
       {/* affixes */}
       <View style={styles.modal_group}>
-        {entry.Affixes && entry.Affixes.Prefix && (
+        <If condition={!!entry.Affixes && !!entry.Affixes.Prefix}>
           <Text selectable={true} style={styles.modal_label}>
             {`${strings.prefixes}: `}
             <Text selectable={true} style={styles.modal_text}>
               {entry.Affixes.Prefix}
             </Text>
           </Text>
-        )}
+        </If>
 
-        {entry.Affixes && entry.Affixes.Infix && (
+        <If condition={!!entry.Affixes && !!entry.Affixes.Infix}>
           <Text selectable={true} style={styles.modal_label}>
             {`${strings.infixes}: `}
             <Text selectable={true} style={styles.modal_text}>
               {entry.Affixes.Infix}
             </Text>
           </Text>
-        )}
+        </If>
 
-        {entry.Affixes && entry.Affixes.Suffix && (
+        <If condition={!!entry.Affixes && !!entry.Affixes.Suffix}>
           <Text selectable={true} style={styles.modal_label}>
             {`${strings.suffixes}: `}
             <Text selectable={true} style={styles.modal_text}>
               {entry.Affixes.Suffix}
             </Text>
           </Text>
-        )}
+        </If>
 
-        {entry.Affixes && entry.Affixes.Lenition && (
+        <If condition={!!entry.Affixes && !!entry.Affixes.Lenition}>
           <Text selectable={true} style={styles.modal_label}>
             {`${strings.lenition}: `}
             <Text selectable={true} style={styles.modal_text}>
               {entry.Affixes.Lenition}
             </Text>
           </Text>
-        )}
+        </If>
       </View>
     </View>
   )
