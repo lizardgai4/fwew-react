@@ -57,7 +57,8 @@ function WordList({
   toggleModal,
   posFilterEnabled
 }: WordListProps): JSX.Element {
-  const { settingsFwew } = useContext(SettingsContext)
+  const { settingsFwew, settingsGlobal } = useContext(SettingsContext)
+  const { languageCode } = settingsGlobal
   const { posFilterText } = settingsFwew
   const flatListRef = React.useRef()
   const [scrollOffset, setScrollOffset] = useState(0)
@@ -89,7 +90,7 @@ function WordList({
       }
     }
     data.sort(compareWords)
-    return data
+    return data.filter((word) => word[languageCode.toUpperCase()] !== 'NULL')
   }
 
   // handle scroll event
