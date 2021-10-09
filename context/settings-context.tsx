@@ -16,12 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import {
-  SettingsFwew,
-  SettingsGlobal,
-  SettingsList
-} from '../lib/interfaces/settings'
-import { settingsFwew, settingsGlobal, settingsList } from '../lib/settings'
+import { SettingsFwew, SettingsGlobal } from '../lib/interfaces/settings'
+import { settingsFwew, settingsGlobal } from '../lib/settings'
 
 import { ISettingsContext } from '../lib/interfaces/settings-context'
 import React from 'react'
@@ -29,8 +25,7 @@ import React from 'react'
 /** Default state of the Settings Context */
 const defaultStateSettings: ISettingsContext = {
   settingsGlobal,
-  settingsFwew,
-  settingsList
+  settingsFwew
 }
 
 /** Settings Context */
@@ -56,24 +51,15 @@ export class SettingsStore extends React.Component {
     }))
   }
 
-  updateSettingsList = (newSettingsList: SettingsList): void => {
-    this.setState((state) => ({
-      ...state,
-      settingsFwew: newSettingsList
-    }))
-  }
-
   render() {
-    const { settingsGlobal, settingsFwew, settingsList } = this.state
+    const { settingsGlobal, settingsFwew } = this.state
     return (
       <SettingsContext.Provider
         value={{
           settingsGlobal,
           settingsFwew,
-          settingsList,
           onUpdateSettingsGlobal: this.updateSettingsGlobal,
-          onUpdateSettingsFwew: this.updateSettingsFwew,
-          onUpdateSettingsList: this.updateSettingsList
+          onUpdateSettingsFwew: this.updateSettingsFwew
         }}
       >
         {this.props.children}

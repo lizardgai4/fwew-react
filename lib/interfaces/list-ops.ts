@@ -16,16 +16,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Language } from './i18n'
 
-/** Global Application Settings */
-export interface SettingsGlobal {
-  languageCode: Language
-  languageCodeUI: Language
-}
-
-/** Fwew Screen Settings */
-export interface SettingsFwew {
-  isReverseEnabled: boolean
-  posFilterText: string
+/** interface for list operations */
+export interface ListOps {
+  word: string[]
+  pos: string[]
+  syllables: string[]
+  stress: string[]
+  words: string[]
 }

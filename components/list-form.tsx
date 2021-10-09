@@ -38,6 +38,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { SettingsContext } from '../context'
 import colors from '../lib/colors'
 import { convertCond } from '../lib'
+import { listOps } from '../lib/list-ops'
 import { ui } from '../lib/i18n'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 import { useKeyboard } from '@react-native-community/hooks'
@@ -47,7 +48,7 @@ import { useKeyboard } from '@react-native-community/hooks'
  * The interactive form to fill out when creating List queries on Fwew
  */
 function ListForm({ onSearch }: ListFormProps): JSX.Element {
-  const { settingsList, settingsGlobal } = useContext(SettingsContext)
+  const { settingsGlobal } = useContext(SettingsContext)
   const { languageCodeUI } = settingsGlobal
   const strings = ui[languageCodeUI].listRandomForm
   const [what, setWhat] = useState('')
@@ -163,7 +164,7 @@ function ListForm({ onSearch }: ListFormProps): JSX.Element {
               <View>
                 <If condition={!wcs.what}>
                   <View>
-                    {Object.keys(settingsList).map((item, index) => (
+                    {Object.keys(listOps).map((item, index) => (
                       // @ts-ignore
                       <List.Item
                         key={`${index}_what`}
@@ -179,7 +180,7 @@ function ListForm({ onSearch }: ListFormProps): JSX.Element {
                 <View>
                   {!!wcs.what &&
                     !wcs.cond &&
-                    Object.keys(settingsList[wcs.what]).map((item, index) => (
+                    Object.keys(listOps[wcs.what]).map((item, index) => (
                       // @ts-ignore
                       <List.Item
                         key={`${index}_cond`}

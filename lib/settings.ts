@@ -16,11 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import {
-  SettingsFwew,
-  SettingsGlobal,
-  SettingsList
-} from './interfaces/settings'
+import { SettingsFwew, SettingsGlobal } from './interfaces/settings'
 
 import { Language } from './interfaces/i18n'
 
@@ -49,54 +45,4 @@ export const settingsGlobal: SettingsGlobal = {
 export const settingsFwew: SettingsFwew = {
   isReverseEnabled: false,
   posFilterText: 'all'
-}
-
-/**
- * List Settings
- *
- * values for each what/cond/spec in List
- */
-export const settingsList: SettingsList = {
-  word: {
-    starts: '',
-    ends: '',
-    has: '',
-    like: '',
-    notStarts: '',
-    notEnds: '',
-    notHas: '',
-    notLike: ''
-  },
-  pos: {
-    starts: '',
-    ends: '',
-    is: '',
-    has: '',
-    like: '',
-    notStarts: '',
-    notEnds: '',
-    notIs: '',
-    notHas: '',
-    notLike: ''
-  },
-  syllables: {
-    lessThan: '0',
-    lessThanEqual: '0',
-    equal: '0',
-    greaterThanEqual: '0',
-    greaterThan: '0',
-    notEqual: '0'
-  },
-  stress: {
-    lessThan: '0',
-    lessThanEqual: '0',
-    equal: '0',
-    greaterThanEqual: '0',
-    greaterThan: '0',
-    notEqual: '0'
-  },
-  words: {
-    first: '0',
-    last: '0'
-  }
 }
