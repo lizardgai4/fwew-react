@@ -17,9 +17,11 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import {
+  Dimensions,
   FlatList,
   NativeScrollEvent,
   NativeSyntheticEvent,
+  Platform,
   RefreshControl,
   StyleSheet,
   Text,
@@ -28,6 +30,7 @@ import {
 } from 'react-native'
 import React, { useContext, useState } from 'react'
 
+import Constants from 'expo-constants'
 import Entry from './entry'
 import { FAB } from 'react-native-paper'
 import If from './if'
@@ -37,6 +40,8 @@ import { Word } from '../lib/interfaces/word'
 import { WordListProps } from '../lib/interfaces/props'
 import colors from '../lib/colors'
 import { compareWords } from '../lib'
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
+import { useKeyboard } from '@react-native-community/hooks'
 
 /**
  * WordList Component
@@ -56,6 +61,17 @@ function WordList({
   const { posFilterText } = settingsFwew
   const flatListRef = React.useRef()
   const [scrollOffset, setScrollOffset] = useState(0)
+  const windowHeight = Dimensions.get('window').height
+  const statusBarHeight = Constants.statusBarHeight
+  const actionBarHeight = 56
+  const tabBarHeight = useBottomTabBarHeight()
+  const keyboard = useKeyboard()
+  const viewHeight =
+    windowHeight -
+    statusBarHeight -
+    actionBarHeight -
+    (Platform.OS === 'ios' && keyboard.keyboardShown ? 0 : tabBarHeight) -
+    (keyboard.keyboardShown ? keyboard.keyboardHeight : 0)
 
   const scrollToTop = () => {
     // @ts-ignore
@@ -86,7 +102,7 @@ function WordList({
   // only try to render the list if there is data for it
   if (data && data.length > 0) {
     return (
-      <View style={styles.listContainer}>
+      <View style={[{ height: viewHeight }, styles.listContainer]}>
         <FlatList
           ref={flatListRef}
           data={filterData()}

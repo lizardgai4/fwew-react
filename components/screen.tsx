@@ -153,39 +153,35 @@ function Screen({ apiUrl, screenType }: ScreenProps): JSX.Element {
                 ) : null)}
             </View>
           </ActionBar>
-
-          {/*
-            render activity indicator when loading
-            render word list when finished loading
-            */}
-          {isLoading ? (
-            <ActivityIndicator style={styles.activityIndicator} />
-          ) : (
-            <WordList
-              data={data}
-              err={err}
-              text={text}
-              isLoading={isLoading}
-              onRefresh={onRefresh}
-              toggleModal={toggleModal}
-              posFilterEnabled={false}
-            />
-          )}
-
-          <If condition={!text}>
-            <KeyboardAvoidingView
-              behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-              style={styles.mainView}
-            >
-              <If condition={screenType === 'list'}>
-                <ListForm onSearch={searchData} />
+          <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            style={styles.mainView}
+          >
+            <If condition={isLoading}>
+              <ActivityIndicator style={styles.activityIndicator} />
+            </If>
+            <If condition={!isLoading}>
+              <If condition={!!text}>
+                <WordList
+                  data={data}
+                  err={err}
+                  text={text}
+                  isLoading={isLoading}
+                  onRefresh={onRefresh}
+                  toggleModal={toggleModal}
+                  posFilterEnabled={false}
+                />
               </If>
-              <If condition={screenType === 'random'}>
-                <RandomForm onSearch={searchData} />
+              <If condition={!text}>
+                <If condition={screenType === 'list'}>
+                  <ListForm onSearch={searchData} />
+                </If>
+                <If condition={screenType === 'random'}>
+                  <RandomForm onSearch={searchData} />
+                </If>
               </If>
-            </KeyboardAvoidingView>
-          </If>
-
+            </If>
+          </KeyboardAvoidingView>
           {/* word information modal when user taps an entry in the list */}
           <Modal
             visible={isModalVisible}
