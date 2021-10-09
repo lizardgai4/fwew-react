@@ -22,7 +22,7 @@ import { Word } from '../lib/interfaces/word'
 
 /** Default state of the State Context */
 const defaultStateData: IStateContext = {
-  dataCache: new Set<Word>()
+  savedWords: new Set<Word>()
 }
 
 /** State Context */
@@ -32,17 +32,17 @@ export const StateContext = React.createContext<IStateContext>(defaultStateData)
 export class StateStore extends React.Component {
   state: IStateContext = defaultStateData
 
-  updateDataCache = (newDataCache: Set<Word>) => {
-    this.setState((state) => ({ ...state, dataCache: newDataCache }))
+  updateSavedWords = (newSavedWords: Set<Word>): void => {
+    this.setState((state) => ({ ...state, savedWords: newSavedWords }))
   }
 
   render() {
-    const { dataCache } = this.state
+    const { savedWords } = this.state
     return (
       <StateContext.Provider
         value={{
-          dataCache,
-          onUpdateDataCache: this.updateDataCache
+          savedWords,
+          onUpdateSavedWords: this.updateSavedWords
         }}
       >
         {this.props.children}

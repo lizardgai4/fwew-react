@@ -35,27 +35,27 @@ import colors from '../lib/colors'
  */
 function Entry({ number, word }: EntryProps) {
   const { Navi, PartOfSpeech, InfixDots, Stressed, Syllables } = word
-  const { dataCache, onUpdateDataCache } = useContext(StateContext)
+  const { savedWords, onUpdateSavedWords } = useContext(StateContext)
   const { settingsGlobal } = useContext(SettingsContext)
   const { languageCode } = settingsGlobal
 
   const toggleSaved = (): void => {
-    const isSaved = includes(dataCache, word)
-    const newDataCache = new Set<Word>([...dataCache])
+    const isSaved = includes(savedWords, word)
+    const newSavedWords = new Set<Word>([...savedWords])
 
     if (!isSaved) {
-      newDataCache.add(word)
+      newSavedWords.add(word)
     } else {
-      deleteById(newDataCache, word.ID)
+      deleteById(newSavedWords, word.ID)
     }
 
-    onUpdateDataCache(newDataCache)
+    onUpdateSavedWords(newSavedWords)
   }
 
   return (
     <View style={styles.entry}>
       <View style={styles.row}>
-        {includes(dataCache, word) ? (
+        {includes(savedWords, word) ? (
           <TouchableOpacity onPress={toggleSaved}>
             <View style={styles.circle}>
               <MaterialIcons

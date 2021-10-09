@@ -19,6 +19,6 @@
 import { Word } from './word'
 
 export interface IStateContext {
-  dataCache: Set<Word>
-  onUpdateDataCache?: (c: Set<Word>) => void
+  savedWords: Set<Word>
+  onUpdateSavedWords?: (words: Set<Word>) => void
 }

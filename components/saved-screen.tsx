@@ -36,13 +36,13 @@ import { ui } from '../lib/i18n'
  * Displays list of entries saved by the user
  */
 function SavedScreen(): JSX.Element {
-  const { dataCache } = useContext(StateContext)
+  const { savedWords } = useContext(StateContext)
   const { settingsGlobal } = useContext(SettingsContext)
   const { languageCodeUI } = settingsGlobal
   const strings = ui[languageCodeUI].savedScreen
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [selectedItem, setSelectedItem] = useState({} as Word)
-  const data = [...dataCache]
+  const data = [...savedWords]
   const err = { message: null }
   const isLoading = false
   const text = ''
