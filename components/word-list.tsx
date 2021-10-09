@@ -30,6 +30,7 @@ import React, { useContext, useState } from 'react'
 
 import Entry from './entry'
 import { FAB } from 'react-native-paper'
+import If from './if'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { SettingsContext } from '../context'
 import { Word } from '../lib/interfaces/word'
@@ -129,7 +130,10 @@ function WordList({
               color={colors.infoMessageIcon}
             />
             <Text style={styles.msgText}>
-              {err.message}: {text}
+              {err.message}
+              <If condition={!err.message.endsWith(`: ${text}`)}>
+                <Text>: {text}</Text>
+              </If>
             </Text>
           </View>
         ) : null}
