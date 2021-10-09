@@ -19,6 +19,7 @@
 import { SettingsFwew, SettingsGlobal } from '../lib/interfaces/settings'
 import { settingsFwew, settingsGlobal } from '../lib/settings'
 
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { ISettingsContext } from '../lib/interfaces/settings-context'
 import React from 'react'
 
@@ -37,18 +38,47 @@ export const SettingsContext = React.createContext<ISettingsContext>(
 export class SettingsStore extends React.Component {
   state: ISettingsContext = defaultStateSettings
 
+  componentDidMount() {
+    this.getSettingsData().then((settingsData) => {
+      this.setState((state) => ({ ...state, ...settingsData }))
+    })
+  }
+
+  getSettingsData = async (): Promise<ISettingsContext> => {
+    try {
+      const settings: ISettingsContext = JSON.parse(
+        await AsyncStorage.getItem('settings')
+      )
+      if (settings != null) {
+        return settings
+      } else {
+        return defaultStateSettings
+      }
+    } catch (e) {
+      // error reading value
+    }
+  }
+
   updateSettingsGlobal = (newSettingsGlobal: SettingsGlobal): void => {
-    this.setState((state) => ({
-      ...state,
-      settingsGlobal: newSettingsGlobal
-    }))
+    this.setState((state) => {
+      const newState = {
+        ...state,
+        settingsGlobal: newSettingsGlobal
+      }
+      AsyncStorage.setItem('settings', JSON.stringify(newState))
+      return newState
+    })
   }
 
   updateSettingsFwew = (newSettingsFwew: SettingsFwew): void => {
-    this.setState((state) => ({
-      ...state,
-      settingsFwew: newSettingsFwew
-    }))
+    this.setState((state) => {
+      const newState = {
+        ...state,
+        settingsFwew: newSettingsFwew
+      }
+      AsyncStorage.setItem('settings', JSON.stringify(newState))
+      return newState
+    })
   }
 
   render() {
