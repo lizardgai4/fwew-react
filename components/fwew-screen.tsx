@@ -155,7 +155,7 @@ function FwewScreen(): JSX.Element {
                 value={text}
               />
               {/* search bar clear input button */}
-              {Platform.OS === 'android' &&
+              {Platform.OS !== 'ios' &&
                 (text != null && text.length > 0 ? (
                   <TouchableOpacity
                     style={styles.closeButtonParent}
