@@ -25,6 +25,11 @@ import SettingsForm from './settings-form'
 import colors from '../lib/colors'
 import { ui } from '../lib/i18n'
 
+/**
+ * SettingsScreen component
+ *
+ * Screen where all the app information and settings are
+ */
 function SettingsScreen(): JSX.Element {
   const { settingsGlobal } = useContext(SettingsContext)
   const { languageCodeUI } = settingsGlobal

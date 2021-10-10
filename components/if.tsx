@@ -21,7 +21,7 @@ import { IfProps } from '../lib/interfaces/props'
 /**
  * If component: for easy conditional rendering
  */
-function If({ condition, children }: IfProps): JSX.Element {
+function If({ condition, children }: IfProps): any {
   const shouldRender = typeof condition === 'function' ? condition() : condition
   if (shouldRender) return children
   return null

@@ -99,7 +99,7 @@ export interface WordListProps {
  */
 export interface IfProps {
   condition: (() => boolean) | boolean
-  children: JSX.Element | JSX.Element[]
+  children: any
 }
 
 /**
@@ -109,12 +109,16 @@ export interface BoldProps {
   children: string | JSX.Element | JSX.Element[]
 }
 
-/** props for the ListForm component */
+/**
+ * props for the ListForm component
+ */
 export interface ListFormProps {
   onSearch: (searchText: string) => void
 }
 
-/** props for the FlagIcon component */
+/**
+ * props for the FlagIcon component
+ */
 export interface FlagIconProps {
   language: Language
 }
