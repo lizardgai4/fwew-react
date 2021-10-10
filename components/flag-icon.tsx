@@ -18,6 +18,7 @@
  */
 import { FlagIconProps } from '../lib/interfaces/props'
 import Icon from 'react-native-ico-flags'
+import React from 'react'
 
 /**
  * FlagIcon Component
