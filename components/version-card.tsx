@@ -50,7 +50,10 @@ function VersionCard(): JSX.Element {
     // @ts-ignore
     <Card style={styles.card}>
       {/* @ts-ignore */}
-      <Card.Title title={strings.title} />
+      <Card.Title
+        title={strings.title}
+        subtitle={`${strings.versionInfo} & ${strings.credits}`}
+      />
       <Card.Content>
         <List.Accordion
           title={strings.versionInfo}
