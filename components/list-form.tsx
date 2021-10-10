@@ -54,7 +54,7 @@ function ListForm({ onSearch }: ListFormProps): JSX.Element {
   const [what, setWhat] = useState('')
   const [cond, setCond] = useState('')
   const [spec, setSpec] = useState('')
-  const [array, setArray] = useState([])
+  const [array, setArray] = useState([] as ListWCS[])
   const windowHeight = Dimensions.get('window').height
   const statusBarHeight = Constants.statusBarHeight
   const actionBarHeight = 56
@@ -180,7 +180,7 @@ function ListForm({ onSearch }: ListFormProps): JSX.Element {
                 <View>
                   {!!wcs.what &&
                     !wcs.cond &&
-                    Object.keys(listOps[wcs.what]).map((item, index) => (
+                    listOps[wcs.what].map((item: string, index: number) => (
                       // @ts-ignore
                       <List.Item
                         key={`${index}_cond`}
