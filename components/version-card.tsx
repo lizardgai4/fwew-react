@@ -16,13 +16,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import { Card, List } from 'react-native-paper'
 import React, { useContext, useEffect, useState } from 'react'
 import { StyleSheet, Text } from 'react-native'
 
 import { ApiVersion } from '../lib/interfaces/api-version'
 import Bold from './bold'
-import { Card } from 'react-native-paper'
-import { List } from 'react-native-paper'
 import { SettingsContext } from '../context'
 import { apiRoot } from '../lib/settings'
 import { version as appVersion } from '../package.json'
