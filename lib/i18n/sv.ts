@@ -88,8 +88,12 @@ const sv: UITranslation = {
   },
   versionCard: {
     title: 'about fwew',
-    subtitle: 'version information',
-    dictionary: 'dictionary'
+    versionInfo: 'version information',
+    dictionary: 'dictionary',
+    credits: 'credits',
+    development: 'development',
+    design: 'design',
+    testing: 'testing'
   }
 }
 

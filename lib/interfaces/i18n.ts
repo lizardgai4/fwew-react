@@ -117,8 +117,12 @@ interface TabNavigatorStrings {
 /** interface for Settings Screen Version Card */
 interface VersionCardStrings {
   title: string
-  subtitle: string
+  versionInfo: string
   dictionary: string
+  credits: string
+  development: string
+  design: string
+  testing: string
 }
 
 /** interface for a UI Translation */

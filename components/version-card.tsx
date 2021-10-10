@@ -22,6 +22,7 @@ import { StyleSheet, Text } from 'react-native'
 import { ApiVersion } from '../lib/interfaces/api-version'
 import Bold from './bold'
 import { Card } from 'react-native-paper'
+import { List } from 'react-native-paper'
 import { SettingsContext } from '../context'
 import { apiRoot } from '../lib/settings'
 import { version as appVersion } from '../package.json'
@@ -50,20 +51,36 @@ function VersionCard(): JSX.Element {
     // @ts-ignore
     <Card style={styles.card}>
       {/* @ts-ignore */}
-      <Card.Title title={strings.title} subtitle={strings.subtitle} />
+      <Card.Title title={strings.title} />
       <Card.Content>
-        <Text style={styles.text}>
-          <Bold>fwew-react</Bold>: {appVersion}
-        </Text>
-        <Text style={styles.text}>
-          <Bold>fwew-api</Bold>: {version.APIVersion}
-        </Text>
-        <Text style={styles.text}>
-          <Bold>fwew-lib</Bold>: {version.FwewVersion}
-        </Text>
-        <Text style={styles.text}>
-          <Bold>{strings.dictionary}</Bold>: {version.DictVersion}
-        </Text>
+        <List.Accordion
+          title={strings.versionInfo}
+          titleStyle={styles.listItem}
+        >
+          <Text style={styles.text}>
+            <Bold>fwew-react</Bold>: {appVersion}
+          </Text>
+          <Text style={styles.text}>
+            <Bold>fwew-api</Bold>: {version.APIVersion}
+          </Text>
+          <Text style={styles.text}>
+            <Bold>fwew-lib</Bold>: {version.FwewVersion}
+          </Text>
+          <Text style={styles.text}>
+            <Bold>{strings.dictionary}</Bold>: {version.DictVersion}
+          </Text>
+        </List.Accordion>
+        <List.Accordion title={strings.credits} titleStyle={styles.listItem}>
+          <Text style={styles.text}>
+            <Bold>{strings.development}</Bold>: Tirea Aean
+          </Text>
+          <Text style={styles.text}>
+            <Bold>{strings.design}</Bold>: Morgan Hughes
+          </Text>
+          <Text style={styles.text}>
+            <Bold>{strings.testing}</Bold>: Alyara Arati
+          </Text>
+        </List.Accordion>
       </Card.Content>
     </Card>
   )
@@ -77,8 +94,13 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     maxHeight: '88%'
   },
+  listItem: {
+    color: colors.text
+  },
   text: {
-    fontSize: 16
+    fontSize: 16,
+    marginHorizontal: 16,
+    marginVertical: 8
   }
 })
 
