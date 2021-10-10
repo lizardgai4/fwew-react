@@ -17,6 +17,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { FwewError } from './fwew-error'
+import { Language } from './i18n'
 import { Word } from './word'
 
 /**
@@ -108,6 +109,12 @@ export interface BoldProps {
   children: string | JSX.Element | JSX.Element[]
 }
 
+/** props for the ListForm component */
 export interface ListFormProps {
   onSearch: (searchText: string) => void
+}
+
+/** props for the FlagIcon component */
+export interface FlagIconProps {
+  language: Language
 }

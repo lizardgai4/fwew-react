@@ -16,11 +16,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Card, RadioButton } from 'react-native-paper'
+import { Card, List, RadioButton } from 'react-native-paper'
 import { Languages, languageNames, ui } from '../lib/i18n'
 import React, { useContext } from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
 
+import FlagIcon from './flag-icon'
 import { Language } from '../lib/interfaces/i18n'
 import { SettingsContext } from '../context'
 import VersionCard from './version-card'
@@ -61,20 +62,26 @@ function SettingsForm(): JSX.Element {
           subtitle={strings.appLanguageDesc}
         />
         <Card.Content>
-          <RadioButton.Group
-            onValueChange={updateUILanguage}
-            value={languageCodeUI}
+          <List.Accordion
+            title={languageNames[languageCodeUI]}
+            titleStyle={styles.sectionTitle}
+            left={(_props) => <FlagIcon language={languageCodeUI} />}
           >
-            {Languages.map((language, index) => (
-              <View key={index}>
-                <RadioButton.Item
-                  label={languageNames[language]}
-                  value={language}
-                  color={colors.accent}
-                />
-              </View>
-            ))}
-          </RadioButton.Group>
+            <RadioButton.Group
+              onValueChange={updateUILanguage}
+              value={languageCodeUI}
+            >
+              {Languages.map((language, index) => (
+                <View key={index}>
+                  <RadioButton.Item
+                    label={languageNames[language]}
+                    value={language}
+                    color={colors.accent}
+                  />
+                </View>
+              ))}
+            </RadioButton.Group>
+          </List.Accordion>
         </Card.Content>
       </Card>
       {/* Results Language Setting */}
@@ -86,20 +93,26 @@ function SettingsForm(): JSX.Element {
           subtitle={strings.resultsLanguageDesc}
         />
         <Card.Content>
-          <RadioButton.Group
-            onValueChange={updateResultsLanguage}
-            value={languageCode}
+          <List.Accordion
+            title={languageNames[languageCode]}
+            titleStyle={styles.sectionTitle}
+            left={(_props) => <FlagIcon language={languageCode} />}
           >
-            {Languages.map((language, index) => (
-              <View key={index}>
-                <RadioButton.Item
-                  label={languageNames[language]}
-                  value={language}
-                  color={colors.accent}
-                />
-              </View>
-            ))}
-          </RadioButton.Group>
+            <RadioButton.Group
+              onValueChange={updateResultsLanguage}
+              value={languageCode}
+            >
+              {Languages.map((language, index) => (
+                <View key={index}>
+                  <RadioButton.Item
+                    label={languageNames[language]}
+                    value={language}
+                    color={colors.accent}
+                  />
+                </View>
+              ))}
+            </RadioButton.Group>
+          </List.Accordion>
         </Card.Content>
       </Card>
     </ScrollView>
