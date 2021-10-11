@@ -1,2 +1,2 @@
 declare module '*.png'
-declare module 'react-native-ico-flags'
+declare module 'react-svg-main'

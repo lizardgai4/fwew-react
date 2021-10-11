@@ -18,10 +18,21 @@
  */
 import { FlagIconProps } from '../lib/interfaces/props'
 import React from 'react'
+import SvgMain from 'react-svg-main'
 import { flagIcons } from '../lib/flag-icons'
 
 /**
- * FlagIcon Component (Web version)
+ * Icon class to override default icon set of SvgMain
+ */
+class Icon extends SvgMain {
+  constructor(props: any) {
+    super(props)
+    this.iconsSet = flagIcons
+  }
+}
+
+/**
+ * FlagIcon Component (Android / iOS version)
  *
  * renders a flag icon representing the country associated with the given
  * language code
@@ -41,21 +52,8 @@ const FlagIcon = ({ language }: FlagIconProps): JSX.Element => {
   if (!Object.keys(countryMap).includes(language)) {
     return null
   }
-  const country = countryMap[language]
-  return (
-    <div
-      style={styles.flagIcon}
-      dangerouslySetInnerHTML={{ __html: flagIcons[country] }}
-    ></div>
-  )
-}
-
-const styles = {
-  flagIcon: {
-    display: 'flex',
-    height: 20,
-    width: 20
-  }
+  // @ts-ignore
+  return <Icon name={countryMap[language]} />
 }
 
 export default FlagIcon
