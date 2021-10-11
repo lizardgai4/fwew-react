@@ -64,19 +64,19 @@ function TabNavigator(): JSX.Element {
         tabBarIcon: ({ focused, color, size }) => {
           let iconName: string
           switch (route.name) {
-            case 'Fwew':
+            case strings.fwew:
               iconName = 'search'
               break
-            case 'List':
+            case strings.list:
               iconName = 'list'
               break
-            case 'Random':
+            case strings.random:
               iconName = focused ? 'help' : 'help-outline'
               break
-            case 'Saved':
+            case strings.saved:
               iconName = 'star'
               break
-            case 'Settings':
+            case strings.settings:
               iconName = 'settings'
               break
           }
