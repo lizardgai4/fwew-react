@@ -43,7 +43,7 @@ const de: UITranslation = {
     pos: 'part of speech',
     syllables: 'number of syllables',
     stress: 'stressed syllable position',
-    words: 'in order of release time',
+    words: 'in order of release date',
     starts: 'starts with',
     ends: 'ends with',
     is: 'is exactly',
