@@ -66,7 +66,10 @@ const en: UITranslation = {
     list: 'list',
     and: 'and',
     random: 'random',
-    where: 'where'
+    where: 'where',
+    back: 'back',
+    delete: 'delete',
+    search: 'search'
   },
   savedScreen: {
     title: 'saved words',

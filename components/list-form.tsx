@@ -214,7 +214,7 @@ function ListForm({ onSearch }: ListFormProps): JSX.Element {
                           size={24}
                           color={colors.buttonText}
                         />
-                        <Text style={styles.buttonText}>back</Text>
+                        <Text style={styles.buttonText}>{strings.back}</Text>
                       </View>
                     </TouchableOpacity>
                   </If>
@@ -233,7 +233,7 @@ function ListForm({ onSearch }: ListFormProps): JSX.Element {
                           size={24}
                           color={colors.buttonText}
                         />
-                        <Text style={styles.buttonText}>delete</Text>
+                        <Text style={styles.buttonText}>{strings.delete}</Text>
                       </View>
                     </TouchableOpacity>
                   </If>
@@ -255,7 +255,7 @@ function ListForm({ onSearch }: ListFormProps): JSX.Element {
                           size={24}
                           color={colors.buttonText}
                         />
-                        <Text style={styles.buttonText}>search</Text>
+                        <Text style={styles.buttonText}>{strings.search}</Text>
                       </View>
                     </TouchableOpacity>
                   </If>
@@ -321,7 +321,6 @@ const styles = StyleSheet.create({
   buttonBack: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: 80,
     height: 48,
     paddingHorizontal: 8,
     backgroundColor: colors.primary,
@@ -332,7 +331,6 @@ const styles = StyleSheet.create({
   buttonDelete: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: 96,
     height: 48,
     paddingHorizontal: 8,
     marginLeft: 16,
@@ -344,7 +342,6 @@ const styles = StyleSheet.create({
   buttonSearch: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: 96,
     height: 48,
     paddingHorizontal: 8,
     marginLeft: 16,

@@ -88,6 +88,9 @@ interface ListRandomFormStrings {
   and: string
   random: string
   where: string
+  back: string
+  delete: string
+  search: string
 }
 
 /** interface for SavedScreen component strings */
