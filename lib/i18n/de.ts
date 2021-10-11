@@ -85,7 +85,7 @@ const de: UITranslation = {
   },
   tabNavigator: {
     fwew: 'Fwew',
-    list: 'List',
+    list: 'Liste',
     random: 'Zufällig',
     saved: 'Gespeichert',
     settings: 'Einstellungen'
