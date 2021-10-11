@@ -237,6 +237,8 @@ function ListForm({ onSearch }: ListFormProps): JSX.Element {
                       </View>
                     </TouchableOpacity>
                   </If>
+                </View>
+                <View style={styles.buttonGroupSearch}>
                   <If
                     condition={
                       idx === array.length - 1 &&
@@ -309,6 +311,11 @@ const styles = StyleSheet.create({
     paddingRight: 8
   },
   buttonGroup: {
+    marginTop: 16,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  buttonGroupSearch: {
     marginTop: 16,
     flexDirection: 'row',
     justifyContent: 'flex-end'
