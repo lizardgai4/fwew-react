@@ -22,7 +22,7 @@ import { UITranslation } from '../interfaces/i18n'
 /** UI - Deutsch */
 const de: UITranslation = {
   entryModalContent: {
-    partOfSpeech: 'Teil der Rede',
+    partOfSpeech: 'Wortart',
     definition: 'Definition',
     source: 'Quelle',
     ipa: 'IPA',
@@ -39,61 +39,62 @@ const de: UITranslation = {
     search: 'suche auf'
   },
   listRandomForm: {
-    word: 'word',
-    pos: 'part of speech',
-    syllables: 'number of syllables',
-    stress: 'stressed syllable position',
-    words: 'in order of release date',
-    starts: 'starts with',
-    ends: 'ends with',
-    is: 'is exactly',
-    has: 'has',
-    like: 'is like',
-    notStarts: 'does not start with',
-    notEnds: 'does not end with',
-    notIs: 'is exactly not',
-    notHas: 'does not have',
-    notLike: 'is not like',
-    lessThan: 'is less than (<)',
-    lessThanEqual: 'is at most (≤)',
-    equal: 'is exactly (=)',
-    greaterThanEqual: 'is at least (≥)',
-    greaterThan: 'is more than (>)',
-    notEqual: 'is exactly not (≠)',
-    first: '# oldest words',
-    last: '# newest words',
-    numRandomWords: '# random words',
-    list: 'list',
-    and: 'and',
-    random: 'random',
-    where: 'where'
+    word: 'das Wort',
+    pos: 'die Wortart',
+    syllables: 'die Anzahl der Silben',
+    stress: 'die Position der betonten Silbe',
+    words: 'in der Reihenfolge des Erscheinungsdatums',
+    starts: 'beginnt mit',
+    ends: 'endet mit',
+    is: 'ist genau',
+    has: 'hat',
+    like: 'ist wie',
+    notStarts: 'beginnt nicht mit',
+    notEnds: 'endet nicht mit',
+    notIs: 'ist genau nicht',
+    notHas: 'hat nicht',
+    notLike: 'ist nicht wie',
+    lessThan: 'ist kleiner als (<)',
+    lessThanEqual: 'kleiner oder gleich (≤)',
+    equal: 'ist gleich (=)',
+    greaterThanEqual: 'größer oder gleich (≥)',
+    greaterThan: 'ist größer als (>)',
+    notEqual: 'ist ungleich (≠)',
+    first: '# älteste Wörter',
+    last: '# neueste Wörter',
+    numRandomWords: '# Zufällige Wörter',
+    list: 'liste',
+    and: 'und',
+    random: 'zufällig',
+    where: 'bei denen'
   },
   savedScreen: {
-    title: 'saved words',
-    infoText: 'to save or un-save a word, tap the number on an entry'
+    title: 'gespeicherten Wörter',
+    infoText:
+      'Um ein Wort zu speichern oder zu entfernen, tippen Sie auf die Nummer eines Eintrags'
   },
   settingsScreen: {
-    title: 'settings',
-    appLanguage: 'app language',
-    appLanguageDesc: 'default language of app interface',
-    resultsLanguage: 'results laguage',
-    resultsLanguageDesc: 'default language of results'
+    title: 'Einstellungen',
+    appLanguage: 'Sprache der App',
+    appLanguageDesc: 'Standardsprache der App-Oberfläche',
+    resultsLanguage: 'Ergebnissprache',
+    resultsLanguageDesc: 'Standardsprache der Ergebnisse'
   },
   tabNavigator: {
     fwew: 'Fwew',
     list: 'List',
-    random: 'Random',
-    saved: 'Saved',
-    settings: 'Settings'
+    random: 'Zufällig',
+    saved: 'Gespeichert',
+    settings: 'Einstellungen'
   },
   versionCard: {
-    title: 'about fwew',
-    versionInfo: 'version information',
-    dictionary: 'dictionary',
-    credits: 'credits',
-    development: 'development',
-    design: 'design',
-    testing: 'testing'
+    title: 'über fwew',
+    versionInfo: 'Versionsinformation',
+    dictionary: 'Wörterbuch',
+    credits: 'Guthaben',
+    development: 'Entwicklung',
+    design: 'das Design',
+    testing: 'das Testen'
   }
 }
 
