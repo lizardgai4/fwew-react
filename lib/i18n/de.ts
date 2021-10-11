@@ -21,6 +21,7 @@ import { UITranslation } from '../interfaces/i18n'
 
 /** UI - Deutsch */
 const de: UITranslation = {
+  active: true,
   entryModalContent: {
     partOfSpeech: 'Wortart',
     definition: 'Definition',

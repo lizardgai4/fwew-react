@@ -130,6 +130,7 @@ interface VersionCardStrings {
 
 /** interface for a UI Translation */
 export interface UITranslation {
+  active: boolean
   entryModalContent: EntryModalContentStrings
   fwewScreen: FwewScreenStrings
   listRandomForm: ListRandomFormStrings

@@ -21,6 +21,7 @@ import { UITranslation } from '../interfaces/i18n'
 
 /** UI - Français */
 const fr: UITranslation = {
+  active: false,
   entryModalContent: {
     partOfSpeech: 'part of speech',
     definition: 'definition',

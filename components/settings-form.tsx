@@ -77,6 +77,7 @@ function SettingsForm(): JSX.Element {
                     label={languageNames[language]}
                     value={language}
                     color={colors.accent}
+                    disabled={!ui[language].active}
                   />
                 </View>
               ))}
