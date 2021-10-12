@@ -65,8 +65,11 @@ function Screen({ apiUrl, screenType }: ScreenProps): JSX.Element {
   // calculates API endpoint for data fetching
   const getEndpoint = (text?: string): string => {
     if (screenType === 'random') {
-      if (text.match(/^random where/)) {
-        return `${apiUrl}${text.replace(/^(random) where /, '0/')}`
+      if (text === 'random') {
+        return `${apiUrl}0`
+      }
+      if (text.match(/^random where /)) {
+        return `${apiUrl}${text.replace(/^random where /, '0/')}`
       }
       return `${apiUrl}${text.replace(/^(\d+) where /, '$1/')}`
     }
