@@ -4,7 +4,7 @@
     "slug": "fwew-react",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/fwew.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -19,13 +19,15 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "bundleIdentifier": "com.fwew.react"
+      "bundleIdentifier": "com.fwew.react",
+      "icon": "./assets/fwew.png"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "android": {
-      "package": "com.fwew.react"
+      "package": "com.fwew.react",
+      "icon": "./assets/icon.png"
     }
   }
 }
