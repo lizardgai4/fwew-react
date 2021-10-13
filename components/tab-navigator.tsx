@@ -20,6 +20,7 @@ import React, { useContext } from 'react'
 
 import FwewScreen from './fwew-screen'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import NumberScreen from './number-screen'
 import SavedScreen from './saved-screen'
 import Screen from './screen'
 import { SettingsContext } from '../context'
@@ -76,6 +77,9 @@ function TabNavigator(): JSX.Element {
             case strings.saved:
               iconName = 'star'
               break
+            case 'Number':
+              iconName = 'tag'
+              break
             case strings.settings:
               iconName = 'settings'
               break
@@ -99,6 +103,7 @@ function TabNavigator(): JSX.Element {
       <Tab.Screen name={strings.list} component={ListScreen} />
       <Tab.Screen name={strings.random} component={RandomScreen} />
       <Tab.Screen name={strings.saved} component={SavedScreen} />
+      <Tab.Screen name="Number" component={NumberScreen} />
       <Tab.Screen name={strings.settings} component={SettingsScreen} />
     </Tab.Navigator>
   )
