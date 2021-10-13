@@ -75,7 +75,9 @@ function SavedScreen(): JSX.Element {
 
           {/* word list or instructional message */}
           <If condition={data.length > 0}>
-            <Text style={styles.resultCount}>{data.length} results</Text>
+            <Text style={styles.resultCount}>
+              {data.length} {strings.results}
+            </Text>
             <WordList
               data={data}
               err={err}

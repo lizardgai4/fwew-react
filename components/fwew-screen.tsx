@@ -190,7 +190,9 @@ function FwewScreen(): JSX.Element {
             />
           </If>
           <If condition={!isLoading}>
-            <Text style={styles.resultCount}>{data.length} results</Text>
+            <Text style={styles.resultCount}>
+              {data.length} {strings.results}
+            </Text>
             <WordList
               data={data}
               err={err}

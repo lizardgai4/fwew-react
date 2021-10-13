@@ -28,7 +28,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native'
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useContext, useState } from 'react'
 
 import ActionBar from './action-bar'
 import EntryModalContent from './entry-modal-content'
@@ -39,10 +39,12 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { Modal } from 'react-native-paper'
 import RandomForm from './random-form'
 import { ScreenProps } from '../lib/interfaces/props'
+import { SettingsContext } from '../context'
 import { Word } from '../lib/interfaces/word'
 import WordList from './word-list'
 import axios from 'axios'
 import colors from '../lib/colors'
+import { ui } from '../lib/i18n'
 
 /**
  * Screen component
@@ -50,6 +52,9 @@ import colors from '../lib/colors'
  * The layout and logic for List and Random screens
  */
 function Screen({ apiUrl, screenType }: ScreenProps): JSX.Element {
+  const { settingsGlobal } = useContext(SettingsContext)
+  const { languageCodeUI } = settingsGlobal
+  const strings = ui[languageCodeUI].listRandomForm
   const [isLoading, setIsLoading] = useState(false)
   const [text, setText] = useState('')
   const [data, setData] = useState([] as Word[])
@@ -175,7 +180,9 @@ function Screen({ apiUrl, screenType }: ScreenProps): JSX.Element {
             </If>
             <If condition={!isLoading}>
               <If condition={!!text}>
-                <Text style={styles.resultCount}>{data.length} results</Text>
+                <Text style={styles.resultCount}>
+                  {data.length} {strings.results}
+                </Text>
                 <WordList
                   data={data}
                   err={err}
