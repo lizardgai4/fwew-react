@@ -24,6 +24,7 @@ import et from './et'
 import fr from './fr'
 import hu from './hu'
 import nl from './nl'
+import nx from './nx'
 import pl from './pl'
 import ru from './ru'
 import sv from './sv'
@@ -38,7 +39,8 @@ export const Languages: Language[] = [
   Language.NL,
   Language.PL,
   Language.RU,
-  Language.SV
+  Language.SV,
+  Language.NX
 ]
 
 /* Map of language codes to language names for the settings page */
@@ -51,8 +53,9 @@ export const languageNames: LanguageNames = {
   nl: `Nederlands`,
   pl: `Polski`,
   ru: `Русский`,
-  sv: `Svenska`
+  sv: `Svenska`,
+  nx: `Na'vi`
 }
 
 /** Internationalized UI strings */
-export const ui: UI = { de, en, et, fr, hu, nl, pl, ru, sv }
+export const ui: UI = { de, en, et, fr, hu, nl, pl, ru, sv, nx }

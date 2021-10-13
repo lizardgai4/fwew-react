@@ -27,7 +27,8 @@ export enum Language {
   NL = 'nl', // Nederlands
   PL = 'pl', // Polski
   RU = 'ru', // Русский
-  SV = 'sv' // Svenska
+  SV = 'sv', // Svenska
+  NX = 'nx' // Na'vi
 }
 
 /** type for languageNames, the array of language display names */
