@@ -77,7 +77,7 @@ function TabNavigator(): JSX.Element {
             case strings.saved:
               iconName = 'star'
               break
-            case 'Number':
+            case strings.number:
               iconName = 'tag'
               break
             case strings.settings:
@@ -103,7 +103,7 @@ function TabNavigator(): JSX.Element {
       <Tab.Screen name={strings.list} component={ListScreen} />
       <Tab.Screen name={strings.random} component={RandomScreen} />
       <Tab.Screen name={strings.saved} component={SavedScreen} />
-      <Tab.Screen name="Number" component={NumberScreen} />
+      <Tab.Screen name={strings.number} component={NumberScreen} />
       <Tab.Screen name={strings.settings} component={SettingsScreen} />
     </Tab.Navigator>
   )

@@ -115,6 +115,7 @@ interface TabNavigatorStrings {
   list: string
   random: string
   saved: string
+  number: string
   settings: string
 }
 

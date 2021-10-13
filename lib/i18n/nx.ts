@@ -88,6 +88,7 @@ const nx: UITranslation = {
     list: "Sna'o",
     random: 'Renulke',
     saved: 'Swawneyn',
+    number: 'Holpxay',
     settings: 'Aysìftxey'
   },
   versionCard: {

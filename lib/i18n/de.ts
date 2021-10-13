@@ -89,6 +89,7 @@ const de: UITranslation = {
     list: 'Liste',
     random: 'Zufällig',
     saved: 'Gespeichert',
+    number: 'Nummer',
     settings: 'Einstellungen'
   },
   versionCard: {

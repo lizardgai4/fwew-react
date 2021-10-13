@@ -88,6 +88,7 @@ const en: UITranslation = {
     list: 'List',
     random: 'Random',
     saved: 'Saved',
+    number: 'Number',
     settings: 'Settings'
   },
   versionCard: {
