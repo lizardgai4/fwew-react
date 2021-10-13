@@ -33,7 +33,7 @@ import { ui } from '../lib/i18n'
  */
 function EntryModalContent({ entry }: EntryModalContentProps): JSX.Element {
   const { settingsGlobal } = useContext(SettingsContext)
-  const { languageCodeUI } = settingsGlobal
+  const { languageCodeUI, languageCode } = settingsGlobal
   const strings = ui[languageCodeUI].entryModalContent
 
   return (
@@ -55,7 +55,7 @@ function EntryModalContent({ entry }: EntryModalContentProps): JSX.Element {
         <Text selectable={true} style={styles.modal_label}>
           {`${strings.definition}: `}
           <Text selectable={true} style={styles.modal_text}>
-            {entry.EN}
+            {entry[languageCode.toUpperCase()]}
           </Text>
         </Text>
 
