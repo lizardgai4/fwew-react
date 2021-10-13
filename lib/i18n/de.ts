@@ -37,8 +37,7 @@ const de: UITranslation = {
     lenition: 'Lenition'
   },
   fwewScreen: {
-    search: 'suche auf',
-    results: 'Ergebnisse'
+    search: 'suche auf'
   },
   listRandomForm: {
     word: 'das Wort',
@@ -71,14 +70,12 @@ const de: UITranslation = {
     where: 'bei denen',
     back: 'zurück',
     delete: 'entfernen',
-    search: 'suche',
-    results: 'Ergebnisse'
+    search: 'suche'
   },
   savedScreen: {
     title: 'gespeicherten Wörter',
     infoText:
-      'Um ein Wort zu speichern oder zu entfernen, tippen Sie auf die Nummer eines Eintrags',
-    results: 'Ergebnisse'
+      'Um ein Wort zu speichern oder zu entfernen, tippen Sie auf die Nummer eines Eintrags'
   },
   settingsScreen: {
     title: 'Einstellungen',
@@ -102,6 +99,9 @@ const de: UITranslation = {
     development: 'Entwicklung',
     design: 'das Design',
     testing: 'das Testen'
+  },
+  resultCount: {
+    results: 'Ergebnisse'
   }
 }
 

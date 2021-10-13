@@ -122,3 +122,10 @@ export interface ListFormProps {
 export interface FlagIconProps {
   language: Language
 }
+
+/**
+ * props for ResultCount component
+ */
+export interface ResultCountProps {
+  data: Word[]
+}

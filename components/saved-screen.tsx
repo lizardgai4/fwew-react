@@ -24,6 +24,7 @@ import EntryModalContent from './entry-modal-content'
 import If from './if'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { Modal } from 'react-native-paper'
+import ResultCount from './result-count'
 import { SettingsContext } from '../context'
 import { StateContext } from '../context'
 import { Word } from '../lib/interfaces/word'
@@ -75,9 +76,7 @@ function SavedScreen(): JSX.Element {
 
           {/* word list or instructional message */}
           <If condition={data.length > 0}>
-            <Text style={styles.resultCount}>
-              {data.length} {strings.results}
-            </Text>
+            <ResultCount data={data} />
             <WordList
               data={data}
               err={err}

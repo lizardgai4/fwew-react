@@ -37,8 +37,7 @@ const pl: UITranslation = {
     lenition: 'lenition'
   },
   fwewScreen: {
-    search: 'search',
-    results: 'results'
+    search: 'search'
   },
   listRandomForm: {
     word: 'word',
@@ -71,13 +70,11 @@ const pl: UITranslation = {
     where: 'where',
     back: 'back',
     delete: 'delete',
-    search: 'search',
-    results: 'results'
+    search: 'search'
   },
   savedScreen: {
     title: 'saved words',
-    infoText: 'to save or un-save a word, tap the number on an entry',
-    results: 'results'
+    infoText: 'to save or un-save a word, tap the number on an entry'
   },
   settingsScreen: {
     title: 'settings',
@@ -101,6 +98,9 @@ const pl: UITranslation = {
     development: 'development',
     design: 'design',
     testing: 'testing'
+  },
+  resultCount: {
+    results: 'results'
   }
 }
 

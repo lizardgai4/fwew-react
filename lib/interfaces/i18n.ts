@@ -57,12 +57,10 @@ interface EntryModalContentStrings {
 /** interface for FwewScreen component strings */
 interface FwewScreenStrings {
   search: string
-  results: string
 }
 
 /** interface for ListForm and RandomForm component strings */
 interface ListRandomFormStrings {
-  results: string
   word: string
   pos: string
   syllables: string
@@ -100,7 +98,6 @@ interface ListRandomFormStrings {
 interface SavedScreenStrings {
   title: string
   infoText: string
-  results: string
 }
 
 /** interface for SettingsScreen / SettingsForm component strings */
@@ -132,6 +129,11 @@ interface VersionCardStrings {
   testing: string
 }
 
+/** interface for ResultCount component */
+export interface ResultCountStrings {
+  results: string
+}
+
 /** interface for a UI Translation */
 export interface UITranslation {
   active: boolean
@@ -142,6 +144,7 @@ export interface UITranslation {
   settingsScreen: SettingsScreenStrings
   tabNavigator: TabNavigatorStrings
   versionCard: VersionCardStrings
+  resultCount: ResultCountStrings
 }
 
 /** type for Internationalized UI */

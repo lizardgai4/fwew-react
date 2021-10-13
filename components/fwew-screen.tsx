@@ -22,7 +22,6 @@ import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
-  Text,
   TextInput,
   TouchableOpacity,
   View
@@ -35,6 +34,7 @@ import { FwewError } from '../lib/interfaces/fwew-error'
 import If from './if'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { Modal } from 'react-native-paper'
+import ResultCount from './result-count'
 import { SettingsContext } from '../context'
 import { Word } from '../lib/interfaces/word'
 import WordList from './word-list'
@@ -190,9 +190,7 @@ function FwewScreen(): JSX.Element {
             />
           </If>
           <If condition={!isLoading}>
-            <Text style={styles.resultCount}>
-              {data.length} {strings.results}
-            </Text>
+            <ResultCount data={data} />
             <WordList
               data={data}
               err={err}

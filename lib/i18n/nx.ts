@@ -37,8 +37,7 @@ const nx: UITranslation = {
     lenition: 'pamä sälatem'
   },
   fwewScreen: {
-    search: 'fwew',
-    results: 'kum'
+    search: 'fwew'
   },
   listRandomForm: {
     word: "lì'u",
@@ -71,13 +70,11 @@ const nx: UITranslation = {
     where: 'hu syon alu',
     back: "ne'ìm",
     delete: "'aku",
-    search: 'fwew',
-    results: 'kum'
+    search: 'fwew'
   },
   savedScreen: {
     title: "aylì'u aswawneyn",
-    infoText: "'ampi mì humo a holpxayt fte lì'ut swiveyn fu 'ivaku",
-    results: 'kum'
+    infoText: "'ampi mì humo a holpxayt fte lì'ut swiveyn fu 'ivaku"
   },
   settingsScreen: {
     title: 'aysìftxey',
@@ -101,6 +98,9 @@ const nx: UITranslation = {
     development: 'rengopyu',
     design: "'ongopyu",
     testing: 'fmetokyu'
+  },
+  resultCount: {
+    results: 'kum'
   }
 }
 
