@@ -22,6 +22,7 @@ import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
+  Text,
   TextInput,
   TouchableOpacity,
   View
@@ -182,9 +183,14 @@ function FwewScreen(): JSX.Element {
             </TouchableOpacity>
           </ActionBar>
           <If condition={isLoading}>
-            <ActivityIndicator style={styles.activityIndicator} />
+            <ActivityIndicator
+              style={styles.activityIndicator}
+              size={'large'}
+              color={colors.accent}
+            />
           </If>
           <If condition={!isLoading}>
+            <Text style={styles.resultCount}>{data.length} results</Text>
             <WordList
               data={data}
               err={err}
@@ -251,6 +257,11 @@ const styles = StyleSheet.create({
   },
   activityIndicator: {
     marginTop: 16
+  },
+  resultCount: {
+    alignSelf: 'center',
+    marginTop: 16,
+    fontSize: 16
   },
   modalContainerStyle: {
     padding: 16,

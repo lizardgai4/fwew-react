@@ -75,6 +75,7 @@ function SavedScreen(): JSX.Element {
 
           {/* word list or instructional message */}
           <If condition={data.length > 0}>
+            <Text style={styles.resultCount}>{data.length} results</Text>
             <WordList
               data={data}
               err={err}
@@ -141,6 +142,11 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginLeft: 16,
     marginRight: 16
+  },
+  resultCount: {
+    alignSelf: 'center',
+    marginTop: 16,
+    fontSize: 16
   },
   modalContainerStyle: {
     padding: 16,
