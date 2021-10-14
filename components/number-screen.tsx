@@ -162,10 +162,10 @@ function NumberScreen(): JSX.Element {
                   {/* @ts-ignore */}
                   <Card.Title title={data.name} />
                   <Card.Content style={styles.cardContent}>
-                    <Text style={styles.text}>
+                    <Text selectable={true} style={styles.text}>
                       <Bold>decimal</Bold>: {data.decimal}
                     </Text>
-                    <Text style={styles.text}>
+                    <Text selectable={true} style={styles.text}>
                       <Bold>octal</Bold>: {data.octal}
                     </Text>
                   </Card.Content>
