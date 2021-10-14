@@ -231,7 +231,7 @@ const styles = StyleSheet.create({
     width: '75%',
     borderColor: colors.secondary,
     backgroundColor: colors.inputBackground,
-    borderRadius: 16,
+    borderRadius: 12,
     borderWidth: 1,
     flexDirection: 'row',
     justifyContent: 'space-between'
