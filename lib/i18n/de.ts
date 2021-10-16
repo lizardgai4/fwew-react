@@ -96,7 +96,7 @@ const de: UITranslation = {
     title: 'über fwew',
     versionInfo: 'Versionsinformation',
     dictionary: 'Wörterbuch',
-    credits: 'Guthaben',
+    credits: 'Credits',
     development: 'Entwicklung',
     design: 'das Design',
     testing: 'das Testen'
