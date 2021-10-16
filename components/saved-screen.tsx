@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React, { Fragment, useContext, useState } from 'react'
+import React, { Fragment, useContext, useLayoutEffect, useState } from 'react'
 import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native'
 
 import ActionBar from './action-bar'
@@ -37,7 +37,7 @@ import { ui } from '../lib/i18n'
  *
  * Displays list of entries saved by the user
  */
-function SavedScreen(): JSX.Element {
+function SavedScreen({ navigation }): JSX.Element {
   const { savedWords } = useContext(StateContext)
   const { settingsGlobal } = useContext(SettingsContext)
   const { languageCodeUI } = settingsGlobal
@@ -50,6 +50,23 @@ function SavedScreen(): JSX.Element {
   const text = ''
   const posFilterEnabled = false
 
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      header: () => (
+        <View>
+          {/* status bar */}
+          <SafeAreaView style={styles.safeStatusBar} />
+          <StatusBar barStyle="light-content" />
+          <ActionBar>
+            <View style={styles.titleParent}>
+              <Text style={styles.title}>{strings.title}</Text>
+            </View>
+          </ActionBar>
+        </View>
+      )
+    })
+  }, [navigation])
+
   // toggles info modal visible when user taps a list entry or modal backdrop
   const toggleModal = (item: Word): void => {
     setIsModalVisible(!isModalVisible)
@@ -61,19 +78,9 @@ function SavedScreen(): JSX.Element {
 
   return (
     <Fragment>
-      {/* status bar */}
-      <SafeAreaView style={styles.safeStatusBar} />
-      <StatusBar barStyle="light-content" />
-
       {/* main content */}
       <SafeAreaView style={styles.safeContainer}>
         <View style={styles.mainView}>
-          <ActionBar>
-            <View style={styles.titleParent}>
-              <Text style={styles.title}>{strings.title}</Text>
-            </View>
-          </ActionBar>
-
           {/* word list or instructional message */}
           <If condition={data.length > 0}>
             <ResultCount data={data} />

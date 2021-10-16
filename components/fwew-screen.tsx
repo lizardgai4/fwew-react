@@ -26,7 +26,13 @@ import {
   TouchableOpacity,
   View
 } from 'react-native'
-import React, { Fragment, useContext, useEffect, useState } from 'react'
+import React, {
+  Fragment,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useState
+} from 'react'
 
 import ActionBar from './action-bar'
 import EntryModalContent from './entry-modal-content'
@@ -48,7 +54,7 @@ import { ui } from '../lib/i18n'
  *
  * Screen where the user can search for specific word(s)
  */
-function FwewScreen(): JSX.Element {
+function FwewScreen({ navigation }): JSX.Element {
   const [isLoading, setIsLoading] = useState(true)
   const [text, setText] = useState('')
   const [data, setData] = useState([] as Word[])
@@ -62,6 +68,56 @@ function FwewScreen(): JSX.Element {
   const { languageCodeUI } = settingsGlobal
   const strings = ui[languageCodeUI].fwewScreen
   const languageUIName = languageNames[languageCodeUI]
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      header: () => (
+        <View>
+          {/* status bar */}
+          <SafeAreaView style={styles.safeStatusBar} />
+          <StatusBar barStyle="light-content" />
+          <ActionBar>
+            <View style={styles.parent}>
+              {/* search bar */}
+              <TextInput
+                onChangeText={searchData}
+                placeholder={getInputPlaceholderText()}
+                autoCapitalize={'none'}
+                autoCorrect={false}
+                style={styles.input}
+                clearButtonMode="always"
+                value={text}
+              />
+              {/* search bar clear input button */}
+              <If condition={Platform.OS !== 'ios' && !!text}>
+                <TouchableOpacity
+                  style={styles.closeButtonParent}
+                  onPress={() => searchData('')}
+                >
+                  <MaterialIcons
+                    style={styles.closeButton}
+                    name="cancel"
+                    size={18}
+                    color={'#fff'}
+                  />
+                </TouchableOpacity>
+              </If>
+            </View>
+            {/* Fwew Search direction toggle */}
+            <TouchableOpacity onPress={toggleReverse}>
+              <MaterialIcons
+                name={
+                  isReverseEnabled ? 'swap-horizontal-circle' : 'swap-horiz'
+                }
+                size={36}
+                color={colors.actionBarIconFill}
+              />
+            </TouchableOpacity>
+          </ActionBar>
+        </View>
+      )
+    })
+  }, [navigation, isReverseEnabled, text, strings, languageUIName])
 
   // toggles info modal visible when user taps a list entry or modal backdrop
   const toggleModal = (item: Word): void => {
@@ -137,51 +193,9 @@ function FwewScreen(): JSX.Element {
 
   return (
     <Fragment>
-      {/* status bar */}
-      <SafeAreaView style={styles.safeStatusBar} />
-      <StatusBar barStyle="light-content" />
-
       {/* main content */}
       <SafeAreaView style={styles.safeContainer}>
         <View style={styles.mainView}>
-          <ActionBar>
-            <View style={styles.parent}>
-              {/* search bar */}
-              <TextInput
-                onChangeText={searchData}
-                placeholder={getInputPlaceholderText()}
-                autoCapitalize={'none'}
-                autoCorrect={false}
-                style={styles.input}
-                clearButtonMode="always"
-                value={text}
-              />
-              {/* search bar clear input button */}
-              <If condition={Platform.OS !== 'ios' && !!text}>
-                <TouchableOpacity
-                  style={styles.closeButtonParent}
-                  onPress={() => searchData('')}
-                >
-                  <MaterialIcons
-                    style={styles.closeButton}
-                    name="cancel"
-                    size={18}
-                    color={'#fff'}
-                  />
-                </TouchableOpacity>
-              </If>
-            </View>
-            {/* Fwew Search direction toggle */}
-            <TouchableOpacity onPress={toggleReverse}>
-              <MaterialIcons
-                name={
-                  isReverseEnabled ? 'swap-horizontal-circle' : 'swap-horiz'
-                }
-                size={36}
-                color={colors.actionBarIconFill}
-              />
-            </TouchableOpacity>
-          </ActionBar>
           <If condition={isLoading}>
             <ActivityIndicator
               style={styles.activityIndicator}
@@ -228,21 +242,21 @@ const styles = StyleSheet.create({
     flex: 1
   },
   parent: {
-    width: '75%',
+    flex: 1,
     borderColor: colors.secondary,
     backgroundColor: colors.inputBackground,
     borderRadius: 12,
     borderWidth: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'flex-start',
+    marginRight: 8
   },
   input: {
     height: 40,
     flex: 1,
     paddingLeft: 8,
     marginLeft: 8,
-    marginRight: 8,
-    width: '90%'
+    marginRight: 8
   },
   closeButton: {
     color: colors.inputCloseButton,

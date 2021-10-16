@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React, { Fragment, useContext } from 'react'
+import React, { useContext, useLayoutEffect } from 'react'
 import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native'
 
 import ActionBar from './action-bar'
@@ -30,27 +30,33 @@ import { ui } from '../lib/i18n'
  *
  * Screen where all the app information and settings are
  */
-function SettingsScreen(): JSX.Element {
+function SettingsScreen({ navigation }): JSX.Element {
   const { settingsGlobal } = useContext(SettingsContext)
   const { languageCodeUI } = settingsGlobal
   const strings = ui[languageCodeUI].settingsScreen
-  return (
-    <Fragment>
-      {/* status bar */}
-      <SafeAreaView style={styles.safeStatusBar} />
-      <StatusBar barStyle="light-content" />
-      {/* main content */}
-      <SafeAreaView style={styles.safeContainer}>
-        <View style={styles.mainView}>
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      header: () => (
+        <View>
+          <SafeAreaView style={styles.safeStatusBar} />
+          <StatusBar barStyle="light-content" />
           <ActionBar>
             <View style={styles.titleParent}>
               <Text style={styles.title}>{strings.title}</Text>
             </View>
           </ActionBar>
-          <SettingsForm />
         </View>
-      </SafeAreaView>
-    </Fragment>
+      )
+    })
+  }, [navigation, strings])
+
+  return (
+    <SafeAreaView style={styles.safeContainer}>
+      <View style={styles.mainView}>
+        <SettingsForm />
+      </View>
+    </SafeAreaView>
   )
 }
 

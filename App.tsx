@@ -16,18 +16,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import 'react-native-gesture-handler'
+
 import { SettingsStore, StateStore } from './context'
 
+import DrawerNavigator from './components/drawer-navigator'
 import { NavigationContainer } from '@react-navigation/native'
 import React from 'react'
-import TabNavigator from './components/tab-navigator'
 
 // Top level main component
 const App = (): JSX.Element => (
   <SettingsStore>
     <StateStore>
       <NavigationContainer>
-        <TabNavigator />
+        <DrawerNavigator />
       </NavigationContainer>
     </StateStore>
   </SettingsStore>

@@ -62,6 +62,7 @@ export interface EntryProps {
  * props for Screen component
  */
 export interface ScreenProps {
+  navigation: any
   apiUrl: string
   screenType: 'list' | 'random'
 }

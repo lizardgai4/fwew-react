@@ -27,7 +27,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native'
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useLayoutEffect, useState } from 'react'
 
 import ActionBar from './action-bar'
 import Bold from './bold'
@@ -44,12 +44,62 @@ import colors from '../lib/colors'
  *
  * Convert and translate numbers
  */
-function NumberScreen(): JSX.Element {
+function NumberScreen({ navigation }): JSX.Element {
   const [text, setText] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [isReverseEnabled, setIsReverseEnabled] = useState(false)
   const [data, setData] = useState({} as FwewNumber)
   const [err, setErr] = useState({} as FwewError)
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      header: () => (
+        <View>
+          {/* status bar */}
+          <SafeAreaView style={styles.safeStatusBar} />
+          <StatusBar barStyle="light-content" />
+          <ActionBar>
+            <View style={styles.parent}>
+              {/* search bar */}
+              <TextInput
+                onChangeText={searchData}
+                placeholder={getInputPlaceholderText()}
+                autoCapitalize={'none'}
+                autoCorrect={false}
+                style={styles.input}
+                clearButtonMode="always"
+                value={text}
+              />
+              {/* search bar clear input button */}
+              <If condition={Platform.OS !== 'ios' && !!text}>
+                <TouchableOpacity
+                  style={styles.closeButtonParent}
+                  onPress={() => searchData('')}
+                >
+                  <MaterialIcons
+                    style={styles.closeButton}
+                    name="cancel"
+                    size={18}
+                    color={'#fff'}
+                  />
+                </TouchableOpacity>
+              </If>
+            </View>
+            {/* Fwew Search direction toggle */}
+            <TouchableOpacity onPress={toggleReverse}>
+              <MaterialIcons
+                name={
+                  isReverseEnabled ? 'swap-horizontal-circle' : 'swap-horiz'
+                }
+                size={36}
+                color={colors.actionBarIconFill}
+              />
+            </TouchableOpacity>
+          </ActionBar>
+        </View>
+      )
+    })
+  }, [navigation, isReverseEnabled, text])
 
   // called whenever the user clicks the swap button or toggles the switch in Fwew Settings to reverse search direction
   const toggleReverse = (): void => {
@@ -102,51 +152,9 @@ function NumberScreen(): JSX.Element {
 
   return (
     <Fragment>
-      {/* status bar */}
-      <SafeAreaView style={styles.safeStatusBar} />
-      <StatusBar barStyle="light-content" />
-
       {/* main content */}
       <SafeAreaView style={styles.safeContainer}>
         <View style={styles.mainView}>
-          <ActionBar>
-            <View style={styles.parent}>
-              {/* search bar */}
-              <TextInput
-                onChangeText={searchData}
-                placeholder={getInputPlaceholderText()}
-                autoCapitalize={'none'}
-                autoCorrect={false}
-                style={styles.input}
-                clearButtonMode="always"
-                value={text}
-              />
-              {/* search bar clear input button */}
-              <If condition={Platform.OS !== 'ios' && !!text}>
-                <TouchableOpacity
-                  style={styles.closeButtonParent}
-                  onPress={() => searchData('')}
-                >
-                  <MaterialIcons
-                    style={styles.closeButton}
-                    name="cancel"
-                    size={18}
-                    color={'#fff'}
-                  />
-                </TouchableOpacity>
-              </If>
-            </View>
-            {/* Fwew Search direction toggle */}
-            <TouchableOpacity onPress={toggleReverse}>
-              <MaterialIcons
-                name={
-                  isReverseEnabled ? 'swap-horizontal-circle' : 'swap-horiz'
-                }
-                size={36}
-                color={colors.actionBarIconFill}
-              />
-            </TouchableOpacity>
-          </ActionBar>
           <If condition={isLoading}>
             <ActivityIndicator
               style={styles.activityIndicator}
@@ -195,21 +203,21 @@ const styles = StyleSheet.create({
     flex: 1
   },
   parent: {
-    width: '75%',
+    flex: 1,
     borderColor: colors.secondary,
     backgroundColor: colors.inputBackground,
     borderRadius: 12,
     borderWidth: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'flex-start',
+    marginRight: 8
   },
   input: {
     height: 40,
     flex: 1,
     paddingLeft: 8,
     marginLeft: 8,
-    marginRight: 8,
-    width: '90%'
+    marginRight: 8
   },
   closeButton: {
     color: colors.inputCloseButton,

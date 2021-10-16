@@ -27,7 +27,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native'
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useLayoutEffect, useState } from 'react'
 
 import ActionBar from './action-bar'
 import EntryModalContent from './entry-modal-content'
@@ -49,13 +49,53 @@ import colors from '../lib/colors'
  *
  * The layout and logic for List and Random screens
  */
-function Screen({ apiUrl, screenType }: ScreenProps): JSX.Element {
+function Screen({ apiUrl, screenType, navigation }: ScreenProps): JSX.Element {
   const [isLoading, setIsLoading] = useState(false)
   const [text, setText] = useState('')
   const [data, setData] = useState([] as Word[])
   const [err, setErr] = useState({} as FwewError)
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [selectedItem, setSelectedItem] = useState({} as Word)
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      header: () => (
+        <View>
+          {/* status bar */}
+          <SafeAreaView style={styles.safeStatusBar} />
+          <StatusBar barStyle="light-content" />
+          <ActionBar>
+            <View style={styles.parent}>
+              {/* search bar */}
+              <TextInput
+                onChangeText={searchData}
+                placeholder={getInputPlaceholderText()}
+                autoCapitalize={'none'}
+                autoCorrect={false}
+                style={styles.input}
+                clearButtonMode="always"
+                value={text}
+              />
+              {/* search bar clear input button */}
+              <If condition={Platform.OS !== 'ios' && !!text}>
+                <TouchableOpacity
+                  style={styles.closeButtonParent}
+                  onPress={() => searchData('')}
+                >
+                  <MaterialIcons
+                    style={styles.closeButton}
+                    name="cancel"
+                    size={18}
+                    color={'#fff'}
+                  />
+                </TouchableOpacity>
+              </If>
+            </View>
+          </ActionBar>
+        </View>
+      )
+    })
+  }, [navigation, text])
 
   // toggles info modal visible when user taps a list entry or modal backdrop
   const toggleModal = (item: Word): void => {
@@ -127,41 +167,9 @@ function Screen({ apiUrl, screenType }: ScreenProps): JSX.Element {
 
   return (
     <Fragment>
-      {/* status bar */}
-      <SafeAreaView style={styles.safeStatusBar} />
-      <StatusBar barStyle="light-content" />
-
       {/* main content */}
       <SafeAreaView style={styles.safeContainer}>
         <View style={styles.mainView}>
-          <ActionBar>
-            <View style={styles.parent}>
-              {/* search bar */}
-              <TextInput
-                onChangeText={searchData}
-                placeholder={getInputPlaceholderText()}
-                autoCapitalize={'none'}
-                autoCorrect={false}
-                style={styles.input}
-                clearButtonMode="always"
-                value={text}
-              />
-              {/* search bar clear input button */}
-              <If condition={Platform.OS !== 'ios' && !!text}>
-                <TouchableOpacity
-                  style={styles.closeButtonParent}
-                  onPress={() => searchData('')}
-                >
-                  <MaterialIcons
-                    style={styles.closeButton}
-                    name="cancel"
-                    size={18}
-                    color={'#fff'}
-                  />
-                </TouchableOpacity>
-              </If>
-            </View>
-          </ActionBar>
           <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={styles.mainView}
@@ -223,21 +231,21 @@ const styles = StyleSheet.create({
     flex: 1
   },
   parent: {
-    width: '85%',
+    flex: 1,
     borderColor: colors.secondary,
     backgroundColor: colors.inputBackground,
     borderRadius: 12,
     borderWidth: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'flex-start',
+    marginRight: 8
   },
   input: {
     height: 40,
     flex: 1,
     paddingLeft: 8,
     marginLeft: 8,
-    marginRight: 8,
-    width: '100%'
+    marginRight: 8
   },
   closeButton: {
     color: colors.inputCloseButton,

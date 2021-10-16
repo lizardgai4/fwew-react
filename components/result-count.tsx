@@ -74,7 +74,6 @@ function ResultCount({ data }: ResultCountProps): JSX.Element {
 const styles = StyleSheet.create({
   resultCount: {
     alignSelf: 'center',
-    marginTop: 16,
     fontSize: 16
   }
 })

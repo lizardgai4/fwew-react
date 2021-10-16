@@ -19,6 +19,7 @@
 import { Image, StyleSheet, View } from 'react-native'
 
 import { ActionBarProps } from '../lib/interfaces/props'
+import { DrawerToggleButton } from '@react-navigation/drawer'
 import React from 'react'
 import colors from '../lib/colors'
 import fwew from '../assets/fwew.png'
@@ -31,6 +32,7 @@ import fwew from '../assets/fwew.png'
 function ActionBar({ children }: ActionBarProps): JSX.Element {
   return (
     <View style={styles.action_bar}>
+      <DrawerToggleButton tintColor={colors.actionBarIconFill} />
       <Image source={fwew} style={styles.icon} />
       {children}
     </View>
@@ -48,7 +50,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   icon: {
-    marginLeft: 8,
+    marginLeft: -8,
     width: 48,
     height: 48
   }

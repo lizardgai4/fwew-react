@@ -21,7 +21,6 @@ import {
   FlatList,
   NativeScrollEvent,
   NativeSyntheticEvent,
-  Platform,
   RefreshControl,
   StyleSheet,
   Text,
@@ -40,7 +39,7 @@ import { Word } from '../lib/interfaces/word'
 import { WordListProps } from '../lib/interfaces/props'
 import colors from '../lib/colors'
 import { compareWords } from '../lib'
-import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
+// import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 import { useKeyboard } from '@react-native-community/hooks'
 
 /**
@@ -65,13 +64,11 @@ function WordList({
   const windowHeight = Dimensions.get('window').height
   const statusBarHeight = Constants.statusBarHeight
   const actionBarHeight = 56
-  const tabBarHeight = useBottomTabBarHeight()
   const keyboard = useKeyboard()
   const viewHeight =
     windowHeight -
     statusBarHeight -
     actionBarHeight -
-    (Platform.OS === 'ios' && keyboard.keyboardShown ? 0 : tabBarHeight) -
     (keyboard.keyboardShown ? keyboard.keyboardHeight : 0)
 
   const scrollToTop = () => {

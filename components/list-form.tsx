@@ -19,7 +19,6 @@
 import { Card, List } from 'react-native-paper'
 import {
   Dimensions,
-  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -40,7 +39,7 @@ import colors from '../lib/colors'
 import { convertCond } from '../lib'
 import { listOps } from '../lib/list-ops'
 import { ui } from '../lib/i18n'
-import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
+// import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 import { useKeyboard } from '@react-native-community/hooks'
 
 /**
@@ -58,13 +57,13 @@ function ListForm({ onSearch }: ListFormProps): JSX.Element {
   const windowHeight = Dimensions.get('window').height
   const statusBarHeight = Constants.statusBarHeight
   const actionBarHeight = 56
-  const tabBarHeight = useBottomTabBarHeight()
+  // const tabBarHeight = useBottomTabBarHeight()
   const keyboard = useKeyboard()
   const scrollViewHeight =
     windowHeight -
     statusBarHeight -
     actionBarHeight -
-    (Platform.OS === 'ios' && keyboard.keyboardShown ? 0 : tabBarHeight) -
+    // (Platform.OS === 'ios' && keyboard.keyboardShown ? 0 : tabBarHeight) -
     (keyboard.keyboardShown ? keyboard.keyboardHeight : 0)
 
   /** function to handle the back button on a card */
