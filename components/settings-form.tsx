@@ -81,13 +81,12 @@ function SettingsForm(): JSX.Element {
               onValueChange={updateUILanguage}
               value={languageCodeUI}
             >
-              {Languages.map((language, index) => (
+              {Languages.filter((l) => ui[l].active).map((language, index) => (
                 <View key={index}>
                   <RadioButton.Item
                     label={languageNames[language]}
                     value={language}
                     color={colors.accent}
-                    disabled={!ui[language].active}
                   />
                 </View>
               ))}
