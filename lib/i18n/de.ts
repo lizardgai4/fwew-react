@@ -37,7 +37,7 @@ const de: UITranslation = {
     lenition: 'Lenition'
   },
   fwewScreen: {
-    search: 'suche auf'
+    search: 'Suche auf'
   },
   listRandomForm: {
     word: 'das Wort',
