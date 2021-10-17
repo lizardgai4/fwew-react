@@ -19,6 +19,7 @@
 import { Card, List } from 'react-native-paper'
 import {
   Dimensions,
+  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -39,8 +40,8 @@ import colors from '../lib/colors'
 import { convertCond } from '../lib'
 import { listOps } from '../lib/list-ops'
 import { ui } from '../lib/i18n'
-// import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 import { useKeyboard } from '@react-native-community/hooks'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 /**
  * RandomForm component
@@ -58,13 +59,13 @@ function RandomForm({ onSearch }: ListFormProps): JSX.Element {
   const windowHeight = Dimensions.get('window').height
   const statusBarHeight = Constants.statusBarHeight
   const actionBarHeight = 56
-  // const tabBarHeight = useBottomTabBarHeight()
+  const insets = useSafeAreaInsets()
   const keyboard = useKeyboard()
   const scrollViewHeight =
     windowHeight -
     statusBarHeight -
     actionBarHeight -
-    // (Platform.OS === 'ios' && keyboard.keyboardShown ? 0 : tabBarHeight) -
+    (Platform.OS === 'ios' && keyboard.keyboardShown ? 0 : insets.bottom) -
     (keyboard.keyboardShown ? keyboard.keyboardHeight : 0)
 
   /** function to handle the back button on a card */
