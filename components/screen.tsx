@@ -28,6 +28,7 @@ import {
   View
 } from 'react-native'
 import React, { Fragment, useLayoutEffect, useState } from 'react'
+import axios, { AxiosError, AxiosResponse } from 'axios'
 
 import ActionBar from './action-bar'
 import EntryModalContent from './entry-modal-content'
@@ -41,7 +42,6 @@ import ResultCount from './result-count'
 import { ScreenProps } from '../lib/interfaces/props'
 import { Word } from '../lib/interfaces/word'
 import WordList from './word-list'
-import axios from 'axios'
 import colors from '../lib/colors'
 
 /**
@@ -127,19 +127,18 @@ function Screen({ apiUrl, screenType, navigation }: ScreenProps): JSX.Element {
   const fetchData = (endpoint: string): void => {
     setIsLoading(true)
     axios
-      .get(encodeURI(endpoint))
-      .then((response) => {
+      .get<Word[]>(encodeURI(endpoint))
+      .then((response: AxiosResponse<Word[]>) => {
+        setData(response.data)
         setIsLoading(false)
-        if (Array.isArray(response.data)) {
-          setData(response.data)
-        } else {
-          setErr(response.data)
-          setData([])
-        }
       })
-      .catch((_e) => {
-        setIsLoading(false)
-        setData([])
+      .catch((e) => {
+        if (axios.isAxiosError(e)) {
+          const serverError = e as AxiosError<FwewError>
+          setErr(serverError.response.data)
+          setData([])
+          setIsLoading(false)
+        }
       })
   }
 

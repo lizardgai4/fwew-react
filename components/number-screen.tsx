@@ -28,6 +28,7 @@ import {
   View
 } from 'react-native'
 import React, { Fragment, useLayoutEffect, useState } from 'react'
+import axios, { AxiosError, AxiosResponse } from 'axios'
 
 import ActionBar from './action-bar'
 import Bold from './bold'
@@ -36,7 +37,6 @@ import { FwewError } from '../lib/interfaces/fwew-error'
 import { FwewNumber } from '../lib/interfaces/fwew-number'
 import If from './if'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import axios from 'axios'
 import colors from '../lib/colors'
 
 /**
@@ -110,19 +110,22 @@ function NumberScreen({ navigation }): JSX.Element {
   const fetchData = (endpoint: string): void => {
     setIsLoading(true)
     axios
-      .get(endpoint)
-      .then((response) => {
+      .get<FwewNumber>(endpoint)
+      .then((response: AxiosResponse<FwewNumber>) => {
         setIsLoading(false)
         if (response.data) {
           setData(response.data)
-        } else {
-          setErr(response.data)
-          setData({} as FwewNumber)
         }
       })
-      .catch((_e) => {
-        setIsLoading(false)
-        setData({} as FwewNumber)
+      .catch((e) => {
+        if (axios.isAxiosError(e)) {
+          const serverError = e as AxiosError<FwewError>
+          if (serverError && serverError.response) {
+            setIsLoading(false)
+            setErr(serverError.response.data)
+            setData({} as FwewNumber)
+          }
+        }
       })
   }
 

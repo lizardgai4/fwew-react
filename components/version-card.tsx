@@ -51,7 +51,7 @@ function VersionCard(): JSX.Element {
 
   useEffect(() => {
     axios
-      .get(`${apiRoot}/version`)
+      .get<ApiVersion>(`${apiRoot}/version`)
       .then((response: AxiosResponse<ApiVersion>) => setVersion(response.data))
   }, [])
 

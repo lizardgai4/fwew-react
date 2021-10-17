@@ -44,7 +44,7 @@ function ResultCount({ data }: ResultCountProps): JSX.Element {
     if (languageCodeUI === Language.NX) {
       setIsLoading(true)
       axios
-        .get(`${apiRoot}/number/r/${data.length}`)
+        .get<FwewNumber>(`${apiRoot}/number/r/${data.length}`)
         .then((response: AxiosResponse<FwewNumber>) => {
           setNumber({ ...response.data })
           setIsLoading(false)

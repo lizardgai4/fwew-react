@@ -33,6 +33,7 @@ import React, {
   useLayoutEffect,
   useState
 } from 'react'
+import axios, { AxiosError, AxiosResponse } from 'axios'
 
 import ActionBar from './action-bar'
 import EntryModalContent from './entry-modal-content'
@@ -44,7 +45,6 @@ import ResultCount from './result-count'
 import { SettingsContext } from '../context'
 import { Word } from '../lib/interfaces/word'
 import WordList from './word-list'
-import axios from 'axios'
 import colors from '../lib/colors'
 import { languageNames } from '../lib/i18n'
 import { ui } from '../lib/i18n'
@@ -147,19 +147,18 @@ function FwewScreen({ navigation }): JSX.Element {
   const fetchData = (endpoint: string): void => {
     setIsLoading(true)
     axios
-      .get(endpoint)
-      .then((response) => {
+      .get<Word[]>(encodeURI(endpoint))
+      .then((response: AxiosResponse<Word[]>) => {
+        setData(response.data)
         setIsLoading(false)
-        if (Array.isArray(response.data)) {
-          setData(response.data)
-        } else {
-          setErr(response.data)
-          setData([])
-        }
       })
-      .catch((_e) => {
-        setIsLoading(false)
-        setData([])
+      .catch((e) => {
+        if (axios.isAxiosError(e)) {
+          const serverError = e as AxiosError<FwewError>
+          setErr(serverError.response.data)
+          setData([])
+          setIsLoading(false)
+        }
       })
   }
 
