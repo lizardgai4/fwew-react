@@ -83,7 +83,7 @@ function DrawerNavigator() {
       })}
     >
       <Drawer.Screen
-        name={strings.fwew}
+        name="Fwew"
         component={FwewScreen}
         options={{
           title: strings.fwew,
@@ -93,7 +93,7 @@ function DrawerNavigator() {
         }}
       />
       <Drawer.Screen
-        name={strings.list}
+        name="List"
         component={ListScreen}
         options={{
           title: strings.list,
@@ -103,7 +103,7 @@ function DrawerNavigator() {
         }}
       />
       <Drawer.Screen
-        name={strings.random}
+        name="Random"
         component={RandomScreen}
         options={{
           title: strings.random,
@@ -117,7 +117,7 @@ function DrawerNavigator() {
         }}
       />
       <Drawer.Screen
-        name={strings.saved}
+        name="Saved"
         component={SavedScreen}
         options={{
           title: strings.saved,
@@ -127,7 +127,7 @@ function DrawerNavigator() {
         }}
       />
       <Drawer.Screen
-        name={strings.number}
+        name="Number"
         component={NumberScreen}
         options={{
           title: strings.number,
@@ -137,7 +137,7 @@ function DrawerNavigator() {
         }}
       />
       <Drawer.Screen
-        name={strings.settings}
+        name="Settings"
         component={SettingsScreen}
         options={{
           title: strings.settings,
