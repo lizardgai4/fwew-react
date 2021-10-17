@@ -114,15 +114,17 @@ function SettingsForm(): JSX.Element {
               onValueChange={updateResultsLanguage}
               value={languageCode}
             >
-              {Languages.map((language, index) => (
-                <View key={index}>
-                  <RadioButton.Item
-                    label={languageNames[language]}
-                    value={language}
-                    color={colors.accent}
-                  />
-                </View>
-              ))}
+              {Languages.filter((l) => l !== Language.NX).map(
+                (language, index) => (
+                  <View key={index}>
+                    <RadioButton.Item
+                      label={languageNames[language]}
+                      value={language}
+                      color={colors.accent}
+                    />
+                  </View>
+                )
+              )}
             </RadioButton.Group>
           </List.Accordion>
         </Card.Content>
