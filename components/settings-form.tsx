@@ -21,11 +21,20 @@ import { Languages, languageNames, ui } from '../lib/i18n'
 import React, { useContext } from 'react'
 import { ScrollView, StyleSheet, View } from 'react-native'
 
+import { DefaultTheme } from 'react-native-paper'
 import FlagIcon from './flag-icon'
 import { Language } from '../lib/interfaces/i18n'
 import { SettingsContext } from '../context'
 import VersionCard from './version-card'
 import colors from '../lib/colors'
+
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: 'white'
+  }
+}
 
 /**
  * SettingsForm Component
@@ -63,6 +72,7 @@ function SettingsForm(): JSX.Element {
         />
         <Card.Content>
           <List.Accordion
+            theme={theme}
             title={languageNames[languageCodeUI]}
             titleStyle={styles.sectionTitle}
             left={(_props) => <FlagIcon language={languageCodeUI} />}
@@ -95,6 +105,7 @@ function SettingsForm(): JSX.Element {
         />
         <Card.Content>
           <List.Accordion
+            theme={theme}
             title={languageNames[languageCode]}
             titleStyle={styles.sectionTitle}
             left={(_props) => <FlagIcon language={languageCode} />}
@@ -130,14 +141,6 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontWeight: 'bold',
     color: colors.text
-  },
-  textInput: {
-    width: '50%',
-    borderWidth: 1,
-    borderRadius: 8,
-    borderColor: colors.secondary,
-    paddingLeft: 8,
-    paddingRight: 8
   }
 })
 

@@ -19,15 +19,24 @@
 import { Card, List } from 'react-native-paper'
 import React, { useContext, useEffect, useState } from 'react'
 import { StyleSheet, Text } from 'react-native'
+import axios, { AxiosResponse } from 'axios'
 
 import { ApiVersion } from '../lib/interfaces/api-version'
 import Bold from './bold'
+import { DefaultTheme } from 'react-native-paper'
 import { SettingsContext } from '../context'
 import { apiRoot } from '../lib/settings'
 import { version as appVersion } from '../package.json'
-import axios from 'axios'
 import colors from '../lib/colors'
 import { ui } from '../lib/i18n'
+
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: 'white'
+  }
+}
 
 /**
  * VersionCard component
@@ -43,7 +52,7 @@ function VersionCard(): JSX.Element {
   useEffect(() => {
     axios
       .get(`${apiRoot}/version`)
-      .then((response) => setVersion(response.data))
+      .then((response: AxiosResponse<ApiVersion>) => setVersion(response.data))
   }, [])
 
   return (
@@ -56,6 +65,7 @@ function VersionCard(): JSX.Element {
       />
       <Card.Content>
         <List.Accordion
+          theme={theme}
           title={strings.versionInfo}
           titleStyle={styles.listItem}
         >
@@ -72,7 +82,11 @@ function VersionCard(): JSX.Element {
             <Bold>{strings.dictionary}</Bold>: {version.DictVersion}
           </Text>
         </List.Accordion>
-        <List.Accordion title={strings.credits} titleStyle={styles.listItem}>
+        <List.Accordion
+          theme={theme}
+          title={strings.credits}
+          titleStyle={styles.listItem}
+        >
           <Text style={styles.text}>
             <Bold>{strings.development}</Bold>: Tirea Aean
           </Text>
