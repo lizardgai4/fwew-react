@@ -21,87 +21,89 @@ import { UITranslation } from '../interfaces/i18n'
 
 /** UI - Nederlands */
 const nl: UITranslation = {
-  active: false,
+  active: true,
   entryModalContent: {
-    partOfSpeech: 'part of speech',
-    definition: 'definition',
-    source: 'source',
+    partOfSpeech: 'woordsoort',
+    definition: 'definitie',
+    source: 'bron',
     ipa: 'IPA',
-    syllables: 'syllables',
-    stressedSyllable: 'stressed syllable position',
-    infixSlots: 'infix slots',
-    infixDots: 'infix dots',
-    prefixes: 'prefixes',
-    infixes: 'infixes',
-    suffixes: 'suffixes',
-    lenition: 'lenition'
+    syllables: 'lettergrepen',
+    stressedSyllable: 'positie van beklemtoonde lettergreep',
+    infixSlots: 'infix-sleuven',
+    infixDots: 'infix-punten',
+    prefixes: 'voorvoegsels',
+    infixes: 'tussenvoegsels',
+    suffixes: 'achtervoegsels',
+    lenition: 'lenitie'
   },
   fwewScreen: {
-    search: 'search'
+    search: 'zoeken in'
   },
   listRandomForm: {
-    word: 'word',
-    pos: 'part of speech',
-    syllables: 'number of syllables',
-    stress: 'stressed syllable position',
-    words: 'in order of release date',
-    starts: 'starts with',
-    ends: 'ends with',
-    is: 'is exactly',
-    has: 'has',
-    like: 'is like',
-    notStarts: 'does not start with',
-    notEnds: 'does not end with',
-    notIs: 'is exactly not',
-    notHas: 'does not have',
-    notLike: 'is not like',
-    lessThan: 'is less than (<)',
-    lessThanEqual: 'is at most (≤)',
-    equal: 'is exactly (=)',
-    greaterThanEqual: 'is at least (≥)',
-    greaterThan: 'is more than (>)',
-    notEqual: 'is exactly not (≠)',
-    first: '# oldest words',
-    last: '# newest words',
-    numRandomWords: '# random words',
-    list: 'list',
-    and: 'and',
-    random: 'random',
-    where: 'where',
-    back: 'back',
-    delete: 'delete',
-    search: 'search'
+    word: 'woord',
+    pos: 'woordsoort',
+    syllables: 'aantal lettergrepen',
+    stress: 'positie van beklemtoonde lettergreep',
+    words: 'in orden',
+    starts: 'start met',
+    ends: 'eindigt met',
+    is: 'is precies',
+    has: 'was',
+    like: 'is als',
+    notStarts: 'begint niet met',
+    notEnds: 'eindigt niet met',
+    notIs: 'is precies niet',
+    notHas: 'heeft niet',
+    notLike: 'is niet als',
+    lessThan: 'is minder dan (<)',
+    lessThanEqual: 'is bijna (≤)',
+    equal: 'is gelijk aan (=)',
+    greaterThanEqual: 'is iets meer dan (≥)',
+    greaterThan: 'is meer dan (>)',
+    notEqual: 'is niet (≠)',
+    first: '# oudste woorden',
+    last: '# nieuwste woorden',
+    numRandomWords: '# willekeurige woorden',
+    list: 'lijst',
+    and: 'en',
+    random: 'willekeurig',
+    where: 'waar',
+    back: 'terug',
+    delete: 'verwijder',
+    search: 'zoeken'
   },
   savedScreen: {
-    title: 'saved words',
-    infoText: 'to save or un-save a word, tap the number on an entry'
+    title: 'opgeslagen woorden',
+    infoText:
+      'om een woord op te slaan, of te verwijderen, druk op de nummer in de lijst.'
   },
   settingsScreen: {
-    title: 'settings',
-    appLanguage: 'app language',
-    appLanguageDesc: 'default language of app interface',
-    resultsLanguage: 'results laguage',
-    resultsLanguageDesc: 'default language of results'
+    title: 'instellingen',
+    appLanguage: 'app taal',
+    appLanguageDesc: 'standaard taal van app interface',
+    resultsLanguage: 'taal resultaten',
+    resultsLanguageDesc: 'resultaten van de standaard gekozen taal'
   },
   tabNavigator: {
-    fwew: 'Fwew',
-    list: 'List',
-    random: 'Random',
-    saved: 'Saved',
-    number: 'Number',
-    settings: 'Settings'
+    fwew: 'fwew',
+    list: 'lijst',
+    random: 'willekeurig',
+    saved: 'opgeslagen',
+    number: 'nummer',
+    settings: 'instellingen'
   },
   versionCard: {
-    title: 'about fwew',
-    versionInfo: 'version information',
-    dictionary: 'dictionary',
-    credits: 'credits',
-    development: 'development',
+    title: 'over fwew',
+    versionInfo: 'versie informatie',
+    dictionary: 'woordenboek',
+    credits: 'krediet',
+    development: 'ontwikkeling',
     design: 'design',
-    testing: 'testing'
+    testing: 'testen',
+    translation: 'translatie'
   },
   resultCount: {
-    results: 'results'
+    results: 'resultaten'
   }
 }
 

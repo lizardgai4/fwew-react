@@ -99,7 +99,8 @@ const de: UITranslation = {
     credits: 'Credits',
     development: 'Entwicklung',
     design: 'das Design',
-    testing: 'das Testen'
+    testing: 'das Testen',
+    translation: 'Übersetzung'
   },
   resultCount: {
     results: 'Ergebnisse'

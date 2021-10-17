@@ -98,7 +98,8 @@ const nx: UITranslation = {
     credits: 'irayo',
     development: 'rengopyu',
     design: "'ongopyu",
-    testing: 'fmetokyu'
+    testing: 'fmetokyu',
+    translation: 'tìralpeng'
   },
   resultCount: {
     results: 'kum'

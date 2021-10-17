@@ -128,6 +128,7 @@ interface VersionCardStrings {
   development: string
   design: string
   testing: string
+  translation: string
 }
 
 /** interface for ResultCount component */
