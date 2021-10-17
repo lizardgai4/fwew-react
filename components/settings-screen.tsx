@@ -67,10 +67,11 @@ const styles = StyleSheet.create({
   },
   safeContainer: {
     flex: 1,
-    backgroundColor: colors.screenBackground
+    backgroundColor: colors.primary
   },
   mainView: {
-    flex: 1
+    flex: 1,
+    backgroundColor: colors.screenBackground
   },
   titleParent: {
     marginRight: 48,
