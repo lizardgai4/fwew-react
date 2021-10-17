@@ -71,6 +71,14 @@ function DrawerNavigator() {
         headerTitleStyle: {
           color: colors.actionBarTitle
         },
+        drawerItemStyle: {
+          width: '100%',
+          marginLeft: 0,
+          paddingLeft: 8
+        },
+        drawerLabelStyle: {
+          fontSize: 24
+        },
         drawerActiveTintColor: colors.accentDark
       })}
     >
