@@ -65,9 +65,9 @@ function FwewScreen({ navigation }): JSX.Element {
     SettingsContext
   )
   const { isReverseEnabled } = settingsFwew
-  const { languageCodeUI } = settingsGlobal
+  const { languageCodeUI, languageCode } = settingsGlobal
   const strings = ui[languageCodeUI].fwewScreen
-  const languageUIName = languageNames[languageCodeUI]
+  const languageUIName = languageNames[languageCode]
 
   useLayoutEffect(() => {
     navigation.setOptions({
