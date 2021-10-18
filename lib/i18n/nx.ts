@@ -83,13 +83,13 @@ const nx: UITranslation = {
     resultsLanguage: "kumä lì'fya",
     resultsLanguageDesc: "ftxey lì'fyat kumä"
   },
-  tabNavigator: {
-    fwew: 'Fwew',
-    list: "Sna'o",
-    random: 'Renulke',
-    saved: 'Swawneyn',
-    number: 'Holpxay',
-    settings: 'Aysìftxey'
+  drawerNavigator: {
+    fwew: 'fwew',
+    list: "sna'o",
+    random: 'renulke',
+    saved: 'swawneyn',
+    number: 'holpxay',
+    settings: 'aysìftxey'
   },
   versionCard: {
     title: 'teri fwew',
@@ -99,7 +99,7 @@ const nx: UITranslation = {
     development: 'rengopyu',
     design: "'ongopyu",
     testing: 'fmetokyu',
-    translation: 'tìralpeng'
+    translation: 'ralpengyu'
   },
   resultCount: {
     results: 'kum'

@@ -83,13 +83,13 @@ const et: UITranslation = {
     resultsLanguage: 'results laguage',
     resultsLanguageDesc: 'default language of results'
   },
-  tabNavigator: {
-    fwew: 'Fwew',
-    list: 'List',
-    random: 'Random',
-    saved: 'Saved',
-    number: 'Number',
-    settings: 'Settings'
+  drawerNavigator: {
+    fwew: 'fwew',
+    list: 'list',
+    random: 'random',
+    saved: 'saved',
+    number: 'number',
+    settings: 'settings'
   },
   versionCard: {
     title: 'about fwew',

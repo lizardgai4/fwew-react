@@ -84,8 +84,8 @@ const de: UITranslation = {
     resultsLanguage: 'Ergebnissprache',
     resultsLanguageDesc: 'Standardsprache der Ergebnisse'
   },
-  tabNavigator: {
-    fwew: 'Fwew',
+  drawerNavigator: {
+    fwew: 'fwew',
     list: 'Liste',
     random: 'Zufällig',
     saved: 'Gespeichert',

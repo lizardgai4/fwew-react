@@ -59,7 +59,7 @@ const Drawer = createDrawerNavigator()
 function DrawerNavigator() {
   const { settingsGlobal } = useContext(SettingsContext)
   const { languageCodeUI } = settingsGlobal
-  const strings = ui[languageCodeUI].tabNavigator
+  const strings = ui[languageCodeUI].drawerNavigator
 
   return (
     <Drawer.Navigator

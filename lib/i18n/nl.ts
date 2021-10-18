@@ -84,7 +84,7 @@ const nl: UITranslation = {
     resultsLanguage: 'taal resultaten',
     resultsLanguageDesc: 'resultaten van de standaard gekozen taal'
   },
-  tabNavigator: {
+  drawerNavigator: {
     fwew: 'fwew',
     list: 'lijst',
     random: 'willekeurig',

@@ -110,7 +110,7 @@ interface SettingsScreenStrings {
 }
 
 /** interface for TabNavigator Buttom Tab labels */
-interface TabNavigatorStrings {
+interface DrawerNavigatorStrings {
   fwew: string
   list: string
   random: string
@@ -144,7 +144,7 @@ export interface UITranslation {
   listRandomForm: ListRandomFormStrings
   savedScreen: SavedScreenStrings
   settingsScreen: SettingsScreenStrings
-  tabNavigator: TabNavigatorStrings
+  drawerNavigator: DrawerNavigatorStrings
   versionCard: VersionCardStrings
   resultCount: ResultCountStrings
 }
