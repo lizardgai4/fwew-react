@@ -190,7 +190,45 @@ function RandomForm({ onSearch }: ListFormProps): JSX.Element {
             key={`${idx}_wcs`}
           >
             {/* @ts-ignore */}
-            <Card.Title title={getCardTitle(idx)} />
+            <Card.Title
+              title={getCardTitle(idx)}
+              left={(_props) => (
+                <If condition={!!wcs.what}>
+                  <TouchableOpacity
+                    style={styles.buttonBack}
+                    onPress={() => navigateBack(idx, wcs)}
+                  >
+                    <View style={styles.buttonView}>
+                      <MaterialIcons
+                        name="chevron-left"
+                        size={24}
+                        color={colors.text}
+                      />
+                    </View>
+                  </TouchableOpacity>
+                </If>
+              )}
+              right={(_props) => (
+                <If
+                  condition={
+                    idx !== 0 || !!wcs.what || !!wcs.cond || !!wcs.spec
+                  }
+                >
+                  <TouchableOpacity
+                    style={styles.buttonDelete}
+                    onPress={() => deleteItem(idx)}
+                  >
+                    <View style={styles.buttonView}>
+                      <MaterialIcons
+                        name="close"
+                        size={24}
+                        color={colors.text}
+                      />
+                    </View>
+                  </TouchableOpacity>
+                </If>
+              )}
+            />
             <Card.Content>
               <Text style={styles.selections}>
                 {`${wcs.what && strings[wcs.what]} ${wcs.cond &&
@@ -237,42 +275,6 @@ function RandomForm({ onSearch }: ListFormProps): JSX.Element {
                     clearButtonMode="always"
                   />
                 </If>
-                <View style={styles.buttonGroup}>
-                  <If condition={!!wcs.what}>
-                    <TouchableOpacity
-                      style={styles.buttonBack}
-                      onPress={() => navigateBack(idx, wcs)}
-                    >
-                      <View style={styles.buttonView}>
-                        <MaterialIcons
-                          name="chevron-left"
-                          size={24}
-                          color={colors.buttonText}
-                        />
-                        <Text style={styles.buttonText}>{strings.back}</Text>
-                      </View>
-                    </TouchableOpacity>
-                  </If>
-                  <If
-                    condition={
-                      idx !== 0 || !!wcs.what || !!wcs.cond || !!wcs.spec
-                    }
-                  >
-                    <TouchableOpacity
-                      style={styles.buttonDelete}
-                      onPress={() => deleteItem(idx)}
-                    >
-                      <View style={styles.buttonView}>
-                        <MaterialIcons
-                          name="delete"
-                          size={24}
-                          color={colors.buttonText}
-                        />
-                        <Text style={styles.buttonText}>{strings.delete}</Text>
-                      </View>
-                    </TouchableOpacity>
-                  </If>
-                </View>
                 <View style={styles.buttonGroupSearch}>
                   <If
                     condition={
@@ -292,7 +294,9 @@ function RandomForm({ onSearch }: ListFormProps): JSX.Element {
                           size={24}
                           color={colors.buttonText}
                         />
-                        <Text style={styles.buttonText}>{strings.search}</Text>
+                        <Text style={styles.buttonTextSearch}>
+                          {strings.search}
+                        </Text>
                       </View>
                     </TouchableOpacity>
                   </If>
@@ -345,11 +349,6 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
     paddingRight: 8
   },
-  buttonGroup: {
-    marginTop: 16,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
   buttonGroupSearch: {
     marginTop: 16,
     flexDirection: 'row',
@@ -364,22 +363,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height: 48,
-    paddingHorizontal: 8,
-    backgroundColor: colors.primary,
-    borderWidth: 1,
-    borderColor: colors.secondary,
-    borderRadius: 8
+    marginLeft: -4,
+    paddingRight: 12
   },
   buttonDelete: {
     alignItems: 'center',
     justifyContent: 'center',
     height: 48,
-    paddingHorizontal: 8,
-    marginLeft: 16,
-    backgroundColor: colors.primary,
-    borderWidth: 1,
-    borderColor: colors.secondary,
-    borderRadius: 8
+    marginRight: 16
   },
   buttonSearch: {
     alignItems: 'center',
@@ -393,6 +384,10 @@ const styles = StyleSheet.create({
     borderRadius: 8
   },
   buttonText: {
+    fontSize: 20,
+    color: colors.buttonText
+  },
+  buttonTextSearch: {
     fontSize: 20,
     color: colors.buttonText
   },
