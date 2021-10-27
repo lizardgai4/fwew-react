@@ -28,7 +28,7 @@ const de: UITranslation = {
     source: 'Quelle',
     ipa: 'IPA',
     syllables: 'Silben',
-    stressedSyllable: 'betonte Silbe',
+    stressedSyllable: 'Position der betonten Silbe',
     infixSlots: 'Infix-Slots',
     infixDots: 'Infix-Punkte',
     prefixes: 'Präfixe',
