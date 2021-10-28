@@ -139,6 +139,7 @@ export interface ResultCountStrings {
 /** interface for a UI Translation */
 export interface UITranslation {
   active: boolean
+  resultsActive: boolean
   entryModalContent: EntryModalContentStrings
   fwewScreen: FwewScreenStrings
   listRandomForm: ListRandomFormStrings

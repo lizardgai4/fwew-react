@@ -22,6 +22,7 @@ import { UITranslation } from '../interfaces/i18n'
 /** UI - English */
 const en: UITranslation = {
   active: true,
+  resultsActive: true,
   entryModalContent: {
     partOfSpeech: 'part of speech',
     definition: 'definition',

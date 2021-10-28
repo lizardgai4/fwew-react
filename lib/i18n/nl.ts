@@ -22,6 +22,7 @@ import { UITranslation } from '../interfaces/i18n'
 /** UI - Nederlands */
 const nl: UITranslation = {
   active: true,
+  resultsActive: true,
   entryModalContent: {
     partOfSpeech: 'woordsoort',
     definition: 'definitie',

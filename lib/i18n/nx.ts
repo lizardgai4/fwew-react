@@ -22,6 +22,7 @@ import { UITranslation } from '../interfaces/i18n'
 /** UI - Na'vi */
 const nx: UITranslation = {
   active: true,
+  resultsActive: false,
   entryModalContent: {
     partOfSpeech: "fnelì'u",
     definition: 'tìralpeng',

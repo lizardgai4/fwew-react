@@ -113,7 +113,7 @@ function SettingsForm(): JSX.Element {
               onValueChange={updateResultsLanguage}
               value={languageCode}
             >
-              {Languages.filter((l) => l !== Language.NX).map(
+              {Languages.filter((l) => ui[l].resultsActive).map(
                 (language, index) => (
                   <View key={index}>
                     <RadioButton.Item
