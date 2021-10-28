@@ -41,6 +41,7 @@ const FlagIcon = ({ language }: FlagIconProps): JSX.Element => {
   let countryMap = {
     de: 'germany',
     en: 'united-states-of-america',
+    es: 'mexico',
     et: 'estonia',
     fr: 'france',
     hu: 'hungary',
