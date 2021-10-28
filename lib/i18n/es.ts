@@ -101,7 +101,7 @@ const es: UITranslation = {
     development: 'desarrollo',
     design: 'diseño',
     testing: 'ensayo',
-    translation: 'tradiucción'
+    translation: 'traducción'
   },
   resultCount: {
     results: 'resueltas'
