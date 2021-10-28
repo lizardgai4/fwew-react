@@ -80,10 +80,10 @@ const es: UITranslation = {
   },
   settingsScreen: {
     title: 'ajustes',
-    appLanguage: 'lengua de la aplicación',
-    appLanguageDesc: 'lengua por defecto de la aplicación',
-    resultsLanguage: 'lengua de las resueltas',
-    resultsLanguageDesc: 'lengua por defecto de las resueltas'
+    appLanguage: 'idioma de la aplicación',
+    appLanguageDesc: 'idioma predeterminado de la aplicación',
+    resultsLanguage: 'idioma de las resueltas',
+    resultsLanguageDesc: 'idioma predeterminado de las resueltas'
   },
   drawerNavigator: {
     fwew: 'busca',
@@ -94,7 +94,7 @@ const es: UITranslation = {
     settings: 'ajustes'
   },
   versionCard: {
-    title: 'sobre fwew',
+    title: 'acerca de fwew',
     versionInfo: 'información sobre la versión',
     dictionary: 'diccionario',
     credits: 'créditos',
