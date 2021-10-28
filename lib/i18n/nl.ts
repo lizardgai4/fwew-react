@@ -19,7 +19,7 @@
 
 import { UITranslation } from '../interfaces/i18n'
 
-/** UI - Nederlands */
+/** UI - Nederlands (Translation by Charlotte) */
 const nl: UITranslation = {
   active: true,
   resultsActive: true,
