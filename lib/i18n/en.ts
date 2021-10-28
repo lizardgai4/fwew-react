@@ -85,7 +85,7 @@ const en: UITranslation = {
     resultsLanguageDesc: 'default language of results'
   },
   drawerNavigator: {
-    fwew: 'fwew',
+    fwew: 'search',
     list: 'list',
     random: 'random',
     saved: 'saved',

@@ -86,7 +86,7 @@ const nl: UITranslation = {
     resultsLanguageDesc: 'resultaten van de standaard gekozen taal'
   },
   drawerNavigator: {
-    fwew: 'fwew',
+    fwew: 'zoeken',
     list: 'lijst',
     random: 'willekeurig',
     saved: 'opgeslagen',
