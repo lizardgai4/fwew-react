@@ -20,6 +20,7 @@ import { Language, LanguageNames, UI } from '../interfaces/i18n'
 
 import de from './de'
 import en from './en'
+import es from './es'
 import et from './et'
 import fr from './fr'
 import hu from './hu'
@@ -33,6 +34,7 @@ import sv from './sv'
 export const Languages: Language[] = [
   Language.DE,
   Language.EN,
+  Language.ES,
   Language.ET,
   Language.FR,
   Language.HU,
@@ -47,6 +49,7 @@ export const Languages: Language[] = [
 export const languageNames: LanguageNames = {
   de: `Deutsch`,
   en: `English`,
+  es: `Español`,
   et: `Eesti`,
   fr: `Français`,
   hu: `Magyar`,
@@ -58,4 +61,4 @@ export const languageNames: LanguageNames = {
 }
 
 /** Internationalized UI strings */
-export const ui: UI = { de, en, et, fr, hu, nl, pl, ru, sv, nx }
+export const ui: UI = { de, en, es, et, fr, hu, nl, pl, ru, sv, nx }

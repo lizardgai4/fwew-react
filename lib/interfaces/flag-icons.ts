@@ -27,6 +27,7 @@ export interface FlagIcons {
   estonia: string
   france: string
   hungary: string
+  mexico: string
   netherlands: string
   poland: string
   russia: string

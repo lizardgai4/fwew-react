@@ -21,6 +21,7 @@
 export enum Language {
   DE = 'de', // Deutsch
   EN = 'en', // English
+  ES = 'es', // Español
   ET = 'et', // Eesti
   FR = 'fr', // Français
   HU = 'hu', // Magyar
