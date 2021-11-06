@@ -11,9 +11,9 @@ export function useOrientation() {
       'change',
       ({ window: { width, height } }) => {
         if (width < height) {
-          setOrientation(Orientation.PORTRAIT)
+          setOrientation(() => Orientation.PORTRAIT)
         } else {
-          setOrientation(Orientation.LANDSCAPE)
+          setOrientation(() => Orientation.LANDSCAPE)
         }
       }
     )
