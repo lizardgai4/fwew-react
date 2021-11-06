@@ -16,15 +16,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { StyleSheet, Text } from 'react-native'
-import axios, { AxiosResponse } from 'axios'
 
-import { FwewNumber } from '../lib/interfaces/fwew-number'
 import { Language } from '../lib/interfaces/i18n'
 import { ResultCountProps } from '../lib/interfaces/props'
 import { SettingsContext } from '../context'
-import { apiRoot } from '../lib/settings'
 import { ui } from '../lib/i18n'
 
 /**
@@ -33,35 +30,19 @@ import { ui } from '../lib/i18n'
  * Shows the total count of results with specific logic for Na'vi UI
  */
 function ResultCount({ data }: ResultCountProps): JSX.Element {
+  if (data == null || data.length === 0) return null
+
   const { settingsGlobal } = useContext(SettingsContext)
   const { languageCodeUI } = settingsGlobal
   const strings = ui[languageCodeUI].resultCount
-  const [number, setNumber] = useState({} as FwewNumber)
-  const [isLoading, setIsLoading] = useState(false)
   let count: string
-
-  useEffect(() => {
-    if (languageCodeUI === Language.NX) {
-      setIsLoading(true)
-      axios
-        .get<FwewNumber>(`${apiRoot}/number/r/${data.length}`)
-        .then((response: AxiosResponse<FwewNumber>) => {
-          setNumber({ ...response.data })
-          setIsLoading(false)
-        })
-    }
-  }, [data])
 
   // use octal count for Na'vi UI, otherwise standard decimal array length
   if (languageCodeUI === Language.NX) {
-    if (data.length && !isLoading && !!number && !!number.octal) {
-      count = `°${number.octal.slice(1)}a `
-    }
-  } else if (data.length && !isLoading) {
+    count = `°${data.length.toString(8)}a `
+  } else {
     count = `${data.length} `
   }
-
-  if (!count) return null
 
   return (
     <Text style={styles.resultCount}>
