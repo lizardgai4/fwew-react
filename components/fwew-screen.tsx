@@ -18,6 +18,7 @@
  */
 import {
   ActivityIndicator,
+  Dimensions,
   Platform,
   SafeAreaView,
   StatusBar,
@@ -77,51 +78,60 @@ function FwewScreen({ navigation }): JSX.Element {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      header: () => (
-        <View>
-          {/* status bar */}
-          <SafeAreaView style={styles.safeStatusBar} />
-          <StatusBar barStyle="light-content" />
-          <ActionBar>
-            <View style={styles.parent}>
-              {/* search bar */}
-              <TextInput
-                onChangeText={searchData}
-                placeholder={getInputPlaceholderText()}
-                autoCapitalize={'none'}
-                autoCorrect={false}
-                style={styles.input}
-                clearButtonMode="always"
-                value={text}
-              />
-              {/* search bar clear input button */}
-              <If condition={Platform.OS !== 'ios' && !!text}>
-                <TouchableOpacity
-                  style={styles.closeButtonParent}
-                  onPress={() => searchData('')}
-                >
-                  <MaterialIcons
-                    style={styles.closeButton}
-                    name="cancel"
-                    size={18}
-                    color={'#fff'}
-                  />
-                </TouchableOpacity>
+      header: () => {
+        const windowWidth = Dimensions.get('window').width
+        return (
+          <View>
+            {/* status bar */}
+            <SafeAreaView style={styles.safeStatusBar} />
+            <StatusBar barStyle="light-content" />
+            <ActionBar>
+              <If condition={windowWidth > 480}>
+                <View style={{ flex: 0.5 }}></View>
               </If>
-            </View>
-            {/* Fwew Search direction toggle */}
-            <TouchableOpacity onPress={toggleReverse}>
-              <MaterialIcons
-                name={
-                  isReverseEnabled ? 'swap-horizontal-circle' : 'swap-horiz'
-                }
-                size={36}
-                color={colors.actionBarIconFill}
-              />
-            </TouchableOpacity>
-          </ActionBar>
-        </View>
-      )
+              <View style={styles.parent}>
+                {/* search bar */}
+                <TextInput
+                  onChangeText={searchData}
+                  placeholder={getInputPlaceholderText()}
+                  autoCapitalize={'none'}
+                  autoCorrect={false}
+                  style={styles.input}
+                  clearButtonMode="always"
+                  value={text}
+                />
+                {/* search bar clear input button */}
+                <If condition={Platform.OS !== 'ios' && !!text}>
+                  <TouchableOpacity
+                    style={styles.closeButtonParent}
+                    onPress={() => searchData('')}
+                  >
+                    <MaterialIcons
+                      style={styles.closeButton}
+                      name="cancel"
+                      size={18}
+                      color={'#fff'}
+                    />
+                  </TouchableOpacity>
+                </If>
+              </View>
+              <If condition={windowWidth > 480}>
+                <View style={{ flex: 0.5 }}></View>
+              </If>
+              {/* Fwew Search direction toggle */}
+              <TouchableOpacity onPress={toggleReverse}>
+                <MaterialIcons
+                  name={
+                    isReverseEnabled ? 'swap-horizontal-circle' : 'swap-horiz'
+                  }
+                  size={36}
+                  color={colors.actionBarIconFill}
+                />
+              </TouchableOpacity>
+            </ActionBar>
+          </View>
+        )
+      }
     })
   }, [navigation, isReverseEnabled, text, strings, languageUIName])
 
