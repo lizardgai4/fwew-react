@@ -69,6 +69,11 @@ function FwewScreen({ navigation }): JSX.Element {
   const strings = ui[languageCodeUI].fwewScreen
   const languageUIName = languageNames[languageCode]
 
+  // fetch data and re-render after this component is mounted to the DOM and rendered in initial loading state
+  useEffect(() => {
+    fetchData('https://tirea.learnnavi.org/api/list/')
+  }, [])
+
   useLayoutEffect(() => {
     navigation.setOptions({
       header: () => (
@@ -161,11 +166,6 @@ function FwewScreen({ navigation }): JSX.Element {
         }
       })
   }
-
-  // fetch data and re-render after this component is mounted to the DOM and rendered in initial loading state
-  useEffect(() => {
-    fetchData('https://tirea.learnnavi.org/api/list/')
-  }, [])
 
   // called whenever the user types or modifies text in the text input of the action bar / app bar
   const searchData = (text: string): void => {
