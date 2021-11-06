@@ -27,20 +27,21 @@ import {
   TouchableOpacity,
   View
 } from 'react-native'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 import Constants from 'expo-constants'
 import Entry from './entry'
 import { FAB } from 'react-native-paper'
 import If from './if'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import { Orientation } from '../lib/interfaces/orientation'
 import { SettingsContext } from '../context'
 import { Word } from '../lib/interfaces/word'
 import { WordListProps } from '../lib/interfaces/props'
 import colors from '../lib/colors'
 import { compareWords } from '../lib'
-// import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 import { useKeyboard } from '@react-native-community/hooks'
+import { useOrientation } from '../lib/hooks/useOrientation'
 
 /**
  * WordList Component
@@ -62,6 +63,7 @@ function WordList({
   const flatListRef = React.useRef()
   const [scrollOffset, setScrollOffset] = useState(0)
   const windowHeight = Dimensions.get('window').height
+  const windowWidth = Dimensions.get('window').width
   const statusBarHeight = Constants.statusBarHeight
   const actionBarHeight = 56
   const keyboard = useKeyboard()
@@ -70,6 +72,17 @@ function WordList({
     statusBarHeight -
     actionBarHeight -
     (keyboard.keyboardShown ? keyboard.keyboardHeight : 0)
+
+  const getColWidth = () =>
+    windowWidth < 360 ? 1 : Math.round(windowWidth / 360)
+
+  const [numCols, setNumCols] = useState(getColWidth())
+
+  const orientation: Orientation = useOrientation()
+
+  useEffect(() => {
+    setNumCols(getColWidth())
+  }, [orientation])
 
   const scrollToTop = () => {
     // @ts-ignore
@@ -97,25 +110,38 @@ function WordList({
     setScrollOffset(event.nativeEvent.contentOffset.y)
   }
 
+  const getWidth = (): number => {
+    return windowWidth / numCols
+  }
+
   // only try to render the list if there is data for it
   if (data && data.length > 0) {
     return (
       <View style={[{ height: viewHeight }, styles.listContainer]}>
+        {/*
+        <Text>
+          cols: {numCols} | width: {getWidth(numCols)}
+        </Text>
+        */}
         <FlatList
           ref={flatListRef}
           data={filterData()}
           extraData={text}
+          key={`#${numCols}`}
           keyExtractor={(item) => `k0_${item.ID}`}
           contentContainerStyle={styles.listContentContainer}
+          numColumns={numCols}
           onScroll={(e) => handleScroll(e)}
           renderItem={({ item, index }) => (
-            <TouchableOpacity
-              onPress={() => {
-                toggleModal(item)
-              }}
-            >
-              <Entry number={index + 1} word={item} />
-            </TouchableOpacity>
+            <View style={{ width: getWidth() }}>
+              <TouchableOpacity
+                onPress={() => {
+                  toggleModal(item)
+                }}
+              >
+                <Entry number={index + 1} word={item} />
+              </TouchableOpacity>
+            </View>
           )}
           // Pull to Refresh
           refreshControl={
