@@ -27,7 +27,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 import Constants from 'expo-constants'
 import { FAB } from 'react-native-paper'
@@ -35,12 +35,14 @@ import If from './if'
 import { ListFormProps } from '../lib/interfaces/props'
 import { ListWCS } from '../lib/interfaces/list-wcs'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import { Orientation } from '../lib/interfaces/orientation'
 import { SettingsContext } from '../context'
 import colors from '../lib/colors'
 import { convertCond } from '../lib'
 import { listOps } from '../lib/list-ops'
 import { ui } from '../lib/i18n'
 import { useKeyboard } from '@react-native-community/hooks'
+import { useOrientation } from '../lib/hooks/useOrientation'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 /**
@@ -58,6 +60,7 @@ function ListForm({ onSearch }: ListFormProps): JSX.Element {
   const windowHeight = Dimensions.get('window').height
   const statusBarHeight = Constants.statusBarHeight
   const actionBarHeight = 56
+  const orientation: Orientation = useOrientation()
   const insets = useSafeAreaInsets()
   const keyboard = useKeyboard()
   const scrollViewHeight =
@@ -66,6 +69,11 @@ function ListForm({ onSearch }: ListFormProps): JSX.Element {
     actionBarHeight -
     (Platform.OS === 'ios' && keyboard.keyboardShown ? 0 : insets.bottom) -
     (keyboard.keyboardShown ? keyboard.keyboardHeight : 0)
+  const [toggle, setToggle] = useState(false)
+
+  useEffect(() => {
+    setToggle(!toggle)
+  }, [orientation])
 
   /** function to handle the back button on a card */
   const navigateBack = (index: number, wcs: ListWCS): void => {
