@@ -37,6 +37,7 @@ import { FwewError } from '../lib/interfaces/fwew-error'
 import { FwewNumber } from '../lib/interfaces/fwew-number'
 import If from './if'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import { apiRoot } from '../lib/settings'
 import colors from '../lib/colors'
 
 /**
@@ -131,8 +132,9 @@ function NumberScreen({ navigation }): JSX.Element {
 
   // calculates API endpoint for data fetching
   const getEndpoint = (text?: string): string => {
-    const apiUrl = 'https://tirea.learnnavi.org/api/number'
-    return isReverseEnabled ? `${apiUrl}/r/${text}` : `${apiUrl}/${text}`
+    return isReverseEnabled
+      ? `${apiRoot}/number/r/${text}`
+      : `${apiRoot}/number/${text}`
   }
 
   // called whenever the user types or modifies text in the text input of the action bar / app bar

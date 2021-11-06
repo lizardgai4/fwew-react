@@ -107,14 +107,14 @@ function Screen({ apiUrl, screenType, navigation }: ScreenProps): JSX.Element {
   const getEndpoint = (text?: string): string => {
     if (screenType === 'random') {
       if (text === 'random') {
-        return `${apiUrl}0`
+        return `${apiUrl}/0`
       }
       if (text.match(/^random where /)) {
-        return `${apiUrl}${text.replace(/^random where /, '0/')}`
+        return `${apiUrl}/${text.replace(/^random where /, '0/')}`
       }
-      return `${apiUrl}${text.replace(/^(\d+) where /, '$1/')}`
+      return `${apiUrl}/${text.replace(/^(\d+) where /, '$1/')}`
     }
-    return `${apiUrl}${text}`
+    return `${apiUrl}/${text}`
   }
 
   // called when the user pulls down on the word list after it has rendered

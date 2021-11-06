@@ -35,7 +35,7 @@ import { ui } from '../lib/i18n'
  * screen where the user can list all words (or all words that have given properties)
  */
 function ListScreen({ navigation }): JSX.Element {
-  const endpoint = apiRoot + '/list/'
+  const endpoint = `${apiRoot}/list`
   return <Screen navigation={navigation} screenType="list" apiUrl={endpoint} />
 }
 
@@ -44,7 +44,7 @@ function ListScreen({ navigation }): JSX.Element {
  * screen where the user can view a randomized list of words
  */
 function RandomScreen({ navigation }): JSX.Element {
-  const endpoint = apiRoot + '/random/'
+  const endpoint = `${apiRoot}/random`
   return (
     <Screen navigation={navigation} screenType="random" apiUrl={endpoint} />
   )

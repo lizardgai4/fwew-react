@@ -45,6 +45,7 @@ import ResultCount from './result-count'
 import { SettingsContext } from '../context'
 import { Word } from '../lib/interfaces/word'
 import WordList from './word-list'
+import { apiRoot } from '../lib/settings'
 import colors from '../lib/colors'
 import { languageNames } from '../lib/i18n'
 import { ui } from '../lib/i18n'
@@ -71,7 +72,7 @@ function FwewScreen({ navigation }): JSX.Element {
 
   // fetch data and re-render after this component is mounted to the DOM and rendered in initial loading state
   useEffect(() => {
-    fetchData('https://tirea.learnnavi.org/api/list/')
+    fetchData(`${apiRoot}/list/`)
   }, [])
 
   useLayoutEffect(() => {
@@ -133,13 +134,12 @@ function FwewScreen({ navigation }): JSX.Element {
   // calculates API endpoint for data fetching
   const getEndpoint = (text?: string): string => {
     if (!text) {
-      return 'https://tirea.learnnavi.org/api/list/'
+      return `${apiRoot}/list/`
     }
-    const apiUrl = 'https://tirea.learnnavi.org/api/fwew/'
     const { languageCode } = settingsGlobal
     return isReverseEnabled
-      ? `${apiUrl}r/${languageCode}/${text}`
-      : `${apiUrl}${text}`
+      ? `${apiRoot}/fwew/r/${languageCode}/${text}`
+      : `${apiRoot}/fwew/${text}`
   }
 
   // called when the user pulls down on the word list after it has rendered
@@ -171,7 +171,7 @@ function FwewScreen({ navigation }): JSX.Element {
   const searchData = (text: string): void => {
     setText(text)
     if (text === '') {
-      fetchData('https://tirea.learnnavi.org/api/list/')
+      fetchData(`${apiRoot}/list/`)
     } else {
       fetchData(getEndpoint(text))
     }
@@ -179,10 +179,17 @@ function FwewScreen({ navigation }): JSX.Element {
 
   // called whenever the user clicks the swap button or toggles the switch in Fwew Settings to reverse search direction
   const toggleReverse = (): void => {
+    const newIsReverseEnabled = !isReverseEnabled
     onUpdateSettingsFwew({
       ...settingsFwew,
-      isReverseEnabled: !isReverseEnabled
+      isReverseEnabled: newIsReverseEnabled
     })
+    if (text === '') return
+    if (newIsReverseEnabled) {
+      fetchData(`${apiRoot}/fwew/r/${languageCode}/${text}`)
+    } else {
+      fetchData(`${apiRoot}/fwew/${text}`)
+    }
   }
 
   // sets the search bar placeholder text depending on the currently selected tab / screen
