@@ -30,10 +30,10 @@ const es: UITranslation = {
     ipa: 'IPA',
     syllables: 'sílibas',
     stressedSyllable: 'posición de la síliba acentuada',
-    infixSlots: 'espacios por los afijos entre del verbo',
-    infixDots: 'puntos por los afijos entre del verbo',
+    infixSlots: 'espacios por los afijos a dentro del verbo',
+    infixDots: 'puntos por los afijos a dentro del verbo',
     prefixes: 'prefijos',
-    infixes: 'afijos entre del verbo',
+    infixes: 'afijos a dentro del verbo',
     suffixes: 'sufijos',
     lenition: 'lenición'
   },
