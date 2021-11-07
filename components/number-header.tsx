@@ -53,7 +53,7 @@ function NumberHeader({
       <StatusBar barStyle="light-content" />
       <ActionBar>
         <If condition={windowWidth > 480}>
-          <View style={{ flex: 0.5 }}></View>
+          <View style={{ flex: 0.5, marginLeft: -(52 + 48) }}></View>
         </If>
         <View style={styles.parent}>
           {/* search bar */}
@@ -82,7 +82,7 @@ function NumberHeader({
           </If>
         </View>
         <If condition={windowWidth > 480}>
-          <View style={{ flex: 0.5 }}></View>
+          <View style={{ flex: 0.5, marginRight: -(46 + 8) }}></View>
         </If>
         {/* Number Search direction toggle */}
         <TouchableOpacity
@@ -112,8 +112,8 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
     flexDirection: 'row',
-    justifyContent: 'flex-start',
-    marginRight: 8
+    justifyContent: 'flex-start'
+    // marginRight: 8
   },
   input: {
     height: 40,
