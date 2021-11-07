@@ -23,7 +23,6 @@ import {
   NativeSyntheticEvent,
   RefreshControl,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View
 } from 'react-native'
@@ -32,9 +31,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import Constants from 'expo-constants'
 import Entry from './entry'
 import { FAB } from 'react-native-paper'
-import If from './if'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import { Orientation } from '../lib/interfaces/orientation'
+import InfoMessage from './info-message'
 import { SettingsContext } from '../context'
 import { Word } from '../lib/interfaces/word'
 import { WordListProps } from '../lib/interfaces/props'
@@ -67,26 +64,39 @@ function WordList({
   const statusBarHeight = Constants.statusBarHeight
   const actionBarHeight = 56
   const keyboard = useKeyboard()
+  const orientation = useOrientation()
   const viewHeight =
     windowHeight -
     statusBarHeight -
     actionBarHeight -
     (keyboard.keyboardShown ? keyboard.keyboardHeight : 0)
+  const initialColWidth = windowWidth < 360 ? 1 : Math.round(windowWidth / 360)
+  const [numCols, setNumCols] = useState(initialColWidth)
 
+  // get width of a card column for wider display / window
   const getColWidth = () =>
     windowWidth < 360 ? 1 : Math.round(windowWidth / 360)
 
-  const [numCols, setNumCols] = useState(getColWidth())
-
-  const orientation: Orientation = useOrientation()
+  // get width of a card based on window size and number of columns
+  const getWidth = (): number => {
+    return windowWidth / numCols
+  }
 
   useEffect(() => {
     setNumCols(getColWidth())
   }, [orientation])
 
+  // logic for scroll FAB
   const scrollToTop = () => {
     // @ts-ignore
     flatListRef.current.scrollToOffset({ animated: true, offset: 0 })
+  }
+
+  // handle scroll event
+  const handleScroll = (
+    event: NativeSyntheticEvent<NativeScrollEvent>
+  ): void => {
+    setScrollOffset(event.nativeEvent.contentOffset.y)
   }
 
   // part of speech filtering
@@ -103,26 +113,10 @@ function WordList({
     return data.filter((word) => word[languageCode.toUpperCase()] !== 'NULL')
   }
 
-  // handle scroll event
-  const handleScroll = (
-    event: NativeSyntheticEvent<NativeScrollEvent>
-  ): void => {
-    setScrollOffset(event.nativeEvent.contentOffset.y)
-  }
-
-  const getWidth = (): number => {
-    return windowWidth / numCols
-  }
-
   // only try to render the list if there is data for it
   if (data && data.length > 0) {
     return (
       <View style={[{ height: viewHeight }, styles.listContainer]}>
-        {/*
-        <Text>
-          cols: {numCols} | width: {getWidth(numCols)}
-        </Text>
-        */}
         <FlatList
           ref={flatListRef}
           data={filterData()}
@@ -161,23 +155,7 @@ function WordList({
   } else if (err && err.message) {
     return (
       // for the situation the API returns {message: "no results"}
-      <View style={styles.fallbackView}>
-        {text ? (
-          <View style={styles.msgParent}>
-            <MaterialIcons
-              name="error"
-              size={48}
-              color={colors.infoMessageIcon}
-            />
-            <Text style={styles.msgText}>
-              {err.message}
-              <If condition={!err.message.endsWith(`: ${text}`)}>
-                <Text>: {text}</Text>
-              </If>
-            </Text>
-          </View>
-        ) : null}
-      </View>
+      <InfoMessage error={err} text={text} />
     )
   } else {
     return null
@@ -192,19 +170,6 @@ const styles = StyleSheet.create({
   listContentContainer: {
     marginTop: 8,
     paddingBottom: 72
-  },
-  fallbackView: {
-    flex: 1
-  },
-  msgParent: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  msgText: {
-    marginTop: 8,
-    marginLeft: 16,
-    marginRight: 16
   },
   fab: {
     position: 'absolute',

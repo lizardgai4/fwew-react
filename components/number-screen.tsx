@@ -23,21 +23,20 @@ import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
-  Text,
   TextInput,
   TouchableOpacity,
   View
 } from 'react-native'
-import React, { Fragment, useLayoutEffect, useState } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import axios, { AxiosError, AxiosResponse } from 'axios'
 
 import ActionBar from './action-bar'
-import Bold from './bold'
-import { Card } from 'react-native-paper'
 import { FwewError } from '../lib/interfaces/fwew-error'
 import { FwewNumber } from '../lib/interfaces/fwew-number'
 import If from './if'
+import InfoMessage from './info-message'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import NumberCard from './number-card'
 import { apiRoot } from '../lib/settings'
 import colors from '../lib/colors'
 
@@ -50,8 +49,8 @@ function NumberScreen({ navigation }): JSX.Element {
   const [text, setText] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [isReverseEnabled, setIsReverseEnabled] = useState(false)
-  const [data, setData] = useState({} as FwewNumber)
-  const [err, setErr] = useState({} as FwewError)
+  const [data, setData] = useState(null as FwewNumber)
+  const [err, setErr] = useState(null as FwewError)
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -114,7 +113,14 @@ function NumberScreen({ navigation }): JSX.Element {
 
   // called whenever the user clicks the swap button or toggles the switch in Fwew Settings to reverse search direction
   const toggleReverse = (): void => {
+    const newIsReverseEnabled = !isReverseEnabled
     setIsReverseEnabled(!isReverseEnabled)
+    if (text === '') return
+    if (newIsReverseEnabled) {
+      fetchData(`${apiRoot}/number/r/${text}`)
+    } else {
+      fetchData(`${apiRoot}/number/${text}`)
+    }
   }
 
   // fetches Na'vi word data from the Fwew API and updates the state data accordingly
@@ -126,6 +132,7 @@ function NumberScreen({ navigation }): JSX.Element {
         setIsLoading(false)
         if (response.data) {
           setData(response.data)
+          setErr(null as FwewError)
         }
       })
       .catch((e) => {
@@ -134,7 +141,7 @@ function NumberScreen({ navigation }): JSX.Element {
           if (serverError && serverError.response) {
             setIsLoading(false)
             setErr(serverError.response.data)
-            setData({} as FwewNumber)
+            setData(null as FwewNumber)
           }
         }
       })
@@ -165,43 +172,27 @@ function NumberScreen({ navigation }): JSX.Element {
     return 'pxevofu'
   }
 
+  let content: JSX.Element = null
+
+  if (isLoading) {
+    content = (
+      <ActivityIndicator
+        style={styles.activityIndicator}
+        size={'large'}
+        color={colors.accent}
+      />
+    )
+  } else if (text && data && !err) {
+    content = <NumberCard data={data} />
+  } else if (text && !data && err) {
+    content = <InfoMessage error={err} text={text} />
+  }
+
   return (
-    <Fragment>
-      {/* main content */}
-      <SafeAreaView style={styles.safeContainer}>
-        <View style={styles.mainView}>
-          <If condition={isLoading}>
-            <ActivityIndicator
-              style={styles.activityIndicator}
-              size={'large'}
-              color={colors.accent}
-            />
-          </If>
-          <If condition={!isLoading}>
-            <View>
-              <If condition={!!data.name}>
-                {/* @ts-ignore */}
-                <Card style={styles.card}>
-                  {/* @ts-ignore */}
-                  <Card.Title title={data.name} />
-                  <Card.Content style={styles.cardContent}>
-                    <Text selectable={true} style={styles.text}>
-                      <Bold>decimal</Bold>: {data.decimal}
-                    </Text>
-                    <Text selectable={true} style={styles.text}>
-                      <Bold>octal</Bold>: {data.octal}
-                    </Text>
-                  </Card.Content>
-                </Card>
-              </If>
-              <If condition={!!err}>
-                <Text>{err.message}</Text>
-              </If>
-            </View>
-          </If>
-        </View>
-      </SafeAreaView>
-    </Fragment>
+    /* main content */
+    <SafeAreaView style={styles.safeContainer}>
+      <View style={styles.mainView}>{content}</View>
+    </SafeAreaView>
   )
 }
 
@@ -213,10 +204,6 @@ const styles = StyleSheet.create({
   safeContainer: {
     flex: 1,
     backgroundColor: colors.primary
-  },
-  mainView: {
-    flex: 1,
-    backgroundColor: colors.screenBackground
   },
   parent: {
     flex: 1,
@@ -246,6 +233,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginRight: 5
   },
+  mainView: {
+    flex: 1,
+    backgroundColor: colors.screenBackground
+  },
   activityIndicator: {
     marginTop: 16
   },
@@ -257,19 +248,6 @@ const styles = StyleSheet.create({
   modalContainerStyle: {
     padding: 16,
     shadowOpacity: 0
-  },
-  card: {
-    margin: 16,
-    borderRadius: 16,
-    borderColor: colors.secondary,
-    borderWidth: 1.5
-  },
-  cardContent: {
-    margin: 8
-  },
-  text: {
-    fontSize: 16,
-    padding: 8
   }
 })
 

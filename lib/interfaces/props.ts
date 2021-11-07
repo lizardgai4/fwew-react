@@ -17,6 +17,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { FwewError } from './fwew-error'
+import { FwewNumber } from './fwew-number'
 import { Language } from './i18n'
 import { Word } from './word'
 
@@ -129,4 +130,20 @@ export interface FlagIconProps {
  */
 export interface ResultCountProps {
   data: Word[]
+}
+
+/**
+ * props interface for NumberCard Component
+ */
+export interface NumberCardProps {
+  data: FwewNumber
+}
+
+/**
+ * props interface for InfoMessage Component
+ */
+export interface InfoMessageProps {
+  error?: FwewError
+  text?: string
+  info?: string
 }

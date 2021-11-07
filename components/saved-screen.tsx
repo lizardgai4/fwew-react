@@ -22,7 +22,7 @@ import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native'
 import ActionBar from './action-bar'
 import EntryModalContent from './entry-modal-content'
 import If from './if'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import InfoMessage from './info-message'
 import { Modal } from 'react-native-paper'
 import ResultCount from './result-count'
 import { SettingsContext } from '../context'
@@ -94,17 +94,10 @@ function SavedScreen({ navigation }): JSX.Element {
               posFilterEnabled={posFilterEnabled}
             />
           </If>
+          {/* info message about how to save words when there are none saved */}
           <If condition={data.length === 0}>
-            <View style={styles.msgParent}>
-              <MaterialIcons
-                name="info"
-                size={48}
-                color={colors.infoMessageIcon}
-              />
-              <Text style={styles.msgText}>{strings.infoText}</Text>
-            </View>
+            <InfoMessage info={strings.infoText} />
           </If>
-
           {/* word information modal when user taps an entry in the list */}
           <Modal
             visible={isModalVisible}
@@ -141,21 +134,6 @@ const styles = StyleSheet.create({
     color: colors.actionBarTitle,
     fontWeight: 'bold',
     fontSize: 20
-  },
-  msgParent: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  msgText: {
-    marginTop: 8,
-    marginLeft: 16,
-    marginRight: 16
-  },
-  resultCount: {
-    alignSelf: 'center',
-    marginTop: 16,
-    fontSize: 16
   },
   modalContainerStyle: {
     padding: 16,

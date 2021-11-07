@@ -59,6 +59,7 @@ function RandomForm({ onSearch }: ListFormProps): JSX.Element {
   const [spec, setSpec] = useState('')
   const [array, setArray] = useState([] as ListWCS[])
   const windowHeight = Dimensions.get('window').height
+  const windowWidth = Dimensions.get('window').width
   const statusBarHeight = Constants.statusBarHeight
   const actionBarHeight = 56
   const orientation: Orientation = useOrientation()
@@ -66,10 +67,12 @@ function RandomForm({ onSearch }: ListFormProps): JSX.Element {
   const keyboard = useKeyboard()
   const scrollViewHeight =
     windowHeight -
-    statusBarHeight -
+    (Platform.OS === 'ios' ? statusBarHeight : 0) -
     actionBarHeight -
     (Platform.OS === 'ios' && keyboard.keyboardShown ? 0 : insets.bottom) -
     (keyboard.keyboardShown ? keyboard.keyboardHeight : 0)
+  const cardWidth = windowWidth > 480 ? '50%' : null
+  const mainAlign = windowWidth > 480 ? 'center' : null
   const [toggle, setToggle] = useState(false)
 
   useEffect(() => {
@@ -157,9 +160,15 @@ function RandomForm({ onSearch }: ListFormProps): JSX.Element {
 
   return (
     <View>
-      <ScrollView style={[{ height: scrollViewHeight }, styles.scrollView]}>
+      <ScrollView
+        style={[{ height: scrollViewHeight }, styles.scrollView]}
+        contentContainerStyle={{
+          justifyContent: mainAlign,
+          alignItems: mainAlign
+        }}
+      >
         {/* @ts-ignore */}
-        <Card style={styles.card}>
+        <Card style={[styles.card, { width: cardWidth }]}>
           {/* @ts-ignore */}
           <Card.Title title={`${strings.random}...`} />
           <Card.Content>
@@ -194,7 +203,10 @@ function RandomForm({ onSearch }: ListFormProps): JSX.Element {
         {array.map((wcs, idx) => (
           // @ts-ignore
           <Card
-            style={idx < array.length - 1 ? styles.card : styles.lastCard}
+            style={[
+              idx < array.length - 1 ? styles.card : styles.lastCard,
+              { width: cardWidth }
+            ]}
             key={`${idx}_wcs`}
           >
             {/* @ts-ignore */}
