@@ -104,7 +104,8 @@ const nl: UITranslation = {
     translation: 'translatie'
   },
   resultCount: {
-    results: 'resultaten'
+    results: 'resultaten',
+    result: 'resultaat'
   }
 }
 

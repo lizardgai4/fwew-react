@@ -103,7 +103,8 @@ const nx: UITranslation = {
     translation: 'ralpengyu'
   },
   resultCount: {
-    results: 'kum'
+    results: 'kum',
+    result: 'kum'
   }
 }
 

@@ -135,6 +135,7 @@ interface VersionCardStrings {
 /** interface for ResultCount component */
 export interface ResultCountStrings {
   results: string
+  result: string
 }
 
 /** interface for a UI Translation */

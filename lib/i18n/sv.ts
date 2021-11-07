@@ -103,7 +103,8 @@ const sv: UITranslation = {
     translation: 'translation'
   },
   resultCount: {
-    results: 'results'
+    results: 'results',
+    result: 'result'
   }
 }
 

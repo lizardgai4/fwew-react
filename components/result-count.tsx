@@ -47,7 +47,7 @@ function ResultCount({ data }: ResultCountProps): JSX.Element {
   return (
     <Text style={styles.resultCount}>
       {count}
-      {strings.results}
+      {data.length > 1 ? strings.results : strings.result}
     </Text>
   )
 }
