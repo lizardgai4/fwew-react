@@ -30,7 +30,7 @@ import { useOrientation } from '../lib/hooks/useOrientation'
  *
  * Show the results of a Fwew Number lookup
  */
-export default function NumberCard({ data }: NumberCardProps): JSX.Element {
+function NumberCard({ data }: NumberCardProps): JSX.Element {
   const windowWidth = Dimensions.get('window').width
   const mainAlign = windowWidth > 480 ? 'center' : null
   const cardWidth = windowWidth > 480 ? '50%' : null
@@ -82,3 +82,5 @@ const styles = StyleSheet.create({
     padding: 8
   }
 })
+
+export default NumberCard

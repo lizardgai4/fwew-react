@@ -26,7 +26,7 @@ import { flagIcons } from '../lib/flag-icons'
  * renders a flag icon representing the country associated with the given
  * language code
  */
-const FlagIcon = ({ language }: FlagIconProps): JSX.Element => {
+function FlagIcon({ language }: FlagIconProps): JSX.Element {
   let countryMap = {
     de: 'germany',
     en: 'united-states-of-america',

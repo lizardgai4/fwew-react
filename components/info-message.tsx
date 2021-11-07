@@ -28,11 +28,7 @@ import colors from '../lib/colors'
  *
  * An info icon with text of an error message or info message
  */
-export default function InfoMessage({
-  error,
-  text,
-  info
-}: InfoMessageProps): JSX.Element {
+function InfoMessage({ error, text, info }: InfoMessageProps): JSX.Element {
   // determine the info / error text
   const getText = (): string => {
     if (error && error.message) {
@@ -75,3 +71,5 @@ const styles = StyleSheet.create({
     marginRight: 16
   }
 })
+
+export default InfoMessage
