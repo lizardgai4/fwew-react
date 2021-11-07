@@ -18,6 +18,7 @@
  */
 import {
   ActivityIndicator,
+  Dimensions,
   KeyboardAvoidingView,
   Platform,
   SafeAreaView,
@@ -55,6 +56,9 @@ function Screen({ apiUrl, screenType, navigation }: ScreenProps): JSX.Element {
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [selectedItem, setSelectedItem] = useState({} as Word)
   const orientation = useOrientation()
+  const windowWidth = Dimensions.get('window').width
+  const mainAlign = windowWidth > 480 ? 'center' : null
+  const modalWidth = windowWidth > 480 ? '80%' : null
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -185,7 +189,11 @@ function Screen({ apiUrl, screenType, navigation }: ScreenProps): JSX.Element {
         <Modal
           visible={isModalVisible}
           onDismiss={() => toggleModal(selectedItem)}
-          contentContainerStyle={styles.modalContainerStyle}
+          style={{ justifyContent: mainAlign, alignItems: mainAlign }}
+          contentContainerStyle={[
+            styles.modalContainerStyle,
+            { width: modalWidth }
+          ]}
         >
           <EntryModalContent entry={selectedItem} />
         </Modal>

@@ -16,7 +16,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { ActivityIndicator, SafeAreaView, StyleSheet, View } from 'react-native'
+import {
+  ActivityIndicator,
+  Dimensions,
+  SafeAreaView,
+  StyleSheet,
+  View
+} from 'react-native'
 import React, { useContext, useEffect, useLayoutEffect, useState } from 'react'
 import axios, { AxiosError, AxiosResponse } from 'axios'
 
@@ -56,6 +62,9 @@ function FwewScreen({ navigation }): JSX.Element {
   const strings = ui[languageCodeUI].fwewScreen
   const languageUIName = languageNames[languageCode]
   const orientation = useOrientation()
+  const windowWidth = Dimensions.get('window').width
+  const mainAlign = windowWidth > 480 ? 'center' : null
+  const modalWidth = windowWidth > 480 ? '50%' : null
 
   // fetch data and re-render after this component is mounted to the DOM and rendered in initial loading state
   useEffect(() => {
@@ -183,7 +192,11 @@ function FwewScreen({ navigation }): JSX.Element {
         <Modal
           visible={isModalVisible}
           onDismiss={() => toggleModal(selectedItem)}
-          contentContainerStyle={styles.modalContainerStyle}
+          style={{ justifyContent: mainAlign, alignItems: mainAlign }}
+          contentContainerStyle={[
+            styles.modalContainerStyle,
+            { width: modalWidth }
+          ]}
         >
           <EntryModalContent entry={selectedItem} />
         </Modal>
