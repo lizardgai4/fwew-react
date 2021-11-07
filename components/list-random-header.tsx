@@ -76,7 +76,7 @@ function ListRandomHeader({
           </If>
         </View>
         <If condition={windowWidth > 480}>
-          <View style={{ flex: 0.5, marginRight: -8 }}></View>
+          <View style={{ flex: 0.5, marginRight: -24 }}></View>
         </If>
       </ActionBar>
     </View>
@@ -95,8 +95,8 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
     flexDirection: 'row',
-    justifyContent: 'flex-start'
-    // marginRight: 8
+    justifyContent: 'flex-start',
+    marginRight: 16
   },
   input: {
     height: 40,
