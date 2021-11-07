@@ -50,6 +50,7 @@ import { apiRoot } from '../lib/settings'
 import colors from '../lib/colors'
 import { languageNames } from '../lib/i18n'
 import { ui } from '../lib/i18n'
+import { useOrientation } from '../lib/hooks/useOrientation'
 
 /**
  * FwewScreen Component
@@ -70,6 +71,7 @@ function FwewScreen({ navigation }): JSX.Element {
   const { languageCodeUI, languageCode } = settingsGlobal
   const strings = ui[languageCodeUI].fwewScreen
   const languageUIName = languageNames[languageCode]
+  const orientation = useOrientation()
 
   // fetch data and re-render after this component is mounted to the DOM and rendered in initial loading state
   useEffect(() => {
@@ -133,7 +135,7 @@ function FwewScreen({ navigation }): JSX.Element {
         )
       }
     })
-  }, [navigation, isReverseEnabled, text, strings, languageUIName])
+  }, [navigation, isReverseEnabled, text, strings, languageUIName, orientation])
 
   // toggles info modal visible when user taps a list entry or modal backdrop
   const toggleModal = (item: Word): void => {

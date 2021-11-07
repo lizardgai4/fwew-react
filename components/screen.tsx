@@ -44,6 +44,7 @@ import { ScreenProps } from '../lib/interfaces/props'
 import { Word } from '../lib/interfaces/word'
 import WordList from './word-list'
 import colors from '../lib/colors'
+import { useOrientation } from '../lib/hooks/useOrientation'
 
 /**
  * Screen component
@@ -57,6 +58,7 @@ function Screen({ apiUrl, screenType, navigation }: ScreenProps): JSX.Element {
   const [err, setErr] = useState({} as FwewError)
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [selectedItem, setSelectedItem] = useState({} as Word)
+  const orientation = useOrientation()
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -105,7 +107,7 @@ function Screen({ apiUrl, screenType, navigation }: ScreenProps): JSX.Element {
         )
       }
     })
-  }, [navigation, text])
+  }, [navigation, text, orientation])
 
   // toggles info modal visible when user taps a list entry or modal backdrop
   const toggleModal = (item: Word): void => {
