@@ -16,32 +16,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import {
-  ActivityIndicator,
-  Dimensions,
-  Platform,
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  View
-} from 'react-native'
-import React, {
-  Fragment,
-  useContext,
-  useEffect,
-  useLayoutEffect,
-  useState
-} from 'react'
+import { ActivityIndicator, SafeAreaView, StyleSheet, View } from 'react-native'
+import React, { useContext, useEffect, useLayoutEffect, useState } from 'react'
 import axios, { AxiosError, AxiosResponse } from 'axios'
 
-import ActionBar from './action-bar'
 import EntryModalContent from './entry-modal-content'
 import { FwewError } from '../lib/interfaces/fwew-error'
+import FwewHeader from './fwew-header'
 import If from './if'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { Modal } from 'react-native-paper'
+import { Orientation } from '../lib/interfaces/orientation'
 import ResultCount from './result-count'
 import { SettingsContext } from '../context'
 import { Word } from '../lib/interfaces/word'
@@ -80,60 +64,15 @@ function FwewScreen({ navigation }): JSX.Element {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      header: () => {
-        const windowWidth = Dimensions.get('window').width
-        return (
-          <View>
-            {/* status bar */}
-            <SafeAreaView style={styles.safeStatusBar} />
-            <StatusBar barStyle="light-content" />
-            <ActionBar>
-              <If condition={windowWidth > 480}>
-                <View style={{ flex: 0.5 }}></View>
-              </If>
-              <View style={styles.parent}>
-                {/* search bar */}
-                <TextInput
-                  onChangeText={searchData}
-                  placeholder={getInputPlaceholderText()}
-                  autoCapitalize={'none'}
-                  autoCorrect={false}
-                  style={styles.input}
-                  clearButtonMode="always"
-                  value={text}
-                />
-                {/* search bar clear input button */}
-                <If condition={Platform.OS !== 'ios' && !!text}>
-                  <TouchableOpacity
-                    style={styles.closeButtonParent}
-                    onPress={() => searchData('')}
-                  >
-                    <MaterialIcons
-                      style={styles.closeButton}
-                      name="cancel"
-                      size={18}
-                      color={'#fff'}
-                    />
-                  </TouchableOpacity>
-                </If>
-              </View>
-              <If condition={windowWidth > 480}>
-                <View style={{ flex: 0.5 }}></View>
-              </If>
-              {/* Fwew Search direction toggle */}
-              <TouchableOpacity onPress={toggleReverse}>
-                <MaterialIcons
-                  name={
-                    isReverseEnabled ? 'swap-horizontal-circle' : 'swap-horiz'
-                  }
-                  size={36}
-                  color={colors.actionBarIconFill}
-                />
-              </TouchableOpacity>
-            </ActionBar>
-          </View>
-        )
-      }
+      header: () => (
+        <FwewHeader
+          searchDataFn={searchData}
+          inputPlaceholderTextFn={getInputPlaceholderText}
+          text={text}
+          toggleReverseFn={toggleReverse}
+          isReverseEnabled={isReverseEnabled}
+        />
+      )
     })
   }, [navigation, isReverseEnabled, text, strings, languageUIName, orientation])
 
@@ -210,83 +149,53 @@ function FwewScreen({ navigation }): JSX.Element {
   }
 
   return (
-    <Fragment>
-      {/* main content */}
-      <SafeAreaView style={styles.safeContainer}>
-        <View style={styles.mainView}>
-          <If condition={isLoading}>
-            <ActivityIndicator
-              style={styles.activityIndicator}
-              size={'large'}
-              color={colors.accent}
-            />
-          </If>
-          <If condition={!isLoading}>
-            <ResultCount data={data} />
-            <WordList
-              data={data}
-              err={err}
-              text={text}
-              isLoading={isLoading}
-              onRefresh={onRefresh}
-              toggleModal={toggleModal}
-              posFilterEnabled={true}
-            />
-          </If>
-          {/* word information modal when user taps an entry in the list */}
-          <Modal
-            visible={isModalVisible}
-            onDismiss={() => toggleModal(selectedItem)}
-            contentContainerStyle={styles.modalContainerStyle}
-          >
-            <EntryModalContent entry={selectedItem} />
-          </Modal>
-        </View>
-      </SafeAreaView>
-    </Fragment>
+    /* main content */
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor:
+          orientation === Orientation.PORTRAIT
+            ? colors.primary
+            : colors.screenBackground
+      }}
+    >
+      <View style={styles.mainView}>
+        <If condition={isLoading}>
+          <ActivityIndicator
+            style={styles.activityIndicator}
+            size={'large'}
+            color={colors.accent}
+          />
+        </If>
+        <If condition={!isLoading}>
+          <ResultCount data={data} />
+          <WordList
+            data={data}
+            err={err}
+            text={text}
+            isLoading={isLoading}
+            onRefresh={onRefresh}
+            toggleModal={toggleModal}
+            posFilterEnabled={true}
+          />
+        </If>
+        {/* word information modal when user taps an entry in the list */}
+        <Modal
+          visible={isModalVisible}
+          onDismiss={() => toggleModal(selectedItem)}
+          contentContainerStyle={styles.modalContainerStyle}
+        >
+          <EntryModalContent entry={selectedItem} />
+        </Modal>
+      </View>
+    </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
-  safeStatusBar: {
-    flex: 0,
-    backgroundColor: colors.secondary
-  },
-  safeContainer: {
-    flex: 1,
-    backgroundColor: colors.primary
-  },
   mainView: {
     flex: 1,
     backgroundColor: colors.screenBackground
-  },
-  parent: {
-    flex: 1,
-    borderColor: colors.secondary,
-    backgroundColor: colors.inputBackground,
-    borderRadius: 12,
-    borderWidth: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    marginRight: 8
-  },
-  input: {
-    height: 40,
-    flex: 1,
-    paddingLeft: 8,
-    marginLeft: 8,
-    marginRight: 8
-  },
-  closeButton: {
-    color: colors.inputCloseButton,
-    height: 18,
-    width: 18,
-    marginRight: 8
-  },
-  closeButtonParent: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 5
   },
   activityIndicator: {
     marginTop: 16

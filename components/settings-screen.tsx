@@ -20,10 +20,12 @@ import React, { useContext, useLayoutEffect } from 'react'
 import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native'
 
 import ActionBar from './action-bar'
+import { Orientation } from '../lib/interfaces/orientation'
 import { SettingsContext } from '../context'
 import SettingsForm from './settings-form'
 import colors from '../lib/colors'
 import { ui } from '../lib/i18n'
+import { useOrientation } from '../lib/hooks/useOrientation'
 
 /**
  * SettingsScreen component
@@ -34,6 +36,7 @@ function SettingsScreen({ navigation }): JSX.Element {
   const { settingsGlobal } = useContext(SettingsContext)
   const { languageCodeUI } = settingsGlobal
   const strings = ui[languageCodeUI].settingsScreen
+  const orientation = useOrientation()
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -52,7 +55,15 @@ function SettingsScreen({ navigation }): JSX.Element {
   }, [navigation, strings])
 
   return (
-    <SafeAreaView style={styles.safeContainer}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor:
+          orientation === Orientation.PORTRAIT
+            ? colors.primary
+            : colors.screenBackground
+      }}
+    >
       <View style={styles.mainView}>
         <SettingsForm />
       </View>

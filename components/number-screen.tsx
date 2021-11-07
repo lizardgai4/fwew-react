@@ -16,29 +16,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import {
-  ActivityIndicator,
-  Dimensions,
-  Platform,
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  View
-} from 'react-native'
+import { ActivityIndicator, SafeAreaView, StyleSheet, View } from 'react-native'
 import React, { useLayoutEffect, useState } from 'react'
 import axios, { AxiosError, AxiosResponse } from 'axios'
 
-import ActionBar from './action-bar'
 import { FwewError } from '../lib/interfaces/fwew-error'
 import { FwewNumber } from '../lib/interfaces/fwew-number'
-import If from './if'
 import InfoMessage from './info-message'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import NumberCard from './number-card'
+import NumberHeader from './number-header'
+import { Orientation } from '../lib/interfaces/orientation'
 import { apiRoot } from '../lib/settings'
 import colors from '../lib/colors'
+import { useOrientation } from '../lib/hooks/useOrientation'
 
 /**
  * NumberScreen component
@@ -51,63 +41,19 @@ function NumberScreen({ navigation }): JSX.Element {
   const [isReverseEnabled, setIsReverseEnabled] = useState(false)
   const [data, setData] = useState(null as FwewNumber)
   const [err, setErr] = useState(null as FwewError)
+  const orientation = useOrientation()
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      header: () => {
-        const windowWidth = Dimensions.get('window').width
-        return (
-          <View>
-            {/* status bar */}
-            <SafeAreaView style={styles.safeStatusBar} />
-            <StatusBar barStyle="light-content" />
-            <ActionBar>
-              <If condition={windowWidth > 480}>
-                <View style={{ flex: 0.5 }}></View>
-              </If>
-              <View style={styles.parent}>
-                {/* search bar */}
-                <TextInput
-                  onChangeText={searchData}
-                  placeholder={getInputPlaceholderText()}
-                  autoCapitalize={'none'}
-                  autoCorrect={false}
-                  style={styles.input}
-                  clearButtonMode="always"
-                  value={text}
-                />
-                {/* search bar clear input button */}
-                <If condition={Platform.OS !== 'ios' && !!text}>
-                  <TouchableOpacity
-                    style={styles.closeButtonParent}
-                    onPress={() => searchData('')}
-                  >
-                    <MaterialIcons
-                      style={styles.closeButton}
-                      name="cancel"
-                      size={18}
-                      color={'#fff'}
-                    />
-                  </TouchableOpacity>
-                </If>
-              </View>
-              <If condition={windowWidth > 480}>
-                <View style={{ flex: 0.5 }}></View>
-              </If>
-              {/* Fwew Search direction toggle */}
-              <TouchableOpacity onPress={toggleReverse}>
-                <MaterialIcons
-                  name={
-                    isReverseEnabled ? 'swap-horizontal-circle' : 'swap-horiz'
-                  }
-                  size={36}
-                  color={colors.actionBarIconFill}
-                />
-              </TouchableOpacity>
-            </ActionBar>
-          </View>
-        )
-      }
+      header: () => (
+        <NumberHeader
+          searchDataFn={searchData}
+          inputPlaceholderTextFn={getInputPlaceholderText}
+          text={text}
+          toggleReverseFn={toggleReverse}
+          isReverseEnabled={isReverseEnabled}
+        />
+      )
     })
   }, [navigation, isReverseEnabled, text])
 
@@ -190,49 +136,21 @@ function NumberScreen({ navigation }): JSX.Element {
 
   return (
     /* main content */
-    <SafeAreaView style={styles.safeContainer}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor:
+          orientation === Orientation.PORTRAIT
+            ? colors.primary
+            : colors.screenBackground
+      }}
+    >
       <View style={styles.mainView}>{content}</View>
     </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
-  safeStatusBar: {
-    flex: 0,
-    backgroundColor: colors.secondary
-  },
-  safeContainer: {
-    flex: 1,
-    backgroundColor: colors.primary
-  },
-  parent: {
-    flex: 1,
-    borderColor: colors.secondary,
-    backgroundColor: colors.inputBackground,
-    borderRadius: 12,
-    borderWidth: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    marginRight: 8
-  },
-  input: {
-    height: 40,
-    flex: 1,
-    paddingLeft: 8,
-    marginLeft: 8,
-    marginRight: 8
-  },
-  closeButton: {
-    color: colors.inputCloseButton,
-    height: 18,
-    width: 18,
-    marginRight: 8
-  },
-  closeButtonParent: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 5
-  },
   mainView: {
     flex: 1,
     backgroundColor: colors.screenBackground

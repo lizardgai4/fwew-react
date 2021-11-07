@@ -27,9 +27,9 @@ import {
   TouchableOpacity,
   View
 } from 'react-native'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { convertCond, getContentAreaHeight } from '../lib'
 
-import Constants from 'expo-constants'
 import { FAB } from 'react-native-paper'
 import If from './if'
 import { ListFormProps } from '../lib/interfaces/props'
@@ -38,7 +38,6 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { Orientation } from '../lib/interfaces/orientation'
 import { SettingsContext } from '../context'
 import colors from '../lib/colors'
-import { convertCond } from '../lib'
 import { listOps } from '../lib/list-ops'
 import { ui } from '../lib/i18n'
 import { useKeyboard } from '@react-native-community/hooks'
@@ -60,24 +59,24 @@ function RandomForm({ onSearch }: ListFormProps): JSX.Element {
   const [array, setArray] = useState([] as ListWCS[])
   const windowHeight = Dimensions.get('window').height
   const windowWidth = Dimensions.get('window').width
-  const statusBarHeight = Constants.statusBarHeight
   const actionBarHeight = 56
   const orientation: Orientation = useOrientation()
   const insets = useSafeAreaInsets()
   const keyboard = useKeyboard()
-  const scrollViewHeight =
-    windowHeight -
-    (Platform.OS === 'ios' ? statusBarHeight : 0) -
-    actionBarHeight -
-    (Platform.OS === 'ios' && keyboard.keyboardShown ? 0 : insets.bottom) -
-    (keyboard.keyboardShown ? keyboard.keyboardHeight : 0)
   const cardWidth = windowWidth > 480 ? '50%' : null
   const mainAlign = windowWidth > 480 ? 'center' : null
-  const [toggle, setToggle] = useState(false)
 
-  useEffect(() => {
-    setToggle(!toggle)
-  }, [orientation])
+  /** function to calculate the main view height */
+  const getMainViewHeight = () => {
+    return getContentAreaHeight(
+      orientation,
+      Platform.OS,
+      keyboard,
+      insets,
+      windowHeight,
+      actionBarHeight
+    )
+  }
 
   /** function to handle the back button on a card */
   const navigateBack = (index: number, wcs: ListWCS): void => {
@@ -161,7 +160,7 @@ function RandomForm({ onSearch }: ListFormProps): JSX.Element {
   return (
     <View>
       <ScrollView
-        style={[{ height: scrollViewHeight }, styles.scrollView]}
+        style={[{ height: getMainViewHeight() }, styles.scrollView]}
         contentContainerStyle={{
           justifyContent: mainAlign,
           alignItems: mainAlign

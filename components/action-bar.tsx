@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Image, StyleSheet, View } from 'react-native'
+import { Image, SafeAreaView, StyleSheet } from 'react-native'
 
 import { ActionBarProps } from '../lib/interfaces/props'
 import { DrawerToggleButton } from '@react-navigation/drawer'
@@ -31,11 +31,11 @@ import fwew from '../assets/fwew.png'
  */
 function ActionBar({ children }: ActionBarProps): JSX.Element {
   return (
-    <View style={styles.action_bar}>
+    <SafeAreaView style={styles.action_bar}>
       <DrawerToggleButton tintColor={colors.actionBarIconFill} />
       <Image source={fwew} style={styles.icon} />
       {children}
-    </View>
+    </SafeAreaView>
   )
 }
 
@@ -43,14 +43,13 @@ const styles = StyleSheet.create({
   action_bar: {
     height: 56,
     width: '100%',
-    paddingRight: 8,
     backgroundColor: colors.primary,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center'
   },
   icon: {
-    marginLeft: -8,
+    marginLeft: -6,
     width: 48,
     height: 48
   }

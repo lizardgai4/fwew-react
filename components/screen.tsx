@@ -18,26 +18,22 @@
  */
 import {
   ActivityIndicator,
-  Dimensions,
   KeyboardAvoidingView,
   Platform,
   SafeAreaView,
-  StatusBar,
   StyleSheet,
-  TextInput,
-  TouchableOpacity,
   View
 } from 'react-native'
-import React, { Fragment, useLayoutEffect, useState } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import axios, { AxiosError, AxiosResponse } from 'axios'
 
-import ActionBar from './action-bar'
 import EntryModalContent from './entry-modal-content'
 import { FwewError } from '../lib/interfaces/fwew-error'
 import If from './if'
 import ListForm from './list-form'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import ListRandomHeader from './list-random-header'
 import { Modal } from 'react-native-paper'
+import { Orientation } from '../lib/interfaces/orientation'
 import RandomForm from './random-form'
 import ResultCount from './result-count'
 import { ScreenProps } from '../lib/interfaces/props'
@@ -62,50 +58,13 @@ function Screen({ apiUrl, screenType, navigation }: ScreenProps): JSX.Element {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      header: () => {
-        const windowWidth = Dimensions.get('window').width
-        return (
-          <View>
-            {/* status bar */}
-            <SafeAreaView style={styles.safeStatusBar} />
-            <StatusBar barStyle="light-content" />
-            <ActionBar>
-              <If condition={windowWidth > 480}>
-                <View style={{ flex: 0.5 }}></View>
-              </If>
-              <View style={styles.parent}>
-                {/* search bar */}
-                <TextInput
-                  onChangeText={searchData}
-                  placeholder={getInputPlaceholderText()}
-                  autoCapitalize={'none'}
-                  autoCorrect={false}
-                  style={styles.input}
-                  clearButtonMode="always"
-                  value={text}
-                />
-                {/* search bar clear input button */}
-                <If condition={Platform.OS !== 'ios' && !!text}>
-                  <TouchableOpacity
-                    style={styles.closeButtonParent}
-                    onPress={() => searchData('')}
-                  >
-                    <MaterialIcons
-                      style={styles.closeButton}
-                      name="cancel"
-                      size={18}
-                      color={'#fff'}
-                    />
-                  </TouchableOpacity>
-                </If>
-              </View>
-              <If condition={windowWidth > 480}>
-                <View style={{ flex: 0.5 }}></View>
-              </If>
-            </ActionBar>
-          </View>
-        )
-      }
+      header: () => (
+        <ListRandomHeader
+          searchDataFn={searchData}
+          inputPlaceholderTextFn={getInputPlaceholderText}
+          text={text}
+        />
+      )
     })
   }, [navigation, text, orientation])
 
@@ -177,98 +136,68 @@ function Screen({ apiUrl, screenType, navigation }: ScreenProps): JSX.Element {
   }
 
   return (
-    <Fragment>
-      {/* main content */}
-      <SafeAreaView style={styles.safeContainer}>
-        <View style={styles.mainView}>
-          <KeyboardAvoidingView
-            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-            style={styles.mainView}
-          >
-            <If condition={isLoading}>
-              <ActivityIndicator
-                style={styles.activityIndicator}
-                size={'large'}
-                color={colors.accent}
+    /* main content */
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor:
+          orientation === Orientation.PORTRAIT
+            ? colors.primary
+            : colors.screenBackground
+      }}
+    >
+      <View style={styles.mainView}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          style={styles.mainView}
+        >
+          <If condition={isLoading}>
+            <ActivityIndicator
+              style={styles.activityIndicator}
+              size={'large'}
+              color={colors.accent}
+            />
+          </If>
+          <If condition={!isLoading}>
+            <If condition={!!text}>
+              <ResultCount data={data} />
+              <WordList
+                data={data}
+                err={err}
+                text={text}
+                isLoading={isLoading}
+                onRefresh={onRefresh}
+                toggleModal={toggleModal}
+                posFilterEnabled={false}
               />
             </If>
-            <If condition={!isLoading}>
-              <If condition={!!text}>
-                <ResultCount data={data} />
-                <WordList
-                  data={data}
-                  err={err}
-                  text={text}
-                  isLoading={isLoading}
-                  onRefresh={onRefresh}
-                  toggleModal={toggleModal}
-                  posFilterEnabled={false}
-                />
+            <If condition={!text}>
+              <If condition={screenType === 'list'}>
+                <ListForm onSearch={searchData} />
               </If>
-              <If condition={!text}>
-                <If condition={screenType === 'list'}>
-                  <ListForm onSearch={searchData} />
-                </If>
-                <If condition={screenType === 'random'}>
-                  <RandomForm onSearch={searchData} />
-                </If>
+              <If condition={screenType === 'random'}>
+                <RandomForm onSearch={searchData} />
               </If>
             </If>
-          </KeyboardAvoidingView>
-          {/* word information modal when user taps an entry in the list */}
-          <Modal
-            visible={isModalVisible}
-            onDismiss={() => toggleModal(selectedItem)}
-            contentContainerStyle={styles.modalContainerStyle}
-          >
-            <EntryModalContent entry={selectedItem} />
-          </Modal>
-        </View>
-      </SafeAreaView>
-    </Fragment>
+          </If>
+        </KeyboardAvoidingView>
+        {/* word information modal when user taps an entry in the list */}
+        <Modal
+          visible={isModalVisible}
+          onDismiss={() => toggleModal(selectedItem)}
+          contentContainerStyle={styles.modalContainerStyle}
+        >
+          <EntryModalContent entry={selectedItem} />
+        </Modal>
+      </View>
+    </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
-  safeStatusBar: {
-    flex: 0,
-    backgroundColor: colors.secondary
-  },
-  safeContainer: {
-    flex: 1,
-    backgroundColor: colors.primary
-  },
   mainView: {
     flex: 1,
     backgroundColor: colors.screenBackground
-  },
-  parent: {
-    flex: 1,
-    borderColor: colors.secondary,
-    backgroundColor: colors.inputBackground,
-    borderRadius: 12,
-    borderWidth: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    marginRight: 8
-  },
-  input: {
-    height: 40,
-    flex: 1,
-    paddingLeft: 8,
-    marginLeft: 8,
-    marginRight: 8
-  },
-  closeButton: {
-    color: colors.inputCloseButton,
-    height: 18,
-    width: 18,
-    marginRight: 8
-  },
-  closeButtonParent: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 5
   },
   activityIndicator: {
     marginTop: 16

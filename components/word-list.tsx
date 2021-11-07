@@ -32,6 +32,7 @@ import Constants from 'expo-constants'
 import Entry from './entry'
 import { FAB } from 'react-native-paper'
 import InfoMessage from './info-message'
+import { Orientation } from '../lib/interfaces/orientation'
 import { SettingsContext } from '../context'
 import { Word } from '../lib/interfaces/word'
 import { WordListProps } from '../lib/interfaces/props'
@@ -39,6 +40,7 @@ import colors from '../lib/colors'
 import { compareWords } from '../lib'
 import { useKeyboard } from '@react-native-community/hooks'
 import { useOrientation } from '../lib/hooks/useOrientation'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 /**
  * WordList Component
@@ -59,12 +61,16 @@ function WordList({
   const { posFilterText } = settingsFwew
   const flatListRef = React.useRef()
   const [scrollOffset, setScrollOffset] = useState(0)
+  const orientation = useOrientation()
+  const insets = useSafeAreaInsets()
   const windowHeight = Dimensions.get('window').height
-  const windowWidth = Dimensions.get('window').width
+  const windowWidth =
+    orientation === Orientation.PORTRAIT
+      ? Dimensions.get('window').width
+      : Dimensions.get('window').width - insets.left - insets.right
   const statusBarHeight = Constants.statusBarHeight
   const actionBarHeight = 56
   const keyboard = useKeyboard()
-  const orientation = useOrientation()
   const viewHeight =
     windowHeight -
     statusBarHeight -

@@ -18,6 +18,10 @@
  */
 import React, { Fragment } from 'react'
 
+import Constants from 'expo-constants'
+import { EdgeInsets } from 'react-native-safe-area-context'
+import { Keyboard } from './interfaces/keyboard'
+import { Orientation } from './interfaces/orientation'
 import { Text } from 'react-native'
 import { Word } from './interfaces/word'
 
@@ -179,6 +183,60 @@ function convertCond(cond: string): string {
   }
 }
 
+/**
+ * calculates main content area view height
+ *
+ * @param orientation Orientation value of either LANDSCAPE or PORTRAIT
+ * @param os string representing the current Platform OS
+ * @param keyboard Keyboard object describing location and size of the software
+ *        keyboard
+ * @param insets EdgeInsets object describing the sizes of the safe area insets
+ * @param windowHeight number representing the height of the window
+ * @param actionBarHeight number representing the height of the action bar
+ * @return number representing the height of the main content area with all the
+ *         above accounted for
+ */
+function getContentAreaHeight(
+  orientation: Orientation,
+  os: string,
+  keyboard: Keyboard,
+  insets: EdgeInsets,
+  windowHeight: number,
+  actionBarHeight: number
+): number {
+  let statusBarHeight: number
+  let bottomInset: number
+  let keyboardHeight: number
+
+  if (orientation === Orientation.LANDSCAPE) {
+    if (os === 'ios') {
+      statusBarHeight = 0
+      bottomInset = keyboard.keyboardShown ? 0 : insets.bottom
+    } else {
+      statusBarHeight = Constants.statusBarHeight
+      bottomInset = insets.bottom
+    }
+  } else if (orientation === Orientation.PORTRAIT) {
+    if (os === 'ios') {
+      statusBarHeight = insets.top
+      bottomInset = insets.bottom
+    } else {
+      statusBarHeight = Constants.statusBarHeight
+      bottomInset = insets.bottom
+    }
+  }
+
+  keyboardHeight = keyboard.keyboardShown ? keyboard.keyboardHeight : 0
+
+  return (
+    windowHeight -
+    statusBarHeight -
+    actionBarHeight -
+    bottomInset -
+    keyboardHeight
+  )
+}
+
 export {
   compress,
   compareWords,
@@ -186,5 +244,6 @@ export {
   join,
   includes,
   deleteById,
-  convertCond
+  convertCond,
+  getContentAreaHeight
 }

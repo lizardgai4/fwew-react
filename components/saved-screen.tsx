@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React, { Fragment, useContext, useLayoutEffect, useState } from 'react'
+import React, { useContext, useLayoutEffect, useState } from 'react'
 import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native'
 
 import ActionBar from './action-bar'
@@ -24,6 +24,7 @@ import EntryModalContent from './entry-modal-content'
 import If from './if'
 import InfoMessage from './info-message'
 import { Modal } from 'react-native-paper'
+import { Orientation } from '../lib/interfaces/orientation'
 import ResultCount from './result-count'
 import { SettingsContext } from '../context'
 import { StateContext } from '../context'
@@ -31,6 +32,7 @@ import { Word } from '../lib/interfaces/word'
 import WordList from './word-list'
 import colors from '../lib/colors'
 import { ui } from '../lib/i18n'
+import { useOrientation } from '../lib/hooks/useOrientation'
 
 /**
  * SavedScreen component
@@ -49,6 +51,7 @@ function SavedScreen({ navigation }): JSX.Element {
   const isLoading = false
   const text = ''
   const posFilterEnabled = false
+  const orientation = useOrientation()
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -77,38 +80,44 @@ function SavedScreen({ navigation }): JSX.Element {
   const onRefresh = () => {}
 
   return (
-    <Fragment>
-      {/* main content */}
-      <SafeAreaView style={styles.safeContainer}>
-        <View style={styles.mainView}>
-          {/* word list or instructional message */}
-          <If condition={data.length > 0}>
-            <ResultCount data={data} />
-            <WordList
-              data={data}
-              err={err}
-              isLoading={isLoading}
-              onRefresh={onRefresh}
-              text={text}
-              toggleModal={toggleModal}
-              posFilterEnabled={posFilterEnabled}
-            />
-          </If>
-          {/* info message about how to save words when there are none saved */}
-          <If condition={data.length === 0}>
-            <InfoMessage info={strings.infoText} />
-          </If>
-          {/* word information modal when user taps an entry in the list */}
-          <Modal
-            visible={isModalVisible}
-            onDismiss={() => toggleModal(selectedItem)}
-            contentContainerStyle={styles.modalContainerStyle}
-          >
-            <EntryModalContent entry={selectedItem} />
-          </Modal>
-        </View>
-      </SafeAreaView>
-    </Fragment>
+    /* main content */
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor:
+          orientation === Orientation.PORTRAIT
+            ? colors.primary
+            : colors.screenBackground
+      }}
+    >
+      <View style={styles.mainView}>
+        {/* word list or instructional message */}
+        <If condition={data.length > 0}>
+          <ResultCount data={data} />
+          <WordList
+            data={data}
+            err={err}
+            isLoading={isLoading}
+            onRefresh={onRefresh}
+            text={text}
+            toggleModal={toggleModal}
+            posFilterEnabled={posFilterEnabled}
+          />
+        </If>
+        {/* info message about how to save words when there are none saved */}
+        <If condition={data.length === 0}>
+          <InfoMessage info={strings.infoText} />
+        </If>
+        {/* word information modal when user taps an entry in the list */}
+        <Modal
+          visible={isModalVisible}
+          onDismiss={() => toggleModal(selectedItem)}
+          contentContainerStyle={styles.modalContainerStyle}
+        >
+          <EntryModalContent entry={selectedItem} />
+        </Modal>
+      </View>
+    </SafeAreaView>
   )
 }
 
@@ -116,10 +125,6 @@ const styles = StyleSheet.create({
   safeStatusBar: {
     flex: 0,
     backgroundColor: colors.secondary
-  },
-  safeContainer: {
-    flex: 1,
-    backgroundColor: colors.primary
   },
   mainView: {
     flex: 1,

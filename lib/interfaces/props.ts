@@ -147,3 +147,23 @@ export interface InfoMessageProps {
   text?: string
   info?: string
 }
+
+/**
+ * props interface for FwewHeader Component
+ */
+export interface FwewHeaderProps {
+  searchDataFn: (text: string) => void
+  inputPlaceholderTextFn: () => string
+  text: string
+  toggleReverseFn: () => void
+  isReverseEnabled: boolean
+}
+
+/**
+ * props interface for ListRandomHeader Component
+ */
+export interface ListRandomHeaderProps {
+  searchDataFn: (text: string) => void
+  inputPlaceholderTextFn: () => string
+  text: string
+}
