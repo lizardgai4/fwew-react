@@ -76,7 +76,7 @@ const es: UITranslation = {
   savedScreen: {
     title: 'palabras guardadas',
     infoText:
-      'para guardar o eliminar una palabra, toca el número al lado de la entrada'
+      'para guardar o eliminar una palabra, toca el número al lado de la elección'
   },
   settingsScreen: {
     title: 'ajustes',
