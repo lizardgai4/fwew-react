@@ -134,7 +134,8 @@ const styles = StyleSheet.create({
     marginRight: 5
   },
   reverseButton: {
-    marginRight: 10
+    marginRight: 10,
+    paddingLeft: 6
   }
 })
 
