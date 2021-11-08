@@ -53,7 +53,7 @@ const es: UITranslation = {
     like: 'es similar de',
     notStarts: 'no empieza con',
     notEnds: 'no termina con',
-    notIs: 'ino puede ser',
+    notIs: 'no puede ser',
     notHas: 'no tiene',
     notLike: 'no es similar de',
     lessThan: 'es menos que (<)',
