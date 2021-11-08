@@ -82,8 +82,8 @@ const es: UITranslation = {
     title: 'ajustes',
     appLanguage: 'idioma de la aplicación',
     appLanguageDesc: 'idioma predeterminado de la aplicación',
-    resultsLanguage: 'idioma de las resueltas',
-    resultsLanguageDesc: 'idioma predeterminado de las resueltas'
+    resultsLanguage: 'idioma de los resultados',
+    resultsLanguageDesc: 'idioma predeterminado de los resultados'
   },
   drawerNavigator: {
     fwew: 'busca',
