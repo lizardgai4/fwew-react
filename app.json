@@ -27,7 +27,8 @@
     },
     "android": {
       "package": "app.fwew.react",
-      "icon": "./assets/icon.png"
+      "icon": "./assets/icon.png",
+      "permissions": []
     }
   }
 }
