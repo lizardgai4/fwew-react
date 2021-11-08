@@ -19,14 +19,14 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "bundleIdentifier": "com.fwew.react",
+      "bundleIdentifier": "app.fwew.react",
       "icon": "./assets/fwew.png"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "android": {
-      "package": "com.fwew.react",
+      "package": "app.fwew.react",
       "icon": "./assets/icon.png"
     }
   }
