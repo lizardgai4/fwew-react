@@ -14,3 +14,12 @@ web-build/
 
 #VSCode
 .vscode
+
+# Android Studio
+.idea
+
+# Build output
+dist/*
+
+# Shell scripts
+*.sh
