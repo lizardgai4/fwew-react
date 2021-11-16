@@ -52,7 +52,8 @@ const colors: ColorConfig = {
   entryIndexIconFill: '#fff',
   infoMessageIcon: '#98b0cd',
   accent: '#9dd197',
-  accentDark: '#64a853'
+  accentDark: '#64a853',
+  posTagBackground: '#d9d9d9'
 }
 
 export default colors
