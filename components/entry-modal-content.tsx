@@ -18,13 +18,13 @@
  */
 import React, { useContext } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-
-import { EntryModalContentProps } from '../lib/interfaces/props'
-import If from './if'
 import { SettingsContext } from '../context'
-import Stressed from './stressed'
 import colors from '../lib/colors'
 import { ui } from '../lib/i18n'
+import { EntryModalContentProps } from '../lib/interfaces/props'
+import If from './if'
+import Stressed from './stressed'
+import Autolink from 'react-native-autolink';
 
 /**
  * EntryModalContent Component
@@ -61,9 +61,7 @@ function EntryModalContent({ entry }: EntryModalContentProps): JSX.Element {
 
         <Text selectable={true} style={styles.modal_label}>
           {`${strings.source}: `}
-          <Text selectable={true} style={styles.modal_text}>
-            {entry.Source}
-          </Text>
+          <Autolink url text={entry.Source} selectable={true} style={styles.modal_text} />
         </Text>
       </View>
 
