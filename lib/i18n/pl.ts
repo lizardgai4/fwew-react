@@ -81,7 +81,7 @@ const pl: UITranslation = {
     title: 'settings',
     appLanguage: 'app language',
     appLanguageDesc: 'default language of app interface',
-    resultsLanguage: 'results laguage',
+    resultsLanguage: 'results language',
     resultsLanguageDesc: 'default language of results'
   },
   drawerNavigator: {

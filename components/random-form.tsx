@@ -118,7 +118,7 @@ function RandomForm({ onSearch }: ListFormProps): JSX.Element {
     setArray(newArray)
   }
 
-  /** function to hanlde the entering of a user's specification on a card */
+  /** function to handle the entering of a user's specification on a card */
   const updateSpec = (index: number, spec: string): void => {
     const newArray = [...array]
     newArray[index].spec = spec

@@ -69,7 +69,7 @@ export interface ScreenProps {
 }
 
 /**
- * props for Sressed component
+ * props for Stressed component
  */
 export interface StressedProps {
   stressed: string

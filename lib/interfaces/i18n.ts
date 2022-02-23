@@ -110,7 +110,7 @@ interface SettingsScreenStrings {
   resultsLanguageDesc: string
 }
 
-/** interface for TabNavigator Buttom Tab labels */
+/** interface for TabNavigator Bottom Tab labels */
 interface DrawerNavigatorStrings {
   fwew: string
   list: string

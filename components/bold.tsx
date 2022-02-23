@@ -23,7 +23,7 @@ import { Text } from 'react-native'
 /**
  * Bold Component
  *
- * Bolds given Text / string
+ * Makes given Text / string bold
  */
 function Bold({ children }: BoldProps): JSX.Element {
   return <Text style={{ fontWeight: 'bold' }}>{children}</Text>
