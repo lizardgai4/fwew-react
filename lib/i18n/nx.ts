@@ -35,7 +35,8 @@ const nx: UITranslation = {
     prefixes: "ayeolì'uvi",
     infixes: "ayhemlì'uvi",
     suffixes: "ayuolì'uvi",
-    lenition: 'pamä sälatem'
+    lenition: 'pamä sälatem',
+    listen: 'tìng mikyun'
   },
   fwewScreen: {
     search: 'fwew'

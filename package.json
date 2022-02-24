@@ -1,6 +1,6 @@
 {
   "name": "fwew-react",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "repository": "fwew/fwew-react",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
@@ -18,6 +18,7 @@
     "@react-navigation/native": "^6.0.6",
     "axios": "^0.23.0",
     "expo": "^44.0.0",
+    "expo-av": "^10.2.1",
     "expo-cli": "^5.2.0",
     "expo-status-bar": "~1.2.0",
     "immutability-helper": "^3.1.1",

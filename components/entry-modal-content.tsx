@@ -16,15 +16,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React, { useContext } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React, { useContext, useEffect, useState } from 'react'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { SettingsContext } from '../context'
 import colors from '../lib/colors'
 import { ui } from '../lib/i18n'
 import { EntryModalContentProps } from '../lib/interfaces/props'
 import If from './if'
 import Stressed from './stressed'
-import Autolink from 'react-native-autolink';
+import Autolink from 'react-native-autolink'
+import { Audio } from 'expo-av'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 /**
  * EntryModalContent Component
@@ -35,6 +37,22 @@ function EntryModalContent({ entry }: EntryModalContentProps): JSX.Element {
   const { settingsGlobal } = useContext(SettingsContext)
   const { languageCodeUI, languageCode } = settingsGlobal
   const strings = ui[languageCodeUI].entryModalContent
+  const [sound, setSound] = useState(new Audio.Sound());
+
+  const playSound = async (wordId: string): Promise<void> => {
+    const audioUrl = `https://s.learnnavi.org/audio/vocab/${wordId}.mp3`
+    const { sound } = await Audio.Sound.createAsync({ uri: audioUrl})
+    setSound(sound)
+    await sound.playAsync()
+  }
+
+  useEffect(() => {
+    return sound
+      ? () => {
+        sound.unloadAsync()
+      }
+      : undefined
+  }, [sound])
 
   return (
     <View style={styles.modalContainer}>
@@ -146,6 +164,10 @@ function EntryModalContent({ entry }: EntryModalContentProps): JSX.Element {
           </Text>
         </If>
       </View>
+      <TouchableOpacity style={styles.modal_playButton} onPress={() => playSound(entry.ID)}>
+        <MaterialIcons name={'volume-up'} color={colors.buttonText} size={24} />
+        <Text style={styles.modal_playButtonText}>{strings.listen}</Text>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -173,6 +195,19 @@ const styles = StyleSheet.create({
   modal_text: {
     fontSize: 16,
     fontWeight: 'normal'
+  },
+  modal_playButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'center',
+    padding: 8,
+    borderRadius: 4,
+    backgroundColor: colors.accent
+  },
+  modal_playButtonText: {
+    marginLeft: 8,
+    color: colors.buttonText,
+    fontSize: 16
   }
 })
 

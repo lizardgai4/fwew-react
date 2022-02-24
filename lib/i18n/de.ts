@@ -35,7 +35,8 @@ const de: UITranslation = {
     prefixes: 'Präfixe',
     infixes: 'Infixe',
     suffixes: 'Suffixe',
-    lenition: 'Lenition'
+    lenition: 'Lenition',
+    listen: 'anhören'
   },
   fwewScreen: {
     search: 'Suche auf'

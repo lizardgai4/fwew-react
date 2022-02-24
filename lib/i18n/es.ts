@@ -35,7 +35,8 @@ const es: UITranslation = {
     prefixes: 'prefijos',
     infixes: 'afijos a dentro del verbo',
     suffixes: 'sufijos',
-    lenition: 'lenición'
+    lenition: 'lenición',
+    listen: 'escuchar'
   },
   fwewScreen: {
     search: 'busca en'

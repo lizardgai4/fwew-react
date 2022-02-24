@@ -35,7 +35,8 @@ const nl: UITranslation = {
     prefixes: 'voorvoegsels',
     infixes: 'tussenvoegsels',
     suffixes: 'achtervoegsels',
-    lenition: 'lenitie'
+    lenition: 'lenitie',
+    listen: 'hoor'
   },
   fwewScreen: {
     search: 'zoeken in'

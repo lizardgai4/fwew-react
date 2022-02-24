@@ -53,6 +53,7 @@ interface EntryModalContentStrings {
   infixes: string
   suffixes: string
   lenition: string
+  listen: string
 }
 
 /** interface for FwewScreen component strings */
