@@ -30,13 +30,13 @@ const es: UITranslation = {
     ipa: 'IPA',
     syllables: 'sílibas',
     stressedSyllable: 'posición de la síliba acentuada',
-    infixSlots: 'espacios por los afijos a dentro del verbo',
-    infixDots: 'puntos por los afijos a dentro del verbo',
+    infixSlots: 'espacios por los infijos del verbo',
+    infixDots: 'puntos por los infijos del verbo',
     prefixes: 'prefijos',
-    infixes: 'afijos a dentro del verbo',
+    infixes: 'infijos del verbo',
     suffixes: 'sufijos',
     lenition: 'lenición',
-    listen: 'escuchar'
+    listen: 'escucha'
   },
   fwewScreen: {
     search: 'busca en'
@@ -77,14 +77,14 @@ const es: UITranslation = {
   savedScreen: {
     title: 'palabras guardadas',
     infoText:
-      'para guardar o eliminar una palabra, toca el número al lado de la elección'
+      'para guardar o eliminar una palabra, toca el número al lado de la selección'
   },
   settingsScreen: {
     title: 'ajustes',
     appLanguage: 'idioma de la aplicación',
     appLanguageDesc: 'idioma predeterminado de la aplicación',
-    resultsLanguage: 'idioma de los resultados',
-    resultsLanguageDesc: 'idioma predeterminado de los resultados'
+    resultsLanguage: 'idioma de las resueltas',
+    resultsLanguageDesc: 'idioma predeterminado de las resueltas'
   },
   drawerNavigator: {
     fwew: 'busca',
