@@ -2,7 +2,7 @@
   "expo": {
     "name": "Fwew",
     "slug": "fwew-react",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "orientation": "default",
     "icon": "./assets/fwew.png",
     "splash": {
@@ -22,7 +22,7 @@
     ],
     "ios": {
       "bundleIdentifier": "app.fwew.react",
-      "buildNumber": "2.0.1",
+      "buildNumber": "2.0.2",
       "icon": "./assets/fwew.png"
     },
     "web": {
@@ -30,7 +30,7 @@
     },
     "android": {
       "package": "app.fwew.react",
-      "versionCode": 3,
+      "versionCode": 4,
       "icon": "./assets/icon.png",
       "permissions": []
     }

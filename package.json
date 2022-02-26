@@ -1,6 +1,6 @@
 {
   "name": "fwew-react",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "repository": "fwew/fwew-react",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {

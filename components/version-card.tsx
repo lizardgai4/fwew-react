@@ -91,7 +91,7 @@ function VersionCard(): JSX.Element {
             <Bold>{strings.development}</Bold>: Tirea Aean
           </Text>
           <Text style={styles.text}>
-            <Bold>{strings.design}</Bold>: Morgan Hughes
+            <Bold>{strings.design}</Bold>: Tsyili
           </Text>
           <Text style={styles.text}>
             <Bold>{strings.testing}</Bold>: Alyara Arati
