@@ -29,3 +29,8 @@ export interface SettingsFwew {
   isReverseEnabled: boolean
   posFilterText: string
 }
+
+/** Number Screen Settings */
+export interface SettingsNumber {
+  isReverseEnabled: boolean
+}

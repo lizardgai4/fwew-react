@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { SettingsFwew, SettingsGlobal } from './settings'
+import { SettingsFwew, SettingsGlobal, SettingsNumber } from './settings'
 
 /**
  * interface for SettingsContext
@@ -24,6 +24,8 @@ import { SettingsFwew, SettingsGlobal } from './settings'
 export interface ISettingsContext {
   settingsGlobal: SettingsGlobal
   settingsFwew: SettingsFwew
+  settingsNumber: SettingsNumber
   onUpdateSettingsGlobal?: (s: SettingsGlobal) => void
   onUpdateSettingsFwew?: (s: SettingsFwew) => void
+  onUpdateSettingsNumber?: (s: SettingsNumber) => void
 }

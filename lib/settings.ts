@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { SettingsFwew, SettingsGlobal } from './interfaces/settings'
+import { SettingsFwew, SettingsGlobal, SettingsNumber } from './interfaces/settings'
 
 import { Language } from './interfaces/i18n'
 
@@ -45,4 +45,8 @@ export const settingsGlobal: SettingsGlobal = {
 export const settingsFwew: SettingsFwew = {
   isReverseEnabled: false,
   posFilterText: 'all'
+}
+
+export const settingsNumber: SettingsNumber = {
+  isReverseEnabled: false
 }
