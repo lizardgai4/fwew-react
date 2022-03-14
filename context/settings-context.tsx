@@ -16,8 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { SettingsFwew, SettingsGlobal } from '../lib/interfaces/settings'
-import { settingsFwew, settingsGlobal } from '../lib/settings'
+import { SettingsGlobal, SettingsFwew, SettingsNumber } from '../lib/interfaces/settings'
+import { settingsGlobal, settingsFwew, settingsNumber } from '../lib/settings'
 
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { ISettingsContext } from '../lib/interfaces/settings-context'
@@ -26,7 +26,8 @@ import React from 'react'
 /** Default state of the Settings Context */
 const defaultStateSettings: ISettingsContext = {
   settingsGlobal,
-  settingsFwew
+  settingsFwew,
+  settingsNumber
 }
 
 /** Settings Context */
@@ -81,15 +82,28 @@ export class SettingsStore extends React.Component {
     })
   }
 
+  updateSettingsNumber = (newSettingsNumber: SettingsNumber): void => {
+    this.setState((state) => {
+      const newState = {
+        ...state,
+        settingsNumber: newSettingsNumber
+      }
+      AsyncStorage.setItem('settings', JSON.stringify(newState))
+      return newState
+    })
+  }
+
   render() {
-    const { settingsGlobal, settingsFwew } = this.state
+    const { settingsGlobal, settingsFwew, settingsNumber } = this.state
     return (
       <SettingsContext.Provider
         value={{
           settingsGlobal,
           settingsFwew,
+          settingsNumber,
           onUpdateSettingsGlobal: this.updateSettingsGlobal,
-          onUpdateSettingsFwew: this.updateSettingsFwew
+          onUpdateSettingsFwew: this.updateSettingsFwew,
+          onUpdateSettingsNumber: this.updateSettingsNumber
         }}
       >
         {this.props.children}

@@ -41,9 +41,39 @@ function EntryModalContent({ entry }: EntryModalContentProps): JSX.Element {
 
   const playSound = async (wordId: string): Promise<void> => {
     const audioUrl = `https://s.learnnavi.org/audio/vocab/${wordId}.mp3`
-    const { sound } = await Audio.Sound.createAsync({ uri: audioUrl})
+    const { sound } = await Audio.Sound.createAsync({ uri: audioUrl })
     setSound(sound)
     await sound.playAsync()
+  }
+
+  const stringifyArray = (arr: string[], type: string): string => {
+    if (arr == null || arr.length === 0) {
+      return ''
+    }
+    const lenPre: string[] = ["pep", "pem", "pe", "fray", "tsay", "fay", "pay", "ay", "me", "pxe"]
+    let result = ''
+    arr.forEach((item: string, index: number) => {
+      let affix = ''
+      switch (type) {
+        case 'prefix':
+          affix = `${item}${lenPre.includes(item) ? '+' : '-'}`
+          break
+        case 'infix':
+          affix = `<${item}>`
+          break
+        case 'suffix':
+          affix = `-${item}`
+          break
+        default:
+          affix = `${item}`
+      }
+      if (index === 0) {
+        result += `${affix}`
+      } else {
+        result += `, ${affix}`
+      }
+    })
+    return result
   }
 
   useEffect(() => {
@@ -132,7 +162,7 @@ function EntryModalContent({ entry }: EntryModalContentProps): JSX.Element {
           <Text selectable={true} style={styles.modal_label}>
             {`${strings.prefixes}: `}
             <Text selectable={true} style={styles.modal_text}>
-              {entry.Affixes.Prefix}
+              {stringifyArray(entry.Affixes.Prefix, 'prefix')}
             </Text>
           </Text>
         </If>
@@ -141,7 +171,7 @@ function EntryModalContent({ entry }: EntryModalContentProps): JSX.Element {
           <Text selectable={true} style={styles.modal_label}>
             {`${strings.infixes}: `}
             <Text selectable={true} style={styles.modal_text}>
-              {entry.Affixes.Infix}
+              {stringifyArray(entry.Affixes.Infix, 'infix')}
             </Text>
           </Text>
         </If>
@@ -150,7 +180,7 @@ function EntryModalContent({ entry }: EntryModalContentProps): JSX.Element {
           <Text selectable={true} style={styles.modal_label}>
             {`${strings.suffixes}: `}
             <Text selectable={true} style={styles.modal_text}>
-              {entry.Affixes.Suffix}
+              {stringifyArray(entry.Affixes.Suffix, 'suffix')}
             </Text>
           </Text>
         </If>
