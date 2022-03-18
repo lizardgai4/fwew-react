@@ -31,7 +31,7 @@ import ActionBar from './action-bar'
 import If from './if'
 import { ListRandomHeaderProps } from '../lib/interfaces/props'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import React from 'react'
+import React, { useState } from 'react'
 import colors from '../lib/colors'
 
 function ListRandomHeader({
@@ -40,6 +40,13 @@ function ListRandomHeader({
   text
 }: ListRandomHeaderProps): JSX.Element {
   const windowWidth = Dimensions.get('window').width
+  const [value, setValue] = useState(text)
+
+  const updateValue = (newValue: string): void => {
+    setValue(newValue)
+    searchDataFn(newValue)
+  }
+
   return (
     <View>
       {/* status bar */}
@@ -52,19 +59,19 @@ function ListRandomHeader({
         <View style={styles.parent}>
           {/* search bar */}
           <TextInput
-            onChangeText={searchDataFn}
+            onChangeText={updateValue}
             placeholder={inputPlaceholderTextFn()}
             autoCapitalize={'none'}
             autoCorrect={false}
             style={styles.input}
             clearButtonMode="always"
-            value={text}
+            value={value}
           />
           {/* search bar clear input button */}
-          <If condition={Platform.OS !== 'ios' && !!text}>
+          <If condition={Platform.OS !== 'ios' && !!value}>
             <TouchableOpacity
               style={styles.closeButtonParent}
-              onPress={() => searchDataFn('')}
+              onPress={() => updateValue('')}
             >
               <MaterialIcons
                 style={styles.closeButton}
