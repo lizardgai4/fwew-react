@@ -24,4 +24,5 @@ export interface ListOps {
   syllables: string[]
   stress: string[]
   words: string[]
+  length: string[]
 }

@@ -47,6 +47,7 @@ const es: UITranslation = {
     syllables: 'número de las sílibas',
     stress: 'posición de la síliba acentuada',
     words: 'en orden de la fecha de publicación',
+    length: 'longitud',
     starts: 'empieza con',
     ends: 'termina con',
     is: 'es exactamente',

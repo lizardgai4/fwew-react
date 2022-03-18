@@ -47,6 +47,7 @@ const nl: UITranslation = {
     syllables: 'aantal lettergrepen',
     stress: 'positie van beklemtoonde lettergreep',
     words: 'in orden',
+    length: 'lengte',
     starts: 'start met',
     ends: 'eindigt met',
     is: 'is precies',

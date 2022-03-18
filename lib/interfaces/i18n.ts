@@ -68,6 +68,7 @@ interface ListRandomFormStrings {
   syllables: string
   stress: string
   words: string
+  length: string
   starts: string
   ends: string
   is: string

@@ -47,6 +47,7 @@ const nx: UITranslation = {
     syllables: "holpxay lì'kongä",
     stress: "tseng txina lì'kongä",
     words: "ta sngä'ikrrr lì'fyayä",
+    length: 'ngimpup',
     starts: "sngä'i fa",
     ends: "'i'a fa",
     is: 'lu nìpxi',

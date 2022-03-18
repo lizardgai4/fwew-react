@@ -47,6 +47,7 @@ const de: UITranslation = {
     syllables: 'die Anzahl der Silben',
     stress: 'die Position der betonten Silbe',
     words: 'in der Reihenfolge des Erscheinungsdatums',
+    length: 'Länge',
     starts: 'beginnt mit',
     ends: 'endet mit',
     is: 'ist genau',

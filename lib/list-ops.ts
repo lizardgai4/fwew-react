@@ -60,5 +60,13 @@ export const listOps: ListOps = {
     'greaterThan',
     'notEqual'
   ],
-  words: ['first', 'last']
+  words: ['first', 'last'],
+  length: [
+    'lessThan',
+    'lessThanEqual',
+    'equal',
+    'greaterThanEqual',
+    'greaterThan',
+    'notEqual'
+  ]
 }

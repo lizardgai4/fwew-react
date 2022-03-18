@@ -47,6 +47,7 @@ const pl: UITranslation = {
     syllables: 'number of syllables',
     stress: 'stressed syllable position',
     words: 'in order of release date',
+    length: 'length',
     starts: 'starts with',
     ends: 'ends with',
     is: 'is exactly',
