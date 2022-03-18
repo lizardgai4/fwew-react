@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import React, { useState } from 'react'
 import {
   Dimensions,
   Platform,
@@ -26,13 +27,12 @@ import {
   TouchableOpacity,
   View
 } from 'react-native'
-
-import ActionBar from './action-bar'
-import { FwewHeaderProps } from '../lib/interfaces/props'
-import If from './if'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import React, { useState } from 'react'
 import colors from '../lib/colors'
+import { useDebounce } from '../lib/hooks/useDebounce'
+import { FwewHeaderProps } from '../lib/interfaces/props'
+import ActionBar from './action-bar'
+import If from './if'
 
 /** NumberHeader Component
  *
@@ -47,10 +47,11 @@ function NumberHeader({
 }: FwewHeaderProps): JSX.Element {
   const windowWidth = Dimensions.get('window').width
   const [value, setValue] = useState(text)
+  const debounce = useDebounce()
 
   const updateValue = (newValue: string): void => {
     setValue(newValue)
-    searchDataFn(newValue)
+    debounce(() => searchDataFn(newValue), 300)
   }
 
   return (
