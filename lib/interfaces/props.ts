@@ -19,6 +19,7 @@
 import { FwewError } from './fwew-error'
 import { FwewNumber } from './fwew-number'
 import { Language } from './i18n'
+import { ListWCS } from './list-wcs'
 import { Word } from './word'
 
 /**
@@ -115,7 +116,15 @@ export interface BoldProps {
  * props for the ListForm component
  */
 export interface ListFormProps {
+  wcsArray: ListWCS[]
   onSearch: (searchText: string) => void
+}
+
+/**
+ * props for the RandomForm Component
+ */
+export interface RandomFormProps extends ListFormProps {
+  numRandomWords: string
 }
 
 /**
@@ -160,10 +169,17 @@ export interface FwewHeaderProps {
 }
 
 /**
- * props interface for ListRandomHeader Component
+ * props interface for TitleHeader Component
  */
-export interface ListRandomHeaderProps {
-  searchDataFn: (text: string) => void
-  inputPlaceholderTextFn: () => string
-  text: string
+export interface TitleHeaderProps {
+  title: string
+}
+
+/**
+ * props interface for QueryCard Component
+ */
+export interface QueryCardProps {
+  queryText: string
+  onEdit: () => void
+  onClear: () => void
 }

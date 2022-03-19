@@ -16,7 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Card, List } from 'react-native-paper'
+import { useKeyboard } from '@react-native-community/hooks'
+import React, { useContext, useEffect, useState } from 'react'
 import {
   Dimensions,
   Platform,
@@ -27,35 +28,32 @@ import {
   TouchableOpacity,
   View
 } from 'react-native'
-import React, { useContext, useState } from 'react'
-import { convertCond, getContentAreaHeight } from '../lib'
-
-import { FAB } from 'react-native-paper'
-import If from './if'
-import { ListFormProps } from '../lib/interfaces/props'
-import { ListWCS } from '../lib/interfaces/list-wcs'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import { Orientation } from '../lib/interfaces/orientation'
-import { SettingsContext } from '../context'
-import colors from '../lib/colors'
-import { listOps } from '../lib/list-ops'
-import { ui } from '../lib/i18n'
-import { useKeyboard } from '@react-native-community/hooks'
-import { useOrientation } from '../lib/hooks/useOrientation'
+import { Card, FAB, List } from 'react-native-paper'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import { SettingsContext } from '../context'
+import { convertCond, getContentAreaHeight } from '../lib'
+import colors from '../lib/colors'
+import { useOrientation } from '../lib/hooks/useOrientation'
+import { ui } from '../lib/i18n'
+import { ListWCS } from '../lib/interfaces/list-wcs'
+import { Orientation } from '../lib/interfaces/orientation'
+import { ListFormProps } from '../lib/interfaces/props'
+import { listOps } from '../lib/list-ops'
+import If from './if'
 
 /**
  * ListForm component
  * The interactive form to fill out when creating List queries on Fwew
  */
-function ListForm({ onSearch }: ListFormProps): JSX.Element {
+function ListForm({ onSearch, wcsArray }: ListFormProps): JSX.Element {
   const { settingsGlobal } = useContext(SettingsContext)
   const { languageCodeUI } = settingsGlobal
   const strings = ui[languageCodeUI].listRandomForm
   const [what, setWhat] = useState('')
   const [cond, setCond] = useState('')
   const [spec, setSpec] = useState('')
-  const [array, setArray] = useState([] as ListWCS[])
+  const [array, setArray] = useState(wcsArray)
   const windowHeight = Dimensions.get('window').height
   const windowWidth = Dimensions.get('window').width
   const actionBarHeight = 56
@@ -64,6 +62,14 @@ function ListForm({ onSearch }: ListFormProps): JSX.Element {
   const keyboard = useKeyboard()
   const cardWidth = windowWidth > 480 ? '50%' : null
   const mainAlign = windowWidth > 480 ? 'center' : null
+
+  useEffect(() => {
+    if (wcsArray.length !== 0) {
+      if (!what) setWhat(wcsArray[wcsArray.length - 1].what)
+      if (!cond) setCond(wcsArray[wcsArray.length - 1].cond)
+      if (spec == null && spec === '') setSpec(wcsArray[wcsArray.length - 1].spec)
+    }
+  }, [wcsArray, what, cond, spec])
 
   /** function to calculate the main view height */
   const getMainViewHeight = () => {

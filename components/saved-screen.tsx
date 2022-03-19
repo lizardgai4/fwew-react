@@ -17,22 +17,20 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import React, { useContext, useLayoutEffect, useState } from 'react'
-import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native'
-
-import ActionBar from './action-bar'
+import { SafeAreaView, StyleSheet, View } from 'react-native'
+import { Modal } from 'react-native-paper'
+import { SettingsContext, StateContext } from '../context'
+import colors from '../lib/colors'
+import { useOrientation } from '../lib/hooks/useOrientation'
+import { ui } from '../lib/i18n'
+import { Orientation } from '../lib/interfaces/orientation'
+import { Word } from '../lib/interfaces/word'
 import EntryModalContent from './entry-modal-content'
 import If from './if'
 import InfoMessage from './info-message'
-import { Modal } from 'react-native-paper'
-import { Orientation } from '../lib/interfaces/orientation'
 import ResultCount from './result-count'
-import { SettingsContext } from '../context'
-import { StateContext } from '../context'
-import { Word } from '../lib/interfaces/word'
+import TitleHeader from './title-header'
 import WordList from './word-list'
-import colors from '../lib/colors'
-import { ui } from '../lib/i18n'
-import { useOrientation } from '../lib/hooks/useOrientation'
 
 /**
  * SavedScreen component
@@ -55,18 +53,7 @@ function SavedScreen({ navigation }): JSX.Element {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      header: () => (
-        <View>
-          {/* status bar */}
-          <SafeAreaView style={styles.safeStatusBar} />
-          <StatusBar barStyle="light-content" />
-          <ActionBar>
-            <View style={styles.titleParent}>
-              <Text style={styles.title}>{strings.title}</Text>
-            </View>
-          </ActionBar>
-        </View>
-      )
+      header: () => (<TitleHeader title={strings.title} />)
     })
   }, [navigation])
 
@@ -77,7 +64,7 @@ function SavedScreen({ navigation }): JSX.Element {
   }
 
   // called when the user pulls down on the word list after it has rendered
-  const onRefresh = () => {}
+  const onRefresh = () => { }
 
   return (
     /* main content */

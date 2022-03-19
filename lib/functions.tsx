@@ -16,13 +16,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React, { Fragment } from 'react'
-
 import Constants from 'expo-constants'
+import React, { Fragment } from 'react'
+import { Text } from 'react-native'
 import { EdgeInsets } from 'react-native-safe-area-context'
 import { Keyboard } from './interfaces/keyboard'
+import { ListWCS } from './interfaces/list-wcs'
 import { Orientation } from './interfaces/orientation'
-import { Text } from 'react-native'
 import { Word } from './interfaces/word'
 
 /**
@@ -184,6 +184,42 @@ function convertCond(cond: string): string {
 }
 
 /**
+ * inverse of convertCond.
+ * converts given format used in Fwew List/Random to the camelCase formatted condition (comparison operator)
+ *
+ * @param cond symbol representation of cond
+ * @return string representing condition of numeric comparison
+ */
+function convertCondInverse(cond: string): string {
+  switch (cond) {
+    case '<':
+      return 'lessThan'
+    case '<=':
+      return 'lessThanEqual'
+    case '=':
+      return 'equal'
+    case '>=':
+      return 'greaterThanEqual'
+    case '>':
+      return 'greaterThan'
+    case '!=':
+      return 'notEqual'
+    case 'not-starts':
+      return 'notStarts'
+    case 'not-ends':
+      return 'notEnds'
+    case 'not-is':
+      return 'notIs'
+    case 'not-has':
+      return 'notHas'
+    case 'not-like':
+      return 'notLike'
+    default:
+      return cond
+  }
+}
+
+/**
  * calculates main content area view height
  *
  * @param orientation Orientation value of either LANDSCAPE or PORTRAIT
@@ -237,6 +273,32 @@ function getContentAreaHeight(
   )
 }
 
+/**
+ * Splits List/Random query text into an array of ListWCS
+ *
+ * @param text the list/random query text
+ * @return array of ListWCS objects corresponding to the `text`
+ */
+function textToWCS(text: string): ListWCS[] {
+  let wcsArr: ListWCS[] = []
+  let splitText = text.split(' ')
+  // handle Random's "n where what cond spec ..."
+  if (splitText[1] === 'where') {
+    splitText = splitText.slice(2)
+  }
+  // handle Random's "n"
+  else if (text.match(/^\d+$/)) {
+    splitText = []
+  }
+  for (let i = 0; i < splitText.length; i += 4) {
+    const what = splitText[i]
+    const cond = convertCondInverse(splitText[i + 1])
+    const spec = splitText[i + 2]
+    wcsArr.push({ what, cond, spec })
+  }
+  return wcsArr
+}
+
 export {
   compress,
   compareWords,
@@ -245,5 +307,7 @@ export {
   includes,
   deleteById,
   convertCond,
-  getContentAreaHeight
+  convertCondInverse,
+  getContentAreaHeight,
+  textToWCS
 }

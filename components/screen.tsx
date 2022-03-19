@@ -16,6 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import axios, { AxiosError, AxiosResponse } from 'axios'
+import React, { useContext, useLayoutEffect, useState } from 'react'
 import {
   ActivityIndicator,
   Dimensions,
@@ -25,23 +27,25 @@ import {
   StyleSheet,
   View
 } from 'react-native'
-import React, { useLayoutEffect, useState } from 'react'
-import axios, { AxiosError, AxiosResponse } from 'axios'
-
-import EntryModalContent from './entry-modal-content'
-import { FwewError } from '../lib/interfaces/fwew-error'
-import If from './if'
-import ListForm from './list-form'
-import ListRandomHeader from './list-random-header'
 import { Modal } from 'react-native-paper'
-import { Orientation } from '../lib/interfaces/orientation'
-import RandomForm from './random-form'
-import ResultCount from './result-count'
-import { ScreenProps } from '../lib/interfaces/props'
-import { Word } from '../lib/interfaces/word'
-import WordList from './word-list'
+import { SettingsContext } from '../context'
+import { textToWCS } from '../lib'
 import colors from '../lib/colors'
 import { useOrientation } from '../lib/hooks/useOrientation'
+import { ui } from '../lib/i18n'
+import { FwewError } from '../lib/interfaces/fwew-error'
+import { ListWCS } from '../lib/interfaces/list-wcs'
+import { Orientation } from '../lib/interfaces/orientation'
+import { ScreenProps } from '../lib/interfaces/props'
+import { Word } from '../lib/interfaces/word'
+import EntryModalContent from './entry-modal-content'
+import If from './if'
+import ListForm from './list-form'
+import QueryCard from './query-card'
+import RandomForm from './random-form'
+import ResultCount from './result-count'
+import TitleHeader from './title-header'
+import WordList from './word-list'
 
 /**
  * Screen component
@@ -51,6 +55,8 @@ import { useOrientation } from '../lib/hooks/useOrientation'
 function Screen({ apiUrl, screenType, navigation }: ScreenProps): JSX.Element {
   const [isLoading, setIsLoading] = useState(false)
   const [text, setText] = useState('')
+  const [array, setArray] = useState([] as ListWCS[])
+  const [numRandomWords, setNumRandomWords] = useState('')
   const [data, setData] = useState([] as Word[])
   const [err, setErr] = useState({} as FwewError)
   const [isModalVisible, setIsModalVisible] = useState(false)
@@ -59,18 +65,15 @@ function Screen({ apiUrl, screenType, navigation }: ScreenProps): JSX.Element {
   const windowWidth = Dimensions.get('window').width
   const mainAlign = windowWidth > 480 ? 'center' : null
   const modalWidth = windowWidth > 480 ? '80%' : null
+  const { settingsGlobal } = useContext(SettingsContext)
+  const { languageCodeUI } = settingsGlobal
+  const strings = ui[languageCodeUI].drawerNavigator
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      header: () => (
-        <ListRandomHeader
-          searchDataFn={searchData}
-          inputPlaceholderTextFn={getInputPlaceholderText}
-          text={text}
-        />
-      )
+      header: () => (<TitleHeader title={strings[screenType]} />)
     })
-  }, [navigation, text, orientation])
+  }, [navigation, text, orientation, strings])
 
   // toggles info modal visible when user taps a list entry or modal backdrop
   const toggleModal = (item: Word): void => {
@@ -139,6 +142,21 @@ function Screen({ apiUrl, screenType, navigation }: ScreenProps): JSX.Element {
     }
   }
 
+  const handleQueryCardClear = (): void => {
+    setArray([])
+    setText('')
+    setNumRandomWords('')
+  }
+
+  const handleQueryCardEdit = (): void => {
+    const splitText = text.split(' ')
+    if (splitText.length > 0) {
+      setNumRandomWords(splitText[0])
+    }
+    setArray(textToWCS(text))
+    setText('')
+  }
+
   return (
     /* main content */
     <SafeAreaView
@@ -164,6 +182,7 @@ function Screen({ apiUrl, screenType, navigation }: ScreenProps): JSX.Element {
           </If>
           <If condition={!isLoading}>
             <If condition={!!text}>
+              <QueryCard queryText={text} onEdit={handleQueryCardEdit} onClear={handleQueryCardClear} />
               <ResultCount data={data} />
               <WordList
                 data={data}
@@ -177,10 +196,10 @@ function Screen({ apiUrl, screenType, navigation }: ScreenProps): JSX.Element {
             </If>
             <If condition={!text}>
               <If condition={screenType === 'list'}>
-                <ListForm onSearch={searchData} />
+                <ListForm wcsArray={array} onSearch={searchData} />
               </If>
               <If condition={screenType === 'random'}>
-                <RandomForm onSearch={searchData} />
+                <RandomForm numRandomWords={numRandomWords} wcsArray={array} onSearch={searchData} />
               </If>
             </If>
           </If>

@@ -26,6 +26,7 @@ import SettingsForm from './settings-form'
 import colors from '../lib/colors'
 import { ui } from '../lib/i18n'
 import { useOrientation } from '../lib/hooks/useOrientation'
+import TitleHeader from './title-header'
 
 /**
  * SettingsScreen component
@@ -40,17 +41,7 @@ function SettingsScreen({ navigation }): JSX.Element {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      header: () => (
-        <View>
-          <SafeAreaView style={styles.safeStatusBar} />
-          <StatusBar barStyle="light-content" />
-          <ActionBar>
-            <View style={styles.titleParent}>
-              <Text style={styles.title}>{strings.title}</Text>
-            </View>
-          </ActionBar>
-        </View>
-      )
+      header: () => (<TitleHeader title={strings.title} />)
     })
   }, [navigation, strings])
 
