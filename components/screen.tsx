@@ -29,7 +29,7 @@ import {
 } from 'react-native'
 import { Modal } from 'react-native-paper'
 import { SettingsContext } from '../context'
-import { textToWCS } from '../lib'
+import { textToWCS } from '../lib/functions'
 import colors from '../lib/colors'
 import { useOrientation } from '../lib/hooks/useOrientation'
 import { ui } from '../lib/i18n'

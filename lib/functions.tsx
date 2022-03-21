@@ -58,7 +58,7 @@ function compress(word: string): string {
  * @param b Fwew Word object
  * @return -1 if a is to be sorted before b, 1 if a is to be sorted after b, 0 otherwise
  */
-function compareWords(a: Word, b: Word): number {
+export function compareWords(a: Word, b: Word): number {
   const sortOrderCompressed = "'a01äe23fhiìjk4l5mn6op7r8st9Quvwyz-".split('')
   const compressedA = compress(a.Navi.toLowerCase())
   const compressedB = compress(b.Navi.toLowerCase())
@@ -91,7 +91,7 @@ function compareWords(a: Word, b: Word): number {
  * @param arr an array of JSX Elements
  * @return the given array with unique key props
  */
-function withKeys(arr: JSX.Element[]): JSX.Element[] {
+export function withKeys(arr: JSX.Element[]): JSX.Element[] {
   return arr.map((item, index) => <Fragment key={index}>{item}</Fragment>)
 }
 
@@ -103,7 +103,7 @@ function withKeys(arr: JSX.Element[]): JSX.Element[] {
  * @param str the string to place between all the array items
  * @return array of Text Elements, with a Text containing `str` in between each
  */
-function join(arr: Array<string | JSX.Element>, str: string): JSX.Element[] {
+export function join(arr: Array<string | JSX.Element>, str: string): JSX.Element[] {
   return arr.map((item, index) =>
     index > 0 ? (
       <Text>
@@ -123,7 +123,7 @@ function join(arr: Array<string | JSX.Element>, str: string): JSX.Element[] {
  * @param word a Fwew Word
  * @return true if the word is in wordSet (by ID), false otherwise
  */
-function includes(wordSet: Set<Word>, word: Word): boolean {
+export function includes(wordSet: Set<Word>, word: Word): boolean {
   for (const w of wordSet) {
     if (w.ID === word.ID) {
       return true
@@ -138,7 +138,7 @@ function includes(wordSet: Set<Word>, word: Word): boolean {
  * @param wordSet a Set of Fwew Word
  * @param id the Id of the Word to delete
  */
-function deleteById(wordSet: Set<Word>, id: string): void {
+export function deleteById(wordSet: Set<Word>, id: string): void {
   for (const w of wordSet) {
     if (w.ID === id) {
       wordSet.delete(w)
@@ -154,7 +154,7 @@ function deleteById(wordSet: Set<Word>, id: string): void {
  * @param cond string representing condition of numeric comparison
  * @return symbol representation of cond
  */
-function convertCond(cond: string): string {
+export function convertCond(cond: string): string {
   switch (cond) {
     case 'lessThan':
       return '<'
@@ -232,7 +232,7 @@ function convertCondInverse(cond: string): string {
  * @return number representing the height of the main content area with all the
  *         above accounted for
  */
-function getContentAreaHeight(
+export function getContentAreaHeight(
   orientation: Orientation,
   os: string,
   keyboard: Keyboard,
@@ -279,7 +279,7 @@ function getContentAreaHeight(
  * @param text the list/random query text
  * @return array of ListWCS objects corresponding to the `text`
  */
-function textToWCS(text: string): ListWCS[] {
+export function textToWCS(text: string): ListWCS[] {
   let wcsArr: ListWCS[] = []
   let splitText = text.split(' ')
   // handle Random's "n where what cond spec ..."
@@ -297,17 +297,4 @@ function textToWCS(text: string): ListWCS[] {
     wcsArr.push({ what, cond, spec })
   }
   return wcsArr
-}
-
-export {
-  compress,
-  compareWords,
-  withKeys,
-  join,
-  includes,
-  deleteById,
-  convertCond,
-  convertCondInverse,
-  getContentAreaHeight,
-  textToWCS
 }

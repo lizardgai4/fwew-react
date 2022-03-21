@@ -17,7 +17,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { StyleSheet, Text } from 'react-native'
-import { join, withKeys } from '../lib'
+import { join, withKeys } from '../lib/functions'
 
 import React from 'react'
 import { StressedProps } from '../lib/interfaces/props'

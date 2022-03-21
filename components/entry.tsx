@@ -19,7 +19,7 @@
 import React, { useContext } from 'react'
 import { SettingsContext, StateContext } from '../context'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { deleteById, includes } from '../lib'
+import { deleteById, includes } from '../lib/functions'
 
 import EntryBreakdown from './entry-breakdown'
 import EntryIndex from './entry-index'
