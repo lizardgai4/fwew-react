@@ -66,13 +66,14 @@ function FwewHeader({
         <View style={styles.parent}>
           {/* search bar */}
           <TextInput
+            value={value}
             onChangeText={updateValue}
             placeholder={inputPlaceholderTextFn()}
-            autoCapitalize={'none'}
+            autoCapitalize="none"
             autoCorrect={false}
             style={styles.input}
             clearButtonMode="always"
-            value={value}
+            autoFocus
           />
           {/* search bar clear input button */}
           <If condition={Platform.OS !== 'ios' && !!value}>

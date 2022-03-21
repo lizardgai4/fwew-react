@@ -23,16 +23,20 @@ import { SettingsStore, StateStore } from './context'
 import DrawerNavigator from './components/drawer-navigator'
 import { NavigationContainer } from '@react-navigation/native'
 import React from 'react'
+import GlobalStyle from './lib/global-style'
 
 // Top level main component
 const App = (): JSX.Element => (
-  <SettingsStore>
-    <StateStore>
-      <NavigationContainer>
-        <DrawerNavigator />
-      </NavigationContainer>
-    </StateStore>
-  </SettingsStore>
+  <React.Fragment>
+    <GlobalStyle />
+    <SettingsStore>
+      <StateStore>
+        <NavigationContainer>
+          <DrawerNavigator />
+        </NavigationContainer>
+      </StateStore>
+    </SettingsStore>
+  </React.Fragment>
 )
 
 export default App
