@@ -29,7 +29,7 @@ import GlobalStyle from './lib/global-style'
 function App(): JSX.Element {
 
   const linking = {
-    prefixes: ['https://fwew.app', 'http://localhost'],
+    prefixes: ['https://fwew.app', 'http://localhost', 'fwew-react-git-next-corscheid.vercel.app'],
     config: {
       screens: {
         Fwew: 'search',
