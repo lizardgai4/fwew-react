@@ -50,7 +50,7 @@ import { useOrientation } from '../lib/hooks/useOrientation'
 function FwewScreen({ navigation, route }): JSX.Element {
   const { q } = route.params || ''
   const [isLoading, setIsLoading] = useState(true)
-  const [text, setText] = useState(q)
+  const [text, setText] = useState(q || '')
   const [data, setData] = useState([] as Word[])
   const [err, setErr] = useState({} as FwewError)
   const [isModalVisible, setIsModalVisible] = useState(false)
@@ -69,7 +69,7 @@ function FwewScreen({ navigation, route }): JSX.Element {
 
   // fetch data and re-render after this component is mounted to the DOM and rendered in initial loading state
   useEffect(() => {
-    if (q !== '') {
+    if (q != null && q !== '') {
       searchData(q)
     } else {
       fetchData(`${apiRoot}/list/`)
@@ -135,6 +135,7 @@ function FwewScreen({ navigation, route }): JSX.Element {
   // called whenever the user types or modifies text in the text input of the action bar / app bar
   const searchData = (text: string): void => {
     setText(text)
+    navigation.setParams({ q: text })
     if (text === '') {
       fetchData(`${apiRoot}/list/`)
     } else {
