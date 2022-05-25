@@ -47,13 +47,14 @@ import { useOrientation } from '../lib/hooks/useOrientation'
  *
  * Screen where the user can search for specific word(s)
  */
-function FwewScreen({ navigation }): JSX.Element {
+function FwewScreen({ navigation, route }): JSX.Element {
   const [isLoading, setIsLoading] = useState(true)
   const [text, setText] = useState('')
   const [data, setData] = useState([] as Word[])
   const [err, setErr] = useState({} as FwewError)
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [selectedItem, setSelectedItem] = useState({} as Word)
+  const { q } = route.params || '';
   const { settingsGlobal, settingsFwew, onUpdateSettingsFwew } = useContext(
     SettingsContext
   )
@@ -68,7 +69,11 @@ function FwewScreen({ navigation }): JSX.Element {
 
   // fetch data and re-render after this component is mounted to the DOM and rendered in initial loading state
   useEffect(() => {
-    fetchData(`${apiRoot}/list/`)
+    if (q !== '') {
+      fetchData(getEndpoint(q));
+    } else {
+      fetchData(`${apiRoot}/list/`)
+    }
   }, [])
 
   useLayoutEffect(() => {

@@ -26,17 +26,34 @@ import React from 'react'
 import GlobalStyle from './lib/global-style'
 
 // Top level main component
-const App = (): JSX.Element => (
-  <React.Fragment>
-    <GlobalStyle />
-    <SettingsStore>
-      <StateStore>
-        <NavigationContainer>
-          <DrawerNavigator />
-        </NavigationContainer>
-      </StateStore>
-    </SettingsStore>
-  </React.Fragment>
-)
+function App(): JSX.Element {
+
+  const linking = {
+    prefixes: ['https://fwew.app', 'http://localhost'],
+    config: {
+      screens: {
+        Fwew: 'search',
+        List: 'list',
+        Random: 'random',
+        Saved: 'saved',
+        Number: 'number',
+        Settings: 'settings'
+      }
+    }
+  }
+
+  return (
+    <React.Fragment>
+      <GlobalStyle />
+      <SettingsStore>
+        <StateStore>
+          <NavigationContainer linking={linking}>
+            <DrawerNavigator />
+          </NavigationContainer>
+        </StateStore>
+      </SettingsStore>
+    </React.Fragment>
+  )
+}
 
 export default App
