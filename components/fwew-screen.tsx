@@ -24,7 +24,8 @@ import {
   View
 } from 'react-native'
 import React, { useContext, useEffect, useLayoutEffect, useState } from 'react'
-import axios, { AxiosError, AxiosResponse } from 'axios'
+// import axios, { AxiosError, AxiosResponse } from 'axios'
+import { fwew, list } from 'fwew.js'
 
 import EntryModalContent from './entry-modal-content'
 import { FwewError } from '../lib/interfaces/fwew-error'
@@ -36,7 +37,7 @@ import ResultCount from './result-count'
 import { SettingsContext } from '../context'
 import { Word } from '../lib/interfaces/word'
 import WordList from './word-list'
-import { apiRoot } from '../lib/settings'
+// import { apiRoot } from '../lib/settings'
 import colors from '../lib/colors'
 import { languageNames } from '../lib/i18n'
 import { ui } from '../lib/i18n'
@@ -72,7 +73,8 @@ function FwewScreen({ navigation, route }): JSX.Element {
     if (q != null && q !== '') {
       searchData(q)
     } else {
-      fetchData(`${apiRoot}/list/`)
+      // fetchData(`${apiRoot}/list/`)
+      fetchDataList()
     }
   }, [])
 
@@ -96,50 +98,84 @@ function FwewScreen({ navigation, route }): JSX.Element {
     setSelectedItem(item)
   }
 
-  // calculates API endpoint for data fetching
-  const getEndpoint = (text?: string): string => {
-    if (!text) {
-      return `${apiRoot}/list/`
-    }
-    const { languageCode } = settingsGlobal
-    return isReverseEnabled
-      ? `${apiRoot}/fwew/r/${languageCode}/${text}`
-      : `${apiRoot}/fwew/${text}`
-  }
+  // // calculates API endpoint for data fetching
+  // const getEndpoint = (text?: string): string => {
+  //   if (!text) {
+  //     return `${apiRoot}/list/`
+  //   }
+  //   const { languageCode } = settingsGlobal
+  //   return isReverseEnabled
+  //     ? `${apiRoot}/fwew/r/${languageCode}/${text}`
+  //     : `${apiRoot}/fwew/${text}`
+  // }
 
   // called when the user pulls down on the word list after it has rendered
   const onRefresh = () => {
     setData([])
-    fetchData(getEndpoint(text))
+    // fetchData(getEndpoint(text))
+    fetchDataFwew(text, isReverseEnabled)
   }
 
-  // fetches Na'vi word data from the Fwew API and updates the state data accordingly
-  const fetchData = (endpoint: string): void => {
+  const fetchDataFwew = (searchText: string, reverse: boolean): void => {
     setIsLoading(true)
-    axios
-      .get<Word[]>(encodeURI(endpoint))
-      .then((response: AxiosResponse<Word[]>) => {
-        setData(response.data)
-        setIsLoading(false)
-      })
-      .catch((e) => {
-        if (axios.isAxiosError(e)) {
-          const serverError = e as AxiosError<FwewError>
-          setErr(serverError.response.data)
-          setData([])
-          setIsLoading(false)
-        }
-      })
+    if (reverse) {
+      const { languageCode } = settingsGlobal
+      const results = fwew.translateToNavi(searchText, languageCode)
+      if (results.length > 0) {
+        setData(results.map(result => result.data))
+      } else {
+        setErr({ message: 'no results' })
+        setData([])
+      }
+      setIsLoading(false)
+    } else {
+      const results = fwew.translateFromNavi(searchText)
+      if (results.length > 0) {
+        setData(results.map(result => result.data))
+      } else {
+        setErr({ message: 'no results' })
+        setData([])
+      }
+      setIsLoading(false)
+    }
   }
+
+  const fetchDataList = (): void => {
+    setIsLoading(true)
+    const results = list([])
+    setData(results.map(result => result.data))
+    setIsLoading(false)
+  }
+
+  // // fetches Na'vi word data from the Fwew API and updates the state data accordingly
+  // const fetchData = (endpoint: string): void => {
+  //   setIsLoading(true)
+  //   axios
+  //     .get<Word[]>(encodeURI(endpoint))
+  //     .then((response: AxiosResponse<Word[]>) => {
+  //       setData(response.data)
+  //       setIsLoading(false)
+  //     })
+  //     .catch((e) => {
+  //       if (axios.isAxiosError(e)) {
+  //         const serverError = e as AxiosError<FwewError>
+  //         setErr(serverError.response.data)
+  //         setData([])
+  //         setIsLoading(false)
+  //       }
+  //     })
+  // }
 
   // called whenever the user types or modifies text in the text input of the action bar / app bar
   const searchData = (text: string): void => {
     setText(text)
     navigation.setParams({ q: text })
     if (text === '') {
-      fetchData(`${apiRoot}/list/`)
+      // fetchData(`${apiRoot}/list/`)
+      fetchDataList()
     } else {
-      fetchData(getEndpoint(text))
+      // fetchData(getEndpoint(text))
+      fetchDataFwew(text, isReverseEnabled)
     }
   }
 
@@ -151,11 +187,12 @@ function FwewScreen({ navigation, route }): JSX.Element {
       isReverseEnabled: newIsReverseEnabled
     })
     if (text === '') return
-    if (newIsReverseEnabled) {
-      fetchData(`${apiRoot}/fwew/r/${languageCode}/${text}`)
-    } else {
-      fetchData(`${apiRoot}/fwew/${text}`)
-    }
+    // if (newIsReverseEnabled) {
+    //   fetchData(`${apiRoot}/fwew/r/${languageCode}/${text}`)
+    // } else {
+    //   fetchData(`${apiRoot}/fwew/${text}`)
+    // }
+    fetchDataFwew(text, newIsReverseEnabled)
   }
 
   // sets the search bar placeholder text depending on the currently selected tab / screen
