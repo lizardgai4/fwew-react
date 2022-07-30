@@ -6527,10 +6527,10 @@ function-bind@^1.1.1:
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
   integrity sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==
 
-fwew.js@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/fwew.js/-/fwew.js-1.2.0.tgz#968bcbbb05bab94faf35962b4bf20495044fccf5"
-  integrity sha512-uTFgkQvKGWvh9epDpCogx2ngciO5ck2LzuJv2qKXPG85ShSfkVhermLJWzJHY2zhKqYDLnMZ3NhB8DnFwxdBxQ==
+fwew.js@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/fwew.js/-/fwew.js-1.2.1.tgz#229787e2a4f348590e99399703a35921e6d4d21e"
+  integrity sha512-ZDthsd/ReysHOPqZmUa4pALaoSCALyj1f5sOu69YEog9ENB9cIHcaLSBe18p01viixY+D/km9DlAj8Zkc5FeQQ==
 
 gensync@^1.0.0-beta.1:
   version "1.0.0-beta.1"
