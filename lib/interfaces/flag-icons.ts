@@ -32,4 +32,5 @@ export interface FlagIcons {
   poland: string
   russia: string
   sweden: string
+  turkey: string
 }

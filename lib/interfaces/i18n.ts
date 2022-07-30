@@ -29,6 +29,7 @@ export enum Language {
   PL = 'pl', // Polski
   RU = 'ru', // Русский
   SV = 'sv', // Svenska
+  TR = 'tr', // Türkçe
   NX = 'nx' // Na'vi
 }
 

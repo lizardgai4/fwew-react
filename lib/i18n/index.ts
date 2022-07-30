@@ -29,6 +29,7 @@ import nx from './nx'
 import pl from './pl'
 import ru from './ru'
 import sv from './sv'
+import tr from './tr'
 
 /** Array of all supported language codes */
 export const Languages: Language[] = [
@@ -42,6 +43,7 @@ export const Languages: Language[] = [
   Language.PL,
   Language.RU,
   Language.SV,
+  Language.TR,
   Language.NX
 ]
 
@@ -57,8 +59,9 @@ export const languageNames: LanguageNames = {
   pl: `Polski`,
   ru: `Русский`,
   sv: `Svenska`,
+  tr: `Türkçe`,
   nx: `Na'vi`
 }
 
 /** Internationalized UI strings */
-export const ui: UI = { de, en, es, et, fr, hu, nl, pl, ru, sv, nx }
+export const ui: UI = { de, en, es, et, fr, hu, nl, pl, ru, sv, tr, nx }

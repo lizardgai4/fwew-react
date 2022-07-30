@@ -97,7 +97,7 @@ function VersionCard(): JSX.Element {
             <Bold>{strings.testing}</Bold>: Alyara Arati
           </Text>
           <Text style={styles.text}>
-            <Bold>{strings.translation}</Bold>: Charlotte
+            <Bold>{strings.translation}</Bold>: Charlotte (nl), İsmail yiğit (tr)
           </Text>
         </List.Accordion>
       </Card.Content>
