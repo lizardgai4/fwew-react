@@ -64,12 +64,12 @@ const tr: UITranslation = {
     greaterThanEqual: 'en azından (≥)',
     greaterThan: 'daha fazladır (>)',
     notEqual: 'tam olarak değil (≠)',
-    first: '# eski kelimeler',
-    last: '# yeni kelimeler',
-    numRandomWords: '# random kelimeler',
+    first: 'eski kelimeler',
+    last: 'yeni kelimeler',
+    numRandomWords: 'random kelimeler için bir sayı giriniz',
     list: 'liste',
     and: 've',
-    random: 'random',
+    random: 'rastgele',
     where: 'nerede',
     back: 'geri',
     delete: 'sil',
@@ -82,27 +82,27 @@ const tr: UITranslation = {
   settingsScreen: {
     title: 'ayarlar',
     appLanguage: 'uygulama dili',
-    appLanguageDesc: 'uygulama arayüzünün var',
+    appLanguageDesc: 'uygulama arayüzünün dili',
     resultsLanguage: 'sonuç dili',
-    resultsLanguageDesc: 'sonuçların varsayılan dili'
+    resultsLanguageDesc: 'sonuç kelimelerinin dili'
   },
   drawerNavigator: {
     fwew: 'ara',
     list: 'liste',
-    random: 'random',
+    random: 'rastgele',
     saved: 'kaydedilenler',
     number: 'sayı',
     settings: 'ayarlar'
   },
   versionCard: {
-    title: 'about fwew',
-    versionInfo: 'version information',
-    dictionary: 'dictionary',
+    title: 'fwew hakkında',
+    versionInfo: 'versiyon hakkında',
+    dictionary: 'sözlük',
     credits: 'yardımcılar',
-    development: 'development',
-    design: 'design',
-    testing: 'test yap',
-    translation: 'çeviri'
+    development: 'geliştirici',
+    design: 'tasarımcı',
+    testing: 'test yapan',
+    translation: 'çevirmen'
   },
   resultCount: {
     results: 'sonuçlar',
