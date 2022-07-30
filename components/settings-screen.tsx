@@ -17,9 +17,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import React, { useContext, useLayoutEffect } from 'react'
-import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView, StyleSheet, View } from 'react-native'
 
-import ActionBar from './action-bar'
 import { Orientation } from '../lib/interfaces/orientation'
 import { SettingsContext } from '../context'
 import SettingsForm from './settings-form'
