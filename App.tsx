@@ -17,6 +17,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import 'react-native-gesture-handler'
+import matchAll from 'string.prototype.matchall'
 
 import { SettingsStore, StateStore } from './context'
 
@@ -24,6 +25,8 @@ import DrawerNavigator from './components/drawer-navigator'
 import { NavigationContainer } from '@react-navigation/native'
 import React from 'react'
 import GlobalStyle from './lib/global-style'
+
+matchAll.shim()
 
 // Top level main component
 function App(): JSX.Element {
