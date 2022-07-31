@@ -5668,10 +5668,10 @@ functions-have-names@^1.2.2:
   resolved "https://registry.yarnpkg.com/functions-have-names/-/functions-have-names-1.2.3.tgz#0404fe4ee2ba2f607f0e0ec3c80bae994133b834"
   integrity sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==
 
-fwew.js@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/fwew.js/-/fwew.js-1.2.1.tgz#229787e2a4f348590e99399703a35921e6d4d21e"
-  integrity sha512-ZDthsd/ReysHOPqZmUa4pALaoSCALyj1f5sOu69YEog9ENB9cIHcaLSBe18p01viixY+D/km9DlAj8Zkc5FeQQ==
+fwew.js@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/fwew.js/-/fwew.js-1.2.2.tgz#73be5ba992840a559baa9dfd3ad2fc26a4cd68b8"
+  integrity sha512-jFLXoaMdCrnlbkQdNPIHc4A9oKF3xnxrTRT2Oi0rcb7A/7ZT22v2xaHKALdcG2M6WU6ze6KqjII4foQ8/xSIow==
 
 gensync@^1.0.0-beta.1, gensync@^1.0.0-beta.2:
   version "1.0.0-beta.2"
