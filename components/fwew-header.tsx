@@ -29,7 +29,7 @@ import {
 } from 'react-native'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import colors from '../lib/colors'
-import { useDebounce } from '../lib/hooks/useDebounce'
+// import { useDebounce } from '../lib/hooks/useDebounce'
 import { FwewHeaderProps } from '../lib/interfaces/props'
 import ActionBar from './action-bar'
 import If from './if'
@@ -47,11 +47,12 @@ function FwewHeader({
 }: FwewHeaderProps): JSX.Element {
   const windowWidth = Dimensions.get('window').width
   const [value, setValue] = useState(text)
-  const debounce = useDebounce()
+  // const debounce = useDebounce()
 
   const updateValue = (newValue: string): void => {
     setValue(newValue)
-    debounce(() => searchDataFn(newValue), 300)
+    // debounce(() => searchDataFn(newValue), 300)
+    searchDataFn(newValue)
   }
 
   return (
