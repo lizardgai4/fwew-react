@@ -48,7 +48,8 @@ function FlagIcon({ language }: FlagIconProps): JSX.Element {
     nl: 'netherlands',
     pl: 'poland',
     ru: 'russia',
-    sv: 'sweden'
+    sv: 'sweden',
+    tr: 'turkey'
   }
   if (!Object.keys(countryMap).includes(language)) {
     return null
