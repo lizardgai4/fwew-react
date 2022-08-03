@@ -53,6 +53,7 @@ function VersionCard(): JSX.Element {
     axios
       .get<ApiVersion>(`${apiRoot}/version`)
       .then((response: AxiosResponse<ApiVersion>) => setVersion(response.data))
+      .catch(() => setVersion({ APIVersion: '?', FwewVersion: '?', DictVersion: '?' }))
   }, [])
 
   return (
