@@ -16,9 +16,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Word } from './word'
+import { useState } from 'react';
 
-export interface IStateContext {
-  savedWords: Set<Word>
-  onUpdateSavedWords?: (words: Set<Word>) => void
+function useDebounce(): (func: () => void, wait?: number) => void {
+  const [typingTimeout, setTypingTimeout] = useState({} as NodeJS.Timeout)
+
+  return function debounce(func: () => void, wait: number = 500): void {
+    clearTimeout(typingTimeout)
+    const timeout = setTimeout((): void => func(), wait)
+    setTypingTimeout(timeout)
+  }
 }
+
+export { useDebounce }

@@ -1,7 +1,7 @@
 /**
  * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
- * Copyright (C) 2021  Corey Scheideman <corscheid@gmail.com>
+ * Copyright (C) 2022 Corey Scheideman <corscheid@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@ import { Text } from 'react-native'
 /**
  * Bold Component
  *
- * Bolds given Text / string
+ * Makes given Text / string bold
  */
 function Bold({ children }: BoldProps): JSX.Element {
   return <Text style={{ fontWeight: 'bold' }}>{children}</Text>

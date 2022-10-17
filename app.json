@@ -2,7 +2,7 @@
   "expo": {
     "name": "Fwew",
     "slug": "fwew-react",
-    "version": "1.1.0",
+    "version": "2.2.4",
     "orientation": "default",
     "icon": "./assets/fwew.png",
     "splash": {
@@ -17,10 +17,12 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "bundleIdentifier": "app.fwew.react",
-      "buildNumber": "1.1.0",
+      "buildNumber": "2.2.4",
       "icon": "./assets/fwew.png"
     },
     "web": {
@@ -28,9 +30,18 @@
     },
     "android": {
       "package": "app.fwew.react",
-      "versionCode": 2,
+      "versionCode": 9,
       "icon": "./assets/icon.png",
       "permissions": []
-    }
+    },
+    "plugins": [
+      [
+        "./withAndroidRemovedPermissions",
+        [
+          "android.permission.RECORD_AUDIO",
+          "android.permission.WRITE_EXTERNAL_STORAGE"
+        ]
+      ]
+    ]
   }
 }

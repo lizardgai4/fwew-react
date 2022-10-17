@@ -16,43 +16,44 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Image, SafeAreaView, StyleSheet } from 'react-native'
-
-import { ActionBarProps } from '../lib/interfaces/props'
-import { DrawerToggleButton } from '@react-navigation/drawer'
+import { useDimensions } from '@react-native-community/hooks'
 import React from 'react'
+import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native'
 import colors from '../lib/colors'
-import fwew from '../assets/fwew.png'
+import { TitleHeaderProps } from '../lib/interfaces/props'
+import ActionBar from './action-bar'
 
-/**
- * ActionBar Component
- *
- * The bar at the top of the screen, below the status bar
- */
-function ActionBar({ children }: ActionBarProps): JSX.Element {
+function TitleHeader({ title }: TitleHeaderProps): JSX.Element {
+  // const { width } = useDimensions().window
   return (
-    <SafeAreaView style={styles.action_bar}>
-      <DrawerToggleButton tintColor={colors.actionBarIconFill} />
-      <Image source={fwew} style={styles.icon} />
-      {children}
-    </SafeAreaView>
+    <View>
+      {/* status bar */}
+      <SafeAreaView style={styles.safeStatusBar} />
+      <StatusBar barStyle="light-content" />
+      <ActionBar>
+        <View style={[styles.titleParent, { marginRight: 96 }]}>
+          <Text style={styles.title}>{title}</Text>
+        </View>
+      </ActionBar>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
-  action_bar: {
-    height: 56,
-    width: '100%',
-    backgroundColor: colors.primary,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
+  safeStatusBar: {
+    flex: 0,
+    backgroundColor: colors.secondary
   },
-  icon: {
-    marginLeft: -6,
-    width: 48,
-    height: 48
-  }
+  titleParent: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
+  title: {
+    color: colors.actionBarTitle,
+    fontWeight: 'bold',
+    fontSize: 20
+  },
 })
 
-export default ActionBar
+export default TitleHeader

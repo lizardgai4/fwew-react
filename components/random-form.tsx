@@ -1,7 +1,7 @@
 /**
  * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
- * Copyright (C) 2021  Corey Scheideman <corscheid@gmail.com>
+ * Copyright (C) 2022 Corey Scheideman <corscheid@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { Card, List } from 'react-native-paper'
+import { useKeyboard } from '@react-native-community/hooks'
+import React, { useContext, useEffect, useState } from 'react'
 import {
   Dimensions,
   Platform,
@@ -27,36 +28,33 @@ import {
   TouchableOpacity,
   View
 } from 'react-native'
-import React, { useContext, useState } from 'react'
-import { convertCond, getContentAreaHeight } from '../lib'
-
-import { FAB } from 'react-native-paper'
-import If from './if'
-import { ListFormProps } from '../lib/interfaces/props'
-import { ListWCS } from '../lib/interfaces/list-wcs'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import { Orientation } from '../lib/interfaces/orientation'
-import { SettingsContext } from '../context'
-import colors from '../lib/colors'
-import { listOps } from '../lib/list-ops'
-import { ui } from '../lib/i18n'
-import { useKeyboard } from '@react-native-community/hooks'
-import { useOrientation } from '../lib/hooks/useOrientation'
+import { Card, FAB, List } from 'react-native-paper'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import { SettingsContext } from '../context'
+import { convertCond, getContentAreaHeight } from '../lib/functions'
+import colors from '../lib/colors'
+import { useOrientation } from '../lib/hooks/useOrientation'
+import { ui } from '../lib/i18n'
+import { ListWCS } from '../lib/interfaces/list-wcs'
+import { Orientation } from '../lib/interfaces/orientation'
+import { RandomFormProps } from '../lib/interfaces/props'
+import { listOps } from '../lib/list-ops'
+import If from './if'
 
 /**
  * RandomForm component
  * The interactive form to fill out when creating Random queries on Fwew
  */
-function RandomForm({ onSearch }: ListFormProps): JSX.Element {
+function RandomForm({ numRandomWords, wcsArray, onSearch }: RandomFormProps): JSX.Element {
   const { settingsGlobal } = useContext(SettingsContext)
   const { languageCodeUI } = settingsGlobal
   const strings = ui[languageCodeUI].listRandomForm
-  const [numRandomWords, setNumRandomWords] = useState('')
+  const [num, setNum] = useState(numRandomWords)
   const [what, setWhat] = useState('')
   const [cond, setCond] = useState('')
   const [spec, setSpec] = useState('')
-  const [array, setArray] = useState([] as ListWCS[])
+  const [array, setArray] = useState(wcsArray)
   const windowHeight = Dimensions.get('window').height
   const windowWidth = Dimensions.get('window').width
   const actionBarHeight = 56
@@ -65,6 +63,17 @@ function RandomForm({ onSearch }: ListFormProps): JSX.Element {
   const keyboard = useKeyboard()
   const cardWidth = windowWidth > 480 ? '50%' : null
   const mainAlign = windowWidth > 480 ? 'center' : null
+
+  useEffect(() => {
+    if (wcsArray.length !== 0) {
+      if (!what) setWhat(wcsArray[wcsArray.length - 1].what)
+      if (!cond) setCond(wcsArray[wcsArray.length - 1].cond)
+      if (spec != null && spec !== '') setSpec(wcsArray[wcsArray.length - 1].spec)
+    }
+    if (numRandomWords.length !== 0) {
+      if (num == null || num === '') setNum(numRandomWords)
+    }
+  }, [wcsArray, what, cond, spec, numRandomWords, num])
 
   /** function to calculate the main view height */
   const getMainViewHeight = () => {
@@ -118,7 +127,7 @@ function RandomForm({ onSearch }: ListFormProps): JSX.Element {
     setArray(newArray)
   }
 
-  /** function to hanlde the entering of a user's specification on a card */
+  /** function to handle the entering of a user's specification on a card */
   const updateSpec = (index: number, spec: string): void => {
     const newArray = [...array]
     newArray[index].spec = spec
@@ -137,8 +146,8 @@ function RandomForm({ onSearch }: ListFormProps): JSX.Element {
 
   /** function to handle the search button press to start a List query search */
   const handleSearch = (): void => {
-    if (!numRandomWords) return
-    let searchString = `${numRandomWords}`
+    if (!num) return
+    let searchString = `${num}`
     array.forEach((wcs: ListWCS, index: number) => {
       const { what, cond, spec } = wcs
       if (index === 0) {
@@ -173,15 +182,15 @@ function RandomForm({ onSearch }: ListFormProps): JSX.Element {
           <Card.Content>
             <TextInput
               style={styles.textInput}
-              value={numRandomWords}
+              value={num}
               placeholder={strings.numRandomWords}
-              onChangeText={setNumRandomWords}
+              onChangeText={setNum}
               autoCapitalize="none"
               autoCorrect={false}
               clearButtonMode="always"
             />
             <View style={styles.buttonGroupSearch}>
-              <If condition={!!numRandomWords && array.length === 0}>
+              <If condition={!!num && array.length === 0}>
                 <TouchableOpacity
                   style={styles.buttonSearch}
                   onPress={handleSearch}

@@ -1,7 +1,7 @@
 /**
  * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
- * Copyright (C) 2021  Corey Scheideman <corscheid@gmail.com>
+ * Copyright (C) 2022 Corey Scheideman <corscheid@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,6 +29,7 @@ export enum Language {
   PL = 'pl', // Polski
   RU = 'ru', // Русский
   SV = 'sv', // Svenska
+  TR = 'tr', // Türkçe
   NX = 'nx' // Na'vi
 }
 
@@ -53,6 +54,7 @@ interface EntryModalContentStrings {
   infixes: string
   suffixes: string
   lenition: string
+  listen: string
 }
 
 /** interface for FwewScreen component strings */
@@ -67,6 +69,7 @@ interface ListRandomFormStrings {
   syllables: string
   stress: string
   words: string
+  length: string
   starts: string
   ends: string
   is: string
@@ -110,7 +113,7 @@ interface SettingsScreenStrings {
   resultsLanguageDesc: string
 }
 
-/** interface for TabNavigator Buttom Tab labels */
+/** interface for TabNavigator Bottom Tab labels */
 interface DrawerNavigatorStrings {
   fwew: string
   list: string

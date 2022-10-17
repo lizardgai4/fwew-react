@@ -1,7 +1,7 @@
 /**
  * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
- * Copyright (C) 2021  Corey Scheideman <corscheid@gmail.com>
+ * Copyright (C) 2022 Corey Scheideman <corscheid@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { ActivityIndicator, SafeAreaView, StyleSheet, View } from 'react-native'
-import React, { useLayoutEffect, useState } from 'react'
+import React, { useLayoutEffect, useContext, useState } from 'react'
 import axios, { AxiosError, AxiosResponse } from 'axios'
 
 import { FwewError } from '../lib/interfaces/fwew-error'
@@ -29,6 +29,7 @@ import { Orientation } from '../lib/interfaces/orientation'
 import { apiRoot } from '../lib/settings'
 import colors from '../lib/colors'
 import { useOrientation } from '../lib/hooks/useOrientation'
+import { SettingsContext } from '../context'
 
 /**
  * NumberScreen component
@@ -38,7 +39,8 @@ import { useOrientation } from '../lib/hooks/useOrientation'
 function NumberScreen({ navigation }): JSX.Element {
   const [text, setText] = useState('')
   const [isLoading, setIsLoading] = useState(false)
-  const [isReverseEnabled, setIsReverseEnabled] = useState(false)
+  const { settingsNumber, onUpdateSettingsNumber } = useContext(SettingsContext)
+  const { isReverseEnabled } = settingsNumber
   const [data, setData] = useState(null as FwewNumber)
   const [err, setErr] = useState(null as FwewError)
   const orientation = useOrientation()
@@ -60,7 +62,10 @@ function NumberScreen({ navigation }): JSX.Element {
   // called whenever the user clicks the swap button or toggles the switch in Fwew Settings to reverse search direction
   const toggleReverse = (): void => {
     const newIsReverseEnabled = !isReverseEnabled
-    setIsReverseEnabled(!isReverseEnabled)
+    onUpdateSettingsNumber({
+      ...settingsNumber,
+      isReverseEnabled: newIsReverseEnabled
+    })
     if (text === '') return
     if (newIsReverseEnabled) {
       fetchData(`${apiRoot}/number/r/${text}`)

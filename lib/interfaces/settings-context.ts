@@ -1,7 +1,7 @@
 /**
  * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
- * Copyright (C) 2021  Corey Scheideman <corscheid@gmail.com>
+ * Copyright (C) 2022 Corey Scheideman <corscheid@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { SettingsFwew, SettingsGlobal } from './settings'
+import { SettingsFwew, SettingsGlobal, SettingsNumber } from './settings'
 
 /**
  * interface for SettingsContext
@@ -24,6 +24,8 @@ import { SettingsFwew, SettingsGlobal } from './settings'
 export interface ISettingsContext {
   settingsGlobal: SettingsGlobal
   settingsFwew: SettingsFwew
+  settingsNumber: SettingsNumber
   onUpdateSettingsGlobal?: (s: SettingsGlobal) => void
   onUpdateSettingsFwew?: (s: SettingsFwew) => void
+  onUpdateSettingsNumber?: (s: SettingsNumber) => void
 }

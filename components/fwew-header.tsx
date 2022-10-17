@@ -1,7 +1,7 @@
 /**
  * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
- * Copyright (C) 2021  Corey Scheideman <corscheid@gmail.com>
+ * Copyright (C) 2022 Corey Scheideman <corscheid@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+import React, { useState } from 'react'
 import {
   Dimensions,
   Platform,
@@ -26,13 +27,12 @@ import {
   TouchableOpacity,
   View
 } from 'react-native'
-
-import ActionBar from './action-bar'
-import { FwewHeaderProps } from '../lib/interfaces/props'
-import If from './if'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import React from 'react'
 import colors from '../lib/colors'
+// import { useDebounce } from '../lib/hooks/useDebounce'
+import { FwewHeaderProps } from '../lib/interfaces/props'
+import ActionBar from './action-bar'
+import If from './if'
 
 /** FwewHeader Component
  *
@@ -46,6 +46,15 @@ function FwewHeader({
   isReverseEnabled
 }: FwewHeaderProps): JSX.Element {
   const windowWidth = Dimensions.get('window').width
+  const [value, setValue] = useState(text)
+  // const debounce = useDebounce()
+
+  const updateValue = (newValue: string): void => {
+    setValue(newValue)
+    // debounce(() => searchDataFn(newValue), 300)
+    searchDataFn(newValue)
+  }
+
   return (
     <View>
       {/* status bar */}
@@ -58,19 +67,20 @@ function FwewHeader({
         <View style={styles.parent}>
           {/* search bar */}
           <TextInput
-            onChangeText={searchDataFn}
+            value={value}
+            onChangeText={updateValue}
             placeholder={inputPlaceholderTextFn()}
-            autoCapitalize={'none'}
+            autoCapitalize="none"
             autoCorrect={false}
             style={styles.input}
             clearButtonMode="always"
-            value={text}
+            autoFocus
           />
           {/* search bar clear input button */}
-          <If condition={Platform.OS !== 'ios' && !!text}>
+          <If condition={Platform.OS !== 'ios' && !!value}>
             <TouchableOpacity
               style={styles.closeButtonParent}
-              onPress={() => searchDataFn('')}
+              onPress={() => updateValue('')}
             >
               <MaterialIcons
                 style={styles.closeButton}
@@ -113,7 +123,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start'
-    // marginRight: 8
   },
   input: {
     height: 40,

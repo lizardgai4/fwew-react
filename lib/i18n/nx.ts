@@ -1,7 +1,7 @@
 /**
  * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
- * Copyright (C) 2021  Corey Scheideman <corscheid@gmail.com>
+ * Copyright (C) 2022 Corey Scheideman <corscheid@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,7 +35,8 @@ const nx: UITranslation = {
     prefixes: "ayeolì'uvi",
     infixes: "ayhemlì'uvi",
     suffixes: "ayuolì'uvi",
-    lenition: 'pamä sälatem'
+    lenition: 'pamä sälatem',
+    listen: 'tìng mikyun'
   },
   fwewScreen: {
     search: 'fwew'
@@ -46,6 +47,7 @@ const nx: UITranslation = {
     syllables: "holpxay lì'kongä",
     stress: "tseng txina lì'kongä",
     words: "ta sngä'ikrrr lì'fyayä",
+    length: 'ngimpup',
     starts: "sngä'i fa",
     ends: "'i'a fa",
     is: 'lu nìpxi',

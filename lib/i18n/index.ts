@@ -1,7 +1,7 @@
 /**
  * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
- * Copyright (C) 2021  Corey Scheideman <corscheid@gmail.com>
+ * Copyright (C) 2022 Corey Scheideman <corscheid@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,6 +29,7 @@ import nx from './nx'
 import pl from './pl'
 import ru from './ru'
 import sv from './sv'
+import tr from './tr'
 
 /** Array of all supported language codes */
 export const Languages: Language[] = [
@@ -42,6 +43,7 @@ export const Languages: Language[] = [
   Language.PL,
   Language.RU,
   Language.SV,
+  Language.TR,
   Language.NX
 ]
 
@@ -57,8 +59,9 @@ export const languageNames: LanguageNames = {
   pl: `Polski`,
   ru: `Русский`,
   sv: `Svenska`,
+  tr: `Türkçe`,
   nx: `Na'vi`
 }
 
 /** Internationalized UI strings */
-export const ui: UI = { de, en, es, et, fr, hu, nl, pl, ru, sv, nx }
+export const ui: UI = { de, en, es, et, fr, hu, nl, pl, ru, sv, tr, nx }

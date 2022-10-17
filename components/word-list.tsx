@@ -1,7 +1,7 @@
 /**
  * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
- * Copyright (C) 2021  Corey Scheideman <corscheid@gmail.com>
+ * Copyright (C) 2022 Corey Scheideman <corscheid@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,7 +37,7 @@ import { SettingsContext } from '../context'
 import { Word } from '../lib/interfaces/word'
 import { WordListProps } from '../lib/interfaces/props'
 import colors from '../lib/colors'
-import { compareWords } from '../lib'
+import { compareWords } from '../lib/functions'
 import { useKeyboard } from '@react-native-community/hooks'
 import { useOrientation } from '../lib/hooks/useOrientation'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'

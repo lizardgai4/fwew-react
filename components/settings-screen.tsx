@@ -1,7 +1,7 @@
 /**
  * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
- * Copyright (C) 2021  Corey Scheideman <corscheid@gmail.com>
+ * Copyright (C) 2022 Corey Scheideman <corscheid@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,15 +17,15 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import React, { useContext, useLayoutEffect } from 'react'
-import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView, StyleSheet, View } from 'react-native'
 
-import ActionBar from './action-bar'
 import { Orientation } from '../lib/interfaces/orientation'
 import { SettingsContext } from '../context'
 import SettingsForm from './settings-form'
 import colors from '../lib/colors'
 import { ui } from '../lib/i18n'
 import { useOrientation } from '../lib/hooks/useOrientation'
+import TitleHeader from './title-header'
 
 /**
  * SettingsScreen component
@@ -40,17 +40,7 @@ function SettingsScreen({ navigation }): JSX.Element {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      header: () => (
-        <View>
-          <SafeAreaView style={styles.safeStatusBar} />
-          <StatusBar barStyle="light-content" />
-          <ActionBar>
-            <View style={styles.titleParent}>
-              <Text style={styles.title}>{strings.title}</Text>
-            </View>
-          </ActionBar>
-        </View>
-      )
+      header: () => (<TitleHeader title={strings.title} />)
     })
   }, [navigation, strings])
 

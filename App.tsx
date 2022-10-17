@@ -1,7 +1,7 @@
 /**
  * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
- * Copyright (C) 2021  Corey Scheideman <corscheid@gmail.com>
+ * Copyright (C) 2022 Corey Scheideman <corscheid@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,22 +17,46 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import 'react-native-gesture-handler'
+import matchAll from 'string.prototype.matchall'
 
 import { SettingsStore, StateStore } from './context'
 
 import DrawerNavigator from './components/drawer-navigator'
 import { NavigationContainer } from '@react-navigation/native'
 import React from 'react'
+import GlobalStyle from './lib/global-style'
+
+matchAll.shim()
 
 // Top level main component
-const App = (): JSX.Element => (
-  <SettingsStore>
-    <StateStore>
-      <NavigationContainer>
-        <DrawerNavigator />
-      </NavigationContainer>
-    </StateStore>
-  </SettingsStore>
-)
+function App(): JSX.Element {
+
+  const linking = {
+    prefixes: ['https://fwew-react-git-next-corscheid.vercel.app', 'https://fwew.app', 'http://localhost'],
+    config: {
+      screens: {
+        Fwew: 'search',
+        List: 'list',
+        Random: 'random',
+        Saved: 'saved',
+        Number: 'number',
+        Settings: 'settings'
+      }
+    }
+  }
+
+  return (
+    <React.Fragment>
+      <GlobalStyle />
+      <SettingsStore>
+        <StateStore>
+          <NavigationContainer linking={linking}>
+            <DrawerNavigator />
+          </NavigationContainer>
+        </StateStore>
+      </SettingsStore>
+    </React.Fragment>
+  )
+}
 
 export default App

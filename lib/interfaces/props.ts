@@ -1,7 +1,7 @@
 /**
  * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
- * Copyright (C) 2021  Corey Scheideman <corscheid@gmail.com>
+ * Copyright (C) 2022 Corey Scheideman <corscheid@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 import { FwewError } from './fwew-error'
 import { FwewNumber } from './fwew-number'
 import { Language } from './i18n'
+import { ListWCS } from './list-wcs'
 import { Word } from './word'
 
 /**
@@ -69,7 +70,7 @@ export interface ScreenProps {
 }
 
 /**
- * props for Sressed component
+ * props for Stressed component
  */
 export interface StressedProps {
   stressed: string
@@ -115,7 +116,15 @@ export interface BoldProps {
  * props for the ListForm component
  */
 export interface ListFormProps {
+  wcsArray: ListWCS[]
   onSearch: (searchText: string) => void
+}
+
+/**
+ * props for the RandomForm Component
+ */
+export interface RandomFormProps extends ListFormProps {
+  numRandomWords: string
 }
 
 /**
@@ -160,10 +169,17 @@ export interface FwewHeaderProps {
 }
 
 /**
- * props interface for ListRandomHeader Component
+ * props interface for TitleHeader Component
  */
-export interface ListRandomHeaderProps {
-  searchDataFn: (text: string) => void
-  inputPlaceholderTextFn: () => string
-  text: string
+export interface TitleHeaderProps {
+  title: string
+}
+
+/**
+ * props interface for QueryCard Component
+ */
+export interface QueryCardProps {
+  queryText: string
+  onEdit: () => void
+  onClear: () => void
 }

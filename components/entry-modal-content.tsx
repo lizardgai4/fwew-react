@@ -1,7 +1,7 @@
 /**
  * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
- * Copyright (C) 2021  Corey Scheideman <corscheid@gmail.com>
+ * Copyright (C) 2022 Corey Scheideman <corscheid@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,15 +16,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import React, { useContext } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-
-import { EntryModalContentProps } from '../lib/interfaces/props'
-import If from './if'
+import React, { useContext, useEffect, useState } from 'react'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { SettingsContext } from '../context'
-import Stressed from './stressed'
 import colors from '../lib/colors'
 import { ui } from '../lib/i18n'
+import { EntryModalContentProps } from '../lib/interfaces/props'
+import If from './if'
+import Stressed from './stressed'
+import Autolink from 'react-native-autolink'
+import { Audio } from 'expo-av'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 /**
  * EntryModalContent Component
@@ -35,6 +37,52 @@ function EntryModalContent({ entry }: EntryModalContentProps): JSX.Element {
   const { settingsGlobal } = useContext(SettingsContext)
   const { languageCodeUI, languageCode } = settingsGlobal
   const strings = ui[languageCodeUI].entryModalContent
+  const [sound, setSound] = useState(new Audio.Sound());
+
+  const playSound = async (wordId: string): Promise<void> => {
+    const audioUrl = `https://s.learnnavi.org/audio/vocab/${wordId}.mp3`
+    const { sound } = await Audio.Sound.createAsync({ uri: audioUrl })
+    setSound(sound)
+    await sound.playAsync()
+  }
+
+  const stringifyArray = (arr: string[], type: string): string => {
+    if (arr == null || arr.length === 0) {
+      return ''
+    }
+    const lenPre: string[] = ["pep", "pem", "pe", "fray", "tsay", "fay", "pay", "ay", "me", "pxe"]
+    let result = ''
+    arr.forEach((item: string, index: number) => {
+      let affix = ''
+      switch (type) {
+        case 'prefix':
+          affix = `${item}${lenPre.includes(item) ? '+' : '-'}`
+          break
+        case 'infix':
+          affix = `<${item}>`
+          break
+        case 'suffix':
+          affix = `-${item}`
+          break
+        default:
+          affix = `${item}`
+      }
+      if (index === 0) {
+        result += `${affix}`
+      } else {
+        result += `, ${affix}`
+      }
+    })
+    return result
+  }
+
+  useEffect(() => {
+    return sound
+      ? () => {
+        sound.unloadAsync()
+      }
+      : undefined
+  }, [sound])
 
   return (
     <View style={styles.modalContainer}>
@@ -61,9 +109,7 @@ function EntryModalContent({ entry }: EntryModalContentProps): JSX.Element {
 
         <Text selectable={true} style={styles.modal_label}>
           {`${strings.source}: `}
-          <Text selectable={true} style={styles.modal_text}>
-            {entry.Source}
-          </Text>
+          <Autolink url text={entry.Source} selectable={true} style={styles.modal_text} />
         </Text>
       </View>
 
@@ -116,7 +162,7 @@ function EntryModalContent({ entry }: EntryModalContentProps): JSX.Element {
           <Text selectable={true} style={styles.modal_label}>
             {`${strings.prefixes}: `}
             <Text selectable={true} style={styles.modal_text}>
-              {entry.Affixes.Prefix}
+              {stringifyArray(entry.Affixes.Prefix, 'prefix')}
             </Text>
           </Text>
         </If>
@@ -125,7 +171,7 @@ function EntryModalContent({ entry }: EntryModalContentProps): JSX.Element {
           <Text selectable={true} style={styles.modal_label}>
             {`${strings.infixes}: `}
             <Text selectable={true} style={styles.modal_text}>
-              {entry.Affixes.Infix}
+              {stringifyArray(entry.Affixes.Infix, 'infix')}
             </Text>
           </Text>
         </If>
@@ -134,7 +180,7 @@ function EntryModalContent({ entry }: EntryModalContentProps): JSX.Element {
           <Text selectable={true} style={styles.modal_label}>
             {`${strings.suffixes}: `}
             <Text selectable={true} style={styles.modal_text}>
-              {entry.Affixes.Suffix}
+              {stringifyArray(entry.Affixes.Suffix, 'suffix')}
             </Text>
           </Text>
         </If>
@@ -148,6 +194,10 @@ function EntryModalContent({ entry }: EntryModalContentProps): JSX.Element {
           </Text>
         </If>
       </View>
+      <TouchableOpacity style={styles.modal_playButton} onPress={() => playSound(entry.ID)}>
+        <MaterialIcons name={'volume-up'} color={colors.buttonText} size={24} />
+        <Text style={styles.modal_playButtonText}>{strings.listen}</Text>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -175,6 +225,19 @@ const styles = StyleSheet.create({
   modal_text: {
     fontSize: 16,
     fontWeight: 'normal'
+  },
+  modal_playButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'center',
+    padding: 8,
+    borderRadius: 4,
+    backgroundColor: colors.accent
+  },
+  modal_playButtonText: {
+    marginLeft: 8,
+    color: colors.buttonText,
+    fontSize: 16
   }
 })
 

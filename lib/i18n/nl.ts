@@ -1,7 +1,7 @@
 /**
  * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
- * Copyright (C) 2021  Corey Scheideman <corscheid@gmail.com>
+ * Copyright (C) 2022 Corey Scheideman <corscheid@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,7 +35,8 @@ const nl: UITranslation = {
     prefixes: 'voorvoegsels',
     infixes: 'tussenvoegsels',
     suffixes: 'achtervoegsels',
-    lenition: 'lenitie'
+    lenition: 'lenitie',
+    listen: 'hoor'
   },
   fwewScreen: {
     search: 'zoeken in'
@@ -46,6 +47,7 @@ const nl: UITranslation = {
     syllables: 'aantal lettergrepen',
     stress: 'positie van beklemtoonde lettergreep',
     words: 'in orden',
+    length: 'lengte',
     starts: 'start met',
     ends: 'eindigt met',
     is: 'is precies',

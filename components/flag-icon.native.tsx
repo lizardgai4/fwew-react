@@ -1,7 +1,7 @@
 /**
  * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
- * Copyright (C) 2021  Corey Scheideman <corscheid@gmail.com>
+ * Copyright (C) 2022 Corey Scheideman <corscheid@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -48,7 +48,8 @@ function FlagIcon({ language }: FlagIconProps): JSX.Element {
     nl: 'netherlands',
     pl: 'poland',
     ru: 'russia',
-    sv: 'sweden'
+    sv: 'sweden',
+    tr: 'turkey'
   }
   if (!Object.keys(countryMap).includes(language)) {
     return null

@@ -1,7 +1,7 @@
 /**
  * This file is part of fwew-react.
  * fwew-react: Fwew Na'vi Dictionary app written using React Native
- * Copyright (C) 2021  Corey Scheideman <corscheid@gmail.com>
+ * Copyright (C) 2022 Corey Scheideman <corscheid@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -53,6 +53,7 @@ function VersionCard(): JSX.Element {
     axios
       .get<ApiVersion>(`${apiRoot}/version`)
       .then((response: AxiosResponse<ApiVersion>) => setVersion(response.data))
+      .catch(() => setVersion({ APIVersion: '?', FwewVersion: '?', DictVersion: '?' }))
   }, [])
 
   return (
@@ -91,13 +92,13 @@ function VersionCard(): JSX.Element {
             <Bold>{strings.development}</Bold>: Tirea Aean
           </Text>
           <Text style={styles.text}>
-            <Bold>{strings.design}</Bold>: Morgan Hughes
+            <Bold>{strings.design}</Bold>: Tsyili
           </Text>
           <Text style={styles.text}>
             <Bold>{strings.testing}</Bold>: Alyara Arati
           </Text>
           <Text style={styles.text}>
-            <Bold>{strings.translation}</Bold>: Charlotte
+            <Bold>{strings.translation}</Bold>: Charlotte (nl), İsmail yiğit (tr)
           </Text>
         </List.Accordion>
       </Card.Content>
