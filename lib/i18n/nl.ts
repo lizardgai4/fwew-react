@@ -19,7 +19,7 @@
 
 import { UITranslation } from '../interfaces/i18n'
 
-/** UI - Nederlands (Translation by Charlotte) */
+/** UI - Nederlands (Translation by Charlotte & Wllìm) */
 const nl: UITranslation = {
   active: true,
   resultsActive: true,
@@ -30,39 +30,39 @@ const nl: UITranslation = {
     ipa: 'IPA',
     syllables: 'lettergrepen',
     stressedSyllable: 'positie van beklemtoonde lettergreep',
-    infixSlots: 'infix-sleuven',
-    infixDots: 'infix-punten',
+    infixSlots: 'infixposities',
+    infixDots: 'infixpunten',
     prefixes: 'voorvoegsels',
     infixes: 'tussenvoegsels',
     suffixes: 'achtervoegsels',
     lenition: 'lenitie',
-    listen: 'hoor'
+    listen: 'luister'
   },
   fwewScreen: {
-    search: 'zoeken in'
+    search: 'zoeken in het'
   },
   listRandomForm: {
     word: 'woord',
     pos: 'woordsoort',
     syllables: 'aantal lettergrepen',
     stress: 'positie van beklemtoonde lettergreep',
-    words: 'in orden',
+    words: 'op chronologische volgorde',
     length: 'lengte',
-    starts: 'start met',
+    starts: 'begint met',
     ends: 'eindigt met',
-    is: 'is precies',
-    has: 'was',
-    like: 'is als',
+    is: 'is gelijk aan',
+    has: 'bevat',
+    like: 'lijkt op',
     notStarts: 'begint niet met',
     notEnds: 'eindigt niet met',
-    notIs: 'is precies niet',
-    notHas: 'heeft niet',
-    notLike: 'is niet als',
-    lessThan: 'is minder dan (<)',
-    lessThanEqual: 'is bijna (≤)',
+    notIs: 'is niet gelijk aan',
+    notHas: 'bevat niet',
+    notLike: 'lijkt niet',
+    lessThan: 'is kleiner dan (<)',
+    lessThanEqual: 'is kleiner of gelijk aan (≤)',
     equal: 'is gelijk aan (=)',
-    greaterThanEqual: 'is iets meer dan (≥)',
-    greaterThan: 'is meer dan (>)',
+    greaterThanEqual: 'is groter of gelijk aan (≥)',
+    greaterThan: 'is groter dan (>)',
     notEqual: 'is niet (≠)',
     first: '# oudste woorden',
     last: '# nieuwste woorden',
@@ -72,38 +72,38 @@ const nl: UITranslation = {
     random: 'willekeurig',
     where: 'waar',
     back: 'terug',
-    delete: 'verwijder',
+    delete: 'verwijderen',
     search: 'zoeken'
   },
   savedScreen: {
     title: 'opgeslagen woorden',
     infoText:
-      'om een woord op te slaan, of te verwijderen, druk op de nummer in de lijst.'
+      'klik op het cijfer van een zoekresultaat om dat woord op te slaan of weer te verwijderen'
   },
   settingsScreen: {
     title: 'instellingen',
-    appLanguage: 'app taal',
-    appLanguageDesc: 'standaard taal van app interface',
-    resultsLanguage: 'taal resultaten',
-    resultsLanguageDesc: 'resultaten van de standaard gekozen taal'
+    appLanguage: 'taal van app',
+    appLanguageDesc: 'standaardtaal van de app-interface',
+    resultsLanguage: 'taal van resultaten',
+    resultsLanguageDesc: 'standaardtaal van de zoekresultaten'
   },
   drawerNavigator: {
     fwew: 'zoeken',
     list: 'lijst',
     random: 'willekeurig',
     saved: 'opgeslagen',
-    number: 'nummer',
+    number: 'getal',
     settings: 'instellingen'
   },
   versionCard: {
     title: 'over fwew',
-    versionInfo: 'versie informatie',
+    versionInfo: 'versie-informatie',
     dictionary: 'woordenboek',
-    credits: 'krediet',
+    credits: 'credits',
     development: 'ontwikkeling',
-    design: 'design',
+    design: 'ontwerp',
     testing: 'testen',
-    translation: 'translatie'
+    translation: 'vertaling'
   },
   resultCount: {
     results: 'resultaten',
