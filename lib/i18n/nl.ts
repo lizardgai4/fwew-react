@@ -70,7 +70,7 @@ const nl: UITranslation = {
     list: 'lijst',
     and: 'en',
     random: 'willekeurig',
-    where: 'waar',
+    where: 'waarbij',
     back: 'terug',
     delete: 'verwijderen',
     search: 'zoeken'
