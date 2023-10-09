@@ -115,7 +115,8 @@ function WordList({
         return data.filter((word) => word.PartOfSpeech === posFilterText)
       }
     }
-    data.sort(compareWords)
+    // We don't want our multiword data to be sorted alphabetically
+    //data.sort(compareWords)
     return data.filter((word) => word[languageCode.toUpperCase()] !== 'NULL')
   }
 
