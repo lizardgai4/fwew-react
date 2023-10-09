@@ -55,3 +55,16 @@ Uses the [Fwew API](https://github.com/fwew/fwew-api) to fetch dictionary data
   <img src="/.github/images/phone/Screenshot_20211107-194300.png" height="500" style="margin:0.5em" />
   <img src="/.github/images/phone/Screenshot_20211107-201644.png" height="500" style="margin:0.5em" />
 </p>
+
+## How to install on Windows:
+
+- Install node.js (will install npm, too)
+- In where you want fwew-react to live:
+ - git clone https://github.com/fwew/fwew-react
+- In Powershell as adminitractor:
+ - corepack enable
+- Back in your fwew-react directory:
+ - yarn set version stable
+ - yarn install
+ - yarn
+ - yarn start
