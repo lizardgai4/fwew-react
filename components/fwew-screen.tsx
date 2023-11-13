@@ -103,8 +103,8 @@ function FwewScreen({ navigation, route }): JSX.Element {
     }
     const { languageCode } = settingsGlobal
     return isReverseEnabled
-      ? `${apiRoot}/fwew/r/${languageCode}/${text}`
-      : `${apiRoot}/fwew/${text}`
+      ? `${apiRoot}/fwew-1d/r/${languageCode}/${text}`
+      : `${apiRoot}/fwew-1d/${text}`
   }
 
   // called when the user pulls down on the word list after it has rendered
@@ -152,9 +152,9 @@ function FwewScreen({ navigation, route }): JSX.Element {
     })
     if (text === '') return
     if (newIsReverseEnabled) {
-      fetchData(`${apiRoot}/fwew/r/${languageCode}/${text}`)
+      fetchData(`${apiRoot}/fwew-1d/r/${languageCode}/${text}`)
     } else {
-      fetchData(`${apiRoot}/fwew/${text}`)
+      fetchData(`${apiRoot}/fwew-1d/${text}`)
     }
   }
 
