@@ -1,4 +1,4 @@
-import { ResultCard } from "@/components/ResultCard";
+import { FwewResultCard } from "@/components/search/FwewResultCard";
 import { ResultSet } from "@/hooks/useFwew";
 import { ScrollView, StyleSheet } from "react-native";
 
@@ -10,7 +10,7 @@ export function FwewSearchResults({ results }: FwewSearchResultsProps) {
   return (
     <ScrollView style={styles.results}>
       {results.map((result) =>
-        result.map((word) => <ResultCard key={word.ID} word={word} />)
+        result.map((word) => <FwewResultCard key={word.ID} word={word} />)
       )}
     </ScrollView>
   );

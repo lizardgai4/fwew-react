@@ -1,16 +1,16 @@
+import { MonoText } from "@/components/StyledText";
+import { Text, View } from "@/components/Themed";
 import { Word } from "@/hooks/useFwew";
 import { useState } from "react";
 import { StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { ResultInfo } from "./ResultInfo";
-import { MonoText } from "./StyledText";
-import { Text, View } from "./Themed";
+import { FwewResultInfo } from "./FwewResultInfo";
 
 interface ResultCardProps {
   word: Word;
 }
 
-export function ResultCard({ word }: ResultCardProps) {
+export function FwewResultCard({ word }: ResultCardProps) {
   const [expanded, setExpanded] = useState(false);
 
   const toggleExpanded = () => setExpanded(!expanded);
@@ -27,7 +27,7 @@ export function ResultCard({ word }: ResultCardProps) {
           <MonoText style={styles.arrow}>&#9654;</MonoText>
         )}
       </TouchableOpacity>
-      {expanded && <ResultInfo word={word} />}
+      {expanded && <FwewResultInfo word={word} />}
     </View>
   );
 }

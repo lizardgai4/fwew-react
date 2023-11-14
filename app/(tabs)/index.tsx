@@ -1,5 +1,5 @@
-import { FwewSearchBar } from "@/components/FwewSearchBar";
-import { FwewSearchResults } from "@/components/FwewSearchResults";
+import { FwewSearchBar } from "@/components/search/FwewSearchBar";
+import { FwewSearchResults } from "@/components/search/FwewSearchResults";
 import { View } from "@/components/Themed";
 import { useFwew } from "@/hooks/useFwew";
 import { StyleSheet } from "react-native";
