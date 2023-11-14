@@ -26,7 +26,7 @@ export default function TabLayout() {
         name="index"
         options={{
           title: "Search",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
           headerRight: () => (
             <Link href="/modal" asChild>
               <Pressable>
@@ -44,24 +44,28 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="list"
         options={{
           title: "List",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="list-ol" color={color} />
+          ),
         }}
       />
       <Tabs.Screen
-        name="three"
+        name="random"
+        options={{
+          title: "Random",
+          tabBarIcon: ({ color }) => <TabBarIcon name="random" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="more"
         options={{
           title: "More",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="four"
-        options={{
-          title: "Settings",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="ellipsis-h" color={color} />
+          ),
         }}
       />
     </Tabs>

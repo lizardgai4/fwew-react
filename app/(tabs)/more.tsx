@@ -2,16 +2,16 @@ import EditScreenInfo from "@/components/EditScreenInfo";
 import { Text, View } from "@/components/Themed";
 import { StyleSheet } from "react-native";
 
-export default function TabThreeScreen() {
+export default function MoreScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab Three</Text>
+      <Text style={styles.title}>More</Text>
       <View
         style={styles.separator}
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
-      <EditScreenInfo path="app/(tabs)/three.tsx" />
+      <EditScreenInfo path="app/(tabs)/more.tsx" />
     </View>
   );
 }
