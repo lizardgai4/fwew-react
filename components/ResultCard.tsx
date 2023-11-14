@@ -1,7 +1,7 @@
+import { Word } from "@/hooks/useFwew";
 import { useState } from "react";
 import { StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { Word } from "../hooks/useFwew";
 import { ResultInfo } from "./ResultInfo";
 import { MonoText } from "./StyledText";
 import { Text, View } from "./Themed";
