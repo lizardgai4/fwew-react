@@ -1,6 +1,6 @@
-import { StyleSheet, TouchableOpacity } from "react-native";
 import { TextInput, View } from "@/components/Themed";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { StyleSheet, TouchableOpacity } from "react-native";
 
 interface FwewSearchBarProps {
   query: string;

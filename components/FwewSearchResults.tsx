@@ -1,6 +1,6 @@
+import { ResultCard } from "@/components/ResultCard";
 import { ResultSet } from "@/hooks/useFwew";
 import { ScrollView, StyleSheet } from "react-native";
-import { ResultCard } from "@/components/ResultCard";
 
 interface FwewSearchResultsProps {
   results: ResultSet;
