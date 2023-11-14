@@ -1,6 +1,6 @@
 import { MonoText } from "@/components/StyledText";
 import { Text, View } from "@/components/Themed";
-import { Word } from "@/hooks/useFwew";
+import type { Word } from "@/types/fwew";
 import { useState } from "react";
 import { StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";

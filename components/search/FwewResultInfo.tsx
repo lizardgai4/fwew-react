@@ -1,4 +1,4 @@
-import { Word } from "@/hooks/useFwew";
+import type { Word } from "@/types/fwew";
 import { StyleSheet } from "react-native";
 import { Text, View } from "@/components/Themed";
 
