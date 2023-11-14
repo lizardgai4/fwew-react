@@ -1,8 +1,8 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { ScrollView, StyleSheet, TouchableOpacity } from "react-native";
-import { ResultCard } from "../../components/ResultCard";
-import { TextInput, View } from "../../components/Themed";
-import { useFwew } from "../../hooks/useFwew";
+import { ResultCard } from "@/components/ResultCard";
+import { TextInput, View } from "@/components/Themed";
+import { useFwew } from "@/hooks/useFwew";
 
 export default function TabOneScreen() {
   const [query, results, search] = useFwew();

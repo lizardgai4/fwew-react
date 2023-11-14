@@ -1,5 +1,5 @@
+import { Word } from "@/hooks/useFwew";
 import { StyleSheet } from "react-native";
-import { Word } from "../hooks/useFwew";
 import { Text, View } from "./Themed";
 
 interface ResultInfoProps {
