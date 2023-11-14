@@ -1,5 +1,6 @@
 import { MonoText } from "@/components/StyledText";
 import { Text, View } from "@/components/Themed";
+import Colors from "@/constants/Colors";
 import type { Word } from "@/types/fwew";
 import { FontAwesome } from "@expo/vector-icons";
 import { useState } from "react";
@@ -14,13 +15,16 @@ interface ResultCardProps {
 export function FwewResultCard({ word }: ResultCardProps) {
   const [expanded, setExpanded] = useState(false);
   const colorScheme = useColorScheme();
-  const color = colorScheme === "dark" ? "#eeeeee" : "#000000";
+  const { text } = Colors[colorScheme ?? "light"];
 
   const toggleExpanded = () => setExpanded(!expanded);
 
   return (
     <View>
-      <TouchableOpacity style={styles.container} onPress={toggleExpanded}>
+      <TouchableOpacity
+        style={[styles.container, { borderColor: text }]}
+        onPress={toggleExpanded}
+      >
         <Text style={styles.navi}>{word.Navi}</Text>
         <MonoText style={styles.partOfSpeech}>{word.PartOfSpeech}</MonoText>
         <Text style={styles.local} numberOfLines={1}>
@@ -30,14 +34,14 @@ export function FwewResultCard({ word }: ResultCardProps) {
           <FontAwesome
             size={24}
             name="chevron-down"
-            color={color}
+            color={text}
             style={styles.arrow}
           />
         ) : (
           <FontAwesome
             size={24}
             name="chevron-right"
-            color={color}
+            color={text}
             style={styles.arrow}
           />
         )}
@@ -55,7 +59,6 @@ const styles = StyleSheet.create({
     padding: 16,
     gap: 16,
     borderWidth: 1,
-    borderColor: "#eee",
   },
   navi: {
     fontSize: 24,
