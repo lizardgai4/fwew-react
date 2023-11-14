@@ -1,5 +1,5 @@
 import { FwewResultCard } from "@/components/search/FwewResultCard";
-import { ResultSet } from "@/hooks/useFwew";
+import type { ResultSet } from "@/types/fwew";
 import { ScrollView, StyleSheet } from "react-native";
 
 interface FwewSearchResultsProps {
