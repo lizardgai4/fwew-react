@@ -24,7 +24,7 @@ import { Language } from './interfaces/i18n'
  * the root endpoint of the Fwew API
  * see https://github.com/fwew/fwew-api for more info about the API
  */
-export const apiRoot: string = 'http://localhost:10000/api'
+export const apiRoot: string = 'http://tirea.learnnavi.org/api'
 
 /**
  * Global settings
