@@ -1,8 +1,9 @@
 import { MonoText } from "@/components/StyledText";
 import { Text, View } from "@/components/Themed";
 import type { Word } from "@/types/fwew";
+import { FontAwesome } from "@expo/vector-icons";
 import { useState } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, useColorScheme } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { FwewResultInfo } from "./FwewResultInfo";
 
@@ -12,6 +13,8 @@ interface ResultCardProps {
 
 export function FwewResultCard({ word }: ResultCardProps) {
   const [expanded, setExpanded] = useState(false);
+  const colorScheme = useColorScheme();
+  const color = colorScheme === "dark" ? "#eeeeee" : "#000000";
 
   const toggleExpanded = () => setExpanded(!expanded);
 
@@ -22,9 +25,19 @@ export function FwewResultCard({ word }: ResultCardProps) {
         <MonoText style={styles.partOfSpeech}>{word.PartOfSpeech}</MonoText>
         <Text>{word.EN}</Text>
         {expanded ? (
-          <MonoText style={styles.arrow}>&#9660;</MonoText>
+          <FontAwesome
+            size={24}
+            name="chevron-down"
+            color={color}
+            style={styles.arrow}
+          />
         ) : (
-          <MonoText style={styles.arrow}>&#9654;</MonoText>
+          <FontAwesome
+            size={24}
+            name="chevron-right"
+            color={color}
+            style={styles.arrow}
+          />
         )}
       </TouchableOpacity>
       {expanded && <FwewResultInfo word={word} />}
@@ -53,6 +66,5 @@ const styles = StyleSheet.create({
   },
   arrow: {
     marginLeft: "auto",
-    fontSize: 24,
   },
 });
