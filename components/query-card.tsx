@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { useDimensions } from '@react-native-community/hooks'
+import { useWindowDimensions } from 'react-native'
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
@@ -25,13 +25,12 @@ import colors from '../lib/colors'
 import { QueryCardProps } from '../lib/interfaces/props'
 
 function QueryCard({ queryText, onEdit, onClear }: QueryCardProps): JSX.Element {
-  const { width } = useDimensions().window
   return (
     <View style={styles.card}>
       <TouchableOpacity onPress={onEdit}>
         <MaterialIcons name="edit" size={32} color={colors.secondary} />
       </TouchableOpacity>
-      <Text numberOfLines={1} selectable={true} style={[styles.queryText, { maxWidth: width - 64 - 56 }]}>{queryText}</Text>
+      <Text numberOfLines={1} selectable={true} style={[styles.queryText, { maxWidth: useWindowDimensions().width - 64 - 56 }]}>{queryText}</Text>
       <TouchableOpacity onPress={onClear}>
         <MaterialIcons name="clear" size={32} color={colors.inputCloseButton} />
       </TouchableOpacity>
