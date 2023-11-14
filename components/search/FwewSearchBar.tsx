@@ -16,6 +16,10 @@ export function FwewSearchBar({ query, search }: FwewSearchBarProps) {
         placeholderTextColor={"#666"}
         value={query}
         onChangeText={search}
+        autoCapitalize="none"
+        autoCorrect={false}
+        clearButtonMode="never"
+        autoFocus
       />
       {query.length > 0 ? (
         <TouchableOpacity style={styles.button} onPress={() => search("")}>
