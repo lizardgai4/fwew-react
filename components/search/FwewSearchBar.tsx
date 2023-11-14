@@ -1,6 +1,7 @@
 import { TextInput, View } from "@/components/Themed";
+import Colors from "@/constants/Colors";
 import { FontAwesome } from "@expo/vector-icons";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 
 interface FwewSearchBarProps {
   query: string;
@@ -8,12 +9,15 @@ interface FwewSearchBarProps {
 }
 
 export function FwewSearchBar({ query, search }: FwewSearchBarProps) {
+  const colorScheme = useColorScheme();
+  const { text, placeholder } = Colors[colorScheme ?? "light"];
+
   return (
     <View style={styles.searchContainer}>
       <TextInput
-        style={styles.input}
+        style={[styles.input, { borderColor: text }]}
         placeholder="Search"
-        placeholderTextColor={"#666"}
+        placeholderTextColor={placeholder}
         value={query}
         onChangeText={search}
         autoCapitalize="none"
@@ -22,12 +26,15 @@ export function FwewSearchBar({ query, search }: FwewSearchBarProps) {
         autoFocus
       />
       {query.length > 0 ? (
-        <TouchableOpacity style={styles.button} onPress={() => search("")}>
-          <FontAwesome name="close" size={24} color="#eee" />
+        <TouchableOpacity
+          style={[styles.button, { borderColor: text }]}
+          onPress={() => search("")}
+        >
+          <FontAwesome name="close" size={24} color={text} />
         </TouchableOpacity>
       ) : (
-        <View style={styles.button}>
-          <FontAwesome name="search" size={24} color="#eee" />
+        <View style={[styles.button, { borderColor: text }]}>
+          <FontAwesome name="search" size={24} color={text} />
         </View>
       )}
     </View>
@@ -44,7 +51,6 @@ const styles = StyleSheet.create({
     flex: 1,
     borderWidth: 1,
     padding: 10,
-    borderColor: "#eee",
   },
   button: {
     alignItems: "center",
@@ -52,6 +58,5 @@ const styles = StyleSheet.create({
     height: 50,
     padding: 8,
     borderWidth: 1,
-    borderColor: "#eee",
   },
 });
