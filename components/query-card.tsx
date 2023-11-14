@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-import { useDimensions } from '@react-native-community/hooks'
+import { useWindowDimensions } from 'react-native'
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
@@ -25,7 +25,7 @@ import colors from '../lib/colors'
 import { QueryCardProps } from '../lib/interfaces/props'
 
 function QueryCard({ queryText, onEdit, onClear }: QueryCardProps): JSX.Element {
-  const { width } = useDimensions().window
+  const { width } = useWindowDimensions()
   return (
     <View style={styles.card}>
       <TouchableOpacity onPress={onEdit}>
