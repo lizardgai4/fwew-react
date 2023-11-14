@@ -23,9 +23,11 @@
       "versionCode": 10,
       "permissions": [],
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+        "foregroundImage": "./assets/images/adaptive-fwew.png",
+        "backgroundColor": "#7494ba",
+        "monochromeImage": "./assets/images/monochrome-fwew.png"
+      },
+      "icon": "./assets/images/icon.png"
     },
     "web": {
       "bundler": "metro",
