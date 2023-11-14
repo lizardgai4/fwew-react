@@ -23,7 +23,9 @@ export function FwewResultCard({ word }: ResultCardProps) {
       <TouchableOpacity style={styles.container} onPress={toggleExpanded}>
         <Text style={styles.navi}>{word.Navi}</Text>
         <MonoText style={styles.partOfSpeech}>{word.PartOfSpeech}</MonoText>
-        <Text>{word.EN}</Text>
+        <Text style={styles.local} numberOfLines={1}>
+          {word.EN}
+        </Text>
         {expanded ? (
           <FontAwesome
             size={24}
@@ -62,7 +64,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   local: {
-    fontSize: 12,
+    flex: 1,
   },
   arrow: {
     marginLeft: "auto",
