@@ -26,7 +26,7 @@ export function useFwew(): [string, ResultSet, (query: string) => void] {
   };
 
   useEffect(() => {
-    debounce(fwew, 500);
+    debounce(fwew, 300);
   }, [query]);
 
   return [query, results, search];
