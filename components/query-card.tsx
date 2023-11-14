@@ -25,12 +25,13 @@ import colors from '../lib/colors'
 import { QueryCardProps } from '../lib/interfaces/props'
 
 function QueryCard({ queryText, onEdit, onClear }: QueryCardProps): JSX.Element {
+  const { width } = useWindowDimensions()
   return (
     <View style={styles.card}>
       <TouchableOpacity onPress={onEdit}>
         <MaterialIcons name="edit" size={32} color={colors.secondary} />
       </TouchableOpacity>
-      <Text numberOfLines={1} selectable={true} style={[styles.queryText, { maxWidth: useWindowDimensions().width - 64 - 56 }]}>{queryText}</Text>
+      <Text numberOfLines={1} selectable={true} style={[styles.queryText, { maxWidth: width - 64 - 56 }]}>{queryText}</Text>
       <TouchableOpacity onPress={onClear}>
         <MaterialIcons name="clear" size={32} color={colors.inputCloseButton} />
       </TouchableOpacity>
