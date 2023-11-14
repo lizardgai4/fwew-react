@@ -1,5 +1,5 @@
 import { TextInput, View } from "@/components/Themed";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 import { StyleSheet, TouchableOpacity } from "react-native";
 
 interface FwewSearchBarProps {
@@ -23,11 +23,11 @@ export function FwewSearchBar({ query, search }: FwewSearchBarProps) {
       />
       {query.length > 0 ? (
         <TouchableOpacity style={styles.button} onPress={() => search("")}>
-          <MaterialCommunityIcons name="close" size={24} color="#eee" />
+          <FontAwesome name="close" size={24} color="#eee" />
         </TouchableOpacity>
       ) : (
         <View style={styles.button}>
-          <MaterialCommunityIcons name="magnify" size={24} color="#eee" />
+          <FontAwesome name="search" size={24} color="#eee" />
         </View>
       )}
     </View>
