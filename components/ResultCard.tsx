@@ -1,10 +1,10 @@
-import { Pressable, StyleSheet } from "react-native";
-import { Word } from "../hooks/useFwew";
-import { Text, View } from "./Themed";
-import { MonoText } from "./StyledText";
 import { useState } from "react";
-import { ResultInfo } from "./ResultInfo";
+import { StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { Word } from "../hooks/useFwew";
+import { ResultInfo } from "./ResultInfo";
+import { MonoText } from "./StyledText";
+import { Text, View } from "./Themed";
 
 interface ResultCardProps {
   word: Word;
