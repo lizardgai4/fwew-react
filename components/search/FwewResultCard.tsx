@@ -1,7 +1,7 @@
 import { MonoText } from "@/components/StyledText";
 import { Text, View } from "@/components/Themed";
 import Colors from "@/constants/Colors";
-import type { Word } from "@/types/fwew";
+import type { Word } from "fwew.js";
 import { FontAwesome } from "@expo/vector-icons";
 import { useState } from "react";
 import { StyleSheet, useColorScheme } from "react-native";
@@ -25,10 +25,12 @@ export function FwewResultCard({ word }: ResultCardProps) {
         style={[styles.container, { borderColor: text }]}
         onPress={toggleExpanded}
       >
-        <Text style={styles.navi}>{word.Navi}</Text>
-        <MonoText style={styles.partOfSpeech}>{word.PartOfSpeech}</MonoText>
+        <Text style={styles.navi}>{word.data.Navi}</Text>
+        <MonoText style={styles.partOfSpeech}>
+          {word.data.PartOfSpeech}
+        </MonoText>
         <Text style={styles.local} numberOfLines={1}>
-          {word.EN}
+          {word.data.EN}
         </Text>
         {expanded ? (
           <FontAwesome
