@@ -1,7 +1,7 @@
+import Api from "@/constants/Api";
+import { useDebounce } from "@/hooks/useDebounce";
 import type { ResultSet } from "@/types/fwew";
 import { useEffect, useState } from "react";
-import Api from "../constants/Api";
-import { useDebounce } from "./useDebounce";
 
 export function useFwew(): [string, ResultSet, (query: string) => void] {
   const [query, search] = useState("");
