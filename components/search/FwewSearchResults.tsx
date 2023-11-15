@@ -10,7 +10,7 @@ export function FwewSearchResults({ results }: FwewSearchResultsProps) {
   return (
     <ScrollView style={styles.results}>
       {results.map((result) =>
-        result.map((word) => <FwewResultCard key={word.ID} word={word} />)
+        result.map((word) => <FwewResultCard key={word.data.ID} word={word} />)
       )}
     </ScrollView>
   );
