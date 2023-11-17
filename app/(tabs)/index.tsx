@@ -9,7 +9,7 @@ export default function TabOneScreen() {
 
   return (
     <View style={styles.container}>
-      <SearchBar query={query} search={search} />
+      <SearchBar query={query} search={search} autoFocus />
       <FwewSearchResults results={results} />
     </View>
   );
