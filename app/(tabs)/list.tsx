@@ -1,5 +1,6 @@
+import { ResultCount } from "@/components/ResultCount";
 import { SearchBar } from "@/components/SearchBar";
-import { Text, View } from "@/components/Themed";
+import { View } from "@/components/Themed";
 import { ListOptions } from "@/components/list/ListOptions";
 import { FwewSearchResults } from "@/components/search/FwewSearchResults";
 import type { Results } from "@/types/fwew";
@@ -33,11 +34,10 @@ export default function ListScreen() {
       <SearchBar query={query} search={setQuery} autoFocus placeholder="List" />
       <ScrollView keyboardShouldPersistTaps="always">
         <ListOptions query={query} onSelect={setQuery} execute={execute} />
-        {query.length > 0 && results.length > 0 && (
-          <Text style={styles.resultCount}>
-            {`${results.length} result${results.length === 1 ? "" : "s"}`}
-          </Text>
-        )}
+        <ResultCount
+          visible={query.length > 0 && results.length > 0}
+          resultCount={results.length}
+        />
         <FwewSearchResults results={[results]} />
       </ScrollView>
     </View>

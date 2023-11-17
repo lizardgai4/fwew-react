@@ -1,6 +1,7 @@
+import { ResultCount } from "@/components/ResultCount";
 import { FwewSearchResults } from "@/components/search/FwewSearchResults";
 import { SearchBar } from "@/components/SearchBar";
-import { Text, View } from "@/components/Themed";
+import { View } from "@/components/Themed";
 import { useFwew } from "@/hooks/useFwew";
 import { ScrollView, StyleSheet } from "react-native";
 
@@ -11,11 +12,10 @@ export default function TabOneScreen() {
     <View style={styles.container}>
       <SearchBar query={query} search={search} autoFocus />
       <ScrollView style={styles.results}>
-        {query.length > 0 && resultCount > 0 && (
-          <Text style={styles.resultCount}>
-            {`${resultCount} result${resultCount === 1 ? "" : "s"}`}
-          </Text>
-        )}
+        <ResultCount
+          visible={query.length > 0 && resultCount > 0}
+          resultCount={resultCount}
+        />
         <FwewSearchResults results={results} />
       </ScrollView>
     </View>
@@ -27,10 +27,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-  },
-  resultCount: {
-    padding: 16,
-    alignSelf: "center",
   },
   results: {
     width: "100%",
