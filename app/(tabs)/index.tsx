@@ -5,7 +5,7 @@ import { View } from "@/components/Themed";
 import { useFwew } from "@/hooks/useFwew";
 import { ScrollView, StyleSheet } from "react-native";
 
-export default function TabOneScreen() {
+export default function SearchScreen() {
   const [query, results, resultCount, search] = useFwew();
 
   return (
