@@ -46,9 +46,11 @@ export default function ListScreen() {
       <SearchBar query={query} search={setQuery} autoFocus placeholder="List" />
       <ScrollView keyboardShouldPersistTaps="always">
         <ListOptions query={query} onSelect={setQuery} execute={execute} />
-        <Text style={styles.resultCount}>
-          {`${results.length} result${results.length === 1 ? "" : "s"}`}
-        </Text>
+        {query.length > 0 && results.length > 0 && (
+          <Text style={styles.resultCount}>
+            {`${results.length} result${results.length === 1 ? "" : "s"}`}
+          </Text>
+        )}
         <FwewSearchResults results={[results]} />
       </ScrollView>
     </View>
