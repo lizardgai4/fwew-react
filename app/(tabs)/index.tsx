@@ -1,5 +1,5 @@
-import { FwewSearchBar } from "@/components/search/FwewSearchBar";
 import { FwewSearchResults } from "@/components/search/FwewSearchResults";
+import { SearchBar } from "@/components/SearchBar";
 import { View } from "@/components/Themed";
 import { useFwew } from "@/hooks/useFwew";
 import { StyleSheet } from "react-native";
@@ -9,7 +9,7 @@ export default function TabOneScreen() {
 
   return (
     <View style={styles.container}>
-      <FwewSearchBar query={query} search={search} />
+      <SearchBar query={query} search={search} />
       <FwewSearchResults results={results} />
     </View>
   );
