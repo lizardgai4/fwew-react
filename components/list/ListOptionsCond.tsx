@@ -1,6 +1,7 @@
 import { Text, View } from "@/components/Themed";
 import Colors from "@/constants/Colors";
-import { List, ListMenuCond, ListMenuItem, WhatValue } from "@/constants/List";
+import { List } from "@/constants/List";
+import type { ListMenuCond, ListMenuItem, WhatValue } from "@/types/list";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 
 type ListOptionsCondProps = {
