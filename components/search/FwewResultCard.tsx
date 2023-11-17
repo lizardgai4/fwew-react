@@ -1,9 +1,9 @@
+import { Accordion } from "@/components/Accordion";
 import { MonoText } from "@/components/StyledText";
 import { Text } from "@/components/Themed";
+import { FwewResultInfo } from "@/components/search/FwewResultInfo";
 import type { Word } from "fwew.js";
 import { StyleSheet } from "react-native";
-import { Accordion } from "../Accordion";
-import { FwewResultInfo } from "./FwewResultInfo";
 
 interface ResultCardProps {
   word: Word;
