@@ -2,13 +2,13 @@ import { Text, View } from "@/components/Themed";
 import Colors from "@/constants/Colors";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 
-type ListOptionsSpecProps = {
+interface ListOptionsSpecProps {
   handleSelectionSpec: () => void;
   andButtonDisabled: boolean;
   execute: () => void;
-};
+}
 
-export default function ListOptionsSpec({
+export function ListOptionsSpec({
   handleSelectionSpec,
   andButtonDisabled,
   execute,

@@ -4,9 +4,9 @@ import { List } from "@/constants/List";
 import type { ListMenuItem, WhatValue } from "@/types/list";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 
-type ListOptionsWhatProps = {
+interface ListOptionsWhatProps {
   onSelect: (what: ListMenuItem<WhatValue>) => void;
-};
+}
 
 export function ListOptionsWhat({ onSelect }: ListOptionsWhatProps) {
   const colorScheme = useColorScheme();
