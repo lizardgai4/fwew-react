@@ -1,4 +1,7 @@
 import { Text } from "@/components/Themed";
+import { ListOptionsCond } from "@/components/list/ListOptionsCond";
+import ListOptionsSpec from "@/components/list/ListOptionsSpec";
+import { ListOptionsWhat } from "@/components/list/ListOptionsWhat";
 import {
   ListExpressionAttribute,
   ListMenuCond,
@@ -7,9 +10,6 @@ import {
 } from "@/types/list";
 import { useEffect, useRef, useState } from "react";
 import { StyleSheet } from "react-native";
-import { ListOptionsCond } from "./ListOptionsCond";
-import ListOptionsSpec from "./ListOptionsSpec";
-import { ListOptionsWhat } from "./ListOptionsWhat";
 
 interface ListOptionsProps {
   query: string;
