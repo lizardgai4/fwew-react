@@ -1,8 +1,8 @@
+import { View } from "@/components/Themed";
 import Colors from "@/constants/Colors";
 import { FontAwesome } from "@expo/vector-icons";
 import { useState } from "react";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
-import { View } from "./Themed";
 
 interface AccordionProps {
   closedContent: React.ReactNode;
