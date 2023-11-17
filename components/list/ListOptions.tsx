@@ -1,8 +1,8 @@
 import { Text } from "@/components/Themed";
 import { ListOptionsCond } from "@/components/list/ListOptionsCond";
-import ListOptionsSpec from "@/components/list/ListOptionsSpec";
+import { ListOptionsSpec } from "@/components/list/ListOptionsSpec";
 import { ListOptionsWhat } from "@/components/list/ListOptionsWhat";
-import {
+import type {
   ListExpressionAttribute,
   ListMenuCond,
   ListMenuItem,
