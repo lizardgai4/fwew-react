@@ -11,7 +11,12 @@ export default function ListScreen() {
 
   return (
     <View style={styles.container}>
-      <SearchBar query={query} search={search} placeholder="List" />
+      <SearchBar
+        query={query}
+        search={search}
+        placeholder="List"
+        execute={execute}
+      />
       <ScrollView keyboardShouldPersistTaps="always">
         <ListOptions query={query} onSelect={search} execute={execute} />
         <ResultCount

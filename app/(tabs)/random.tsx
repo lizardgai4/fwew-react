@@ -11,7 +11,12 @@ export default function RandomScreen() {
 
   return (
     <View style={styles.container}>
-      <SearchBar query={query} search={search} placeholder="Random" />
+      <SearchBar
+        query={query}
+        search={search}
+        placeholder="Random"
+        execute={execute}
+      />
       <ScrollView keyboardShouldPersistTaps="always">
         <RandomOptions
           numWords={numWords}
