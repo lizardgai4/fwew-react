@@ -17,7 +17,7 @@ export function useList() {
   };
 
   useEffect(() => {
-    if (results.length > 0 && query === "") {
+    if (query === "" && results.length > 0) {
       setResults([]);
       return;
     }
