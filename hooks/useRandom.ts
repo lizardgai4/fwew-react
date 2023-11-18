@@ -7,7 +7,7 @@ export function useRandom() {
   const [query, search] = useState("");
   const [results, setResults] = useState<Results>([]);
 
-  const args = query.trim().split(" where ")[1]?.split(" ");
+  const args = query.trim().split(" where ")[1]?.split(" ") ?? [];
 
   const execute = () => {
     const n = +numWords;
