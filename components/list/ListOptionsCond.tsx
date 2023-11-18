@@ -22,7 +22,7 @@ export function ListOptionsCond({ what, onSelect }: ListOptionsCondProps) {
       {List.CondValues[what.value].map((cond, index) => (
         <TouchableOpacity key={`c_${index}`} onPress={() => onSelect(cond)}>
           <Text style={styles.option}>
-            {cond.value}:{" "}
+            {cond.value}{" "}
             <Text style={[styles.description, { color: colors.placeholder }]}>
               {cond.description}
             </Text>

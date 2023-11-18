@@ -1,17 +1,31 @@
-import EditScreenInfo from "@/components/EditScreenInfo";
-import { Text, View } from "@/components/Themed";
-import { StyleSheet } from "react-native";
+import { ResultCount } from "@/components/ResultCount";
+import { SearchBar } from "@/components/SearchBar";
+import { View } from "@/components/Themed";
+import { RandomOptions } from "@/components/random/RandomOptions";
+import { FwewSearchResults } from "@/components/search/FwewSearchResults";
+import { useRandom } from "@/hooks/useRandom";
+import { ScrollView, StyleSheet } from "react-native";
 
 export default function RandomScreen() {
+  const [numWords, query, results, setNumWords, search, execute] = useRandom();
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Random</Text>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
-      <EditScreenInfo path="app/(tabs)/random.tsx" />
+      <SearchBar query={query} search={search} placeholder="Random" />
+      <ScrollView keyboardShouldPersistTaps="always">
+        <RandomOptions
+          numWords={numWords}
+          setNumWords={setNumWords}
+          query={query}
+          onSelect={search}
+          execute={execute}
+        />
+        <ResultCount
+          visible={query.length > 0 && results.length > 0}
+          resultCount={results.length}
+        />
+        <FwewSearchResults results={[results]} />
+      </ScrollView>
     </View>
   );
 }
@@ -19,16 +33,9 @@ export default function RandomScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
   },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
+  resultCount: {
+    padding: 16,
+    alignSelf: "center",
   },
 });

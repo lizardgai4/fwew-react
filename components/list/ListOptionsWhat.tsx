@@ -17,7 +17,7 @@ export function ListOptionsWhat({ onSelect }: ListOptionsWhatProps) {
       {List.WhatValues.map((what, index) => (
         <TouchableOpacity key={`w_${index}`} onPress={() => onSelect(what)}>
           <Text style={styles.option}>
-            {what.value}:{" "}
+            {what.value}{" "}
             <Text style={[styles.description, { color: colors.placeholder }]}>
               {what.description}
             </Text>
@@ -36,5 +36,6 @@ const styles = StyleSheet.create({
   },
   description: {
     fontWeight: "normal",
+    padding: 16,
   },
 });
