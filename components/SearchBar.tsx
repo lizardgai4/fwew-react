@@ -8,6 +8,7 @@ interface SearchBarProps {
   search: (query: string) => void;
   placeholder?: string;
   autoFocus?: boolean;
+  execute?: () => void;
 }
 
 export function SearchBar({
@@ -15,6 +16,7 @@ export function SearchBar({
   search,
   placeholder = "Search",
   autoFocus = false,
+  execute,
 }: SearchBarProps) {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
@@ -33,6 +35,8 @@ export function SearchBar({
         autoFocus={autoFocus}
         inputMode="search"
         enterKeyHint="search"
+        returnKeyType="search"
+        onSubmitEditing={execute}
       />
       <SearchBarRight showClear={query.length > 0} clear={() => search("")} />
     </View>
