@@ -7,11 +7,13 @@ export function useRandom() {
   const [query, search] = useState("");
   const [results, setResults] = useState<Results>([]);
 
-  const args = query.trim().split(" where ")[1]?.split(" ") ?? [];
+  const parts = query.trim().split(" where ");
+  const n0 = parts[0] ?? "";
+  const args = parts[1]?.split(" ") ?? [];
 
   const execute = () => {
-    const n = +numWords;
-    if (args.length === 0 || numWords === "" || numWords === "0" || isNaN(n)) {
+    const n = +numWords || +n0;
+    if (args.length === 0 || numWords === "0" || n === 0 || isNaN(n)) {
       setResults([]);
       return;
     }
