@@ -20,7 +20,7 @@ export function RandomOptionsNum({
 
   return (
     <View style={styles.container}>
-      <Text style={styles.inputLabel}>Number of random words to get</Text>
+      <Text style={styles.inputLabel}>Number of random words</Text>
       <View style={styles.inputContainer}>
         <TextInput
           keyboardType="number-pad"
