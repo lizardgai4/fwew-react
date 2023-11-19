@@ -24,7 +24,7 @@ export function RandomOptionsNum({
       <View style={styles.inputContainer}>
         <TextInput
           keyboardType="number-pad"
-          value={numWords?.toString() ?? ""}
+          value={numWords ?? ""}
           onChangeText={onSelect}
           style={[styles.input, { borderColor: colors.text }]}
         />

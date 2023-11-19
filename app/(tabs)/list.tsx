@@ -18,7 +18,7 @@ export default function ListScreen() {
         execute={execute}
       />
       <ScrollView keyboardShouldPersistTaps="always">
-        <ListOptions query={query} onSelect={search} execute={execute} />
+        {results.length === 0 && <ListOptions query={query} onSelect={search} execute={execute} />}
         <ResultCount
           visible={query.length > 0 && results.length > 0}
           resultCount={results.length}
