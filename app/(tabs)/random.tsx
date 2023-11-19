@@ -18,13 +18,13 @@ export default function RandomScreen() {
         execute={execute}
       />
       <ScrollView keyboardShouldPersistTaps="always">
-        {results.length === 0 && <RandomOptions
+        <RandomOptions
           numWords={numWords}
           setNumWords={setNumWords}
           query={query}
           onSelect={search}
           execute={execute}
-        />}
+        />
         <ResultCount
           visible={query.length > 0 && results.length > 0}
           resultCount={results.length}
