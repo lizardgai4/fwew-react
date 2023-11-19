@@ -60,11 +60,20 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="more"
+        name="numbers"
         options={{
-          title: "More",
+          title: "Numbers",
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ellipsis-h" color={color} />
+            <TabBarIcon name="calculator" color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="names"
+        options={{
+          title: "Names",
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="user-circle-o" color={color} />
           ),
         }}
       />
