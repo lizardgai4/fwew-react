@@ -1,18 +1,18 @@
 import { Text, TextInput, View } from "@/components/Themed";
 import Colors from "@/constants/Colors";
-import { FontAwesome } from "@expo/vector-icons";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 
 interface RandomOptionsNumProps {
   numWords: string;
-  setNumWords: React.Dispatch<React.SetStateAction<string>>;
   onSelect: (text: string) => void;
+  execute: () => void;
   next: () => void;
 }
 
 export function RandomOptionsNum({
   numWords,
   onSelect,
+  execute,
   next,
 }: RandomOptionsNumProps) {
   const colorScheme = useColorScheme();
@@ -27,13 +27,14 @@ export function RandomOptionsNum({
           value={numWords ?? ""}
           onChangeText={onSelect}
           style={[styles.input, { borderColor: colors.text }]}
+          onSubmitEditing={execute}
         />
         {numWords.length > 0 && (
           <TouchableOpacity
             onPress={next}
             style={[styles.button, { borderColor: colors.text }]}
           >
-            <FontAwesome name="arrow-right" size={24} color={colors.text} />
+            <Text style={{ color: colors.text }}>where...</Text>
           </TouchableOpacity>
         )}
       </View>
@@ -52,6 +53,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     flexDirection: "row",
+    gap: 8,
   },
   input: {
     flex: 1,

@@ -1,5 +1,6 @@
 import Api from "@/constants/Api";
 import { useDebounce } from "@/hooks/useDebounce";
+import type { NumericString } from "@/types/common";
 import type { FwewNumber } from "@/types/number";
 import { useEffect, useState } from "react";
 
@@ -28,17 +29,17 @@ export function useNumber() {
       return;
     }
     if (/^([0-9]+)$/.test(query)) {
-      fetch(`${Api.url}/number/r/${query}`)
+      fetch(Api.number.numberToNavi(query as NumericString))
         .then((res) => res.json())
         .then((data) => setResult(data))
-        .catch((e) => console.log(e));
+        .catch((e) => console.error(e));
       return;
     }
     if (/^([a-zA-ZäÄìÌ]+)$/.test(query)) {
-      fetch(`${Api.url}/number/${query}`)
+      fetch(Api.number.naviToNumber(query))
         .then((res) => res.json())
         .then((data) => setResult(data))
-        .catch((e) => console.log(e));
+        .catch((e) => console.error(e));
       return;
     }
   };

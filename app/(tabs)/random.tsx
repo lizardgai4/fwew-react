@@ -1,13 +1,14 @@
 import { ResultCount } from "@/components/ResultCount";
 import { SearchBar } from "@/components/SearchBar";
 import { View } from "@/components/Themed";
+import { ListResults } from "@/components/list/ListResults";
 import { RandomOptions } from "@/components/random/RandomOptions";
-import { FwewSearchResults } from "@/components/search/FwewSearchResults";
 import { useRandom } from "@/hooks/useRandom";
-import { ScrollView, StyleSheet } from "react-native";
+import { RefreshControl, ScrollView, StyleSheet } from "react-native";
 
 export default function RandomScreen() {
-  const [numWords, query, results, setNumWords, search, execute] = useRandom();
+  const { numWords, query, results, loading, setNumWords, search, execute } =
+    useRandom();
 
   return (
     <View style={styles.container}>
@@ -17,7 +18,12 @@ export default function RandomScreen() {
         placeholder="Random"
         execute={execute}
       />
-      <ScrollView keyboardShouldPersistTaps="always">
+      <ScrollView
+        keyboardShouldPersistTaps="always"
+        refreshControl={
+          <RefreshControl refreshing={loading} onRefresh={execute} />
+        }
+      >
         <RandomOptions
           numWords={numWords}
           setNumWords={setNumWords}
@@ -29,7 +35,7 @@ export default function RandomScreen() {
           visible={query.length > 0 && results.length > 0}
           resultCount={results.length}
         />
-        <FwewSearchResults results={[results]} />
+        <ListResults results={results} />
       </ScrollView>
     </View>
   );
