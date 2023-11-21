@@ -2,7 +2,7 @@ import { Accordion } from "@/components/Accordion";
 import { MonoText } from "@/components/StyledText";
 import { Text } from "@/components/Themed";
 import { FwewResultInfo } from "@/components/search/FwewResultInfo";
-import type { Word } from "fwew.js";
+import type { Word } from "@/types/fwew";
 import { StyleSheet } from "react-native";
 
 interface ResultCardProps {
@@ -14,12 +14,10 @@ export function FwewResultCard({ word }: ResultCardProps) {
     <Accordion
       closedContent={
         <>
-          <Text style={styles.navi}>{word.data.Navi}</Text>
-          <MonoText style={styles.partOfSpeech}>
-            {word.data.PartOfSpeech}
-          </MonoText>
+          <Text style={styles.navi}>{word.Navi}</Text>
+          <MonoText style={styles.partOfSpeech}>{word.PartOfSpeech}</MonoText>
           <Text style={styles.local} numberOfLines={1}>
-            {word.data.EN}
+            {word.EN}
           </Text>
         </>
       }

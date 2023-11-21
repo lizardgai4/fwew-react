@@ -39,6 +39,9 @@ export function RandomOptions({
       cond: "spec",
       spec: "what",
     } as const;
+    if (mode === "num") {
+      onSelect((prev) => `${prev} where `);
+    }
     setMode((prev) => transitionMap[prev]);
   };
 
@@ -48,7 +51,7 @@ export function RandomOptions({
       return;
     }
     setNumWords(num);
-    onSelect(`${num} where `);
+    onSelect(`${num}`);
   };
 
   const handleSelectWhat = (what: ListMenuItem<WhatValue>) => {
@@ -82,8 +85,8 @@ export function RandomOptions({
       {mode === "num" && (
         <RandomOptionsNum
           numWords={numWords}
-          setNumWords={setNumWords}
           onSelect={handleChangeNumWords}
+          execute={execute}
           next={next}
         />
       )}

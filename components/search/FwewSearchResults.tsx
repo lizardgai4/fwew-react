@@ -9,7 +9,7 @@ export function FwewSearchResults({ results }: FwewSearchResultsProps) {
   return (
     <>
       {results.map((result) =>
-        result.map((word) => <FwewResultCard key={word.data.ID} word={word} />)
+        result.map((word) => <FwewResultCard key={word.ID} word={word} />)
       )}
     </>
   );
