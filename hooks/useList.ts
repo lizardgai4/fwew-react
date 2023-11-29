@@ -1,10 +1,10 @@
-import api from "@/constants/Api";
-import type { Results } from "@/types/fwew";
+import { list } from "fwew.js";
+import type { Word } from "fwew.js/dist/types";
 import { useEffect, useState } from "react";
 
 export function useList() {
   const [query, search] = useState("");
-  const [results, setResults] = useState<Results>([]);
+  const [results, setResults] = useState<Word[]>([]);
   const [loading, setLoading] = useState(false);
 
   const args = query.trim().split(" ");
@@ -16,17 +16,10 @@ export function useList() {
       setLoading(false);
       return;
     }
-    fetch(api.list.listFilter(query))
-      .then((res) => res.json())
-      .then((data: Results) => {
-        setResults(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setResults([]);
-        setLoading(false);
-      });
+    list(query).then((data) => {
+      setResults(data);
+      setLoading(false);
+    });
   };
 
   useEffect(() => {

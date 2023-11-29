@@ -1,11 +1,11 @@
-import api from "@/constants/Api";
-import type { Results } from "@/types/fwew";
+import { random } from "fwew.js";
+import type { Word } from "fwew.js/dist/types";
 import { useEffect, useState } from "react";
 
 export function useRandom() {
   const [numWords, setNumWords] = useState<string>("");
   const [query, search] = useState("");
-  const [results, setResults] = useState<Results>([]);
+  const [results, setResults] = useState<Word[]>([]);
   const [loading, setLoading] = useState(false);
 
   const parts = query.trim().split(" where ");
@@ -24,9 +24,8 @@ export function useRandom() {
     }
 
     if (argList.length === 0) {
-      fetch(api.random.random(numWords))
-        .then((res) => res.json())
-        .then((data: Results) => {
+      random(n)
+        .then((data) => {
           setResults(data);
           setLoading(false);
         })
@@ -38,9 +37,8 @@ export function useRandom() {
       return;
     }
 
-    fetch(api.random.randomFilter(numWords, args))
-      .then((res) => res.json())
-      .then((data: Results) => {
+    random(n, args)
+      .then((data) => {
         setResults(data);
         setLoading(false);
       })

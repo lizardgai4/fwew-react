@@ -1,10 +1,10 @@
 import { FwewResultCard } from "@/components/search/FwewResultCard";
-import type { Results } from "@/types/fwew";
+import type { Word } from "fwew.js/dist/types";
 import { StyleSheet } from "react-native";
 import { Text } from "../Themed";
 
 interface ListResultsProps {
-  results: Results;
+  results: Word[];
 }
 
 export function ListResults({ results }: ListResultsProps) {
