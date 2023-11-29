@@ -1,13 +1,12 @@
-import Api from "@/constants/Api";
 import { useDebounce } from "@/hooks/useDebounce";
-import type { NumericString } from "@/types/common";
-import type { FwewNumber } from "@/types/number";
+import { naviToNumber, numberToNavi } from "fwew.js";
+import type { FwewError, FwewNumber } from "fwew.js/dist/types";
 import { useEffect, useState } from "react";
 
 export function useNumber() {
   const [mode, setMode] = useState<"text" | "number">("number");
   const [query, search] = useState("");
-  const [result, setResult] = useState<FwewNumber | null>(null);
+  const [result, setResult] = useState<FwewNumber | FwewError | null>(null);
   const debounce = useDebounce();
 
   const toggleMode = () => {
@@ -29,15 +28,13 @@ export function useNumber() {
       return;
     }
     if (/^([0-9]+)$/.test(query)) {
-      fetch(Api.number.numberToNavi(query as NumericString))
-        .then((res) => res.json())
+      numberToNavi(+query)
         .then((data) => setResult(data))
         .catch((e) => console.error(e));
       return;
     }
     if (/^([a-zA-ZäÄìÌ]+)$/.test(query)) {
-      fetch(Api.number.naviToNumber(query))
-        .then((res) => res.json())
+      naviToNumber(query)
         .then((data) => setResult(data))
         .catch((e) => console.error(e));
       return;

@@ -1,6 +1,6 @@
 import { Text, View } from "@/components/Themed";
 import Colors from "@/constants/Colors";
-import type { Word } from "@/types/fwew";
+import type { Word } from "fwew.js/dist/types";
 import { StyleSheet, useColorScheme } from "react-native";
 
 interface ResultInfoProps {
