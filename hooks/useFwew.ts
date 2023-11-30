@@ -1,6 +1,6 @@
 import { useDebounce } from "@/hooks/useDebounce";
 import { search as fwewSearch } from "fwew.js";
-import type { Word } from "fwew.js/dist/types";
+import type { Word } from "fwew.js";
 import { useEffect, useState } from "react";
 
 export function useFwew() {

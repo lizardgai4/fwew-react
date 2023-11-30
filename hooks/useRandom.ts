@@ -1,5 +1,5 @@
 import { random } from "fwew.js";
-import type { Word } from "fwew.js/dist/types";
+import type { Word } from "fwew.js";
 import { useEffect, useState } from "react";
 
 export function useRandom() {

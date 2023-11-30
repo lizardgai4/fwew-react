@@ -1,5 +1,5 @@
 import { FwewResultCard } from "@/components/search/FwewResultCard";
-import type { Word } from "fwew.js/dist/types";
+import type { Word } from "fwew.js";
 interface FwewSearchResultsProps {
   results: Word[][];
 }
