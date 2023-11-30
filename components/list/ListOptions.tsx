@@ -2,13 +2,9 @@ import { Text } from "@/components/Themed";
 import { ListOptionsCond } from "@/components/list/ListOptionsCond";
 import { ListOptionsSpec } from "@/components/list/ListOptionsSpec";
 import { ListOptionsWhat } from "@/components/list/ListOptionsWhat";
-import type {
-  ListExpressionAttribute,
-  ListMenuCond,
-  ListMenuItem,
-  WhatValue,
-} from "@/types/list";
-import { useEffect, useRef, useState } from "react";
+import { useListOptions } from "@/hooks/useListOptions";
+import type { ListMenuCond, ListMenuItem, WhatValue } from "@/types/list";
+import { useEffect } from "react";
 import { StyleSheet } from "react-native";
 
 interface ListOptionsProps {
@@ -18,38 +14,28 @@ interface ListOptionsProps {
 }
 
 export function ListOptions({ query, onSelect, execute }: ListOptionsProps) {
-  const [mode, setMode] = useState<ListExpressionAttribute>("what");
-  const whatRef = useRef<ListMenuItem<WhatValue>>();
+  const { whatRef, mode, setMode, nextMode } = useListOptions();
 
   const andButtonDisabled =
     query.length === 0 ||
     query.trim().split(" ").length < 3 ||
     (query.trim().split(" ").length + 1) % 4 !== 0 ||
-    query.endsWith("and");
-
-  const next = () => {
-    const transitionMap = {
-      what: "cond",
-      cond: "spec",
-      spec: "what",
-    } as const;
-    setMode((prev) => transitionMap[prev]);
-  };
+    query.trim().endsWith("and");
 
   const handleSelectWhat = (what: ListMenuItem<WhatValue>) => {
     onSelect((prev) => (prev ? `${prev} ${what.value} ` : what.value));
     whatRef.current = what;
-    next();
+    nextMode();
   };
 
   const handleSelectCond = (cond: ListMenuCond[WhatValue][number]) => {
     onSelect((prev) => (prev ? `${prev} ${cond.value} ` : cond.value));
-    next();
+    nextMode();
   };
 
   const handleSelectionSpec = () => {
     onSelect((prev) => (prev ? `${prev} and ` : ""));
-    next();
+    nextMode();
   };
 
   useEffect(() => {
