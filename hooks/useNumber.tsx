@@ -22,21 +22,19 @@ export function useNumber() {
     setResult(null);
   };
 
-  const doSearch = () => {
+  const doSearch = async () => {
     if (query === "") {
       setResult(null);
       return;
     }
     if (/^([0-9]+)$/.test(query)) {
-      numberToNavi(+query)
-        .then((data) => setResult(data))
-        .catch((e) => console.error(e));
+      const data = await numberToNavi(+query);
+      setResult(data);
       return;
     }
     if (/^([a-zA-ZäÄìÌ]+)$/.test(query)) {
-      naviToNumber(query)
-        .then((data) => setResult(data))
-        .catch((e) => console.error(e));
+      const data = await naviToNumber(query);
+      setResult(data);
       return;
     }
   };

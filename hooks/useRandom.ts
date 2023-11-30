@@ -13,40 +13,23 @@ export function useRandom() {
   const args = parts[1];
   const argList = args?.split(" ") ?? [];
 
-  const execute = () => {
+  const execute = async () => {
     setLoading(true);
     const n = +numWords || +n0;
-
     if (numWords === "0" || n === 0 || isNaN(n) || n < 0) {
       setResults([]);
       setLoading(false);
       return;
     }
-
     if (argList.length === 0) {
-      random(n)
-        .then((data) => {
-          setResults(data);
-          setLoading(false);
-        })
-        .catch((err) => {
-          console.error(err);
-          setResults([]);
-          setLoading(false);
-        });
+      const data = await random(n);
+      setResults(data);
+      setLoading(false);
       return;
     }
-
-    random(n, args)
-      .then((data) => {
-        setResults(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setResults([]);
-        setLoading(false);
-      });
+    const data = await random(n, args);
+    setResults(data);
+    setLoading(false);
   };
 
   useEffect(() => {

@@ -9,16 +9,15 @@ export function useFwew() {
   const [resultCount, setResultCount] = useState(0);
   const debounce = useDebounce();
 
-  const doSearch = () => {
+  const doSearch = async () => {
     if (query === "") {
       setResults([]);
       setResultCount(0);
       return;
     }
-    fwewSearch("en", query).then((data) => {
-      setResults(data);
-      setResultCount(data.reduce((acc, cur) => acc + cur.length, 0));
-    });
+    const data = await fwewSearch("en", query);
+    setResults(data);
+    setResultCount(data.reduce((acc, cur) => acc + cur.length, 0));
   };
 
   useEffect(() => {
