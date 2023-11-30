@@ -2,6 +2,7 @@ import { Text } from "@/components/Themed";
 import { ListOptionsCond } from "@/components/list/ListOptionsCond";
 import { ListOptionsSpec } from "@/components/list/ListOptionsSpec";
 import { ListOptionsWhat } from "@/components/list/ListOptionsWhat";
+import { WhatValues } from "@/constants/List";
 import { useListOptions } from "@/hooks/useListOptions";
 import type { ListMenuCond, ListMenuItem, WhatValue } from "@/types/list";
 import { useEffect } from "react";
@@ -22,25 +23,24 @@ export function ListOptions({ query, onSelect, execute }: ListOptionsProps) {
     (query.trim().split(" ").length + 1) % 4 !== 0 ||
     query.trim().endsWith("and");
 
-  const handleSelectWhat = (what: ListMenuItem<WhatValue>) => {
-    onSelect((prev) => (prev ? `${prev} ${what.value} ` : what.value));
-    whatRef.current = what;
-    nextMode();
-  };
-
-  const handleSelectCond = (cond: ListMenuCond[WhatValue][number]) => {
-    onSelect((prev) => (prev ? `${prev} ${cond.value} ` : cond.value));
-    nextMode();
-  };
-
-  const handleSelectionSpec = () => {
+  const handleSelect = (
+    item?: ListMenuItem<WhatValue> | ListMenuCond[WhatValue][number]
+  ) => {
+    if (item) {
+      onSelect((prev) => (prev ? `${prev} ${item.value} ` : item.value));
+      if (WhatValues.includes(item.value as WhatValue)) {
+        whatRef.current = item as ListMenuItem<WhatValue>;
+      }
+      nextMode();
+      return;
+    }
     onSelect((prev) => (prev ? `${prev} and ` : ""));
     nextMode();
   };
 
   useEffect(() => {
-    if (query.includes("  ")) {
-      onSelect((prev) => prev.replace("  ", " "));
+    if (/\s\s+/g.test(query)) {
+      onSelect((prev) => prev.replace(/\s\s+/g, " "));
     }
     if (query === "") {
       setMode("what");
@@ -50,14 +50,14 @@ export function ListOptions({ query, onSelect, execute }: ListOptionsProps) {
   return (
     <>
       <Text style={styles.title}>LIST OPTIONS</Text>
-      {mode === "what" && <ListOptionsWhat onSelect={handleSelectWhat} />}
+      {mode === "what" && <ListOptionsWhat onSelect={handleSelect} />}
       {mode === "cond" && (
-        <ListOptionsCond what={whatRef.current} onSelect={handleSelectCond} />
+        <ListOptionsCond what={whatRef.current} onSelect={handleSelect} />
       )}
       {mode === "spec" && (
         <ListOptionsSpec
           execute={execute}
-          handleSelectionSpec={handleSelectionSpec}
+          handleSelectionSpec={handleSelect}
           andButtonDisabled={andButtonDisabled}
         />
       )}

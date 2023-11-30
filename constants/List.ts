@@ -1,4 +1,4 @@
-import type { ListMenu } from "@/types/list";
+import { ListMenu } from "@/types/list";
 
 export const List: ListMenu = {
   WhatValues: [
@@ -62,3 +62,5 @@ export const List: ListMenu = {
     ],
   },
 };
+
+export const WhatValues = List.WhatValues.map((item) => item.value);
