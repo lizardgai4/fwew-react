@@ -1,5 +1,5 @@
 import { Text, View } from "@/components/Themed";
-import type { FwewNumber, FwewError } from "fwew.js/dist/types";
+import type { FwewNumber, FwewError } from "fwew.js";
 import { StyleSheet } from "react-native";
 
 interface NumberResultCardProps {
@@ -21,7 +21,7 @@ export function NumberResultCard({ result }: NumberResultCardProps) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.navi}>{result.navi}</Text>
+      <Text style={styles.navi}>{result.name}</Text>
       <View style={styles.numbersContainer}>
         <View style={styles.number}>
           <Text style={styles.label}>octal:</Text>

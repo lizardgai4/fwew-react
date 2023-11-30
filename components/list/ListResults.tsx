@@ -1,5 +1,5 @@
 import { FwewResultCard } from "@/components/search/FwewResultCard";
-import type { Word } from "fwew.js/dist/types";
+import type { Word } from "fwew.js";
 import { StyleSheet } from "react-native";
 import { Text } from "../Themed";
 
