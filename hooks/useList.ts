@@ -9,17 +9,16 @@ export function useList() {
 
   const args = query.trim().split(" ");
 
-  const execute = () => {
+  const execute = async () => {
     setLoading(true);
     if (args.length === 0) {
       setResults([]);
       setLoading(false);
       return;
     }
-    list(query).then((data) => {
-      setResults(data);
-      setLoading(false);
-    });
+    const data = await list(query);
+    setResults(data);
+    setLoading(false);
   };
 
   useEffect(() => {
