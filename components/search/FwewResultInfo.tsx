@@ -36,7 +36,7 @@ export function FwewResultInfo({ word }: ResultInfoProps) {
     <View style={[styles.container, { borderColor: text }]}>
       <TouchableOpacity
         onPress={() => playSound(word.ID)}
-        style={styles.audioButton}
+        style={[styles.audioButton, { borderColor: text }]}
       >
         <FontAwesome name="volume-up" size={24} color={text} />
         <Text style={styles.audioButtonText}> Audio</Text>
@@ -148,8 +148,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#7494ba",
+    borderWidth: 1,
     padding: 4,
+    marginBottom: 16,
   },
   audioButtonText: {
     fontSize: 16,
