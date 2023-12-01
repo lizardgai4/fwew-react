@@ -7,13 +7,13 @@ import { Audio } from "expo-av";
 import type { Word } from "fwew.js";
 import { useEffect, useState } from "react";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
-import { BoldText, UnderlinedText } from "../StyledText";
+import { BoldText, UnderlinedText } from "./StyledText";
 
 interface ResultInfoProps {
   word: Word;
 }
 
-export function FwewResultInfo({ word }: ResultInfoProps) {
+export function ResultInfo({ word }: ResultInfoProps) {
   const [sound, setSound] = useState(new Audio.Sound());
   const colorScheme = useColorScheme();
   const { text } = Colors[colorScheme ?? "light"];

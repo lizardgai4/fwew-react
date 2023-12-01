@@ -1,4 +1,4 @@
-import { FwewResultCard } from "@/components/search/FwewResultCard";
+import { ResultCard } from "@/components/ResultCard";
 import type { Word } from "fwew.js";
 import { StyleSheet } from "react-native";
 import { Text } from "../Themed";
@@ -14,7 +14,7 @@ export function ListResults({ results }: ListResultsProps) {
   return (
     <>
       {results.map((word) => (
-        <FwewResultCard key={word.ID} word={word} />
+        <ResultCard key={word.ID} word={word} />
       ))}
     </>
   );
