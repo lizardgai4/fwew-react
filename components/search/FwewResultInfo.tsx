@@ -1,12 +1,13 @@
 import { Text, View } from "@/components/Themed";
+import AudioResources from "@/constants/AudioResources";
 import Colors from "@/constants/Colors";
+import { PartOfSpeech } from "@/constants/PartOfSpeech";
 import { FontAwesome } from "@expo/vector-icons";
 import { Audio } from "expo-av";
 import type { Word } from "fwew.js";
 import { useEffect, useState } from "react";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 import { BoldText, UnderlinedText } from "../StyledText";
-import { PartOfSpeech } from "@/constants/PartOfSpeech";
 
 interface ResultInfoProps {
   word: Word;
@@ -18,7 +19,7 @@ export function FwewResultInfo({ word }: ResultInfoProps) {
   const { text } = Colors[colorScheme ?? "light"];
 
   const playSound = async (wordId: string): Promise<void> => {
-    const audioUrl = `https://s.learnnavi.org/audio/vocab/${wordId}.mp3`;
+    const audioUrl = `${AudioResources.URL}/${wordId}.mp3`;
     const { sound } = await Audio.Sound.createAsync({ uri: audioUrl });
     setSound(sound);
     await sound.playAsync();
