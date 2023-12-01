@@ -122,8 +122,6 @@ function Breakdown({
       }
     }
   }
-  const str = `${before}${stressed}${after}`;
-  console.log({ Syllables, syllables, str, Stressed, stressedIndex });
   return (
     <Text style={styles.value}>
       {before}
