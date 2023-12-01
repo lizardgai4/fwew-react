@@ -1,7 +1,7 @@
 import { Accordion } from "@/components/Accordion";
 import { MonoText } from "@/components/StyledText";
 import { Text } from "@/components/Themed";
-import { FwewResultInfo } from "@/components/search/FwewResultInfo";
+import { ResultInfo } from "@/components/ResultInfo";
 import type { Word } from "fwew.js";
 import { StyleSheet } from "react-native";
 
@@ -9,7 +9,7 @@ interface ResultCardProps {
   word: Word;
 }
 
-export function FwewResultCard({ word }: ResultCardProps) {
+export function ResultCard({ word }: ResultCardProps) {
   return (
     <Accordion
       closedContent={
@@ -21,7 +21,7 @@ export function FwewResultCard({ word }: ResultCardProps) {
           </Text>
         </>
       }
-      openedContent={<FwewResultInfo word={word} />}
+      openedContent={<ResultInfo word={word} />}
     />
   );
 }
