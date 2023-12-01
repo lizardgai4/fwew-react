@@ -26,7 +26,7 @@ export function ListOptions({ query, onSelect, execute }: ListOptionsProps) {
   const handleSelect = (
     item?: ListMenuItem<WhatValue> | ListMenuCond[WhatValue][number]
   ) => {
-    if (item) {
+    if (item?.value) {
       onSelect((prev) => (prev ? `${prev} ${item.value} ` : item.value));
       if (WhatValues.includes(item.value as WhatValue)) {
         whatRef.current = item as ListMenuItem<WhatValue>;
