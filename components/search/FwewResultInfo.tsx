@@ -122,6 +122,9 @@ function Breakdown({
       }
     }
   }
+  if (syllables.length === 1) {
+    return <Text style={styles.value}>{syllables[0]}</Text>;
+  }
   return (
     <Text style={styles.value}>
       {before}
