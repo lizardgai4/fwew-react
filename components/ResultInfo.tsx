@@ -42,12 +42,12 @@ export function ResultInfo({ word }: ResultInfoProps) {
         <FontAwesome name="volume-up" size={24} color={text} />
         <Text style={styles.audioButtonText}> Audio</Text>
       </TouchableOpacity>
-      <Pronunciation {...word} />
       <DetailItem
         label="Part of Speech"
         value={`${word.PartOfSpeech} (${PartOfSpeech.en[word.PartOfSpeech]})`}
       />
       <DetailItem label="Definition" value={word.EN} />
+      <Pronunciation {...word} />
       {word.PartOfSpeech.startsWith("v") && (
         <>
           <DetailItem label="Infixes (dots)" value={word.InfixDots} />
