@@ -27,27 +27,11 @@ export function NameSingle() {
   const disabled = !numNames || !numSyllables;
 
   return (
-    <View style={styles.container}>
+    <View>
       {/* title */}
-      <Text
-        style={{
-          fontSize: 24,
-          fontWeight: "bold",
-          textAlign: "center",
-          padding: 10,
-        }}
-      >
-        Single
-      </Text>
+      <Text style={styles.title}>Single</Text>
       {/* n input */}
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: 8,
-        }}
-      >
+      <View style={styles.inputContainer}>
         <TextInput
           placeholder="Number of names to generate (1-50)"
           placeholderTextColor={colors.placeholder}
@@ -62,25 +46,13 @@ export function NameSingle() {
         />
         <TouchableOpacity
           onPress={() => updateNumNames("")}
-          style={{
-            borderWidth: 1,
-            borderColor: colors.text,
-            paddingVertical: 12,
-            paddingHorizontal: 10,
-          }}
+          style={[styles.clearButton, { borderColor: colors.text }]}
         >
           <FontAwesome name="close" size={24} color={colors.text} />
         </TouchableOpacity>
       </View>
       {/* s input */}
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: 8,
-        }}
-      >
+      <View style={styles.inputContainer}>
         <TextInput
           placeholder="Number of syllables in the name (1-4)"
           placeholderTextColor={colors.placeholder}
@@ -95,25 +67,13 @@ export function NameSingle() {
         />
         <TouchableOpacity
           onPress={() => updateNumSyllables("")}
-          style={{
-            borderWidth: 1,
-            borderColor: colors.text,
-            paddingVertical: 12,
-            paddingHorizontal: 10,
-          }}
+          style={[styles.clearButton, { borderColor: colors.text }]}
         >
           <FontAwesome name="close" size={24} color={colors.text} />
         </TouchableOpacity>
       </View>
       {/* dialect switch */}
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 8,
-        }}
-      >
+      <View style={styles.switch}>
         <Text>Forest</Text>
         <Switch
           value={dialect === "reef"}
@@ -125,23 +85,17 @@ export function NameSingle() {
       <TouchableOpacity
         onPress={execute}
         disabled={disabled}
-        style={{
-          borderWidth: 1,
-          borderColor: disabled ? colors.placeholder : colors.text,
-          paddingVertical: 12,
-          paddingHorizontal: 10,
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "row",
-          gap: 8,
-        }}
+        style={[
+          styles.generateButton,
+          { borderColor: disabled ? colors.placeholder : colors.text },
+        ]}
       >
         <FontAwesome name="refresh" size={24} color={colors.text} />
         <Text>Generate</Text>
       </TouchableOpacity>
       <ScrollView>
         {names.map((name, i) => (
-          <Text key={i} selectable style={{ padding: 10, fontSize: 16 }}>
+          <Text key={i} selectable style={styles.name}>
             {name}
           </Text>
         ))}
@@ -151,11 +105,46 @@ export function NameSingle() {
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    textAlign: "center",
+    padding: 10,
+  },
+  inputContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 8,
+  },
   input: {
     flex: 1,
     padding: 10,
     fontSize: 16,
     borderWidth: 1,
+  },
+  clearButton: {
+    borderWidth: 1,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+  },
+  switch: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 8,
+  },
+  generateButton: {
+    borderWidth: 1,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    gap: 8,
+  },
+  name: {
+    padding: 10,
+    fontSize: 16,
   },
 });
