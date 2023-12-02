@@ -1,3 +1,4 @@
+import { BoldText, UnderlinedText } from "@/components/StyledText";
 import { Text, View } from "@/components/Themed";
 import AudioResources from "@/constants/AudioResources";
 import Colors from "@/constants/Colors";
@@ -7,7 +8,6 @@ import { Audio } from "expo-av";
 import type { Word } from "fwew.js";
 import { useEffect, useState } from "react";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
-import { BoldText, UnderlinedText } from "./StyledText";
 
 interface ResultInfoProps {
   word: Word;
