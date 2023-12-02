@@ -1,8 +1,7 @@
 import { useDebounce } from "@/hooks/useDebounce";
+import type { NumericString } from "@/types/common";
 import { Dialect, nameSingle } from "fwew.js";
 import { useEffect, useState } from "react";
-
-type NumericString = `${number}`;
 
 export default function useNameSingle() {
   const [numNames, setNumNames] = useState<NumericString | undefined>();
