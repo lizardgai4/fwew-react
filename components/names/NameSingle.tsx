@@ -24,6 +24,8 @@ export function NameSingle() {
     execute,
   } = useNameSingle();
 
+  const disabled = !numNames || !numSyllables;
+
   return (
     <View style={styles.container}>
       {/* title */}
@@ -122,9 +124,10 @@ export function NameSingle() {
       {/* generate button */}
       <TouchableOpacity
         onPress={execute}
+        disabled={disabled}
         style={{
           borderWidth: 1,
-          borderColor: colors.text,
+          borderColor: disabled ? colors.placeholder : colors.text,
           paddingVertical: 12,
           paddingHorizontal: 10,
           alignItems: "center",
