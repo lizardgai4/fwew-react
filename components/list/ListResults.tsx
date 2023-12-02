@@ -1,7 +1,7 @@
 import { ResultCard } from "@/components/ResultCard";
+import { Text } from "@/components/Themed";
 import type { Word } from "fwew.js";
 import { StyleSheet } from "react-native";
-import { Text } from "../Themed";
 
 interface ListResultsProps {
   results: Word[];
