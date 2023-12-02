@@ -1,19 +1,11 @@
 import { NumericTextInput } from "@/components/NumericTextInput";
 import { SwitchInput } from "@/components/SwitchInput";
 import { Text, View } from "@/components/Themed";
-import Colors from "@/constants/Colors";
 import { useNameFull } from "@/hooks/useNameFull";
-import { FontAwesome } from "@expo/vector-icons";
-import {
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  useColorScheme,
-} from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
+import { GenerateButton } from "./GenerateButton";
 
 export function NameFull() {
-  const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? "light"];
   const {
     names,
     numNames,
@@ -69,17 +61,7 @@ export function NameFull() {
         value={dialect === "reef"}
         onValueChange={(isReef) => setDialect(isReef ? "reef" : "forest")}
       />
-      <TouchableOpacity
-        onPress={execute}
-        disabled={disabled}
-        style={[
-          styles.generateButton,
-          { borderColor: disabled ? colors.placeholder : colors.text },
-        ]}
-      >
-        <FontAwesome name="refresh" size={24} color={colors.text} />
-        <Text>Generate</Text>
-      </TouchableOpacity>
+      <GenerateButton execute={execute} disabled={disabled} />
       <ScrollView>
         {names.map((name, i) => (
           <Text key={i} selectable style={styles.name}>
@@ -100,15 +82,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     padding: 10,
-  },
-  generateButton: {
-    borderWidth: 1,
-    paddingVertical: 12,
-    paddingHorizontal: 10,
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "row",
-    gap: 8,
   },
   name: {
     padding: 10,
