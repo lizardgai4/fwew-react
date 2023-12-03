@@ -1,9 +1,10 @@
+import { Accordion } from "@/components/Accordion";
 import { NumericTextInput } from "@/components/NumericTextInput";
 import { SwitchInput } from "@/components/SwitchInput";
 import { Text, View } from "@/components/Themed";
+import { GenerateButton } from "@/components/names/GenerateButton";
 import { useNameFull } from "@/hooks/useNameFull";
 import { ScrollView, StyleSheet } from "react-native";
-import { GenerateButton } from "./GenerateButton";
 
 export function NameFull() {
   const {
@@ -26,62 +27,79 @@ export function NameFull() {
   const disabled = !numNames || !syllables1 || !syllables2 || !syllables3;
 
   return (
-    <View style={styles.container}>
+    <ScrollView>
       <Text style={styles.title}>Full</Text>
-      <NumericTextInput
-        value={numNames}
-        onChangeText={updateNumNames}
-        placeholder="Number of names to generate (1-50)"
-        autoFocus
-      />
-      <NumericTextInput
-        value={syllables1}
-        onChangeText={updateSyllables1}
-        placeholder="Number of syllables in the first name (1-4)"
-      />
-      <NumericTextInput
-        value={syllables2}
-        onChangeText={updateSyllables2}
-        placeholder="Number of syllables in the family name (1-4)"
-      />
-      <NumericTextInput
-        value={syllables3}
-        onChangeText={updateSyllables3}
-        placeholder="Number of syllables in the parent's name (1-4)"
-      />
-      <SwitchInput
-        leftLabel="-'itan"
-        rightLabel="-'ite"
-        value={ending === "'ite"}
-        onValueChange={(isItan) => setEnding(isItan ? "'ite" : "'itan")}
-      />
-      <SwitchInput
-        leftLabel="Forest"
-        rightLabel="Reef"
-        value={dialect === "reef"}
-        onValueChange={(isReef) => setDialect(isReef ? "reef" : "forest")}
+      <Accordion
+        closedContent={<Text>Options</Text>}
+        openedContent={
+          <>
+            <Text style={styles.label}>Number of Names</Text>
+            <NumericTextInput
+              value={numNames}
+              onChangeText={updateNumNames}
+              placeholder="1-50"
+              autoFocus
+            />
+            <Text style={styles.label}>Number of First Name Syllables</Text>
+            <NumericTextInput
+              value={syllables1}
+              onChangeText={updateSyllables1}
+              placeholder="1-4"
+            />
+            <Text style={styles.label}>Number of Family Name Syllables</Text>
+            <NumericTextInput
+              value={syllables2}
+              onChangeText={updateSyllables2}
+              placeholder="1-4"
+            />
+            <Text style={styles.label}>Number of Parent's Name Syllables</Text>
+            <NumericTextInput
+              value={syllables3}
+              onChangeText={updateSyllables3}
+              placeholder="1-4"
+            />
+            <Text style={styles.label}>
+              Name Ending ('itan for male, 'ite for female)
+            </Text>
+            <SwitchInput
+              leftLabel="-'itan"
+              rightLabel="-'ite"
+              value={ending === "'ite"}
+              onValueChange={(isItan) => setEnding(isItan ? "'ite" : "'itan")}
+            />
+            <Text style={styles.label}>Dialect</Text>
+            <SwitchInput
+              leftLabel="Forest"
+              rightLabel="Reef"
+              value={dialect === "reef"}
+              onValueChange={(isReef) => setDialect(isReef ? "reef" : "forest")}
+            />
+          </>
+        }
       />
       <GenerateButton execute={execute} disabled={disabled} />
-      <ScrollView>
+      <View>
         {names.map((name, i) => (
           <Text key={i} selectable style={styles.name}>
             {name}
           </Text>
         ))}
-      </ScrollView>
-    </View>
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   title: {
     fontSize: 24,
     fontWeight: "bold",
     textAlign: "center",
     padding: 10,
+  },
+  label: {
+    padding: 10,
+    fontSize: 16,
+    fontWeight: "bold",
   },
   name: {
     padding: 10,

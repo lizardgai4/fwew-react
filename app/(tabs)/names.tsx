@@ -1,11 +1,11 @@
 import { View } from "@/components/Themed";
-import { NameAlu } from "@/components/names/NameAlu";
+import { NameFull } from "@/components/names/NameFull";
 import { StyleSheet } from "react-native";
 
 export default function NamesScreen() {
   return (
     <View style={styles.container}>
-      <NameAlu />
+      <NameFull />
     </View>
   );
 }
