@@ -3,7 +3,8 @@ import { NumericTextInput } from "@/components/NumericTextInput";
 import { OptionItem } from "@/components/OptionItem";
 import { Text, View } from "@/components/Themed";
 import { GenerateButton } from "@/components/names/GenerateButton";
-import { Dialects } from "@/constants/Names";
+import stringsNameSingle from "@/constants/ui/name-single";
+import stringsNames from "@/constants/ui/names";
 import useNameSingle from "@/hooks/useNameSingle";
 import { ScrollView, StyleSheet } from "react-native";
 
@@ -24,24 +25,26 @@ export default function NameSingleScreen() {
   return (
     <ScrollView>
       <Accordion
-        closedContent={<Text>Options</Text>}
+        closedContent={<Text>{stringsNames.en.options}</Text>}
         openedContent={
           <>
-            <Text style={styles.label}>Number of Names to Generate</Text>
+            <Text style={styles.label}>{stringsNames.en.numNames}</Text>
             <NumericTextInput
               placeholder="1-50"
               value={numNames}
               onChangeText={updateNumNames}
               autoFocus
             />
-            <Text style={styles.label}>Number of Syllables</Text>
+            <Text style={styles.label}>
+              {stringsNameSingle.en.numSyllables}
+            </Text>
             <NumericTextInput
               placeholder="1-4"
               value={numSyllables}
               onChangeText={updateNumSyllables}
             />
-            <Text style={styles.label}>Dialect</Text>
-            {Dialects.map((item, i) => (
+            <Text style={styles.label}>{stringsNames.en.dialect}</Text>
+            {stringsNames.en.dialects.map((item, i) => (
               <OptionItem
                 key={`ns_d_${i}`}
                 value={item}

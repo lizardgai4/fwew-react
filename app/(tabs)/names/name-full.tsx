@@ -4,7 +4,8 @@ import { OptionItem } from "@/components/OptionItem";
 import { Text, View } from "@/components/Themed";
 import { GenerateButton } from "@/components/names/GenerateButton";
 import Colors from "@/constants/Colors";
-import { Dialects, NameEndings } from "@/constants/Names";
+import stringsNameFull from "@/constants/ui/name-full";
+import stringsNames from "@/constants/ui/names";
 import { useNameFull } from "@/hooks/useNameFull";
 import { ScrollView, StyleSheet, useColorScheme } from "react-native";
 
@@ -33,43 +34,41 @@ export default function NameFullScreen() {
   return (
     <ScrollView>
       <Accordion
-        closedContent={<Text>Options</Text>}
+        closedContent={<Text>{stringsNames.en.options}</Text>}
         openedContent={
           <>
-            <Text style={styles.label}>Number of Names to Generate</Text>
+            <Text style={styles.label}>{stringsNames.en.numNames}</Text>
             <NumericTextInput
               value={numNames}
               onChangeText={updateNumNames}
               placeholder="1-50"
               autoFocus
             />
-            <Text style={styles.label}>Number of Syllables in First Name </Text>
+            <Text style={styles.label}>{stringsNameFull.en.numSyllables1}</Text>
             <NumericTextInput
               value={syllables1}
               onChangeText={updateSyllables1}
               placeholder="1-4"
             />
-            <Text style={styles.label}>Number of Syllables in Family Name</Text>
+            <Text style={styles.label}>{stringsNameFull.en.numSyllables2}</Text>
             <NumericTextInput
               value={syllables2}
               onChangeText={updateSyllables2}
               placeholder="1-4"
             />
-            <Text style={styles.label}>
-              Number of Syllables in Parent's Name
-            </Text>
+            <Text style={styles.label}>{stringsNameFull.en.numSyllables3}</Text>
             <NumericTextInput
               value={syllables3}
               onChangeText={updateSyllables3}
               placeholder="1-4"
             />
-            <Text style={styles.label}>Name Ending</Text>
+            <Text style={styles.label}>{stringsNameFull.en.nameEnding}</Text>
             <Text
               style={{ color: colors.placeholder, padding: 10, paddingTop: 0 }}
             >
-              -'itan for male, -'ite for female, -'itu for non-binary
+              {stringsNameFull.en.nameEndingHint}
             </Text>
-            {NameEndings.map((item, i) => (
+            {stringsNameFull.en.nameEndings.map((item, i) => (
               <OptionItem
                 key={`nf_e_${i}`}
                 value={item}
@@ -77,8 +76,8 @@ export default function NameFullScreen() {
                 onSelect={() => setEnding(item)}
               />
             ))}
-            <Text style={styles.label}>Dialect</Text>
-            {Dialects.map((item, i) => (
+            <Text style={styles.label}>{stringsNames.en.dialect}</Text>
+            {stringsNames.en.dialects.map((item, i) => (
               <OptionItem
                 key={`nf_d_${i}`}
                 value={item}

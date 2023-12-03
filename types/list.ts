@@ -38,6 +38,6 @@ export type ListMenuCond = {
 };
 
 export type ListMenu = {
-  WhatValues: ListMenuWhat;
-  CondValues: ListMenuCond;
+  whatValues: ListMenuWhat;
+  condValues: ListMenuCond;
 };

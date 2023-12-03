@@ -1,5 +1,6 @@
 import { TextInput, View } from "@/components/Themed";
 import Colors from "@/constants/Colors";
+import strings from "@/constants/ui/numbers";
 import { FontAwesome } from "@expo/vector-icons";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 
@@ -26,6 +27,12 @@ export function NumberSearchBar({
       <TextInput
         value={query}
         onChangeText={search}
+        placeholder={
+          mode === "number"
+            ? strings.en.placeholderNumeric
+            : strings.en.placeholderAlpha
+        }
+        placeholderTextColor={colors.placeholder}
         keyboardType={mode === "number" ? "number-pad" : "default"}
         style={[styles.input, { borderColor: colors.text }]}
         autoCapitalize="none"

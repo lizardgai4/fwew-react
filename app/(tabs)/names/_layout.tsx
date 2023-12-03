@@ -1,7 +1,9 @@
-import { Pressable, useColorScheme } from "react-native";
-import { Link, Stack } from "expo-router";
 import Colors from "@/constants/Colors";
+import stringsNames from "@/constants/ui/names";
+import stringsScreens from "@/constants/ui/screens";
 import { FontAwesome } from "@expo/vector-icons";
+import { Link, Stack } from "expo-router";
+import { Pressable, useColorScheme } from "react-native";
 
 export default function StackLayout() {
   const colorScheme = useColorScheme();
@@ -12,7 +14,7 @@ export default function StackLayout() {
       <Stack.Screen
         name="index"
         options={{
-          title: "Names",
+          title: stringsScreens.en.names,
           headerRight: () => (
             <Link href="/settings" asChild>
               <Pressable>
@@ -32,7 +34,7 @@ export default function StackLayout() {
       <Stack.Screen
         name="name-single"
         options={{
-          title: "Single",
+          title: stringsNames.en.single,
           headerRight: () => (
             <Link href="/settings" asChild>
               <Pressable>
@@ -52,7 +54,7 @@ export default function StackLayout() {
       <Stack.Screen
         name="name-full"
         options={{
-          title: "Full",
+          title: stringsNames.en.full,
           headerRight: () => (
             <Link href="/settings" asChild>
               <Pressable>
@@ -72,7 +74,7 @@ export default function StackLayout() {
       <Stack.Screen
         name="name-alu"
         options={{
-          title: "Alu",
+          title: stringsNames.en.alu,
           headerRight: () => (
             <Link href="/settings" asChild>
               <Pressable>

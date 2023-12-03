@@ -3,6 +3,7 @@ import { SearchBar } from "@/components/SearchBar";
 import { View } from "@/components/Themed";
 import { ListOptions } from "@/components/list/ListOptions";
 import { ListResults } from "@/components/list/ListResults";
+import strings from "@/constants/ui/list";
 import { useList } from "@/hooks/useList";
 import { RefreshControl, ScrollView, StyleSheet } from "react-native";
 
@@ -14,7 +15,7 @@ export default function ListScreen() {
       <SearchBar
         query={query}
         search={search}
-        placeholder="List"
+        placeholder={strings.en.list}
         execute={execute}
       />
       <ScrollView

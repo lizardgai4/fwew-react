@@ -3,6 +3,7 @@ import { SearchBar } from "@/components/SearchBar";
 import { View } from "@/components/Themed";
 import { ListResults } from "@/components/list/ListResults";
 import { RandomOptions } from "@/components/random/RandomOptions";
+import strings from "@/constants/ui/random";
 import { useRandom } from "@/hooks/useRandom";
 import { RefreshControl, ScrollView, StyleSheet } from "react-native";
 
@@ -15,7 +16,7 @@ export default function RandomScreen() {
       <SearchBar
         query={query}
         search={search}
-        placeholder="Random"
+        placeholder={strings.en.random}
         execute={execute}
       />
       <ScrollView

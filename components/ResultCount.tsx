@@ -1,4 +1,5 @@
 import { Text } from "@/components/Themed";
+import strings from "@/constants/ui/common";
 import { StyleSheet } from "react-native";
 
 type ResultCountProps = {
@@ -11,7 +12,9 @@ export function ResultCount({ visible, resultCount }: ResultCountProps) {
 
   return (
     <Text style={styles.resultCount}>
-      {`${resultCount} result${resultCount === 1 ? "" : "s"}`}
+      {`${resultCount} ${
+        resultCount === 1 ? strings.en.result : strings.en.results
+      }`}
     </Text>
   );
 }
