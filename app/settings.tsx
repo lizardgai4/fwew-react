@@ -21,7 +21,7 @@ export default function ModalScreen() {
         closedContent={
           <View style={styles.iconContainer}>
             {FlagMap[uiLanguage]}
-            <Text style={styles.value}>{strings.en.uiLanguage}</Text>
+            <Text style={styles.value}>{strings.en.appLanguage}</Text>
           </View>
         }
         openedContent={
