@@ -8,6 +8,7 @@ export function useVersion() {
 
   const AppVersion = Constants.expoConfig?.version;
   const CommitHash = process.env.EXPO_PUBLIC_GIT_COMMIT_HASH;
+  const Branch = process.env.EXPO_PUBLIC_GIT_BRANCH;
 
   const getVersion = async () => {
     const data = await fwewVersion();
@@ -20,6 +21,7 @@ export function useVersion() {
 
   return {
     AppVersion,
+    Branch,
     CommitHash,
     ...version,
   };
