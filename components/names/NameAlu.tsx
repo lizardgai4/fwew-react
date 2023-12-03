@@ -1,3 +1,4 @@
+import { Accordion } from "@/components/Accordion";
 import { NumericTextInput } from "@/components/NumericTextInput";
 import { OptionItem } from "@/components/OptionItem";
 import { SwitchInput } from "@/components/SwitchInput";
@@ -6,7 +7,6 @@ import { GenerateButton } from "@/components/names/GenerateButton";
 import { AdjectiveModes } from "@/constants/NameAlu";
 import { useNameAlu } from "@/hooks/useNameAlu";
 import { ScrollView, StyleSheet } from "react-native";
-import { Accordion } from "../Accordion";
 
 export function NameAlu() {
   const {

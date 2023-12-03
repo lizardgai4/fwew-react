@@ -1,3 +1,4 @@
+import { Accordion } from "@/components/Accordion";
 import { NumericTextInput } from "@/components/NumericTextInput";
 import { SwitchInput } from "@/components/SwitchInput";
 import { Text, View } from "@/components/Themed";
@@ -20,46 +21,55 @@ export function NameSingle() {
   const disabled = !numNames || !numSyllables;
 
   return (
-    <View style={styles.container}>
+    <ScrollView>
       <Text style={styles.title}>Single</Text>
-      <NumericTextInput
-        placeholder="Number of names to generate (1-50)"
-        value={numNames}
-        onChangeText={updateNumNames}
-        autoFocus
-      />
-      <NumericTextInput
-        placeholder="Number of syllables in the name (1-4)"
-        value={numSyllables}
-        onChangeText={updateNumSyllables}
-      />
-      <SwitchInput
-        leftLabel="Forest"
-        rightLabel="Reef"
-        value={dialect === "reef"}
-        onValueChange={(isReef) => setDialect(isReef ? "reef" : "forest")}
+      <Accordion
+        closedContent={<Text>Options</Text>}
+        openedContent={
+          <>
+            <NumericTextInput
+              placeholder="Number of names to generate (1-50)"
+              value={numNames}
+              onChangeText={updateNumNames}
+              autoFocus
+            />
+            <NumericTextInput
+              placeholder="Number of syllables in the name (1-4)"
+              value={numSyllables}
+              onChangeText={updateNumSyllables}
+            />
+            <SwitchInput
+              leftLabel="Forest"
+              rightLabel="Reef"
+              value={dialect === "reef"}
+              onValueChange={(isReef) => setDialect(isReef ? "reef" : "forest")}
+            />
+          </>
+        }
       />
       <GenerateButton execute={execute} disabled={disabled} />
-      <ScrollView>
+      <View>
         {names.map((name, i) => (
           <Text key={i} selectable style={styles.name}>
             {name}
           </Text>
         ))}
-      </ScrollView>
-    </View>
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   title: {
     fontSize: 24,
     fontWeight: "bold",
     textAlign: "center",
     padding: 10,
+  },
+  label: {
+    padding: 10,
+    fontSize: 16,
+    fontWeight: "bold",
   },
   name: {
     padding: 10,
