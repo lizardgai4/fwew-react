@@ -1,21 +1,43 @@
-import EditScreenInfo from "@/components/EditScreenInfo";
+import { Accordion } from "@/components/Accordion";
+import { OptionItem } from "@/components/OptionItem";
 import { Text, View } from "@/components/Themed";
+import { FlagMap } from "@/components/settings/Flags";
+import strings, {
+  ExtendedLanguageCode,
+  UILanguages,
+} from "@/constants/ui/settings";
 import { StatusBar } from "expo-status-bar";
+import { useState } from "react";
 import { Platform, StyleSheet } from "react-native";
 
 export default function ModalScreen() {
+  const [uiLanguage, setUILanguage] = useState<ExtendedLanguageCode>("en");
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Settings</Text>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
-      <EditScreenInfo path="app/settings.tsx" />
-
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />
+      <Accordion
+        closedContent={
+          <View style={styles.iconContainer}>
+            {FlagMap[uiLanguage]}
+            <Text style={styles.value}>{strings.en.uiLanguage}</Text>
+          </View>
+        }
+        openedContent={
+          <>
+            {UILanguages.map((language, i) => (
+              <OptionItem
+                key={i}
+                icon={FlagMap[language.value]}
+                value={language.label}
+                selected={uiLanguage === language.value}
+                onSelect={() => setUILanguage(language.value)}
+              />
+            ))}
+          </>
+        }
+      />
     </View>
   );
 }
@@ -23,16 +45,14 @@ export default function ModalScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  iconContainer: {
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    gap: 16,
   },
-  title: {
-    fontSize: 20,
+  value: {
+    fontSize: 16,
     fontWeight: "bold",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
   },
 });
