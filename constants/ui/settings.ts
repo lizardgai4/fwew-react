@@ -31,10 +31,27 @@ Languages.sort((a, b) => a.label.localeCompare(b.label));
 export const AppLanguages = Languages.filter((l) => l.ui);
 export const ResultsLanguages = Languages.filter((l) => l.results);
 
+export const credits = {
+  development: ["Tirea Aean"],
+  design: ["Tirea Aean", "Tsyili"],
+  testing: ["Tirea Aean", "Tsyili", "Txonpay"],
+  translation: [
+    "Alyara Arati (es)",
+    "Charlotte (nl)",
+    "İsmail yiğit (tr)",
+    "Tirea Aean (de, eo, nx)",
+  ],
+};
+
 const strings = {
   en: {
     about: "About",
     version: "Version",
+    credits: "Credits",
+    development: "Development",
+    design: "Design",
+    testing: "Testing",
+    translation: "Translation",
     appLanguage: "App Language",
     resultsLanguage: "Results Language",
   },

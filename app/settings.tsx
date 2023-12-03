@@ -1,7 +1,7 @@
 import { Accordion } from "@/components/Accordion";
 import { ExternalLink } from "@/components/ExternalLink";
 import { OptionItem } from "@/components/OptionItem";
-import { MonoText } from "@/components/StyledText";
+import { BoldText, MonoText } from "@/components/StyledText";
 import { Text, View } from "@/components/Themed";
 import { FlagMap } from "@/components/settings/Flags";
 import Colors from "@/constants/Colors";
@@ -9,6 +9,7 @@ import strings, {
   AppLanguages,
   ExtendedLanguageCode,
   ResultsLanguages,
+  credits,
 } from "@/constants/ui/settings";
 import { useVersion } from "@/hooks/useVersion";
 import { StatusBar } from "expo-status-bar";
@@ -41,6 +42,7 @@ function About() {
       openedContent={
         <View style={styles.expanded}>
           <Version version={version} />
+          <Credits />
         </View>
       }
     />
@@ -92,6 +94,22 @@ function Version({
         </View>
       </View>
     </>
+  );
+}
+
+function Credits() {
+  return (
+    <View style={styles.creditsContainer}>
+      <Text style={styles.label}>{strings.en.credits}</Text>
+      <BoldText style={styles.text}>{strings.en.development}</BoldText>
+      <Text style={styles.text}>{credits.development.join(", ")}</Text>
+      <BoldText style={styles.text}>{strings.en.design}</BoldText>
+      <Text style={styles.text}>{credits.design.join(", ")}</Text>
+      <BoldText style={styles.text}>{strings.en.testing}</BoldText>
+      <Text style={styles.text}>{credits.testing.join(", ")}</Text>
+      <BoldText style={styles.text}>{strings.en.translation}</BoldText>
+      <Text style={styles.text}>{credits.translation.join(", ")}</Text>
+    </View>
   );
 }
 
@@ -167,11 +185,16 @@ const styles = StyleSheet.create({
   },
   expanded: {
     padding: 16,
+    gap: 16,
   },
   versionContainer: {
     flexDirection: "row",
     alignItems: "center",
     gap: 16,
+  },
+  creditsContainer: {
+    paddingTop: 8,
+    gap: 8,
   },
   label: {
     paddingBottom: 10,
