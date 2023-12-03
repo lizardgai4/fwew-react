@@ -33,6 +33,8 @@ export const ResultsLanguages = Languages.filter((l) => l.results);
 
 const strings = {
   en: {
+    about: "About",
+    version: "Version",
     appLanguage: "App Language",
     resultsLanguage: "Results Language",
   },
