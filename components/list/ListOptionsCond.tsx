@@ -4,10 +4,10 @@ import { List } from "@/constants/List";
 import type { ListMenuCond, ListMenuItem, WhatValue } from "@/types/list";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 
-interface ListOptionsCondProps {
+type ListOptionsCondProps = {
   what: ListMenuItem<WhatValue> | undefined;
   onSelect: (cond: ListMenuCond[WhatValue][number]) => void;
-}
+};
 
 export function ListOptionsCond({ what, onSelect }: ListOptionsCondProps) {
   const colorScheme = useColorScheme();

@@ -8,11 +8,11 @@ import type { ListMenuCond, ListMenuItem, WhatValue } from "@/types/list";
 import { useEffect } from "react";
 import { StyleSheet } from "react-native";
 
-interface ListOptionsProps {
+type ListOptionsProps = {
   query: string;
   onSelect: React.Dispatch<React.SetStateAction<string>>;
   execute: () => void;
-}
+};
 
 export function ListOptions({ query, onSelect, execute }: ListOptionsProps) {
   const { whatRef, mode, setMode, nextMode } = useListOptions();

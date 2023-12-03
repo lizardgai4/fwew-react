@@ -5,9 +5,9 @@ import Colors from "@/constants/Colors";
 import React from "react";
 import { StyleSheet } from "react-native";
 
-interface EditScreenInfoProps {
+type EditScreenInfoProps = {
   path: string;
-}
+};
 
 export default function EditScreenInfo({ path }: EditScreenInfoProps) {
   return (

@@ -3,13 +3,13 @@ import Colors from "@/constants/Colors";
 import { FontAwesome } from "@expo/vector-icons";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 
-interface NumberSearchBarProps {
+type NumberSearchBarProps = {
   mode: string;
   toggleMode: () => void;
   query: string;
   search: (query: string) => void;
   clear: () => void;
-}
+};
 
 export function NumberSearchBar({
   mode,

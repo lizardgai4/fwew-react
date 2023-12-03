@@ -4,10 +4,10 @@ import { FontAwesome } from "@expo/vector-icons";
 import { useState } from "react";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 
-interface AccordionProps {
+type AccordionProps = {
   closedContent: React.ReactNode;
   openedContent: React.ReactNode;
-}
+};
 
 export function Accordion({ closedContent, openedContent }: AccordionProps) {
   const [expanded, setExpanded] = useState(false);

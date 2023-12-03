@@ -8,13 +8,13 @@ import { RandomExpressionAttribute } from "@/types/random";
 import { useEffect, useRef, useState } from "react";
 import { StyleSheet } from "react-native";
 
-interface RandomOptionsProps {
+type RandomOptionsProps = {
   numWords: string;
   setNumWords: React.Dispatch<React.SetStateAction<string>>;
   query: string;
   onSelect: React.Dispatch<React.SetStateAction<string>>;
   execute: () => void;
-}
+};
 
 export function RandomOptions({
   numWords,

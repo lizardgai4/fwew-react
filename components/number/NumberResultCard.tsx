@@ -2,9 +2,9 @@ import { Text, View } from "@/components/Themed";
 import type { FwewNumber, FwewError } from "fwew.js";
 import { StyleSheet } from "react-native";
 
-interface NumberResultCardProps {
+type NumberResultCardProps = {
   result: FwewNumber | FwewError | null;
-}
+};
 
 export function NumberResultCard({ result }: NumberResultCardProps) {
   if (!result) {

@@ -3,13 +3,13 @@ import Colors from "@/constants/Colors";
 import { FontAwesome } from "@expo/vector-icons";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 
-interface SearchBarProps {
+type SearchBarProps = {
   query: string;
   search: (query: string) => void;
   placeholder?: string;
   autoFocus?: boolean;
   execute?: () => void;
-}
+};
 
 export function SearchBar({
   query,
@@ -43,10 +43,10 @@ export function SearchBar({
   );
 }
 
-interface SearchBarRightProps {
+type SearchBarRightProps = {
   showClear: boolean;
   clear: () => void;
-}
+};
 
 function SearchBarRight({ showClear, clear }: SearchBarRightProps) {
   const colorScheme = useColorScheme();
