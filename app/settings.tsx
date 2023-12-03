@@ -30,17 +30,7 @@ export default function ModalScreen() {
 }
 
 function About() {
-  const {
-    AppVersion,
-    Branch,
-    CommitHash,
-    APIVersion,
-    FwewVersion,
-    DictVersion,
-  } = useVersion();
-  const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? "light"];
-
+  const version = useVersion();
   return (
     <Accordion
       closedContent={
@@ -50,34 +40,58 @@ function About() {
       }
       openedContent={
         <View style={styles.expanded}>
-          <Text style={styles.label}>{strings.en.version}</Text>
-          <View style={styles.versionContainer}>
-            <View>
-              <MonoText style={styles.text}>fwew-react</MonoText>
-              <MonoText style={styles.text}>fwew-api </MonoText>
-              <MonoText style={styles.text}>fwew-lib</MonoText>
-              <MonoText style={styles.text}>dictionary</MonoText>
-            </View>
-            <View>
-              <MonoText style={styles.text}>
-                {AppVersion} (
-                <ExternalLink
-                  href={`https://github.com/corscheid/fwew-react/tree/next`}
-                >
-                  <MonoText style={{ color: colors.link }}>
-                    {Branch} {CommitHash?.substring(0, 7)}
-                  </MonoText>
-                </ExternalLink>
-                )
-              </MonoText>
-              <MonoText style={styles.text}>{APIVersion}</MonoText>
-              <MonoText style={styles.text}>{FwewVersion}</MonoText>
-              <MonoText style={styles.text}>{DictVersion}</MonoText>
-            </View>
-          </View>
+          <Version version={version} />
         </View>
       }
     />
+  );
+}
+
+type VersionProps = {
+  version: ReturnType<typeof useVersion>;
+};
+
+function Version({
+  version: {
+    AppVersion,
+    Branch,
+    CommitHash,
+    APIVersion,
+    FwewVersion,
+    DictVersion,
+  },
+}: VersionProps) {
+  const colorScheme = useColorScheme();
+  const colors = Colors[colorScheme ?? "light"];
+
+  return (
+    <>
+      <Text style={styles.label}>{strings.en.version}</Text>
+      <View style={styles.versionContainer}>
+        <View>
+          <MonoText style={styles.text}>fwew-react</MonoText>
+          <MonoText style={styles.text}>fwew-api </MonoText>
+          <MonoText style={styles.text}>fwew-lib</MonoText>
+          <MonoText style={styles.text}>dictionary</MonoText>
+        </View>
+        <View>
+          <MonoText style={styles.text}>
+            {AppVersion} (
+            <ExternalLink
+              href={`https://github.com/corscheid/fwew-react/tree/next`}
+            >
+              <MonoText style={{ color: colors.link }}>
+                {Branch} {CommitHash?.substring(0, 7)}
+              </MonoText>
+            </ExternalLink>
+            )
+          </MonoText>
+          <MonoText style={styles.text}>{APIVersion}</MonoText>
+          <MonoText style={styles.text}>{FwewVersion}</MonoText>
+          <MonoText style={styles.text}>{DictVersion}</MonoText>
+        </View>
+      </View>
+    </>
   );
 }
 
