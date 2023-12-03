@@ -2,7 +2,7 @@ import type { AdjectiveMode, NounMode } from "fwew.js";
 
 const strings = {
   en: {
-    numSyllables: "Number of Syllables",
+    numSyllables: "Number of Syllables in First Name",
     nounMode: "Noun Mode",
     nounModes: ["something", "normal noun", "verb-er"] as NounMode[],
     adjMode: "Adjective Mode",
