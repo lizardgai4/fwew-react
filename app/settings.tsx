@@ -30,8 +30,14 @@ export default function ModalScreen() {
 }
 
 function About() {
-  const { AppVersion, CommitHash, APIVersion, FwewVersion, DictVersion } =
-    useVersion();
+  const {
+    AppVersion,
+    Branch,
+    CommitHash,
+    APIVersion,
+    FwewVersion,
+    DictVersion,
+  } = useVersion();
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
 
@@ -56,10 +62,10 @@ function About() {
               <MonoText style={styles.text}>
                 {AppVersion} (
                 <ExternalLink
-                  href={`https://github.com/corscheid/fwew-react/commit/${CommitHash}`}
+                  href={`https://github.com/corscheid/fwew-react/tree/next`}
                 >
                   <MonoText style={{ color: colors.link }}>
-                    {CommitHash?.substring(0, 7)}
+                    {Branch} {CommitHash?.substring(0, 7)}
                   </MonoText>
                 </ExternalLink>
                 )
