@@ -3,8 +3,8 @@ import { NumericTextInput } from "@/components/NumericTextInput";
 import { OptionItem } from "@/components/OptionItem";
 import { Text, View } from "@/components/Themed";
 import { GenerateButton } from "@/components/names/GenerateButton";
-import { AdjectiveModes, NounModes } from "@/constants/Names";
-import { Dialects } from "@/constants/Names";
+import stringsNameAlu from "@/constants/ui/name-alu";
+import stringsNames from "@/constants/ui/names";
 import { useNameAlu } from "@/hooks/useNameAlu";
 import { ScrollView, StyleSheet } from "react-native";
 
@@ -30,24 +30,24 @@ export default function NameAluScreen() {
   return (
     <ScrollView>
       <Accordion
-        closedContent={<Text>Options</Text>}
+        closedContent={<Text>{stringsNames.en.options}</Text>}
         openedContent={
           <>
-            <Text style={styles.label}>Number of Names to Generate</Text>
+            <Text style={styles.label}>{stringsNames.en.numNames}</Text>
             <NumericTextInput
               placeholder="1-50"
               value={numNames}
               onChangeText={updateNumNames}
               autoFocus
             />
-            <Text style={styles.label}>Number of Syllables</Text>
+            <Text style={styles.label}>{stringsNameAlu.en.numSyllables}</Text>
             <NumericTextInput
               placeholder="1-4"
               value={numSyllables}
               onChangeText={updateNumSyllables}
             />
-            <Text style={styles.label}>Noun Mode</Text>
-            {NounModes.map((item, i) => (
+            <Text style={styles.label}>{stringsNameAlu.en.nounMode}</Text>
+            {stringsNameAlu.en.nounModes.map((item, i) => (
               <OptionItem
                 key={`na_n_${i}`}
                 value={item}
@@ -55,8 +55,8 @@ export default function NameAluScreen() {
                 onSelect={() => setNounMode(item)}
               />
             ))}
-            <Text style={styles.label}>Adjective Mode</Text>
-            {AdjectiveModes.map((item, i) => (
+            <Text style={styles.label}>{stringsNameAlu.en.adjMode}</Text>
+            {stringsNameAlu.en.adjModes.map((item, i) => (
               <OptionItem
                 key={`na_a_${i}`}
                 value={item}
@@ -64,8 +64,8 @@ export default function NameAluScreen() {
                 onSelect={() => setAdjMode(item)}
               />
             ))}
-            <Text style={styles.label}>Dialect</Text>
-            {Dialects.map((item, i) => (
+            <Text style={styles.label}>{stringsNames.en.dialect}</Text>
+            {stringsNames.en.dialects.map((item, i) => (
               <OptionItem
                 key={`na_d_${i}`}
                 value={item}

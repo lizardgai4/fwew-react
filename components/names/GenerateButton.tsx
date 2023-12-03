@@ -2,6 +2,7 @@ import { Text } from "@/components/Themed";
 import Colors from "@/constants/Colors";
 import { FontAwesome } from "@expo/vector-icons";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
+import strings from "@/constants/ui/names";
 
 type GenerateButtonProps = {
   execute: () => void;
@@ -21,7 +22,7 @@ export function GenerateButton({ execute, disabled }: GenerateButtonProps) {
       ]}
     >
       <FontAwesome name="refresh" size={24} color={colors.text} />
-      <Text>Generate</Text>
+      <Text>{strings.en.generate}</Text>
     </TouchableOpacity>
   );
 }

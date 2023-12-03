@@ -1,5 +1,6 @@
 import { Text, View } from "@/components/Themed";
 import Colors from "@/constants/Colors";
+import strings from "@/constants/ui/list";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 
 type ListOptionsSpecProps = {
@@ -33,7 +34,7 @@ export function ListOptionsSpec({
             color: andButtonDisabled ? colors.placeholder : colors.text,
           }}
         >
-          AND...
+          {strings.en.and}
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
@@ -51,7 +52,7 @@ export function ListOptionsSpec({
             color: andButtonDisabled ? colors.placeholder : colors.text,
           }}
         >
-          GO
+          {strings.en.go}
         </Text>
       </TouchableOpacity>
     </View>

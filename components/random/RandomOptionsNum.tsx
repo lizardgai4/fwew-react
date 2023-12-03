@@ -1,5 +1,6 @@
 import { Text, TextInput, View } from "@/components/Themed";
 import Colors from "@/constants/Colors";
+import strings from "@/constants/ui/random";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 
 type RandomOptionsNumProps = {
@@ -20,10 +21,12 @@ export function RandomOptionsNum({
 
   return (
     <View style={styles.container}>
-      <Text style={styles.inputLabel}>Number of random words</Text>
+      <Text style={styles.inputLabel}>{strings.en.numWords}</Text>
       <View style={styles.inputContainer}>
         <TextInput
           keyboardType="number-pad"
+          placeholder="42"
+          placeholderTextColor={colors.placeholder}
           value={numWords ?? ""}
           onChangeText={onSelect}
           style={[styles.input, { borderColor: colors.text }]}
@@ -34,7 +37,7 @@ export function RandomOptionsNum({
             onPress={next}
             style={[styles.button, { borderColor: colors.text }]}
           >
-            <Text style={{ color: colors.text }}>where...</Text>
+            <Text style={{ color: colors.text }}>{strings.en.where}</Text>
           </TouchableOpacity>
         )}
       </View>

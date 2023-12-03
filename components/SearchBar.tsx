@@ -1,5 +1,6 @@
 import { TextInput, View } from "@/components/Themed";
 import Colors from "@/constants/Colors";
+import strings from "@/constants/ui/search";
 import { FontAwesome } from "@expo/vector-icons";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 
@@ -14,7 +15,7 @@ type SearchBarProps = {
 export function SearchBar({
   query,
   search,
-  placeholder = "Search",
+  placeholder = strings.en.search,
   autoFocus = false,
   execute,
 }: SearchBarProps) {

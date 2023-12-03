@@ -1,6 +1,6 @@
 import { Text, View } from "@/components/Themed";
 import Colors from "@/constants/Colors";
-import { List } from "@/constants/List";
+import strings from "@/constants/ui/list";
 import type { ListMenuItem, WhatValue } from "@/types/list";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 
@@ -14,7 +14,7 @@ export function ListOptionsWhat({ onSelect }: ListOptionsWhatProps) {
 
   return (
     <View>
-      {List.WhatValues.map((what, index) => (
+      {strings.en.listMenu.whatValues.map((what, index) => (
         <TouchableOpacity key={`w_${index}`} onPress={() => onSelect(what)}>
           <Text style={styles.option}>
             {what.value}{" "}

@@ -3,6 +3,7 @@ import { ListOptionsCond } from "@/components/list/ListOptionsCond";
 import { ListOptionsSpec } from "@/components/list/ListOptionsSpec";
 import { ListOptionsWhat } from "@/components/list/ListOptionsWhat";
 import { RandomOptionsNum } from "@/components/random/RandomOptionsNum";
+import strings from "@/constants/ui/random";
 import type { ListMenuCond, ListMenuItem, WhatValue } from "@/types/list";
 import { RandomExpressionAttribute } from "@/types/random";
 import { useEffect, useRef, useState } from "react";
@@ -81,7 +82,7 @@ export function RandomOptions({
 
   return (
     <>
-      <Text style={styles.title}>RANDOM OPTIONS</Text>
+      <Text style={styles.title}>{strings.en.randomOptions}</Text>
       {mode === "num" && (
         <RandomOptionsNum
           numWords={numWords}

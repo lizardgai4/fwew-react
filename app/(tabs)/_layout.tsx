@@ -1,4 +1,5 @@
 import Colors from "@/constants/Colors";
+import strings from "@/constants/ui/screens";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Link, Tabs } from "expo-router";
 import { Pressable, useColorScheme } from "react-native";
@@ -26,7 +27,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Search",
+          title: strings.en.search,
           tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
           headerRight: () => (
             <Link href="/settings" asChild>
@@ -47,7 +48,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="list"
         options={{
-          title: "List",
+          title: strings.en.list,
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="list-ol" color={color} />
           ),
@@ -70,7 +71,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="random"
         options={{
-          title: "Random",
+          title: strings.en.random,
           tabBarIcon: ({ color }) => <TabBarIcon name="random" color={color} />,
           headerRight: () => (
             <Link href="/settings" asChild>
@@ -91,7 +92,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="numbers"
         options={{
-          title: "Numbers",
+          title: strings.en.numbers,
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="calculator" color={color} />
           ),
@@ -114,7 +115,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="names"
         options={{
-          title: "Names",
+          title: strings.en.numbers,
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="user-circle-o" color={color} />
           ),

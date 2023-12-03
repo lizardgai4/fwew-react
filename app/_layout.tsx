@@ -1,3 +1,4 @@
+import strings from "@/constants/ui/screens";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import {
   DarkTheme,
@@ -55,7 +56,7 @@ function RootLayoutNav() {
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen
           name="settings"
-          options={{ title: "Settings", presentation: "modal" }}
+          options={{ title: strings.en.settings, presentation: "modal" }}
         />
       </Stack>
     </ThemeProvider>

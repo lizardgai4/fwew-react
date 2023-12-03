@@ -2,7 +2,7 @@ import { Text } from "@/components/Themed";
 import { ListOptionsCond } from "@/components/list/ListOptionsCond";
 import { ListOptionsSpec } from "@/components/list/ListOptionsSpec";
 import { ListOptionsWhat } from "@/components/list/ListOptionsWhat";
-import { WhatValues } from "@/constants/List";
+import strings from "@/constants/ui/list";
 import { useListOptions } from "@/hooks/useListOptions";
 import type { ListMenuCond, ListMenuItem, WhatValue } from "@/types/list";
 import { useEffect } from "react";
@@ -28,7 +28,7 @@ export function ListOptions({ query, onSelect, execute }: ListOptionsProps) {
   ) => {
     if (item?.value) {
       onSelect((prev) => (prev ? `${prev} ${item.value} ` : item.value));
-      if (WhatValues.includes(item.value as WhatValue)) {
+      if (strings.en.whatValues.includes(item.value as WhatValue)) {
         whatRef.current = item as ListMenuItem<WhatValue>;
       }
       nextMode();
@@ -49,7 +49,7 @@ export function ListOptions({ query, onSelect, execute }: ListOptionsProps) {
 
   return (
     <>
-      <Text style={styles.title}>LIST OPTIONS</Text>
+      <Text style={styles.title}>{strings.en.listOptions}</Text>
       {mode === "what" && <ListOptionsWhat onSelect={handleSelect} />}
       {mode === "cond" && (
         <ListOptionsCond what={whatRef.current} onSelect={handleSelect} />
