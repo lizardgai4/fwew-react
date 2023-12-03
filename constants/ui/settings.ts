@@ -28,7 +28,7 @@ export const Languages: LanguageMeta[] = [
 ];
 Languages.sort((a, b) => a.label.localeCompare(b.label));
 
-export const UILanguages = Languages.filter((l) => l.ui);
+export const AppLanguages = Languages.filter((l) => l.ui);
 export const ResultsLanguages = Languages.filter((l) => l.results);
 
 const strings = {
