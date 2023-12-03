@@ -33,16 +33,16 @@ export default function NameAluScreen() {
         closedContent={<Text>Options</Text>}
         openedContent={
           <>
-            <Text style={styles.label}>Number of Names</Text>
+            <Text style={styles.label}>Number of Names to Generate</Text>
             <NumericTextInput
-              placeholder="Number of names to generate (1-50)"
+              placeholder="1-50"
               value={numNames}
               onChangeText={updateNumNames}
               autoFocus
             />
             <Text style={styles.label}>Number of Syllables</Text>
             <NumericTextInput
-              placeholder="Number of syllables in each name (1-4)"
+              placeholder="1-4"
               value={numSyllables}
               onChangeText={updateNumSyllables}
             />

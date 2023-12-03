@@ -26,17 +26,20 @@ export default function NameSingleScreen() {
         closedContent={<Text>Options</Text>}
         openedContent={
           <>
+            <Text style={styles.label}>Number of Names to Generate</Text>
             <NumericTextInput
-              placeholder="Number of names to generate (1-50)"
+              placeholder="1-50"
               value={numNames}
               onChangeText={updateNumNames}
               autoFocus
             />
+            <Text style={styles.label}>Number of Syllables</Text>
             <NumericTextInput
-              placeholder="Number of syllables in the name (1-4)"
+              placeholder="1-4"
               value={numSyllables}
               onChangeText={updateNumSyllables}
             />
+            <Text style={styles.label}>Dialect</Text>
             <SwitchInput
               leftLabel="Forest"
               rightLabel="Reef"

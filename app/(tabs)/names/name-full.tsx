@@ -3,10 +3,14 @@ import { NumericTextInput } from "@/components/NumericTextInput";
 import { SwitchInput } from "@/components/SwitchInput";
 import { Text, View } from "@/components/Themed";
 import { GenerateButton } from "@/components/names/GenerateButton";
+import Colors from "@/constants/Colors";
 import { useNameFull } from "@/hooks/useNameFull";
-import { ScrollView, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, useColorScheme } from "react-native";
 
 export default function NameFullScreen() {
+  const colorScheme = useColorScheme();
+  const colors = Colors[colorScheme ?? "light"];
+
   const {
     names,
     numNames,
@@ -32,33 +36,36 @@ export default function NameFullScreen() {
         closedContent={<Text>Options</Text>}
         openedContent={
           <>
-            <Text style={styles.label}>Number of Names</Text>
+            <Text style={styles.label}>Number of Names to Generate</Text>
             <NumericTextInput
               value={numNames}
               onChangeText={updateNumNames}
               placeholder="1-50"
               autoFocus
             />
-            <Text style={styles.label}>Number of First Name Syllables</Text>
+            <Text style={styles.label}>Number of Syllables in First Name </Text>
             <NumericTextInput
               value={syllables1}
               onChangeText={updateSyllables1}
               placeholder="1-4"
             />
-            <Text style={styles.label}>Number of Family Name Syllables</Text>
+            <Text style={styles.label}>Number of Syllables in Family Name</Text>
             <NumericTextInput
               value={syllables2}
               onChangeText={updateSyllables2}
               placeholder="1-4"
             />
-            <Text style={styles.label}>Number of Parent's Name Syllables</Text>
+            <Text style={styles.label}>
+              Number of Syllables in Parent's Name
+            </Text>
             <NumericTextInput
               value={syllables3}
               onChangeText={updateSyllables3}
               placeholder="1-4"
             />
-            <Text style={styles.label}>
-              Name Ending ('itan for male, 'ite for female)
+            <Text style={styles.label}>Name Ending</Text>
+            <Text style={{ color: colors.placeholder, paddingHorizontal: 10 }}>
+              choose -'itan (son) for male, or -'ite (daughter) for female
             </Text>
             <SwitchInput
               leftLabel="-'itan"
