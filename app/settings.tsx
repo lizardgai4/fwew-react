@@ -3,15 +3,15 @@ import { OptionItem } from "@/components/OptionItem";
 import { Text, View } from "@/components/Themed";
 import { FlagMap } from "@/components/settings/Flags";
 import strings, {
+  AppLanguages,
   ExtendedLanguageCode,
-  UILanguages,
 } from "@/constants/ui/settings";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { Platform, StyleSheet } from "react-native";
 
 export default function ModalScreen() {
-  const [uiLanguage, setUILanguage] = useState<ExtendedLanguageCode>("en");
+  const [appLanguage, setAppLanguage] = useState<ExtendedLanguageCode>("en");
 
   return (
     <View style={styles.container}>
@@ -20,19 +20,19 @@ export default function ModalScreen() {
       <Accordion
         closedContent={
           <View style={styles.iconContainer}>
-            {FlagMap[uiLanguage]}
+            {FlagMap[appLanguage]}
             <Text style={styles.value}>{strings.en.appLanguage}</Text>
           </View>
         }
         openedContent={
           <>
-            {UILanguages.map((language, i) => (
+            {AppLanguages.map((language, i) => (
               <OptionItem
                 key={i}
                 icon={FlagMap[language.value]}
                 value={language.label}
-                selected={uiLanguage === language.value}
-                onSelect={() => setUILanguage(language.value)}
+                selected={appLanguage === language.value}
+                onSelect={() => setAppLanguage(language.value)}
               />
             ))}
           </>
