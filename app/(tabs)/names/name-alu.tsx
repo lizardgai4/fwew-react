@@ -8,7 +8,7 @@ import { AdjectiveModes } from "@/constants/NameAlu";
 import { useNameAlu } from "@/hooks/useNameAlu";
 import { ScrollView, StyleSheet } from "react-native";
 
-export function NameAlu() {
+export default function NameAluScreen() {
   const {
     names,
     numNames,
@@ -29,7 +29,6 @@ export function NameAlu() {
 
   return (
     <ScrollView>
-      <Text style={styles.title}>Alu</Text>
       <Accordion
         closedContent={<Text>Options</Text>}
         openedContent={
@@ -57,8 +56,9 @@ export function NameAlu() {
               }
             />
             <Text style={styles.label}>Adjective Mode</Text>
-            {AdjectiveModes.map((item) => (
+            {AdjectiveModes.map((item, i) => (
               <OptionItem
+                key={`na_a_${i}`}
                 value={item}
                 selected={adjMode === item}
                 onSelect={() => setAdjMode(item)}
@@ -77,7 +77,7 @@ export function NameAlu() {
       <GenerateButton execute={execute} disabled={disabled} />
       <View>
         {names.map((name, i) => (
-          <Text key={i} selectable style={styles.name}>
+          <Text key={`na_r_${i}`} selectable style={styles.name}>
             {name}
           </Text>
         ))}
@@ -87,12 +87,6 @@ export function NameAlu() {
 }
 
 const styles = StyleSheet.create({
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    textAlign: "center",
-    padding: 10,
-  },
   label: {
     padding: 10,
     fontSize: 16,
