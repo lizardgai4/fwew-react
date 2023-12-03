@@ -1,16 +1,16 @@
 import { Accordion } from "@/components/Accordion";
 import { NumericTextInput } from "@/components/NumericTextInput";
-import { SwitchInput } from "@/components/SwitchInput";
+import { OptionItem } from "@/components/OptionItem";
 import { Text, View } from "@/components/Themed";
 import { GenerateButton } from "@/components/names/GenerateButton";
 import Colors from "@/constants/Colors";
+import { Dialects, NameEndings } from "@/constants/Names";
 import { useNameFull } from "@/hooks/useNameFull";
 import { ScrollView, StyleSheet, useColorScheme } from "react-native";
 
 export default function NameFullScreen() {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
-
   const {
     names,
     numNames,
@@ -64,22 +64,28 @@ export default function NameFullScreen() {
               placeholder="1-4"
             />
             <Text style={styles.label}>Name Ending</Text>
-            <Text style={{ color: colors.placeholder, paddingHorizontal: 10 }}>
-              choose -'itan (son) for male, or -'ite (daughter) for female
+            <Text
+              style={{ color: colors.placeholder, padding: 10, paddingTop: 0 }}
+            >
+              -'itan for male, -'ite for female, -'itu for non-binary
             </Text>
-            <SwitchInput
-              leftLabel="-'itan"
-              rightLabel="-'ite"
-              value={ending === "'ite"}
-              onValueChange={(isItan) => setEnding(isItan ? "'ite" : "'itan")}
-            />
+            {NameEndings.map((item, i) => (
+              <OptionItem
+                key={`nf_e_${i}`}
+                value={item}
+                selected={ending === item}
+                onSelect={() => setEnding(item)}
+              />
+            ))}
             <Text style={styles.label}>Dialect</Text>
-            <SwitchInput
-              leftLabel="Forest"
-              rightLabel="Reef"
-              value={dialect === "reef"}
-              onValueChange={(isReef) => setDialect(isReef ? "reef" : "forest")}
-            />
+            {Dialects.map((item, i) => (
+              <OptionItem
+                key={`nf_d_${i}`}
+                value={item}
+                selected={dialect === item}
+                onSelect={() => setDialect(item)}
+              />
+            ))}
           </>
         }
       />
