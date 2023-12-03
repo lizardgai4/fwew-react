@@ -9,9 +9,9 @@ import type { Word } from "fwew.js";
 import { useEffect, useState } from "react";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 
-interface ResultInfoProps {
+type ResultInfoProps = {
   word: Word;
-}
+};
 
 export function ResultInfo({ word }: ResultInfoProps) {
   const [sound, setSound] = useState(new Audio.Sound());

@@ -3,9 +3,9 @@ import { Text } from "@/components/Themed";
 import type { Word } from "fwew.js";
 import { StyleSheet } from "react-native";
 
-interface ListResultsProps {
+type ListResultsProps = {
   results: Word[];
-}
+};
 
 export function ListResults({ results }: ListResultsProps) {
   if (results === undefined || results.map === undefined) {

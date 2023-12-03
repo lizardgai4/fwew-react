@@ -1,10 +1,10 @@
 import { Text } from "@/components/Themed";
 import { StyleSheet } from "react-native";
 
-interface ResultCountProps {
+type ResultCountProps = {
   visible: boolean;
   resultCount: number;
-}
+};
 
 export function ResultCount({ visible, resultCount }: ResultCountProps) {
   if (!visible) return null;

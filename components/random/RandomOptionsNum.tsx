@@ -2,12 +2,12 @@ import { Text, TextInput, View } from "@/components/Themed";
 import Colors from "@/constants/Colors";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 
-interface RandomOptionsNumProps {
+type RandomOptionsNumProps = {
   numWords: string;
   onSelect: (text: string) => void;
   execute: () => void;
   next: () => void;
-}
+};
 
 export function RandomOptionsNum({
   numWords,

@@ -1,8 +1,9 @@
 import { ResultCard } from "@/components/ResultCard";
 import type { Word } from "fwew.js";
-interface FwewSearchResultsProps {
+
+type FwewSearchResultsProps = {
   results: Word[][];
-}
+};
 
 export function FwewSearchResults({ results }: FwewSearchResultsProps) {
   return (

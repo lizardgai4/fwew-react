@@ -5,9 +5,9 @@ import { ResultInfo } from "@/components/ResultInfo";
 import type { Word } from "fwew.js";
 import { StyleSheet } from "react-native";
 
-interface ResultCardProps {
+type ResultCardProps = {
   word: Word;
-}
+};
 
 export function ResultCard({ word }: ResultCardProps) {
   return (
