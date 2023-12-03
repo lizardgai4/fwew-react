@@ -6,7 +6,7 @@ import { GenerateButton } from "@/components/names/GenerateButton";
 import { useNameFull } from "@/hooks/useNameFull";
 import { ScrollView, StyleSheet } from "react-native";
 
-export function NameFull() {
+export default function NameFullScreen() {
   const {
     names,
     numNames,
@@ -28,7 +28,6 @@ export function NameFull() {
 
   return (
     <ScrollView>
-      <Text style={styles.title}>Full</Text>
       <Accordion
         closedContent={<Text>Options</Text>}
         openedContent={
@@ -80,7 +79,7 @@ export function NameFull() {
       <GenerateButton execute={execute} disabled={disabled} />
       <View>
         {names.map((name, i) => (
-          <Text key={i} selectable style={styles.name}>
+          <Text key={`nf_${i}`} selectable style={styles.name}>
             {name}
           </Text>
         ))}
@@ -90,12 +89,6 @@ export function NameFull() {
 }
 
 const styles = StyleSheet.create({
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    textAlign: "center",
-    padding: 10,
-  },
   label: {
     padding: 10,
     fontSize: 16,

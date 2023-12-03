@@ -6,7 +6,7 @@ import { GenerateButton } from "@/components/names/GenerateButton";
 import useNameSingle from "@/hooks/useNameSingle";
 import { ScrollView, StyleSheet } from "react-native";
 
-export function NameSingle() {
+export default function NameSingleScreen() {
   const {
     names,
     numNames,
@@ -22,7 +22,6 @@ export function NameSingle() {
 
   return (
     <ScrollView>
-      <Text style={styles.title}>Single</Text>
       <Accordion
         closedContent={<Text>Options</Text>}
         openedContent={
@@ -50,7 +49,7 @@ export function NameSingle() {
       <GenerateButton execute={execute} disabled={disabled} />
       <View>
         {names.map((name, i) => (
-          <Text key={i} selectable style={styles.name}>
+          <Text key={`ns_${i}`} selectable style={styles.name}>
             {name}
           </Text>
         ))}
@@ -60,12 +59,6 @@ export function NameSingle() {
 }
 
 const styles = StyleSheet.create({
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    textAlign: "center",
-    padding: 10,
-  },
   label: {
     padding: 10,
     fontSize: 16,
