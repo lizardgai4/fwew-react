@@ -1,8 +1,9 @@
 import { Accordion } from "@/components/Accordion";
 import { NumericTextInput } from "@/components/NumericTextInput";
-import { SwitchInput } from "@/components/SwitchInput";
+import { OptionItem } from "@/components/OptionItem";
 import { Text, View } from "@/components/Themed";
 import { GenerateButton } from "@/components/names/GenerateButton";
+import { Dialects } from "@/constants/Names";
 import useNameSingle from "@/hooks/useNameSingle";
 import { ScrollView, StyleSheet } from "react-native";
 
@@ -40,12 +41,14 @@ export default function NameSingleScreen() {
               onChangeText={updateNumSyllables}
             />
             <Text style={styles.label}>Dialect</Text>
-            <SwitchInput
-              leftLabel="Forest"
-              rightLabel="Reef"
-              value={dialect === "reef"}
-              onValueChange={(isReef) => setDialect(isReef ? "reef" : "forest")}
-            />
+            {Dialects.map((item, i) => (
+              <OptionItem
+                key={`ns_d_${i}`}
+                value={item}
+                selected={dialect === item}
+                onSelect={() => setDialect(item)}
+              />
+            ))}
           </>
         }
       />

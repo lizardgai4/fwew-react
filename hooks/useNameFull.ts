@@ -5,12 +5,12 @@ import { nameFull } from "fwew.js";
 import { useEffect, useState } from "react";
 
 export function useNameFull() {
-  const [ending, setEnding] = useState<NameEnding>("'ite");
+  const [ending, setEnding] = useState<NameEnding | undefined>();
   const [numNames, setNumNames] = useState<NumericString | undefined>();
   const [syllables1, setSyllables1] = useState<NumericString | undefined>();
   const [syllables2, setSyllables2] = useState<NumericString | undefined>();
   const [syllables3, setSyllables3] = useState<NumericString | undefined>();
-  const [dialect, setDialect] = useState<Dialect>("forest");
+  const [dialect, setDialect] = useState<Dialect | undefined>();
   const [names, setNames] = useState<string[]>([]);
   const debounce = useDebounce();
 

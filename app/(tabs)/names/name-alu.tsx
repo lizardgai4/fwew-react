@@ -1,10 +1,10 @@
 import { Accordion } from "@/components/Accordion";
 import { NumericTextInput } from "@/components/NumericTextInput";
 import { OptionItem } from "@/components/OptionItem";
-import { SwitchInput } from "@/components/SwitchInput";
 import { Text, View } from "@/components/Themed";
 import { GenerateButton } from "@/components/names/GenerateButton";
-import { AdjectiveModes } from "@/constants/NameAlu";
+import { AdjectiveModes, NounModes } from "@/constants/Names";
+import { Dialects } from "@/constants/Names";
 import { useNameAlu } from "@/hooks/useNameAlu";
 import { ScrollView, StyleSheet } from "react-native";
 
@@ -47,14 +47,14 @@ export default function NameAluScreen() {
               onChangeText={updateNumSyllables}
             />
             <Text style={styles.label}>Noun Mode</Text>
-            <SwitchInput
-              leftLabel="normal noun"
-              rightLabel="verb-er"
-              value={nounMode === "verb-er"}
-              onValueChange={(isVerb) =>
-                setNounMode(isVerb ? "verb-er" : "normal noun")
-              }
-            />
+            {NounModes.map((item, i) => (
+              <OptionItem
+                key={`na_n_${i}`}
+                value={item}
+                selected={nounMode === item}
+                onSelect={() => setNounMode(item)}
+              />
+            ))}
             <Text style={styles.label}>Adjective Mode</Text>
             {AdjectiveModes.map((item, i) => (
               <OptionItem
@@ -65,12 +65,14 @@ export default function NameAluScreen() {
               />
             ))}
             <Text style={styles.label}>Dialect</Text>
-            <SwitchInput
-              leftLabel="Forest"
-              rightLabel="Reef"
-              value={dialect === "reef"}
-              onValueChange={(isReef) => setDialect(isReef ? "reef" : "forest")}
-            />
+            {Dialects.map((item, i) => (
+              <OptionItem
+                key={`na_d_${i}`}
+                value={item}
+                selected={dialect === item}
+                onSelect={() => setDialect(item)}
+              />
+            ))}
           </>
         }
       />

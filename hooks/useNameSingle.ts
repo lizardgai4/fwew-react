@@ -1,12 +1,13 @@
 import { useDebounce } from "@/hooks/useDebounce";
 import type { NumericString } from "@/types/common";
-import { Dialect, nameSingle } from "fwew.js";
+import type { Dialect } from "fwew.js";
+import { nameSingle } from "fwew.js";
 import { useEffect, useState } from "react";
 
 export default function useNameSingle() {
   const [numNames, setNumNames] = useState<NumericString | undefined>();
   const [numSyllables, setNumSyllables] = useState<NumericString | undefined>();
-  const [dialect, setDialect] = useState<Dialect>("forest");
+  const [dialect, setDialect] = useState<Dialect | undefined>();
   const [names, setNames] = useState<string[]>([]);
   const debounce = useDebounce();
 
