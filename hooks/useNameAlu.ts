@@ -10,6 +10,7 @@ export function useNameAlu() {
   const [nounMode, setNounMode] = useState<NounMode | undefined>();
   const [adjMode, setAdjMode] = useState<AdjectiveMode | undefined>();
   const [dialect, setDialect] = useState<Dialect | undefined>();
+  const [loading, setLoading] = useState(false);
   const [names, setNames] = useState<string[]>([]);
   const debounce = useDebounce();
 
@@ -17,6 +18,7 @@ export function useNameAlu() {
     if (!numNames || !numSyllables || !nounMode || !adjMode || !dialect) {
       return;
     }
+    setLoading(true);
     const results = await nameAlu(
       numNames,
       numSyllables,
@@ -25,6 +27,7 @@ export function useNameAlu() {
       dialect
     );
     setNames(results.trim().split("\n"));
+    setLoading(false);
   };
 
   const updateNumNames = (text: string) => {
@@ -65,6 +68,7 @@ export function useNameAlu() {
     setAdjMode,
     dialect,
     setDialect,
+    loading,
     execute,
   };
 }

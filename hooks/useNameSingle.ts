@@ -8,13 +8,16 @@ export default function useNameSingle() {
   const [numNames, setNumNames] = useState<NumericString | undefined>();
   const [numSyllables, setNumSyllables] = useState<NumericString | undefined>();
   const [dialect, setDialect] = useState<Dialect | undefined>();
+  const [loading, setLoading] = useState(false);
   const [names, setNames] = useState<string[]>([]);
   const debounce = useDebounce();
 
   const execute = async () => {
     if (!numNames || !numSyllables || !dialect) return;
+    setLoading(true);
     const names = await nameSingle(numNames, numSyllables, dialect);
     setNames(names.trim().split("\n"));
+    setLoading(false);
   };
 
   const updateNumNames = (text: string) => {
@@ -51,6 +54,7 @@ export default function useNameSingle() {
     updateNumSyllables,
     dialect,
     setDialect,
+    loading,
     execute,
   };
 }

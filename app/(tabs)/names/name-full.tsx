@@ -7,7 +7,12 @@ import Colors from "@/constants/Colors";
 import stringsNameFull from "@/constants/ui/name-full";
 import stringsNames from "@/constants/ui/names";
 import { useNameFull } from "@/hooks/useNameFull";
-import { ScrollView, StyleSheet, useColorScheme } from "react-native";
+import {
+  RefreshControl,
+  ScrollView,
+  StyleSheet,
+  useColorScheme,
+} from "react-native";
 
 export default function NameFullScreen() {
   const colorScheme = useColorScheme();
@@ -26,13 +31,19 @@ export default function NameFullScreen() {
     setDialect,
     ending,
     setEnding,
+    loading,
     execute,
   } = useNameFull();
 
   const disabled = !numNames || !syllables1 || !syllables2 || !syllables3;
 
   return (
-    <ScrollView>
+    <ScrollView
+      keyboardShouldPersistTaps="always"
+      refreshControl={
+        <RefreshControl refreshing={loading} onRefresh={execute} />
+      }
+    >
       <Accordion
         closedContent={<Text>{stringsNames.en.options}</Text>}
         openedContent={
@@ -80,9 +91,9 @@ export default function NameFullScreen() {
             {stringsNames.en.dialects.map((item, i) => (
               <OptionItem
                 key={`nf_d_${i}`}
-                value={item}
-                selected={dialect === item}
-                onSelect={() => setDialect(item)}
+                value={item.name}
+                selected={dialect === item.value}
+                onSelect={() => setDialect(item.value)}
               />
             ))}
           </>

@@ -3,15 +3,21 @@ import { FwewSearchResults } from "@/components/search/FwewSearchResults";
 import { SearchBar } from "@/components/SearchBar";
 import { View } from "@/components/Themed";
 import { useFwew } from "@/hooks/useFwew";
-import { ScrollView, StyleSheet } from "react-native";
+import { RefreshControl, ScrollView, StyleSheet } from "react-native";
 
 export default function SearchScreen() {
-  const [query, results, resultCount, search] = useFwew();
+  const { query, results, resultCount, loading, search, execute } = useFwew();
 
   return (
     <View style={styles.container}>
       <SearchBar query={query} search={search} autoFocus />
-      <ScrollView style={styles.results}>
+      <ScrollView
+        style={styles.results}
+        keyboardShouldPersistTaps="always"
+        refreshControl={
+          <RefreshControl refreshing={loading} onRefresh={execute} />
+        }
+      >
         <ResultCount
           visible={query.length > 0 && resultCount > 0}
           resultCount={resultCount}

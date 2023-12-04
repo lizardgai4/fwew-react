@@ -6,7 +6,7 @@ import { GenerateButton } from "@/components/names/GenerateButton";
 import stringsNameSingle from "@/constants/ui/name-single";
 import stringsNames from "@/constants/ui/names";
 import useNameSingle from "@/hooks/useNameSingle";
-import { ScrollView, StyleSheet } from "react-native";
+import { RefreshControl, ScrollView, StyleSheet } from "react-native";
 
 export default function NameSingleScreen() {
   const {
@@ -17,13 +17,19 @@ export default function NameSingleScreen() {
     updateNumSyllables,
     dialect,
     setDialect,
+    loading,
     execute,
   } = useNameSingle();
 
   const disabled = !numNames || !numSyllables;
 
   return (
-    <ScrollView>
+    <ScrollView
+      keyboardShouldPersistTaps="always"
+      refreshControl={
+        <RefreshControl refreshing={loading} onRefresh={execute} />
+      }
+    >
       <Accordion
         closedContent={<Text>{stringsNames.en.options}</Text>}
         openedContent={
@@ -47,9 +53,9 @@ export default function NameSingleScreen() {
             {stringsNames.en.dialects.map((item, i) => (
               <OptionItem
                 key={`ns_d_${i}`}
-                value={item}
-                selected={dialect === item}
-                onSelect={() => setDialect(item)}
+                value={item.name}
+                selected={dialect === item.value}
+                onSelect={() => setDialect(item.value)}
               />
             ))}
           </>

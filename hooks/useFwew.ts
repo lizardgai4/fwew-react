@@ -7,24 +7,27 @@ import { useEffect, useState } from "react";
 export function useFwew() {
   const { resultsLanguage } = useResultsLanguage();
   const [query, search] = useState("");
+  const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<Word[][]>([]);
   const [resultCount, setResultCount] = useState(0);
   const debounce = useDebounce();
 
-  const doSearch = async () => {
+  const execute = async () => {
     if (query === "") {
       setResults([]);
       setResultCount(0);
       return;
     }
+    setLoading(true);
     const data = await fwewSearch(resultsLanguage, query);
     setResults(data);
     setResultCount(data.reduce((acc, cur) => acc + cur.length, 0));
+    setLoading(false);
   };
 
   useEffect(() => {
-    debounce(doSearch, 300);
+    debounce(execute, 300);
   }, [query]);
 
-  return [query, results, resultCount, search] as const;
+  return { query, results, resultCount, loading, search, execute } as const;
 }
