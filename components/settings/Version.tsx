@@ -3,6 +3,7 @@ import { MonoText } from "@/components/StyledText";
 import { Text, View } from "@/components/Themed";
 import Colors from "@/constants/Colors";
 import strings from "@/constants/ui/settings";
+import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useVersion } from "@/hooks/useVersion";
 import { StyleSheet, useColorScheme } from "react-native";
 
@@ -17,10 +18,12 @@ export function Version() {
   } = useVersion();
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
+  const { appLanguage } = useAppLanguageContext();
+  const ui = strings[appLanguage];
 
   return (
     <>
-      <Text style={styles.label}>{strings.en.version}</Text>
+      <Text style={styles.label}>{ui.version}</Text>
       <View style={styles.versionContainer}>
         <View>
           <MonoText style={styles.text}>fwew-react</MonoText>

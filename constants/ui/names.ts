@@ -1,8 +1,25 @@
 import type { Dialect } from "fwew.js";
+import { ExtendedLanguageCode } from "./settings";
 
-const dialects: Dialect[] = ["interdialect", "forest", "reef"];
+type DialectMeta = {
+  name: string;
+  value: Dialect;
+};
 
-const strings = {
+type NameStrings = {
+  [key in ExtendedLanguageCode]: {
+    single: string;
+    full: string;
+    alu: string;
+    options: string;
+    numNames: string;
+    dialect: string;
+    dialects: DialectMeta[];
+    generate: string;
+  };
+};
+
+const strings: NameStrings = {
   de: {
     single: "Einzel",
     full: "Voll",
@@ -10,7 +27,11 @@ const strings = {
     options: "Optionen",
     numNames: "Anzahl der zu generierenden Namen",
     dialect: "Dialekt",
-    dialects,
+    dialects: [
+      { name: "Interdialekt", value: "interdialect" },
+      { name: "Wald", value: "forest" },
+      { name: "Riff", value: "reef" },
+    ],
     generate: "Generieren",
   },
   en: {
@@ -20,8 +41,152 @@ const strings = {
     options: "Options",
     numNames: "Number of Names to Generate",
     dialect: "Dialect",
-    dialects,
+    dialects: [
+      { name: "interdialect", value: "interdialect" },
+      { name: "forest", value: "forest" },
+      { name: "reef", value: "reef" },
+    ],
     generate: "Generate",
+  },
+  es: {
+    single: "Single",
+    full: "Full",
+    alu: "Alu",
+    options: "Opciones",
+    numNames: "Número de Nombres a Generar",
+    dialect: "Dialecto",
+    dialects: [
+      { name: "interdialectal", value: "interdialect" },
+      { name: "bosque", value: "forest" },
+      { name: "arrecife", value: "reef" },
+    ],
+    generate: "Generar",
+  },
+  et: {
+    single: "Single",
+    full: "Full",
+    alu: "Alu",
+    options: "Valikud",
+    numNames: "Genereeritavate nimede arv",
+    dialect: "Dialekt",
+    dialects: [
+      { name: "interdialektiline", value: "interdialect" },
+      { name: "metsa", value: "forest" },
+      { name: "rifi", value: "reef" },
+    ],
+    generate: "Genereeri",
+  },
+  fr: {
+    single: "Single",
+    full: "Full",
+    alu: "Alu",
+    options: "Options",
+    numNames: "Nombre de Noms à Générer",
+    dialect: "Dialecte",
+    dialects: [
+      { name: "interdialectal", value: "interdialect" },
+      { name: "forêt", value: "forest" },
+      { name: "récif", value: "reef" },
+    ],
+    generate: "Générer",
+  },
+  hu: {
+    single: "Single",
+    full: "Full",
+    alu: "Alu",
+    options: "Opciók",
+    numNames: "Generálandó Nevek Száma",
+    dialect: "Dialektus",
+    dialects: [
+      { name: "interdialect", value: "interdialect" },
+      { name: "forest", value: "forest" },
+      { name: "reef", value: "reef" },
+    ],
+    generate: "Generálás",
+  },
+  nl: {
+    single: "Single",
+    full: "Full",
+    alu: "Alu",
+    options: "Opties",
+    numNames: "Aantal te Genereren Namen",
+    dialect: "Dialect",
+    dialects: [
+      { name: "interdialect", value: "interdialect" },
+      { name: "forest", value: "forest" },
+      { name: "reef", value: "reef" },
+    ],
+    generate: "Genereren",
+  },
+  nx: {
+    single: "'awa tstxo",
+    full: "'änsyem",
+    alu: "alu",
+    options: "tìftxey",
+    numNames: "holpxay lì'uä",
+    dialect: "lì'fyafnel",
+    dialects: [
+      { name: "melì'fyafnel", value: "interdialect" },
+      { name: "lì'fya na'rìngä", value: "forest" },
+      { name: "lì'fya wione", value: "reef" },
+    ],
+    generate: "ngop",
+  },
+  pl: {
+    single: "Single",
+    full: "Full",
+    alu: "Alu",
+    options: "Opcje",
+    numNames: "Liczba Generowanych Nazw",
+    dialect: "Dialekt",
+    dialects: [
+      { name: "międzydialektalny", value: "interdialect" },
+      { name: "leśny", value: "forest" },
+      { name: "riffowy", value: "reef" },
+    ],
+    generate: "Generuj",
+  },
+  ru: {
+    single: "Single",
+    full: "Full",
+    alu: "Alu",
+    options: "Опции",
+    numNames: "Количество генерируемых имен",
+    dialect: "Диалект",
+    dialects: [
+      { name: "междудиалектный", value: "interdialect" },
+      { name: "лесной", value: "forest" },
+      { name: "рифовый", value: "reef" },
+    ],
+    generate: "Генерировать",
+  },
+  sv: {
+    single: "Single",
+    full: "Full",
+    alu: "Alu",
+    options: "Alternativ",
+    numNames: "Antal Namn att Generera",
+    dialect: "Dialekt",
+    dialects: [
+      { name: "interdialekt", value: "interdialect" },
+      { name: "skog", value: "forest" },
+      { name: "rev", value: "reef" },
+    ],
+    generate: "Generera",
+  },
+  tr: {
+    single: "Single",
+    full: "Full",
+    alu: "Alu",
+    options: "Seçenekler",
+    numNames: "Üretilecek İsim Sayısı",
+    dialect: "Lehçe",
+    dialects: [
+      { name: "interdialekt", value: "interdialect" },
+      { name: "orman", value: "forest" },
+      { name: "resif", value: "reef" },
+    ],
+    generate: "Üret",
   },
 };
 

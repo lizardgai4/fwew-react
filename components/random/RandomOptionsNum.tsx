@@ -1,6 +1,7 @@
 import { Text, TextInput, View } from "@/components/Themed";
 import Colors from "@/constants/Colors";
 import strings from "@/constants/ui/random";
+import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 
 type RandomOptionsNumProps = {
@@ -18,10 +19,13 @@ export function RandomOptionsNum({
 }: RandomOptionsNumProps) {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
+  const appLanguageValue = useAppLanguageContext();
+  const appLanguage = appLanguageValue?.appLanguage ?? "en";
+  let ui = strings[appLanguage] ?? strings["en"];
 
   return (
     <View style={styles.container}>
-      <Text style={styles.inputLabel}>{strings.en.numWords}</Text>
+      <Text style={styles.inputLabel}>{ui.numWords}</Text>
       <View style={styles.inputContainer}>
         <TextInput
           keyboardType="number-pad"
@@ -37,7 +41,7 @@ export function RandomOptionsNum({
             onPress={next}
             style={[styles.button, { borderColor: colors.text }]}
           >
-            <Text style={{ color: colors.text }}>{strings.en.where}</Text>
+            <Text style={{ color: colors.text }}>{ui.where}</Text>
           </TouchableOpacity>
         )}
       </View>
