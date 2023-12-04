@@ -1,6 +1,7 @@
 import { Text, View } from "@/components/Themed";
 import Colors from "@/constants/Colors";
 import strings from "@/constants/ui/list";
+import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import type { ListMenuItem, WhatValue } from "@/types/list";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 
@@ -11,10 +12,12 @@ type ListOptionsWhatProps = {
 export function ListOptionsWhat({ onSelect }: ListOptionsWhatProps) {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
+  const { appLanguage } = useAppLanguageContext();
+  const ui = strings[appLanguage];
 
   return (
     <View>
-      {strings.en.listMenu.whatValues.map((what, index) => (
+      {ui.listMenu.whatValues.map((what, index) => (
         <TouchableOpacity key={`w_${index}`} onPress={() => onSelect(what)}>
           <Text style={styles.option}>
             {what.value}{" "}

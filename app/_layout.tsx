@@ -1,4 +1,6 @@
 import strings from "@/constants/ui/screens";
+import { AppLanguageProvider } from "@/context/AppLanguageContext";
+import { useAppLanguage } from "@/hooks/useAppLanguage";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import {
   DarkTheme,
@@ -49,16 +51,23 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
+  const appLanguageValue = useAppLanguage();
+  const { appLanguage } = appLanguageValue;
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen
-          name="settings"
-          options={{ title: strings.en.settings, presentation: "modal" }}
-        />
-      </Stack>
+      <AppLanguageProvider value={appLanguageValue}>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="settings"
+            options={{
+              title: strings[appLanguage]?.settings,
+              presentation: "modal",
+            }}
+          />
+        </Stack>
+      </AppLanguageProvider>
     </ThemeProvider>
   );
 }

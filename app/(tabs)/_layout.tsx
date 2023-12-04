@@ -1,5 +1,6 @@
 import Colors from "@/constants/Colors";
 import strings from "@/constants/ui/screens";
+import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Link, Tabs } from "expo-router";
 import { Pressable, useColorScheme } from "react-native";
@@ -17,6 +18,8 @@ function TabBarIcon(props: {
 export default function TabLayout() {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
+  const { appLanguage } = useAppLanguageContext();
+  const ui = strings[appLanguage];
 
   return (
     <Tabs
@@ -27,7 +30,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: strings.en.search,
+          title: ui.search,
           tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
           headerRight: () => (
             <Link href="/settings" asChild>
@@ -48,7 +51,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="list"
         options={{
-          title: strings.en.list,
+          title: ui.list,
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="list-ol" color={color} />
           ),
@@ -71,7 +74,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="random"
         options={{
-          title: strings.en.random,
+          title: ui.random,
           tabBarIcon: ({ color }) => <TabBarIcon name="random" color={color} />,
           headerRight: () => (
             <Link href="/settings" asChild>
@@ -92,7 +95,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="numbers"
         options={{
-          title: strings.en.numbers,
+          title: ui.numbers,
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="calculator" color={color} />
           ),
@@ -115,7 +118,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="names"
         options={{
-          title: strings.en.names,
+          title: ui.names,
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="user-circle-o" color={color} />
           ),

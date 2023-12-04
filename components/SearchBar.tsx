@@ -1,6 +1,7 @@
 import { TextInput, View } from "@/components/Themed";
 import Colors from "@/constants/Colors";
 import strings from "@/constants/ui/search";
+import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { FontAwesome } from "@expo/vector-icons";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 
@@ -15,18 +16,20 @@ type SearchBarProps = {
 export function SearchBar({
   query,
   search,
-  placeholder = strings.en.search,
+  placeholder,
   autoFocus = false,
   execute,
 }: SearchBarProps) {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
+  const { appLanguage } = useAppLanguageContext();
+  const ui = strings[appLanguage];
 
   return (
     <View style={styles.searchContainer}>
       <TextInput
         style={[styles.input, { borderColor: colors.text }]}
-        placeholder={placeholder}
+        placeholder={placeholder ?? ui.search}
         placeholderTextColor={colors.placeholder}
         value={query}
         onChangeText={search}

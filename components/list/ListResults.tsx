@@ -1,6 +1,7 @@
 import { ResultCard } from "@/components/ResultCard";
 import { Text } from "@/components/Themed";
 import strings from "@/constants/ui/list";
+import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import type { Word } from "fwew.js";
 import { StyleSheet } from "react-native";
 
@@ -9,8 +10,10 @@ type ListResultsProps = {
 };
 
 export function ListResults({ results }: ListResultsProps) {
+  const { appLanguage } = useAppLanguageContext();
+  const ui = strings[appLanguage];
   if (results === undefined || results.map === undefined) {
-    return <Text style={styles.text}>{strings.en.noResults}</Text>;
+    return <Text style={styles.text}>{ui.noResults}</Text>;
   }
   return (
     <>

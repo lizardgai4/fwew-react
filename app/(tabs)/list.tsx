@@ -4,18 +4,21 @@ import { View } from "@/components/Themed";
 import { ListOptions } from "@/components/list/ListOptions";
 import { ListResults } from "@/components/list/ListResults";
 import strings from "@/constants/ui/list";
+import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useList } from "@/hooks/useList";
 import { RefreshControl, ScrollView, StyleSheet } from "react-native";
 
 export default function ListScreen() {
   const { query, results, loading, search, execute } = useList();
+  const { appLanguage } = useAppLanguageContext();
+  const ui = strings[appLanguage];
 
   return (
     <View style={styles.container}>
       <SearchBar
         query={query}
         search={search}
-        placeholder={strings.en.list}
+        placeholder={ui.list}
         execute={execute}
       />
       <ScrollView
