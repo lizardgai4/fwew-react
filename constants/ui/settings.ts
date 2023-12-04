@@ -37,7 +37,7 @@ export const credits = {
     "Alyara Arati (es)",
     "Charlotte (nl)",
     "İsmail yiğit (tr)",
-    "Tirea Aean (de, eo, nx)",
+    "Tirea Aean",
   ],
 };
 
