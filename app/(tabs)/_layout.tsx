@@ -115,7 +115,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="names"
         options={{
-          title: strings.en.numbers,
+          title: strings.en.names,
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="user-circle-o" color={color} />
           ),
