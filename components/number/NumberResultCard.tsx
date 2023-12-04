@@ -1,5 +1,6 @@
 import { Text, View } from "@/components/Themed";
 import strings from "@/constants/ui/numbers";
+import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import type { FwewError, FwewNumber } from "fwew.js";
 import { StyleSheet } from "react-native";
 
@@ -8,6 +9,10 @@ type NumberResultCardProps = {
 };
 
 export function NumberResultCard({ result }: NumberResultCardProps) {
+  const appLanguageValue = useAppLanguageContext();
+  const appLanguage = appLanguageValue?.appLanguage ?? "en";
+  let ui = strings[appLanguage] ?? strings["en"];
+
   if (!result) {
     return null;
   }
@@ -25,11 +30,11 @@ export function NumberResultCard({ result }: NumberResultCardProps) {
       <Text style={styles.navi}>{result.name}</Text>
       <View style={styles.numbersContainer}>
         <View style={styles.number}>
-          <Text style={styles.label}>{strings.en.octal}</Text>
+          <Text style={styles.label}>{ui.octal}</Text>
           <Text style={styles.value}>{result.octal}</Text>
         </View>
         <View style={styles.number}>
-          <Text style={styles.label}>{strings.en.decimal}</Text>
+          <Text style={styles.label}>{ui.decimal}</Text>
           <Text style={styles.value}>{result.decimal}</Text>
         </View>
       </View>

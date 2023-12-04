@@ -4,19 +4,22 @@ import { View } from "@/components/Themed";
 import { ListResults } from "@/components/list/ListResults";
 import { RandomOptions } from "@/components/random/RandomOptions";
 import strings from "@/constants/ui/random";
+import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useRandom } from "@/hooks/useRandom";
 import { RefreshControl, ScrollView, StyleSheet } from "react-native";
 
 export default function RandomScreen() {
   const { numWords, query, results, loading, setNumWords, search, execute } =
     useRandom();
+  const { appLanguage } = useAppLanguageContext();
+  const ui = strings[appLanguage];
 
   return (
     <View style={styles.container}>
       <SearchBar
         query={query}
         search={search}
-        placeholder={strings.en.random}
+        placeholder={ui.random}
         execute={execute}
       />
       <ScrollView

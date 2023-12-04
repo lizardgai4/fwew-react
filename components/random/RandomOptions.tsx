@@ -4,6 +4,7 @@ import { ListOptionsSpec } from "@/components/list/ListOptionsSpec";
 import { ListOptionsWhat } from "@/components/list/ListOptionsWhat";
 import { RandomOptionsNum } from "@/components/random/RandomOptionsNum";
 import strings from "@/constants/ui/random";
+import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import type { ListMenuCond, ListMenuItem, WhatValue } from "@/types/list";
 import { RandomExpressionAttribute } from "@/types/random";
 import { useEffect, useRef, useState } from "react";
@@ -26,6 +27,9 @@ export function RandomOptions({
 }: RandomOptionsProps) {
   const [mode, setMode] = useState<RandomExpressionAttribute>("num");
   const whatRef = useRef<ListMenuItem<WhatValue>>();
+  const appLanguageValue = useAppLanguageContext();
+  const appLanguage = appLanguageValue?.appLanguage ?? "en";
+  let ui = strings[appLanguage] ?? strings["en"];
 
   const andButtonDisabled =
     query.length === 0 ||
@@ -82,7 +86,7 @@ export function RandomOptions({
 
   return (
     <>
-      <Text style={styles.title}>{strings.en.randomOptions}</Text>
+      <Text style={styles.title}>{ui.randomOptions}</Text>
       {mode === "num" && (
         <RandomOptionsNum
           numWords={numWords}
