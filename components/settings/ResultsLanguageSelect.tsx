@@ -3,18 +3,21 @@ import { OptionItem } from "@/components/OptionItem";
 import { Text, View } from "@/components/Themed";
 import { FlagMap } from "@/components/settings/Flags";
 import strings, { ResultsLanguages } from "@/constants/ui/settings";
+import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useResultsLanguage } from "@/hooks/useResultsLanguage";
 import { StyleSheet } from "react-native";
 
 export function ResultsLanguageSelect() {
   const { resultsLanguage, saveResultsLanguage } = useResultsLanguage();
+  const { appLanguage } = useAppLanguageContext();
+  const ui = strings[appLanguage];
 
   return (
     <Accordion
       closedContent={
         <View style={styles.iconContainer}>
           {FlagMap[resultsLanguage]}
-          <Text style={styles.value}>{strings.en.resultsLanguage}</Text>
+          <Text style={styles.value}>{ui.resultsLanguage}</Text>
         </View>
       }
       openedContent={

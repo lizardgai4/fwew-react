@@ -4,6 +4,7 @@ import AudioResources from "@/constants/AudioResources";
 import Colors from "@/constants/Colors";
 import { PartOfSpeech } from "@/constants/PartOfSpeech";
 import strings from "@/constants/ui/search";
+import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useResultsLanguage } from "@/hooks/useResultsLanguage";
 import { FontAwesome } from "@expo/vector-icons";
 import { Audio } from "expo-av";
@@ -21,6 +22,8 @@ export function ResultInfo({ word }: ResultInfoProps) {
   const { text } = Colors[colorScheme ?? "light"];
   const { resultsLanguage } = useResultsLanguage();
   const local = word[resultsLanguage.toUpperCase() as Uppercase<LanguageCode>];
+  const { appLanguage } = useAppLanguageContext();
+  const ui = strings[appLanguage];
 
   const playSound = async (wordId: string): Promise<void> => {
     const audioUrl = `${AudioResources.URL}/${wordId}.mp3`;
@@ -44,54 +47,48 @@ export function ResultInfo({ word }: ResultInfoProps) {
         style={[styles.audioButton, { borderColor: text }]}
       >
         <FontAwesome name="volume-up" size={24} color={text} />
-        <Text style={styles.audioButtonText}> {strings.en.audio}</Text>
+        <Text style={styles.audioButtonText}> {ui.audio}</Text>
       </TouchableOpacity>
       <DetailItem
-        label={strings.en.partOfSpeech}
+        label={ui.partOfSpeech}
         value={`${word.PartOfSpeech} (${PartOfSpeech.en[word.PartOfSpeech]})`}
       />
-      <DetailItem label={strings.en.definition} value={local} />
+      <DetailItem label={ui.definition} value={local} />
       <Pronunciation {...word} />
       {word.PartOfSpeech.startsWith("v") && (
         <>
-          <DetailItem label={strings.en.infixDots} value={word.InfixDots} />
-          <DetailItem
-            label={strings.en.infixSlots}
-            value={word.InfixLocations}
-          />
+          <DetailItem label={ui.infixDots} value={word.InfixDots} />
+          <DetailItem label={ui.infixSlots} value={word.InfixLocations} />
         </>
       )}
       {word.Affixes.Prefix && (
         <DetailItem
-          label={strings.en.prefixes}
+          label={ui.prefixes}
           value={word.Affixes.Prefix.join(", ")}
         />
       )}
       {word.Affixes.Infix && (
-        <DetailItem
-          label={strings.en.infixes}
-          value={word.Affixes.Infix.join(", ")}
-        />
+        <DetailItem label={ui.infixes} value={word.Affixes.Infix.join(", ")} />
       )}
       {word.Affixes.Suffix && (
         <DetailItem
-          label={strings.en.suffixes}
+          label={ui.suffixes}
           value={word.Affixes.Suffix.join(", ")}
         />
       )}
       {word.Affixes.Lenition && (
         <DetailItem
-          label={strings.en.lenition}
+          label={ui.lenition}
           value={word.Affixes.Lenition.join(", ")}
         />
       )}
       {word.Affixes.Comment && (
         <DetailItem
-          label={strings.en.comment}
+          label={ui.comment}
           value={word.Affixes.Comment.join(", ")}
         />
       )}
-      <DetailItem label={strings.en.source} value={word.Source} />
+      <DetailItem label={ui.source} value={word.Source} />
     </View>
   );
 }
@@ -110,9 +107,11 @@ function Pronunciation({
   Stressed,
   Syllables,
 }: Pick<Word, "IPA" | "Stressed" | "Syllables">) {
+  const { appLanguage } = useAppLanguageContext();
+  const ui = strings[appLanguage];
   return (
     <>
-      <DetailItem label={strings.en.ipa} value={`[${IPA}]`} />
+      <DetailItem label={ui.ipa} value={`[${IPA}]`} />
       <View>
         <BoldText style={styles.label}>Breakdown:</BoldText>
         <Breakdown Stressed={Stressed} Syllables={Syllables} />

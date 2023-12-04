@@ -3,6 +3,7 @@ import Colors from "@/constants/Colors";
 import type { ListMenuCond, ListMenuItem, WhatValue } from "@/types/list";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 import strings from "@/constants/ui/list";
+import { useAppLanguageContext } from "@/context/AppLanguageContext";
 
 type ListOptionsCondProps = {
   what: ListMenuItem<WhatValue> | undefined;
@@ -12,6 +13,8 @@ type ListOptionsCondProps = {
 export function ListOptionsCond({ what, onSelect }: ListOptionsCondProps) {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
+  const { appLanguage } = useAppLanguageContext();
+  const ui = strings[appLanguage];
 
   if (!what) {
     return null;
@@ -19,7 +22,7 @@ export function ListOptionsCond({ what, onSelect }: ListOptionsCondProps) {
 
   return (
     <View>
-      {strings.en.listMenu.condValues[what.value].map((cond, index) => (
+      {ui.listMenu.condValues[what.value].map((cond, index) => (
         <TouchableOpacity key={`c_${index}`} onPress={() => onSelect(cond)}>
           <Text style={styles.option}>
             {cond.value}{" "}

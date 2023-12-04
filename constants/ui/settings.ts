@@ -15,16 +15,15 @@ export const Languages: LanguageMeta[] = [
   { value: "en", label: "English", ui: true, results: true },
   { value: "nl", label: "Nederlands", ui: true, results: true },
   { value: "tr", label: "Türkçe", ui: true, results: true },
+  { value: "et", label: "Eesti", ui: true, results: true },
+  { value: "fr", label: "Français", ui: true, results: true },
+  { value: "hu", label: "Magyar", ui: true, results: true },
+  { value: "pl", label: "Polski", ui: true, results: true },
+  { value: "ru", label: "Русский", ui: true, results: true },
+  { value: "sv", label: "Svenska", ui: true, results: true },
   // UI only
   { value: "es", label: "Español", ui: true, results: false },
   { value: "nx", label: "Lì'fya leNa'vi", ui: true, results: false },
-  // Results only
-  { value: "et", label: "Eesti", ui: false, results: true },
-  { value: "fr", label: "Français", ui: false, results: true },
-  { value: "hu", label: "Magyar", ui: false, results: true },
-  { value: "pl", label: "Polski", ui: false, results: true },
-  { value: "ru", label: "Русский", ui: false, results: true },
-  { value: "sv", label: "Svenska", ui: false, results: true },
 ];
 Languages.sort((a, b) => a.label.localeCompare(b.label));
 
@@ -43,7 +42,21 @@ export const credits = {
   ],
 };
 
-const strings = {
+type SettingsStrings = {
+  [key in ExtendedLanguageCode]: {
+    about: string;
+    version: string;
+    credits: string;
+    development: string;
+    design: string;
+    testing: string;
+    translation: string;
+    appLanguage: string;
+    resultsLanguage: string;
+  };
+};
+
+const strings: SettingsStrings = {
   de: {
     about: "Über",
     version: "Version",
@@ -65,6 +78,116 @@ const strings = {
     translation: "Translation",
     appLanguage: "App Language",
     resultsLanguage: "Results Language",
+  },
+  es: {
+    about: "Acerca de",
+    version: "Versión",
+    credits: "Créditos",
+    development: "Desarrollo",
+    design: "Diseño",
+    testing: "Pruebas",
+    translation: "Traducción",
+    appLanguage: "Idioma de la aplicación",
+    resultsLanguage: "Idioma de los resultados",
+  },
+  et: {
+    about: "Info",
+    version: "Versioon",
+    credits: "Autorid",
+    development: "Arendus",
+    design: "Disain",
+    testing: "Testimine",
+    translation: "Tõlge",
+    appLanguage: "Rakenduse keel",
+    resultsLanguage: "Tulemuste keel",
+  },
+  fr: {
+    about: "À propos",
+    version: "Version",
+    credits: "Crédits",
+    development: "Développement",
+    design: "Design",
+    testing: "Test",
+    translation: "Traduction",
+    appLanguage: "Langue de l'application",
+    resultsLanguage: "Langue des résultats",
+  },
+  hu: {
+    about: "Névjegy",
+    version: "Verzió",
+    credits: "Készítők",
+    development: "Fejlesztés",
+    design: "Design",
+    testing: "Tesztelés",
+    translation: "Fordítás",
+    appLanguage: "Alkalmazás nyelve",
+    resultsLanguage: "Eredmények nyelve",
+  },
+  nl: {
+    about: "Over",
+    version: "Versie",
+    credits: "Credits",
+    development: "Ontwikkeling",
+    design: "Ontwerp",
+    testing: "Testen",
+    translation: "Vertaling",
+    appLanguage: "App-taal",
+    resultsLanguage: "Resultaten taal",
+  },
+  nx: {
+    about: "teri",
+    version: "srey",
+    credits: "irayo",
+    development: "rengopyu",
+    design: "'ongopyu",
+    testing: "fmetokyu",
+    translation: "ralpengyu",
+    appLanguage: "'urä lì'fya",
+    resultsLanguage: "kumä lì'fya",
+  },
+  pl: {
+    about: "O aplikacji",
+    version: "Wersja",
+    credits: "Autorzy",
+    development: "Rozwój",
+    design: "Projekt",
+    testing: "Testowanie",
+    translation: "Tłumaczenie",
+    appLanguage: "Język aplikacji",
+    resultsLanguage: "Język wyników",
+  },
+  ru: {
+    about: "О приложении",
+    version: "Версия",
+    credits: "Авторы",
+    development: "Разработка",
+    design: "Дизайн",
+    testing: "Тестирование",
+    translation: "Перевод",
+    appLanguage: "Язык приложения",
+    resultsLanguage: "Язык результатов",
+  },
+  sv: {
+    about: "Om",
+    version: "Version",
+    credits: "Skapare",
+    development: "Utveckling",
+    design: "Design",
+    testing: "Testning",
+    translation: "Översättning",
+    appLanguage: "App-språk",
+    resultsLanguage: "Resultatspråk",
+  },
+  tr: {
+    about: "Hakkında",
+    version: "Sürüm",
+    credits: "Katkıda Bulunanlar",
+    development: "Geliştirme",
+    design: "Tasarım",
+    testing: "Test",
+    translation: "Çeviri",
+    appLanguage: "Uygulama Dili",
+    resultsLanguage: "Sonuçlar Dili",
   },
 };
 

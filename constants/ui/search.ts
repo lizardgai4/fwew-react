@@ -1,4 +1,24 @@
-const strings = {
+import { ExtendedLanguageCode } from "./settings";
+
+type SearchStrings = {
+  [key in ExtendedLanguageCode]: {
+    search: string;
+    audio: string;
+    partOfSpeech: string;
+    definition: string;
+    infixDots: string;
+    infixSlots: string;
+    prefixes: string;
+    infixes: string;
+    suffixes: string;
+    lenition: string;
+    comment: string;
+    source: string;
+    ipa: string;
+  };
+};
+
+const strings: SearchStrings = {
   de: {
     search: "Suche",
     audio: "Audio",
@@ -27,6 +47,156 @@ const strings = {
     lenition: "Lenition",
     comment: "Comment",
     source: "Source",
+    ipa: "IPA",
+  },
+  es: {
+    search: "Buscar",
+    audio: "Audio",
+    partOfSpeech: "Parte de la oración",
+    definition: "Definición",
+    infixDots: "Infixes (puntos)",
+    infixSlots: "Infixes (slots)",
+    prefixes: "Prefijos",
+    infixes: "Infixes",
+    suffixes: "Sufijos",
+    lenition: "Lenición",
+    comment: "Comentario",
+    source: "Fuente",
+    ipa: "IPA",
+  },
+  et: {
+    search: "Otsing",
+    audio: "Audio",
+    partOfSpeech: "Sõnaliik",
+    definition: "Definitsioon",
+    infixDots: "Infixes (dots)",
+    infixSlots: "Infixes (slots)",
+    prefixes: "Eesliited",
+    infixes: "Infixes",
+    suffixes: "Tagasõnad",
+    lenition: "Lenition",
+    comment: "Kommentaar",
+    source: "Allikas",
+    ipa: "IPA",
+  },
+  fr: {
+    search: "Recherche",
+    audio: "Audio",
+    partOfSpeech: "Partie du discours",
+    definition: "Définition",
+    infixDots: "Infixes (points)",
+    infixSlots: "Infixes (slots)",
+    prefixes: "Préfixes",
+    infixes: "Infixes",
+    suffixes: "Suffixes",
+    lenition: "Lenition",
+    comment: "Commentaire",
+    source: "Source",
+    ipa: "API",
+  },
+  hu: {
+    search: "Keresés",
+    audio: "Audio",
+    partOfSpeech: "Szófaj",
+    definition: "Definíció",
+    infixDots: "Infixes (dots)",
+    infixSlots: "Infixes (slots)",
+    prefixes: "Előtagok",
+    infixes: "Infixes",
+    suffixes: "Utótagok",
+    lenition: "Lenition",
+    comment: "Megjegyzés",
+    source: "Forrás",
+    ipa: "IPA",
+  },
+  nl: {
+    search: "Zoeken",
+    audio: "Audio",
+    partOfSpeech: "Woordsoort",
+    definition: "Definitie",
+    infixDots: "Infixes (dots)",
+    infixSlots: "Infixes (slots)",
+    prefixes: "Voorvoegsels",
+    infixes: "Infixes",
+    suffixes: "Achtervoegsels",
+    lenition: "Lenition",
+    comment: "Commentaar",
+    source: "Bron",
+    ipa: "IPA",
+  },
+  nx: {
+    search: "fwew",
+    audio: "Pam",
+    partOfSpeech: "fnelì'u",
+    definition: "ral",
+    infixDots: "kemlì'uvi",
+    infixSlots: "kemlì'uvi",
+    prefixes: "eolì'uvi",
+    infixes: "kemlì'uvi",
+    suffixes: "uolì'uvi",
+    lenition: "pamä tìlatem",
+    comment: "säplltxevi",
+    source: "tsim",
+    ipa: "IPA",
+  },
+  pl: {
+    search: "Szukaj",
+    audio: "Audio",
+    partOfSpeech: "Część mowy",
+    definition: "Definicja",
+    infixDots: "Infixes (dots)",
+    infixSlots: "Infixes (slots)",
+    prefixes: "Prefiksy",
+    infixes: "Infixes",
+    suffixes: "Sufiksy",
+    lenition: "Lenition",
+    comment: "Komentarz",
+    source: "Źródło",
+    ipa: "IPA",
+  },
+  ru: {
+    search: "Поиск",
+    audio: "Audio",
+    partOfSpeech: "Часть речи",
+    definition: "Определение",
+    infixDots: "Infixes (dots)",
+    infixSlots: "Infixes (slots)",
+    prefixes: "Префиксы",
+    infixes: "Infixes",
+    suffixes: "Суффиксы",
+    lenition: "Lenition",
+    comment: "Комментарий",
+    source: "Источник",
+    ipa: "IPA",
+  },
+  tr: {
+    search: "Arama",
+    audio: "Audio",
+    partOfSpeech: "Konuşma parçası",
+    definition: "Tanım",
+    infixDots: "Infixes (dots)",
+    infixSlots: "Infixes (slots)",
+    prefixes: "Önekler",
+    infixes: "Infixes",
+    suffixes: "Sonekler",
+    lenition: "Lenition",
+    comment: "Yorum",
+    source: "Kaynak",
+    ipa: "IPA",
+  },
+  sv: {
+    search: "Sök",
+    audio: "Audio",
+    partOfSpeech: "Ordklass",
+    definition: "Definition",
+    infixDots: "Infixes (dots)",
+    infixSlots: "Infixes (slots)",
+    prefixes: "Prefixes",
+    infixes: "Infixes",
+    suffixes: "Suffixes",
+    lenition: "Lenition",
+    comment: "Kommentar",
+    source: "Källa",
     ipa: "IPA",
   },
 };
