@@ -3,8 +3,9 @@ import { NumericTextInput } from "@/components/NumericTextInput";
 import { OptionItem } from "@/components/OptionItem";
 import { Text, View } from "@/components/Themed";
 import { GenerateButton } from "@/components/names/GenerateButton";
-import stringsNameAlu from "@/constants/ui/name-alu";
+import stringsNameAlu, { adjModes, nounModes } from "@/constants/ui/name-alu";
 import stringsNames from "@/constants/ui/names";
+import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useNameAlu } from "@/hooks/useNameAlu";
 import { RefreshControl, ScrollView, StyleSheet } from "react-native";
 
@@ -24,6 +25,9 @@ export default function NameAluScreen() {
     loading,
     execute,
   } = useNameAlu();
+  const { appLanguage } = useAppLanguageContext();
+  const uiNames = stringsNames[appLanguage];
+  const uiNameAlu = stringsNameAlu[appLanguage];
 
   const disabled =
     !numNames || !numSyllables || !nounMode || !adjMode || !dialect;
@@ -36,24 +40,24 @@ export default function NameAluScreen() {
       }
     >
       <Accordion
-        closedContent={<Text>{stringsNames.en.options}</Text>}
+        closedContent={<Text>{uiNames.options}</Text>}
         openedContent={
           <>
-            <Text style={styles.label}>{stringsNames.en.numNames}</Text>
+            <Text style={styles.label}>{uiNames.numNames}</Text>
             <NumericTextInput
               placeholder="1-50"
               value={numNames}
               onChangeText={updateNumNames}
               autoFocus
             />
-            <Text style={styles.label}>{stringsNameAlu.en.numSyllables}</Text>
+            <Text style={styles.label}>{uiNameAlu.numSyllables}</Text>
             <NumericTextInput
               placeholder="1-4"
               value={numSyllables}
               onChangeText={updateNumSyllables}
             />
-            <Text style={styles.label}>{stringsNameAlu.en.nounMode}</Text>
-            {stringsNameAlu.en.nounModes.map((item, i) => (
+            <Text style={styles.label}>{uiNameAlu.nounMode}</Text>
+            {nounModes.map((item, i) => (
               <OptionItem
                 key={`na_n_${i}`}
                 value={item}
@@ -61,8 +65,8 @@ export default function NameAluScreen() {
                 onSelect={() => setNounMode(item)}
               />
             ))}
-            <Text style={styles.label}>{stringsNameAlu.en.adjMode}</Text>
-            {stringsNameAlu.en.adjModes.map((item, i) => (
+            <Text style={styles.label}>{uiNameAlu.adjMode}</Text>
+            {adjModes.map((item, i) => (
               <OptionItem
                 key={`na_a_${i}`}
                 value={item}
@@ -70,8 +74,8 @@ export default function NameAluScreen() {
                 onSelect={() => setAdjMode(item)}
               />
             ))}
-            <Text style={styles.label}>{stringsNames.en.dialect}</Text>
-            {stringsNames.en.dialects.map((item, i) => (
+            <Text style={styles.label}>{uiNames.dialect}</Text>
+            {uiNames.dialects.map((item, i) => (
               <OptionItem
                 key={`na_d_${i}`}
                 value={item.name}

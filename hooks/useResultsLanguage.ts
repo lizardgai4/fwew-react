@@ -1,4 +1,4 @@
-import { ExtendedLanguageCode } from "@/constants/ui/settings";
+import type { ExtendedLanguageCode } from "@/types/settings";
 import { useAsyncStorage } from "@react-native-async-storage/async-storage";
 import type { LanguageCode } from "fwew.js";
 import { useEffect, useState } from "react";

@@ -1,5 +1,5 @@
-import { ListMenu, WhatValue } from "@/types/list";
-import { ExtendedLanguageCode } from "./settings";
+import type { ListMenu, WhatValue } from "@/types/list";
+import type { ExtendedLanguageCode } from "@/types/settings";
 
 export const WhatValues: WhatValue[] = [
   "pos",
