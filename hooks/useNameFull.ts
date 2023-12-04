@@ -11,6 +11,7 @@ export function useNameFull() {
   const [syllables2, setSyllables2] = useState<NumericString | undefined>();
   const [syllables3, setSyllables3] = useState<NumericString | undefined>();
   const [dialect, setDialect] = useState<Dialect | undefined>();
+  const [loading, setLoading] = useState(false);
   const [names, setNames] = useState<string[]>([]);
   const debounce = useDebounce();
 
@@ -21,6 +22,7 @@ export function useNameFull() {
     if (!syllables2) return;
     if (!syllables3) return;
     if (!dialect) return;
+    setLoading(true);
     const names = await nameFull(
       ending,
       numNames,
@@ -30,6 +32,7 @@ export function useNameFull() {
       dialect
     );
     setNames(names.trim().split("\n"));
+    setLoading(false);
   };
 
   const updateNumNames = (text: string) => {
@@ -94,6 +97,7 @@ export function useNameFull() {
     setDialect,
     ending,
     setEnding,
+    loading,
     execute,
   };
 }
