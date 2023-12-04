@@ -1,27 +1,16 @@
-import { Accordion } from "@/components/Accordion";
-import { ExternalLink } from "@/components/ExternalLink";
-import { OptionItem } from "@/components/OptionItem";
-import { BoldText, MonoText } from "@/components/StyledText";
-import { Text, View } from "@/components/Themed";
-import { FlagMap } from "@/components/settings/Flags";
-import Colors from "@/constants/Colors";
-import strings, {
-  AppLanguages,
-  ExtendedLanguageCode,
-  ResultsLanguages,
-  credits,
-} from "@/constants/ui/settings";
-import { useVersion } from "@/hooks/useVersion";
+import { View } from "@/components/Themed";
+import { About } from "@/components/settings/About";
+import { AppLanguageSelect } from "@/components/settings/AppLanguageSelect";
+import { ResultsLanguageSelect } from "@/components/settings/ResultsLanguageSelect";
 import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
-import { Platform, ScrollView, StyleSheet, useColorScheme } from "react-native";
+import { Platform, ScrollView, StyleSheet } from "react-native";
 
-export default function ModalScreen() {
+export default function SettingsScreen() {
   return (
     <ScrollView>
+      {/* Use a light status bar on iOS to account for the black space above the modal */}
+      <StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />
       <View style={styles.container}>
-        {/* Use a light status bar on iOS to account for the black space above the modal */}
-        <StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />
         <About />
         <AppLanguageSelect />
         <ResultsLanguageSelect />
@@ -30,178 +19,8 @@ export default function ModalScreen() {
   );
 }
 
-function About() {
-  const version = useVersion();
-  return (
-    <Accordion
-      closedContent={
-        <View style={styles.iconContainer}>
-          <Text style={styles.value}>{strings.en.about}</Text>
-        </View>
-      }
-      openedContent={
-        <View style={styles.expanded}>
-          <Version version={version} />
-          <Credits />
-        </View>
-      }
-    />
-  );
-}
-
-type VersionProps = {
-  version: ReturnType<typeof useVersion>;
-};
-
-function Version({
-  version: {
-    AppVersion,
-    Branch,
-    CommitHash,
-    APIVersion,
-    FwewVersion,
-    DictVersion,
-  },
-}: VersionProps) {
-  const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? "light"];
-
-  return (
-    <>
-      <Text style={styles.label}>{strings.en.version}</Text>
-      <View style={styles.versionContainer}>
-        <View>
-          <MonoText style={styles.text}>fwew-react</MonoText>
-          <MonoText style={styles.text}>fwew-api </MonoText>
-          <MonoText style={styles.text}>fwew-lib</MonoText>
-          <MonoText style={styles.text}>dictionary</MonoText>
-        </View>
-        <View>
-          <MonoText style={styles.text}>
-            {AppVersion} (
-            <ExternalLink
-              href={`https://github.com/corscheid/fwew-react/tree/next`}
-            >
-              <MonoText style={{ color: colors.link }}>
-                {Branch} {CommitHash?.substring(0, 7)}
-              </MonoText>
-            </ExternalLink>
-            )
-          </MonoText>
-          <MonoText style={styles.text}>{APIVersion}</MonoText>
-          <MonoText style={styles.text}>{FwewVersion}</MonoText>
-          <MonoText style={styles.text}>{DictVersion}</MonoText>
-        </View>
-      </View>
-    </>
-  );
-}
-
-function Credits() {
-  return (
-    <View style={styles.creditsContainer}>
-      <Text style={styles.label}>{strings.en.credits}</Text>
-      <BoldText style={styles.text}>{strings.en.development}</BoldText>
-      <Text style={styles.text}>{credits.development.join(", ")}</Text>
-      <BoldText style={styles.text}>{strings.en.design}</BoldText>
-      <Text style={styles.text}>{credits.design.join(", ")}</Text>
-      <BoldText style={styles.text}>{strings.en.testing}</BoldText>
-      <Text style={styles.text}>{credits.testing.join(", ")}</Text>
-      <BoldText style={styles.text}>{strings.en.translation}</BoldText>
-      <Text style={styles.text}>{credits.translation.join(", ")}</Text>
-    </View>
-  );
-}
-
-function AppLanguageSelect() {
-  const [appLanguage, setAppLanguage] = useState<ExtendedLanguageCode>("en");
-
-  return (
-    <Accordion
-      closedContent={
-        <View style={styles.iconContainer}>
-          {FlagMap[appLanguage]}
-          <Text style={styles.value}>{strings.en.appLanguage}</Text>
-        </View>
-      }
-      openedContent={
-        <>
-          {AppLanguages.map((language, i) => (
-            <OptionItem
-              key={i}
-              icon={FlagMap[language.value]}
-              value={language.label}
-              selected={appLanguage === language.value}
-              onSelect={() => setAppLanguage(language.value)}
-            />
-          ))}
-        </>
-      }
-    />
-  );
-}
-
-function ResultsLanguageSelect() {
-  const [resultsLanguage, setResultsLanguage] =
-    useState<ExtendedLanguageCode>("en");
-
-  return (
-    <Accordion
-      closedContent={
-        <View style={styles.iconContainer}>
-          {FlagMap[resultsLanguage]}
-          <Text style={styles.value}>{strings.en.resultsLanguage}</Text>
-        </View>
-      }
-      openedContent={
-        <>
-          {ResultsLanguages.map((language, i) => (
-            <OptionItem
-              key={i}
-              icon={FlagMap[language.value]}
-              value={language.label}
-              selected={resultsLanguage === language.value}
-              onSelect={() => setResultsLanguage(language.value)}
-            />
-          ))}
-        </>
-      }
-    />
-  );
-}
-
 const styles = StyleSheet.create({
   container: {
     gap: 16,
-  },
-  iconContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 16,
-  },
-  value: {
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-  expanded: {
-    padding: 16,
-    gap: 16,
-  },
-  versionContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 16,
-  },
-  creditsContainer: {
-    paddingTop: 8,
-    gap: 8,
-  },
-  label: {
-    paddingBottom: 10,
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-  text: {
-    fontSize: 16,
   },
 });
