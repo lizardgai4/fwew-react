@@ -3,7 +3,7 @@ import { NumericTextInput } from "@/components/NumericTextInput";
 import { OptionItem } from "@/components/OptionItem";
 import { Text, View } from "@/components/Themed";
 import { GenerateButton } from "@/components/names/GenerateButton";
-import stringsNameAlu, { adjModes, nounModes } from "@/constants/ui/name-alu";
+import stringsNameAlu from "@/constants/ui/name-alu";
 import stringsNames from "@/constants/ui/names";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useNameAlu } from "@/hooks/useNameAlu";
@@ -57,21 +57,21 @@ export default function NameAluScreen() {
               onChangeText={updateNumSyllables}
             />
             <Text style={styles.label}>{uiNameAlu.nounMode}</Text>
-            {nounModes.map((item, i) => (
+            {uiNameAlu.nounModes.map((item, i) => (
               <OptionItem
                 key={`na_n_${i}`}
-                value={item}
-                selected={nounMode === item}
-                onSelect={() => setNounMode(item)}
+                value={item.name}
+                selected={nounMode === item.value}
+                onSelect={() => setNounMode(item.value)}
               />
             ))}
             <Text style={styles.label}>{uiNameAlu.adjMode}</Text>
-            {adjModes.map((item, i) => (
+            {uiNameAlu.adjModes.map((item, i) => (
               <OptionItem
                 key={`na_a_${i}`}
-                value={item}
-                selected={adjMode === item}
-                onSelect={() => setAdjMode(item)}
+                value={item.name}
+                selected={adjMode === item.value}
+                onSelect={() => setAdjMode(item.value)}
               />
             ))}
             <Text style={styles.label}>{uiNames.dialect}</Text>
