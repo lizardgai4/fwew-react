@@ -5,6 +5,7 @@ import { Text, View } from "@/components/Themed";
 import { GenerateButton } from "@/components/names/GenerateButton";
 import stringsNameSingle from "@/constants/ui/name-single";
 import stringsNames from "@/constants/ui/names";
+import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import useNameSingle from "@/hooks/useNameSingle";
 import { RefreshControl, ScrollView, StyleSheet } from "react-native";
 
@@ -20,6 +21,9 @@ export default function NameSingleScreen() {
     loading,
     execute,
   } = useNameSingle();
+  const { appLanguage } = useAppLanguageContext();
+  const uiNames = stringsNames[appLanguage];
+  const uiNameSingle = stringsNameSingle[appLanguage];
 
   const disabled = !numNames || !numSyllables;
 
@@ -31,26 +35,24 @@ export default function NameSingleScreen() {
       }
     >
       <Accordion
-        closedContent={<Text>{stringsNames.en.options}</Text>}
+        closedContent={<Text>{uiNames.options}</Text>}
         openedContent={
           <>
-            <Text style={styles.label}>{stringsNames.en.numNames}</Text>
+            <Text style={styles.label}>{uiNames.numNames}</Text>
             <NumericTextInput
               placeholder="1-50"
               value={numNames}
               onChangeText={updateNumNames}
               autoFocus
             />
-            <Text style={styles.label}>
-              {stringsNameSingle.en.numSyllables}
-            </Text>
+            <Text style={styles.label}>{uiNameSingle.numSyllables}</Text>
             <NumericTextInput
               placeholder="1-4"
               value={numSyllables}
               onChangeText={updateNumSyllables}
             />
-            <Text style={styles.label}>{stringsNames.en.dialect}</Text>
-            {stringsNames.en.dialects.map((item, i) => (
+            <Text style={styles.label}>{uiNames.dialect}</Text>
+            {uiNames.dialects.map((item, i) => (
               <OptionItem
                 key={`ns_d_${i}`}
                 value={item.name}

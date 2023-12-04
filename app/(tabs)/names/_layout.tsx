@@ -1,6 +1,7 @@
 import Colors from "@/constants/Colors";
 import stringsNames from "@/constants/ui/names";
 import stringsScreens from "@/constants/ui/screens";
+import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { FontAwesome } from "@expo/vector-icons";
 import { Link, Stack } from "expo-router";
 import { Pressable, useColorScheme } from "react-native";
@@ -8,13 +9,15 @@ import { Pressable, useColorScheme } from "react-native";
 export default function StackLayout() {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
+  const { appLanguage } = useAppLanguageContext();
+  const ui = stringsNames[appLanguage];
 
   return (
     <Stack>
       <Stack.Screen
         name="index"
         options={{
-          title: stringsScreens.en.names,
+          title: stringsScreens[appLanguage].names,
           headerRight: () => (
             <Link href="/settings" asChild>
               <Pressable>
@@ -34,7 +37,7 @@ export default function StackLayout() {
       <Stack.Screen
         name="name-single"
         options={{
-          title: stringsNames.en.single,
+          title: ui.single,
           headerRight: () => (
             <Link href="/settings" asChild>
               <Pressable>
@@ -54,7 +57,7 @@ export default function StackLayout() {
       <Stack.Screen
         name="name-full"
         options={{
-          title: stringsNames.en.full,
+          title: ui.full,
           headerRight: () => (
             <Link href="/settings" asChild>
               <Pressable>
@@ -74,7 +77,7 @@ export default function StackLayout() {
       <Stack.Screen
         name="name-alu"
         options={{
-          title: stringsNames.en.alu,
+          title: ui.alu,
           headerRight: () => (
             <Link href="/settings" asChild>
               <Pressable>

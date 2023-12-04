@@ -1,4 +1,4 @@
-import type { ExtendedLanguageCode } from "./settings";
+import type { ExtendedLanguageCode } from "@/types/settings";
 
 type ScreenStrings = {
   [key in ExtendedLanguageCode]: {

@@ -1,5 +1,5 @@
 import type { Dialect } from "fwew.js";
-import { ExtendedLanguageCode } from "./settings";
+import type { ExtendedLanguageCode } from "@/types/settings";
 
 type DialectMeta = {
   name: string;

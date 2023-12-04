@@ -4,8 +4,9 @@ import { OptionItem } from "@/components/OptionItem";
 import { Text, View } from "@/components/Themed";
 import { GenerateButton } from "@/components/names/GenerateButton";
 import Colors from "@/constants/Colors";
-import stringsNameFull from "@/constants/ui/name-full";
+import stringsNameFull, { nameEndings } from "@/constants/ui/name-full";
 import stringsNames from "@/constants/ui/names";
+import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useNameFull } from "@/hooks/useNameFull";
 import {
   RefreshControl,
@@ -34,6 +35,9 @@ export default function NameFullScreen() {
     loading,
     execute,
   } = useNameFull();
+  const { appLanguage } = useAppLanguageContext();
+  const uiNames = stringsNames[appLanguage];
+  const uiNameFull = stringsNameFull[appLanguage];
 
   const disabled = !numNames || !syllables1 || !syllables2 || !syllables3;
 
@@ -45,41 +49,41 @@ export default function NameFullScreen() {
       }
     >
       <Accordion
-        closedContent={<Text>{stringsNames.en.options}</Text>}
+        closedContent={<Text>{uiNames.options}</Text>}
         openedContent={
           <>
-            <Text style={styles.label}>{stringsNames.en.numNames}</Text>
+            <Text style={styles.label}>{uiNames.numNames}</Text>
             <NumericTextInput
               value={numNames}
               onChangeText={updateNumNames}
               placeholder="1-50"
               autoFocus
             />
-            <Text style={styles.label}>{stringsNameFull.en.numSyllables1}</Text>
+            <Text style={styles.label}>{uiNameFull.numSyllables1}</Text>
             <NumericTextInput
               value={syllables1}
               onChangeText={updateSyllables1}
               placeholder="1-4"
             />
-            <Text style={styles.label}>{stringsNameFull.en.numSyllables2}</Text>
+            <Text style={styles.label}>{uiNameFull.numSyllables2}</Text>
             <NumericTextInput
               value={syllables2}
               onChangeText={updateSyllables2}
               placeholder="1-4"
             />
-            <Text style={styles.label}>{stringsNameFull.en.numSyllables3}</Text>
+            <Text style={styles.label}>{uiNameFull.numSyllables3}</Text>
             <NumericTextInput
               value={syllables3}
               onChangeText={updateSyllables3}
               placeholder="1-4"
             />
-            <Text style={styles.label}>{stringsNameFull.en.nameEnding}</Text>
+            <Text style={styles.label}>{uiNameFull.nameEnding}</Text>
             <Text
               style={{ color: colors.placeholder, padding: 10, paddingTop: 0 }}
             >
-              {stringsNameFull.en.nameEndingHint}
+              {uiNameFull.nameEndingHint}
             </Text>
-            {stringsNameFull.en.nameEndings.map((item, i) => (
+            {nameEndings.map((item, i) => (
               <OptionItem
                 key={`nf_e_${i}`}
                 value={item}
@@ -87,8 +91,8 @@ export default function NameFullScreen() {
                 onSelect={() => setEnding(item)}
               />
             ))}
-            <Text style={styles.label}>{stringsNames.en.dialect}</Text>
-            {stringsNames.en.dialects.map((item, i) => (
+            <Text style={styles.label}>{uiNames.dialect}</Text>
+            {uiNames.dialects.map((item, i) => (
               <OptionItem
                 key={`nf_d_${i}`}
                 value={item.name}
