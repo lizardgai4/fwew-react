@@ -22,6 +22,12 @@ const strings: NumberStrings = {
     octal: "octal:",
     decimal: "decimal:",
   },
+  eo: {
+    placeholderNumeric: "42",
+    placeholderAlpha: "mrrvomun",
+    octal: "oktala:",
+    decimal: "dekuma:",
+  },
   es: {
     placeholderNumeric: "42",
     placeholderAlpha: "mrrvomun",

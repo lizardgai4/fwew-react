@@ -57,6 +57,27 @@ const strings: NameAluStrings = {
       { name: "passive participle verb", value: "passive participle verb" },
     ],
   },
+  eo: {
+    numSyllables: "Nombro de Silaboj en la Nomo",
+    nounMode: "Substantiva Modo",
+    adjMode: "Adjektiva Modo",
+    nounModes: [
+      { name: "io", value: "something" },
+      { name: "normala substantivo", value: "normal noun" },
+      { name: "verbo-er", value: "verb-er" },
+    ],
+    adjModes: [
+      { name: "iu", value: "any" },
+      { name: "io", value: "something" },
+      { name: "nenio", value: "none" },
+      { name: "normala adjektivo", value: "normal adjective" },
+      { name: "genitiva substantivo", value: "genitive noun" },
+      { name: "origina substantivo", value: "origin noun" },
+      { name: "participo verbo", value: "participle verb" },
+      { name: "aktiva participo verbo", value: "active participle verb" },
+      { name: "pasiva participo verbo", value: "passive participle verb" },
+    ],
+  },
   es: {
     numSyllables: "Número de Sílabas en el Nombre",
     nounMode: "Modo Sustantivo",

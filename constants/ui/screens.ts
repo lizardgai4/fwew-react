@@ -28,6 +28,14 @@ const strings: ScreenStrings = {
     names: "Names",
     settings: "Settings",
   },
+  eo: {
+    search: "Serĉi",
+    list: "Listo",
+    random: "Hazarda",
+    numbers: "Nombroj",
+    names: "Nomoj",
+    settings: "Agordoj",
+  },
   es: {
     search: "Buscar",
     list: "Lista",

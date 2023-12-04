@@ -28,6 +28,12 @@ const strings: RandomStrings = {
     numWords: "Número de palabras aleatorias",
     where: "donde...",
   },
+  eo: {
+    random: "Hazarda",
+    randomOptions: "HAZARDAJ OPCIOJ",
+    numWords: "Nombro de hazardaj vortoj",
+    where: "kie...",
+  },
   et: {
     random: "Juhuslik",
     randomOptions: "JUHUSLIKE VALIKUTE",

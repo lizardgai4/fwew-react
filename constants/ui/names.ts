@@ -48,6 +48,20 @@ const strings: NameStrings = {
     ],
     generate: "Generate",
   },
+  eo: {
+    single: "Simpla",
+    full: "Plena",
+    alu: "Alu",
+    options: "Opcioj",
+    numNames: "Nombro de Generataj Nomoj",
+    dialect: "Dialekto",
+    dialects: [
+      { name: "interdialekta", value: "interdialect" },
+      { name: "arbara", value: "forest" },
+      { name: "rifa", value: "reef" },
+    ],
+    generate: "Generi",
+  },
   es: {
     single: "Sencillo",
     full: "Completo",

@@ -16,6 +16,10 @@ const strings: CommonStrings = {
     result: "resultado",
     results: "resultados",
   },
+  eo: {
+    result: "rezulto",
+    results: "rezultoj",
+  },
   et: {
     result: "tulemus",
     results: "tulemused",

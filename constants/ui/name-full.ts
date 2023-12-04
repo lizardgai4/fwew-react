@@ -30,6 +30,14 @@ const strings: NameFullStrings = {
     nameEndingHint:
       "-'itan for male, -'ite for female, -'itu for non-binary (non-canon)",
   },
+  eo: {
+    numSyllables1: "Nombro de Silaboj en la Nomo",
+    numSyllables2: "Nombro de Silaboj en la Familia Nomo",
+    numSyllables3: "Nombro de Silaboj en la Patra Nomo",
+    nameEnding: "Nomo Fino",
+    nameEndingHint:
+      "-'itan por viro, -'ite por virino, -'itu por nebinara (nekana)",
+  },
   es: {
     numSyllables1: "Número de Sílabas en el Nombre",
     numSyllables2: "Número de Sílabas en el Apellido",
