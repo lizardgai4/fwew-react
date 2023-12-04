@@ -44,6 +44,17 @@ export const credits = {
 };
 
 const strings = {
+  de: {
+    about: "Über",
+    version: "Version",
+    credits: "Credits",
+    development: "Entwicklung",
+    design: "Design",
+    testing: "Testen",
+    translation: "Übersetzung",
+    appLanguage: "App-Sprache",
+    resultsLanguage: "Ergebnis-Sprache",
+  },
   en: {
     about: "About",
     version: "Version",
