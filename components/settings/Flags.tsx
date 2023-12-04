@@ -25,6 +25,16 @@ export const USA = (props: SvgProps) => (
   </Svg>
 );
 
+export const Esperanto = (props: SvgProps) => (
+  <Svg viewBox="0 0 512 512" width={32} height={32} {...props}>
+    <Path fill="#FFF" d="M0 0h202v202H0" />
+    <Path
+      fill="#090"
+      d="M0 200h200V0h400v400H0m58-243L99 31l41 126L33 79h133"
+    />
+  </Svg>
+);
+
 export const Estonia = (props: SvgProps) => (
   <Svg viewBox="0 0 512 512" width={32} height={32} {...props}>
     <Path d="M0 85.337h512v341.326H0z" />
@@ -121,6 +131,7 @@ type FlagMapType = {
 export const FlagMap: FlagMapType = {
   de: <Germany />,
   en: <USA />,
+  eo: <Esperanto />,
   es: <Mexico />,
   et: <Estonia />,
   fr: <France />,

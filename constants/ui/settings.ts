@@ -20,6 +20,7 @@ export const Languages: LanguageMeta[] = [
   { value: "ru", label: "Русский", ui: true, results: true },
   { value: "sv", label: "Svenska", ui: true, results: true },
   // UI only
+  { value: "eo", label: "Esperanto", ui: true, results: false },
   { value: "es", label: "Español", ui: true, results: false },
   { value: "nx", label: "Lì'fya leNa'vi", ui: true, results: false },
 ];
@@ -76,6 +77,17 @@ const strings: SettingsStrings = {
     translation: "Translation",
     appLanguage: "App Language",
     resultsLanguage: "Results Language",
+  },
+  eo: {
+    about: "Pri",
+    version: "Versio",
+    credits: "Kreditoj",
+    development: "Disvolviĝo",
+    design: "Dizajno",
+    testing: "Testado",
+    translation: "Traduko",
+    appLanguage: "Lingvo de la aplikaĵo",
+    resultsLanguage: "Lingvo de la rezultoj",
   },
   es: {
     about: "Acerca de",
