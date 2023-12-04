@@ -1,4 +1,19 @@
 const strings = {
+  de: {
+    search: "Suche",
+    audio: "Audio",
+    partOfSpeech: "Wortart",
+    definition: "Definition",
+    infixDots: "Infixe (Punkte)",
+    infixSlots: "Infixe (Slots)",
+    prefixes: "Präfixe",
+    infixes: "Infixe",
+    suffixes: "Suffixe",
+    lenition: "Lenierung",
+    comment: "Kommentar",
+    source: "Quelle",
+    ipa: "IPA",
+  },
   en: {
     search: "Search",
     audio: "Audio",

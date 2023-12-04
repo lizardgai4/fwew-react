@@ -1,6 +1,86 @@
 import { ListMenu, WhatValue } from "@/types/list";
 
 const strings = {
+  de: {
+    list: "Liste",
+    listOptions: "LISTENOPTIONEN",
+    listMenu: {
+      whatValues: [
+        { value: "pos", description: "Wortart ist, hat, etc." },
+        { value: "word", description: "beginnt mit, endet mit, hat, etc." },
+        {
+          value: "words",
+          description: "nach Veröffentlichung, erstes oder letztes",
+        },
+        { value: "syllables", description: "Anzahl der Silben" },
+        { value: "stress", description: "betonte Silbenposition" },
+        { value: "length", description: "Länge des Wortes in Phonemen" },
+      ],
+      condValues: {
+        pos: [
+          { value: "starts", description: "beginnt mit" },
+          { value: "ends", description: "endet mit" },
+          { value: "is", description: "ist" },
+          { value: "has", description: "hat" },
+          { value: "like", description: "ist wie" },
+          { value: "not-starts", description: "beginnt nicht mit" },
+          { value: "not-ends", description: "endet nicht mit" },
+          { value: "not-is", description: "ist nicht" },
+          { value: "not-has", description: "hat nicht" },
+          { value: "not-like", description: "ist nicht wie" },
+        ],
+        word: [
+          { value: "starts", description: "beginnt mit" },
+          { value: "ends", description: "endet mit" },
+          { value: "has", description: "hat" },
+          { value: "like", description: "ist wie" },
+          { value: "not-starts", description: "beginnt nicht mit" },
+          { value: "not-ends", description: "endet nicht mit" },
+          { value: "not-has", description: "hat nicht" },
+          { value: "not-like", description: "ist nicht wie" },
+        ],
+        words: [
+          { value: "first", description: "älteste Wörter" },
+          { value: "last", description: "neueste Wörter" },
+        ],
+        syllables: [
+          { value: "<", description: "kleiner als" },
+          { value: "<=", description: "kleiner als oder gleich" },
+          { value: "=", description: "gleich" },
+          { value: ">=", description: "größer als oder gleich" },
+          { value: ">", description: "größer als" },
+          { value: "!=", description: "ungleich" },
+        ],
+        stress: [
+          { value: "<", description: "kleiner als" },
+          { value: "<=", description: "kleiner als oder gleich" },
+          { value: "=", description: "gleich" },
+          { value: ">=", description: "größer als oder gleich" },
+          { value: ">", description: "größer als" },
+          { value: "!=", description: "ungleich" },
+        ],
+        length: [
+          { value: "<", description: "kleiner als" },
+          { value: "<=", description: "kleiner als oder gleich" },
+          { value: "=", description: "gleich" },
+          { value: ">=", description: "größer als oder gleich" },
+          { value: ">", description: "größer als" },
+          { value: "!=", description: "ungleich" },
+        ],
+      },
+    } as ListMenu,
+    whatValues: [
+      "pos",
+      "word",
+      "words",
+      "syllables",
+      "stress",
+      "length",
+    ] as WhatValue[],
+    and: "UND...",
+    go: "LOS",
+    noResults: "keine Ergebnisse",
+  },
   en: {
     list: "List",
     listOptions: "LIST OPTIONS",

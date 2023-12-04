@@ -1,4 +1,12 @@
 const strings = {
+  de: {
+    search: "Suche",
+    list: "Liste",
+    random: "Zufall",
+    numbers: "Zahlen",
+    names: "Namen",
+    settings: "Einstellungen",
+  },
   en: {
     search: "Search",
     list: "List",
