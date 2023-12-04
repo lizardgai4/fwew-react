@@ -1,4 +1,4 @@
-import { Text } from "@/components/Themed";
+import { Text } from "@/components/common/Themed";
 import strings from "@/constants/ui/common";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { StyleSheet } from "react-native";

@@ -1,4 +1,4 @@
-import { View } from "@/components/Themed";
+import { View } from "@/components/common/Themed";
 import { NumberResultCard } from "@/components/number/NumberResultCard";
 import { NumberSearchBar } from "@/components/number/NumberSearchBar";
 import { useNumber } from "@/hooks/useNumber";

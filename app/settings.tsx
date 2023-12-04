@@ -1,4 +1,4 @@
-import { View } from "@/components/Themed";
+import { View } from "@/components/common/Themed";
 import { About } from "@/components/settings/About";
 import { AppLanguageSelect } from "@/components/settings/AppLanguageSelect";
 import { ResultsLanguageSelect } from "@/components/settings/ResultsLanguageSelect";

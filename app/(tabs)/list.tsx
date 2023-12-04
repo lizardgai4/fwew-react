@@ -1,6 +1,6 @@
-import { ResultCount } from "@/components/ResultCount";
-import { SearchBar } from "@/components/SearchBar";
-import { View } from "@/components/Themed";
+import { ResultCount } from "@/components/common/ResultCount";
+import { SearchBar } from "@/components/common/SearchBar";
+import { View } from "@/components/common/Themed";
 import { ListOptions } from "@/components/list/ListOptions";
 import { ListResults } from "@/components/list/ListResults";
 import strings from "@/constants/ui/list";

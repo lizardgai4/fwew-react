@@ -1,6 +1,6 @@
-import { ExternalLink } from "@/components/ExternalLink";
-import { MonoText } from "@/components/StyledText";
-import { Text, View } from "@/components/Themed";
+import { ExternalLink } from "@/components/common/ExternalLink";
+import { MonoText } from "@/components/common/StyledText";
+import { Text, View } from "@/components/common/Themed";
 import Colors from "@/constants/Colors";
 import strings from "@/constants/ui/settings";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";

@@ -1,4 +1,4 @@
-import { TextInput, View } from "@/components/Themed";
+import { TextInput, View } from "@/components/common/Themed";
 import Colors from "@/constants/Colors";
 import { FontAwesome } from "@expo/vector-icons";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";

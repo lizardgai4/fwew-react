@@ -1,5 +1,5 @@
-import { Accordion } from "@/components/Accordion";
-import { Text, View } from "@/components/Themed";
+import { Accordion } from "@/components/common/Accordion";
+import { Text, View } from "@/components/common/Themed";
 import { Credits } from "@/components/settings/Credits";
 import { Version } from "@/components/settings/Version";
 import strings from "@/constants/ui/settings";

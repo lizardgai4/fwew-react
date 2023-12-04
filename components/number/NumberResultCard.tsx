@@ -1,4 +1,4 @@
-import { Text, View } from "@/components/Themed";
+import { Text, View } from "@/components/common/Themed";
 import strings from "@/constants/ui/numbers";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import type { FwewError, FwewNumber } from "fwew.js";
