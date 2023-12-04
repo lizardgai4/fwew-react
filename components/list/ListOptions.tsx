@@ -1,4 +1,4 @@
-import { Text } from "@/components/Themed";
+import { Text } from "@/components/common/Themed";
 import { ListOptionsCond } from "@/components/list/ListOptionsCond";
 import { ListOptionsSpec } from "@/components/list/ListOptionsSpec";
 import { ListOptionsWhat } from "@/components/list/ListOptionsWhat";

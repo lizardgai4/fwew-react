@@ -1,4 +1,4 @@
-import { ResultCard } from "@/components/ResultCard";
+import { ResultCard } from "@/components/common/ResultCard";
 import type { Word } from "fwew.js";
 
 type FwewSearchResultsProps = {

@@ -1,7 +1,7 @@
-import { Accordion } from "@/components/Accordion";
-import { NumericTextInput } from "@/components/NumericTextInput";
-import { OptionItem } from "@/components/OptionItem";
-import { Text, View } from "@/components/Themed";
+import { Accordion } from "@/components/common/Accordion";
+import { NumericTextInput } from "@/components/common/NumericTextInput";
+import { OptionItem } from "@/components/common/OptionItem";
+import { Text, View } from "@/components/common/Themed";
 import { GenerateButton } from "@/components/names/GenerateButton";
 import stringsNameAlu from "@/constants/ui/name-alu";
 import stringsNames from "@/constants/ui/names";

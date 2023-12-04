@@ -1,4 +1,4 @@
-import { Text, View } from "@/components/Themed";
+import { Text, View } from "@/components/common/Themed";
 import Colors from "@/constants/Colors";
 import strings from "@/constants/ui/names";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";

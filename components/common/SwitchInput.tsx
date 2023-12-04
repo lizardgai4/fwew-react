@@ -1,4 +1,4 @@
-import { Text, View } from "@/components/Themed";
+import { Text, View } from "@/components/common/Themed";
 import { StyleSheet, Switch } from "react-native";
 
 type SwitchInputProps = {

@@ -1,5 +1,5 @@
-import { BoldText } from "@/components/StyledText";
-import { Text, View } from "@/components/Themed";
+import { BoldText } from "@/components/common/StyledText";
+import { Text, View } from "@/components/common/Themed";
 import strings, { credits } from "@/constants/ui/settings";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { StyleSheet } from "react-native";

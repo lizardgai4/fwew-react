@@ -1,7 +1,7 @@
-import { Accordion } from "@/components/Accordion";
-import { ResultInfo } from "@/components/ResultInfo";
-import { MonoText } from "@/components/StyledText";
-import { Text } from "@/components/Themed";
+import { Accordion } from "@/components/common/Accordion";
+import { ResultInfo } from "@/components/common/ResultInfo";
+import { MonoText } from "@/components/common/StyledText";
+import { Text } from "@/components/common/Themed";
 import { useResultsLanguage } from "@/hooks/useResultsLanguage";
 import type { LanguageCode, Word } from "fwew.js";
 import { StyleSheet } from "react-native";

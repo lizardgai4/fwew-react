@@ -1,5 +1,5 @@
-import { BoldText, UnderlinedText } from "@/components/StyledText";
-import { Text, View } from "@/components/Themed";
+import { BoldText, UnderlinedText } from "@/components/common/StyledText";
+import { Text, View } from "@/components/common/Themed";
 import AudioResources from "@/constants/AudioResources";
 import Colors from "@/constants/Colors";
 import { PartOfSpeech } from "@/constants/PartOfSpeech";

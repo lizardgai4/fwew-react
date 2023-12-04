@@ -1,6 +1,6 @@
-import { Accordion } from "@/components/Accordion";
-import { OptionItem } from "@/components/OptionItem";
-import { Text, View } from "@/components/Themed";
+import { Accordion } from "@/components/common/Accordion";
+import { OptionItem } from "@/components/common/OptionItem";
+import { Text, View } from "@/components/common/Themed";
 import { FlagMap } from "@/components/settings/Flags";
 import strings, { AppLanguages } from "@/constants/ui/settings";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";

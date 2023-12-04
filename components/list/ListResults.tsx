@@ -1,5 +1,5 @@
-import { ResultCard } from "@/components/ResultCard";
-import { Text } from "@/components/Themed";
+import { ResultCard } from "@/components/common/ResultCard";
+import { Text } from "@/components/common/Themed";
 import strings from "@/constants/ui/list";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import type { Word } from "fwew.js";

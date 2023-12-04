@@ -1,4 +1,4 @@
-import { Text, View } from "@/components/Themed";
+import { Text, View } from "@/components/common/Themed";
 import Colors from "@/constants/Colors";
 import type { ListMenuCond, ListMenuItem, WhatValue } from "@/types/list";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
