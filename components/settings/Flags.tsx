@@ -1,4 +1,5 @@
 import { View } from "@/components/Themed";
+import { ExtendedLanguageCode } from "@/types/settings";
 import Svg, { Path, SvgProps } from "react-native-svg";
 
 export const Germany = (props: SvgProps) => (
@@ -113,7 +114,11 @@ export const Turkey = (props: SvgProps) => (
   </Svg>
 );
 
-export const FlagMap = {
+type FlagMapType = {
+  [key in ExtendedLanguageCode]: JSX.Element;
+};
+
+export const FlagMap: FlagMapType = {
   de: <Germany />,
   en: <USA />,
   es: <Mexico />,
