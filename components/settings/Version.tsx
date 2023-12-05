@@ -33,15 +33,7 @@ export function Version() {
         </View>
         <View>
           <MonoText style={styles.text}>
-            {AppVersion} (
-            <ExternalLink
-              href={`https://github.com/corscheid/fwew-react/tree/next`}
-            >
-              <MonoText style={{ color: colors.link }}>
-                {Branch} {CommitHash?.substring(0, 7)}
-              </MonoText>
-            </ExternalLink>
-            )
+            {AppVersion} <GitDetails branch={Branch} commitHash={CommitHash} />
           </MonoText>
           <MonoText style={styles.text}>{APIVersion}</MonoText>
           <MonoText style={styles.text}>{FwewVersion}</MonoText>
@@ -49,6 +41,33 @@ export function Version() {
         </View>
       </View>
     </>
+  );
+}
+
+function GitDetails({
+  branch,
+  commitHash,
+}: {
+  branch?: string;
+  commitHash?: string;
+}) {
+  const colorScheme = useColorScheme();
+  const colors = Colors[colorScheme ?? "light"];
+
+  if (!branch || !commitHash) {
+    return null;
+  }
+
+  return (
+    <MonoText style={styles.text}>
+      (
+      <ExternalLink href={`https://github.com/corscheid/fwew-react/tree/next`}>
+        <MonoText style={{ color: colors.link }}>
+          {branch} {commitHash?.substring(0, 7)}
+        </MonoText>
+      </ExternalLink>
+      )
+    </MonoText>
   );
 }
 
