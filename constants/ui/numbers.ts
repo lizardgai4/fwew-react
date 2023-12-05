@@ -1,4 +1,4 @@
-import type { ExtendedLanguageCode } from "@/types/settings";
+import type { ExtendedLanguageCode } from "@/types/common";
 
 type NumberStrings = {
   [key in ExtendedLanguageCode]: {
