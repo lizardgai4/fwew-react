@@ -63,19 +63,19 @@ export default function NameFullScreen() {
             <NumericTextInput
               value={syllables1}
               onChangeText={updateSyllables1}
-              placeholder="1-4"
+              placeholder="0-4"
             />
             <Text style={styles.label}>{uiNameFull.numSyllables2}</Text>
             <NumericTextInput
               value={syllables2}
               onChangeText={updateSyllables2}
-              placeholder="1-4"
+              placeholder="0-4"
             />
             <Text style={styles.label}>{uiNameFull.numSyllables3}</Text>
             <NumericTextInput
               value={syllables3}
               onChangeText={updateSyllables3}
-              placeholder="1-4"
+              placeholder="0-4"
             />
             <Text style={styles.label}>{uiNameFull.nameEnding}</Text>
             <Text

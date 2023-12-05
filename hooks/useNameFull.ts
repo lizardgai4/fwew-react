@@ -6,11 +6,11 @@ import { useEffect, useState } from "react";
 
 export function useNameFull() {
   const [ending, setEnding] = useState<NameEnding | undefined>();
-  const [numNames, setNumNames] = useState<NumericString | undefined>();
-  const [syllables1, setSyllables1] = useState<NumericString | undefined>();
-  const [syllables2, setSyllables2] = useState<NumericString | undefined>();
-  const [syllables3, setSyllables3] = useState<NumericString | undefined>();
-  const [dialect, setDialect] = useState<Dialect | undefined>();
+  const [numNames, setNumNames] = useState<NumericString>("1");
+  const [syllables1, setSyllables1] = useState<NumericString>("0");
+  const [syllables2, setSyllables2] = useState<NumericString>("0");
+  const [syllables3, setSyllables3] = useState<NumericString>("0");
+  const [dialect, setDialect] = useState<Dialect>("interdialect");
   const [loading, setLoading] = useState(false);
   const [names, setNames] = useState<string[]>([]);
   const debounce = useDebounce();
@@ -37,7 +37,7 @@ export function useNameFull() {
 
   const updateNumNames = (text: string) => {
     if (text === "") {
-      setNumNames(undefined);
+      setNumNames(text);
       setNames([]);
       return;
     }
@@ -48,34 +48,34 @@ export function useNameFull() {
 
   const updateSyllables1 = (text: string) => {
     if (text === "") {
-      setSyllables1(undefined);
+      setSyllables1(text);
       setNames([]);
       return;
     }
     const num = parseInt(text);
-    if (isNaN(num) || num > 4 || num < 1) return;
+    if (isNaN(num) || num > 4 || num < 0) return;
     setSyllables1(`${num}`);
   };
 
   const updateSyllables2 = (text: string) => {
     if (text === "") {
-      setSyllables2(undefined);
+      setSyllables2(text);
       setNames([]);
       return;
     }
     const num = parseInt(text);
-    if (isNaN(num) || num > 4 || num < 1) return;
+    if (isNaN(num) || num > 4 || num < 0) return;
     setSyllables2(`${num}`);
   };
 
   const updateSyllables3 = (text: string) => {
     if (text === "") {
-      setSyllables3(undefined);
+      setSyllables3(text);
       setNames([]);
       return;
     }
     const num = parseInt(text);
-    if (isNaN(num) || num > 4 || num < 1) return;
+    if (isNaN(num) || num > 4 || num < 0) return;
     setSyllables3(`${num}`);
   };
 
