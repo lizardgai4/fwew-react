@@ -61,18 +61,18 @@ export function NumberSearchBar({
 const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 8,
   },
   input: {
     flex: 1,
-    padding: 8,
-    fontSize: 16,
-    fontWeight: "bold",
     borderWidth: 1,
+    padding: 10,
   },
   button: {
     alignItems: "center",
     justifyContent: "center",
-    height: 50,
     padding: 8,
     borderWidth: 1,
   },
