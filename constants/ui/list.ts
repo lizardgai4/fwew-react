@@ -748,7 +748,7 @@ const strings: ListStrings = {
         { value: "word", description: "começa com, termina com, tem, etc." },
         {
           value: "words",
-          description: "por ordem de lançamento, primeiro ou último.",
+          description: "por ordem de lançamento, primeiro ou último",
         },
         { value: "syllables", description: "número de sílabas" },
         { value: "stress", description: "posição da sílaba estressada" },
