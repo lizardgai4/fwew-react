@@ -1,4 +1,4 @@
-import type { ExtendedLanguageCode } from "@/types/settings";
+import type { ExtendedLanguageCode } from "@/types/common";
 import { useAsyncStorage } from "@react-native-async-storage/async-storage";
 import type { LanguageCode } from "fwew.js";
 import { useEffect, useState } from "react";
@@ -8,7 +8,7 @@ export function useResultsLanguage() {
   const { getItem, setItem } = useAsyncStorage("fw_lang_results");
 
   async function saveResultsLanguage(value: ExtendedLanguageCode) {
-    if (value === "es" || value === "nx") {
+    if (value === "eo" || value === "es" || value === "nx") {
       return;
     }
     try {

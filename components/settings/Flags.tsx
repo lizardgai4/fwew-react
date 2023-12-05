@@ -1,5 +1,5 @@
 import { View } from "@/components/common/Themed";
-import { ExtendedLanguageCode } from "@/types/settings";
+import { ExtendedLanguageCode } from "@/types/common";
 import Svg, { Path, SvgProps } from "react-native-svg";
 
 export const Germany = (props: SvgProps) => (

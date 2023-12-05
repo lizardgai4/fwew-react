@@ -1,5 +1,5 @@
 import type { AdjectiveMode, NounMode } from "fwew.js";
-import type { ExtendedLanguageCode } from "@/types/settings";
+import type { ExtendedLanguageCode } from "@/types/common";
 
 type NounModeMeta = { name: string; value: NounMode };
 type AdjModeMeta = { name: string; value: AdjectiveMode };

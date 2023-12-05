@@ -1,5 +1,5 @@
 import type { NameEnding } from "fwew.js";
-import type { ExtendedLanguageCode } from "@/types/settings";
+import type { ExtendedLanguageCode } from "@/types/common";
 
 export const nameEndings: NameEnding[] = ["'itan", "'ite", "'itu"];
 
