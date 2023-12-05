@@ -168,7 +168,6 @@ const strings: SettingsStrings = {
     appLanguage: "Język aplikacji",
     resultsLanguage: "Język wyników",
   },
-  // TODO: pt
   pt: {
     about: "Sobre",
     version: "Versão",

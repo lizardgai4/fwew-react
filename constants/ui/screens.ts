@@ -92,7 +92,6 @@ const strings: ScreenStrings = {
     names: "Imiona",
     settings: "Ustawienia",
   },
-  // TODO: pt
   pt: {
     search: "Procurar",
     list: "Lista",
