@@ -5,9 +5,9 @@ import { nameSingle } from "fwew.js";
 import { useEffect, useState } from "react";
 
 export default function useNameSingle() {
-  const [numNames, setNumNames] = useState<NumericString | undefined>();
-  const [numSyllables, setNumSyllables] = useState<NumericString | undefined>();
-  const [dialect, setDialect] = useState<Dialect | undefined>();
+  const [numNames, setNumNames] = useState<NumericString>("1");
+  const [numSyllables, setNumSyllables] = useState<NumericString>("0");
+  const [dialect, setDialect] = useState<Dialect>("interdialect");
   const [loading, setLoading] = useState(false);
   const [names, setNames] = useState<string[]>([]);
   const debounce = useDebounce();
@@ -22,7 +22,7 @@ export default function useNameSingle() {
 
   const updateNumNames = (text: string) => {
     if (text === "") {
-      setNumNames(undefined);
+      setNumNames(text);
       setNames([]);
       return;
     }
@@ -33,12 +33,12 @@ export default function useNameSingle() {
 
   const updateNumSyllables = (text: string) => {
     if (text === "") {
-      setNumSyllables(undefined);
+      setNumSyllables(text);
       setNames([]);
       return;
     }
     const num = parseInt(text);
-    if (isNaN(num) || num > 4 || num < 1) return;
+    if (isNaN(num) || num > 4 || num < 0) return;
     setNumSyllables(`${num}`);
   };
 

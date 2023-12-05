@@ -52,7 +52,7 @@ export default function NameAluScreen() {
             />
             <Text style={styles.label}>{uiNameAlu.numSyllables}</Text>
             <NumericTextInput
-              placeholder="1-4"
+              placeholder="0-4"
               value={numSyllables}
               onChangeText={updateNumSyllables}
             />

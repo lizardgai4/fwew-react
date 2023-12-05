@@ -47,7 +47,7 @@ export default function NameSingleScreen() {
             />
             <Text style={styles.label}>{uiNameSingle.numSyllables}</Text>
             <NumericTextInput
-              placeholder="1-4"
+              placeholder="0-4"
               value={numSyllables}
               onChangeText={updateNumSyllables}
             />
