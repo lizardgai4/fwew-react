@@ -13,6 +13,15 @@ export function ResultCount({ visible, resultCount }: ResultCountProps) {
   const ui = strings[appLanguage];
   if (!visible) return null;
 
+  if (appLanguage === "nx") {
+    const octalResultCount = resultCount.toString(8);
+    return (
+      <Text style={styles.resultCount}>
+        {`°${octalResultCount}a ${ui.result}`}
+      </Text>
+    );
+  }
+
   return (
     <Text style={styles.resultCount}>
       {`${resultCount} ${resultCount === 1 ? ui.result : ui.results}`}
