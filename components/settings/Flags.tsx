@@ -1,7 +1,8 @@
 import { View } from "@/components/common/Themed";
 import { ExtendedLanguageCode } from "@/types/common";
-import Svg, { Path, SvgProps } from "react-native-svg";
+import Svg, { Circle, Path, SvgProps } from "react-native-svg";
 
+// de
 export const Germany = (props: SvgProps) => (
   <Svg viewBox="0 0 512 512" width={32} height={32} {...props}>
     <Path d="M0 85.331h512v341.337H0z" fill="#d80027" />
@@ -10,6 +11,7 @@ export const Germany = (props: SvgProps) => (
   </Svg>
 );
 
+// en
 export const USA = (props: SvgProps) => (
   <Svg viewBox="0 0 512 512" width={32} height={32} {...props}>
     <Path d="M0 85.331h512v341.337H0z" fill="#f0f0f0" />
@@ -25,6 +27,7 @@ export const USA = (props: SvgProps) => (
   </Svg>
 );
 
+// eo
 export const Esperanto = (props: SvgProps) => (
   <Svg viewBox="0 0 512 512" width={32} height={32} {...props}>
     <Path fill="#FFF" d="M0 0h202v202H0" />
@@ -35,30 +38,7 @@ export const Esperanto = (props: SvgProps) => (
   </Svg>
 );
 
-export const Estonia = (props: SvgProps) => (
-  <Svg viewBox="0 0 512 512" width={32} height={32} {...props}>
-    <Path d="M0 85.337h512v341.326H0z" />
-    <Path d="M0 85.337h512v113.775H0z" fill="#0052b4" />
-    <Path d="M0 312.888h512v113.775H0z" fill="#f0f0f0" />
-  </Svg>
-);
-
-export const France = (props: SvgProps) => (
-  <Svg viewBox="0 0 512 512" width={32} height={32} {...props}>
-    <Path d="M0 85.331h512v341.337H0z" fill="#f0f0f0" />
-    <Path d="M0 85.331h170.663v341.337H0z" fill="#0052b4" />
-    <Path d="M341.337 85.331H512v341.337H341.337z" fill="#d80027" />
-  </Svg>
-);
-
-export const Hungary = (props: SvgProps) => (
-  <Svg viewBox="0 0 512 512" width={32} height={32} {...props}>
-    <Path d="M0 85.337h512v341.326H0z" fill="#f0f0f0" />
-    <Path d="M0 85.337h512v113.775H0z" fill="#d80027" />
-    <Path d="M0 312.888h512v113.775H0z" fill="#6da544" />
-  </Svg>
-);
-
+// es
 export const Mexico = (props: SvgProps) => (
   <Svg viewBox="0 0 512 512" width={32} height={32} {...props}>
     <Path d="M341.334 85.33H0v341.332h512V85.33z" fill="#d80027" />
@@ -75,6 +55,34 @@ export const Mexico = (props: SvgProps) => (
   </Svg>
 );
 
+// et
+export const Estonia = (props: SvgProps) => (
+  <Svg viewBox="0 0 512 512" width={32} height={32} {...props}>
+    <Path d="M0 85.337h512v341.326H0z" />
+    <Path d="M0 85.337h512v113.775H0z" fill="#0052b4" />
+    <Path d="M0 312.888h512v113.775H0z" fill="#f0f0f0" />
+  </Svg>
+);
+
+// fr
+export const France = (props: SvgProps) => (
+  <Svg viewBox="0 0 512 512" width={32} height={32} {...props}>
+    <Path d="M0 85.331h512v341.337H0z" fill="#f0f0f0" />
+    <Path d="M0 85.331h170.663v341.337H0z" fill="#0052b4" />
+    <Path d="M341.337 85.331H512v341.337H341.337z" fill="#d80027" />
+  </Svg>
+);
+
+// hu
+export const Hungary = (props: SvgProps) => (
+  <Svg viewBox="0 0 512 512" width={32} height={32} {...props}>
+    <Path d="M0 85.337h512v341.326H0z" fill="#f0f0f0" />
+    <Path d="M0 85.337h512v113.775H0z" fill="#d80027" />
+    <Path d="M0 312.888h512v113.775H0z" fill="#6da544" />
+  </Svg>
+);
+
+// nl
 export const Netherlands = (props: SvgProps) => (
   <Svg viewBox="0 0 512 512" width={32} height={32} {...props}>
     <Path d="M0 85.337h512v341.326H0z" fill="#f0f0f0" />
@@ -83,6 +91,7 @@ export const Netherlands = (props: SvgProps) => (
   </Svg>
 );
 
+// pl
 export const Poland = (props: SvgProps) => (
   <Svg viewBox="0 0 512 512" width={32} height={32} {...props}>
     <Path d="M0 85.337h512v341.326H0z" fill="#f0f0f0" />
@@ -91,6 +100,25 @@ export const Poland = (props: SvgProps) => (
   </Svg>
 );
 
+// pt
+export const Brazil = (props: SvgProps) => (
+  <Svg viewBox="0 0 512 512" width={32} height={32} {...props}>
+    <Path d="M0 85.331h512v341.337H0z" fill="#6da544" />
+    <Path d="m256 161.678 128 94.316-128 94.316-128-94.316z" fill="#ffda44" />
+    <Circle cx={256} cy={255.994} r={53.894} fill="#f0f0f0" />
+    <Path
+      d="M229.052 252.626a90.66 90.66 0 0 0-26.93 4.07c.377 29.44 24.348 53.193 53.877 53.193 18.259 0 34.386-9.089 44.134-22.981-16.676-20.879-42.341-34.282-71.081-34.282zM308.895 266.32c.649-3.344 1-6.793 1-10.326 0-29.765-24.13-53.895-53.895-53.895-22.21 0-41.275 13.438-49.527 32.623a111.276 111.276 0 0 1 22.579-2.307c31.304.001 59.622 13.012 79.843 33.905z"
+      fill="#0052b4"
+    />
+  </Svg>
+);
+
+// nx
+export const Navi = (props: SvgProps) => (
+  <Svg viewBox="0 0 512 512" width={32} height={32} {...props} />
+);
+
+// ru
 export const Russia = (props: SvgProps) => (
   <Svg viewBox="0 0 512 512" width={32} height={32} {...props}>
     <Path d="M0 85.33v341.332h512V85.33z" fill="#f0f0f0" />
@@ -100,6 +128,7 @@ export const Russia = (props: SvgProps) => (
   </Svg>
 );
 
+// sv
 export const Sweden = (props: SvgProps) => (
   <Svg viewBox="0 0 512 512" width={32} height={32} {...props}>
     <Path d="M0 85.333h512V426.67H0z" fill="#0052b4" />
@@ -110,6 +139,7 @@ export const Sweden = (props: SvgProps) => (
   </Svg>
 );
 
+// tr
 export const Turkey = (props: SvgProps) => (
   <Svg viewBox="0 0 512 512" width={32} height={32} {...props}>
     <Path d="M0 85.337h512v341.326H0z" fill="#d80027" />
@@ -137,8 +167,9 @@ export const FlagMap: FlagMapType = {
   fr: <France />,
   hu: <Hungary />,
   nl: <Netherlands />,
-  nx: <View style={{ width: 32, height: 32 }} />,
+  nx: <Navi />,
   pl: <Poland />,
+  pt: <Brazil />,
   ru: <Russia />,
   sv: <Sweden />,
   tr: <Turkey />,

@@ -37,6 +37,9 @@ const strings: NameSingleStrings = {
   pl: {
     numSyllables: "Liczba sylab",
   },
+  pt: {
+    numSyllables: "Número de sílabas",
+  },
   ru: {
     numSyllables: "Количество слогов",
   },
