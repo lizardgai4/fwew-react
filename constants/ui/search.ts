@@ -183,7 +183,7 @@ const strings: SearchStrings = {
   pt: {
     search: "Procurar",
     audio: "Audio",
-    partOfSpeech: "Parte da fala",
+    partOfSpeech: "Classe gramatical",
     definition: "Definição",
     breakdown: "Separação sílabica",
     infixDots: "Infixos (pontos)",
