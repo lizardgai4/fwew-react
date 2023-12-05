@@ -12,7 +12,6 @@ export default function SearchScreen() {
     <View style={styles.container}>
       <SearchBar query={query} search={search} autoFocus />
       <ScrollView
-        style={styles.results}
         keyboardShouldPersistTaps="always"
         refreshControl={
           <RefreshControl refreshing={loading} onRefresh={execute} />
@@ -31,10 +30,5 @@ export default function SearchScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  results: {
-    width: "100%",
   },
 });
