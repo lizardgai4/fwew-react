@@ -11,6 +11,7 @@ import { Audio } from "expo-av";
 import type { LanguageCode, Word } from "fwew.js";
 import { useEffect, useState } from "react";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
+import Autolink from "react-native-autolink";
 
 type ResultInfoProps = {
   word: Word;
@@ -88,25 +89,39 @@ export function ResultInfo({ word }: ResultInfoProps) {
           value={word.Affixes.Comment.join(", ")}
         />
       )}
-      <DetailItem label={ui.source} value={word.Source} />
+      <DetailItem link label={ui.source} value={word.Source} />
     </View>
   );
 }
 
-function DetailItem({ label, value }: { label: string; value: string }) {
+type DetailItemProps = {
+  label: string;
+  value: string;
+  link?: boolean;
+};
+
+function DetailItem({ label, value, link }: DetailItemProps) {
   return (
     <View>
       <BoldText style={styles.label}>{label}:</BoldText>
-      <Text style={styles.value}>{value}</Text>
+      {link ? (
+        <Autolink
+          url
+          text={value}
+          selectable={true}
+          style={styles.value}
+          component={Text}
+        />
+      ) : (
+        <Text style={styles.value}>{value}</Text>
+      )}
     </View>
   );
 }
 
-function Pronunciation({
-  IPA,
-  Stressed,
-  Syllables,
-}: Pick<Word, "IPA" | "Stressed" | "Syllables">) {
+type PronunciationProps = Pick<Word, "IPA" | "Stressed" | "Syllables">;
+
+function Pronunciation({ IPA, Stressed, Syllables }: PronunciationProps) {
   const { appLanguage } = useAppLanguageContext();
   const ui = strings[appLanguage];
   return (
@@ -120,10 +135,9 @@ function Pronunciation({
   );
 }
 
-function Breakdown({
-  Stressed,
-  Syllables,
-}: Pick<Word, "Stressed" | "Syllables">) {
+type BreakdownProps = Pick<Word, "Stressed" | "Syllables">;
+
+function Breakdown({ Stressed, Syllables }: BreakdownProps) {
   const stressedIndex = +Stressed - 1;
   const syllables = Syllables.toLowerCase().replace(/ /g, "-").split("-");
   let before = "";
