@@ -18,8 +18,8 @@ const strings: RandomStrings = {
   },
   en: {
     random: "Random",
-    randomOptions: "RANDOM OPTIONS",
-    numWords: "Number of Random Words",
+    randomOptions: "Random Options",
+    numWords: "Number of random words",
     where: "where...",
   },
   es: {
@@ -72,7 +72,7 @@ const strings: RandomStrings = {
   },
   pt: {
     random: "Aleatório",
-    randomOptions: "OPÇÕES DE RANDOMIZAÇÃO",
+    randomOptions: "Opções de Randomização",
     numWords: "Número de palavras aleatórias",
     where: "onde...",
   },

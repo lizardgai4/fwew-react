@@ -23,10 +23,10 @@ const strings: NameFullStrings = {
       "-'itan für männlich, -'ite für weiblich, -'itu für nicht-binär (nicht kanonisch)",
   },
   en: {
-    numSyllables1: "Number of Syllables in First Name",
-    numSyllables2: "Number of Syllables in Family Name",
-    numSyllables3: "Number of Syllables in Parent's Name",
-    nameEnding: "Name Ending",
+    numSyllables1: "Number of syllables in first name",
+    numSyllables2: "Number of syllables in family name",
+    numSyllables3: "Number of syllables in parent's name",
+    nameEnding: "Name ending",
     nameEndingHint:
       "-'itan for male, -'ite for female, -'itu for non-binary (non-canon)",
   },
@@ -97,7 +97,7 @@ const strings: NameFullStrings = {
     numSyllables1: "Número de sílabas no primeiro nome",
     numSyllables2: "Número de sílabas no nome de familia",
     numSyllables3: "Número de sílabas no nome do parente",
-    nameEnding: "final do nome",
+    nameEnding: "Final do nome",
     nameEndingHint:
       "-'itan para masculino, -'ite para feminino, -'itu para não binário (não canônico)",
   },

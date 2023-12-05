@@ -11,7 +11,7 @@ const strings: NameSingleStrings = {
     numSyllables: "Anzahl der Silben",
   },
   en: {
-    numSyllables: "Number of Syllables",
+    numSyllables: "Number of syllables",
   },
   eo: {
     numSyllables: "Nombro de Silaboj",

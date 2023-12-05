@@ -4,7 +4,7 @@ import stringsScreens from "@/constants/ui/screens";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { FontAwesome } from "@expo/vector-icons";
 import { Link, Stack } from "expo-router";
-import { Pressable, useColorScheme } from "react-native";
+import { Platform, Pressable, useColorScheme } from "react-native";
 
 export default function StackLayout() {
   const colorScheme = useColorScheme();
@@ -26,7 +26,10 @@ export default function StackLayout() {
                     name="gear"
                     size={25}
                     color={colors.text}
-                    style={{ marginRight: -1, opacity: pressed ? 0.5 : 1 }}
+                    style={{
+                      marginRight: Platform.OS === "web" ? 15 : -1,
+                      opacity: pressed ? 0.5 : 1,
+                    }}
                   />
                 )}
               </Pressable>
@@ -46,7 +49,10 @@ export default function StackLayout() {
                     name="gear"
                     size={25}
                     color={colors.text}
-                    style={{ marginRight: -1, opacity: pressed ? 0.5 : 1 }}
+                    style={{
+                      marginRight: Platform.OS === "web" ? 15 : -1,
+                      opacity: pressed ? 0.5 : 1,
+                    }}
                   />
                 )}
               </Pressable>
@@ -66,7 +72,10 @@ export default function StackLayout() {
                     name="gear"
                     size={25}
                     color={colors.text}
-                    style={{ marginRight: -1, opacity: pressed ? 0.5 : 1 }}
+                    style={{
+                      marginRight: Platform.OS === "web" ? 15 : -1,
+                      opacity: pressed ? 0.5 : 1,
+                    }}
                   />
                 )}
               </Pressable>
@@ -86,7 +95,10 @@ export default function StackLayout() {
                     name="gear"
                     size={25}
                     color={colors.text}
-                    style={{ marginRight: -1, opacity: pressed ? 0.5 : 1 }}
+                    style={{
+                      marginRight: Platform.OS === "web" ? 15 : -1,
+                      opacity: pressed ? 0.5 : 1,
+                    }}
                   />
                 )}
               </Pressable>
