@@ -30,13 +30,16 @@ export const ResultsLanguages = Languages.filter((l) => l.results);
 export const credits = {
   development: ["Tirea Aean"],
   design: ["Tirea Aean", "Tsyili"],
-  testing: ["Tirea Aean", "Tsyili", "Txonpay"],
+  testing: ["Palusyulang", "Tsyili", "Txonpay"],
   translation: [
+    // TODO: Re-merge these translations in
     "Alyara Arati (es)",
     "Charlotte (nl)",
     "İsmail yiğit (tr)",
+    // currently translated
     "Palusyulang (pt)",
-    "Tirea Aean",
+    "Tirea Aean (en, eo, na'vi)",
+    // "Tìtstewan (de)",
   ],
 };
 
