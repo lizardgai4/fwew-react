@@ -70,7 +70,6 @@ const strings: NumberStrings = {
     octal: "octal:",
     decimal: "decimal:",
   },
-  // TODO: pt
   pt: {
     placeholderNumeric: "42",
     placeholderAlpha: "mrrvomun",
