@@ -37,7 +37,7 @@ export const credits = {
     "Charlotte (nl)",
     "İsmail yiğit (tr)",
     // currently translated
-    "Palusyulang (pt)",
+    "Palusyulang (pt, na'vi)",
     "Tirea Aean (en, eo, na'vi)",
     // "Tìtstewan (de)",
   ],
