@@ -3,7 +3,12 @@ import Colors from "@/constants/Colors";
 import strings from "@/constants/ui/search";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { FontAwesome } from "@expo/vector-icons";
-import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
+import {
+  Platform,
+  StyleSheet,
+  TouchableOpacity,
+  useColorScheme,
+} from "react-native";
 
 type SearchBarProps = {
   query: string;
@@ -91,5 +96,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 8,
     borderWidth: 1,
+    height: Platform.OS === "web" ? null : 50,
   },
 });
