@@ -230,8 +230,8 @@ const strings: NameAluStrings = {
   },
   pt: {
     numSyllables: "Número de sílabas no primeiro nome",
-    nounMode: "Modo Substantivo",
-    adjMode: "Modo Adjetivo",
+    nounMode: "Modo substantivo",
+    adjMode: "Modo adjetivo",
     nounModes: [
       { name: "alguma coisa", value: "something" },
       { name: "substantivo comum", value: "normal noun" },

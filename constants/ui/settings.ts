@@ -173,8 +173,8 @@ const strings: SettingsStrings = {
     design: "Design",
     testing: "Teste",
     translation: "Tradução",
-    appLanguage: "Idioma do aplicativo",
-    resultsLanguage: "Idioma dos resultados",
+    appLanguage: "Idioma do Aplicativo",
+    resultsLanguage: "Idioma dos Resultados",
   },
   ru: {
     about: "О приложении",

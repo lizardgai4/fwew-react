@@ -39,7 +39,7 @@ const strings: SearchStrings = {
   en: {
     search: "Search",
     audio: "Audio",
-    partOfSpeech: "Part of Speech",
+    partOfSpeech: "Part of speech",
     definition: "Definition",
     breakdown: "Breakdown",
     infixDots: "Infixes (dots)",

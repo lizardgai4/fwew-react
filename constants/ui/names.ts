@@ -39,7 +39,7 @@ const strings: NameStrings = {
     full: "Full",
     alu: "Alu",
     options: "Options",
-    numNames: "Number of Names to Generate",
+    numNames: "Number of names to generate",
     dialect: "Dialect",
     dialects: [
       { name: "interdialect", value: "interdialect" },
@@ -161,18 +161,18 @@ const strings: NameStrings = {
     generate: "Generuj",
   },
   pt: {
-    single: "único",
-    full: "inteiro",
-    alu: "alu",
-    options: "opções",
+    single: "Simples",
+    full: "Inteiro",
+    alu: "Alu",
+    options: "Opções",
     numNames: "Número de nomes gerados",
-    dialect: "dialeto",
+    dialect: "Dialeto",
     dialects: [
       { name: "interdialeto", value: "interdialect" },
       { name: "floresta", value: "forest" },
       { name: "recife", value: "reef" },
     ],
-    generate: "gerar",
+    generate: "Gerar",
   },
   ru: {
     single: "Простой",
