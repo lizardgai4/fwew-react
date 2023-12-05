@@ -2,7 +2,7 @@ import { BoldText, UnderlinedText } from "@/components/common/StyledText";
 import { Text, View } from "@/components/common/Themed";
 import AudioResources from "@/constants/AudioResources";
 import Colors from "@/constants/Colors";
-import { PartOfSpeech } from "@/constants/PartOfSpeech";
+import { PartOfSpeech } from "@/constants/ui/common";
 import strings from "@/constants/ui/search";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useResultsLanguage } from "@/hooks/useResultsLanguage";
