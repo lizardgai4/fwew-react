@@ -113,7 +113,7 @@ function Pronunciation({
     <>
       <DetailItem label={ui.ipa} value={`[${IPA}]`} />
       <View>
-        <BoldText style={styles.label}>Breakdown:</BoldText>
+        <BoldText style={styles.label}>{ui.breakdown}:</BoldText>
         <Breakdown Stressed={Stressed} Syllables={Syllables} />
       </View>
     </>

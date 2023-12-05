@@ -48,6 +48,10 @@ const strings: CommonStrings = {
     result: "wynik",
     results: "wyniki",
   },
+  pt: {
+    result: "resultado",
+    results: "resultados",
+  },
   ru: {
     result: "результат",
     results: "результаты",

@@ -93,6 +93,14 @@ const strings: NameFullStrings = {
     nameEndingHint:
       "-'itan dla męskich, -'ite dla żeńskich, -'itu dla niebinarnych (niekanoniczne)",
   },
+  pt: {
+    numSyllables1: "Número de sílabas no primeiro nome",
+    numSyllables2: "Número de sílabas no nome de familia",
+    numSyllables3: "Número de sílabas no nome do parente",
+    nameEnding: "final do nome",
+    nameEndingHint:
+      "-'itan para masculino, -'ite para feminino, -'itu para não binário (não canônico)",
+  },
   ru: {
     numSyllables1: "Количество слогов в имени",
     numSyllables2: "Количество слогов в фамилии",

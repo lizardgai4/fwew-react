@@ -17,6 +17,7 @@ export const Languages: LanguageMeta[] = [
   { value: "fr", label: "Français", ui: true, results: true },
   { value: "hu", label: "Magyar", ui: true, results: true },
   { value: "pl", label: "Polski", ui: true, results: true },
+  { value: "pt", label: "Português", ui: true, results: true },
   { value: "ru", label: "Русский", ui: true, results: true },
   { value: "sv", label: "Svenska", ui: true, results: true },
   // UI only
@@ -37,6 +38,7 @@ export const credits = {
     "Alyara Arati (es)",
     "Charlotte (nl)",
     "İsmail yiğit (tr)",
+    "Palusyulang (pt)",
     "Tirea Aean",
   ],
 };
@@ -165,6 +167,18 @@ const strings: SettingsStrings = {
     translation: "Tłumaczenie",
     appLanguage: "Język aplikacji",
     resultsLanguage: "Język wyników",
+  },
+  // TODO: pt
+  pt: {
+    about: "Sobre",
+    version: "Versão",
+    credits: "Créditos",
+    development: "Desenvolvimento",
+    design: "Design",
+    testing: "Teste",
+    translation: "Tradução",
+    appLanguage: "Idioma do aplicativo",
+    resultsLanguage: "Idioma dos resultados",
   },
   ru: {
     about: "О приложении",

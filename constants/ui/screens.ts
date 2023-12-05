@@ -92,6 +92,15 @@ const strings: ScreenStrings = {
     names: "Imiona",
     settings: "Ustawienia",
   },
+  // TODO: pt
+  pt: {
+    search: "Procurar",
+    list: "Lista",
+    random: "Aleatório",
+    numbers: "Números",
+    names: "Nomes",
+    settings: "Configurações",
+  },
   ru: {
     search: "Поиск",
     list: "Список",

@@ -70,6 +70,13 @@ const strings: RandomStrings = {
     numWords: "Liczba losowych słów",
     where: "gdzie...",
   },
+  // TODO - pt
+  pt: {
+    random: "Aleatório",
+    randomOptions: "OPÇÕES DE RANDOMIZAÇÃO",
+    numWords: "Número de palavras aleatórias",
+    where: "onde...",
+  },
   ru: {
     random: "Случайный",
     randomOptions: "СЛУЧАЙНЫЕ ОПЦИИ",

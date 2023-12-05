@@ -228,6 +228,33 @@ const strings: NameAluStrings = {
       },
     ],
   },
+  pt: {
+    numSyllables: "Número de sílabas no primeiro nome",
+    nounMode: "Modo Substantivo",
+    adjMode: "Modo Adjetivo",
+    nounModes: [
+      { name: "alguma coisa", value: "something" },
+      { name: "substantivo comum", value: "normal noun" },
+      { name: "fazedor de verbo", value: "verb-er" },
+    ],
+    adjModes: [
+      { name: "qualquer um", value: "any" },
+      { name: "alguma coisa", value: "something" },
+      { name: "nenhum", value: "none" },
+      { name: "adjetivo normal", value: "normal adjective" },
+      { name: "substantivo genitivo", value: "genitive noun" },
+      { name: "substantivo de origem", value: "origin noun" },
+      { name: "verbo no particípio", value: "participle verb" },
+      {
+        name: "verbo no particípio ativo/presente",
+        value: "active participle verb",
+      },
+      {
+        name: "verbo verbo no particípio passivo/passado",
+        value: "passive participle verb",
+      },
+    ],
+  },
   ru: {
     numSyllables: "Количество слогов в имени",
     nounMode: "Существительное",
