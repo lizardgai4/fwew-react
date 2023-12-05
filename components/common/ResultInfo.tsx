@@ -52,7 +52,9 @@ export function ResultInfo({ word }: ResultInfoProps) {
       </TouchableOpacity>
       <DetailItem
         label={ui.partOfSpeech}
-        value={`${word.PartOfSpeech} (${PartOfSpeech.en[word.PartOfSpeech]})`}
+        value={`${word.PartOfSpeech} (${
+          PartOfSpeech[appLanguage][word.PartOfSpeech]
+        })`}
       />
       <DetailItem label={ui.definition} value={local} />
       <Pronunciation {...word} />
