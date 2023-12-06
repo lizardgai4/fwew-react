@@ -40,6 +40,7 @@ export const credits = {
     "Palusyulang (pt, na'vi)",
     "Tirea Aean (en, eo, na'vi)",
     // "Tìtstewan (de)",
+    "Wllìm (nl)",
   ],
 };
 
@@ -136,15 +137,15 @@ const strings: SettingsStrings = {
     resultsLanguage: "Eredmények nyelve",
   },
   nl: {
-    about: "Over",
+    about: "Over Fwew",
     version: "Versie",
     credits: "Credits",
     development: "Ontwikkeling",
     design: "Ontwerp",
     testing: "Testen",
     translation: "Vertaling",
-    appLanguage: "App-taal",
-    resultsLanguage: "Resultaten taal",
+    appLanguage: "Taal van app",
+    resultsLanguage: "Taal van resultaten",
   },
   nx: {
     about: "teri",

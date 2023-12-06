@@ -528,7 +528,7 @@ const strings: ListStrings = {
   },
   nl: {
     list: "Lijst",
-    listOptions: "LIJSTOPTIES",
+    listOptions: "Lijstopties",
     listMenu: {
       whatValues: [
         { value: "pos", description: "woordsoort is, heeft, etc." },
@@ -538,7 +538,10 @@ const strings: ListStrings = {
           description: "in volgorde van release, eerste of laatste",
         },
         { value: "syllables", description: "aantal lettergrepen" },
-        { value: "stress", description: "beklemtoonde lettergreep positie" },
+        {
+          value: "stress",
+          description: "positie van beklemtoonde lettergreep",
+        },
         { value: "length", description: "lengte van het woord in fonemen" },
       ],
       condValues: {

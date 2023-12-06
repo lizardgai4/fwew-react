@@ -72,7 +72,7 @@ const strings: ScreenStrings = {
     search: "Zoeken",
     list: "Lijst",
     random: "Willekeurig",
-    numbers: "Nummers",
+    numbers: "Getallen",
     names: "Namen",
     settings: "Instellingen",
   },
