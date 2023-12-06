@@ -26,7 +26,7 @@ export function useFwew() {
   };
 
   useEffect(() => {
-    debounce(execute, 300);
+    debounce(execute);
   }, [query]);
 
   return { query, results, resultCount, loading, search, execute } as const;

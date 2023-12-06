@@ -80,7 +80,7 @@ export function useNameFull() {
   };
 
   useEffect(() => {
-    debounce(execute, 300);
+    debounce(execute);
   }, [ending, numNames, syllables1, syllables2, syllables3, dialect]);
 
   return {

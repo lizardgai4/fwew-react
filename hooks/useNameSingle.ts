@@ -43,7 +43,7 @@ export default function useNameSingle() {
   };
 
   useEffect(() => {
-    debounce(execute, 300);
+    debounce(execute);
   }, [numNames, numSyllables, dialect]);
 
   return {
