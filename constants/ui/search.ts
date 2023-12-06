@@ -151,9 +151,9 @@ const strings: SearchStrings = {
   nx: {
     search: "fwew",
     audio: "Pam",
-    partOfSpeech: "fnelì'u",
+    partOfSpeech: "fnel",
     definition: "ral",
-    breakdown: "pamä tìlatem",
+    breakdown: "lì'kong",
     infixDots: "kemlì'uvi",
     infixSlots: "kemlì'uvi",
     prefixes: "eolì'uvi",
