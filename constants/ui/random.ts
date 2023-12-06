@@ -90,8 +90,8 @@ const strings: RandomStrings = {
   },
   tr: {
     random: "Rastgele",
-    randomOptions: "RASGELE SEÇENEKLER",
-    numWords: "Rastgele Kelime Sayısı",
+    randomOptions: "Rasgele Seçenekler",
+    numWords: "Rastgele kelimeler için bir sayı giriniz",
     where: "nerede...",
   },
 };

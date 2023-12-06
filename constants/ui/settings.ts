@@ -137,7 +137,7 @@ const strings: SettingsStrings = {
     resultsLanguage: "Eredmények nyelve",
   },
   nl: {
-    about: "Over Fwew",
+    about: "Over",
     version: "Versie",
     credits: "Credits",
     development: "Ontwikkeling",
@@ -204,14 +204,14 @@ const strings: SettingsStrings = {
   },
   tr: {
     about: "Hakkında",
-    version: "Sürüm",
-    credits: "Katkıda Bulunanlar",
-    development: "Geliştirme",
-    design: "Tasarım",
-    testing: "Test",
-    translation: "Çeviri",
+    version: "Versiyon",
+    credits: "Yardımcılar",
+    development: "Geliştirici",
+    design: "Tasarımcı",
+    testing: "Test yapan",
+    translation: "Çevirmen",
     appLanguage: "Uygulama Dili",
-    resultsLanguage: "Sonuçlar Dili",
+    resultsLanguage: "Sonuç Dili",
   },
 };
 

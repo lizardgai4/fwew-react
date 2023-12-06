@@ -117,7 +117,7 @@ const strings: ScreenStrings = {
     settings: "Inställningar",
   },
   tr: {
-    search: "Arama",
+    search: "Ara",
     list: "Liste",
     random: "Rastgele",
     numbers: "Sayılar",
