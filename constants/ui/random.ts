@@ -24,7 +24,7 @@ const strings: RandomStrings = {
   },
   es: {
     random: "Aleatorio",
-    randomOptions: "OPCIONES ALEATORIAS",
+    randomOptions: "Opciones Aleatorias",
     numWords: "Número de palabras aleatorias",
     where: "donde...",
   },

@@ -97,7 +97,7 @@ const strings: SettingsStrings = {
     credits: "Créditos",
     development: "Desarrollo",
     design: "Diseño",
-    testing: "Pruebas",
+    testing: "Ensayo",
     translation: "Traducción",
     appLanguage: "Idioma de la aplicación",
     resultsLanguage: "Idioma de los resultados",
