@@ -39,7 +39,8 @@ export default function NameFullScreen() {
   const uiNames = stringsNames[appLanguage];
   const uiNameFull = stringsNameFull[appLanguage];
 
-  const disabled = !numNames || !syllables1 || !syllables2 || !syllables3;
+  const disabled =
+    !numNames || !syllables1 || !syllables2 || !syllables3 || !ending;
 
   return (
     <ScrollView
