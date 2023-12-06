@@ -32,14 +32,11 @@ export const credits = {
   design: ["Tirea Aean", "Tsyili"],
   testing: ["Palusyulang", "Tsyili", "Txonpay"],
   translation: [
-    // TODO: Re-merge these translations in
     "Alyara Arati (es)",
     "Charlotte (nl)",
     "İsmail yiğit (tr)",
-    // currently translated
     "Palusyulang (pt, na'vi)",
     "Tirea Aean (en, eo, na'vi)",
-    // "Tìtstewan (de)",
     "Wllìm (nl)",
   ],
 };
