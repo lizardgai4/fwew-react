@@ -243,10 +243,10 @@ const strings: ListStrings = {
     listOptions: "OPCIONES DE LISTA",
     listMenu: {
       whatValues: [
-        { value: "pos", description: "parte del discurso es, tiene, etc." },
+        { value: "pos", description: "parte de la oración es, tiene, etc." },
         {
           value: "word",
-          description: "comienza con, termina con, tiene, etc.",
+          description: "empieza con, termina con, tiene, etc.",
         },
         {
           value: "words",
@@ -258,23 +258,23 @@ const strings: ListStrings = {
       ],
       condValues: {
         pos: [
-          { value: "starts", description: "comienza con" },
+          { value: "starts", description: "empieza con" },
           { value: "ends", description: "termina con" },
           { value: "is", description: "es" },
           { value: "has", description: "tiene" },
           { value: "like", description: "es como" },
-          { value: "not-starts", description: "no comienza con" },
+          { value: "not-starts", description: "no empieza con" },
           { value: "not-ends", description: "no termina con" },
           { value: "not-is", description: "no es" },
           { value: "not-has", description: "no tiene" },
           { value: "not-like", description: "no es como" },
         ],
         word: [
-          { value: "starts", description: "comienza con" },
+          { value: "starts", description: "empieza con" },
           { value: "ends", description: "termina con" },
           { value: "has", description: "tiene" },
           { value: "like", description: "es como" },
-          { value: "not-starts", description: "no comienza con" },
+          { value: "not-starts", description: "no empieza con" },
           { value: "not-ends", description: "no termina con" },
           { value: "not-has", description: "no tiene" },
           { value: "not-like", description: "no es como" },

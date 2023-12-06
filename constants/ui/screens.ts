@@ -37,7 +37,7 @@ const strings: ScreenStrings = {
     settings: "Agordoj",
   },
   es: {
-    search: "Buscar",
+    search: "Busca",
     list: "Lista",
     random: "Aleatorio",
     numbers: "Números",
