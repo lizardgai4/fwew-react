@@ -189,7 +189,7 @@ const strings: NameAluStrings = {
     adjMode: "fnesyonlì'u",
     nounModes: [
       { name: "'uo", value: "something" },
-      { name: "letrrtrra tstxolì'u", value: "normal noun" },
+      { name: "tstxolì'u letrrtrr", value: "normal noun" },
       { name: "kemsiyu", value: "verb-er" },
     ],
     adjModes: [
