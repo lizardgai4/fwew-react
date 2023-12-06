@@ -54,9 +54,9 @@ const strings: RandomStrings = {
   },
   nl: {
     random: "Willekeurig",
-    randomOptions: "WILLEKEURIGE OPTIES",
+    randomOptions: "Willukeurige opties",
     numWords: "Aantal willekeurige woorden",
-    where: "waar...",
+    where: "waarbij...",
   },
   nx: {
     random: "renulke",
