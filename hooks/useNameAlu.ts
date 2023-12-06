@@ -53,7 +53,7 @@ export function useNameAlu() {
   };
 
   useEffect(() => {
-    debounce(execute, 300);
+    debounce(execute);
   }, [numNames, numSyllables, nounMode, adjMode, dialect]);
 
   return {

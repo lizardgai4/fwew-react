@@ -40,7 +40,7 @@ export function useNumber() {
   };
 
   useEffect(() => {
-    debounce(doSearch, 300);
+    debounce(doSearch);
   }, [query, mode]);
 
   return [mode, toggleMode, query, result, search, clear] as const;
