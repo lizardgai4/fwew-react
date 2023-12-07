@@ -1,5 +1,5 @@
+import { BackButton } from "@/components/common/BackButton";
 import { Text, View } from "@/components/common/Themed";
-import { BackButton } from "@/components/list/BackButton";
 import strings from "@/constants/ui/list";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useListOptions } from "@/hooks/useListOptions";
