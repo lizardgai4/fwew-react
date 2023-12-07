@@ -1,11 +1,10 @@
-import { ExternalLink } from "@/components/common/ExternalLink";
 import { MonoText } from "@/components/common/StyledText";
 import { Text, View } from "@/components/common/Themed";
-import Colors from "@/constants/Colors";
 import strings from "@/constants/ui/settings";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useVersion } from "@/hooks/useVersion";
-import { StyleSheet, useColorScheme } from "react-native";
+import { StyleSheet } from "react-native";
+import { GitDetails } from "./GitDetails";
 
 export function Version() {
   const {
@@ -16,8 +15,6 @@ export function Version() {
     FwewVersion,
     DictVersion,
   } = useVersion();
-  const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? "light"];
   const { appLanguage } = useAppLanguageContext();
   const ui = strings[appLanguage];
 
@@ -41,33 +38,6 @@ export function Version() {
         </View>
       </View>
     </>
-  );
-}
-
-function GitDetails({
-  branch,
-  commitHash,
-}: {
-  branch?: string;
-  commitHash?: string;
-}) {
-  const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? "light"];
-
-  if (!branch || !commitHash) {
-    return null;
-  }
-
-  return (
-    <MonoText style={styles.text}>
-      (
-      <ExternalLink href={`https://github.com/corscheid/fwew-react/tree/next`}>
-        <MonoText style={{ color: colors.link }}>
-          {branch} {commitHash?.substring(0, 7)}
-        </MonoText>
-      </ExternalLink>
-      )
-    </MonoText>
   );
 }
 
