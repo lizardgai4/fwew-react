@@ -1,4 +1,5 @@
 import { WhatValues } from "@/constants/ui/list";
+import { SelectHandler } from "@/types/common";
 import {
   ListExpressionAttribute,
   ListMenuWhatItem,
@@ -7,9 +8,7 @@ import {
 } from "@/types/list";
 import { useRef, useState } from "react";
 
-type OnSelect = React.Dispatch<React.SetStateAction<string>>;
-
-export function useListOptions(onSelect: OnSelect) {
+export function useListOptions(onSelect: SelectHandler) {
   const [mode, setMode] = useState<ListExpressionAttribute>("what");
   const whatRef = useRef<ListMenuWhatItem>();
 
