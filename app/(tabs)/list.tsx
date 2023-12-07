@@ -27,7 +27,12 @@ export default function ListScreen() {
           <RefreshControl refreshing={loading} onRefresh={execute} />
         }
       >
-        <ListOptions query={query} onSelect={updateQuery} execute={execute} />
+        <ListOptions
+          title={ui.listOptions}
+          query={query}
+          onSelect={updateQuery}
+          execute={execute}
+        />
         <ResultCount
           visible={query.length > 0 && results.length > 0}
           resultCount={results.length}
