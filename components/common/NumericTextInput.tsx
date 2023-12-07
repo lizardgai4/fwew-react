@@ -46,8 +46,6 @@ export function NumericTextInput({
 const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
     gap: 8,
   },
   input: {
