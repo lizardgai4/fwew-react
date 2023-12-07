@@ -102,7 +102,7 @@ export function RandomOptions({
       {mode === "spec" && (
         <ListOptionsSpec
           execute={execute}
-          handleSelectionSpec={handleSelectionSpec}
+          onSelect={handleSelectionSpec}
           andButtonDisabled={andButtonDisabled}
         />
       )}
