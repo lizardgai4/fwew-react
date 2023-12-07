@@ -20,6 +20,7 @@ export default function ListScreen() {
         search={updateQuery}
         placeholder={ui.list}
         execute={execute}
+        autoFocus
       />
       <ScrollView
         keyboardShouldPersistTaps="always"
