@@ -9,7 +9,7 @@ import { useList } from "@/hooks/useList";
 import { RefreshControl, ScrollView, StyleSheet } from "react-native";
 
 export default function ListScreen() {
-  const { query, results, loading, search, execute } = useList();
+  const { query, results, loading, updateQuery, execute } = useList();
   const { appLanguage } = useAppLanguageContext();
   const ui = strings[appLanguage];
 
@@ -17,7 +17,7 @@ export default function ListScreen() {
     <View style={styles.container}>
       <SearchBar
         query={query}
-        search={search}
+        search={updateQuery}
         placeholder={ui.list}
         execute={execute}
       />
@@ -27,7 +27,7 @@ export default function ListScreen() {
           <RefreshControl refreshing={loading} onRefresh={execute} />
         }
       >
-        <ListOptions query={query} onSelect={search} execute={execute} />
+        <ListOptions query={query} onSelect={updateQuery} execute={execute} />
         <ResultCount
           visible={query.length > 0 && results.length > 0}
           resultCount={results.length}

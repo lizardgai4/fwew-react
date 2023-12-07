@@ -5,13 +5,13 @@ import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 
 type ListOptionsSpecProps = {
-  handleSelectionSpec: () => void;
+  onSelect: () => void;
   andButtonDisabled: boolean;
   execute: () => void;
 };
 
 export function ListOptionsSpec({
-  handleSelectionSpec,
+  onSelect,
   andButtonDisabled,
   execute,
 }: ListOptionsSpecProps) {
@@ -23,7 +23,7 @@ export function ListOptionsSpec({
   return (
     <View style={styles.specButtonContainer}>
       <TouchableOpacity
-        onPress={handleSelectionSpec}
+        onPress={onSelect}
         style={[
           styles.button,
           {

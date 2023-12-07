@@ -3,7 +3,7 @@ import type { Word } from "fwew.js";
 import { useEffect, useState } from "react";
 
 export function useList() {
-  const [query, search] = useState("");
+  const [query, updateQuery] = useState("");
   const [results, setResults] = useState<Word[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -28,5 +28,5 @@ export function useList() {
     }
   }, [query]);
 
-  return { query, results, loading, search, execute } as const;
+  return { query, results, loading, updateQuery, execute } as const;
 }
