@@ -21,6 +21,7 @@ export default function RandomScreen() {
         search={search}
         placeholder={ui.random}
         execute={execute}
+        autoFocus
       />
       <ScrollView
         keyboardShouldPersistTaps="always"
