@@ -8,7 +8,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "test": "jest --watchAll",
-    "build": "export EXPO_PUBLIC_GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD) && export EXPO_PUBLIC_GIT_COMMIT_HASH=$(git rev-parse HEAD) && expo export -p web",
+    "build": "expo export -p web",
     "eas-build-post-install": "./scripts/expo/post-install"
   },
   "jest": {
