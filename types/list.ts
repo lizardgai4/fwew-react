@@ -26,6 +26,7 @@ export type ListMenuItem<ValueType extends string> = {
   description: string;
 };
 
+export type ListMenuWhatItem = ListMenuItem<WhatValue>;
 export type ListMenuWhat = ListMenuItem<WhatValue>[];
 
 export type ListMenuCond = {
@@ -37,7 +38,11 @@ export type ListMenuCond = {
   length: ListMenuItem<CondValueNumber>[];
 };
 
+export type ListMenuCondItem = ListMenuCond[WhatValue][number];
+
 export type ListMenu = {
   whatValues: ListMenuWhat;
   condValues: ListMenuCond;
 };
+
+export type ListMenuWhatOrCondItem = ListMenuWhatItem | ListMenuCondItem;
