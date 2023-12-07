@@ -1,23 +1,25 @@
 import { BackButton } from "@/components/common/BackButton";
 import { Text, View } from "@/components/common/Themed";
-import strings from "@/constants/ui/list";
-import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useListOptions } from "@/hooks/useListOptions";
 import { useEffect } from "react";
 import { StyleSheet } from "react-native";
 import { ListOptionsForm } from "./ListOptionsForm";
 
 type ListOptionsProps = {
+  title: string;
   query: string;
   onSelect: React.Dispatch<React.SetStateAction<string>>;
   execute: () => void;
 };
 
-export function ListOptions({ query, onSelect, execute }: ListOptionsProps) {
+export function ListOptions({
+  title,
+  query,
+  onSelect,
+  execute,
+}: ListOptionsProps) {
   const { whatRef, mode, reset, prevMode, selectOption } =
     useListOptions(onSelect);
-  const { appLanguage } = useAppLanguageContext();
-  const ui = strings[appLanguage];
 
   const backButtonDisabled = mode === "what";
 
@@ -41,7 +43,7 @@ export function ListOptions({ query, onSelect, execute }: ListOptionsProps) {
     <>
       <View style={styles.titleContainer}>
         <BackButton onPress={prevMode} disabled={backButtonDisabled} />
-        <Text style={styles.title}>{ui.listOptions}</Text>
+        <Text style={styles.title}>{title}</Text>
       </View>
       <ListOptionsForm
         mode={mode}
