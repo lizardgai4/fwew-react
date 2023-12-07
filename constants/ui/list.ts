@@ -603,7 +603,7 @@ const strings: ListStrings = {
   },
   nx: {
     list: "sna'o",
-    listOptions: "tìftxey sna'oä",
+    listOptions: "tìftxey",
     listMenu: {
       whatValues: [
         { value: "pos", description: "fnelì'u lu, sl." },
