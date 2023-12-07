@@ -7,14 +7,7 @@ import { StyleSheet } from "react-native";
 import { GitDetails } from "./GitDetails";
 
 export function Version() {
-  const {
-    AppVersion,
-    Branch,
-    CommitHash,
-    APIVersion,
-    FwewVersion,
-    DictVersion,
-  } = useVersion();
+  const version = useVersion();
   const { appLanguage } = useAppLanguageContext();
   const ui = strings[appLanguage];
 
@@ -30,11 +23,15 @@ export function Version() {
         </View>
         <View>
           <MonoText style={styles.text}>
-            {AppVersion} <GitDetails branch={Branch} commitHash={CommitHash} />
+            {version.AppVersion}{" "}
+            <GitDetails
+              branch={version.Branch}
+              commitHash={version.CommitHash}
+            />
           </MonoText>
-          <MonoText style={styles.text}>{APIVersion}</MonoText>
-          <MonoText style={styles.text}>{FwewVersion}</MonoText>
-          <MonoText style={styles.text}>{DictVersion}</MonoText>
+          <MonoText style={styles.text}>{version.APIVersion}</MonoText>
+          <MonoText style={styles.text}>{version.FwewVersion}</MonoText>
+          <MonoText style={styles.text}>{version.DictVersion}</MonoText>
         </View>
       </View>
     </>
