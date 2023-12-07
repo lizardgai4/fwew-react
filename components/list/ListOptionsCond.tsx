@@ -1,13 +1,13 @@
 import { Text, View } from "@/components/common/Themed";
 import Colors from "@/constants/Colors";
-import type { ListMenuCond, ListMenuItem, WhatValue } from "@/types/list";
-import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 import strings from "@/constants/ui/list";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
+import type { ListMenuCondItem, ListMenuWhatItem } from "@/types/list";
+import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 
 type ListOptionsCondProps = {
-  what: ListMenuItem<WhatValue> | undefined;
-  onSelect: (cond: ListMenuCond[WhatValue][number]) => void;
+  what: ListMenuWhatItem | undefined;
+  onSelect: (cond: ListMenuCondItem) => void;
 };
 
 export function ListOptionsCond({ what, onSelect }: ListOptionsCondProps) {
