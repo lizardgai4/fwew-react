@@ -66,8 +66,6 @@ export function NumberSearchBar({
 const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
     gap: 8,
   },
   input: {
