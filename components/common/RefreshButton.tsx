@@ -1,20 +1,21 @@
 import { Text } from "@/components/common/Themed";
 import Colors from "@/constants/Colors";
-import strings from "@/constants/ui/names";
-import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { FontAwesome } from "@expo/vector-icons";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 
-type GenerateButtonProps = {
+type RefreshButtonProps = {
   execute: () => void;
   disabled: boolean;
+  title?: string;
 };
 
-export function GenerateButton({ execute, disabled }: GenerateButtonProps) {
+export function RefreshButton({
+  execute,
+  disabled,
+  title,
+}: RefreshButtonProps) {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
-  const { appLanguage } = useAppLanguageContext();
-  const ui = strings[appLanguage];
 
   return (
     <TouchableOpacity
@@ -26,7 +27,7 @@ export function GenerateButton({ execute, disabled }: GenerateButtonProps) {
       ]}
     >
       <FontAwesome name="refresh" size={24} color={colors.text} />
-      <Text>{ui.generate}</Text>
+      <Text>{title}</Text>
     </TouchableOpacity>
   );
 }

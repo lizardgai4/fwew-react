@@ -1,8 +1,8 @@
 import { Accordion } from "@/components/common/Accordion";
 import { NumericTextInput } from "@/components/common/NumericTextInput";
 import { OptionItem } from "@/components/common/OptionItem";
+import { RefreshButton } from "@/components/common/RefreshButton";
 import { Text, View } from "@/components/common/Themed";
-import { GenerateButton } from "@/components/names/GenerateButton";
 import stringsNameSingle from "@/constants/ui/name-single";
 import stringsNames from "@/constants/ui/names";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
@@ -63,7 +63,11 @@ export default function NameSingleScreen() {
           </>
         }
       />
-      <GenerateButton execute={execute} disabled={disabled} />
+      <RefreshButton
+        title={uiNames.generate}
+        execute={execute}
+        disabled={disabled}
+      />
       <View>
         {names.map((name, i) => (
           <Text key={`ns_${i}`} selectable style={styles.name}>
