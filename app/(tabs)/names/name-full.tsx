@@ -1,8 +1,8 @@
 import { Accordion } from "@/components/common/Accordion";
 import { NumericTextInput } from "@/components/common/NumericTextInput";
 import { OptionItem } from "@/components/common/OptionItem";
+import { RefreshButton } from "@/components/common/RefreshButton";
 import { Text, View } from "@/components/common/Themed";
-import { GenerateButton } from "@/components/names/GenerateButton";
 import Colors from "@/constants/Colors";
 import stringsNameFull, { nameEndings } from "@/constants/ui/name-full";
 import stringsNames from "@/constants/ui/names";
@@ -104,7 +104,11 @@ export default function NameFullScreen() {
           </>
         }
       />
-      <GenerateButton execute={execute} disabled={disabled} />
+      <RefreshButton
+        title={uiNames.generate}
+        execute={execute}
+        disabled={disabled}
+      />
       <View>
         {names.map((name, i) => (
           <Text key={`nf_${i}`} selectable style={styles.name}>

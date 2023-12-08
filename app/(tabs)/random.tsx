@@ -1,9 +1,9 @@
 import { Accordion } from "@/components/common/Accordion";
 import { NumericTextInput } from "@/components/common/NumericTextInput";
+import { RefreshButton } from "@/components/common/RefreshButton";
 import { ResultCount } from "@/components/common/ResultCount";
 import { Text } from "@/components/common/Themed";
 import { ListResults } from "@/components/list/ListResults";
-import { GenerateButton } from "@/components/names/GenerateButton";
 import strings from "@/constants/ui/random";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDebounce } from "@/hooks/useDebounce";
@@ -76,9 +76,10 @@ export default function RandomScreen() {
           </>
         }
       />
-      <GenerateButton
+      <RefreshButton
         execute={() => debounce(execute)}
         disabled={numWords.length === 0}
+        title=""
       />
       <ResultCount
         visible={numWords.length > 0 && results.length > 0}
