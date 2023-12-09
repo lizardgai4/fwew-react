@@ -3,20 +3,26 @@ import { NumericTextInput } from "@/components/common/NumericTextInput";
 import { Text, View } from "@/components/common/Themed";
 import stringsList from "@/constants/ui/list";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
-import type { ListMenuCondItem, ListMenuWhatItem } from "@/types/list";
+import type {
+  FilterExpressionMenuValue,
+  ListMenuCondItem,
+  ListMenuWhatItem,
+} from "@/types/list";
 import { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 
 type FilterExpressionBuilderProps = {
-  onChange: (text: string) => void;
+  value: FilterExpressionMenuValue;
+  onChange: (value: FilterExpressionMenuValue) => void;
 };
 
 export function FilterExpressionBuilder({
+  value,
   onChange,
 }: FilterExpressionBuilderProps) {
-  const [what, setWhat] = useState<ListMenuWhatItem>();
-  const [cond, setCond] = useState<ListMenuCondItem>();
-  const [spec, setSpec] = useState<string>("");
+  const [what, setWhat] = useState<ListMenuWhatItem | undefined>(value.what);
+  const [cond, setCond] = useState<ListMenuCondItem | undefined>(value.cond);
+  const [spec, setSpec] = useState<string>(value.spec);
   const { appLanguage } = useAppLanguageContext();
   const ui = stringsList[appLanguage];
   const whatValues = ui.listMenu.whatValues;
@@ -26,15 +32,15 @@ export function FilterExpressionBuilder({
     if (!what || !cond || !spec) {
       return;
     }
-    onChange(`${what.value} ${cond.value} ${spec}`);
+    onChange({ what, cond, spec });
   }, [what, cond, spec]);
 
   return (
-    <View style={{}}>
+    <View>
       <DropDownSelect
         options={whatValues}
         value={what}
-        initiallyOpen
+        initiallyOpen={!what}
         renderOption={(option) => (
           <Text style={styles.text}>{option?.description}</Text>
         )}
@@ -45,7 +51,7 @@ export function FilterExpressionBuilder({
         <DropDownSelect
           options={condValues}
           value={cond}
-          initiallyOpen
+          initiallyOpen={!cond}
           renderOption={(option) => (
             <Text style={styles.text}>{option?.description}</Text>
           )}

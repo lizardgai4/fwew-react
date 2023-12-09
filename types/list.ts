@@ -6,6 +6,12 @@ export type FilterExpression = {
   spec?: string;
 };
 
+export type FilterExpressionMenuValue = {
+  what?: ListMenuWhatItem;
+  cond?: ListMenuCondItem;
+  spec: string;
+};
+
 export type FilterStateMap = {
   [key in FilterExpressionAttribute]: FilterExpressionAttribute;
 };
