@@ -1,26 +1,19 @@
 import { Accordion } from "@/components/common/Accordion";
+import { DropDownSelect } from "@/components/common/DropDownSelect";
 import { NumericTextInput } from "@/components/common/NumericTextInput";
 import { RefreshButton } from "@/components/common/RefreshButton";
 import { ResultCount } from "@/components/common/ResultCount";
 import { Text, View } from "@/components/common/Themed";
 import { ListResults } from "@/components/list/ListResults";
-import Colors from "@/constants/Colors";
 import stringsList from "@/constants/ui/list";
 import stringsRandom from "@/constants/ui/random";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDebounce } from "@/hooks/useDebounce";
 import { ListMenuCondItem, ListMenuWhatItem } from "@/types/list";
-import { FontAwesome } from "@expo/vector-icons";
 import type { Word } from "fwew.js";
 import { random } from "fwew.js";
 import { useEffect, useState } from "react";
-import {
-  RefreshControl,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  useColorScheme,
-} from "react-native";
+import { RefreshControl, ScrollView, StyleSheet } from "react-native";
 
 export default function RandomScreen() {
   const [numWords, setNumWords] = useState("8");
@@ -162,69 +155,6 @@ function FilterExpressionBuilder({ onChange }: FilterExpressionBuilderProps) {
           onChangeText={setSpec}
           placeholder={`${what?.description} ${cond?.description}...`}
         />
-      )}
-    </View>
-  );
-}
-
-type DropDownSelectProps<T> = {
-  options: T[];
-  value: T;
-  initiallyOpen?: boolean;
-  renderOption: (option: T) => React.ReactNode;
-  keyExtractor: (option: T, index: number) => string;
-  onChange: (value: T) => void;
-};
-
-function DropDownSelect<T>({
-  options,
-  value,
-  initiallyOpen,
-  renderOption,
-  keyExtractor,
-  onChange,
-}: DropDownSelectProps<T>) {
-  const [open, setOpen] = useState(initiallyOpen ?? false);
-  const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? "light"];
-
-  const toggle = () => setOpen((prev) => !prev);
-
-  const handleChange = (option: T) => {
-    onChange(option);
-    toggle();
-  };
-
-  return (
-    <View style={{ borderWidth: 1, borderColor: colors.text }}>
-      <TouchableOpacity
-        onPress={toggle}
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          paddingRight: 10,
-          paddingVertical: 8,
-        }}
-      >
-        {value ? renderOption(value) : <View style={{ padding: 16 }} />}
-        <FontAwesome
-          name={open ? "chevron-down" : "chevron-right"}
-          size={24}
-          color={colors.text}
-        />
-      </TouchableOpacity>
-      {open && (
-        <>
-          {options.map((option, i) => (
-            <TouchableOpacity
-              key={keyExtractor(option, i)}
-              onPress={() => handleChange(option)}
-            >
-              {renderOption(option)}
-            </TouchableOpacity>
-          ))}
-        </>
       )}
     </View>
   );
