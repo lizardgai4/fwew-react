@@ -1,15 +1,13 @@
 import { Accordion } from "@/components/common/Accordion";
-import { DropDownSelect } from "@/components/common/DropDownSelect";
+import { FilterExpressionBuilder } from "@/components/common/FilterExpressionBuilder";
 import { NumericTextInput } from "@/components/common/NumericTextInput";
 import { RefreshButton } from "@/components/common/RefreshButton";
 import { ResultCount } from "@/components/common/ResultCount";
-import { Text, View } from "@/components/common/Themed";
+import { Text } from "@/components/common/Themed";
 import { ListResults } from "@/components/list/ListResults";
-import stringsList from "@/constants/ui/list";
 import stringsRandom from "@/constants/ui/random";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDebounce } from "@/hooks/useDebounce";
-import { ListMenuCondItem, ListMenuWhatItem } from "@/types/list";
 import type { Word } from "fwew.js";
 import { random } from "fwew.js";
 import { useEffect, useState } from "react";
@@ -102,74 +100,9 @@ export default function RandomScreen() {
   );
 }
 
-type FilterExpressionBuilderProps = {
-  onChange: (text: string) => void;
-};
-
-function FilterExpressionBuilder({ onChange }: FilterExpressionBuilderProps) {
-  const [what, setWhat] = useState<ListMenuWhatItem>();
-  const [cond, setCond] = useState<ListMenuCondItem>();
-  const [spec, setSpec] = useState<string>("");
-  const { appLanguage } = useAppLanguageContext();
-  const ui = stringsList[appLanguage];
-  const whatValues = ui.listMenu.whatValues;
-  const condValues = what ? ui.listMenu.condValues[what.value] : [];
-
-  useEffect(() => {
-    if (!what || !cond || !spec) {
-      return;
-    }
-    onChange(`${what.value} ${cond.value} ${spec}`);
-  }, [what, cond, spec]);
-
-  return (
-    <View style={{}}>
-      {/* what */}
-      <DropDownSelect
-        options={whatValues}
-        value={what}
-        initiallyOpen
-        renderOption={(option) => (
-          <Text style={{ padding: 10 }}>{option?.description}</Text>
-        )}
-        keyExtractor={(option, i) => `dd_${option?.value}_${i}`}
-        onChange={setWhat}
-      />
-      {/* cond */}
-      {what && (
-        <DropDownSelect
-          options={condValues}
-          value={cond}
-          initiallyOpen
-          renderOption={(option) => (
-            <Text style={{ padding: 10 }}>{option?.description}</Text>
-          )}
-          keyExtractor={(option, i) => `dd_${option?.value}_${i}`}
-          onChange={setCond}
-        />
-      )}
-      {/* spec */}
-      {what && cond && (
-        <NumericTextInput
-          value={spec}
-          onChangeText={setSpec}
-          placeholder={`${what?.description} ${cond?.description}...`}
-        />
-      )}
-    </View>
-  );
-}
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   label: {
     padding: 16,
     fontWeight: "bold",
-  },
-  resultCount: {
-    padding: 16,
-    alignSelf: "center",
   },
 });
