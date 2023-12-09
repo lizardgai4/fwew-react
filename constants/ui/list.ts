@@ -27,11 +27,11 @@ const strings: ListStrings = {
     listOptions: "LISTENOPTIONEN",
     listMenu: {
       whatValues: [
-        { value: "pos", description: "Wortart ist, hat, etc." },
-        { value: "word", description: "beginnt mit, endet mit, hat, etc." },
+        { value: "pos", description: "Wortart" },
+        { value: "word", description: "Wort" },
         {
           value: "words",
-          description: "nach Veröffentlichung, erstes oder letztes",
+          description: "Wörter nach Veröffentlichung",
         },
         { value: "syllables", description: "Anzahl der Silben" },
         { value: "stress", description: "betonte Silbenposition" },
@@ -99,9 +99,9 @@ const strings: ListStrings = {
     listOptions: "List Options",
     listMenu: {
       whatValues: [
-        { value: "pos", description: "part of speech is, has, etc." },
-        { value: "word", description: "starts with, ends with, has, etc." },
-        { value: "words", description: "in order of release, first or last" },
+        { value: "pos", description: "part of speech" },
+        { value: "word", description: "word" },
+        { value: "words", description: "words in order of release" },
         { value: "syllables", description: "number of syllables" },
         { value: "stress", description: "stressed syllable position" },
         { value: "length", description: "length of the word in phonemes" },
@@ -168,14 +168,14 @@ const strings: ListStrings = {
     listOptions: "LISTOOPCIOJ",
     listMenu: {
       whatValues: [
-        { value: "pos", description: "vorttipo estas, havas, etc." },
+        { value: "pos", description: "vorttipo" },
         {
           value: "word",
-          description: "komencas per, finiĝas per, havas, etc.",
+          description: "vort",
         },
         {
           value: "words",
-          description: "en ordo de publikigo, unua aŭ lasta",
+          description: "vortaj en ordo de publikigo",
         },
         { value: "syllables", description: "nombro de silaboj" },
         { value: "stress", description: "stresita silaba pozicio" },
@@ -243,14 +243,14 @@ const strings: ListStrings = {
     listOptions: "OPCIONES DE LISTA",
     listMenu: {
       whatValues: [
-        { value: "pos", description: "parte de la oración es, tiene, etc." },
+        { value: "pos", description: "parte de la oración" },
         {
           value: "word",
-          description: "empieza con, termina con, tiene, etc.",
+          description: "palabra",
         },
         {
           value: "words",
-          description: "en orden de lanzamiento, primero o último",
+          description: "palabras en orden de lanzamiento",
         },
         { value: "syllables", description: "número de sílabas" },
         { value: "stress", description: "posición de la sílaba acentuada" },
@@ -318,11 +318,11 @@ const strings: ListStrings = {
     listOptions: "LOENDI VALIKUD",
     listMenu: {
       whatValues: [
-        { value: "pos", description: "sõnaliik on, on, jne." },
-        { value: "word", description: "algab, lõpeb, on, jne." },
+        { value: "pos", description: "kõne osa" },
+        { value: "word", description: "sõna" },
         {
           value: "words",
-          description: "väljalaske järjekorras, esimene või viimane",
+          description: "sõnad väljalaske järjekorras",
         },
         { value: "syllables", description: "silpide arv" },
         { value: "stress", description: "rõhutatud silbi asend" },
@@ -390,11 +390,11 @@ const strings: ListStrings = {
     listOptions: "OPTIONS DE LISTE",
     listMenu: {
       whatValues: [
-        { value: "pos", description: "partie du discours est, a, etc." },
-        { value: "word", description: "commence par, se termine par, a, etc." },
+        { value: "pos", description: "partie du discours" },
+        { value: "word", description: "mot" },
         {
           value: "words",
-          description: "dans l'ordre de sortie, premier ou dernier",
+          description: "mots par ordre de publication",
         },
         { value: "syllables", description: "nombre de syllabes" },
         { value: "stress", description: "position de la syllabe accentuée" },
@@ -462,9 +462,9 @@ const strings: ListStrings = {
     listOptions: "LISTA BEÁLLÍTÁSAI",
     listMenu: {
       whatValues: [
-        { value: "pos", description: "szófaj, van, stb." },
-        { value: "word", description: "kezdődik, végződik, van, stb." },
-        { value: "words", description: "kiadási sorrendben, első vagy utolsó" },
+        { value: "pos", description: "beszéd része" },
+        { value: "word", description: "szó" },
+        { value: "words", description: "szavakat a megjelenés sorrendjében" },
         { value: "syllables", description: "szótagok száma" },
         { value: "stress", description: "kiemelt szótag pozíció" },
         { value: "length", description: "a szó hossza fonémákban" },
@@ -531,11 +531,11 @@ const strings: ListStrings = {
     listOptions: "Lijstopties",
     listMenu: {
       whatValues: [
-        { value: "pos", description: "woordsoort is, heeft, etc." },
-        { value: "word", description: "begint met, eindigt met, heeft, etc." },
+        { value: "pos", description: "woordsoort" },
+        { value: "word", description: "woord" },
         {
           value: "words",
-          description: "in volgorde van release, eerste of laatste",
+          description: "woorden in volgorde van publicatie",
         },
         { value: "syllables", description: "aantal lettergrepen" },
         {
@@ -606,9 +606,9 @@ const strings: ListStrings = {
     listOptions: "tìftxey",
     listMenu: {
       whatValues: [
-        { value: "pos", description: "fnelì'u lu, sl." },
-        { value: "word", description: "sngä'i fa, 'i'a fa, sl." },
-        { value: "words", description: "ìlä kewan, 'awve fu syen" },
+        { value: "pos", description: "fnelì'u" },
+        { value: "word", description: "lì'u" },
+        { value: "words", description: "aylì'u ìlä kewan" },
         { value: "syllables", description: "holpxay lì'kongä" },
         { value: "stress", description: "txura lì'kongä tseng" },
         { value: "length", description: "ngimpup lì'uä (ìlä flltxepam)" },
@@ -675,11 +675,11 @@ const strings: ListStrings = {
     listOptions: "OPCJE LISTY",
     listMenu: {
       whatValues: [
-        { value: "pos", description: "część mowy jest, ma, itp." },
-        { value: "word", description: "zaczyna się, kończy się, ma, itp." },
+        { value: "pos", description: "część mowy" },
+        { value: "word", description: "słowo" },
         {
           value: "words",
-          description: "w kolejności wydania, pierwszy lub ostatni",
+          description: "słowa w kolejności publikacji",
         },
         { value: "syllables", description: "liczba sylab" },
         { value: "stress", description: "pozycja akcentowanej sylaby" },
@@ -747,11 +747,11 @@ const strings: ListStrings = {
     listOptions: "Opções da Lista",
     listMenu: {
       whatValues: [
-        { value: "pos", description: "classe gramatical é, tem, etc." },
-        { value: "word", description: "começa com, termina com, tem, etc." },
+        { value: "pos", description: "classe gramatical" },
+        { value: "word", description: "palavra" },
         {
           value: "words",
-          description: "por ordem de lançamento, primeiro ou último",
+          description: "palavras por ordem de lançamento",
         },
         { value: "syllables", description: "número de sílabas" },
         { value: "stress", description: "posição da sílaba estressada" },
@@ -819,14 +819,14 @@ const strings: ListStrings = {
     listOptions: "ПАРАМЕТРЫ СПИСКА",
     listMenu: {
       whatValues: [
-        { value: "pos", description: "часть речи есть, имеет, и т. д." },
+        { value: "pos", description: "часть речи" },
         {
           value: "word",
-          description: "начинается, заканчивается, имеет, и т. д.",
+          description: "слово",
         },
         {
           value: "words",
-          description: "в порядке выхода, первый или последний",
+          description: "слова в порядке публикации",
         },
         { value: "syllables", description: "количество слогов" },
         { value: "stress", description: "позиция ударного слога" },
@@ -894,11 +894,11 @@ const strings: ListStrings = {
     listOptions: "LISTALTERNATIV",
     listMenu: {
       whatValues: [
-        { value: "pos", description: "ordklass är, har, etc." },
-        { value: "word", description: "börjar med, slutar med, har, etc." },
+        { value: "pos", description: "del av tal" },
+        { value: "word", description: "ord" },
         {
           value: "words",
-          description: "i ordning av utgåva, först eller sist",
+          description: "ord i publiceringsordning",
         },
         { value: "syllables", description: "antal stavelser" },
         { value: "stress", description: "betonad stavelseposition" },
@@ -966,11 +966,11 @@ const strings: ListStrings = {
     listOptions: "Liste Seçenekleri",
     listMenu: {
       whatValues: [
-        { value: "pos", description: "konuşma parçası var, var, vb." },
-        { value: "word", description: "ile başlar, ile biter, var, vb." },
+        { value: "pos", description: "konuşmanın bölümü" },
+        { value: "word", description: "kelime" },
         {
           value: "words",
-          description: "çıkış sırasına göre, ilk veya son",
+          description: "yayınlanma sırasına göre kelimeler",
         },
         { value: "syllables", description: "hece sayısı" },
         { value: "stress", description: "vurgulu hece pozisyonu" },
