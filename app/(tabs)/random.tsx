@@ -3,7 +3,7 @@ import { FilterExpressionBuilder } from "@/components/common/FilterExpressionBui
 import { NumericTextInput } from "@/components/common/NumericTextInput";
 import { RefreshButton } from "@/components/common/RefreshButton";
 import { ResultCount } from "@/components/common/ResultCount";
-import { Text } from "@/components/common/Themed";
+import { Text, View } from "@/components/common/Themed";
 import { ListResults } from "@/components/list/ListResults";
 import Colors from "@/constants/Colors";
 import stringsRandom from "@/constants/ui/random";
@@ -106,13 +106,12 @@ export default function RandomScreen() {
             />
             <Text style={styles.label}>{uiRandom.where}</Text>
             {filterExpressions.map((_, i) => (
-              <>
+              <View key={`feb_${i}`}>
                 {i > 0 && <Text style={styles.label}>{uiList.and}</Text>}
                 <FilterExpressionBuilder
-                  key={`feb_${i}`}
                   onChange={(text) => updateFilterExpression(i, text)}
                 />
-              </>
+              </View>
             ))}
             <TouchableOpacity
               onPress={addFilterExpression}
