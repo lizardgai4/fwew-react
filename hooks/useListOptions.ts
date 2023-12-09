@@ -1,7 +1,7 @@
 import { WhatValues } from "@/constants/ui/list";
 import { SelectHandler } from "@/types/common";
 import {
-  ListExpressionAttribute,
+  FilterExpressionAttribute,
   ListMenuWhatItem,
   ListMenuWhatOrCondItem,
   WhatValue,
@@ -9,7 +9,7 @@ import {
 import { useRef, useState } from "react";
 
 export function useListOptions(onSelect: SelectHandler) {
-  const [mode, setMode] = useState<ListExpressionAttribute>("what");
+  const [mode, setMode] = useState<FilterExpressionAttribute>("what");
   const whatRef = useRef<ListMenuWhatItem>();
 
   const nextMode = () => {

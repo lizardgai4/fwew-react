@@ -1,4 +1,14 @@
-export type ListExpressionAttribute = "what" | "cond" | "spec";
+export type FilterExpressionAttribute = "what" | "cond" | "spec";
+
+export type FilterExpression = {
+  what?: WhatValue;
+  cond?: CondValue;
+  spec?: string;
+};
+
+export type FilterStateMap = {
+  [key in FilterExpressionAttribute]: FilterExpressionAttribute;
+};
 
 export type WhatValue =
   | "pos"
@@ -20,6 +30,7 @@ export type CondValueString =
   | "not-like";
 export type CondValueNumber = "<" | "<=" | "=" | ">=" | ">" | "!=";
 export type CondValueWords = "first" | "last";
+export type CondValue = CondValueString | CondValueNumber | CondValueWords;
 
 export type ListMenuItem<ValueType extends string> = {
   value: ValueType;
