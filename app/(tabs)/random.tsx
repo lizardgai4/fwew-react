@@ -21,19 +21,23 @@ import {
   TouchableOpacity,
   useColorScheme,
 } from "react-native";
+import { FilterExpressionMenuValue } from "@/types/list";
 
 export default function RandomScreen() {
   const [numWords, setNumWords] = useState("8");
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<Word[]>([]);
-  const [filterExpressions, setFilterExpressions] = useState<string[]>([""]);
+  const [filterExpressions, setFilterExpressions] = useState<
+    FilterExpressionMenuValue[]
+  >([{ spec: "" }]);
   const debounce = useDebounce();
   const { appLanguage } = useAppLanguageContext();
   const uiRandom = stringsRandom[appLanguage];
   const uiList = stringsList[appLanguage];
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
-  const addDisabled = filterExpressions[filterExpressions.length - 1] === "";
+  const addDisabled =
+    filterExpressions[filterExpressions.length - 1].spec === "";
 
   const updateNumWords = (num: string) => {
     if (num === "") {
@@ -48,10 +52,13 @@ export default function RandomScreen() {
   };
 
   const addFilterExpression = () => {
-    setFilterExpressions([...filterExpressions, ""]);
+    setFilterExpressions([...filterExpressions, { spec: "" }]);
   };
 
-  const updateFilterExpression = (index: number, expression: string) => {
+  const updateFilterExpression = (
+    index: number,
+    expression: FilterExpressionMenuValue
+  ) => {
     const newExpressions = [...filterExpressions];
     newExpressions[index] = expression;
     setFilterExpressions(newExpressions);
@@ -63,7 +70,11 @@ export default function RandomScreen() {
     }
     setLoading(true);
     if (filterExpressions.join("").length > 0) {
-      const data = await random(+numWords, filterExpressions.join(" and "));
+      const filterString = filterExpressions
+        .map((f) => `${f.what?.value} ${f.cond?.value} ${f.spec.trim()}`)
+        .join(" and ");
+      console.log(numWords, filterString);
+      const data = await random(+numWords, filterString);
       setResults(data);
       setLoading(false);
       return;
@@ -109,7 +120,8 @@ export default function RandomScreen() {
               <View key={`feb_${i}`}>
                 {i > 0 && <Text style={styles.label}>{uiList.and}</Text>}
                 <FilterExpressionBuilder
-                  onChange={(text) => updateFilterExpression(i, text)}
+                  value={filterExpressions[i]}
+                  onChange={(value) => updateFilterExpression(i, value)}
                 />
               </View>
             ))}
