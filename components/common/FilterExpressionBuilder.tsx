@@ -10,6 +10,7 @@ import type {
 } from "@/types/list";
 import { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
+import { AlphaTextInput } from "./AlphaTextInput";
 
 type FilterExpressionBuilderProps = {
   value: FilterExpressionMenuValue;
@@ -27,6 +28,10 @@ export function FilterExpressionBuilder({
   const ui = stringsList[appLanguage];
   const whatValues = ui.listMenu.whatValues;
   const condValues = what ? ui.listMenu.condValues[what.value] : [];
+  const isNumericSpec =
+    what?.value === "syllables" ||
+    what?.value === "stress" ||
+    what?.value === "length";
 
   useEffect(() => {
     if (!what || !cond || !spec) {
@@ -37,6 +42,7 @@ export function FilterExpressionBuilder({
 
   return (
     <View>
+      {/* what */}
       <DropDownSelect
         options={whatValues}
         value={what}
@@ -47,6 +53,7 @@ export function FilterExpressionBuilder({
         keyExtractor={(option, i) => `dd_${option?.value}_${i}`}
         onChange={setWhat}
       />
+      {/* cond */}
       {what && (
         <DropDownSelect
           options={condValues}
@@ -59,11 +66,22 @@ export function FilterExpressionBuilder({
           onChange={setCond}
         />
       )}
-      {what && cond && (
+      {/* spec numeric */}
+      {what && cond && isNumericSpec && (
         <NumericTextInput
           value={spec}
           onChangeText={setSpec}
           placeholder={`${what?.description} ${cond?.description}...`}
+          autoFocus
+        />
+      )}
+      {/* spec non-numeric */}
+      {what && cond && !isNumericSpec && (
+        <AlphaTextInput
+          value={spec}
+          onChangeText={setSpec}
+          placeholder={`${what?.description} ${cond?.description}...`}
+          autoFocus
         />
       )}
     </View>
