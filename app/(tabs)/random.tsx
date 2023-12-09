@@ -116,7 +116,7 @@ type FilterExpressionBuilderProps = {
 function FilterExpressionBuilder({ onChange }: FilterExpressionBuilderProps) {
   const [what, setWhat] = useState<ListMenuWhatItem>();
   const [cond, setCond] = useState<ListMenuCondItem>();
-  const [spec, setSpec] = useState<string>();
+  const [spec, setSpec] = useState<string>("");
   const { appLanguage } = useAppLanguageContext();
   const ui = stringsList[appLanguage];
   const whatValues = ui.listMenu.whatValues;
