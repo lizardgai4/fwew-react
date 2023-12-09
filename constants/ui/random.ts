@@ -62,7 +62,7 @@ const strings: RandomStrings = {
     random: "renulke",
     randomOptions: "tìftxey",
     numWords: "holpxay lì'uä",
-    where: "hu...",
+    where: "hu syon...",
   },
   pl: {
     random: "Losowy",
