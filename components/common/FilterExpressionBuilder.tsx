@@ -8,18 +8,25 @@ import type {
   ListMenuCondItem,
   ListMenuWhatItem,
 } from "@/types/list";
-import { StyleSheet } from "react-native";
+import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 import { AlphaTextInput } from "./AlphaTextInput";
+import { RefreshButton } from "./RefreshButton";
+import { FontAwesome } from "@expo/vector-icons";
+import Colors from "@/constants/Colors";
 
 type FilterExpressionBuilderProps = {
   value: FilterExpressionMenuValue;
   onChange: (value: FilterExpressionMenuValue) => void;
+  removeSelf?: () => void;
 };
 
 export function FilterExpressionBuilder({
   value,
   onChange,
+  removeSelf,
 }: FilterExpressionBuilderProps) {
+  const colorScheme = useColorScheme();
+  const colors = Colors[colorScheme ?? "light"];
   const { appLanguage } = useAppLanguageContext();
   const ui = stringsList[appLanguage];
   const whatValues = ui.listMenu.whatValues;
@@ -55,6 +62,13 @@ export function FilterExpressionBuilder({
 
   return (
     <View>
+      {/* remove */}
+      <TouchableOpacity
+        onPress={removeSelf}
+        style={[styles.button, { borderColor: colors.text }]}
+      >
+        <FontAwesome name="trash" size={24} color={colors.text} />
+      </TouchableOpacity>
       {/* what */}
       <DropDownSelect
         options={whatValues}
@@ -79,6 +93,7 @@ export function FilterExpressionBuilder({
           onChange={setCond}
         />
       )}
+
       {/* spec numeric */}
       {value.what && value.cond && isNumericSpec && (
         <NumericTextInput
@@ -104,5 +119,15 @@ export function FilterExpressionBuilder({
 const styles = StyleSheet.create({
   text: {
     padding: 10,
+  },
+  button: {
+    borderWidth: 1,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    alignItems: "center",
+    alignSelf: "flex-end",
+    justifyContent: "center",
+    flexDirection: "row",
+    gap: 8,
   },
 });
