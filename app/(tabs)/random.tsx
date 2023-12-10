@@ -6,7 +6,6 @@ import { ResultCount } from "@/components/common/ResultCount";
 import { SmallButton } from "@/components/common/SmallButton";
 import { Text, View } from "@/components/common/Themed";
 import { ListResults } from "@/components/list/ListResults";
-import Colors from "@/constants/Colors";
 import stringsList from "@/constants/ui/list";
 import stringsRandom from "@/constants/ui/random";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
@@ -15,12 +14,7 @@ import { FilterExpressionMenuValue } from "@/types/list";
 import type { Word } from "fwew.js";
 import { random } from "fwew.js";
 import { useEffect, useState } from "react";
-import {
-  RefreshControl,
-  ScrollView,
-  StyleSheet,
-  useColorScheme,
-} from "react-native";
+import { RefreshControl, ScrollView, StyleSheet } from "react-native";
 
 export default function RandomScreen() {
   const [numWords, setNumWords] = useState("8");
@@ -33,8 +27,6 @@ export default function RandomScreen() {
   const { appLanguage } = useAppLanguageContext();
   const uiRandom = stringsRandom[appLanguage];
   const uiList = stringsList[appLanguage];
-  const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? "light"];
   const addDisabled =
     filterExpressions[filterExpressions.length - 1]?.spec === "";
   const incompleteExpressions = filterExpressions.filter(
