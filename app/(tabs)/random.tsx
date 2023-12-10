@@ -10,28 +10,29 @@ import stringsList from "@/constants/ui/list";
 import stringsRandom from "@/constants/ui/random";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDebounce } from "@/hooks/useDebounce";
-import type { FilterExpressionBuilderValue } from "@/types/list";
+import { useFilterExpression } from "@/hooks/useFilterExpression";
 import type { Word } from "fwew.js";
 import { random } from "fwew.js";
 import { useEffect, useState } from "react";
 import { RefreshControl, ScrollView, StyleSheet } from "react-native";
 
 export default function RandomScreen() {
+  const {
+    filters,
+    filterExpression,
+    disabled,
+    incomplete,
+    addFilterExpression,
+    removeFilterExpression,
+    updateFilterExpression,
+  } = useFilterExpression();
   const [numWords, setNumWords] = useState("8");
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<Word[]>([]);
-  const [filterExpressions, setFilterExpressions] = useState<
-    FilterExpressionBuilderValue[]
-  >([{ spec: "" }]);
   const debounce = useDebounce();
   const { appLanguage } = useAppLanguageContext();
   const uiRandom = stringsRandom[appLanguage];
   const uiList = stringsList[appLanguage];
-  const addDisabled =
-    filterExpressions[filterExpressions.length - 1]?.spec === "";
-  const incompleteExpressions = filterExpressions.filter(
-    (fe) => (fe.what || fe.cond) && !fe.spec.trim()
-  );
 
   const updateNumWords = (num: string) => {
     if (num === "") {
@@ -45,44 +46,17 @@ export default function RandomScreen() {
     setNumWords(num);
   };
 
-  const addFilterExpression = () => {
-    setFilterExpressions([...filterExpressions, { spec: "" }]);
-  };
-
-  const removeFilterExpression = (index: number) => {
-    const newExpressions = [...filterExpressions];
-    newExpressions.splice(index, 1);
-    setFilterExpressions(newExpressions);
-  };
-
-  const updateFilterExpression = (
-    index: number,
-    expression: FilterExpressionBuilderValue
-  ) => {
-    const newExpressions = [...filterExpressions];
-    newExpressions[index] = expression;
-    setFilterExpressions(newExpressions);
-  };
-
   const execute = async () => {
     if (numWords.length === 0) {
       return;
     }
     setLoading(true);
-    const filterString = filterExpressions
-      .map((f) =>
-        `${f.what?.value ?? ""} ${f.cond?.value ?? ""} ${f.spec}`
-          .trim()
-          .replace(/ +/g, " ")
-      )
-      .join(" and ")
-      .trim();
-    if (filterString.length > 0) {
-      if (incompleteExpressions.length > 0) {
+    if (filterExpression.length > 0) {
+      if (incomplete) {
         return;
       }
-      console.log(numWords, filterString);
-      const data = await random(+numWords, filterString);
+      console.log(numWords, filterExpression);
+      const data = await random(+numWords, filterExpression);
       setResults(data);
       setLoading(false);
       return;
@@ -97,35 +71,11 @@ export default function RandomScreen() {
       setResults([]);
       return;
     }
-    if (incompleteExpressions.length > 0) {
+    if (incomplete) {
       return;
     }
     debounce(execute);
-  }, [numWords, filterExpressions]);
-
-  useEffect(() => {
-    setFilterExpressions((prev) => {
-      return prev.map((e) => {
-        return {
-          what: e.what && {
-            value: e.what.value,
-            description: stringsList[appLanguage].listMenu.whatValues.filter(
-              (w) => w.value === e.what?.value
-            )[0]?.description,
-          },
-          cond: e.cond && {
-            value: e.cond.value,
-            description:
-              e.what &&
-              stringsList[appLanguage].listMenu.condValues[e.what.value].filter(
-                (c) => c.value === e.cond?.value
-              )[0]?.description,
-          },
-          spec: e.spec,
-        } as FilterExpressionBuilderValue;
-      });
-    });
-  }, [appLanguage]);
+  }, [numWords, filterExpression]);
 
   return (
     <ScrollView
@@ -149,7 +99,7 @@ export default function RandomScreen() {
               autoFocus
             />
             <Text style={styles.label}>{uiRandom.where}</Text>
-            {filterExpressions.map((_, i) => (
+            {filters.map((_, i) => (
               <View key={`feb_${i}`}>
                 {i > 0 && <Text style={styles.label}>{uiList.and}</Text>}
                 <SmallButton
@@ -157,7 +107,7 @@ export default function RandomScreen() {
                   icon="trash"
                 />
                 <FilterExpressionBuilder
-                  value={filterExpressions[i]}
+                  value={filters[i]}
                   onChange={(value) => updateFilterExpression(i, value)}
                 />
               </View>
@@ -165,7 +115,7 @@ export default function RandomScreen() {
             <Button
               onPress={addFilterExpression}
               icon="plus"
-              disabled={addDisabled}
+              disabled={disabled}
             />
           </>
         }
