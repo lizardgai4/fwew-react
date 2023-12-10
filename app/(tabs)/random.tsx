@@ -1,13 +1,11 @@
 import { Accordion } from "@/components/common/Accordion";
 import { Button } from "@/components/common/Button";
-import { FilterExpressionBuilder } from "@/components/common/FilterExpressionBuilder";
+import { FilterExpressionBuilderList } from "@/components/common/FilterExpressionBuilderList";
 import { NumericTextInput } from "@/components/common/NumericTextInput";
 import { ResultCount } from "@/components/common/ResultCount";
-import { SmallButton } from "@/components/common/SmallButton";
-import { Text, View } from "@/components/common/Themed";
+import { Text } from "@/components/common/Themed";
 import { ListResults } from "@/components/list/ListResults";
-import stringsList from "@/constants/ui/list";
-import stringsRandom from "@/constants/ui/random";
+import strings from "@/constants/ui/random";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDebounce } from "@/hooks/useDebounce";
 import { useFilterExpression } from "@/hooks/useFilterExpression";
@@ -30,8 +28,7 @@ export default function RandomScreen() {
   const { loading, results, execute } = useRandom();
   const debounce = useDebounce();
   const { appLanguage } = useAppLanguageContext();
-  const uiRandom = stringsRandom[appLanguage];
-  const uiList = stringsList[appLanguage];
+  const ui = strings[appLanguage];
 
   const updateNumWords = (num: NumericString) => {
     if (num === "") {
@@ -69,33 +66,22 @@ export default function RandomScreen() {
       }
     >
       <Accordion
-        closedContent={<Text>{uiRandom.randomOptions}</Text>}
+        closedContent={<Text>{ui.randomOptions}</Text>}
         openedContent={
           <>
-            <Text style={styles.label}>{uiRandom.numWords}</Text>
+            <Text style={styles.label}>{ui.numWords}</Text>
             <NumericTextInput
               placeholder={"1-100"}
               onChangeText={updateNumWords}
               value={numWords}
               autoFocus
             />
-            <Text style={styles.label}>{uiRandom.where}</Text>
-            {filters.map((_, i) => (
-              <View key={`feb_${i}`}>
-                {i > 0 && <Text style={styles.label}>{uiList.and}</Text>}
-                <SmallButton
-                  onPress={() => removeFilterExpression(i)}
-                  icon="trash"
-                />
-                <FilterExpressionBuilder
-                  value={filters[i]}
-                  onChange={(value) => updateFilterExpression(i, value)}
-                />
-              </View>
-            ))}
-            <Button
-              onPress={addFilterExpression}
-              icon="plus"
+            <Text style={styles.label}>{ui.where}</Text>
+            <FilterExpressionBuilderList
+              filters={filters}
+              addFilterExpression={addFilterExpression}
+              removeFilterExpression={removeFilterExpression}
+              updateFilterExpression={updateFilterExpression}
               disabled={disabled}
             />
           </>
