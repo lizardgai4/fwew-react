@@ -25,20 +25,17 @@ export function useFilterExpression() {
     .join(" and ")
     .trim();
 
-  const addFilterExpression = () => {
+  const add = () => {
     setFilters([...filters, { spec: "" }]);
   };
 
-  const removeFilterExpression = (index: number) => {
+  const remove = (index: number) => {
     const newExpressions = [...filters];
     newExpressions.splice(index, 1);
     setFilters(newExpressions);
   };
 
-  const updateFilterExpression = (
-    index: number,
-    expression: FilterExpressionBuilderValue
-  ) => {
+  const update = (index: number, expression: FilterExpressionBuilderValue) => {
     const newExpressions = [...filters];
     newExpressions[index] = expression;
     setFilters(newExpressions);
@@ -73,8 +70,8 @@ export function useFilterExpression() {
     filterExpression,
     disabled,
     incomplete,
-    addFilterExpression,
-    removeFilterExpression,
-    updateFilterExpression,
+    add,
+    remove,
+    update,
   };
 }

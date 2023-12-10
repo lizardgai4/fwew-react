@@ -21,9 +21,9 @@ export default function RandomScreen() {
     filterExpression,
     disabled,
     incomplete,
-    addFilterExpression,
-    removeFilterExpression,
-    updateFilterExpression,
+    add,
+    remove,
+    update,
   } = useFilterExpression();
   const { loading, results, execute } = useRandom();
   const debounce = useDebounce();
@@ -79,9 +79,9 @@ export default function RandomScreen() {
             <Text style={styles.label}>{ui.where}</Text>
             <FilterExpressionBuilderList
               filters={filters}
-              addFilterExpression={addFilterExpression}
-              removeFilterExpression={removeFilterExpression}
-              updateFilterExpression={updateFilterExpression}
+              add={add}
+              remove={remove}
+              update={update}
               disabled={disabled}
             />
           </>
