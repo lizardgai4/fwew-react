@@ -6,10 +6,11 @@ import { ResultCount } from "@/components/common/ResultCount";
 import { Text, View } from "@/components/common/Themed";
 import { ListResults } from "@/components/list/ListResults";
 import Colors from "@/constants/Colors";
-import stringsRandom from "@/constants/ui/random";
 import stringsList from "@/constants/ui/list";
+import stringsRandom from "@/constants/ui/random";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDebounce } from "@/hooks/useDebounce";
+import { FilterExpressionMenuValue } from "@/types/list";
 import { FontAwesome } from "@expo/vector-icons";
 import type { Word } from "fwew.js";
 import { random } from "fwew.js";
@@ -21,7 +22,6 @@ import {
   TouchableOpacity,
   useColorScheme,
 } from "react-native";
-import { FilterExpressionMenuValue } from "@/types/list";
 
 export default function RandomScreen() {
   const [numWords, setNumWords] = useState("8");
@@ -157,10 +157,16 @@ export default function RandomScreen() {
             {filterExpressions.map((_, i) => (
               <View key={`feb_${i}`}>
                 {i > 0 && <Text style={styles.label}>{uiList.and}</Text>}
+                {/* remove */}
+                <TouchableOpacity
+                  onPress={() => removeFilterExpression(i)}
+                  style={[styles.button, { borderColor: colors.text }]}
+                >
+                  <FontAwesome name="trash" size={24} color={colors.text} />
+                </TouchableOpacity>
                 <FilterExpressionBuilder
                   value={filterExpressions[i]}
                   onChange={(value) => updateFilterExpression(i, value)}
-                  removeSelf={() => removeFilterExpression(i)}
                 />
               </View>
             ))}
@@ -204,5 +210,15 @@ const styles = StyleSheet.create({
   label: {
     padding: 16,
     fontWeight: "bold",
+  },
+  button: {
+    borderWidth: 1,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    alignItems: "center",
+    alignSelf: "flex-end",
+    justifyContent: "center",
+    flexDirection: "row",
+    gap: 8,
   },
 });
