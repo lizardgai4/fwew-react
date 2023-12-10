@@ -155,6 +155,7 @@ export default function RandomScreen() {
               placeholder={"1-100"}
               onChangeText={updateNumWords}
               value={numWords}
+              autoFocus
             />
             <Text style={styles.label}>{uiRandom.where}</Text>
             {filterExpressions.map((_, i) => (
