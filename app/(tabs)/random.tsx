@@ -157,7 +157,6 @@ export default function RandomScreen() {
             {filterExpressions.map((_, i) => (
               <View key={`feb_${i}`}>
                 {i > 0 && <Text style={styles.label}>{uiList.and}</Text>}
-                {/* remove */}
                 <TouchableOpacity
                   onPress={() => removeFilterExpression(i)}
                   style={[styles.button, { borderColor: colors.text }]}

@@ -1,7 +1,6 @@
 import { DropDownSelect } from "@/components/common/DropDownSelect";
 import { NumericTextInput } from "@/components/common/NumericTextInput";
 import { Text, View } from "@/components/common/Themed";
-import Colors from "@/constants/Colors";
 import stringsList from "@/constants/ui/list";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import type {
@@ -9,7 +8,7 @@ import type {
   ListMenuCondItem,
   ListMenuWhatItem,
 } from "@/types/list";
-import { StyleSheet, useColorScheme } from "react-native";
+import { StyleSheet } from "react-native";
 import { AlphaTextInput } from "./AlphaTextInput";
 
 type FilterExpressionBuilderProps = {
@@ -21,8 +20,6 @@ export function FilterExpressionBuilder({
   value,
   onChange,
 }: FilterExpressionBuilderProps) {
-  const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? "light"];
   const { appLanguage } = useAppLanguageContext();
   const ui = stringsList[appLanguage];
   const whatValues = ui.listMenu.whatValues;
