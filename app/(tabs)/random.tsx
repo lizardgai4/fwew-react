@@ -16,19 +16,13 @@ import { RefreshControl, ScrollView, StyleSheet } from "react-native";
 
 export default function RandomScreen() {
   const [numWords, setNumWords] = useState<NumericString>("8");
-  const {
-    filters,
-    filterExpression,
-    disabled,
-    incomplete,
-    add,
-    remove,
-    update,
-  } = useFilterExpression();
+  const { filters, filterExpression, incomplete, add, remove, update } =
+    useFilterExpression();
   const { loading, results, execute } = useRandom();
   const debounce = useDebounce();
   const { appLanguage } = useAppLanguageContext();
   const ui = strings[appLanguage];
+  const resultsVisible = numWords.length > 0 && results.length > 0;
 
   const updateNumWords = (num: NumericString) => {
     if (num === "") {
@@ -82,17 +76,18 @@ export default function RandomScreen() {
               add={add}
               remove={remove}
               update={update}
-              disabled={disabled}
+              disabled={incomplete}
             />
           </>
         }
       />
-      <Button onPress={() => getData()} icon="refresh" />
-      <ResultCount
-        visible={numWords.length > 0 && results.length > 0}
-        resultCount={results.length}
+      <Button
+        onPress={() => getData()}
+        icon="refresh"
+        disabled={!numWords || incomplete}
       />
-      <ListResults loading={loading} results={results} />
+      <ResultCount visible={resultsVisible} resultCount={results.length} />
+      <ListResults loading={loading} results={resultsVisible ? results : []} />
     </ScrollView>
   );
 }
