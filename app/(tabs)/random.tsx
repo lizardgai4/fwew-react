@@ -1,18 +1,13 @@
-import { Accordion } from "@/components/common/Accordion";
 import { Button } from "@/components/common/Button";
-import { FilterExpressionBuilderList } from "@/components/common/FilterExpressionBuilderList";
-import { NumericTextInput } from "@/components/common/NumericTextInput";
 import { ResultCount } from "@/components/common/ResultCount";
-import { Text } from "@/components/common/Themed";
 import { ListResults } from "@/components/list/ListResults";
-import strings from "@/constants/ui/random";
-import { useAppLanguageContext } from "@/context/AppLanguageContext";
+import { RandomOptions } from "@/components/random/RandomOptions";
 import { useDebounce } from "@/hooks/useDebounce";
 import { useFilterExpression } from "@/hooks/useFilterExpression";
 import { useRandom } from "@/hooks/useRandom";
 import { NumericString } from "@/types/common";
 import { useEffect, useState } from "react";
-import { RefreshControl, ScrollView, StyleSheet } from "react-native";
+import { RefreshControl, ScrollView } from "react-native";
 
 export default function RandomScreen() {
   const [numWords, setNumWords] = useState<NumericString>("8");
@@ -20,8 +15,6 @@ export default function RandomScreen() {
     useFilterExpression();
   const { loading, results, execute } = useRandom();
   const debounce = useDebounce();
-  const { appLanguage } = useAppLanguageContext();
-  const ui = strings[appLanguage];
   const resultsVisible = numWords.length > 0 && results.length > 0;
 
   const updateNumWords = (num: NumericString) => {
@@ -59,27 +52,14 @@ export default function RandomScreen() {
         <RefreshControl refreshing={loading} onRefresh={() => getData()} />
       }
     >
-      <Accordion
-        closedContent={<Text>{ui.randomOptions}</Text>}
-        openedContent={
-          <>
-            <Text style={styles.label}>{ui.numWords}</Text>
-            <NumericTextInput
-              placeholder={"1-100"}
-              onChangeText={updateNumWords}
-              value={numWords}
-              autoFocus
-            />
-            <Text style={styles.label}>{ui.where}</Text>
-            <FilterExpressionBuilderList
-              filters={filters}
-              add={add}
-              remove={remove}
-              update={update}
-              disabled={incomplete}
-            />
-          </>
-        }
+      <RandomOptions
+        numWords={numWords}
+        updateNumWords={updateNumWords}
+        filters={filters}
+        add={add}
+        remove={remove}
+        update={update}
+        incomplete={incomplete}
       />
       <Button
         onPress={() => getData()}
@@ -91,10 +71,3 @@ export default function RandomScreen() {
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  label: {
-    padding: 16,
-    fontWeight: "bold",
-  },
-});
