@@ -37,7 +37,7 @@ export default function RandomScreen() {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
   const addDisabled =
-    filterExpressions[filterExpressions.length - 1].spec === "";
+    filterExpressions[filterExpressions.length - 1]?.spec === "";
 
   const updateNumWords = (num: string) => {
     if (num === "") {
@@ -69,10 +69,21 @@ export default function RandomScreen() {
       return;
     }
     setLoading(true);
-    if (filterExpressions.join("").length > 0) {
-      const filterString = filterExpressions
-        .map((f) => `${f.what?.value} ${f.cond?.value} ${f.spec.trim()}`)
-        .join(" and ");
+    const filterString = filterExpressions
+      .map((f) =>
+        `${f.what?.value ?? ""} ${f.cond?.value ?? ""} ${f.spec}`
+          .trim()
+          .replace(/ +/g, " ")
+      )
+      .join(" and ")
+      .trim();
+    if (filterString.length > 0) {
+      const incompleteExpressions = filterExpressions.filter(
+        (fe) => (fe.what || fe.cond) && !fe.spec.trim()
+      );
+      if (incompleteExpressions.length > 0) {
+        return;
+      }
       console.log(numWords, filterString);
       const data = await random(+numWords, filterString);
       setResults(data);
@@ -89,11 +100,32 @@ export default function RandomScreen() {
       setResults([]);
       return;
     }
-    if (numWords.length > 0) {
-      debounce(execute);
-      return;
-    }
+    debounce(execute);
   }, [numWords, filterExpressions]);
+
+  useEffect(() => {
+    setFilterExpressions((prev) => {
+      return prev.map((e) => {
+        return {
+          what: e.what && {
+            value: e.what.value,
+            description: stringsList[appLanguage].listMenu.whatValues.filter(
+              (w) => w.value === e.what?.value
+            )[0]?.description,
+          },
+          cond: e.cond && {
+            value: e.cond.value,
+            description:
+              e.what &&
+              stringsList[appLanguage].listMenu.condValues[e.what.value].filter(
+                (c) => c.value === e.cond?.value
+              )[0]?.description,
+          },
+          spec: e.spec,
+        } as FilterExpressionMenuValue;
+      });
+    });
+  }, [appLanguage]);
 
   return (
     <ScrollView
