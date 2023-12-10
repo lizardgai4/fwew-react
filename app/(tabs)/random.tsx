@@ -55,6 +55,12 @@ export default function RandomScreen() {
     setFilterExpressions([...filterExpressions, { spec: "" }]);
   };
 
+  const removeFilterExpression = (index: number) => {
+    const newExpressions = [...filterExpressions];
+    newExpressions.splice(index, 1);
+    setFilterExpressions(newExpressions);
+  };
+
   const updateFilterExpression = (
     index: number,
     expression: FilterExpressionMenuValue
@@ -154,6 +160,7 @@ export default function RandomScreen() {
                 <FilterExpressionBuilder
                   value={filterExpressions[i]}
                   onChange={(value) => updateFilterExpression(i, value)}
+                  removeSelf={() => removeFilterExpression(i)}
                 />
               </View>
             ))}
