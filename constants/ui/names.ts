@@ -15,7 +15,6 @@ type NameStrings = {
     numNames: string;
     dialect: string;
     dialects: DialectMeta[];
-    generate: string;
   };
 };
 
@@ -32,7 +31,6 @@ const strings: NameStrings = {
       { name: "Wald", value: "forest" },
       { name: "Riff", value: "reef" },
     ],
-    generate: "Generieren",
   },
   en: {
     single: "Single",
@@ -46,7 +44,6 @@ const strings: NameStrings = {
       { name: "forest", value: "forest" },
       { name: "reef", value: "reef" },
     ],
-    generate: "Generate",
   },
   eo: {
     single: "Simpla",
@@ -60,7 +57,6 @@ const strings: NameStrings = {
       { name: "arbara", value: "forest" },
       { name: "rifa", value: "reef" },
     ],
-    generate: "Generi",
   },
   es: {
     single: "Sencillo",
@@ -74,7 +70,6 @@ const strings: NameStrings = {
       { name: "bosque", value: "forest" },
       { name: "arrecife", value: "reef" },
     ],
-    generate: "Generar",
   },
   et: {
     single: "Üksik",
@@ -88,7 +83,6 @@ const strings: NameStrings = {
       { name: "metsa", value: "forest" },
       { name: "rifi", value: "reef" },
     ],
-    generate: "Genereeri",
   },
   fr: {
     single: "Simple",
@@ -102,7 +96,6 @@ const strings: NameStrings = {
       { name: "forêt", value: "forest" },
       { name: "récif", value: "reef" },
     ],
-    generate: "Générer",
   },
   hu: {
     single: "Egyszerű",
@@ -116,7 +109,6 @@ const strings: NameStrings = {
       { name: "forest", value: "forest" },
       { name: "reef", value: "reef" },
     ],
-    generate: "Generálás",
   },
   nl: {
     single: "Enkel",
@@ -130,7 +122,6 @@ const strings: NameStrings = {
       { name: "forest", value: "forest" },
       { name: "reef", value: "reef" },
     ],
-    generate: "Genereren",
   },
   nx: {
     single: "'awa tstxo",
@@ -144,7 +135,6 @@ const strings: NameStrings = {
       { name: "lì'fya na'rìngä", value: "forest" },
       { name: "lì'fya wione", value: "reef" },
     ],
-    generate: "ngop",
   },
   pl: {
     single: "Pojedynczy",
@@ -158,7 +148,6 @@ const strings: NameStrings = {
       { name: "leśny", value: "forest" },
       { name: "riffowy", value: "reef" },
     ],
-    generate: "Generuj",
   },
   pt: {
     single: "Simples",
@@ -172,7 +161,6 @@ const strings: NameStrings = {
       { name: "floresta", value: "forest" },
       { name: "recife", value: "reef" },
     ],
-    generate: "Gerar",
   },
   ru: {
     single: "Простой",
@@ -186,7 +174,6 @@ const strings: NameStrings = {
       { name: "лесной", value: "forest" },
       { name: "рифовый", value: "reef" },
     ],
-    generate: "Генерировать",
   },
   sv: {
     single: "Enkel",
@@ -200,7 +187,6 @@ const strings: NameStrings = {
       { name: "skog", value: "forest" },
       { name: "rev", value: "reef" },
     ],
-    generate: "Generera",
   },
   tr: {
     single: "Tek",
@@ -214,7 +200,6 @@ const strings: NameStrings = {
       { name: "orman", value: "forest" },
       { name: "resif", value: "reef" },
     ],
-    generate: "Üret",
   },
 };
 
