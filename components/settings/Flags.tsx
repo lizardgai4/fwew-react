@@ -1,5 +1,4 @@
-import { View } from "@/components/common/Themed";
-import { ExtendedLanguageCode } from "@/types/common";
+import type { ExtendedLanguageCode } from "@/types/common";
 import Svg, { Circle, G, Path, SvgProps } from "react-native-svg";
 
 // de

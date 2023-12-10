@@ -4,7 +4,7 @@ import { Text, View } from "@/components/common/Themed";
 import stringsList from "@/constants/ui/list";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import type {
-  FilterExpressionMenuValue,
+  FilterExpressionBuilderValue,
   ListMenuCondItem,
   ListMenuWhatItem,
 } from "@/types/list";
@@ -12,8 +12,8 @@ import { StyleSheet } from "react-native";
 import { AlphaTextInput } from "./AlphaTextInput";
 
 type FilterExpressionBuilderProps = {
-  value: FilterExpressionMenuValue;
-  onChange: (value: FilterExpressionMenuValue) => void;
+  value: FilterExpressionBuilderValue;
+  onChange: (value: FilterExpressionBuilderValue) => void;
 };
 
 export function FilterExpressionBuilder({

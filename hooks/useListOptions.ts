@@ -1,5 +1,5 @@
 import { WhatValues } from "@/constants/ui/list";
-import { SelectHandler } from "@/types/common";
+import type { SelectHandler } from "@/types/common";
 import {
   FilterExpressionAttribute,
   ListMenuWhatItem,

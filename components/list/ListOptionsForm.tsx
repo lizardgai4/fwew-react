@@ -1,7 +1,7 @@
 import { ListOptionsCond } from "@/components/list/ListOptionsCond";
 import { ListOptionsSpec } from "@/components/list/ListOptionsSpec";
 import { ListOptionsWhat } from "@/components/list/ListOptionsWhat";
-import {
+import type {
   FilterExpressionAttribute,
   ListMenuWhatItem,
   ListMenuWhatOrCondItem,

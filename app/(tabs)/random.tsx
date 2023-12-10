@@ -10,7 +10,7 @@ import stringsList from "@/constants/ui/list";
 import stringsRandom from "@/constants/ui/random";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDebounce } from "@/hooks/useDebounce";
-import { FilterExpressionMenuValue } from "@/types/list";
+import type { FilterExpressionBuilderValue } from "@/types/list";
 import type { Word } from "fwew.js";
 import { random } from "fwew.js";
 import { useEffect, useState } from "react";
@@ -21,7 +21,7 @@ export default function RandomScreen() {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<Word[]>([]);
   const [filterExpressions, setFilterExpressions] = useState<
-    FilterExpressionMenuValue[]
+    FilterExpressionBuilderValue[]
   >([{ spec: "" }]);
   const debounce = useDebounce();
   const { appLanguage } = useAppLanguageContext();
@@ -57,7 +57,7 @@ export default function RandomScreen() {
 
   const updateFilterExpression = (
     index: number,
-    expression: FilterExpressionMenuValue
+    expression: FilterExpressionBuilderValue
   ) => {
     const newExpressions = [...filterExpressions];
     newExpressions[index] = expression;
@@ -122,7 +122,7 @@ export default function RandomScreen() {
               )[0]?.description,
           },
           spec: e.spec,
-        } as FilterExpressionMenuValue;
+        } as FilterExpressionBuilderValue;
       });
     });
   }, [appLanguage]);
