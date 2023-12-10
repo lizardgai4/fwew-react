@@ -11,8 +11,6 @@ export function useFilterExpression() {
   const { appLanguage } = useAppLanguageContext();
   const ui = strings[appLanguage];
 
-  const disabled = filters[filters.length - 1]?.spec === "";
-
   const incomplete =
     filters.filter((fe) => (fe.what || fe.cond) && !fe.spec.trim()).length > 0;
 
@@ -68,10 +66,9 @@ export function useFilterExpression() {
   return {
     filters,
     filterExpression,
-    disabled,
     incomplete,
     add,
     remove,
     update,
-  };
+  } as const;
 }
