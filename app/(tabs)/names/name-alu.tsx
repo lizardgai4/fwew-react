@@ -1,7 +1,7 @@
 import { Accordion } from "@/components/common/Accordion";
+import { Button } from "@/components/common/Button";
 import { NumericTextInput } from "@/components/common/NumericTextInput";
 import { OptionItem } from "@/components/common/OptionItem";
-import { RefreshButton } from "@/components/common/RefreshButton";
 import { Text, View } from "@/components/common/Themed";
 import stringsNameAlu from "@/constants/ui/name-alu";
 import stringsNames from "@/constants/ui/names";
@@ -86,11 +86,7 @@ export default function NameAluScreen() {
           </>
         }
       />
-      <RefreshButton
-        title={uiNames.generate}
-        execute={execute}
-        disabled={disabled}
-      />
+      <Button onPress={execute} icon="refresh" disabled={disabled} />
       <View>
         {names.map((name, i) => (
           <Text key={`na_r_${i}`} selectable style={styles.name}>

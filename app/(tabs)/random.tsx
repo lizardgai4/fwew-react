@@ -1,7 +1,7 @@
 import { Accordion } from "@/components/common/Accordion";
+import { Button } from "@/components/common/Button";
 import { FilterExpressionBuilder } from "@/components/common/FilterExpressionBuilder";
 import { NumericTextInput } from "@/components/common/NumericTextInput";
-import { RefreshButton } from "@/components/common/RefreshButton";
 import { ResultCount } from "@/components/common/ResultCount";
 import { Text, View } from "@/components/common/Themed";
 import { ListResults } from "@/components/list/ListResults";
@@ -173,33 +173,15 @@ export default function RandomScreen() {
                 />
               </View>
             ))}
-            <TouchableOpacity
+            <Button
               onPress={addFilterExpression}
-              style={{
-                flexDirection: "row",
-                gap: 8,
-                padding: 16,
-                borderWidth: 1,
-                borderColor: addDisabled ? colors.placeholder : colors.text,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+              icon="plus"
               disabled={addDisabled}
-            >
-              <FontAwesome
-                name="plus"
-                size={24}
-                color={addDisabled ? colors.placeholder : colors.text}
-              />
-            </TouchableOpacity>
+            />
           </>
         }
       />
-      <RefreshButton
-        execute={() => debounce(execute)}
-        disabled={numWords.length === 0}
-        title=""
-      />
+      <Button onPress={() => debounce(execute)} icon="refresh" />
       <ResultCount
         visible={numWords.length > 0 && results.length > 0}
         resultCount={results.length}
