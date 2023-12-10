@@ -38,7 +38,7 @@ export default function ListScreen() {
           visible={query.length > 0 && results.length > 0}
           resultCount={results.length}
         />
-        <ListResults results={results} />
+        <ListResults loading={loading} results={results} />
       </ScrollView>
     </View>
   );

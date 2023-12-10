@@ -3,15 +3,19 @@ import { Text } from "@/components/common/Themed";
 import strings from "@/constants/ui/list";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import type { Word } from "fwew.js";
-import { StyleSheet } from "react-native";
+import { ActivityIndicator, StyleSheet } from "react-native";
 
 type ListResultsProps = {
+  loading?: boolean;
   results: Word[];
 };
 
-export function ListResults({ results }: ListResultsProps) {
+export function ListResults({ loading, results }: ListResultsProps) {
   const { appLanguage } = useAppLanguageContext();
   const ui = strings[appLanguage];
+  if (loading) {
+    return <ActivityIndicator size="large" />;
+  }
   if (results === undefined || results.map === undefined) {
     return <Text style={styles.text}>{ui.noResults}</Text>;
   }
@@ -25,6 +29,10 @@ export function ListResults({ results }: ListResultsProps) {
 }
 
 const styles = StyleSheet.create({
+  spinner: {
+    alignSelf: "center",
+    padding: 16,
+  },
   text: {
     alignSelf: "center",
     padding: 16,

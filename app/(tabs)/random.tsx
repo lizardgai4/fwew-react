@@ -38,6 +38,9 @@ export default function RandomScreen() {
   const colors = Colors[colorScheme ?? "light"];
   const addDisabled =
     filterExpressions[filterExpressions.length - 1]?.spec === "";
+  const incompleteExpressions = filterExpressions.filter(
+    (fe) => (fe.what || fe.cond) && !fe.spec.trim()
+  );
 
   const updateNumWords = (num: string) => {
     if (num === "") {
@@ -84,9 +87,6 @@ export default function RandomScreen() {
       .join(" and ")
       .trim();
     if (filterString.length > 0) {
-      const incompleteExpressions = filterExpressions.filter(
-        (fe) => (fe.what || fe.cond) && !fe.spec.trim()
-      );
       if (incompleteExpressions.length > 0) {
         return;
       }
@@ -104,6 +104,9 @@ export default function RandomScreen() {
   useEffect(() => {
     if (numWords.length === 0) {
       setResults([]);
+      return;
+    }
+    if (incompleteExpressions.length > 0) {
       return;
     }
     debounce(execute);
@@ -200,7 +203,7 @@ export default function RandomScreen() {
         visible={numWords.length > 0 && results.length > 0}
         resultCount={results.length}
       />
-      <ListResults results={results} />
+      <ListResults loading={loading} results={results} />
     </ScrollView>
   );
 }
