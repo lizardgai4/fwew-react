@@ -1,11 +1,12 @@
 import { TextInput, View } from "@/components/common/Themed";
 import Colors from "@/constants/Colors";
+import type { NumericString } from "@/types/common";
 import { FontAwesome } from "@expo/vector-icons";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 
 type NumericTextInputProps = {
-  value?: string | `${number}` | undefined;
-  onChangeText: (text: string) => void;
+  value?: string | NumericString;
+  onChangeText: (text: NumericString) => void;
   placeholder: string;
   autoFocus?: boolean;
 };
@@ -25,7 +26,7 @@ export function NumericTextInput({
         placeholder={placeholder}
         placeholderTextColor={colors.placeholder}
         value={value}
-        onChangeText={onChangeText}
+        onChangeText={(text) => onChangeText(text as NumericString)}
         keyboardType="number-pad"
         style={[styles.input, { borderColor: colors.text }]}
         autoCapitalize="none"

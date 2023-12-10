@@ -11,12 +11,13 @@ import stringsRandom from "@/constants/ui/random";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDebounce } from "@/hooks/useDebounce";
 import { useFilterExpression } from "@/hooks/useFilterExpression";
-import type { Word } from "fwew.js";
-import { random } from "fwew.js";
+import { useRandom } from "@/hooks/useRandom";
+import { NumericString } from "@/types/common";
 import { useEffect, useState } from "react";
 import { RefreshControl, ScrollView, StyleSheet } from "react-native";
 
 export default function RandomScreen() {
+  const [numWords, setNumWords] = useState<NumericString>("8");
   const {
     filters,
     filterExpression,
@@ -26,15 +27,13 @@ export default function RandomScreen() {
     removeFilterExpression,
     updateFilterExpression,
   } = useFilterExpression();
-  const [numWords, setNumWords] = useState("8");
-  const [loading, setLoading] = useState(false);
-  const [results, setResults] = useState<Word[]>([]);
+  const { loading, results, execute } = useRandom();
   const debounce = useDebounce();
   const { appLanguage } = useAppLanguageContext();
   const uiRandom = stringsRandom[appLanguage];
   const uiList = stringsList[appLanguage];
 
-  const updateNumWords = (num: string) => {
+  const updateNumWords = (num: NumericString) => {
     if (num === "") {
       setNumWords("");
       return;
@@ -46,45 +45,27 @@ export default function RandomScreen() {
     setNumWords(num);
   };
 
-  const execute = async () => {
+  const getData = async () => {
     if (numWords.length === 0) {
       return;
     }
-    setLoading(true);
-    if (filterExpression.length > 0) {
-      if (incomplete) {
-        return;
-      }
-      console.log(numWords, filterExpression);
-      const data = await random(+numWords, filterExpression);
-      setResults(data);
-      setLoading(false);
+    if (filterExpression.length > 0 && incomplete) {
       return;
     }
-    const data = await random(+numWords);
-    setResults(data);
-    setLoading(false);
+    debounce(() => execute(numWords, filterExpression));
   };
 
   useEffect(() => {
-    if (numWords.length === 0) {
-      setResults([]);
-      return;
+    if (!incomplete) {
+      getData();
     }
-    if (incomplete) {
-      return;
-    }
-    debounce(execute);
   }, [numWords, filterExpression]);
 
   return (
     <ScrollView
       keyboardShouldPersistTaps="always"
       refreshControl={
-        <RefreshControl
-          refreshing={loading}
-          onRefresh={() => debounce(execute)}
-        />
+        <RefreshControl refreshing={loading} onRefresh={() => getData()} />
       }
     >
       <Accordion
@@ -120,7 +101,7 @@ export default function RandomScreen() {
           </>
         }
       />
-      <Button onPress={() => debounce(execute)} icon="refresh" />
+      <Button onPress={() => getData()} icon="refresh" />
       <ResultCount
         visible={numWords.length > 0 && results.length > 0}
         resultCount={results.length}
