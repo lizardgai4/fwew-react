@@ -1,5 +1,5 @@
 import { Text, View } from "@/components/common/Themed";
-import { ExtendedLanguageCode } from "@/types/common";
+import type { ExtendedLanguageCode } from "@/types/common";
 
 // TODO: add every single canon sentence
 // TODO: search for canon sentences

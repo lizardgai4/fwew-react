@@ -2,11 +2,11 @@ import { Text, View } from "@/components/common/Themed";
 import Colors from "@/constants/Colors";
 import strings from "@/constants/ui/list";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
-import type { ListMenuItem, WhatValue } from "@/types/list";
+import type { ListMenuWhatItem } from "@/types/list";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 
 type ListOptionsWhatProps = {
-  onSelect: (what: ListMenuItem<WhatValue>) => void;
+  onSelect: (what: ListMenuWhatItem) => void;
 };
 
 export function ListOptionsWhat({ onSelect }: ListOptionsWhatProps) {
