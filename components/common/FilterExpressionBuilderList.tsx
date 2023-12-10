@@ -9,20 +9,17 @@ import { Text, View } from "./Themed";
 
 type FilterExpressionBuilderListProps = {
   filters: FilterExpressionBuilderValue[];
-  addFilterExpression: () => void;
-  removeFilterExpression: (index: number) => void;
-  updateFilterExpression: (
-    index: number,
-    expression: FilterExpressionBuilderValue
-  ) => void;
+  add: () => void;
+  remove: (index: number) => void;
+  update: (index: number, expression: FilterExpressionBuilderValue) => void;
   disabled: boolean;
 };
 
 export function FilterExpressionBuilderList({
   filters,
-  addFilterExpression,
-  removeFilterExpression,
-  updateFilterExpression,
+  add,
+  remove,
+  update,
   disabled,
 }: FilterExpressionBuilderListProps) {
   const { appLanguage } = useAppLanguageContext();
@@ -32,14 +29,14 @@ export function FilterExpressionBuilderList({
       {filters.map((_, i) => (
         <View key={`feb_${i}`}>
           {i > 0 && <Text style={styles.label}>{uiList.and}</Text>}
-          <SmallButton onPress={() => removeFilterExpression(i)} icon="trash" />
+          <SmallButton onPress={() => remove(i)} icon="trash" />
           <FilterExpressionBuilder
             value={filters[i]}
-            onChange={(value) => updateFilterExpression(i, value)}
+            onChange={(value) => update(i, value)}
           />
         </View>
       ))}
-      <Button onPress={addFilterExpression} icon="plus" disabled={disabled} />
+      <Button onPress={add} icon="plus" disabled={disabled} />
     </>
   );
 }
