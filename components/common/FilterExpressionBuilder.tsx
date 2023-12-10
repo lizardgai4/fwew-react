@@ -8,7 +8,6 @@ import type {
   ListMenuCondItem,
   ListMenuWhatItem,
 } from "@/types/list";
-import { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import { AlphaTextInput } from "./AlphaTextInput";
 
@@ -21,32 +20,46 @@ export function FilterExpressionBuilder({
   value,
   onChange,
 }: FilterExpressionBuilderProps) {
-  const [what, setWhat] = useState<ListMenuWhatItem | undefined>(value.what);
-  const [cond, setCond] = useState<ListMenuCondItem | undefined>(value.cond);
-  const [spec, setSpec] = useState<string>(value.spec);
   const { appLanguage } = useAppLanguageContext();
   const ui = stringsList[appLanguage];
   const whatValues = ui.listMenu.whatValues;
-  const condValues = what ? ui.listMenu.condValues[what.value] : [];
+  const condValues = value.what ? ui.listMenu.condValues[value.what.value] : [];
   const isNumericSpec =
-    what?.value === "syllables" ||
-    what?.value === "stress" ||
-    what?.value === "length";
+    value.what?.value === "syllables" ||
+    value.what?.value === "stress" ||
+    value.what?.value === "length";
 
-  useEffect(() => {
-    if (!what || !cond || !spec) {
-      return;
-    }
-    onChange({ what, cond, spec });
-  }, [what, cond, spec]);
+  const setWhat = (what: ListMenuWhatItem | undefined) => {
+    onChange({
+      what,
+      cond: undefined,
+      spec: value.spec,
+    });
+  };
+
+  const setCond = (cond: ListMenuCondItem | undefined) => {
+    onChange({
+      what: value?.what,
+      cond,
+      spec: value.spec,
+    });
+  };
+
+  const setSpec = (spec: string) => {
+    onChange({
+      what: value?.what,
+      cond: value?.cond,
+      spec,
+    });
+  };
 
   return (
     <View>
       {/* what */}
       <DropDownSelect
         options={whatValues}
-        value={what}
-        initiallyOpen={!what}
+        value={value.what}
+        initiallyOpen={!value.what}
         renderOption={(option) => (
           <Text style={styles.text}>{option?.description}</Text>
         )}
@@ -54,11 +67,11 @@ export function FilterExpressionBuilder({
         onChange={setWhat}
       />
       {/* cond */}
-      {what && (
+      {value.what && (
         <DropDownSelect
           options={condValues}
-          value={cond}
-          initiallyOpen={!cond}
+          value={value.cond}
+          initiallyOpen={!value.cond}
           renderOption={(option) => (
             <Text style={styles.text}>{option?.description}</Text>
           )}
@@ -67,20 +80,20 @@ export function FilterExpressionBuilder({
         />
       )}
       {/* spec numeric */}
-      {what && cond && isNumericSpec && (
+      {value.what && value.cond && isNumericSpec && (
         <NumericTextInput
-          value={spec}
+          value={value.spec}
           onChangeText={setSpec}
-          placeholder={`${what?.description} ${cond?.description}...`}
+          placeholder={`${value.what?.description} ${value.cond?.description}...`}
           autoFocus
         />
       )}
       {/* spec non-numeric */}
-      {what && cond && !isNumericSpec && (
+      {value.what && value.cond && !isNumericSpec && (
         <AlphaTextInput
-          value={spec}
+          value={value.spec}
           onChangeText={setSpec}
-          placeholder={`${what?.description} ${cond?.description}...`}
+          placeholder={`${value.what?.description} ${value.cond?.description}...`}
           autoFocus
         />
       )}
