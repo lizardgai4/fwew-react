@@ -510,3 +510,30 @@ export const PartOfSpeech: PartOfSpeechType = {
     "vin., vtr.": "Edat",
   },
 };
+
+export type PartOfSpeechListType = {
+  [key in ExtendedLanguageCode]: { value: string; name: string }[];
+};
+
+export const PartOfSpeechList: PartOfSpeechListType = {
+  de: [],
+  en: [],
+  eo: [],
+  es: [],
+  et: [],
+  fr: [],
+  hu: [],
+  nl: [],
+  nx: [],
+  pl: [],
+  pt: [],
+  ru: [],
+  sv: [],
+  tr: [],
+};
+
+for (const [language, posData] of Object.entries(PartOfSpeech)) {
+  PartOfSpeechList[language as ExtendedLanguageCode] = Object.entries(
+    posData
+  ).map(([value, name]) => ({ value, name }));
+}

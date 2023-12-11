@@ -10,6 +10,7 @@ import type {
 } from "@/types/list";
 import { StyleSheet } from "react-native";
 import { AlphaTextInput } from "./AlphaTextInput";
+import { PartOfSpeech, PartOfSpeechList } from "@/constants/ui/common";
 
 type FilterExpressionBuilderProps = {
   value: FilterExpressionBuilderValue;
@@ -24,6 +25,8 @@ export function FilterExpressionBuilder({
   const ui = stringsList[appLanguage];
   const whatValues = ui.listMenu.whatValues;
   const condValues = value.what ? ui.listMenu.condValues[value.what.value] : [];
+  const isExactPosSpec =
+    value.what?.value === "pos" && value.cond?.value === "is";
   const isNumericSpec =
     value.what?.value === "syllables" ||
     value.what?.value === "stress" ||
@@ -79,9 +82,28 @@ export function FilterExpressionBuilder({
           onChange={setCond}
         />
       )}
-
+      {/* spec pos is */}
+      {value.what && value.cond && isExactPosSpec && (
+        <DropDownSelect
+          options={PartOfSpeechList[appLanguage]}
+          value={{
+            value: value.spec,
+            name: PartOfSpeech[appLanguage][value.spec],
+          }}
+          initiallyOpen={!value.spec}
+          renderOption={(option) => (
+            <Text style={styles.text}>
+              {option.value && option.name
+                ? `${option.value} (${option.name})`
+                : " "}
+            </Text>
+          )}
+          keyExtractor={(option, i) => `dd_${option}_${i}`}
+          onChange={(option) => setSpec(option.value)}
+        />
+      )}
       {/* spec numeric */}
-      {value.what && value.cond && isNumericSpec && (
+      {value.what && value.cond && isNumericSpec && !isExactPosSpec && (
         <NumericTextInput
           value={value.spec}
           onChangeText={setSpec}
@@ -90,7 +112,7 @@ export function FilterExpressionBuilder({
         />
       )}
       {/* spec non-numeric */}
-      {value.what && value.cond && !isNumericSpec && (
+      {value.what && value.cond && !isNumericSpec && !isExactPosSpec && (
         <AlphaTextInput
           value={value.spec}
           onChangeText={setSpec}
