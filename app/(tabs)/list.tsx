@@ -18,16 +18,17 @@ export default function ListScreen() {
     if (filterExpression.length === 0) {
       return;
     }
-    if (filterExpression.length > 0 && incomplete) {
+    if (incomplete) {
       return;
     }
+    console.log(
+      JSON.stringify({ filters, filterExpression, incomplete }, null, 2)
+    );
     debounce(() => execute(filterExpression));
   };
 
   useEffect(() => {
-    if (!incomplete) {
-      getData();
-    }
+    getData();
   }, [filterExpression]);
 
   return (
