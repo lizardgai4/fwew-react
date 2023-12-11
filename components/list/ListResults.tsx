@@ -16,7 +16,11 @@ export function ListResults({ loading, results }: ListResultsProps) {
   if (loading && Platform.OS === "web") {
     return <ActivityIndicator size="large" />;
   }
-  if (results === undefined || results.map === undefined) {
+  if (
+    results === undefined ||
+    results.map === undefined ||
+    results.length === 0
+  ) {
     return <Text style={styles.text}>{ui.noResults}</Text>;
   }
   return (
