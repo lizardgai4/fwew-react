@@ -24,6 +24,7 @@ export function ListOptions({
   const ui = strings[appLanguage];
   return (
     <Accordion
+      initiallyOpen
       closedContent={<Text>{ui.listOptions}</Text>}
       openedContent={
         <>
