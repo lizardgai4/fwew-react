@@ -2,8 +2,12 @@
   "cli": {
     "version": ">= 5.8.0"
   },
+  "base": {
+    "node": "20.9.0"
+  },
   "build": {
     "development": {
+      "extends": "base",
       "developmentClient": true,
       "distribution": "internal",
       "env": {
@@ -11,12 +15,14 @@
       }
     },
     "preview": {
+      "extends": "base",
       "distribution": "internal",
       "env": {
         "EXPO_PUBLIC_GIT_BRANCH": "next"
       }
     },
     "production": {
+      "extends": "base",
       "env": {
         "EXPO_PUBLIC_GIT_BRANCH": "main"
       }
