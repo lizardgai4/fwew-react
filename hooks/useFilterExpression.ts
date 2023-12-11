@@ -11,9 +11,6 @@ export function useFilterExpression() {
   const { appLanguage } = useAppLanguageContext();
   const ui = strings[appLanguage];
 
-  const incomplete =
-    filters.filter((fe) => (fe.what || fe.cond) && !fe.spec.trim()).length > 0;
-
   const filterExpression = filters
     .map((f) =>
       `${f.what?.value ?? ""} ${f.cond?.value ?? ""} ${f.spec}`
@@ -22,6 +19,10 @@ export function useFilterExpression() {
     )
     .join(" and ")
     .trim();
+
+  const incomplete =
+    filterExpression.endsWith("and") ||
+    filters.filter((fe) => (fe.what || fe.cond) && !fe.spec.trim()).length > 0;
 
   const add = () => {
     setFilters([...filters, { spec: "" }]);
