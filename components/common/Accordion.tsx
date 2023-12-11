@@ -7,10 +7,15 @@ import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 type AccordionProps = {
   closedContent: React.ReactNode;
   openedContent: React.ReactNode;
+  initiallyOpen?: boolean;
 };
 
-export function Accordion({ closedContent, openedContent }: AccordionProps) {
-  const [expanded, setExpanded] = useState(false);
+export function Accordion({
+  closedContent,
+  openedContent,
+  initiallyOpen,
+}: AccordionProps) {
+  const [expanded, setExpanded] = useState(initiallyOpen ?? false);
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
 
