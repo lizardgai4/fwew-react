@@ -21,9 +21,6 @@ export default function ListScreen() {
     if (incomplete) {
       return;
     }
-    console.log(
-      JSON.stringify({ filters, filterExpression, incomplete }, null, 2)
-    );
     debounce(() => execute(filterExpression));
   };
 
