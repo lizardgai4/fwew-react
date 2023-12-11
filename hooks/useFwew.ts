@@ -20,8 +20,13 @@ export function useFwew() {
     }
     setLoading(true);
     const data = await fwewSearch(resultsLanguage, query);
-    setResults(data);
-    setResultCount(data.reduce((acc, cur) => acc + cur.length, 0));
+    const dataNoDuplicates = data.map((words) =>
+      words.filter(
+        (word, index) => words.findIndex((w) => w.ID === word.ID) === index
+      )
+    );
+    setResults(dataNoDuplicates);
+    setResultCount(dataNoDuplicates.reduce((acc, cur) => acc + cur.length, 0));
     setLoading(false);
   };
 
