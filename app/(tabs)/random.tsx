@@ -49,7 +49,7 @@ export default function RandomScreen() {
     <ScrollView
       keyboardShouldPersistTaps="always"
       refreshControl={
-        <RefreshControl refreshing={loading} onRefresh={() => getData()} />
+        <RefreshControl refreshing={loading} onRefresh={getData} />
       }
     >
       <RandomOptions
@@ -62,7 +62,7 @@ export default function RandomScreen() {
         incomplete={incomplete}
       />
       <Button
-        onPress={() => getData()}
+        onPress={getData}
         icon="refresh"
         disabled={!numWords || incomplete}
       />
