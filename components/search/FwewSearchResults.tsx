@@ -79,13 +79,13 @@ export function FwewSearchResults({ query, results }: FwewSearchResultsProps) {
             const navi = matchNavi(word);
             const local = matchLocal(word);
             return (
-              <>
+              <View key={word.ID}>
                 {j === 0 && navi && <Text style={styles.label}>{navi}</Text>}
                 {j === 0 && !navi && local && (
                   <Text style={styles.label}>{local}</Text>
                 )}
-                <ResultCard key={word.ID} word={word} />
-              </>
+                <ResultCard word={word} />
+              </View>
             );
           })}
         </View>
