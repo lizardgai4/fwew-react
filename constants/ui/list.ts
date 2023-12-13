@@ -816,14 +816,11 @@ const strings: ListStrings = {
   },
   ru: {
     list: "Список",
-    listOptions: "ПАРАМЕТРЫ СПИСКА",
+    listOptions: "Параметры",
     listMenu: {
       whatValues: [
         { value: "pos", description: "часть речи" },
-        {
-          value: "word",
-          description: "слово",
-        },
+        { value: "word", description: "слово" },
         {
           value: "words",
           description: "слова в порядке публикации",

@@ -163,10 +163,10 @@ const strings: NameStrings = {
     ],
   },
   ru: {
-    single: "Простой",
-    full: "Полный",
-    alu: "Алу",
-    options: "Опции",
+    single: "Одно имя",
+    full: "Полное имя",
+    alu: "Имя с alu",
+    options: "Параметры",
     numNames: "Количество генерируемых имен",
     dialect: "Диалект",
     dialects: [

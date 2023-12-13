@@ -185,7 +185,7 @@ const strings: SettingsStrings = {
     design: "Дизайн",
     testing: "Тестирование",
     translation: "Перевод",
-    appLanguage: "Язык приложения",
+    appLanguage: "Язык интерфейса",
     resultsLanguage: "Язык результатов",
   },
   sv: {

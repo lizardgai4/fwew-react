@@ -79,8 +79,8 @@ const strings: NumberStrings = {
   ru: {
     placeholderNumeric: "42",
     placeholderAlpha: "mrrvomun",
-    octal: "octal:",
-    decimal: "decimal:",
+    octal: "в восьмеричной:",
+    decimal: "в десятеричной:",
   },
   sv: {
     placeholderNumeric: "42",
