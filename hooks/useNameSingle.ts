@@ -5,7 +5,7 @@ import { nameSingle } from "fwew.js";
 import { useEffect, useState } from "react";
 
 export default function useNameSingle() {
-  const [numNames, setNumNames] = useState<NumericString>("1");
+  const [numNames, setNumNames] = useState<NumericString>("4");
   const [numSyllables, setNumSyllables] = useState<NumericString>("0");
   const [dialect, setDialect] = useState<Dialect>("interdialect");
   const [loading, setLoading] = useState(false);

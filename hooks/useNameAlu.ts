@@ -5,7 +5,7 @@ import { nameAlu } from "fwew.js";
 import { useEffect, useState } from "react";
 
 export function useNameAlu() {
-  const [numNames, setNumNames] = useState<NumericString>("1");
+  const [numNames, setNumNames] = useState<NumericString>("4");
   const [numSyllables, setNumSyllables] = useState<NumericString>("0");
   const [nounMode, setNounMode] = useState<NounMode>("something");
   const [adjMode, setAdjMode] = useState<AdjectiveMode>("something");
