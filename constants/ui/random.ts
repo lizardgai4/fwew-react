@@ -77,8 +77,8 @@ const strings: RandomStrings = {
     where: "onde...",
   },
   ru: {
-    random: "Случайный",
-    randomOptions: "СЛУЧАЙНЫЕ ОПЦИИ",
+    random: "Случайные Слова",
+    randomOptions: "Случайные опции",
     numWords: "Количество случайных слов",
     where: "где...",
   },

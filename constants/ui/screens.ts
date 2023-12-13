@@ -103,7 +103,7 @@ const strings: ScreenStrings = {
   ru: {
     search: "Поиск",
     list: "Список",
-    random: "Случайный",
+    random: "Случайные",
     numbers: "Числа",
     names: "Имена",
     settings: "Настройки",
