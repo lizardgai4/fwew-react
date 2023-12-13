@@ -5,8 +5,8 @@ import { nameFull } from "fwew.js";
 import { useEffect, useState } from "react";
 
 export function useNameFull() {
-  const [ending, setEnding] = useState<NameEnding | undefined>();
-  const [numNames, setNumNames] = useState<NumericString>("1");
+  const [ending, setEnding] = useState<NameEnding>("random");
+  const [numNames, setNumNames] = useState<NumericString>("4");
   const [syllables1, setSyllables1] = useState<NumericString>("0");
   const [syllables2, setSyllables2] = useState<NumericString>("0");
   const [syllables3, setSyllables3] = useState<NumericString>("0");
