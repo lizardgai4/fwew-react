@@ -1,7 +1,7 @@
 import type { NameEnding } from "fwew.js";
 import type { ExtendedLanguageCode } from "@/types/common";
 
-export const nameEndings: NameEnding[] = ["'itan", "'ite", "'itu"];
+export const nameEndings: NameEnding[] = ["random", "'itan", "'ite", "'itu"];
 
 type NameFullStrings = {
   [key in ExtendedLanguageCode]: {
