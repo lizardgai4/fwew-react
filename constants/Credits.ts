@@ -7,6 +7,7 @@ const Credits = {
     "Charlotte (nl)",
     "İsmail yiğit (tr)",
     "Palusyulang (pt, na'vi)",
+    "Ter (ru)",
     "Tirea Aean (en, eo, na'vi)",
     "Wllìm (nl)",
   ],
