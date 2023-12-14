@@ -1,10 +1,5 @@
-import type { ExtendedLanguageCode } from "@/types/common";
+import type { ExtendedLanguageCode, OptionType } from "@/types/common";
 import type { Dialect } from "fwew.js";
-
-type OptionType<T> = {
-  name: string;
-  value: T;
-};
 
 type SyllablesOptions = OptionType<"0" | "1" | "2" | "3" | "4">[];
 

@@ -1,7 +1,7 @@
 import { Accordion } from "@/components/common/Accordion";
 import { Button } from "@/components/common/Button";
 import { NumericTextInput } from "@/components/common/NumericTextInput";
-import { OptionItem } from "@/components/common/OptionItem";
+import { OptionSelect } from "@/components/common/OptionSelect";
 import { Text, View } from "@/components/common/Themed";
 import Colors from "@/constants/Colors";
 import stringsNameFull, { nameEndings } from "@/constants/ui/name-full";
@@ -61,95 +61,43 @@ export default function NameFullScreen() {
               autoFocus
             />
             <Text style={styles.label}>{uiNameFull.numSyllables1}</Text>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                gap: 8,
-              }}
-            >
-              {stringsNames[appLanguage].syllablesOptions.map((option, i) => (
-                <OptionItem
-                  key={`nf_s_0_${i}`}
-                  value={option.name}
-                  selected={syllables1 === option.value}
-                  onSelect={() => updateSyllables1(option.value)}
-                />
-              ))}
-            </View>
+            <OptionSelect
+              items={stringsNames[appLanguage].syllablesOptions}
+              active={(value) => syllables1 === value}
+              onSelect={updateSyllables1}
+            />
             <Text style={styles.label}>{uiNameFull.numSyllables2}</Text>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                gap: 8,
-              }}
-            >
-              {stringsNames[appLanguage].syllablesOptions.map((option, i) => (
-                <OptionItem
-                  key={`nf_s_1_${i}`}
-                  value={option.name}
-                  selected={syllables2 === option.value}
-                  onSelect={() => updateSyllables2(option.value)}
-                />
-              ))}
-            </View>
+            <OptionSelect
+              items={stringsNames[appLanguage].syllablesOptions}
+              active={(value) => syllables2 === value}
+              onSelect={updateSyllables2}
+            />
             <Text style={styles.label}>{uiNameFull.numSyllables3}</Text>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                gap: 8,
-              }}
-            >
-              {stringsNames[appLanguage].syllablesOptions.map((option, i) => (
-                <OptionItem
-                  key={`nf_s_2_${i}`}
-                  value={option.name}
-                  selected={syllables3 === option.value}
-                  onSelect={() => updateSyllables3(option.value)}
-                />
-              ))}
-            </View>
+            <OptionSelect
+              items={stringsNames[appLanguage].syllablesOptions}
+              active={(value) => syllables3 === value}
+              onSelect={updateSyllables3}
+            />
             <Text style={styles.label}>{uiNameFull.nameEnding}</Text>
             <Text
               style={{ color: colors.placeholder, padding: 10, paddingTop: 0 }}
             >
               {uiNameFull.nameEndingHint}
             </Text>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                gap: 8,
-              }}
-            >
-              {nameEndings.map((item, i) => (
-                <OptionItem
-                  key={`nf_e_${i}`}
-                  value={item}
-                  selected={ending === item}
-                  onSelect={() => setEnding(item)}
-                />
-              ))}
-            </View>
+            <OptionSelect
+              items={nameEndings.map((item) => ({
+                name: item,
+                value: item,
+              }))}
+              active={(value) => ending === value}
+              onSelect={setEnding}
+            />
             <Text style={styles.label}>{uiNames.dialect}</Text>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "flex-start",
-                gap: 8,
-              }}
-            >
-              {uiNames.dialects.map((item, i) => (
-                <OptionItem
-                  key={`nf_d_${i}`}
-                  value={item.name}
-                  selected={dialect === item.value}
-                  onSelect={() => setDialect(item.value)}
-                />
-              ))}
-            </View>
+            <OptionSelect
+              items={uiNames.dialects}
+              active={(value) => dialect === value}
+              onSelect={setDialect}
+            />
           </>
         }
       />
