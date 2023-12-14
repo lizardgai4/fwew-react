@@ -2,6 +2,7 @@ import { Accordion } from "@/components/common/Accordion";
 import { Button } from "@/components/common/Button";
 import { NumericTextInput } from "@/components/common/NumericTextInput";
 import { OptionItem } from "@/components/common/OptionItem";
+import { OptionSelect } from "@/components/common/OptionSelect";
 import { Text, View } from "@/components/common/Themed";
 import stringsNameAlu from "@/constants/ui/name-alu";
 import stringsNames from "@/constants/ui/names";
@@ -51,20 +52,17 @@ export default function NameAluScreen() {
               autoFocus
             />
             <Text style={styles.label}>{uiNameAlu.numSyllables}</Text>
-            <NumericTextInput
-              placeholder="0-4"
-              value={numSyllables}
-              onChangeText={updateNumSyllables}
+            <OptionSelect
+              items={uiNames.syllablesOptions}
+              active={(value) => numSyllables === value}
+              onSelect={updateNumSyllables}
             />
             <Text style={styles.label}>{uiNameAlu.nounMode}</Text>
-            {uiNameAlu.nounModes.map((item, i) => (
-              <OptionItem
-                key={`na_n_${i}`}
-                value={item.name}
-                selected={nounMode === item.value}
-                onSelect={() => setNounMode(item.value)}
-              />
-            ))}
+            <OptionSelect
+              items={uiNameAlu.nounModes}
+              active={(value) => nounMode === value}
+              onSelect={setNounMode}
+            />
             <Text style={styles.label}>{uiNameAlu.adjMode}</Text>
             {uiNameAlu.adjModes.map((item, i) => (
               <OptionItem
@@ -75,14 +73,11 @@ export default function NameAluScreen() {
               />
             ))}
             <Text style={styles.label}>{uiNames.dialect}</Text>
-            {uiNames.dialects.map((item, i) => (
-              <OptionItem
-                key={`na_d_${i}`}
-                value={item.name}
-                selected={dialect === item.value}
-                onSelect={() => setDialect(item.value)}
-              />
-            ))}
+            <OptionSelect
+              items={uiNames.dialects}
+              active={(value) => dialect === value}
+              onSelect={setDialect}
+            />
           </>
         }
       />
