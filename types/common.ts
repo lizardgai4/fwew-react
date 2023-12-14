@@ -5,3 +5,8 @@ export type ExtendedLanguageCode = LanguageCode | "eo" | "es" | "nx" | "pt";
 export type NumericString = `${number}` | "";
 
 export type SelectHandler = React.Dispatch<React.SetStateAction<string>>;
+
+export type OptionType<T> = {
+  name: string;
+  value: T;
+};
