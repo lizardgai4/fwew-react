@@ -61,46 +61,95 @@ export default function NameFullScreen() {
               autoFocus
             />
             <Text style={styles.label}>{uiNameFull.numSyllables1}</Text>
-            <NumericTextInput
-              value={syllables1}
-              onChangeText={updateSyllables1}
-              placeholder="0-4"
-            />
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "flex-start",
+                gap: 8,
+              }}
+            >
+              {stringsNames[appLanguage].syllablesOptions.map((option, i) => (
+                <OptionItem
+                  key={`nf_s_0_${i}`}
+                  value={option.name}
+                  selected={syllables1 === option.value}
+                  onSelect={() => updateSyllables1(option.value)}
+                />
+              ))}
+            </View>
             <Text style={styles.label}>{uiNameFull.numSyllables2}</Text>
-            <NumericTextInput
-              value={syllables2}
-              onChangeText={updateSyllables2}
-              placeholder="0-4"
-            />
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "flex-start",
+                gap: 8,
+              }}
+            >
+              {stringsNames[appLanguage].syllablesOptions.map((option, i) => (
+                <OptionItem
+                  key={`nf_s_1_${i}`}
+                  value={option.name}
+                  selected={syllables2 === option.value}
+                  onSelect={() => updateSyllables2(option.value)}
+                />
+              ))}
+            </View>
             <Text style={styles.label}>{uiNameFull.numSyllables3}</Text>
-            <NumericTextInput
-              value={syllables3}
-              onChangeText={updateSyllables3}
-              placeholder="0-4"
-            />
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "flex-start",
+                gap: 8,
+              }}
+            >
+              {stringsNames[appLanguage].syllablesOptions.map((option, i) => (
+                <OptionItem
+                  key={`nf_s_2_${i}`}
+                  value={option.name}
+                  selected={syllables3 === option.value}
+                  onSelect={() => updateSyllables3(option.value)}
+                />
+              ))}
+            </View>
             <Text style={styles.label}>{uiNameFull.nameEnding}</Text>
             <Text
               style={{ color: colors.placeholder, padding: 10, paddingTop: 0 }}
             >
               {uiNameFull.nameEndingHint}
             </Text>
-            {nameEndings.map((item, i) => (
-              <OptionItem
-                key={`nf_e_${i}`}
-                value={item}
-                selected={ending === item}
-                onSelect={() => setEnding(item)}
-              />
-            ))}
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "flex-start",
+                gap: 8,
+              }}
+            >
+              {nameEndings.map((item, i) => (
+                <OptionItem
+                  key={`nf_e_${i}`}
+                  value={item}
+                  selected={ending === item}
+                  onSelect={() => setEnding(item)}
+                />
+              ))}
+            </View>
             <Text style={styles.label}>{uiNames.dialect}</Text>
-            {uiNames.dialects.map((item, i) => (
-              <OptionItem
-                key={`nf_d_${i}`}
-                value={item.name}
-                selected={dialect === item.value}
-                onSelect={() => setDialect(item.value)}
-              />
-            ))}
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "flex-start",
+                gap: 8,
+              }}
+            >
+              {uiNames.dialects.map((item, i) => (
+                <OptionItem
+                  key={`nf_d_${i}`}
+                  value={item.name}
+                  selected={dialect === item.value}
+                  onSelect={() => setDialect(item.value)}
+                />
+              ))}
+            </View>
           </>
         }
       />
