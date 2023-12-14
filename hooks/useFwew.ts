@@ -26,7 +26,9 @@ export function useFwew() {
       )
     );
     setResults(dataNoDuplicates);
-    setResultCount(dataNoDuplicates.reduce((acc, cur) => acc + cur.length, 0));
+    setResultCount(
+      dataNoDuplicates.reduce((acc, cur) => acc + cur.length, 0) - data.length
+    );
     setLoading(false);
   };
 
