@@ -18,7 +18,7 @@ export function OptionSelect<T extends string>({
     <View style={styles.container}>
       {items.map((option, i) => (
         <OptionItem
-          key={`nf_s_0_${i}`}
+          key={`os_${option.value}_${i}`}
           value={option.name}
           selected={active(option.value)}
           onSelect={() => onSelect(option.value)}
