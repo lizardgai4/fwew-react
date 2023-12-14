@@ -2,8 +2,7 @@ import { BoldText, UnderlinedText } from "@/components/common/StyledText";
 import { Text, View } from "@/components/common/Themed";
 import AudioResources from "@/constants/AudioResources";
 import Colors from "@/constants/Colors";
-import { PartOfSpeech } from "@/constants/ui/common";
-import strings from "@/constants/ui/search";
+import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useResultsLanguage } from "@/hooks/useResultsLanguage";
 import { FontAwesome } from "@expo/vector-icons";
@@ -24,7 +23,7 @@ export function ResultInfo({ word }: ResultInfoProps) {
   const { resultsLanguage } = useResultsLanguage();
   const local = word[resultsLanguage.toUpperCase() as Uppercase<LanguageCode>];
   const { appLanguage } = useAppLanguageContext();
-  const ui = strings[appLanguage];
+  const ui = i18n[appLanguage];
 
   const playSound = async (wordId: string): Promise<void> => {
     const audioUrl = `${AudioResources.URL}/${wordId}.mp3`;
@@ -48,50 +47,56 @@ export function ResultInfo({ word }: ResultInfoProps) {
         style={[styles.audioButton, { borderColor: text }]}
       >
         <FontAwesome name="volume-up" size={24} color={text} />
-        <Text style={styles.audioButtonText}> {ui.audio}</Text>
+        <Text style={styles.audioButtonText}> {ui.search.audio}</Text>
       </TouchableOpacity>
       <DetailItem
-        label={ui.partOfSpeech}
+        label={ui.search.partOfSpeech}
         value={`${word.PartOfSpeech} (${
-          PartOfSpeech[appLanguage][word.PartOfSpeech]
+          ui.common.partOfSpeech[word.PartOfSpeech]
         })`}
       />
-      <DetailItem label={ui.definition} value={local} />
+      <DetailItem label={ui.search.definition} value={local} />
       <Pronunciation {...word} />
       {word.PartOfSpeech.startsWith("v") && (
         <>
-          <DetailItem label={ui.infixDots} value={word.InfixDots} />
-          <DetailItem label={ui.infixSlots} value={word.InfixLocations} />
+          <DetailItem label={ui.search.infixDots} value={word.InfixDots} />
+          <DetailItem
+            label={ui.search.infixSlots}
+            value={word.InfixLocations}
+          />
         </>
       )}
       {word.Affixes.Prefix && (
         <DetailItem
-          label={ui.prefixes}
+          label={ui.search.prefixes}
           value={word.Affixes.Prefix.join(", ")}
         />
       )}
       {word.Affixes.Infix && (
-        <DetailItem label={ui.infixes} value={word.Affixes.Infix.join(", ")} />
+        <DetailItem
+          label={ui.search.infixes}
+          value={word.Affixes.Infix.join(", ")}
+        />
       )}
       {word.Affixes.Suffix && (
         <DetailItem
-          label={ui.suffixes}
+          label={ui.search.suffixes}
           value={word.Affixes.Suffix.join(", ")}
         />
       )}
       {word.Affixes.Lenition && (
         <DetailItem
-          label={ui.lenition}
+          label={ui.search.lenition}
           value={word.Affixes.Lenition.join(", ")}
         />
       )}
       {word.Affixes.Comment && (
         <DetailItem
-          label={ui.comment}
+          label={ui.search.comment}
           value={word.Affixes.Comment.join(", ")}
         />
       )}
-      <DetailItem link label={ui.source} value={word.Source} />
+      <DetailItem link label={ui.search.source} value={word.Source} />
     </View>
   );
 }
@@ -125,12 +130,12 @@ type PronunciationProps = Pick<Word, "IPA" | "Stressed" | "Syllables">;
 
 function Pronunciation({ IPA, Stressed, Syllables }: PronunciationProps) {
   const { appLanguage } = useAppLanguageContext();
-  const ui = strings[appLanguage];
+  const ui = i18n[appLanguage];
   return (
     <>
-      <DetailItem label={ui.ipa} value={`[${IPA}]`} />
+      <DetailItem label={ui.search.ipa} value={`[${IPA}]`} />
       <View>
-        <BoldText style={styles.label}>{ui.breakdown}:</BoldText>
+        <BoldText style={styles.label}>{ui.search.breakdown}:</BoldText>
         <Breakdown Stressed={Stressed} Syllables={Syllables} />
       </View>
     </>

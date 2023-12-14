@@ -1,19 +1,19 @@
 import { MonoText } from "@/components/common/StyledText";
 import { Text, View } from "@/components/common/Themed";
-import strings from "@/constants/ui/settings";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useVersion } from "@/hooks/useVersion";
 import { StyleSheet } from "react-native";
 import { GitDetails } from "./GitDetails";
+import i18n from "@/constants/i18n";
 
 export function Version() {
   const version = useVersion();
   const { appLanguage } = useAppLanguageContext();
-  const ui = strings[appLanguage];
+  const ui = i18n[appLanguage];
 
   return (
     <>
-      <Text style={styles.label}>{ui.version}</Text>
+      <Text style={styles.label}>{ui.settings.version}</Text>
       <View style={styles.versionContainer}>
         <View>
           <MonoText style={styles.text}>fwew-react</MonoText>

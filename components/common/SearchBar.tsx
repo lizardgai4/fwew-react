@@ -1,6 +1,6 @@
 import { TextInput, View } from "@/components/common/Themed";
 import Colors from "@/constants/Colors";
-import strings from "@/constants/ui/search";
+import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { FontAwesome } from "@expo/vector-icons";
 import {
@@ -28,13 +28,13 @@ export function SearchBar({
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
   const { appLanguage } = useAppLanguageContext();
-  const ui = strings[appLanguage];
+  const ui = i18n[appLanguage];
 
   return (
     <View style={styles.searchContainer}>
       <TextInput
         style={[styles.input, { borderColor: colors.text }]}
-        placeholder={placeholder ?? ui.search}
+        placeholder={placeholder ?? ui.search.search}
         placeholderTextColor={colors.placeholder}
         value={query}
         onChangeText={search}

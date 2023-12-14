@@ -4,8 +4,7 @@ import { NumericTextInput } from "@/components/common/NumericTextInput";
 import { OptionSelect } from "@/components/common/OptionSelect";
 import { Text, View } from "@/components/common/Themed";
 import Colors from "@/constants/Colors";
-import stringsNameFull, { nameEndings } from "@/constants/ui/name-full";
-import stringsNames from "@/constants/ui/names";
+import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useNameFull } from "@/hooks/useNameFull";
 import {
@@ -36,8 +35,7 @@ export default function NameFullScreen() {
     execute,
   } = useNameFull();
   const { appLanguage } = useAppLanguageContext();
-  const uiNames = stringsNames[appLanguage];
-  const uiNameFull = stringsNameFull[appLanguage];
+  const { names: uiNames, nameFull: uiNameFull } = i18n[appLanguage];
 
   const disabled =
     !numNames || !syllables1 || !syllables2 || !syllables3 || !ending;
@@ -62,19 +60,19 @@ export default function NameFullScreen() {
             />
             <Text style={styles.label}>{uiNameFull.numSyllables1}</Text>
             <OptionSelect
-              items={stringsNames[appLanguage].syllablesOptions}
+              items={uiNames.syllablesOptions}
               active={(value) => syllables1 === value}
               onSelect={updateSyllables1}
             />
             <Text style={styles.label}>{uiNameFull.numSyllables2}</Text>
             <OptionSelect
-              items={stringsNames[appLanguage].syllablesOptions}
+              items={uiNames.syllablesOptions}
               active={(value) => syllables2 === value}
               onSelect={updateSyllables2}
             />
             <Text style={styles.label}>{uiNameFull.numSyllables3}</Text>
             <OptionSelect
-              items={stringsNames[appLanguage].syllablesOptions}
+              items={uiNames.syllablesOptions}
               active={(value) => syllables3 === value}
               onSelect={updateSyllables3}
             />
@@ -85,10 +83,7 @@ export default function NameFullScreen() {
               {uiNameFull.nameEndingHint}
             </Text>
             <OptionSelect
-              items={nameEndings.map((item) => ({
-                name: item,
-                value: item,
-              }))}
+              items={uiNameFull.nameEndingOptions}
               active={(value) => ending === value}
               onSelect={setEnding}
             />

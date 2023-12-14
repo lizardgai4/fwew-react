@@ -1,6 +1,6 @@
 import { TextInput, View } from "@/components/common/Themed";
 import Colors from "@/constants/Colors";
-import strings from "@/constants/ui/numbers";
+import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { FontAwesome } from "@expo/vector-icons";
 import {
@@ -29,7 +29,7 @@ export function NumberSearchBar({
   const colors = Colors[colorScheme ?? "light"];
   const appLanguageValue = useAppLanguageContext();
   const appLanguage = appLanguageValue?.appLanguage ?? "en";
-  let ui = strings[appLanguage] ?? strings["en"];
+  let ui = i18n[appLanguage];
 
   return (
     <View style={styles.inputContainer}>
@@ -37,7 +37,9 @@ export function NumberSearchBar({
         value={query}
         onChangeText={search}
         placeholder={
-          mode === "number" ? ui.placeholderNumeric : ui.placeholderAlpha
+          mode === "number"
+            ? ui.numbers.placeholderNumeric
+            : ui.numbers.placeholderAlpha
         }
         placeholderTextColor={colors.placeholder}
         keyboardType={mode === "number" ? "number-pad" : "default"}

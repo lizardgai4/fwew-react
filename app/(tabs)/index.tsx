@@ -1,7 +1,7 @@
 import { ResultCount } from "@/components/common/ResultCount";
-import { FwewSearchResults } from "@/components/search/FwewSearchResults";
 import { SearchBar } from "@/components/common/SearchBar";
 import { View } from "@/components/common/Themed";
+import { FwewSearchResults } from "@/components/search/FwewSearchResults";
 import { useFwew } from "@/hooks/useFwew";
 import { RefreshControl, ScrollView, StyleSheet } from "react-native";
 
