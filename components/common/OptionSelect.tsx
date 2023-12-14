@@ -7,15 +7,17 @@ export type OptionSelectProps<T extends string> = {
   items: OptionType<T>[];
   active: (value: T) => boolean;
   onSelect: (value: T) => void;
+  col?: boolean;
 };
 
 export function OptionSelect<T extends string>({
   items,
   active,
   onSelect,
+  col,
 }: OptionSelectProps<T>) {
   return (
-    <View style={styles.container}>
+    <View style={col ? null : styles.container}>
       {items.map((option, i) => (
         <OptionItem
           key={`os_${option.value}_${i}`}

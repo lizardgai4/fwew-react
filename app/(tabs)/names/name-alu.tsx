@@ -1,7 +1,6 @@
 import { Accordion } from "@/components/common/Accordion";
 import { Button } from "@/components/common/Button";
 import { NumericTextInput } from "@/components/common/NumericTextInput";
-import { OptionItem } from "@/components/common/OptionItem";
 import { OptionSelect } from "@/components/common/OptionSelect";
 import { Text, View } from "@/components/common/Themed";
 import stringsNameAlu from "@/constants/ui/name-alu";
@@ -64,14 +63,12 @@ export default function NameAluScreen() {
               onSelect={setNounMode}
             />
             <Text style={styles.label}>{uiNameAlu.adjMode}</Text>
-            {uiNameAlu.adjModes.map((item, i) => (
-              <OptionItem
-                key={`na_a_${i}`}
-                value={item.name}
-                selected={adjMode === item.value}
-                onSelect={() => setAdjMode(item.value)}
-              />
-            ))}
+            <OptionSelect
+              items={uiNameAlu.adjModes}
+              active={(value) => adjMode === value}
+              onSelect={setAdjMode}
+              col
+            />
             <Text style={styles.label}>{uiNames.dialect}</Text>
             <OptionSelect
               items={uiNames.dialects}
