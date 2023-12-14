@@ -2,18 +2,18 @@ import { Accordion } from "@/components/common/Accordion";
 import { Text, View } from "@/components/common/Themed";
 import { Credits } from "@/components/settings/Credits";
 import { Version } from "@/components/settings/Version";
-import strings from "@/constants/ui/settings";
+import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { StyleSheet } from "react-native";
 
 export function About() {
   const { appLanguage } = useAppLanguageContext();
-  const ui = strings[appLanguage];
+  const ui = i18n[appLanguage];
   return (
     <Accordion
       closedContent={
         <View style={styles.iconContainer}>
-          <Text style={styles.value}>{ui.about}</Text>
+          <Text style={styles.value}>{ui.settings.about}</Text>
         </View>
       }
       openedContent={

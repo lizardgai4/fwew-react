@@ -1,7 +1,6 @@
 import { DropDownSelect } from "@/components/common/DropDownSelect";
 import { NumericTextInput } from "@/components/common/NumericTextInput";
 import { Text, View } from "@/components/common/Themed";
-import stringsList from "@/constants/ui/list";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import type {
   FilterExpressionBuilderValue,
@@ -10,7 +9,7 @@ import type {
 } from "@/types/list";
 import { StyleSheet } from "react-native";
 import { AlphaTextInput } from "./AlphaTextInput";
-import { PartOfSpeech, PartOfSpeechList } from "@/constants/ui/common";
+import i18n from "@/constants/i18n";
 
 type FilterExpressionBuilderProps = {
   value: FilterExpressionBuilderValue;
@@ -22,9 +21,11 @@ export function FilterExpressionBuilder({
   onChange,
 }: FilterExpressionBuilderProps) {
   const { appLanguage } = useAppLanguageContext();
-  const ui = stringsList[appLanguage];
-  const whatValues = ui.listMenu.whatValues;
-  const condValues = value.what ? ui.listMenu.condValues[value.what.value] : [];
+  const { list, common } = i18n[appLanguage];
+  const whatValues = list.listMenu.whatValues;
+  const condValues = value.what
+    ? list.listMenu.condValues[value.what.value]
+    : [];
   const isExactPosSpec =
     value.what?.value === "pos" && value.cond?.value === "is";
   const isNumericSpec =
@@ -85,10 +86,10 @@ export function FilterExpressionBuilder({
       {/* spec pos is */}
       {value.what && value.cond && isExactPosSpec && (
         <DropDownSelect
-          options={PartOfSpeechList[appLanguage]}
+          options={common.partOfSpeechList}
           value={{
             value: value.spec,
-            name: PartOfSpeech[appLanguage][value.spec],
+            name: common.partOfSpeech[value.spec],
           }}
           initiallyOpen={!value.spec}
           renderOption={(option) => (

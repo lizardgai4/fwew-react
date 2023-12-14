@@ -1,35 +1,31 @@
 import Colors from "@/constants/Colors";
-import stringsNames from "@/constants/ui/names";
-import stringsScreens from "@/constants/ui/screens";
+import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { FontAwesome } from "@expo/vector-icons";
 import { Link, Stack } from "expo-router";
-import { Platform, Pressable, useColorScheme } from "react-native";
+import { Platform, Pressable, StyleSheet, useColorScheme } from "react-native";
 
 export default function StackLayout() {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
   const { appLanguage } = useAppLanguageContext();
-  const ui = stringsNames[appLanguage];
+  const { screens, names } = i18n[appLanguage];
 
   return (
     <Stack>
       <Stack.Screen
         name="index"
         options={{
-          title: stringsScreens[appLanguage].names,
+          title: screens.names,
           headerRight: () => (
             <Link href="/settings" asChild>
-              <Pressable>
+              <Pressable style={styles.actionButton}>
                 {({ pressed }) => (
                   <FontAwesome
                     name="gear"
                     size={25}
                     color={colors.text}
-                    style={{
-                      marginRight: Platform.OS === "web" ? 15 : -1,
-                      opacity: pressed ? 0.5 : 1,
-                    }}
+                    style={{ opacity: pressed ? 0.5 : 1 }}
                   />
                 )}
               </Pressable>
@@ -40,19 +36,16 @@ export default function StackLayout() {
       <Stack.Screen
         name="name-single"
         options={{
-          title: ui.single,
+          title: names.single,
           headerRight: () => (
             <Link href="/settings" asChild>
-              <Pressable>
+              <Pressable style={styles.actionButton}>
                 {({ pressed }) => (
                   <FontAwesome
                     name="gear"
                     size={25}
                     color={colors.text}
-                    style={{
-                      marginRight: Platform.OS === "web" ? 15 : -1,
-                      opacity: pressed ? 0.5 : 1,
-                    }}
+                    style={{ opacity: pressed ? 0.5 : 1 }}
                   />
                 )}
               </Pressable>
@@ -63,19 +56,16 @@ export default function StackLayout() {
       <Stack.Screen
         name="name-full"
         options={{
-          title: ui.full,
+          title: names.full,
           headerRight: () => (
             <Link href="/settings" asChild>
-              <Pressable>
+              <Pressable style={styles.actionButton}>
                 {({ pressed }) => (
                   <FontAwesome
                     name="gear"
                     size={25}
                     color={colors.text}
-                    style={{
-                      marginRight: Platform.OS === "web" ? 15 : -1,
-                      opacity: pressed ? 0.5 : 1,
-                    }}
+                    style={{ opacity: pressed ? 0.5 : 1 }}
                   />
                 )}
               </Pressable>
@@ -86,19 +76,16 @@ export default function StackLayout() {
       <Stack.Screen
         name="name-alu"
         options={{
-          title: ui.alu,
+          title: names.alu,
           headerRight: () => (
             <Link href="/settings" asChild>
-              <Pressable>
+              <Pressable style={styles.actionButton}>
                 {({ pressed }) => (
                   <FontAwesome
                     name="gear"
                     size={25}
                     color={colors.text}
-                    style={{
-                      marginRight: Platform.OS === "web" ? 15 : -1,
-                      opacity: pressed ? 0.5 : 1,
-                    }}
+                    style={{ opacity: pressed ? 0.5 : 1 }}
                   />
                 )}
               </Pressable>
@@ -109,3 +96,13 @@ export default function StackLayout() {
     </Stack>
   );
 }
+
+const styles = StyleSheet.create({
+  actionButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 10,
+    marginRight: Platform.OS === "web" ? 0 : -16,
+  },
+});

@@ -1,7 +1,7 @@
 import { Accordion } from "@/components/common/Accordion";
 import { FilterExpressionBuilderList } from "@/components/common/FilterExpressionBuilderList";
 import { Text } from "@/components/common/Themed";
-import strings from "@/constants/ui/list";
+import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import type { FilterExpressionBuilderValue } from "@/types/list";
 
@@ -21,11 +21,12 @@ export function ListOptions({
   incomplete,
 }: ListOptionsProps) {
   const { appLanguage } = useAppLanguageContext();
-  const ui = strings[appLanguage];
+  const { list } = i18n[appLanguage];
+
   return (
     <Accordion
       initiallyOpen
-      closedContent={<Text>{ui.listOptions}</Text>}
+      closedContent={<Text>{list.listOptions}</Text>}
       openedContent={
         <>
           <FilterExpressionBuilderList

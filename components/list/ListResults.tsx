@@ -1,6 +1,6 @@
 import { ResultCard } from "@/components/common/ResultCard";
 import { Text } from "@/components/common/Themed";
-import strings from "@/constants/ui/list";
+import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import type { Word } from "fwew.js";
 import { ActivityIndicator, Platform, StyleSheet } from "react-native";
@@ -12,7 +12,7 @@ type ListResultsProps = {
 
 export function ListResults({ loading, results }: ListResultsProps) {
   const { appLanguage } = useAppLanguageContext();
-  const ui = strings[appLanguage];
+  const { list } = i18n[appLanguage];
   if (loading && Platform.OS === "web") {
     return <ActivityIndicator size="large" />;
   }
@@ -21,7 +21,7 @@ export function ListResults({ loading, results }: ListResultsProps) {
     results.map === undefined ||
     results.length === 0
   ) {
-    return <Text style={styles.text}>{ui.noResults}</Text>;
+    return <Text style={styles.text}>{list.noResults}</Text>;
   }
   return (
     <>

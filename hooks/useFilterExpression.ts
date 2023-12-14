@@ -1,4 +1,4 @@
-import strings from "@/constants/ui/list";
+import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { FilterExpressionBuilderValue } from "@/types/list";
 import { useEffect, useState } from "react";
@@ -9,7 +9,7 @@ export function useFilterExpression() {
   ]);
 
   const { appLanguage } = useAppLanguageContext();
-  const ui = strings[appLanguage];
+  const ui = i18n[appLanguage];
 
   const filterExpression = filters
     .map((f) =>
@@ -46,7 +46,7 @@ export function useFilterExpression() {
         return {
           what: e.what && {
             value: e.what.value,
-            description: ui.listMenu.whatValues.filter(
+            description: ui.list.listMenu.whatValues.filter(
               (w) => w.value === e.what?.value
             )[0]?.description,
           },
@@ -54,7 +54,7 @@ export function useFilterExpression() {
             value: e.cond.value,
             description:
               e.what &&
-              ui.listMenu.condValues[e.what.value].filter(
+              ui.list.listMenu.condValues[e.what.value].filter(
                 (c) => c.value === e.cond?.value
               )[0]?.description,
           },

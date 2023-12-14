@@ -1,4 +1,4 @@
-import strings from "@/constants/ui/screens";
+import i18n from "@/constants/i18n";
 import { AppLanguageProvider } from "@/context/AppLanguageContext";
 import { useAppLanguage } from "@/hooks/useAppLanguage";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
@@ -62,7 +62,7 @@ function RootLayoutNav() {
           <Stack.Screen
             name="settings"
             options={{
-              title: strings[appLanguage]?.settings,
+              title: i18n[appLanguage].screens.settings,
               presentation: "modal",
             }}
           />

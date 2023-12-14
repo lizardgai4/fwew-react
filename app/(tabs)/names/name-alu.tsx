@@ -3,8 +3,7 @@ import { Button } from "@/components/common/Button";
 import { NumericTextInput } from "@/components/common/NumericTextInput";
 import { OptionSelect } from "@/components/common/OptionSelect";
 import { Text, View } from "@/components/common/Themed";
-import stringsNameAlu from "@/constants/ui/name-alu";
-import stringsNames from "@/constants/ui/names";
+import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useNameAlu } from "@/hooks/useNameAlu";
 import { RefreshControl, ScrollView, StyleSheet } from "react-native";
@@ -26,8 +25,7 @@ export default function NameAluScreen() {
     execute,
   } = useNameAlu();
   const { appLanguage } = useAppLanguageContext();
-  const uiNames = stringsNames[appLanguage];
-  const uiNameAlu = stringsNameAlu[appLanguage];
+  const { names: uiNames, nameAlu: uiNameAlu } = i18n[appLanguage];
 
   const disabled =
     !numNames || !numSyllables || !nounMode || !adjMode || !dialect;

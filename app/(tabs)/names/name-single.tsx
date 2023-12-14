@@ -3,8 +3,7 @@ import { Button } from "@/components/common/Button";
 import { NumericTextInput } from "@/components/common/NumericTextInput";
 import { OptionSelect } from "@/components/common/OptionSelect";
 import { Text, View } from "@/components/common/Themed";
-import stringsNameSingle from "@/constants/ui/name-single";
-import stringsNames from "@/constants/ui/names";
+import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import useNameSingle from "@/hooks/useNameSingle";
 import { RefreshControl, ScrollView, StyleSheet } from "react-native";
@@ -22,8 +21,7 @@ export default function NameSingleScreen() {
     execute,
   } = useNameSingle();
   const { appLanguage } = useAppLanguageContext();
-  const uiNames = stringsNames[appLanguage];
-  const uiNameSingle = stringsNameSingle[appLanguage];
+  const { names: uiNames, nameSingle: uiNameSingle } = i18n[appLanguage];
 
   const disabled = !numNames || !numSyllables;
 
