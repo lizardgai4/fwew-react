@@ -1,5 +1,3 @@
-export type FilterExpressionAttribute = "what" | "cond" | "spec";
-
 export type FilterExpressionBuilderValue = {
   what?: ListMenuWhatItem;
   cond?: ListMenuCondItem;
