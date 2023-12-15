@@ -31,6 +31,7 @@ export function FwewSearchResults({ results }: FwewSearchResultsProps) {
 const styles = StyleSheet.create({
   label: {
     padding: 16,
+    paddingTop: 0,
     fontSize: 18,
     fontWeight: "bold",
   },

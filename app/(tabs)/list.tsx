@@ -42,7 +42,11 @@ export default function ListScreen() {
         update={update}
         incomplete={incomplete}
       />
-      <ResultCount visible={resultsVisible} resultCount={results.length} />
+      <ResultCount
+        visible={resultsVisible}
+        resultCount={results.length}
+        style={styles.resultCount}
+      />
       <ListResults loading={loading} results={resultsVisible ? results : []} />
     </ScrollView>
   );
@@ -51,6 +55,5 @@ export default function ListScreen() {
 const styles = StyleSheet.create({
   resultCount: {
     padding: 16,
-    alignSelf: "center",
   },
 });
