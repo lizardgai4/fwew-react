@@ -70,7 +70,7 @@ const strings: UITranslation = {
   },
   list: {
     list: "Lista",
-    listOptions: "LISTA BEÁLLÍTÁSAI",
+    listOptions: "Lista Beállításai",
     listMenu: {
       whatValues: [
         { value: "pos", description: "beszéd része" },
@@ -133,13 +133,12 @@ const strings: UITranslation = {
         ],
       },
     },
-    and: "ÉS...",
-    go: "MEGY",
+    and: "és...",
     noResults: "nincs találat",
   },
   random: {
     random: "Véletlen",
-    randomOptions: "VÉLETLEN BEÁLLÍTÁSOK",
+    randomOptions: "Véletlen Beállítások",
     numWords: "Véletlenszerű szavak száma",
     where: "hol...",
   },

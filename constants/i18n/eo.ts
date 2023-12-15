@@ -70,7 +70,7 @@ const strings: UITranslation = {
   },
   list: {
     list: "Listo",
-    listOptions: "LISTOOPCIOJ",
+    listOptions: "Opcioj de Listo",
     listMenu: {
       whatValues: [
         { value: "pos", description: "vorttipo" },
@@ -139,13 +139,12 @@ const strings: UITranslation = {
         ],
       },
     },
-    and: "KAJ...",
-    go: "IRI",
+    and: "kaj...",
     noResults: "sen rezultoj",
   },
   random: {
     random: "Hazarda",
-    randomOptions: "HAZARDAJ OPCIOJ",
+    randomOptions: "Hazardaj Opcioj",
     numWords: "Nombro de hazardaj vortoj",
     where: "kie...",
   },

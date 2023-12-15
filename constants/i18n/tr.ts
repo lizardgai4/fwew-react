@@ -136,8 +136,7 @@ const strings: UITranslation = {
         ],
       },
     },
-    and: "VE...",
-    go: "GIT",
+    and: "ve...",
     noResults: "sonuç yok",
   },
   random: {

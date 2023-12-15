@@ -137,7 +137,6 @@ const strings: UITranslation = {
       },
     },
     and: "e...",
-    go: "ir",
     noResults: "nenhum resultado",
   },
   random: {

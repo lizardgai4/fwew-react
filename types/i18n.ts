@@ -46,7 +46,6 @@ export type ListStrings = {
   listOptions: string;
   listMenu: ListMenu;
   and: string;
-  go: string;
   noResults: string;
 };
 
