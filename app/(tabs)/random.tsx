@@ -7,7 +7,7 @@ import { useFilterExpression } from "@/hooks/useFilterExpression";
 import { useRandom } from "@/hooks/useRandom";
 import { NumericString } from "@/types/common";
 import { useEffect, useState } from "react";
-import { RefreshControl, ScrollView } from "react-native";
+import { RefreshControl, ScrollView, StyleSheet } from "react-native";
 
 export default function RandomScreen() {
   const [numWords, setNumWords] = useState<NumericString>("8");
@@ -66,8 +66,18 @@ export default function RandomScreen() {
         icon="refresh"
         disabled={!numWords || incomplete}
       />
-      <ResultCount visible={resultsVisible} resultCount={results.length} />
+      <ResultCount
+        visible={resultsVisible}
+        resultCount={results.length}
+        style={styles.resultCount}
+      />
       <ListResults loading={loading} results={resultsVisible ? results : []} />
     </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  resultCount: {
+    padding: 16,
+  },
+});

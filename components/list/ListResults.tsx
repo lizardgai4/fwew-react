@@ -7,22 +7,25 @@ import { ActivityIndicator, Platform, StyleSheet } from "react-native";
 
 type ListResultsProps = {
   loading?: boolean;
-  results: Word[];
+  results: Word[] | null;
 };
 
 export function ListResults({ loading, results }: ListResultsProps) {
   const { appLanguage } = useAppLanguageContext();
   const { list } = i18n[appLanguage];
+
   if (loading && Platform.OS === "web") {
     return <ActivityIndicator size="large" />;
   }
-  if (
-    results === undefined ||
-    results.map === undefined ||
-    results.length === 0
-  ) {
+
+  if (results == null || results.map == null) {
+    return null;
+  }
+
+  if (results.length === 0) {
     return <Text style={styles.text}>{list.noResults}</Text>;
   }
+
   return (
     <>
       {results.map((word) => (
