@@ -1,6 +1,10 @@
 BUILD_DATE = $(shell date +"%Y-%m-%d")
+GIT_BRANCH = $(shell git rev-parse --abbrev-ref HEAD)
 COMMIT_SHA = $(shell git rev-parse --short HEAD)
 OUTPUT_DIR = ./dist
+
+EXPO_PUBLIC_GIT_BRANCH      = $(GIT_BRANCH)
+EXPO_PUBLIC_GIT_COMMIT_HASH = $(COMMIT_SHA)
 
 default: build
 
