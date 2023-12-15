@@ -70,7 +70,7 @@ const strings: UITranslation = {
   },
   list: {
     list: "Liste",
-    listOptions: "OPTIONS DE LISTE",
+    listOptions: "Options de Liste",
     listMenu: {
       whatValues: [
         { value: "pos", description: "partie du discours" },
@@ -136,13 +136,12 @@ const strings: UITranslation = {
         ],
       },
     },
-    and: "ET...",
-    go: "ALLER",
+    and: "et...",
     noResults: "pas de résultats",
   },
   random: {
     random: "Aléatoire",
-    randomOptions: "OPTIONS ALÉATOIRES",
+    randomOptions: "Options Aléatoires",
     numWords: "Nombre de mots aléatoires",
     where: "où...",
   },

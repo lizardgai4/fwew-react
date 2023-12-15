@@ -70,7 +70,7 @@ const strings: UITranslation = {
   },
   list: {
     list: "Nimekiri",
-    listOptions: "LOENDI VALIKUD",
+    listOptions: "Loendi Valikud",
     listMenu: {
       whatValues: [
         { value: "pos", description: "kõne osa" },
@@ -136,13 +136,12 @@ const strings: UITranslation = {
         ],
       },
     },
-    and: "JA...",
-    go: "MINNA",
+    and: "ja...",
     noResults: "tulemusi pole",
   },
   random: {
     random: "Juhuslik",
-    randomOptions: "JUHUSLIKE VALIKUTE",
+    randomOptions: "Juhuslike Valikute",
     numWords: "Juhuslike sõnade arv",
     where: "kus...",
   },

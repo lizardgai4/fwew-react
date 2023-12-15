@@ -70,7 +70,7 @@ const strings: UITranslation = {
   },
   list: {
     list: "Lista",
-    listOptions: "LISTALTERNATIV",
+    listOptions: "Listalternativ",
     listMenu: {
       whatValues: [
         { value: "pos", description: "del av tal" },
@@ -136,13 +136,12 @@ const strings: UITranslation = {
         ],
       },
     },
-    and: "OCH...",
-    go: "GÅ",
+    and: "och...",
     noResults: "inga resultat",
   },
   random: {
     random: "Slumpmässig",
-    randomOptions: "SLUMPMÄSSIGA ALTERNATIV",
+    randomOptions: "Slumpässiga Alternativ",
     numWords: "Antal slumpmässiga ord",
     where: "var...",
   },
