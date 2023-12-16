@@ -36,10 +36,6 @@ export function ListResults({ loading, results }: ListResultsProps) {
 }
 
 const styles = StyleSheet.create({
-  spinner: {
-    alignSelf: "center",
-    padding: 16,
-  },
   text: {
     alignSelf: "center",
     padding: 16,
