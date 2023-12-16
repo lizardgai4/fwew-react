@@ -18,16 +18,14 @@ export function ResultCount({ visible, resultCount, style }: ResultCountProps) {
     const octalResultCount = resultCount.toString(8);
     return (
       <Text style={[styles.resultCount, style]}>
-        {`°${octalResultCount}a ${ui.common.result}`}
+        {`°${octalResultCount}a ${ui.common.results(resultCount)}`}
       </Text>
     );
   }
 
   return (
     <Text style={[styles.resultCount, style]}>
-      {`${resultCount} ${
-        resultCount === 1 ? ui.common.result : ui.common.results
-      }`}
+      {`${resultCount} ${ui.common.results(resultCount)}`}
     </Text>
   );
 }

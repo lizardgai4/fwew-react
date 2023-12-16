@@ -9,8 +9,7 @@ export type PartOfSpeech = {
 };
 
 export type CommonStrings = {
-  result: string;
-  results: string;
+  results: (count: number) => string;
   noResults: string;
   partOfSpeech: PartOfSpeech;
   partOfSpeechList: OptionType<string>[];

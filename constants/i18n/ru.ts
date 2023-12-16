@@ -37,10 +37,24 @@ const partOfSpeechList = Object.entries(partOfSpeech).map(([value, name]) => ({
   name,
 }));
 
+const getResultText = (count: number) => {
+  const lastDigit = count % 10;
+  const lastTwoDigits = count % 100;
+  if (lastDigit === 1 && lastTwoDigits !== 11) {
+    return `результат`;
+  }
+  if (
+    (lastDigit === 2 || lastDigit === 3 || lastDigit === 4) &&
+    (lastTwoDigits < 10 || lastTwoDigits > 20)
+  ) {
+    return `результата`;
+  }
+  return `результатов`;
+};
+
 const strings: UITranslation = {
   common: {
-    result: "результат",
-    results: "результаты",
+    results: getResultText,
     noResults: "нет результатов",
     partOfSpeech,
     partOfSpeechList,
