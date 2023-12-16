@@ -15,7 +15,7 @@ export function FwewSearchResults({
   results,
 }: FwewSearchResultsProps) {
   const { appLanguage } = useAppLanguageContext();
-  const { list } = i18n[appLanguage];
+  const { common } = i18n[appLanguage];
 
   if (loading && Platform.OS === "web") {
     return <ActivityIndicator size="large" />;
@@ -26,7 +26,7 @@ export function FwewSearchResults({
       {results.map((result, i) => (
         <View key={`fsr_${i}`}>
           {result.map((word, j) => {
-            if (j === result.length - 1 && !word.ID) {
+            if (!word.ID) {
               return (
                 <>
                   <Text
@@ -35,18 +35,10 @@ export function FwewSearchResults({
                   >
                     {word.Navi}
                   </Text>
-                  <Text style={styles.text}>{list.noResults}</Text>
+                  {j === result.length - 1 && (
+                    <Text style={styles.text}>{common.noResults}</Text>
+                  )}
                 </>
-              );
-            }
-            if (j === 0 && !word.ID) {
-              return (
-                <Text
-                  key={`srl_${i}`}
-                  style={[styles.label, i === 0 ? styles.first : null]}
-                >
-                  {word.Navi}
-                </Text>
               );
             }
             return <ResultCard key={word.ID} word={word} />;
