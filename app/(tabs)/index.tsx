@@ -1,8 +1,8 @@
 import { ResultCount } from "@/components/common/ResultCount";
 import { SearchBar } from "@/components/common/SearchBar";
+import { SwitchInput } from "@/components/common/SwitchInput";
 import { View } from "@/components/common/Themed";
 import { FwewSearchResults } from "@/components/search/FwewSearchResults";
-import { NaviOnlySwitch } from "@/components/search/NaviOnlySwitch";
 import { useFwew } from "@/hooks/useFwew";
 import { RefreshControl, ScrollView, StyleSheet } from "react-native";
 
@@ -21,7 +21,12 @@ export default function SearchScreen() {
   return (
     <View style={styles.container}>
       <SearchBar query={query} search={search} autoFocus />
-      <NaviOnlySwitch value={naviOnly} onValueChange={setNaviOnly} />
+      <SwitchInput
+        leftLabel="Search Na'vi words only"
+        rightLabel=""
+        value={naviOnly}
+        onValueChange={setNaviOnly}
+      />
       <ScrollView
         keyboardShouldPersistTaps="always"
         refreshControl={
@@ -41,5 +46,6 @@ export default function SearchScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    gap: 16,
   },
 });
