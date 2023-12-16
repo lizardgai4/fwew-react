@@ -1,14 +1,12 @@
 import { BoldText, UnderlinedText } from "@/components/common/StyledText";
 import { Text, View } from "@/components/common/Themed";
-import AudioResources from "@/constants/AudioResources";
 import Colors from "@/constants/Colors";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useResultsLanguage } from "@/hooks/useResultsLanguage";
+import { useSound } from "@/hooks/useSound";
 import { FontAwesome } from "@expo/vector-icons";
-import { Audio } from "expo-av";
 import type { LanguageCode, Word } from "fwew.js";
-import { useEffect, useState } from "react";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 import Autolink from "react-native-autolink";
 
@@ -17,28 +15,13 @@ type ResultInfoProps = {
 };
 
 export function ResultInfo({ word }: ResultInfoProps) {
-  const [sound, setSound] = useState(new Audio.Sound());
+  const { playSound } = useSound();
   const colorScheme = useColorScheme();
   const { text } = Colors[colorScheme ?? "light"];
   const { resultsLanguage } = useResultsLanguage();
   const local = word[resultsLanguage.toUpperCase() as Uppercase<LanguageCode>];
   const { appLanguage } = useAppLanguageContext();
   const ui = i18n[appLanguage];
-
-  const playSound = async (wordId: string): Promise<void> => {
-    const audioUrl = `${AudioResources.URL}/${wordId}.mp3`;
-    const { sound } = await Audio.Sound.createAsync({ uri: audioUrl });
-    setSound(sound);
-    await sound.playAsync();
-  };
-
-  useEffect(() => {
-    return sound
-      ? () => {
-          sound.unloadAsync();
-        }
-      : undefined;
-  }, [sound]);
 
   return (
     <View style={[styles.container, { borderColor: text }]}>
