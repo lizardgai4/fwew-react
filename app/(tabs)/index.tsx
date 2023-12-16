@@ -37,7 +37,7 @@ export default function SearchScreen() {
           visible={query.length > 0 && resultCount > 0}
           resultCount={resultCount}
         />
-        <FwewSearchResults results={results} />
+        <FwewSearchResults loading={loading} results={results} />
       </ScrollView>
     </View>
   );

@@ -1,23 +1,49 @@
 import { ResultCard } from "@/components/common/ResultCard";
+import i18n from "@/constants/i18n";
+import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import type { Word } from "fwew.js";
-import { StyleSheet } from "react-native";
+import { ActivityIndicator, Platform, StyleSheet } from "react-native";
 import { Text, View } from "../common/Themed";
 
 type FwewSearchResultsProps = {
+  loading?: boolean;
   results: Word[][];
 };
 
-export function FwewSearchResults({ results }: FwewSearchResultsProps) {
+export function FwewSearchResults({
+  loading,
+  results,
+}: FwewSearchResultsProps) {
+  const { appLanguage } = useAppLanguageContext();
+  const { list } = i18n[appLanguage];
+
+  if (loading && Platform.OS === "web") {
+    return <ActivityIndicator size="large" />;
+  }
+
   return (
     <>
       {results.map((result, i) => (
         <View key={`fsr_${i}`}>
-          {result.map((word) => {
-            if (!word.ID) {
+          {result.map((word, j) => {
+            if (j === result.length - 1 && !word.ID) {
+              return (
+                <>
+                  <Text
+                    key={`srl_${i}`}
+                    style={[styles.label, i === 0 ? styles.first : null]}
+                  >
+                    {word.Navi}
+                  </Text>
+                  <Text style={styles.text}>{list.noResults}</Text>
+                </>
+              );
+            }
+            if (j === 0 && !word.ID) {
               return (
                 <Text
                   key={`srl_${i}`}
-                  style={[styles.label, { paddingTop: i === 0 ? 0 : 16 }]}
+                  style={[styles.label, i === 0 ? styles.first : null]}
                 >
                   {word.Navi}
                 </Text>
@@ -32,9 +58,16 @@ export function FwewSearchResults({ results }: FwewSearchResultsProps) {
 }
 
 const styles = StyleSheet.create({
+  text: {
+    paddingHorizontal: 16,
+    fontSize: 16,
+  },
   label: {
     padding: 16,
     fontSize: 18,
     fontWeight: "bold",
+  },
+  first: {
+    paddingTop: 0,
   },
 });
