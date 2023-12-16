@@ -54,6 +54,7 @@ const strings: UITranslation = {
   },
   search: {
     search: "Procurar",
+    naviOnly: "Procure apenas palavras Na'vi",
     audio: "Audio",
     partOfSpeech: "Classe gramatical",
     definition: "Definição",

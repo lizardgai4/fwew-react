@@ -54,6 +54,7 @@ const strings: UITranslation = {
   },
   search: {
     search: "Ara",
+    naviOnly: "Yalnızca Na'vi kelimelerini ara",
     audio: "Audio",
     partOfSpeech: "Konuşmanın bölümü",
     definition: "Tanım",
