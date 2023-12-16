@@ -149,9 +149,9 @@ const strings: UITranslation = {
     decimal: "holpxay fa vomun:",
   },
   names: {
-    single: "Tstxo Afyin",
-    full: "Tstxo a'änsyem",
-    alu: "Tstxo hu lì'u alu alu",
+    single: "fyin",
+    full: "'änsyem",
+    alu: "alu",
     options: "Tìftxey",
     numNames: "Holpxay lì'uä",
     dialect: "Lì'fyafnel",
