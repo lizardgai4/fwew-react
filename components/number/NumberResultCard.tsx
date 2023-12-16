@@ -19,8 +19,8 @@ export function NumberResultCard({ result }: NumberResultCardProps) {
 
   if ("message" in result) {
     return (
-      <View style={{ alignItems: "center", padding: 16 }}>
-        <Text>{result.message}</Text>
+      <View style={styles.container}>
+        <Text>{ui.common.noResults}</Text>
       </View>
     );
   }

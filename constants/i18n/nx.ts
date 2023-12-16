@@ -145,8 +145,8 @@ const strings: UITranslation = {
   numbers: {
     placeholderNumeric: "052",
     placeholderAlpha: "mrrvomun",
-    octal: "holpxay fa vol:",
-    decimal: "holpxay fa vomun:",
+    octal: "holpxay Na'viyä:",
+    decimal: "holpxay Tawtuteyä:",
   },
   names: {
     single: "fyin",
