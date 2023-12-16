@@ -54,6 +54,7 @@ const strings: UITranslation = {
   },
   search: {
     search: "Keresés",
+    naviOnly: "Csak a navigációs szavak",
     audio: "Audio",
     partOfSpeech: "Szófaj",
     definition: "Definíció",

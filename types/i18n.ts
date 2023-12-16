@@ -26,6 +26,7 @@ export type ScreenStrings = {
 
 export type SearchStrings = {
   search: string;
+  naviOnly: string;
   audio: string;
   partOfSpeech: string;
   definition: string;

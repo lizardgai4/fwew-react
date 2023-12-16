@@ -54,6 +54,7 @@ const strings: UITranslation = {
   },
   search: {
     search: "Fwew",
+    naviOnly: "Fwew aylì'uti leNa'vi nì'aw",
     audio: "Pam",
     partOfSpeech: "Fnel",
     definition: "Ral",

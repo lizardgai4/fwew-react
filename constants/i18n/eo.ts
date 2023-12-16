@@ -54,6 +54,7 @@ const strings: UITranslation = {
   },
   search: {
     search: "Serĉi",
+    naviOnly: "Serĉi nur Na'viajn vortojn",
     audio: "Audio",
     partOfSpeech: "Vorttipo",
     definition: "Difino",

@@ -55,7 +55,7 @@ const getResultText = (count: number) => {
 const strings: UITranslation = {
   common: {
     results: getResultText,
-    noResults: "нет результатов",
+    noResults: "Нет результатов",
     partOfSpeech,
     partOfSpeechList,
   },
@@ -69,6 +69,7 @@ const strings: UITranslation = {
   },
   search: {
     search: "Поиск",
+    naviOnly: "Поиск только по словам На'ви",
     audio: "Audio",
     partOfSpeech: "Часть речи",
     definition: "Определение",
