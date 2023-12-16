@@ -41,6 +41,7 @@ const strings: UITranslation = {
   common: {
     result: "tulemus",
     results: "tulemused",
+    noResults: "tulemusi pole",
     partOfSpeech,
     partOfSpeechList,
   },
@@ -137,7 +138,6 @@ const strings: UITranslation = {
       },
     },
     and: "ja...",
-    noResults: "tulemusi pole",
   },
   random: {
     random: "Juhuslik",

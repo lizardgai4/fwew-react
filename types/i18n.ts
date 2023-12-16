@@ -11,6 +11,7 @@ export type PartOfSpeech = {
 export type CommonStrings = {
   result: string;
   results: string;
+  noResults: string;
   partOfSpeech: PartOfSpeech;
   partOfSpeechList: OptionType<string>[];
 };
@@ -46,7 +47,6 @@ export type ListStrings = {
   listOptions: string;
   listMenu: ListMenu;
   and: string;
-  noResults: string;
 };
 
 export type RandomStrings = {

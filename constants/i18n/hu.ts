@@ -41,6 +41,7 @@ const strings: UITranslation = {
   common: {
     result: "eredmény",
     results: "eredmények",
+    noResults: "nincs találat",
     partOfSpeech,
     partOfSpeechList,
   },
@@ -134,7 +135,6 @@ const strings: UITranslation = {
       },
     },
     and: "és...",
-    noResults: "nincs találat",
   },
   random: {
     random: "Véletlen",

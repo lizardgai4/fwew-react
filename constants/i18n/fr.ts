@@ -41,6 +41,7 @@ const strings: UITranslation = {
   common: {
     result: "résultat",
     results: "résultats",
+    noResults: "pas de résultats",
     partOfSpeech,
     partOfSpeechList,
   },
@@ -137,7 +138,6 @@ const strings: UITranslation = {
       },
     },
     and: "et...",
-    noResults: "pas de résultats",
   },
   random: {
     random: "Aléatoire",

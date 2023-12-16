@@ -41,6 +41,7 @@ const strings: UITranslation = {
   common: {
     result: "kum",
     results: "kum",
+    noResults: "kea kum",
     partOfSpeech,
     partOfSpeechList,
   },
@@ -134,7 +135,6 @@ const strings: UITranslation = {
       },
     },
     and: "ulte...",
-    noResults: "kea kum",
   },
   random: {
     random: "Renulke",

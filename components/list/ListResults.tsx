@@ -12,7 +12,7 @@ type ListResultsProps = {
 
 export function ListResults({ loading, results }: ListResultsProps) {
   const { appLanguage } = useAppLanguageContext();
-  const { list } = i18n[appLanguage];
+  const { common } = i18n[appLanguage];
 
   if (loading && Platform.OS === "web") {
     return <ActivityIndicator size="large" />;
@@ -23,7 +23,7 @@ export function ListResults({ loading, results }: ListResultsProps) {
   }
 
   if (results.length === 0) {
-    return <Text style={styles.text}>{list.noResults}</Text>;
+    return <Text style={styles.text}>{common.noResults}</Text>;
   }
 
   return (
