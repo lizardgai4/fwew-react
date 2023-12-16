@@ -39,8 +39,7 @@ const partOfSpeechList = Object.entries(partOfSpeech).map(([value, name]) => ({
 
 const strings: UITranslation = {
   common: {
-    result: "sonuç",
-    results: "sonuçlar",
+    results: (count) => (count === 1 ? "sonuç" : "sonuçlar"),
     noResults: "sonuç yok",
     partOfSpeech,
     partOfSpeechList,
