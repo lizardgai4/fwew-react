@@ -29,6 +29,7 @@ export function FilterExpressionBuilder({
   const isExactPosSpec =
     value.what?.value === "pos" && value.cond?.value === "is";
   const isNumericSpec =
+    value.what?.value === "words" ||
     value.what?.value === "syllables" ||
     value.what?.value === "stress" ||
     value.what?.value === "length";
@@ -108,7 +109,7 @@ export function FilterExpressionBuilder({
         <NumericTextInput
           value={value.spec}
           onChangeText={setSpec}
-          placeholder={`${value.what?.description} ${value.cond?.description}...`}
+          placeholder={"64"}
           autoFocus
         />
       )}
