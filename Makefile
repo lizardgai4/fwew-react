@@ -3,8 +3,8 @@ GIT_BRANCH = $(shell git rev-parse --abbrev-ref HEAD)
 COMMIT_SHA = $(shell git rev-parse --short HEAD)
 OUTPUT_DIR = ./dist
 
-EXPO_PUBLIC_GIT_BRANCH      = $(GIT_BRANCH)
-EXPO_PUBLIC_GIT_COMMIT_HASH = $(COMMIT_SHA)
+export EXPO_PUBLIC_GIT_BRANCH      = $(GIT_BRANCH)
+export EXPO_PUBLIC_GIT_COMMIT_HASH = $(COMMIT_SHA)
 
 default: build
 
@@ -19,3 +19,6 @@ build-remote:
 
 build-prod-remote:
 	eas build -p android -e production
+
+run:
+	npm run start
