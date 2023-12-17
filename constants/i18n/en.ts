@@ -105,8 +105,8 @@ const strings: UITranslation = {
           { value: "not-like", description: "is not like" },
         ],
         words: [
-          { value: "first", description: "oldest words" },
-          { value: "last", description: "newest words" },
+          { value: "first", description: "oldest" },
+          { value: "last", description: "newest" },
         ],
         syllables: [
           { value: "<", description: "less than" },
