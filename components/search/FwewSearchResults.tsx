@@ -28,17 +28,14 @@ export function FwewSearchResults({
           {result.map((word, j) => {
             if (!word.ID) {
               return (
-                <>
-                  <Text
-                    key={`srl_${i}`}
-                    style={[styles.label, i === 0 ? styles.first : null]}
-                  >
+                <View key={`srl_${i}${j}`}>
+                  <Text style={[styles.label, i === 0 ? styles.first : null]}>
                     {word.Navi}
                   </Text>
                   {j === result.length - 1 && (
                     <Text style={styles.text}>{common.noResults}</Text>
                   )}
-                </>
+                </View>
               );
             }
             return <ResultCard key={word.ID} word={word} />;
