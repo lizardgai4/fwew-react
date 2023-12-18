@@ -24,19 +24,19 @@ export default function SearchScreen() {
 
   return (
     <View style={styles.container}>
-      <SearchBar query={query} search={search} autoFocus />
-      <SwitchInput
-        leftLabel={ui.naviOnly}
-        rightLabel=""
-        value={naviOnly}
-        onValueChange={setNaviOnly}
-      />
       <ScrollView
         keyboardShouldPersistTaps="always"
         refreshControl={
           <RefreshControl refreshing={loading} onRefresh={execute} />
         }
       >
+        <SearchBar query={query} search={search} autoFocus />
+        <SwitchInput
+          leftLabel={ui.naviOnly}
+          rightLabel=""
+          value={naviOnly}
+          onValueChange={setNaviOnly}
+        />
         <ResultCount
           visible={query.length > 0 && resultCount > 0}
           resultCount={resultCount}
@@ -50,6 +50,7 @@ export default function SearchScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    gap: 16,
+    margin: 16,
+    marginBottom: 0,
   },
 });

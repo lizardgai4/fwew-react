@@ -2,6 +2,7 @@ import Colors from "@/constants/Colors";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { useTheme } from "@react-navigation/native";
 import { Link, Tabs } from "expo-router";
 import { Pressable, StyleSheet, useColorScheme } from "react-native";
 
@@ -18,12 +19,14 @@ function TabBarIcon(props: {
 export default function TabLayout() {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
+  const theme = useTheme();
   const { appLanguage } = useAppLanguageContext();
   const { screens } = i18n[appLanguage];
 
   return (
     <Tabs
       screenOptions={{
+        headerStyle: { backgroundColor: theme.colors.primary },
         tabBarActiveTintColor: colors.tint,
       }}
     >

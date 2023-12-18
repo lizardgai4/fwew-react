@@ -1,12 +1,9 @@
 import i18n from "@/constants/i18n";
 import { AppLanguageProvider } from "@/context/AppLanguageContext";
 import { useAppLanguage } from "@/hooks/useAppLanguage";
+import { FwewDarkTheme, FwewLightTheme } from "@/themes";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from "@react-navigation/native";
+import { ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
@@ -55,7 +52,9 @@ function RootLayoutNav() {
   const { appLanguage } = appLanguageValue;
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+    <ThemeProvider
+      value={colorScheme === "dark" ? FwewDarkTheme : FwewLightTheme}
+    >
       <AppLanguageProvider value={appLanguageValue}>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />

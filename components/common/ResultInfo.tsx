@@ -1,13 +1,13 @@
 import { BoldText, UnderlinedText } from "@/components/common/StyledText";
-import { Text, View } from "@/components/common/Themed";
-import Colors from "@/constants/Colors";
+import { CardView, Text, View } from "@/components/common/Themed";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useResultsLanguage } from "@/hooks/useResultsLanguage";
 import { useSound } from "@/hooks/useSound";
 import { FontAwesome } from "@expo/vector-icons";
+import { useTheme } from "@react-navigation/native";
 import type { LanguageCode, Word } from "fwew.js";
-import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import Autolink from "react-native-autolink";
 
 type ResultInfoProps = {
@@ -16,20 +16,19 @@ type ResultInfoProps = {
 
 export function ResultInfo({ word }: ResultInfoProps) {
   const { playSound } = useSound();
-  const colorScheme = useColorScheme();
-  const { text } = Colors[colorScheme ?? "light"];
+  const { colors } = useTheme();
   const { resultsLanguage } = useResultsLanguage();
   const local = word[resultsLanguage.toUpperCase() as Uppercase<LanguageCode>];
   const { appLanguage } = useAppLanguageContext();
   const ui = i18n[appLanguage];
 
   return (
-    <View style={[styles.container, { borderColor: text }]}>
+    <CardView style={styles.container}>
       <TouchableOpacity
         onPress={() => playSound(word.ID)}
-        style={[styles.audioButton, { borderColor: text }]}
+        style={[styles.audioButton, { backgroundColor: colors.primary }]}
       >
-        <FontAwesome name="volume-up" size={24} color={text} />
+        <FontAwesome name="volume-up" size={24} color={colors.text} />
         <Text style={styles.audioButtonText}> {ui.search.audio}</Text>
       </TouchableOpacity>
       <DetailItem
@@ -80,7 +79,7 @@ export function ResultInfo({ word }: ResultInfoProps) {
         />
       )}
       <DetailItem link label={ui.search.source} value={word.Source} />
-    </View>
+    </CardView>
   );
 }
 
@@ -162,7 +161,6 @@ function Breakdown({ Stressed, Syllables }: BreakdownProps) {
 
 const styles = StyleSheet.create({
   container: {
-    borderWidth: 1,
     padding: 16,
   },
   label: {
@@ -177,9 +175,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    borderWidth: 1,
     padding: 4,
     marginBottom: 16,
+    borderRadius: 8,
   },
   audioButtonText: {
     fontSize: 16,

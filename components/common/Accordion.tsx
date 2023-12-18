@@ -1,4 +1,4 @@
-import { View } from "@/components/common/Themed";
+import { CardView, View } from "@/components/common/Themed";
 import Colors from "@/constants/Colors";
 import { FontAwesome } from "@expo/vector-icons";
 import { useState } from "react";
@@ -22,11 +22,8 @@ export function Accordion({
   const toggleExpanded = () => setExpanded(!expanded);
 
   return (
-    <View>
-      <TouchableOpacity
-        style={[styles.container, { borderColor: colors.text }]}
-        onPress={toggleExpanded}
-      >
+    <CardView>
+      <TouchableOpacity style={styles.container} onPress={toggleExpanded}>
         {closedContent}
         {expanded ? (
           <FontAwesome
@@ -45,7 +42,7 @@ export function Accordion({
         )}
       </TouchableOpacity>
       {expanded && openedContent}
-    </View>
+    </CardView>
   );
 }
 
@@ -55,7 +52,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 16,
     gap: 16,
-    borderWidth: 1,
+    borderRadius: 8,
   },
   arrow: {
     marginLeft: "auto",

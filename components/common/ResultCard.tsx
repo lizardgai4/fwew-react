@@ -4,7 +4,7 @@ import { MonoText } from "@/components/common/StyledText";
 import { Text } from "@/components/common/Themed";
 import { useResultsLanguage } from "@/hooks/useResultsLanguage";
 import type { LanguageCode, Word } from "fwew.js";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 type ResultCardProps = {
   word: Word;
@@ -17,13 +17,15 @@ export function ResultCard({ word }: ResultCardProps) {
   return (
     <Accordion
       closedContent={
-        <>
+        <View style={styles.closedContainer}>
           <Text style={styles.navi}>{word.Navi}</Text>
-          <MonoText style={styles.partOfSpeech}>{word.PartOfSpeech}</MonoText>
+          <View style={styles.posContainer}>
+            <MonoText style={styles.pos}>{word.PartOfSpeech}</MonoText>
+          </View>
           <Text style={styles.local} numberOfLines={1}>
             {local}
           </Text>
-        </>
+        </View>
       }
       openedContent={<ResultInfo word={word} />}
     />
@@ -31,13 +33,24 @@ export function ResultCard({ word }: ResultCardProps) {
 }
 
 const styles = StyleSheet.create({
+  closedContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 16,
+  },
   navi: {
     fontSize: 24,
   },
-  partOfSpeech: {
+  posContainer: {
+    backgroundColor: "#2d3133",
+    padding: 4,
+    borderRadius: 4,
+  },
+  pos: {
     fontSize: 16,
   },
   local: {
     flex: 1,
+    fontSize: 20,
   },
 });

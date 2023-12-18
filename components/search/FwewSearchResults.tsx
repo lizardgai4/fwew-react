@@ -22,16 +22,14 @@ export function FwewSearchResults({
   }
 
   return (
-    <>
+    <View style={styles.outerContainer}>
       {results.map((result, i) => (
-        <View key={`fsr_${i}`}>
+        <View key={`fsr_${i}`} style={styles.innerContainer}>
           {result.map((word, j) => {
             if (!word.ID) {
               return (
                 <View key={`srl_${i}${j}`}>
-                  <Text style={[styles.label, i === 0 ? styles.first : null]}>
-                    {word.Navi}
-                  </Text>
+                  <Text style={styles.label}>{word.Navi}</Text>
                   {j === result.length - 1 && (
                     <Text style={styles.text}>{common.noResults}</Text>
                   )}
@@ -42,21 +40,24 @@ export function FwewSearchResults({
           })}
         </View>
       ))}
-    </>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  outerContainer: {
+    gap: 16,
+    paddingBottom: 16,
+  },
+  innerContainer: {
+    gap: 8,
+  },
   text: {
     paddingHorizontal: 16,
     fontSize: 16,
   },
   label: {
-    padding: 16,
     fontSize: 18,
     fontWeight: "bold",
-  },
-  first: {
-    paddingTop: 0,
   },
 });

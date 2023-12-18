@@ -4,21 +4,16 @@
  */
 
 import Colors from "@/constants/Colors";
+import { useTheme } from "@react-navigation/native";
 import {
   Text as DefaultText,
   TextInput as DefaultTextInput,
   View as DefaultView,
+  type TextProps,
+  type TextInputProps,
+  type ViewProps,
   useColorScheme,
 } from "react-native";
-
-type ThemeProps = {
-  lightColor?: string;
-  darkColor?: string;
-};
-
-export type TextProps = ThemeProps & DefaultText["props"];
-export type ViewProps = ThemeProps & DefaultView["props"];
-export type TextInputProps = ThemeProps & DefaultTextInput["props"];
 
 export function useThemeColor(
   props: { light?: string; dark?: string },
@@ -35,33 +30,51 @@ export function useThemeColor(
 }
 
 export function Text(props: TextProps) {
-  const { style, lightColor, darkColor, ...otherProps } = props;
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
+  const { style, ...otherProps } = props;
+  const { colors } = useTheme();
 
-  return <DefaultText style={[{ color }, style]} {...otherProps} />;
+  return (
+    <DefaultText style={[{ color: colors.text }, style]} {...otherProps} />
+  );
 }
 
 export function View(props: ViewProps) {
-  const { style, lightColor, darkColor, ...otherProps } = props;
-  const backgroundColor = useThemeColor(
-    { light: lightColor, dark: darkColor },
-    "background"
-  );
+  const { style, ...otherProps } = props;
+  const { colors } = useTheme();
 
-  return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
+  return (
+    <DefaultView
+      style={[{ backgroundColor: colors.background }, style]}
+      {...otherProps}
+    />
+  );
+}
+
+export function CardView(props: ViewProps) {
+  const { style, ...otherProps } = props;
+  const { colors } = useTheme();
+
+  return (
+    <DefaultView
+      style={[
+        {
+          backgroundColor: colors.card,
+          borderRadius: 8,
+        },
+        style,
+      ]}
+      {...otherProps}
+    />
+  );
 }
 
 export function TextInput(props: TextInputProps) {
-  const { style, lightColor, darkColor, ...otherProps } = props;
-  const backgroundColor = useThemeColor(
-    { light: lightColor, dark: darkColor },
-    "background"
-  );
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
+  const { style, ...otherProps } = props;
+  const { colors } = useTheme();
 
   return (
     <DefaultTextInput
-      style={[{ backgroundColor, color }, style]}
+      style={[{ backgroundColor: colors.card, color: colors.text }, style]}
       {...otherProps}
     />
   );
