@@ -1,4 +1,4 @@
-import { TextInput, View } from "@/components/common/Themed";
+import { CardView, TextInput } from "@/components/common/Themed";
 import Colors from "@/constants/Colors";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
@@ -31,9 +31,9 @@ export function SearchBar({
   const ui = i18n[appLanguage];
 
   return (
-    <View style={styles.searchContainer}>
+    <CardView style={styles.searchContainer}>
       <TextInput
-        style={[styles.input, { borderColor: colors.text }]}
+        style={styles.input}
         placeholder={placeholder ?? ui.search.search}
         placeholderTextColor={colors.placeholder}
         value={query}
@@ -48,7 +48,7 @@ export function SearchBar({
         onSubmitEditing={execute}
       />
       <SearchBarRight showClear={query.length > 0} clear={() => search("")} />
-    </View>
+    </CardView>
   );
 }
 
@@ -63,19 +63,16 @@ function SearchBarRight({ showClear, clear }: SearchBarRightProps) {
 
   if (showClear) {
     return (
-      <TouchableOpacity
-        style={[styles.button, { borderColor: colors.text }]}
-        onPress={clear}
-      >
+      <TouchableOpacity style={styles.button} onPress={clear}>
         <FontAwesome name="close" size={24} color={colors.text} />
       </TouchableOpacity>
     );
   }
 
   return (
-    <View style={[styles.button, { borderColor: colors.text }]}>
+    <CardView style={styles.button}>
       <FontAwesome name="search" size={24} color={colors.text} />
-    </View>
+    </CardView>
   );
 }
 
@@ -86,14 +83,15 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    borderWidth: 1,
-    padding: 10,
+    padding: 16,
+    fontSize: 16,
+    borderRadius: 8,
   },
   button: {
     alignItems: "center",
     justifyContent: "center",
     padding: 8,
-    borderWidth: 1,
+    paddingRight: 14,
     height: Platform.OS === "web" ? null : 50,
   },
 });
