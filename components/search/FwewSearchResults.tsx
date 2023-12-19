@@ -10,10 +10,8 @@ type FwewSearchResultsProps = {
   results: Word[][];
 };
 
-export function FwewSearchResults({
-  loading,
-  results,
-}: FwewSearchResultsProps) {
+export function FwewSearchResults(props: FwewSearchResultsProps) {
+  const { loading, results } = props;
   const { appLanguage } = useAppLanguageContext();
   const { common } = i18n[appLanguage];
 

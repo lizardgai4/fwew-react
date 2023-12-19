@@ -18,13 +18,8 @@ type SearchBarProps = {
   execute?: () => void;
 };
 
-export function SearchBar({
-  query,
-  search,
-  placeholder,
-  autoFocus = false,
-  execute,
-}: SearchBarProps) {
+export function SearchBar(props: SearchBarProps) {
+  const { query, search, placeholder, autoFocus = false, execute } = props;
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
   const { appLanguage } = useAppLanguageContext();

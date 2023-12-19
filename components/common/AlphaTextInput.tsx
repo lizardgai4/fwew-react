@@ -10,12 +10,8 @@ type AlphaTextInputProps = {
   autoFocus?: boolean;
 };
 
-export function AlphaTextInput({
-  value,
-  onChangeText,
-  placeholder,
-  autoFocus,
-}: AlphaTextInputProps) {
+export function AlphaTextInput(props: AlphaTextInputProps) {
+  const { value, onChangeText, placeholder, autoFocus } = props;
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
 

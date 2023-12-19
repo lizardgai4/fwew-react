@@ -16,10 +16,8 @@ type FilterExpressionBuilderProps = {
   onChange: (value: FilterExpressionBuilderValue) => void;
 };
 
-export function FilterExpressionBuilder({
-  value,
-  onChange,
-}: FilterExpressionBuilderProps) {
+export function FilterExpressionBuilder(props: FilterExpressionBuilderProps) {
+  const { value, onChange } = props;
   const { appLanguage } = useAppLanguageContext();
   const { list, common } = i18n[appLanguage];
   const whatValues = list.listMenu.whatValues;

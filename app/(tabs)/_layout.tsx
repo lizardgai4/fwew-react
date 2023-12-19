@@ -6,13 +6,13 @@ import { useTheme } from "@react-navigation/native";
 import { Link, Tabs } from "expo-router";
 import { Pressable, StyleSheet, useColorScheme } from "react-native";
 
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
-function TabBarIcon(props: {
+type TabBarIconProps = {
   name: React.ComponentProps<typeof FontAwesome>["name"];
   color: string;
-}) {
+};
+
+function TabBarIcon(props: TabBarIconProps) {
+  // https://icons.expo.fyi/
   return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
 }
 
