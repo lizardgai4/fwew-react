@@ -21,6 +21,8 @@ export function SwitchInput(props: SwitchInputProps) {
         onValueChange={onValueChange}
         trackColor={{ false: colors.card, true: colors.primary }}
         thumbColor={colors.text}
+        // @ts-ignore
+        activeThumbColor={colors.text}
         ios_backgroundColor={colors.card}
       />
       <Text>{rightLabel}</Text>
