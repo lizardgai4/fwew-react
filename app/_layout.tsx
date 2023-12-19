@@ -8,6 +8,7 @@ import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { useColorScheme } from "react-native";
+import GlobalStyle from "@/components/common/GlobalStyle";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -52,21 +53,24 @@ function RootLayoutNav() {
   const { appLanguage } = appLanguageValue;
 
   return (
-    <ThemeProvider
-      value={colorScheme === "dark" ? FwewDarkTheme : FwewLightTheme}
-    >
-      <AppLanguageProvider value={appLanguageValue}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen
-            name="settings"
-            options={{
-              title: i18n[appLanguage].screens.settings,
-              presentation: "modal",
-            }}
-          />
-        </Stack>
-      </AppLanguageProvider>
-    </ThemeProvider>
+    <>
+      <GlobalStyle />
+      <ThemeProvider
+        value={colorScheme === "dark" ? FwewDarkTheme : FwewLightTheme}
+      >
+        <AppLanguageProvider value={appLanguageValue}>
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen
+              name="settings"
+              options={{
+                title: i18n[appLanguage].screens.settings,
+                presentation: "modal",
+              }}
+            />
+          </Stack>
+        </AppLanguageProvider>
+      </ThemeProvider>
+    </>
   );
 }

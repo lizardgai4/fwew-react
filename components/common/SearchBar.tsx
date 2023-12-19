@@ -66,7 +66,7 @@ function SearchBarRight({ showClear, clear }: SearchBarRightProps) {
 
   return (
     <CardView style={styles.button}>
-      <FontAwesome name="search" size={24} color={colors.primary} />
+      <FontAwesome name="search" size={24} color={colors.text} />
     </CardView>
   );
 }
