@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
   },
   local: {
     flex: 1,
-    fontSize: 20,
+    fontSize: 18,
+    marginRight: 32,
   },
 });

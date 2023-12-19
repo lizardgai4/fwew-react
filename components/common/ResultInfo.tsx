@@ -91,7 +91,7 @@ type DetailItemProps = {
 
 function DetailItem({ label, value, link }: DetailItemProps) {
   return (
-    <View>
+    <CardView>
       <BoldText style={styles.label}>{label}:</BoldText>
       {link ? (
         <Autolink
@@ -104,7 +104,7 @@ function DetailItem({ label, value, link }: DetailItemProps) {
       ) : (
         <Text style={styles.value}>{value}</Text>
       )}
-    </View>
+    </CardView>
   );
 }
 
@@ -116,10 +116,10 @@ function Pronunciation({ IPA, Stressed, Syllables }: PronunciationProps) {
   return (
     <>
       <DetailItem label={ui.search.ipa} value={`[${IPA}]`} />
-      <View>
+      <CardView>
         <BoldText style={styles.label}>{ui.search.breakdown}:</BoldText>
         <Breakdown Stressed={Stressed} Syllables={Syllables} />
-      </View>
+      </CardView>
     </>
   );
 }
