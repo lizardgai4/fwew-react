@@ -1,5 +1,5 @@
 import { ResultCard } from "@/components/common/ResultCard";
-import { Text } from "@/components/common/Themed";
+import { Text, View } from "@/components/common/Themed";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import type { Word } from "fwew.js";
@@ -27,15 +27,19 @@ export function ListResults({ loading, results }: ListResultsProps) {
   }
 
   return (
-    <>
+    <View style={styles.container}>
       {results.map((word) => (
         <ResultCard key={word.ID} word={word} />
       ))}
-    </>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    gap: 8,
+    paddingBottom: 32,
+  },
   text: {
     alignSelf: "center",
     padding: 16,
