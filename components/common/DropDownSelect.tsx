@@ -1,8 +1,8 @@
-import { View } from "@/components/common/Themed";
-import Colors from "@/constants/Colors";
+import { CardView, View } from "@/components/common/Themed";
 import { FontAwesome } from "@expo/vector-icons";
+import { useTheme } from "@react-navigation/native";
 import { useState } from "react";
-import { TouchableOpacity, useColorScheme } from "react-native";
+import { TouchableOpacity } from "react-native";
 
 type DropDownSelectProps<T> = {
   options: T[];
@@ -23,8 +23,7 @@ export function DropDownSelect<T>(props: DropDownSelectProps<T>) {
     onChange,
   } = props;
   const [open, setOpen] = useState(initiallyOpen ?? false);
-  const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? "light"];
+  const { colors } = useTheme();
 
   const toggle = () => setOpen((prev) => !prev);
 
@@ -34,7 +33,7 @@ export function DropDownSelect<T>(props: DropDownSelectProps<T>) {
   };
 
   return (
-    <View style={{ borderWidth: 1, borderColor: colors.text }}>
+    <CardView>
       <TouchableOpacity
         onPress={toggle}
         style={{
@@ -45,7 +44,7 @@ export function DropDownSelect<T>(props: DropDownSelectProps<T>) {
           paddingVertical: 8,
         }}
       >
-        {value ? renderOption(value) : <View style={{ padding: 16 }} />}
+        {value ? renderOption(value) : <CardView style={{ padding: 16 }} />}
         <FontAwesome
           name={open ? "chevron-down" : "chevron-right"}
           size={24}
@@ -64,6 +63,6 @@ export function DropDownSelect<T>(props: DropDownSelectProps<T>) {
           ))}
         </>
       )}
-    </View>
+    </CardView>
   );
 }
