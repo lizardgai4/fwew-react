@@ -1,8 +1,8 @@
-import { TextInput, View } from "@/components/common/Themed";
+import { CardView, TextInput } from "@/components/common/Themed";
 import Colors from "@/constants/Colors";
 import type { NumericString } from "@/types/common";
-import { FontAwesome } from "@expo/vector-icons";
-import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
+import { StyleSheet, useColorScheme } from "react-native";
+import { SmallButton } from "./SmallButton";
 
 type NumericTextInputProps = {
   value?: string | NumericString;
@@ -17,7 +17,7 @@ export function NumericTextInput(props: NumericTextInputProps) {
   const colors = Colors[colorScheme ?? "light"];
 
   return (
-    <View style={styles.inputContainer}>
+    <CardView style={styles.inputContainer}>
       <TextInput
         placeholder={placeholder}
         placeholderTextColor={colors.placeholder}
@@ -30,30 +30,33 @@ export function NumericTextInput(props: NumericTextInputProps) {
         clearButtonMode="never"
         autoFocus={autoFocus}
       />
-      <TouchableOpacity
-        onPress={() => onChangeText("")}
-        style={[styles.clearButton, { borderColor: colors.text }]}
-      >
-        <FontAwesome name="close" size={24} color={colors.text} />
-      </TouchableOpacity>
-    </View>
+      {value ? (
+        <SmallButton icon="close" onPress={() => onChangeText("")} />
+      ) : (
+        <CardView style={[styles.clearButton, { borderColor: colors.text }]} />
+      )}
+    </CardView>
   );
 }
 
 const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: 4,
     gap: 8,
   },
   input: {
     flex: 1,
     padding: 10,
     fontSize: 16,
-    borderWidth: 1,
+    borderRadius: 8,
   },
   clearButton: {
-    borderWidth: 1,
     paddingVertical: 12,
     paddingHorizontal: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 8,
   },
 });

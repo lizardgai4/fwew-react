@@ -3,6 +3,7 @@ import Colors from "@/constants/Colors";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { FontAwesome } from "@expo/vector-icons";
+import { useTheme } from "@react-navigation/native";
 import {
   Platform,
   StyleSheet,
@@ -53,8 +54,7 @@ type SearchBarRightProps = {
 };
 
 function SearchBarRight({ showClear, clear }: SearchBarRightProps) {
-  const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? "light"];
+  const { colors } = useTheme();
 
   if (showClear) {
     return (
@@ -66,7 +66,7 @@ function SearchBarRight({ showClear, clear }: SearchBarRightProps) {
 
   return (
     <CardView style={styles.button}>
-      <FontAwesome name="search" size={24} color={colors.text} />
+      <FontAwesome name="search" size={24} color={colors.primary} />
     </CardView>
   );
 }

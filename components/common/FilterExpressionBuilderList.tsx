@@ -6,6 +6,7 @@ import { FilterExpressionBuilder } from "./FilterExpressionBuilder";
 import { SmallButton } from "./SmallButton";
 import { Text, View } from "./Themed";
 import i18n from "@/constants/i18n";
+import { useTheme } from "@react-navigation/native";
 
 type FilterExpressionBuilderListProps = {
   filters: FilterExpressionBuilderValue[];
@@ -19,6 +20,7 @@ export function FilterExpressionBuilderList(
   props: FilterExpressionBuilderListProps
 ) {
   const { filters, add, remove, update, disabled } = props;
+  const { colors } = useTheme();
   const { appLanguage } = useAppLanguageContext();
   const { list } = i18n[appLanguage];
 
@@ -27,7 +29,11 @@ export function FilterExpressionBuilderList(
       {filters.map((_, i) => (
         <View key={`feb_${i}`}>
           {i > 0 && <Text style={styles.label}>{list.and}</Text>}
-          <SmallButton onPress={() => remove(i)} icon="trash" />
+          <SmallButton
+            onPress={() => remove(i)}
+            icon="trash"
+            color={colors.notification}
+          />
           <FilterExpressionBuilder
             value={filters[i]}
             onChange={(value) => update(i, value)}

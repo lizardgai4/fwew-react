@@ -1,31 +1,40 @@
-import Colors from "@/constants/Colors";
 import type { FontAwesomeIconName } from "@/types/icons";
 import { FontAwesome } from "@expo/vector-icons";
-import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
+import { useTheme } from "@react-navigation/native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 
 type SmallButtonProps = {
   onPress: () => void;
   icon: FontAwesomeIconName;
+  color?: string;
+  borderColor?: string;
   disabled?: boolean;
 };
 
-export function SmallButton({ onPress, icon, disabled }: SmallButtonProps) {
-  const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? "light"];
+export function SmallButton(props: SmallButtonProps) {
+  const { onPress, icon, color, borderColor, disabled } = props;
+  const { colors } = useTheme();
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={[styles.button, { borderColor: colors.text }]}
+      style={[
+        styles.button,
+        {
+          backgroundColor: colors.card,
+          borderWidth: borderColor ? 1 : 0,
+          borderColor,
+        },
+      ]}
       disabled={disabled}
     >
-      <FontAwesome name={icon} size={24} color={colors.text} />
+      <FontAwesome name={icon} size={24} color={color ?? colors.text} />
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   button: {
-    borderWidth: 1,
+    borderRadius: 8,
     paddingVertical: 12,
     paddingHorizontal: 10,
     alignItems: "center",
