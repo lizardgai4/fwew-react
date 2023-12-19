@@ -15,13 +15,10 @@ type FilterExpressionBuilderListProps = {
   disabled: boolean;
 };
 
-export function FilterExpressionBuilderList({
-  filters,
-  add,
-  remove,
-  update,
-  disabled,
-}: FilterExpressionBuilderListProps) {
+export function FilterExpressionBuilderList(
+  props: FilterExpressionBuilderListProps
+) {
+  const { filters, add, remove, update, disabled } = props;
   const { appLanguage } = useAppLanguageContext();
   const { list } = i18n[appLanguage];
 

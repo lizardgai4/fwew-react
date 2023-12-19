@@ -11,12 +11,8 @@ type NumericTextInputProps = {
   autoFocus?: boolean;
 };
 
-export function NumericTextInput({
-  value,
-  onChangeText,
-  placeholder,
-  autoFocus,
-}: NumericTextInputProps) {
+export function NumericTextInput(props: NumericTextInputProps) {
+  const { value, onChangeText, placeholder, autoFocus } = props;
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
 

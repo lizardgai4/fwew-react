@@ -10,12 +10,8 @@ type OptionItemProps = {
   onSelect?: () => void;
 };
 
-export function OptionItem({
-  icon,
-  value,
-  selected,
-  onSelect,
-}: OptionItemProps) {
+export function OptionItem(props: OptionItemProps) {
+  const { icon, value, selected, onSelect } = props;
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
 

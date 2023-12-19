@@ -18,13 +18,8 @@ type NumberSearchBarProps = {
   clear: () => void;
 };
 
-export function NumberSearchBar({
-  mode,
-  toggleMode,
-  query,
-  search,
-  clear,
-}: NumberSearchBarProps) {
+export function NumberSearchBar(props: NumberSearchBarProps) {
+  const { mode, toggleMode, query, search, clear } = props;
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
   const appLanguageValue = useAppLanguageContext();

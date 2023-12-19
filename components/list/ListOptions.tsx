@@ -13,13 +13,8 @@ type ListOptionsProps = {
   incomplete: boolean;
 };
 
-export function ListOptions({
-  filters,
-  add,
-  remove,
-  update,
-  incomplete,
-}: ListOptionsProps) {
+export function ListOptions(props: ListOptionsProps) {
+  const { filters, add, remove, update, incomplete } = props;
   const { appLanguage } = useAppLanguageContext();
   const { list } = i18n[appLanguage];
 

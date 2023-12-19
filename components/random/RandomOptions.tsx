@@ -18,15 +18,9 @@ type RandomOptionsProps = {
   incomplete: boolean;
 };
 
-export function RandomOptions({
-  numWords,
-  updateNumWords,
-  filters,
-  add,
-  remove,
-  update,
-  incomplete,
-}: RandomOptionsProps) {
+export function RandomOptions(props: RandomOptionsProps) {
+  const { numWords, updateNumWords, filters, add, remove, update, incomplete } =
+    props;
   const { appLanguage } = useAppLanguageContext();
   const ui = i18n[appLanguage];
 

@@ -10,11 +10,8 @@ type AccordionProps = {
   initiallyOpen?: boolean;
 };
 
-export function Accordion({
-  closedContent,
-  openedContent,
-  initiallyOpen,
-}: AccordionProps) {
+export function Accordion(props: AccordionProps) {
+  const { closedContent, openedContent, initiallyOpen } = props;
   const [expanded, setExpanded] = useState(initiallyOpen ?? false);
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];

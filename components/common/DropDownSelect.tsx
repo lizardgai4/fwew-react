@@ -13,14 +13,15 @@ type DropDownSelectProps<T> = {
   onChange: (value: T) => void;
 };
 
-export function DropDownSelect<T>({
-  options,
-  value,
-  initiallyOpen,
-  renderOption,
-  keyExtractor,
-  onChange,
-}: DropDownSelectProps<T>) {
+export function DropDownSelect<T>(props: DropDownSelectProps<T>) {
+  const {
+    options,
+    value,
+    initiallyOpen,
+    renderOption,
+    keyExtractor,
+    onChange,
+  } = props;
   const [open, setOpen] = useState(initiallyOpen ?? false);
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];

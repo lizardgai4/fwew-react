@@ -10,12 +10,8 @@ export type OptionSelectProps<T extends string> = {
   col?: boolean;
 };
 
-export function OptionSelect<T extends string>({
-  items,
-  active,
-  onSelect,
-  col,
-}: OptionSelectProps<T>) {
+export function OptionSelect<T extends string>(props: OptionSelectProps<T>) {
+  const { items, active, onSelect, col } = props;
   return (
     <View style={col ? null : styles.container}>
       {items.map((option, i) => (
