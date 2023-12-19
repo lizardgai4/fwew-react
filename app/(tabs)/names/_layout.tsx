@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    padding: 10,
+    padding: 16,
     marginRight: Platform.OS === "web" ? 0 : -16,
   },
 });

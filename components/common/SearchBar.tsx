@@ -79,6 +79,7 @@ function SearchBarRight({ showClear, clear }: SearchBarRightProps) {
 const styles = StyleSheet.create({
   searchContainer: {
     flexDirection: "row",
+    alignItems: "center",
     gap: 8,
   },
   input: {
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 8,
-    paddingRight: 14,
+    marginRight: 8,
     height: Platform.OS === "web" ? null : 50,
   },
 });
