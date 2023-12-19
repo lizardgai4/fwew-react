@@ -1,5 +1,4 @@
 import { ResultCount } from "@/components/common/ResultCount";
-import { View } from "@/components/common/Themed";
 import { ListOptions } from "@/components/list/ListOptions";
 import { ListResults } from "@/components/list/ListResults";
 import { useDebounce } from "@/hooks/useDebounce";
@@ -30,39 +29,34 @@ export default function ListScreen() {
   }, [filterExpression]);
 
   return (
-    <View style={styles.container}>
-      <ScrollView
-        keyboardShouldPersistTaps="always"
-        refreshControl={
-          <RefreshControl refreshing={loading} onRefresh={getData} />
-        }
-      >
-        <ListOptions
-          filters={filters}
-          add={add}
-          remove={remove}
-          update={update}
-          incomplete={incomplete}
-        />
-        <ResultCount
-          visible={resultsVisible}
-          resultCount={results.length}
-          style={styles.resultCount}
-        />
-        <ListResults
-          loading={loading}
-          results={resultsVisible ? results : []}
-        />
-      </ScrollView>
-    </View>
+    <ScrollView
+      style={styles.container}
+      keyboardShouldPersistTaps="always"
+      refreshControl={
+        <RefreshControl refreshing={loading} onRefresh={getData} />
+      }
+    >
+      <ListOptions
+        filters={filters}
+        add={add}
+        remove={remove}
+        update={update}
+        incomplete={incomplete}
+      />
+      <ResultCount
+        visible={resultsVisible}
+        resultCount={results.length}
+        style={styles.resultCount}
+      />
+      <ListResults loading={loading} results={resultsVisible ? results : []} />
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    gap: 16,
-    margin: 16,
+    padding: 16,
   },
   resultCount: {
     padding: 16,
