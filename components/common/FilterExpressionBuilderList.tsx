@@ -1,12 +1,12 @@
+import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { FilterExpressionBuilderValue } from "@/types/list";
+import { useTheme } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
 import { Button } from "./Button";
 import { FilterExpressionBuilder } from "./FilterExpressionBuilder";
 import { SmallButton } from "./SmallButton";
 import { Text, View } from "./Themed";
-import i18n from "@/constants/i18n";
-import { useTheme } from "@react-navigation/native";
 
 type FilterExpressionBuilderListProps = {
   filters: FilterExpressionBuilderValue[];
@@ -25,9 +25,9 @@ export function FilterExpressionBuilderList(
   const { list } = i18n[appLanguage];
 
   return (
-    <>
+    <View>
       {filters.map((_, i) => (
-        <View key={`feb_${i}`}>
+        <View key={`feb_${i}`} style={styles.feb}>
           {i > 0 && <Text style={styles.label}>{list.and}</Text>}
           <SmallButton
             onPress={() => remove(i)}
@@ -41,11 +41,14 @@ export function FilterExpressionBuilderList(
         </View>
       ))}
       <Button onPress={add} icon="plus" disabled={disabled} />
-    </>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  feb: {
+    paddingBottom: 8,
+  },
   label: {
     padding: 16,
     fontWeight: "bold",

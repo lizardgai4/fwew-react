@@ -57,7 +57,7 @@ export function FilterExpressionBuilder(props: FilterExpressionBuilderProps) {
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       {/* what */}
       <DropDownSelect
         options={whatValues}
@@ -125,6 +125,10 @@ export function FilterExpressionBuilder(props: FilterExpressionBuilderProps) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    gap: 8,
+    // padding: 8,
+  },
   text: {
     padding: 10,
   },
