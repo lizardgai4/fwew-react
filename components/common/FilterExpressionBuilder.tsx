@@ -25,7 +25,8 @@ export function FilterExpressionBuilder(props: FilterExpressionBuilderProps) {
     ? list.listMenu.condValues[value.what.value]
     : [];
   const isExactPosSpec =
-    value.what?.value === "pos" && value.cond?.value === "is";
+    value.what?.value === "pos" &&
+    (value.cond?.value === "is" || value.cond?.value === "has");
   const isNumericSpec =
     value.what?.value === "words" ||
     value.what?.value === "syllables" ||
@@ -54,6 +55,21 @@ export function FilterExpressionBuilder(props: FilterExpressionBuilderProps) {
       cond: value?.cond,
       spec,
     });
+  };
+
+  const getNumericExample = () => {
+    switch (value.what?.value) {
+      case "words":
+        return "20";
+      case "syllables":
+        return "2";
+      case "stress":
+        return "1";
+      case "length":
+        return "5";
+      default:
+        return "64";
+    }
   };
 
   return (
@@ -107,7 +123,7 @@ export function FilterExpressionBuilder(props: FilterExpressionBuilderProps) {
         <NumericTextInput
           value={value.spec}
           onChangeText={setSpec}
-          placeholder={"64"}
+          placeholder={getNumericExample()}
           autoFocus
         />
       )}
