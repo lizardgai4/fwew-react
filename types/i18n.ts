@@ -1,6 +1,6 @@
 import type { ExtendedLanguageCode, OptionType } from "@/types/common";
+import type { ListMenu } from "@/types/list";
 import type { AdjectiveMode, Dialect, NameEnding, NounMode } from "fwew.js";
-import type { ListMenu } from "./list";
 
 export type SyllableCount = "0" | "1" | "2" | "3" | "4";
 

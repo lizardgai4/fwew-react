@@ -1,6 +1,8 @@
+import { AlphaTextInput } from "@/components/common/AlphaTextInput";
 import { DropDownSelect } from "@/components/common/DropDownSelect";
 import { NumericTextInput } from "@/components/common/NumericTextInput";
 import { Text, View } from "@/components/common/Themed";
+import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import type {
   FilterExpressionBuilderValue,
@@ -8,8 +10,6 @@ import type {
   ListMenuWhatItem,
 } from "@/types/list";
 import { StyleSheet } from "react-native";
-import { AlphaTextInput } from "./AlphaTextInput";
-import i18n from "@/constants/i18n";
 
 type FilterExpressionBuilderProps = {
   value: FilterExpressionBuilderValue;
