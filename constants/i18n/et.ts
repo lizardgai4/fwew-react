@@ -157,6 +157,7 @@ const strings: UITranslation = {
     alu: "Alu",
     options: "Valikud",
     numNames: "Genereeritavate nimede arv",
+    copyAll: "Kopeeri kõik",
     dialect: "Dialekt",
     dialects: [
       { name: "interdialektiline", value: "interdialect" },

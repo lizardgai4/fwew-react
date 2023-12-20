@@ -160,6 +160,7 @@ const strings: UITranslation = {
     alu: "Alu",
     options: "Opties",
     numNames: "Aantal te Genereren Namen",
+    copyAll: "Kopieer Alles",
     dialect: "Dialect",
     dialects: [
       { name: "interdialect", value: "interdialect" },

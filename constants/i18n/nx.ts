@@ -154,6 +154,7 @@ const strings: UITranslation = {
     alu: "alu",
     options: "Tìftxey",
     numNames: "Holpxay lì'uä",
+    copyAll: "Munge Fra'ut",
     dialect: "Lì'fyafnel",
     dialects: [
       { name: "melì'fyafnel", value: "interdialect" },

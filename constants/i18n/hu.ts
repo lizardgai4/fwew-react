@@ -154,6 +154,7 @@ const strings: UITranslation = {
     alu: "Alu",
     options: "Opciók",
     numNames: "Generálandó Nevek Száma",
+    copyAll: "Minden nevet másol",
     dialect: "Dialektus",
     dialects: [
       { name: "interdialect", value: "interdialect" },

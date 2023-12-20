@@ -1,7 +1,7 @@
-import { Text, View } from "@/components/common/Themed";
-import Colors from "@/constants/Colors";
+import { CardView, Text } from "@/components/common/Themed";
 import { FontAwesome } from "@expo/vector-icons";
-import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
+import { useTheme } from "@react-navigation/native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 
 type OptionItemProps = {
   icon?: React.ReactNode;
@@ -12,26 +12,27 @@ type OptionItemProps = {
 
 export function OptionItem(props: OptionItemProps) {
   const { icon, value, selected, onSelect } = props;
-  const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? "light"];
+  const { colors } = useTheme();
 
   return (
-    <TouchableOpacity
-      onPress={onSelect}
-      style={[styles.container, { borderColor: colors.text }]}
-    >
-      <View style={styles.iconContainer}>
+    <TouchableOpacity onPress={onSelect} style={styles.container}>
+      <CardView
+        style={[
+          styles.iconContainer,
+          { backgroundColor: selected ? colors.primary : colors.card },
+        ]}
+      >
         {icon}
         <Text style={styles.value}>{value}</Text>
-      </View>
-      {selected && (
-        <FontAwesome
-          name="check"
-          size={24}
-          color={colors.text}
-          style={styles.check}
-        />
-      )}
+        {selected && (
+          <FontAwesome
+            name="check"
+            size={24}
+            color={colors.text}
+            style={styles.check}
+          />
+        )}
+      </CardView>
     </TouchableOpacity>
   );
 }
@@ -41,18 +42,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    padding: 10,
-    borderWidth: 1,
   },
   iconContainer: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 16,
+    padding: 8,
   },
   value: {
     fontSize: 16,
+    padding: 8,
   },
   check: {
-    paddingHorizontal: 8,
+    paddingRight: 8,
   },
 });

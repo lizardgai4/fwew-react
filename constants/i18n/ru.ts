@@ -172,6 +172,7 @@ const strings: UITranslation = {
     alu: "Имя с alu",
     options: "Параметры",
     numNames: "Количество генерируемых имен",
+    copyAll: "Копировать все",
     dialect: "Диалект",
     dialects: [
       { name: "междудиалектный", value: "interdialect" },
