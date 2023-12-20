@@ -30,6 +30,7 @@ export function ListOptions(props: ListOptionsProps) {
             remove={remove}
             update={update}
             disabled={incomplete}
+            mode="list"
           />
         </>
       }
