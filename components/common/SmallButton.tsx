@@ -35,8 +35,8 @@ export function SmallButton(props: SmallButtonProps) {
 const styles = StyleSheet.create({
   button: {
     borderRadius: 8,
-    paddingVertical: 10,
-    paddingHorizontal: 10,
+    padding: 10,
+    paddingRight: 16,
     alignItems: "center",
     justifyContent: "center",
   },
