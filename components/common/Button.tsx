@@ -1,3 +1,4 @@
+import { Text } from "@/components/common/Themed";
 import Colors from "@/constants/Colors";
 import type { FontAwesomeIconName } from "@/types/icons";
 import { FontAwesome } from "@expo/vector-icons";
@@ -8,9 +9,10 @@ type ButtonProps = {
   onPress: () => void;
   disabled?: boolean;
   icon: FontAwesomeIconName;
+  text?: string;
 };
 
-export function Button({ onPress, disabled, icon }: ButtonProps) {
+export function Button({ onPress, disabled, icon, text }: ButtonProps) {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
   const theme = useTheme();
@@ -27,6 +29,7 @@ export function Button({ onPress, disabled, icon }: ButtonProps) {
       disabled={disabled}
     >
       <FontAwesome name={icon} size={24} color={theme.colors.text} />
+      {text && <Text>{text}</Text>}
     </TouchableOpacity>
   );
 }
