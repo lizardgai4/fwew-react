@@ -143,7 +143,6 @@ export function FilterExpressionBuilder(props: FilterExpressionBuilderProps) {
 const styles = StyleSheet.create({
   container: {
     gap: 8,
-    // padding: 8,
   },
   text: {
     padding: 10,
