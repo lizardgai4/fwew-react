@@ -1,4 +1,3 @@
-import { Button } from "@/components/common/Button";
 import { ResultCount } from "@/components/common/ResultCount";
 import { ListResults } from "@/components/list/ListResults";
 import { RandomOptions } from "@/components/random/RandomOptions";
@@ -47,6 +46,7 @@ export default function RandomScreen() {
 
   return (
     <ScrollView
+      style={styles.container}
       keyboardShouldPersistTaps="always"
       refreshControl={
         <RefreshControl refreshing={loading} onRefresh={getData} />
@@ -61,11 +61,6 @@ export default function RandomScreen() {
         update={update}
         incomplete={incomplete}
       />
-      <Button
-        onPress={getData}
-        icon="refresh"
-        disabled={!numWords || incomplete}
-      />
       <ResultCount
         visible={resultsVisible}
         resultCount={results.length}
@@ -77,6 +72,10 @@ export default function RandomScreen() {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 16,
+  },
   resultCount: {
     padding: 16,
   },

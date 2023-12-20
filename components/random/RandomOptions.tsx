@@ -1,7 +1,7 @@
 import { Accordion } from "@/components/common/Accordion";
 import { FilterExpressionBuilderList } from "@/components/common/FilterExpressionBuilderList";
 import { NumericTextInput } from "@/components/common/NumericTextInput";
-import { Text } from "@/components/common/Themed";
+import { Text, View } from "@/components/common/Themed";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import type { NumericString } from "@/types/common";
@@ -28,23 +28,22 @@ export function RandomOptions(props: RandomOptionsProps) {
     <Accordion
       closedContent={<Text>{ui.random.randomOptions}</Text>}
       openedContent={
-        <>
-          <Text style={styles.label}>{ui.random.numWords}</Text>
+        <View style={{ paddingTop: 4 }}>
           <NumericTextInput
-            placeholder={"1-100"}
+            placeholder={`${ui.random.numWords} (1-100)`}
             onChangeText={updateNumWords}
             value={numWords}
             autoFocus
           />
-          <Text style={styles.label}>{ui.random.where}</Text>
           <FilterExpressionBuilderList
             filters={filters}
             add={add}
             remove={remove}
             update={update}
             disabled={incomplete}
+            mode="random"
           />
-        </>
+        </View>
       }
     />
   );

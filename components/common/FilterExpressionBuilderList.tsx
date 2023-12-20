@@ -14,22 +14,36 @@ type FilterExpressionBuilderListProps = {
   remove: (index: number) => void;
   update: (index: number, expression: FilterExpressionBuilderValue) => void;
   disabled: boolean;
+  mode?: "list" | "random";
 };
 
 export function FilterExpressionBuilderList(
   props: FilterExpressionBuilderListProps
 ) {
-  const { filters, add, remove, update, disabled } = props;
+  const { filters, add, remove, update, disabled, mode = "list" } = props;
   const { colors } = useTheme();
   const { appLanguage } = useAppLanguageContext();
-  const { list } = i18n[appLanguage];
+  const { list, random } = i18n[appLanguage];
+
+  const getHeaderText = () => {
+    switch (mode) {
+      case "list":
+        return "";
+      case "random":
+        return random.where;
+      default:
+        return "";
+    }
+  };
 
   return (
     <CardView>
       {filters.map((_, i) => (
         <View key={`feb_${i}`} style={styles.feb}>
           <View style={styles.febHeader}>
-            <Text style={styles.label}>{i > 0 ? list.and : ""}</Text>
+            <Text style={styles.label}>
+              {i > 0 ? list.and : getHeaderText()}
+            </Text>
             <SmallButton
               onPress={() => remove(i)}
               icon="trash"
