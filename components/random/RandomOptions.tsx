@@ -6,7 +6,6 @@ import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import type { NumericString } from "@/types/common";
 import type { FilterExpressionBuilderValue } from "@/types/list";
-import { StyleSheet } from "react-native";
 
 type RandomOptionsProps = {
   numWords: NumericString;
@@ -48,10 +47,3 @@ export function RandomOptions(props: RandomOptionsProps) {
     />
   );
 }
-
-const styles = StyleSheet.create({
-  label: {
-    padding: 16,
-    fontWeight: "bold",
-  },
-});
