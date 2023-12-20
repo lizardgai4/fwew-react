@@ -1,4 +1,5 @@
-import { Text, View } from "@/components/common/Themed";
+import { ItalicText } from "@/components/common/StyledText";
+import { CardView, Text, View } from "@/components/common/Themed";
 import Colors from "@/constants/Colors";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
@@ -13,23 +14,23 @@ export default function NamesScreen() {
 
   return (
     <View style={styles.container}>
-      <Link
-        style={[styles.link, { borderColor: colors.text }]}
-        href="/(tabs)/names/name-single"
-      >
-        <Text style={styles.linkText}>{names.single}</Text>
+      <Link href="/(tabs)/names/name-single">
+        <CardView style={styles.card}>
+          <Text style={styles.text}>{names.single}</Text>
+          <ItalicText>Neytiri</ItalicText>
+        </CardView>
       </Link>
-      <Link
-        style={[styles.link, { borderColor: colors.text }]}
-        href="/(tabs)/names/name-full"
-      >
-        <Text style={styles.linkText}>{names.full}</Text>
+      <Link href="/(tabs)/names/name-full">
+        <CardView style={styles.card}>
+          <Text style={styles.text}>{names.full}</Text>
+          <ItalicText>Neytiri te Tskaha Mo'at'ite</ItalicText>
+        </CardView>
       </Link>
-      <Link
-        style={[styles.link, { borderColor: colors.text }]}
-        href="/(tabs)/names/name-alu"
-      >
-        <Text style={styles.linkText}>{names.alu}</Text>
+      <Link href="/(tabs)/names/name-alu">
+        <CardView style={styles.card}>
+          <Text style={styles.text}>{names.alu}</Text>
+          <ItalicText>Neytiri alu Taronyu Teyluä</ItalicText>
+        </CardView>
       </Link>
     </View>
   );
@@ -42,14 +43,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 32,
   },
-  link: {
-    borderWidth: 1,
-    borderColor: "white",
-    padding: 16,
-    width: 128,
+  card: {
+    padding: 32,
+    width: 256,
+    height: 128,
+    borderRadius: 8,
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 16,
   },
-  linkText: {
-    flex: 1,
-    fontSize: 16,
+  text: {
+    fontSize: 24,
   },
 });

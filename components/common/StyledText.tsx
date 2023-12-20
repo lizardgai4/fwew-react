@@ -9,6 +9,10 @@ export function BoldText(props: TextProps) {
   return <Text {...props} style={[props.style, { fontWeight: "bold" }]} />;
 }
 
+export function ItalicText(props: TextProps) {
+  return <Text {...props} style={[props.style, { fontStyle: "italic" }]} />;
+}
+
 export function UnderlinedText(props: TextProps) {
   return (
     <Text
