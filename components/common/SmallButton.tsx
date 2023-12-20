@@ -35,12 +35,9 @@ export function SmallButton(props: SmallButtonProps) {
 const styles = StyleSheet.create({
   button: {
     borderRadius: 8,
-    paddingVertical: 12,
+    paddingVertical: 10,
     paddingHorizontal: 10,
     alignItems: "center",
-    alignSelf: "flex-end",
     justifyContent: "center",
-    flexDirection: "row",
-    gap: 8,
   },
 });

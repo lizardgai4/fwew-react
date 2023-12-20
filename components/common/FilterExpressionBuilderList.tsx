@@ -6,7 +6,7 @@ import { StyleSheet } from "react-native";
 import { Button } from "./Button";
 import { FilterExpressionBuilder } from "./FilterExpressionBuilder";
 import { SmallButton } from "./SmallButton";
-import { Text, View } from "./Themed";
+import { CardView, Text, View } from "./Themed";
 
 type FilterExpressionBuilderListProps = {
   filters: FilterExpressionBuilderValue[];
@@ -25,29 +25,36 @@ export function FilterExpressionBuilderList(
   const { list } = i18n[appLanguage];
 
   return (
-    <View>
+    <CardView>
       {filters.map((_, i) => (
         <View key={`feb_${i}`} style={styles.feb}>
-          {i > 0 && <Text style={styles.label}>{list.and}</Text>}
-          <SmallButton
-            onPress={() => remove(i)}
-            icon="trash"
-            color={colors.notification}
-          />
+          <View style={styles.febHeader}>
+            <Text style={styles.label}>{i > 0 ? list.and : ""}</Text>
+            <SmallButton
+              onPress={() => remove(i)}
+              icon="trash"
+              color={colors.notification}
+            />
+          </View>
           <FilterExpressionBuilder
             value={filters[i]}
             onChange={(value) => update(i, value)}
           />
         </View>
       ))}
-      <Button onPress={add} icon="plus" disabled={disabled} />
-    </View>
+      <View style={{ paddingTop: 10 }}>
+        <Button onPress={add} icon="plus" disabled={disabled} />
+      </View>
+    </CardView>
   );
 }
 
 const styles = StyleSheet.create({
-  feb: {
-    paddingBottom: 8,
+  feb: {},
+  febHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   label: {
     padding: 16,
