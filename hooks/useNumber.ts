@@ -27,8 +27,18 @@ export function useNumber() {
       setResult(null);
       return;
     }
-    if (/^([0-9]+)$/.test(query)) {
-      const data = await numberToNavi(+query);
+    let n;
+    if (/^(0[xX][0-9a-fA-F]+)$/.test(query)) {
+      n = parseInt(query, 16);
+    } else if (/^(0[bB][01]+)$/.test(query)) {
+      n = parseInt(query.slice(2), 2);
+    } else if (/^(0[0-7]+)$/.test(query)) {
+      n = parseInt(query, 8);
+    } else if (/^([0-9]+)$/.test(query)) {
+      n = parseInt(query, 10);
+    }
+    if (n) {
+      const data = await numberToNavi(n);
       setResult(data);
       return;
     }
