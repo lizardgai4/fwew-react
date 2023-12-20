@@ -1,7 +1,7 @@
+import { ExternalLink } from "@/components/common/ExternalLink";
+import { MonoText } from "@/components/common/StyledText";
 import Colors from "@/constants/Colors";
 import { StyleSheet, useColorScheme } from "react-native";
-import { ExternalLink } from "../common/ExternalLink";
-import { MonoText } from "../common/StyledText";
 
 type GitDetailsProps = {
   branch?: string;
