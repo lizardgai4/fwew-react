@@ -39,7 +39,7 @@ export function FilterExpressionBuilderList(
   return (
     <CardView>
       {filters.map((_, i) => (
-        <View key={`feb_${i}`} style={styles.feb}>
+        <View key={`feb_${i}`}>
           <View style={styles.febHeader}>
             <Text style={styles.label}>
               {i > 0 ? list.and : getHeaderText()}
@@ -64,7 +64,6 @@ export function FilterExpressionBuilderList(
 }
 
 const styles = StyleSheet.create({
-  feb: {},
   febHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
