@@ -1,9 +1,9 @@
 import { ResultCard } from "@/components/common/ResultCard";
+import { Text, View } from "@/components/common/Themed";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import type { Word } from "fwew.js";
 import { ActivityIndicator, Platform, StyleSheet } from "react-native";
-import { Text, View } from "../common/Themed";
 
 type FwewSearchResultsProps = {
   loading?: boolean;

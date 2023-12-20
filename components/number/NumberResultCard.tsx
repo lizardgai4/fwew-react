@@ -1,11 +1,10 @@
+import { MonoText } from "@/components/common/StyledText";
 import { CardView, Text, View } from "@/components/common/Themed";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import type { FwewError, FwewNumber } from "fwew.js";
-import { StyleSheet } from "react-native";
-import { MonoText } from "../common/StyledText";
-import { NumericString } from "@/types/common";
 import { Fragment } from "react";
+import { StyleSheet } from "react-native";
 
 type NumberResultCardProps = {
   result: FwewNumber | FwewError | null;

@@ -1,14 +1,11 @@
 import { ItalicText } from "@/components/common/StyledText";
 import { CardView, Text, View } from "@/components/common/Themed";
-import Colors from "@/constants/Colors";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { Link } from "expo-router";
-import { StyleSheet, useColorScheme } from "react-native";
+import { StyleSheet } from "react-native";
 
 export default function NamesScreen() {
-  const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? "light"];
   const { appLanguage } = useAppLanguageContext();
   const { names } = i18n[appLanguage];
 
