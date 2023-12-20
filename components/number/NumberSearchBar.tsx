@@ -1,14 +1,9 @@
+import { SmallButton } from "@/components/common/SmallButton";
 import { TextInput, View } from "@/components/common/Themed";
 import Colors from "@/constants/Colors";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
-import { FontAwesome } from "@expo/vector-icons";
-import {
-  Platform,
-  StyleSheet,
-  TouchableOpacity,
-  useColorScheme,
-} from "react-native";
+import { Platform, StyleSheet, useColorScheme } from "react-native";
 
 type NumberSearchBarProps = {
   mode: string;
@@ -38,24 +33,14 @@ export function NumberSearchBar(props: NumberSearchBarProps) {
         }
         placeholderTextColor={colors.placeholder}
         keyboardType={mode === "number" ? "number-pad" : "default"}
-        style={[styles.input, { borderColor: colors.text }]}
+        style={styles.input}
         autoCapitalize="none"
         autoCorrect={false}
         clearButtonMode="never"
         autoFocus
       />
-      <TouchableOpacity
-        onPress={clear}
-        style={[styles.button, { borderColor: colors.text }]}
-      >
-        <FontAwesome name="close" size={24} color={colors.text} />
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={toggleMode}
-        style={[styles.button, { borderColor: colors.text }]}
-      >
-        <FontAwesome name="exchange" size={24} color={colors.text} />
-      </TouchableOpacity>
+      <SmallButton icon="close" onPress={clear} />
+      <SmallButton icon="exchange" onPress={toggleMode} />
     </View>
   );
 }
@@ -67,8 +52,9 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    borderWidth: 1,
-    padding: 10,
+    padding: 14,
+    fontSize: 16,
+    borderRadius: 8,
   },
   button: {
     alignItems: "center",
