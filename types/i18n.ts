@@ -69,6 +69,7 @@ export type NamesStrings = {
   alu: string;
   options: string;
   numNames: string;
+  copyAll: string;
   dialect: string;
   dialects: OptionType<Dialect>[];
   syllablesOptions: OptionType<SyllableCount>[];
