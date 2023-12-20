@@ -21,4 +21,4 @@ build-prod-remote:
 	eas build -p android -e production
 
 run:
-	npm run start
+	npm run start -- --clear --tunnel
