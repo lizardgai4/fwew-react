@@ -1,7 +1,7 @@
+import { SmallButton } from "@/components/common/SmallButton";
 import { CardView, TextInput } from "@/components/common/Themed";
 import Colors from "@/constants/Colors";
 import { StyleSheet, useColorScheme } from "react-native";
-import { SmallButton } from "./SmallButton";
 
 type AlphaTextInputProps = {
   value?: string | `${number}` | undefined;

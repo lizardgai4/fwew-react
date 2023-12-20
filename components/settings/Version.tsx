@@ -1,10 +1,10 @@
 import { MonoText } from "@/components/common/StyledText";
 import { Text, View } from "@/components/common/Themed";
+import { GitDetails } from "@/components/settings/GitDetails";
+import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useVersion } from "@/hooks/useVersion";
 import { StyleSheet } from "react-native";
-import { GitDetails } from "./GitDetails";
-import i18n from "@/constants/i18n";
 
 export function Version() {
   const version = useVersion();

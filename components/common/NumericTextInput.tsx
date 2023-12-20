@@ -1,8 +1,8 @@
+import { SmallButton } from "@/components/common/SmallButton";
 import { CardView, TextInput } from "@/components/common/Themed";
 import Colors from "@/constants/Colors";
 import type { NumericString } from "@/types/common";
 import { StyleSheet, useColorScheme } from "react-native";
-import { SmallButton } from "./SmallButton";
 
 type NumericTextInputProps = {
   value?: string | NumericString;
