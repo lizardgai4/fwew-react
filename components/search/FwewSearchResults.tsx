@@ -45,7 +45,7 @@ export function FwewSearchResults(props: FwewSearchResultsProps) {
 const styles = StyleSheet.create({
   outerContainer: {
     gap: 16,
-    paddingBottom: 16,
+    paddingBottom: 32,
   },
   innerContainer: {
     gap: 8,
