@@ -28,8 +28,8 @@ export function Button({ onPress, disabled, icon, text }: ButtonProps) {
       ]}
       disabled={disabled}
     >
-      <FontAwesome name={icon} size={24} color={theme.colors.text} />
-      {text && <Text>{text}</Text>}
+      <FontAwesome name={icon} size={24} color={Colors.dark.text} />
+      {text && <Text style={{ color: Colors.dark.text }}>{text}</Text>}
     </TouchableOpacity>
   );
 }
