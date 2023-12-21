@@ -5,6 +5,7 @@ import { useDebounce } from "@/hooks/useDebounce";
 import { useFilterExpression } from "@/hooks/useFilterExpression";
 import { useRandom } from "@/hooks/useRandom";
 import { NumericString } from "@/types/common";
+import { useTheme } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import { RefreshControl, ScrollView, StyleSheet } from "react-native";
 
@@ -14,6 +15,7 @@ export default function RandomScreen() {
     useFilterExpression();
   const { loading, results, execute } = useRandom();
   const debounce = useDebounce();
+  const { colors } = useTheme();
   const resultsVisible = numWords.length > 0 && results.length > 0;
 
   const updateNumWords = (num: NumericString) => {
@@ -49,7 +51,11 @@ export default function RandomScreen() {
       style={styles.container}
       keyboardShouldPersistTaps="always"
       refreshControl={
-        <RefreshControl refreshing={loading} onRefresh={getData} />
+        <RefreshControl
+          refreshing={loading}
+          onRefresh={getData}
+          colors={[colors.primary]}
+        />
       }
     >
       <RandomOptions

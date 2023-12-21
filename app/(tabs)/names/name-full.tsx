@@ -7,6 +7,7 @@ import Colors from "@/constants/Colors";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useNameFull } from "@/hooks/useNameFull";
+import { useTheme } from "@react-navigation/native";
 import {
   RefreshControl,
   ScrollView,
@@ -15,6 +16,7 @@ import {
 } from "react-native";
 
 export default function NameFullScreen() {
+  const theme = useTheme();
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
   const {
@@ -44,7 +46,11 @@ export default function NameFullScreen() {
     <ScrollView
       keyboardShouldPersistTaps="always"
       refreshControl={
-        <RefreshControl refreshing={loading} onRefresh={execute} />
+        <RefreshControl
+          refreshing={loading}
+          onRefresh={execute}
+          colors={[theme.colors.primary]}
+        />
       }
     >
       <Accordion

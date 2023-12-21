@@ -5,6 +5,7 @@ import { FwewSearchResults } from "@/components/search/FwewSearchResults";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useFwew } from "@/hooks/useFwew";
+import { useTheme } from "@react-navigation/native";
 import { RefreshControl, ScrollView, StyleSheet } from "react-native";
 
 export default function SearchScreen() {
@@ -18,6 +19,7 @@ export default function SearchScreen() {
     setNaviOnly,
     execute,
   } = useFwew();
+  const { colors } = useTheme();
   const { appLanguage } = useAppLanguageContext();
   const ui = i18n[appLanguage].search;
 
@@ -26,7 +28,11 @@ export default function SearchScreen() {
       style={styles.container}
       keyboardShouldPersistTaps="always"
       refreshControl={
-        <RefreshControl refreshing={loading} onRefresh={execute} />
+        <RefreshControl
+          refreshing={loading}
+          onRefresh={execute}
+          colors={[colors.primary]}
+        />
       }
     >
       <SearchBar query={query} search={search} autoFocus />

@@ -47,7 +47,11 @@ export default function NameSingleScreen() {
       style={styles.container}
       keyboardShouldPersistTaps="always"
       refreshControl={
-        <RefreshControl refreshing={loading} onRefresh={execute} />
+        <RefreshControl
+          refreshing={loading}
+          onRefresh={execute}
+          colors={[colors.primary]}
+        />
       }
     >
       <Accordion
