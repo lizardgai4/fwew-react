@@ -27,6 +27,7 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         headerStyle: { backgroundColor: theme.colors.primary },
+        headerTintColor: Colors.dark.text,
         tabBarActiveTintColor: theme.dark ? undefined : theme.colors.primary,
         tabBarInactiveTintColor: colors.placeholder,
       }}
@@ -43,7 +44,7 @@ export default function TabLayout() {
                   <FontAwesome
                     name="gear"
                     size={25}
-                    color={theme.colors.text}
+                    color={Colors.dark.text}
                     style={{ opacity: pressed ? 0.5 : 1 }}
                   />
                 )}
@@ -66,7 +67,7 @@ export default function TabLayout() {
                   <FontAwesome
                     name="gear"
                     size={25}
-                    color={theme.colors.text}
+                    color={Colors.dark.text}
                     style={{ opacity: pressed ? 0.5 : 1 }}
                   />
                 )}
@@ -87,7 +88,7 @@ export default function TabLayout() {
                   <FontAwesome
                     name="gear"
                     size={25}
-                    color={theme.colors.text}
+                    color={Colors.dark.text}
                     style={{ opacity: pressed ? 0.5 : 1 }}
                   />
                 )}
@@ -110,7 +111,7 @@ export default function TabLayout() {
                   <FontAwesome
                     name="gear"
                     size={25}
-                    color={theme.colors.text}
+                    color={Colors.dark.text}
                     style={{ opacity: pressed ? 0.5 : 1 }}
                   />
                 )}

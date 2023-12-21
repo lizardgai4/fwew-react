@@ -17,6 +17,7 @@ export default function StackLayout() {
     <Stack
       screenOptions={{
         headerStyle: { backgroundColor: theme.colors.primary },
+        headerTintColor: Colors.dark.text,
       }}
     >
       <Stack.Screen
@@ -30,7 +31,7 @@ export default function StackLayout() {
                   <FontAwesome
                     name="gear"
                     size={25}
-                    color={colors.text}
+                    color={Colors.dark.text}
                     style={{ opacity: pressed ? 0.5 : 1 }}
                   />
                 )}
@@ -50,7 +51,7 @@ export default function StackLayout() {
                   <FontAwesome
                     name="gear"
                     size={25}
-                    color={colors.text}
+                    color={Colors.dark.text}
                     style={{ opacity: pressed ? 0.5 : 1 }}
                   />
                 )}
@@ -70,7 +71,7 @@ export default function StackLayout() {
                   <FontAwesome
                     name="gear"
                     size={25}
-                    color={colors.text}
+                    color={Colors.dark.text}
                     style={{ opacity: pressed ? 0.5 : 1 }}
                   />
                 )}
@@ -90,7 +91,7 @@ export default function StackLayout() {
                   <FontAwesome
                     name="gear"
                     size={25}
-                    color={colors.text}
+                    color={Colors.dark.text}
                     style={{ opacity: pressed ? 0.5 : 1 }}
                   />
                 )}
