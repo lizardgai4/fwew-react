@@ -4,6 +4,7 @@ import { ListResults } from "@/components/list/ListResults";
 import { useDebounce } from "@/hooks/useDebounce";
 import { useFilterExpression } from "@/hooks/useFilterExpression";
 import { useList } from "@/hooks/useList";
+import { useTheme } from "@react-navigation/native";
 import { useEffect } from "react";
 import { RefreshControl, ScrollView, StyleSheet } from "react-native";
 
@@ -12,6 +13,7 @@ export default function ListScreen() {
     useFilterExpression();
   const { loading, results, execute } = useList();
   const debounce = useDebounce();
+  const { colors } = useTheme();
   const resultsVisible = filterExpression.length > 0 && results.length > 0;
 
   const getData = async () => {
@@ -33,7 +35,11 @@ export default function ListScreen() {
       style={styles.container}
       keyboardShouldPersistTaps="always"
       refreshControl={
-        <RefreshControl refreshing={loading} onRefresh={getData} />
+        <RefreshControl
+          refreshing={loading}
+          onRefresh={getData}
+          colors={[colors.primary]}
+        />
       }
     >
       <ListOptions

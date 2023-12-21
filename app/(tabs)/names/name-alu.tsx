@@ -6,6 +6,7 @@ import { Text, View } from "@/components/common/Themed";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useNameAlu } from "@/hooks/useNameAlu";
+import { useTheme } from "@react-navigation/native";
 import { RefreshControl, ScrollView, StyleSheet } from "react-native";
 
 export default function NameAluScreen() {
@@ -24,6 +25,7 @@ export default function NameAluScreen() {
     loading,
     execute,
   } = useNameAlu();
+  const { colors } = useTheme();
   const { appLanguage } = useAppLanguageContext();
   const { names: uiNames, nameAlu: uiNameAlu } = i18n[appLanguage];
 
@@ -34,7 +36,11 @@ export default function NameAluScreen() {
     <ScrollView
       keyboardShouldPersistTaps="always"
       refreshControl={
-        <RefreshControl refreshing={loading} onRefresh={execute} />
+        <RefreshControl
+          refreshing={loading}
+          onRefresh={execute}
+          colors={[colors.primary]}
+        />
       }
     >
       <Accordion
