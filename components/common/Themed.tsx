@@ -75,6 +75,8 @@ export function TextInput(props: TextInputProps) {
   return (
     <DefaultTextInput
       style={[{ backgroundColor: colors.card, color: colors.text }, style]}
+      selectionColor={colors.primary}
+      cursorColor={colors.primary}
       {...otherProps}
     />
   );
