@@ -2,9 +2,10 @@ import { Accordion } from "@/components/common/Accordion";
 import { ResultInfo } from "@/components/common/ResultInfo";
 import { MonoText } from "@/components/common/StyledText";
 import { Text } from "@/components/common/Themed";
+import Colors from "@/constants/Colors";
 import { useResultsLanguage } from "@/hooks/useResultsLanguage";
 import type { LanguageCode, Word } from "fwew.js";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, useColorScheme } from "react-native";
 
 type ResultCardProps = {
   word: Word;
@@ -12,6 +13,8 @@ type ResultCardProps = {
 
 export function ResultCard({ word }: ResultCardProps) {
   const { resultsLanguage } = useResultsLanguage();
+  const colorScheme = useColorScheme();
+  const colors = Colors[colorScheme ?? "light"];
   const local = word[resultsLanguage.toUpperCase() as Uppercase<LanguageCode>];
 
   return (
@@ -19,7 +22,9 @@ export function ResultCard({ word }: ResultCardProps) {
       closedContent={
         <View style={styles.closedContainer}>
           <Text style={styles.navi}>{word.Navi}</Text>
-          <View style={styles.posContainer}>
+          <View
+            style={[styles.posContainer, { backgroundColor: colors.innerCard }]}
+          >
             <MonoText style={styles.pos}>{word.PartOfSpeech}</MonoText>
           </View>
           <Text style={styles.local} numberOfLines={1}>
@@ -42,7 +47,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   posContainer: {
-    backgroundColor: "#2d3133",
     padding: 4,
     borderRadius: 4,
   },
