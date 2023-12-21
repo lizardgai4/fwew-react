@@ -54,19 +54,21 @@ type SearchBarRightProps = {
 };
 
 function SearchBarRight({ showClear, clear }: SearchBarRightProps) {
-  const { colors } = useTheme();
+  const theme = useTheme();
+  const colorScheme = useColorScheme();
+  const colors = Colors[colorScheme ?? "light"];
 
   if (showClear) {
     return (
       <TouchableOpacity style={styles.button} onPress={clear}>
-        <FontAwesome name="close" size={24} color={colors.text} />
+        <FontAwesome name="close" size={24} color={theme.colors.text} />
       </TouchableOpacity>
     );
   }
 
   return (
     <CardView style={styles.button}>
-      <FontAwesome name="search" size={24} color={colors.text} />
+      <FontAwesome name="search" size={24} color={colors.placeholder} />
     </CardView>
   );
 }
