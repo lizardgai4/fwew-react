@@ -42,7 +42,7 @@ export default function TabLayout() {
                   <FontAwesome
                     name="gear"
                     size={25}
-                    color={colors.text}
+                    color={theme.colors.text}
                     style={{ opacity: pressed ? 0.5 : 1 }}
                   />
                 )}
@@ -65,7 +65,7 @@ export default function TabLayout() {
                   <FontAwesome
                     name="gear"
                     size={25}
-                    color={colors.text}
+                    color={theme.colors.text}
                     style={{ opacity: pressed ? 0.5 : 1 }}
                   />
                 )}
@@ -86,7 +86,7 @@ export default function TabLayout() {
                   <FontAwesome
                     name="gear"
                     size={25}
-                    color={colors.text}
+                    color={theme.colors.text}
                     style={{ opacity: pressed ? 0.5 : 1 }}
                   />
                 )}
@@ -109,7 +109,7 @@ export default function TabLayout() {
                   <FontAwesome
                     name="gear"
                     size={25}
-                    color={colors.text}
+                    color={theme.colors.text}
                     style={{ opacity: pressed ? 0.5 : 1 }}
                   />
                 )}
