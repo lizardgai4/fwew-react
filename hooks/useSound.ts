@@ -4,12 +4,19 @@ import { useEffect, useState } from "react";
 
 export function useSound() {
   const [sound, setSound] = useState(new Audio.Sound());
+  const [disabled, setDisabled] = useState(false);
 
   const playSound = async (wordId: string): Promise<void> => {
     const audioUrl = `${AudioResources.URL}/${wordId}.mp3`;
-    const { sound } = await Audio.Sound.createAsync({ uri: audioUrl });
-    setSound(sound);
-    await sound.playAsync();
+    try {
+      const { sound } = await Audio.Sound.createAsync({ uri: audioUrl });
+      setSound(sound);
+      setDisabled(false);
+      await sound.playAsync();
+    } catch (error) {
+      console.error(error);
+      setDisabled(true);
+    }
   };
 
   useEffect(() => {
@@ -20,5 +27,5 @@ export function useSound() {
       : undefined;
   }, [sound]);
 
-  return { playSound };
+  return { playSound, disabled };
 }
