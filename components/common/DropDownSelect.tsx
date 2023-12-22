@@ -1,4 +1,4 @@
-import { CardView, View } from "@/components/common/Themed";
+import { CardView } from "@/components/common/Themed";
 import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 import { useState } from "react";
