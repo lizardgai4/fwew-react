@@ -1,5 +1,5 @@
 import { MonoText } from "@/components/common/StyledText";
-import { Text, View } from "@/components/common/Themed";
+import { CardView, Text } from "@/components/common/Themed";
 import { GitDetails } from "@/components/settings/GitDetails";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
@@ -14,14 +14,14 @@ export function Version() {
   return (
     <>
       <Text style={styles.label}>{ui.settings.version}</Text>
-      <View style={styles.versionContainer}>
-        <View>
+      <CardView style={styles.versionContainer}>
+        <CardView>
           <MonoText style={styles.text}>fwew-react</MonoText>
           <MonoText style={styles.text}>fwew-api </MonoText>
           <MonoText style={styles.text}>fwew-lib</MonoText>
           <MonoText style={styles.text}>dictionary</MonoText>
-        </View>
-        <View>
+        </CardView>
+        <CardView>
           <MonoText style={styles.text}>
             {version.AppVersion}{" "}
             <GitDetails
@@ -32,8 +32,8 @@ export function Version() {
           <MonoText style={styles.text}>{version.APIVersion}</MonoText>
           <MonoText style={styles.text}>{version.FwewVersion}</MonoText>
           <MonoText style={styles.text}>{version.DictVersion}</MonoText>
-        </View>
-      </View>
+        </CardView>
+      </CardView>
     </>
   );
 }

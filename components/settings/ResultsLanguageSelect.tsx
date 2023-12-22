@@ -1,6 +1,6 @@
 import { Accordion } from "@/components/common/Accordion";
 import { OptionItem } from "@/components/common/OptionItem";
-import { Text, View } from "@/components/common/Themed";
+import { CardView, Text } from "@/components/common/Themed";
 import { FlagMap } from "@/components/settings/Flags";
 import { ResultsLanguages } from "@/constants/Language";
 import i18n from "@/constants/i18n";
@@ -16,10 +16,10 @@ export function ResultsLanguageSelect() {
   return (
     <Accordion
       closedContent={
-        <View style={styles.iconContainer}>
+        <CardView style={styles.iconContainer}>
           {FlagMap[resultsLanguage]}
           <Text style={styles.value}>{ui.settings.resultsLanguage}</Text>
-        </View>
+        </CardView>
       }
       openedContent={
         <>

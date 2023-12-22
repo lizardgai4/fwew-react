@@ -22,7 +22,7 @@ export function OptionItem(props: OptionItemProps) {
   };
 
   return (
-    <TouchableOpacity onPress={onSelect} style={styles.container}>
+    <TouchableOpacity onPress={onSelect}>
       <CardView
         style={[
           styles.iconContainer,
@@ -49,11 +49,6 @@ export function OptionItem(props: OptionItemProps) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
   iconContainer: {
     flexDirection: "row",
     alignItems: "center",

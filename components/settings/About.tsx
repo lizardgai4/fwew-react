@@ -1,5 +1,5 @@
 import { Accordion } from "@/components/common/Accordion";
-import { Text, View } from "@/components/common/Themed";
+import { CardView, Text } from "@/components/common/Themed";
 import { Credits } from "@/components/settings/Credits";
 import { Version } from "@/components/settings/Version";
 import i18n from "@/constants/i18n";
@@ -12,15 +12,15 @@ export function About() {
   return (
     <Accordion
       closedContent={
-        <View style={styles.iconContainer}>
+        <CardView style={styles.iconContainer}>
           <Text style={styles.value}>{ui.settings.about}</Text>
-        </View>
+        </CardView>
       }
       openedContent={
-        <View style={styles.expanded}>
+        <CardView style={styles.expanded}>
           <Version />
           <Credits />
-        </View>
+        </CardView>
       }
     />
   );
