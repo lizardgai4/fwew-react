@@ -2,7 +2,7 @@ import { Button } from "@/components/common/Button";
 import { BoldText, UnderlinedText } from "@/components/common/StyledText";
 import { CardView, Text } from "@/components/common/Themed";
 import Colors from "@/constants/Colors";
-import { LenitingAdpositions, LenitingPrefixes } from "@/constants/Morphology";
+import { LenitingAdpositions, LenitingPrefixes } from "@/constants/Lenition";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useResultsLanguage } from "@/hooks/useResultsLanguage";
