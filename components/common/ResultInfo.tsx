@@ -1,13 +1,19 @@
 import { Button } from "@/components/common/Button";
-import { BoldText, UnderlinedText } from "@/components/common/StyledText";
+import {
+  BoldText,
+  ItalicText,
+  UnderlinedText,
+} from "@/components/common/StyledText";
 import { CardView, Text } from "@/components/common/Themed";
+import { Affixes } from "@/constants/Affixes";
 import Colors from "@/constants/Colors";
-import { LenitingAdpositions, LenitingPrefixes } from "@/constants/Lenition";
+import { LenitingAdpositions } from "@/constants/Lenition";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useResultsLanguage } from "@/hooks/useResultsLanguage";
 import { useSound } from "@/hooks/useSound";
-import type { LanguageCode, Word } from "fwew.js";
+import { fwewSimple, type LanguageCode, type Word } from "fwew.js";
+import { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import Autolink from "react-native-autolink";
 
@@ -21,26 +27,6 @@ export function ResultInfo({ word }: ResultInfoProps) {
   const local = word[resultsLanguage.toUpperCase() as Uppercase<LanguageCode>];
   const { appLanguage } = useAppLanguageContext();
   const ui = i18n[appLanguage];
-
-  const formatPrefixes = (prefixes: string[]) => {
-    return prefixes
-      .map((prefix) =>
-        LenitingPrefixes.includes(prefix) ? `${prefix}+` : `${prefix}-`
-      )
-      .join(", ");
-  };
-
-  const formatSuffixes = (suffixes: string[]) => {
-    return suffixes
-      .map((suffix) =>
-        LenitingAdpositions.includes(suffix) ? `-${suffix}+` : `-${suffix}`
-      )
-      .join(", ");
-  };
-
-  const formatInfixes = (infixes: string[]) => {
-    return infixes.map((infix) => `<${infix}>`).join(", ");
-  };
 
   return (
     <CardView style={styles.container}>
@@ -70,21 +56,24 @@ export function ResultInfo({ word }: ResultInfoProps) {
         </>
       )}
       {word.Affixes.Prefix && (
-        <DetailItem
+        <AffixDetail
           label={ui.search.prefixes}
-          value={formatPrefixes(word.Affixes.Prefix)}
+          value={word.Affixes.Prefix}
+          type="prefix"
         />
       )}
       {word.Affixes.Infix && (
-        <DetailItem
+        <AffixDetail
           label={ui.search.infixes}
-          value={formatInfixes(word.Affixes.Infix)}
+          value={word.Affixes.Infix}
+          type="infix"
         />
       )}
       {word.Affixes.Suffix && (
-        <DetailItem
+        <AffixDetail
           label={ui.search.suffixes}
-          value={formatSuffixes(word.Affixes.Suffix)}
+          value={word.Affixes.Suffix}
+          type="suffix"
         />
       )}
       {word.Affixes.Lenition && (
@@ -102,6 +91,81 @@ export function ResultInfo({ word }: ResultInfoProps) {
       <DetailItem link label={ui.search.source} value={word.Source} />
     </CardView>
   );
+}
+
+type AffixDetailProps = {
+  label: string;
+  value: string[];
+  type: "prefix" | "infix" | "suffix";
+};
+
+function AffixDetail({ label, value, type }: AffixDetailProps) {
+  if (value.length === 0) return null;
+
+  const affixes = value.map((v) => Affixes[type][v]);
+
+  return (
+    <CardView>
+      <BoldText style={styles.label}>{label}:</BoldText>
+      {affixes.map((affix, i) => {
+        if (affix?.navi) {
+          return (
+            <CardView
+              key={`rip_a_${i}`}
+              style={{ flexDirection: "row", flexWrap: "wrap" }}
+            >
+              <Text style={styles.value}>
+                <BoldText>{affix.navi}</BoldText>{" "}
+                <ItalicText>{affix.display}</ItalicText> (
+                {affix.productive ? "" : "not "}
+                productive{affix.productive ? ` for ${affix.for}` : ""})
+              </Text>
+            </CardView>
+          );
+        }
+        return (
+          <CardView
+            key={`rip_a_${i}`}
+            style={{ flexDirection: "row", flexWrap: "wrap" }}
+          >
+            <Text style={styles.value}>
+              <BoldText>
+                -{value[i]}
+                {LenitingAdpositions.includes(value[i]) ? "+" : ""}
+              </BoldText>{" "}
+              <AdpositionDisplay adposition={value[i]} /> (productive for nouns)
+            </Text>
+          </CardView>
+        );
+      })}
+    </CardView>
+  );
+}
+
+function AdpositionDisplay({ adposition }: { adposition: string }) {
+  const { resultsLanguage } = useResultsLanguage();
+  const languageCode = resultsLanguage.toUpperCase() as Uppercase<LanguageCode>;
+  const [display, setDisplay] = useState<string>();
+
+  const getWord = async () => {
+    const results = await fwewSimple(adposition);
+    if (
+      !results ||
+      results.length === 0 ||
+      !results[0] ||
+      results[0].length === 0
+    ) {
+      return;
+    }
+    const result = results[0][1][languageCode];
+    setDisplay(result);
+  };
+
+  useEffect(() => {
+    getWord();
+  }, []);
+
+  return <ItalicText style={styles.value}>{display ?? adposition}</ItalicText>;
 }
 
 type DetailItemProps = {
