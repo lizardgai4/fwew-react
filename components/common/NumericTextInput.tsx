@@ -30,11 +30,11 @@ export function NumericTextInput(props: NumericTextInputProps) {
         clearButtonMode="never"
         autoFocus={autoFocus}
       />
-      {value ? (
-        <SmallButton icon="close" onPress={() => onChangeText("")} />
-      ) : (
-        <CardView style={[styles.clearButton, { borderColor: colors.text }]} />
-      )}
+      <CardView style={styles.clearButton}>
+        {value && value.length > 0 && (
+          <SmallButton icon="close" onPress={() => onChangeText("")} />
+        )}
+      </CardView>
     </CardView>
   );
 }
@@ -53,10 +53,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   clearButton: {
-    paddingVertical: 12,
-    paddingHorizontal: 10,
     alignItems: "center",
     justifyContent: "center",
-    padding: 8,
+    marginRight: 10,
   },
 });
