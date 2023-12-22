@@ -9,6 +9,7 @@ import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { useColorScheme } from "react-native";
 import GlobalStyle from "@/components/common/GlobalStyle";
+import { StatusBar } from "expo-status-bar";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -55,6 +56,7 @@ function RootLayoutNav() {
   return (
     <>
       <GlobalStyle />
+      <StatusBar style="light" />
       <ThemeProvider
         value={colorScheme === "dark" ? FwewDarkTheme : FwewLightTheme}
       >
