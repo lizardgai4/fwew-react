@@ -1,3 +1,4 @@
+import GlobalStyle from "@/components/common/GlobalStyle";
 import i18n from "@/constants/i18n";
 import { AppLanguageProvider } from "@/context/AppLanguageContext";
 import { useAppLanguage } from "@/hooks/useAppLanguage";
@@ -6,10 +7,9 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { useColorScheme } from "react-native";
-import GlobalStyle from "@/components/common/GlobalStyle";
-import { StatusBar } from "expo-status-bar";
 
 export {
   // Catch any errors thrown by the Layout component.
