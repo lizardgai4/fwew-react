@@ -131,7 +131,7 @@ export default function NameFullScreen() {
           <TouchableOpacity key={`nf_${i}`} onPress={() => copy(name)}>
             <CardView style={styles.nameCard}>
               <Text style={styles.name}>{name}</Text>
-              <FontAwesome name="copy" size={24} color={colors.text} />
+              <FontAwesome name="copy" size={24} color={theme.colors.text} />
             </CardView>
           </TouchableOpacity>
         ))}

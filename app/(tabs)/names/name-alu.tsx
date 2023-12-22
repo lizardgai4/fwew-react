@@ -2,14 +2,24 @@ import { Accordion } from "@/components/common/Accordion";
 import { Button } from "@/components/common/Button";
 import { NumericTextInput } from "@/components/common/NumericTextInput";
 import { OptionSelect } from "@/components/common/OptionSelect";
-import { Text, View } from "@/components/common/Themed";
+import { CardView, Text, View } from "@/components/common/Themed";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useNameAlu } from "@/hooks/useNameAlu";
 import { useTheme } from "@react-navigation/native";
-import { RefreshControl, ScrollView, StyleSheet } from "react-native";
+import {
+  RefreshControl,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  useColorScheme,
+} from "react-native";
+import * as Clipboard from "expo-clipboard";
+import { ResultCount } from "@/components/common/ResultCount";
+import { FontAwesome } from "@expo/vector-icons";
 
 export default function NameAluScreen() {
+  const theme = useTheme();
   const {
     names,
     numNames,
@@ -25,33 +35,39 @@ export default function NameAluScreen() {
     loading,
     execute,
   } = useNameAlu();
-  const { colors } = useTheme();
   const { appLanguage } = useAppLanguageContext();
   const { names: uiNames, nameAlu: uiNameAlu } = i18n[appLanguage];
+  const resultsVisible = numNames.length > 0 && names.length > 0;
 
-  const disabled =
-    !numNames || !numSyllables || !nounMode || !adjMode || !dialect;
+  const copyAll = async () => {
+    await Clipboard.setStringAsync(names.join("\n"));
+  };
+
+  const copy = async (text: string) => {
+    await Clipboard.setStringAsync(text);
+  };
 
   return (
     <ScrollView
+      style={styles.container}
       keyboardShouldPersistTaps="always"
       refreshControl={
         <RefreshControl
           refreshing={loading}
           onRefresh={execute}
-          colors={[colors.primary]}
+          colors={[theme.colors.primary]}
         />
       }
     >
       <Accordion
         closedContent={<Text>{uiNames.options}</Text>}
         openedContent={
-          <>
+          <View style={styles.optionContainer}>
             <Text style={styles.label}>{uiNames.numNames}</Text>
             <NumericTextInput
-              placeholder="1-50"
               value={numNames}
               onChangeText={updateNumNames}
+              placeholder="1-50"
               autoFocus
             />
             <Text style={styles.label}>{uiNameAlu.numSyllables}</Text>
@@ -71,7 +87,6 @@ export default function NameAluScreen() {
               items={uiNameAlu.adjModes}
               active={(value) => adjMode === value}
               onSelect={setAdjMode}
-              col
             />
             <Text style={styles.label}>{uiNames.dialect}</Text>
             <OptionSelect
@@ -79,15 +94,30 @@ export default function NameAluScreen() {
               active={(value) => dialect === value}
               onSelect={setDialect}
             />
-          </>
+          </View>
         }
       />
-      <Button onPress={execute} icon="refresh" disabled={disabled} />
-      <View>
+      <View style={{ paddingTop: 16 }}>
+        <Button
+          icon="clipboard"
+          text={uiNames.copyAll}
+          onPress={copyAll}
+          disabled={!resultsVisible}
+        />
+      </View>
+      <ResultCount
+        visible={resultsVisible}
+        resultCount={names.length}
+        style={styles.resultCount}
+      />
+      <View style={styles.results}>
         {names.map((name, i) => (
-          <Text key={`na_r_${i}`} selectable style={styles.name}>
-            {name}
-          </Text>
+          <TouchableOpacity key={`na_${i}`} onPress={() => copy(name)}>
+            <CardView style={styles.nameCard}>
+              <Text style={styles.name}>{name}</Text>
+              <FontAwesome name="copy" size={24} color={theme.colors.text} />
+            </CardView>
+          </TouchableOpacity>
         ))}
       </View>
     </ScrollView>
@@ -95,13 +125,33 @@ export default function NameAluScreen() {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 16,
+  },
+  optionContainer: {
+    paddingTop: 4,
+  },
   label: {
     padding: 10,
     fontSize: 16,
     fontWeight: "bold",
   },
+  resultCount: {
+    padding: 16,
+  },
+  results: {
+    flex: 1,
+    gap: 16,
+    paddingBottom: 32,
+  },
+  nameCard: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: 16,
+  },
   name: {
-    padding: 10,
-    fontSize: 16,
+    fontSize: 18,
   },
 });
