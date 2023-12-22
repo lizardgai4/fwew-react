@@ -1,6 +1,6 @@
 import { Accordion } from "@/components/common/Accordion";
 import { OptionItem } from "@/components/common/OptionItem";
-import { Text, View } from "@/components/common/Themed";
+import { CardView, Text } from "@/components/common/Themed";
 import { FlagMap } from "@/components/settings/Flags";
 import { AppLanguages } from "@/constants/Language";
 import i18n from "@/constants/i18n";
@@ -16,23 +16,24 @@ export function AppLanguageSelect() {
   return (
     <Accordion
       closedContent={
-        <View style={styles.iconContainer}>
+        <CardView style={styles.iconContainer}>
           {FlagMap[appLanguage]}
           <Text style={styles.value}>{ui.settings.appLanguage}</Text>
-        </View>
+        </CardView>
       }
       openedContent={
-        <>
+        <CardView>
           {AppLanguages.map((language, i) => (
-            <OptionItem
-              key={i}
-              icon={FlagMap[language.value]}
-              value={language.label}
-              selected={appLanguage === language.value}
-              onSelect={() => saveAppLanguage(language.value)}
-            />
+            <CardView key={`sal_${i}`} style={{ paddingHorizontal: 8 }}>
+              <OptionItem
+                icon={FlagMap[language.value]}
+                value={language.label}
+                selected={appLanguage === language.value}
+                onSelect={() => saveAppLanguage(language.value)}
+              />
+            </CardView>
           ))}
-        </>
+        </CardView>
       }
     />
   );
