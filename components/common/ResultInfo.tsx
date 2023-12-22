@@ -2,6 +2,7 @@ import { Button } from "@/components/common/Button";
 import { BoldText, UnderlinedText } from "@/components/common/StyledText";
 import { CardView, Text } from "@/components/common/Themed";
 import Colors from "@/constants/Colors";
+import { LenitingAdpositions, LenitingPrefixes } from "@/constants/Morphology";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useResultsLanguage } from "@/hooks/useResultsLanguage";
@@ -20,6 +21,26 @@ export function ResultInfo({ word }: ResultInfoProps) {
   const local = word[resultsLanguage.toUpperCase() as Uppercase<LanguageCode>];
   const { appLanguage } = useAppLanguageContext();
   const ui = i18n[appLanguage];
+
+  const formatPrefixes = (prefixes: string[]) => {
+    return prefixes
+      .map((prefix) =>
+        LenitingPrefixes.includes(prefix) ? `${prefix}+` : `${prefix}-`
+      )
+      .join(", ");
+  };
+
+  const formatSuffixes = (suffixes: string[]) => {
+    return suffixes
+      .map((suffix) =>
+        LenitingAdpositions.includes(suffix) ? `-${suffix}+` : `-${suffix}`
+      )
+      .join(", ");
+  };
+
+  const formatInfixes = (infixes: string[]) => {
+    return infixes.map((infix) => `<${infix}>`).join(", ");
+  };
 
   return (
     <CardView style={styles.container}>
@@ -51,19 +72,19 @@ export function ResultInfo({ word }: ResultInfoProps) {
       {word.Affixes.Prefix && (
         <DetailItem
           label={ui.search.prefixes}
-          value={word.Affixes.Prefix.join(", ")}
+          value={formatPrefixes(word.Affixes.Prefix)}
         />
       )}
       {word.Affixes.Infix && (
         <DetailItem
           label={ui.search.infixes}
-          value={word.Affixes.Infix.join(", ")}
+          value={formatInfixes(word.Affixes.Infix)}
         />
       )}
       {word.Affixes.Suffix && (
         <DetailItem
           label={ui.search.suffixes}
-          value={word.Affixes.Suffix.join(", ")}
+          value={formatSuffixes(word.Affixes.Suffix)}
         />
       )}
       {word.Affixes.Lenition && (
