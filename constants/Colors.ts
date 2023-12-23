@@ -1,7 +1,5 @@
-import { FwewDarkTheme, FwewLightTheme } from "@/themes";
-
-const tintColorLight = FwewLightTheme.colors.primary;
-const tintColorDark = FwewDarkTheme.colors.primary;
+const tintColorLight = "#2e77d1";
+const tintColorDark = "#547aab";
 
 export default {
   light: {
