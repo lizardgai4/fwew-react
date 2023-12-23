@@ -1,7 +1,9 @@
 {
   "name": "fwew-react",
-  "main": "expo-router/entry",
   "version": "3.0.0",
+  "license": "GPL-3.0",
+  "private": true,
+  "main": "expo-router/entry",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -53,6 +55,5 @@
   },
   "resolutions": {
     "react-refresh": "~0.14.0"
-  },
-  "private": true
+  }
 }
