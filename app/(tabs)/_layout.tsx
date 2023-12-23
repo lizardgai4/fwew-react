@@ -28,7 +28,7 @@ export default function TabLayout() {
       screenOptions={{
         headerStyle: { backgroundColor: theme.colors.primary },
         headerTintColor: Colors.dark.text,
-        tabBarActiveTintColor: theme.dark ? undefined : theme.colors.primary,
+        tabBarActiveTintColor: theme.dark ? "#547aab" : "#2e77d1",
         tabBarInactiveTintColor: colors.placeholder,
       }}
     >

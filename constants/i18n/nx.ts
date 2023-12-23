@@ -40,7 +40,7 @@ const partOfSpeechList = Object.entries(partOfSpeech).map(([value, name]) => ({
 const strings: UITranslation = {
   common: {
     results: () => "kum",
-    noResults: "kea kum",
+    noResults: "Kea kum",
     partOfSpeech,
     partOfSpeechList,
   },
@@ -149,9 +149,9 @@ const strings: UITranslation = {
     decimal: "holpxay Tawtuteyä:",
   },
   names: {
-    single: "fyin",
-    full: "'änsyem",
-    alu: "alu",
+    single: "Fyin",
+    full: "'Änsyem",
+    alu: "Alu",
     options: "Tìftxey",
     numNames: "Holpxay lì'uä",
     copyAll: "Munge Fra'ut",
