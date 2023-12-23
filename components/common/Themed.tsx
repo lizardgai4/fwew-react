@@ -9,10 +9,10 @@ import {
   Text as DefaultText,
   TextInput as DefaultTextInput,
   View as DefaultView,
-  type TextProps,
-  type TextInputProps,
-  type ViewProps,
   useColorScheme,
+  type TextInputProps,
+  type TextProps,
+  type ViewProps,
 } from "react-native";
 
 export function useThemeColor(

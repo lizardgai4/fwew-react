@@ -2,21 +2,20 @@ import { Accordion } from "@/components/common/Accordion";
 import { Button } from "@/components/common/Button";
 import { NumericTextInput } from "@/components/common/NumericTextInput";
 import { OptionSelect } from "@/components/common/OptionSelect";
+import { ResultCount } from "@/components/common/ResultCount";
 import { CardView, Text, View } from "@/components/common/Themed";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useNameAlu } from "@/hooks/useNameAlu";
+import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
+import * as Clipboard from "expo-clipboard";
 import {
   RefreshControl,
   ScrollView,
   StyleSheet,
   TouchableOpacity,
-  useColorScheme,
 } from "react-native";
-import * as Clipboard from "expo-clipboard";
-import { ResultCount } from "@/components/common/ResultCount";
-import { FontAwesome } from "@expo/vector-icons";
 
 export default function NameAluScreen() {
   const theme = useTheme();
