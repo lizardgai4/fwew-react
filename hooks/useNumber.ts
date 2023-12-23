@@ -1,6 +1,6 @@
 import { useDebounce } from "@/hooks/useDebounce";
-import { naviToNumber, numberToNavi } from "fwew.js";
 import type { FwewError, FwewNumber } from "fwew.js";
+import { naviToNumber, numberToNavi } from "fwew.js";
 import { useEffect, useState } from "react";
 
 export function useNumber() {
