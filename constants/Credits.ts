@@ -4,6 +4,7 @@ const Credits = {
   testing: ["Palusyulang", "Tsyili", "Txonpay"],
   translation: [
     "Alyara Arati (es)",
+    "Atxewluke (suchtrashley) (en affixes)",
     "Charlotte (nl)",
     "İsmail yiğit (tr)",
     "Palusyulang (pt, na'vi)",
