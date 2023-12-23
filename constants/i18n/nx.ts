@@ -157,8 +157,8 @@ const strings: UITranslation = {
     copyAll: "Munge Fra'ut",
     dialect: "Lì'fyafnel",
     dialects: [
-      { name: "melì'fyafnel", value: "interdialect" },
       { name: "lì'fya na'rìngä", value: "forest" },
+      { name: "melì'fyafnel", value: "interdialect" },
       { name: "lì'fya wione", value: "reef" },
     ],
     syllablesOptions: [

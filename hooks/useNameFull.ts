@@ -10,7 +10,7 @@ export function useNameFull() {
   const [syllables1, setSyllables1] = useState<NumericString>("0");
   const [syllables2, setSyllables2] = useState<NumericString>("0");
   const [syllables3, setSyllables3] = useState<NumericString>("0");
-  const [dialect, setDialect] = useState<Dialect>("interdialect");
+  const [dialect, setDialect] = useState<Dialect>("forest");
   const [loading, setLoading] = useState(false);
   const [names, setNames] = useState<string[]>([]);
   const debounce = useDebounce();

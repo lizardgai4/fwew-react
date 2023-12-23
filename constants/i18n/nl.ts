@@ -163,8 +163,8 @@ const strings: UITranslation = {
     copyAll: "Kopieer Alles",
     dialect: "Dialect",
     dialects: [
-      { name: "interdialect", value: "interdialect" },
       { name: "forest", value: "forest" },
+      { name: "interdialect", value: "interdialect" },
       { name: "reef", value: "reef" },
     ],
     syllablesOptions: [
