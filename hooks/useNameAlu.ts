@@ -9,7 +9,7 @@ export function useNameAlu() {
   const [numSyllables, setNumSyllables] = useState<NumericString>("0");
   const [nounMode, setNounMode] = useState<NounMode>("something");
   const [adjMode, setAdjMode] = useState<AdjectiveMode>("something");
-  const [dialect, setDialect] = useState<Dialect>("interdialect");
+  const [dialect, setDialect] = useState<Dialect>("forest");
   const [loading, setLoading] = useState(false);
   const [names, setNames] = useState<string[]>([]);
   const debounce = useDebounce();

@@ -157,8 +157,8 @@ const strings: UITranslation = {
     copyAll: "Minden nevet másol",
     dialect: "Dialektus",
     dialects: [
-      { name: "interdialect", value: "interdialect" },
       { name: "forest", value: "forest" },
+      { name: "interdialect", value: "interdialect" },
       { name: "reef", value: "reef" },
     ],
     syllablesOptions: [
