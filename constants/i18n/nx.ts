@@ -207,7 +207,7 @@ const strings: UITranslation = {
     ],
   },
   settings: {
-    about: "Teri",
+    about: "Teri Fwew",
     version: "Srey",
     credits: "Irayo",
     development: "Rengopyu",
