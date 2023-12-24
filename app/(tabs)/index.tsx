@@ -18,6 +18,7 @@ export default function SearchScreen() {
     search,
     setNaviOnly,
     execute,
+    cancel,
   } = useFwew();
   const { colors } = useTheme();
   const { appLanguage } = useAppLanguageContext();
@@ -35,7 +36,7 @@ export default function SearchScreen() {
         />
       }
     >
-      <SearchBar query={query} search={search} autoFocus />
+      <SearchBar query={query} search={search} cancel={cancel} autoFocus />
       <SwitchInput
         leftLabel={ui.naviOnly}
         rightLabel=""

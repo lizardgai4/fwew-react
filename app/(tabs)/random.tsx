@@ -13,7 +13,7 @@ export default function RandomScreen() {
   const [numWords, setNumWords] = useState<NumericString>("8");
   const { filters, filterExpression, incomplete, add, remove, update } =
     useFilterExpression();
-  const { loading, results, execute } = useRandom();
+  const { loading, results, execute, cancel } = useRandom();
   const debounce = useDebounce();
   const { colors } = useTheme();
   const resultsVisible = numWords.length > 0 && results.length > 0;
@@ -44,7 +44,8 @@ export default function RandomScreen() {
     if (!incomplete) {
       getData();
     }
-  }, [numWords, filterExpression]);
+    return cancel;
+  }, [incomplete, numWords, filterExpression]);
 
   return (
     <ScrollView

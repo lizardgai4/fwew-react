@@ -11,16 +11,13 @@ import { RefreshControl, ScrollView, StyleSheet } from "react-native";
 export default function ListScreen() {
   const { filters, filterExpression, incomplete, add, remove, update } =
     useFilterExpression();
-  const { loading, results, execute } = useList();
+  const { loading, results, execute, cancel } = useList();
   const debounce = useDebounce();
   const { colors } = useTheme();
   const resultsVisible = filterExpression.length > 0 && results.length > 0;
 
   const getData = async () => {
-    if (filterExpression.length === 0) {
-      return;
-    }
-    if (incomplete) {
+    if (incomplete || filterExpression.length === 0) {
       return;
     }
     debounce(() => execute(filterExpression));
@@ -28,7 +25,8 @@ export default function ListScreen() {
 
   useEffect(() => {
     getData();
-  }, [filterExpression]);
+    return cancel;
+  }, [incomplete, filterExpression]);
 
   return (
     <ScrollView

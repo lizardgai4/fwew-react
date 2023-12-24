@@ -12,6 +12,7 @@ export function useFwew() {
   const [results, setResults] = useState<Word[][]>([]);
   const [resultCount, setResultCount] = useState(0);
   const debounce = useDebounce();
+  let abortController = new AbortController();
 
   const execute = async () => {
     if (query === "") {
@@ -24,10 +25,21 @@ export function useFwew() {
 
     let data: Word[][];
 
-    if (naviOnly) {
-      data = await fwew(query);
-    } else {
-      data = await fwewSearch(resultsLanguage, query);
+    try {
+      if (naviOnly) {
+        data = await fwew(query, {
+          signal: abortController.signal,
+        });
+      } else {
+        data = await fwewSearch(resultsLanguage, query, {
+          signal: abortController.signal,
+        });
+      }
+    } catch (e: any) {
+      setResults([]);
+      setResultCount(0);
+      setLoading(false);
+      return;
     }
 
     const dataNoDuplicates = data.map((words) =>
@@ -43,8 +55,15 @@ export function useFwew() {
     setLoading(false);
   };
 
+  const cancel = () => {
+    abortController.abort();
+    abortController = new AbortController();
+    setLoading(false);
+  };
+
   useEffect(() => {
     debounce(execute);
+    return cancel;
   }, [query, naviOnly, resultsLanguage]);
 
   return {
@@ -56,5 +75,6 @@ export function useFwew() {
     search,
     setNaviOnly,
     execute,
+    cancel,
   } as const;
 }
