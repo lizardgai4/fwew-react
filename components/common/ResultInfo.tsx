@@ -10,7 +10,7 @@ import Colors from "@/constants/Colors";
 import { LenitingAdpositions } from "@/constants/Lenition";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
-import { useResultsLanguage } from "@/hooks/useResultsLanguage";
+import { useResultsLanguageContext } from "@/context/ResultsLanguageContext";
 import { useSound } from "@/hooks/useSound";
 import { fwewSimple, type LanguageCode, type Word } from "fwew.js";
 import { useEffect, useState } from "react";
@@ -23,7 +23,7 @@ type ResultInfoProps = {
 
 export function ResultInfo({ word }: ResultInfoProps) {
   const { playSound, disabled } = useSound();
-  const { resultsLanguage } = useResultsLanguage();
+  const { resultsLanguage } = useResultsLanguageContext();
   const local = word[resultsLanguage.toUpperCase() as Uppercase<LanguageCode>];
   const { appLanguage } = useAppLanguageContext();
   const ui = i18n[appLanguage];
@@ -143,7 +143,7 @@ function AffixDetail({ label, value, type }: AffixDetailProps) {
 }
 
 function AdpositionDisplay({ adposition }: { adposition: string }) {
-  const { resultsLanguage } = useResultsLanguage();
+  const { resultsLanguage } = useResultsLanguageContext();
   const languageCode = resultsLanguage.toUpperCase() as Uppercase<LanguageCode>;
   const [display, setDisplay] = useState<string>();
 

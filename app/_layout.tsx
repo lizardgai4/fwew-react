@@ -1,7 +1,9 @@
 import GlobalStyle from "@/components/common/GlobalStyle";
 import i18n from "@/constants/i18n";
 import { AppLanguageProvider } from "@/context/AppLanguageContext";
+import { ResultsLanguageProvider } from "@/context/ResultsLanguageContext";
 import { useAppLanguage } from "@/hooks/useAppLanguage";
+import { useResultsLanguage } from "@/hooks/useResultsLanguage";
 import { FwewDarkTheme, FwewLightTheme } from "@/themes";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { ThemeProvider } from "@react-navigation/native";
@@ -52,6 +54,7 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
   const appLanguageValue = useAppLanguage();
   const { appLanguage } = appLanguageValue;
+  const resultsLanguage = useResultsLanguage();
 
   return (
     <>
@@ -61,16 +64,18 @@ function RootLayoutNav() {
         value={colorScheme === "dark" ? FwewDarkTheme : FwewLightTheme}
       >
         <AppLanguageProvider value={appLanguageValue}>
-          <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen
-              name="settings"
-              options={{
-                title: i18n[appLanguage].screens.settings,
-                presentation: "modal",
-              }}
-            />
-          </Stack>
+          <ResultsLanguageProvider value={resultsLanguage}>
+            <Stack>
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen
+                name="settings"
+                options={{
+                  title: i18n[appLanguage].screens.settings,
+                  presentation: "modal",
+                }}
+              />
+            </Stack>
+          </ResultsLanguageProvider>
         </AppLanguageProvider>
       </ThemeProvider>
     </>

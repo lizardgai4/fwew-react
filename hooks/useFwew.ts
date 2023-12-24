@@ -1,11 +1,11 @@
+import { useResultsLanguageContext } from "@/context/ResultsLanguageContext";
 import { useDebounce } from "@/hooks/useDebounce";
-import { useResultsLanguage } from "@/hooks/useResultsLanguage";
 import type { Word } from "fwew.js";
 import { fwew, search as fwewSearch } from "fwew.js";
 import { useEffect, useState } from "react";
 
 export function useFwew() {
-  const { resultsLanguage } = useResultsLanguage();
+  const { resultsLanguage } = useResultsLanguageContext();
   const [query, search] = useState("");
   const [naviOnly, setNaviOnly] = useState(false);
   const [loading, setLoading] = useState(false);

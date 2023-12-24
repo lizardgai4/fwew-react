@@ -9,13 +9,15 @@ export const AppLanguageContext = createContext<AppLanguageType>(
 
 export const useAppLanguageContext = () => useContext(AppLanguageContext);
 
+type AppLanguageProviderProps = {
+  value: AppLanguageType;
+  children: React.ReactNode;
+};
+
 export function AppLanguageProvider({
   value,
   children,
-}: {
-  value: AppLanguageType;
-  children: React.ReactNode;
-}) {
+}: AppLanguageProviderProps) {
   return (
     <AppLanguageContext.Provider value={value}>
       {children}

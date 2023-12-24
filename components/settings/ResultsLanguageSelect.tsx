@@ -5,11 +5,11 @@ import { FlagMap } from "@/components/settings/Flags";
 import { ResultsLanguages } from "@/constants/Language";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
-import { useResultsLanguage } from "@/hooks/useResultsLanguage";
+import { useResultsLanguageContext } from "@/context/ResultsLanguageContext";
 import { StyleSheet } from "react-native";
 
 export function ResultsLanguageSelect() {
-  const { resultsLanguage, saveResultsLanguage } = useResultsLanguage();
+  const { resultsLanguage, saveResultsLanguage } = useResultsLanguageContext();
   const { appLanguage } = useAppLanguageContext();
   const ui = i18n[appLanguage];
 

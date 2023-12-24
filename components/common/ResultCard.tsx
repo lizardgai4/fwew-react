@@ -3,7 +3,7 @@ import { ResultInfo } from "@/components/common/ResultInfo";
 import { MonoText } from "@/components/common/StyledText";
 import { Text } from "@/components/common/Themed";
 import Colors from "@/constants/Colors";
-import { useResultsLanguage } from "@/hooks/useResultsLanguage";
+import { useResultsLanguageContext } from "@/context/ResultsLanguageContext";
 import type { LanguageCode, Word } from "fwew.js";
 import { StyleSheet, View, useColorScheme } from "react-native";
 
@@ -12,7 +12,7 @@ type ResultCardProps = {
 };
 
 export function ResultCard({ word }: ResultCardProps) {
-  const { resultsLanguage } = useResultsLanguage();
+  const { resultsLanguage } = useResultsLanguageContext();
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
   const local = word[resultsLanguage.toUpperCase() as Uppercase<LanguageCode>];
