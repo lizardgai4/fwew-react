@@ -5,6 +5,7 @@ import { useCallback, useState } from "react";
 export function useRandom() {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<Word[]>([]);
+  let abortController = new AbortController();
 
   const execute = useCallback(
     async (numWords: NumericString, filterExpression: string) => {
@@ -13,18 +14,32 @@ export function useRandom() {
         return;
       }
       setLoading(true);
-      if (filterExpression.length > 0) {
-        const data = await random(+numWords, filterExpression);
+      try {
+        if (filterExpression.length > 0) {
+          const data = await random(+numWords, filterExpression, {
+            signal: abortController.signal,
+          });
+          setResults(data);
+          setLoading(false);
+          return;
+        }
+        const data = await random(+numWords, undefined, {
+          signal: abortController.signal,
+        });
         setResults(data);
-        setLoading(false);
-        return;
+      } catch (e: any) {
+        setResults([]);
       }
-      const data = await random(+numWords);
-      setResults(data);
       setLoading(false);
     },
     []
   );
 
-  return { loading, results, execute };
+  const cancel = () => {
+    abortController.abort();
+    abortController = new AbortController();
+    setLoading(false);
+  };
+
+  return { loading, results, execute, cancel };
 }

@@ -17,14 +17,27 @@ type SearchBarProps = {
   placeholder?: string;
   autoFocus?: boolean;
   execute?: () => void;
+  cancel?: () => void;
 };
 
 export function SearchBar(props: SearchBarProps) {
-  const { query, search, placeholder, autoFocus = false, execute } = props;
+  const {
+    query,
+    search,
+    placeholder,
+    autoFocus = false,
+    execute,
+    cancel,
+  } = props;
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
   const { appLanguage } = useAppLanguageContext();
   const ui = i18n[appLanguage];
+
+  const clear = () => {
+    search("");
+    if (cancel !== undefined) cancel();
+  };
 
   return (
     <CardView style={styles.searchContainer}>
@@ -43,7 +56,7 @@ export function SearchBar(props: SearchBarProps) {
         returnKeyType="search"
         onSubmitEditing={execute}
       />
-      <SearchBarRight showClear={query.length > 0} clear={() => search("")} />
+      <SearchBarRight showClear={query.length > 0} clear={clear} />
     </CardView>
   );
 }

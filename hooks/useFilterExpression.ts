@@ -21,7 +21,7 @@ export function useFilterExpression() {
     .trim();
 
   const incomplete =
-    filterExpression.endsWith("and") ||
+    filterExpression.trim().endsWith("and") ||
     filters.filter((fe) => (fe.what || fe.cond) && !fe.spec.trim()).length > 0;
 
   const add = () => {
