@@ -22,17 +22,18 @@ export function ResultsLanguageSelect() {
         </CardView>
       }
       openedContent={
-        <>
+        <CardView>
           {ResultsLanguages.map((language, i) => (
-            <OptionItem
-              key={i}
-              icon={FlagMap[language.value]}
-              value={language.label}
-              selected={resultsLanguage === language.value}
-              onSelect={() => saveResultsLanguage(language.value)}
-            />
+            <CardView key={`srl_${i}`} style={{ paddingHorizontal: 8 }}>
+              <OptionItem
+                icon={FlagMap[language.value]}
+                value={language.label}
+                selected={resultsLanguage === language.value}
+                onSelect={() => saveResultsLanguage(language.value)}
+              />
+            </CardView>
           ))}
-        </>
+        </CardView>
       }
     />
   );
