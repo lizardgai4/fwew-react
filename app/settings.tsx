@@ -11,9 +11,9 @@ export default function SettingsScreen() {
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />
       <View style={styles.container}>
-        <About />
         <AppLanguageSelect />
         <ResultsLanguageSelect />
+        <About />
       </View>
     </ScrollView>
   );
