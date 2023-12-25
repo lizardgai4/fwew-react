@@ -10,6 +10,7 @@ const Credits = {
     "Palusyulang (pt, na'vi)",
     "Ter (ru)",
     "Tirea Aean (en, eo, na'vi)",
+    "Tsyili (en, na'vi)",
     "Wllìm (nl)",
   ],
 };
