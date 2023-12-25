@@ -1,4 +1,4 @@
-import { CardView, Text } from "@/components/common/Themed";
+import { CardView } from "@/components/common/Themed";
 import { Credits } from "@/components/settings/Credits";
 import { Version } from "@/components/settings/Version";
 import i18n from "@/constants/i18n";
@@ -10,7 +10,6 @@ export function About() {
   const ui = i18n[appLanguage];
   return (
     <CardView style={styles.expanded}>
-      <Text style={styles.value}>{ui.settings.about}</Text>
       <Version />
       <Credits />
     </CardView>
