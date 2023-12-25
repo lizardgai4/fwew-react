@@ -1,4 +1,3 @@
-import { Accordion } from "@/components/common/Accordion";
 import { CardView, Text } from "@/components/common/Themed";
 import { Credits } from "@/components/settings/Credits";
 import { Version } from "@/components/settings/Version";
@@ -10,19 +9,11 @@ export function About() {
   const { appLanguage } = useAppLanguageContext();
   const ui = i18n[appLanguage];
   return (
-    <Accordion
-      closedContent={
-        <CardView style={styles.iconContainer}>
-          <Text style={styles.value}>{ui.settings.about}</Text>
-        </CardView>
-      }
-      openedContent={
-        <CardView style={styles.expanded}>
-          <Version />
-          <Credits />
-        </CardView>
-      }
-    />
+    <CardView style={styles.expanded}>
+      <Text style={styles.value}>{ui.settings.about}</Text>
+      <Version />
+      <Credits />
+    </CardView>
   );
 }
 

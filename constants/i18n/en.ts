@@ -208,7 +208,7 @@ const strings: UITranslation = {
     ],
   },
   settings: {
-    about: "About",
+    about: "About Fwew",
     version: "Version",
     credits: "Credits",
     development: "Development",
