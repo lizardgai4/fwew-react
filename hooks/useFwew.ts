@@ -27,11 +27,11 @@ export function useFwew() {
 
     try {
       if (naviOnly) {
-        data = await fwew(query, {
+        data = await fwew(query.trim(), {
           signal: abortController.signal,
         });
       } else {
-        data = await fwewSearch(resultsLanguage, query, {
+        data = await fwewSearch(resultsLanguage, query.trim(), {
           signal: abortController.signal,
         });
       }
