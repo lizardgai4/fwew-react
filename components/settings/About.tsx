@@ -28,6 +28,6 @@ const styles = StyleSheet.create({
   },
   expanded: {
     padding: 16,
-    gap: 16,
+    gap: 8,
   },
 });

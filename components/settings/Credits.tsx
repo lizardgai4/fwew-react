@@ -1,4 +1,3 @@
-import { BoldText } from "@/components/common/StyledText";
 import { CardView, Text } from "@/components/common/Themed";
 import credits from "@/constants/Credits";
 import i18n from "@/constants/i18n";
@@ -33,8 +32,11 @@ function CreditsItem({ title, names }: { title: string; names: string[] }) {
     <CardView>
       <Text style={styles.label}>{title}</Text>
       <CardView style={styles.creditsItemContainer}>
-        {names.map((name) => (
-          <Text style={[styles.text, { backgroundColor: colors.background }]}>
+        {names.map((name, i) => (
+          <Text
+            key={`ci_${title}_${i}`}
+            style={[styles.text, { backgroundColor: colors.background }]}
+          >
             {name}
           </Text>
         ))}
