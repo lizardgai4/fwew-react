@@ -4,6 +4,7 @@ import { NumericTextInput } from "@/components/common/NumericTextInput";
 import { OptionSelect } from "@/components/common/OptionSelect";
 import { ResultCount } from "@/components/common/ResultCount";
 import { CardView, Text, View } from "@/components/common/Themed";
+import { NameResults } from "@/components/names/NameResults";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useNameAlu } from "@/hooks/useNameAlu";
@@ -109,16 +110,7 @@ export default function NameAluScreen() {
         resultCount={names.length}
         style={styles.resultCount}
       />
-      <View style={styles.results}>
-        {names.map((name, i) => (
-          <TouchableOpacity key={`na_${i}`} onPress={() => copy(name)}>
-            <CardView style={styles.nameCard}>
-              <Text style={styles.name}>{name}</Text>
-              <FontAwesome name="copy" size={24} color={theme.colors.text} />
-            </CardView>
-          </TouchableOpacity>
-        ))}
-      </View>
+      <NameResults names={names} copyName={copy} />
     </ScrollView>
   );
 }
@@ -138,19 +130,5 @@ const styles = StyleSheet.create({
   },
   resultCount: {
     padding: 16,
-  },
-  results: {
-    flex: 1,
-    gap: 16,
-    paddingBottom: 32,
-  },
-  nameCard: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: 16,
-  },
-  name: {
-    fontSize: 18,
   },
 });
