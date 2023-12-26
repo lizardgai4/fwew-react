@@ -26,7 +26,7 @@ export function FilterExpressionBuilder(props: FilterExpressionBuilderProps) {
     : [];
   const isExactPosSpec =
     value.what?.value === "pos" &&
-    (value.cond?.value === "is" || value.cond?.value === "has");
+    (value.cond?.value === "is" || value.cond?.value === "not-is");
   const isNumericSpec =
     value.what?.value === "words" ||
     value.what?.value === "syllables" ||
@@ -98,7 +98,7 @@ export function FilterExpressionBuilder(props: FilterExpressionBuilderProps) {
           onChange={setCond}
         />
       )}
-      {/* spec pos is */}
+      {/* spec pos is, spec pos not-is */}
       {value.what && value.cond && isExactPosSpec && (
         <DropDownSelect
           options={common.partOfSpeechList}
