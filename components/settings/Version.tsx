@@ -45,7 +45,6 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   label: {
-    paddingBottom: 10,
     fontSize: 16,
     fontWeight: "bold",
   },
