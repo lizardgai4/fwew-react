@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
   closedContainer: {
     flexDirection: "row",
     alignItems: "center",
+    maxWidth: "88%",
     gap: 16,
   },
   navi: {
@@ -56,6 +57,5 @@ const styles = StyleSheet.create({
   local: {
     flex: 1,
     fontSize: 18,
-    marginRight: 32,
   },
 });
