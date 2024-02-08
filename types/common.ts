@@ -1,6 +1,13 @@
 import type { LanguageCode } from "fwew.js";
 
-export type ExtendedLanguageCode = LanguageCode | "eo" | "es" | "nx" | "pt";
+export type ExtendedLanguageCode =
+  | LanguageCode
+  | "eo"
+  | "es"
+  | "nx"
+  | "pt"
+  | "tr"
+  | "uk";
 
 export type NumericString = `${number}` | "";
 

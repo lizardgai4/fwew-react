@@ -5,6 +5,7 @@ const Credits = {
   translation: [
     "Alyara Arati (es)",
     "Atxewluke (suchtrashley) (en affixes)",
+    "Äk'raä te Ikran (uk)",
     "Charlotte (nl)",
     "İsmail yiğit (tr)",
     "Palusyulang (pt, na'vi)",

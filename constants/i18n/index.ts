@@ -12,6 +12,7 @@ import pt from "@/constants/i18n/pt";
 import ru from "@/constants/i18n/ru";
 import sv from "@/constants/i18n/sv";
 import tr from "@/constants/i18n/tr";
+import uk from "@/constants/i18n/uk";
 import type { I18N } from "@/types/i18n";
 
 const i18n: I18N = {
@@ -29,6 +30,7 @@ const i18n: I18N = {
   ru,
   sv,
   tr,
+  uk,
 };
 
 export default i18n;

@@ -1,5 +1,5 @@
 import type { ExtendedLanguageCode } from "@/types/common";
-import Svg, { Circle, G, Path, SvgProps } from "react-native-svg";
+import Svg, { Circle, G, Path, Rect, SvgProps } from "react-native-svg";
 
 // de
 export const Germany = (props: SvgProps) => (
@@ -159,6 +159,14 @@ export const Turkey = (props: SvgProps) => (
   </Svg>
 );
 
+// uk
+export const Ukraine = (props: SvgProps) => (
+  <Svg viewBox="0 0 512 512" width={32} height={32} {...props}>
+    <Rect y="85.337" fill="#FFDA44" width="512" height="341.326" />
+    <Rect y="85.337" fill="#338AF3" width="512" height="170.663" />
+  </Svg>
+);
+
 type FlagMapType = {
   [key in ExtendedLanguageCode]: JSX.Element;
 };
@@ -178,4 +186,5 @@ export const FlagMap: FlagMapType = {
   ru: <Russia />,
   sv: <Sweden />,
   tr: <Turkey />,
+  uk: <Ukraine />,
 };
