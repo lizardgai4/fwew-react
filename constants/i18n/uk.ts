@@ -59,15 +59,15 @@ const strings: UITranslation = {
     partOfSpeech: "Частина мови",
     definition: "Визначення",
     breakdown: "Розподіл*",
-    infixDots: "Інфікс(крапки)*",
-    infixSlots: "Інфікс(місце)*",
+    infixDots: "Інфікс (крапки)",
+    infixSlots: "Інфікс (місця)",
     prefixes: "Префікси",
-    infixes: "Infixes",
+    infixes: "Інфікси",
     suffixes: "Суфікси",
-    lenition: "Леніція",
+    lenition: "Леніція (пом'якшення)",
     comment: "Коментар",
     source: "Джерело",
-    ipa: "IPA",
+    ipa: "International Phonetic Alphabet",
   },
   list: {
     list: "Список",
@@ -138,7 +138,7 @@ const strings: UITranslation = {
   },
   random: {
     random: "Випадкові",
-    randomOptions: "Випадкові параметри",
+    randomOptions: "Параметри випадкових слів",
     numWords: "Кількість випадкових слів",
     where: "де....",
   },
@@ -149,9 +149,9 @@ const strings: UITranslation = {
     decimal: "десяткові:",
   },
   names: {
-    single: "Одиночні (одне ім'я)",
-    full: "Повне (повне ім'я)",
-    alu: "з Alu (ім'я з Alu)",
+    single: "Скорочене ім'я",
+    full: "Повне ім'я",
+    alu: "Ім'я з Alu",
     options: "Параметри",
     numNames: "Кількість імен, що генеруються",
     copyAll: "Копіювати все",
@@ -173,12 +173,12 @@ const strings: UITranslation = {
     numSyllables: "Кількість складів",
   },
   nameFull: {
-    numSyllables1: "Кількість складів у першому імені",
+    numSyllables1: "Кількість складів у імені",
     numSyllables2: "Кількість складів у імені роду",
-    numSyllables3: "Кількість складів у імені батьків*",
+    numSyllables3: "Кількість складів у імені батьків",
     nameEnding: "Закінчення імені",
     nameEndingHint:
-      "-ітан - чол.рід, -іте жін.рід, -іту - середній рід. (не є канонічним)",
+      "-'itan   чол.рід, -'ite  жін.рід, -'itu  середній рід. (не є канонічним)",
     nameEndingOptions: [
       { value: "random", name: "випадковий" },
       { value: "'ite", name: "-'ite" },
@@ -216,7 +216,7 @@ const strings: UITranslation = {
     testing: "Тестування",
     translation: "Переклад",
     appLanguage: "Мова застосунку",
-    resultsLanguage: "Мова результату*",
+    resultsLanguage: "Мова результату",
   },
 };
 
