@@ -54,11 +54,11 @@ const strings: UITranslation = {
   },
   search: {
     search: "Пошук",
-    naviOnly: "Шукати лише за словами На'ві",
-    audio: "Звучання*",
+    naviOnly: "Пошук лише за словами На'ві",
+    audio: "Вимова",
     partOfSpeech: "Частина мови",
     definition: "Визначення",
-    breakdown: "Розподіл*",
+    breakdown: "Наголос",
     infixDots: "Інфікс (крапки)",
     infixSlots: "Інфікс (місця)",
     prefixes: "Префікси",
@@ -145,8 +145,8 @@ const strings: UITranslation = {
   numbers: {
     placeholderNumeric: "42",
     placeholderAlpha: "mrrvomun",
-    octal: "вісімкові:",
-    decimal: "десяткові:",
+    octal: "Вісімкове:",
+    decimal: "Десяткове:",
   },
   names: {
     single: "Скорочене ім'я",
