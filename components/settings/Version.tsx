@@ -29,9 +29,9 @@ export function Version() {
               commitHash={version.CommitHash}
             />
           </MonoText>
-          <MonoText style={styles.text}>{version.APIVersion}</MonoText>
-          <MonoText style={styles.text}>{version.FwewVersion}</MonoText>
-          <MonoText style={styles.text}>{version.DictVersion}</MonoText>
+          <MonoText style={styles.text}>{version.APIVersion || "?"}</MonoText>
+          <MonoText style={styles.text}>{version.FwewVersion || "?"}</MonoText>
+          <MonoText style={styles.text}>{version.DictVersion || "?"}</MonoText>
         </CardView>
       </CardView>
     </>
