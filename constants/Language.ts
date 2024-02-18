@@ -18,7 +18,7 @@ const Languages: LanguageMeta[] = [
   { value: "hu", label: "Magyar", ui: true, results: true },
   { value: "nl", label: "Nederlands", ui: true, results: true },
   { value: "pl", label: "Polski", ui: true, results: true },
-  { value: "pt", label: "Português", ui: true, results: false },
+  { value: "pt", label: "Português", ui: true, results: true },
   { value: "ru", label: "Русский", ui: true, results: true },
   { value: "sv", label: "Svenska", ui: true, results: true },
   { value: "tr", label: "Türkçe", ui: true, results: true },
