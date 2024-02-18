@@ -8,6 +8,7 @@ const Credits = {
     "Atxewluke (suchtrashley) (en affixes)",
     "Äk'raä te Ikran (uk)",
     "Charlotte (nl)",
+    "ExploBth (es)",
     "İsmail yiğit (tr)",
     "Palusyulang (pt, na'vi)",
     "Tan Jala (ru)",
