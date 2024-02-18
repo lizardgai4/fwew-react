@@ -3,6 +3,7 @@ const Credits = {
   design: ["Tirea Aean", "Tsyili"],
   testing: ["Palusyulang", "Tsyili", "Txonpay"],
   translation: [
+    "'Ìohan (pt)",
     "Alyara Arati (es)",
     "Atxewluke (suchtrashley) (en affixes)",
     "Äk'raä te Ikran (uk)",
@@ -11,6 +12,7 @@ const Credits = {
     "Palusyulang (pt, na'vi)",
     "Tan Jala (ru)",
     "Tirea Aean (en, eo, na'vi)",
+    "Tslakxime (pt)",
     "Tsyili (en, na'vi)",
     "Wllìm (nl)",
   ],
