@@ -38,6 +38,7 @@ export function ResultInfo({ word }: ResultInfoProps) {
         style={styles.audioButton}
         textStyle={{ color: Colors.dark.text }}
       />
+      <DetailItem label={ui.search.navi} value={word.Navi} />
       <DetailItem
         label={ui.search.partOfSpeech}
         value={`${word.PartOfSpeech} (${
@@ -165,7 +166,11 @@ function AdpositionDisplay({ adposition }: { adposition: string }) {
     getWord();
   }, []);
 
-  return <ItalicText style={styles.value}>{display ?? adposition}</ItalicText>;
+  return (
+    <ItalicText selectable style={styles.value}>
+      {display ?? adposition}
+    </ItalicText>
+  );
 }
 
 type DetailItemProps = {
@@ -177,17 +182,21 @@ type DetailItemProps = {
 function DetailItem({ label, value, link }: DetailItemProps) {
   return (
     <CardView>
-      <BoldText style={styles.label}>{label}:</BoldText>
+      <BoldText selectable style={styles.label}>
+        {label}:
+      </BoldText>
       {link ? (
         <Autolink
           url
+          selectable
           text={value}
-          selectable={true}
           style={styles.value}
           component={Text}
         />
       ) : (
-        <Text style={styles.value}>{value}</Text>
+        <Text selectable style={styles.value}>
+          {value}
+        </Text>
       )}
     </CardView>
   );
@@ -202,7 +211,9 @@ function Pronunciation({ IPA, Stressed, Syllables }: PronunciationProps) {
     <>
       <DetailItem label={ui.search.ipa} value={`[${IPA}]`} />
       <CardView>
-        <BoldText style={styles.label}>{ui.search.breakdown}:</BoldText>
+        <BoldText selectable style={styles.label}>
+          {ui.search.breakdown}:
+        </BoldText>
         <Breakdown Stressed={Stressed} Syllables={Syllables} />
       </CardView>
     </>
@@ -233,10 +244,14 @@ function Breakdown({ Stressed, Syllables }: BreakdownProps) {
     }
   }
   if (syllables.length === 1) {
-    return <Text style={styles.value}>{syllables[0]}</Text>;
+    return (
+      <Text selectable style={styles.value}>
+        {syllables[0]}
+      </Text>
+    );
   }
   return (
-    <Text style={styles.value}>
+    <Text selectable style={styles.value}>
       {before}
       <UnderlinedText>{stressed}</UnderlinedText>
       {after}

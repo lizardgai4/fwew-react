@@ -56,6 +56,7 @@ const strings: UITranslation = {
     search: "Sök",
     naviOnly: "Sök endast Na'vi-ord",
     audio: "Audio",
+    navi: "Na'vi",
     partOfSpeech: "Ordklass",
     definition: "Definition",
     breakdown: "Orddelning",

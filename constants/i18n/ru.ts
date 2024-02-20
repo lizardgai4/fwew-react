@@ -71,6 +71,7 @@ const strings: UITranslation = {
     search: "Поиск",
     naviOnly: "Искать только по словам На'ви",
     audio: "Аудио",
+    navi: "На'ви",
     partOfSpeech: "Часть речи",
     definition: "Значение слова",
     breakdown: "Разделение на слоги",
