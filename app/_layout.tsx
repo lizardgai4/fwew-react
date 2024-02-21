@@ -1,8 +1,10 @@
 import GlobalStyle from "@/components/common/GlobalStyle";
 import i18n from "@/constants/i18n";
 import { AppLanguageProvider } from "@/context/AppLanguageContext";
+import { FavoritesProvider } from "@/context/FavoritesContext";
 import { ResultsLanguageProvider } from "@/context/ResultsLanguageContext";
 import { useAppLanguage } from "@/hooks/useAppLanguage";
+import { useFavorites } from "@/hooks/useFavorites";
 import { useResultsLanguage } from "@/hooks/useResultsLanguage";
 import { FwewDarkTheme, FwewLightTheme } from "@/themes";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
@@ -55,6 +57,7 @@ function RootLayoutNav() {
   const appLanguageValue = useAppLanguage();
   const { appLanguage } = appLanguageValue;
   const resultsLanguage = useResultsLanguage();
+  const favorites = useFavorites();
 
   return (
     <>
@@ -65,16 +68,18 @@ function RootLayoutNav() {
       >
         <AppLanguageProvider value={appLanguageValue}>
           <ResultsLanguageProvider value={resultsLanguage}>
-            <Stack>
-              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-              <Stack.Screen
-                name="settings"
-                options={{
-                  title: i18n[appLanguage].screens.settings,
-                  presentation: "modal",
-                }}
-              />
-            </Stack>
+            <FavoritesProvider value={favorites}>
+              <Stack>
+                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                <Stack.Screen
+                  name="settings"
+                  options={{
+                    title: i18n[appLanguage].screens.settings,
+                    presentation: "modal",
+                  }}
+                />
+              </Stack>
+            </FavoritesProvider>
           </ResultsLanguageProvider>
         </AppLanguageProvider>
       </ThemeProvider>

@@ -6,6 +6,10 @@ export function useFavorites() {
   const [favorites, setFavorites] = useState<Word[]>([]);
   const { getItem, setItem } = useAsyncStorage("savedWords");
 
+  function isFavorite(word: Word) {
+    return favorites.some((w) => w.ID === word.ID);
+  }
+
   async function getFavorites() {
     try {
       const value = await getItem();
@@ -20,7 +24,7 @@ export function useFavorites() {
 
   async function addFavorite(word: Word) {
     try {
-      const exists = favorites.some((w) => w.ID === word.ID);
+      const exists = isFavorite(word);
       if (exists) return;
       const value = JSON.stringify([...favorites, word]);
       await setItem(value);
@@ -43,13 +47,34 @@ export function useFavorites() {
     }
   }
 
+  async function toggleFavorite(word: Word) {
+    if (isFavorite(word)) {
+      removeFavorite(word);
+    } else {
+      addFavorite(word);
+    }
+  }
+
+  async function clearFavorites() {
+    try {
+      await setItem(JSON.stringify([]));
+      setFavorites([]);
+    } catch (error) {
+      console.error(error);
+      return;
+    }
+  }
+
   useEffect(() => {
     getFavorites();
   }, []);
 
   return {
     favorites,
+    isFavorite,
     addFavorite,
     removeFavorite,
+    toggleFavorite,
+    clearFavorites,
   };
 }

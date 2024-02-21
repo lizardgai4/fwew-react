@@ -10,8 +10,10 @@ import Colors from "@/constants/Colors";
 import { LenitingAdpositions } from "@/constants/Lenition";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
+import { useFavoritesContext } from "@/context/FavoritesContext";
 import { useResultsLanguageContext } from "@/context/ResultsLanguageContext";
 import { useSound } from "@/hooks/useSound";
+import { useTheme } from "@react-navigation/native";
 import { fwewSimple, type LanguageCode, type Word } from "fwew.js";
 import { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
@@ -30,14 +32,24 @@ export function ResultInfo({ word }: ResultInfoProps) {
 
   return (
     <CardView style={styles.container}>
-      <Button
-        onPress={() => playSound(word.ID)}
-        disabled={disabled}
-        icon="volume-up"
-        text={ui.search.audio}
-        style={styles.audioButton}
-        textStyle={{ color: Colors.dark.text }}
-      />
+      <CardView
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 16,
+        }}
+      >
+        <Button
+          onPress={() => playSound(word.ID)}
+          disabled={disabled}
+          icon="volume-up"
+          text={ui.search.audio}
+          style={styles.audioButton}
+          textStyle={{ color: Colors.dark.text }}
+        />
+        <FavoriteButton word={word} />
+      </CardView>
       <DetailItem label={ui.search.navi} value={word.Navi} />
       <DetailItem
         label={ui.search.partOfSpeech}
@@ -91,6 +103,27 @@ export function ResultInfo({ word }: ResultInfoProps) {
       )}
       <DetailItem link label={ui.search.source} value={word.Source} />
     </CardView>
+  );
+}
+
+function FavoriteButton({ word }: { word: Word }) {
+  const theme = useTheme();
+  const { isFavorite, toggleFavorite } = useFavoritesContext();
+
+  const faved = isFavorite(word);
+  return (
+    <Button
+      onPress={() => toggleFavorite(word)}
+      icon={faved ? "star" : "star-o"}
+      text="Favorite"
+      style={{
+        ...styles.audioButton,
+        backgroundColor: faved
+          ? theme.colors?.primary
+          : Colors[theme.dark ? "dark" : "light"].innerCard,
+      }}
+      textStyle={{ color: Colors.dark.text }}
+    />
   );
 }
 
@@ -272,6 +305,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   audioButton: {
+    flex: 1,
     marginBottom: 16,
     borderRadius: 8,
   },
