@@ -10,10 +10,10 @@ import Colors from "@/constants/Colors";
 import { LenitingAdpositions } from "@/constants/Lenition";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
-import { useFavoritesContext } from "@/context/FavoritesContext";
+// import { useFavoritesContext } from "@/context/FavoritesContext";
 import { useResultsLanguageContext } from "@/context/ResultsLanguageContext";
 import { useSound } from "@/hooks/useSound";
-import { useTheme } from "@react-navigation/native";
+// import { useTheme } from "@react-navigation/native";
 import { fwewSimple, type LanguageCode, type Word } from "fwew.js";
 import { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
@@ -32,14 +32,7 @@ export function ResultInfo({ word }: ResultInfoProps) {
 
   return (
     <CardView style={styles.container}>
-      <CardView
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: 16,
-        }}
-      >
+      <CardView style={styles.buttonContainer}>
         <Button
           onPress={() => playSound(word.ID)}
           disabled={disabled}
@@ -48,7 +41,7 @@ export function ResultInfo({ word }: ResultInfoProps) {
           style={styles.audioButton}
           textStyle={{ color: Colors.dark.text }}
         />
-        <FavoriteButton word={word} />
+        {/*<FavoriteButton word={word} />*/}
       </CardView>
       <DetailItem label={ui.search.navi} value={word.Navi} />
       <DetailItem
@@ -106,26 +99,26 @@ export function ResultInfo({ word }: ResultInfoProps) {
   );
 }
 
-function FavoriteButton({ word }: { word: Word }) {
-  const theme = useTheme();
-  const { isFavorite, toggleFavorite } = useFavoritesContext();
-
-  const faved = isFavorite(word);
-  return (
-    <Button
-      onPress={() => toggleFavorite(word)}
-      icon={faved ? "star" : "star-o"}
-      text="Favorite"
-      style={{
-        ...styles.audioButton,
-        backgroundColor: faved
-          ? theme.colors?.primary
-          : Colors[theme.dark ? "dark" : "light"].innerCard,
-      }}
-      textStyle={{ color: Colors.dark.text }}
-    />
-  );
-}
+// function FavoriteButton({ word }: { word: Word }) {
+//   const theme = useTheme();
+//   const { isFavorite, toggleFavorite } = useFavoritesContext();
+//
+//   const faved = isFavorite(word);
+//   return (
+//     <Button
+//       onPress={() => toggleFavorite(word)}
+//       icon={faved ? "star" : "star-o"}
+//       text="Favorite"
+//       style={{
+//         ...styles.audioButton,
+//         backgroundColor: faved
+//           ? theme.colors?.primary
+//           : Colors[theme.dark ? "dark" : "light"].innerCard,
+//       }}
+//       textStyle={{ color: Colors.dark.text }}
+//     />
+//   );
+// }
 
 type AffixDetailProps = {
   label: string;
@@ -146,7 +139,7 @@ function AffixDetail({ label, value, type }: AffixDetailProps) {
           return (
             <CardView
               key={`rip_a_${i}`}
-              style={{ flexDirection: "row", flexWrap: "wrap" }}
+              style={styles.wrapRow}
             >
               <Text style={styles.value}>
                 <BoldText>{affix.navi}</BoldText>{" "}
@@ -160,7 +153,7 @@ function AffixDetail({ label, value, type }: AffixDetailProps) {
         return (
           <CardView
             key={`rip_a_${i}`}
-            style={{ flexDirection: "row", flexWrap: "wrap" }}
+            style={styles.wrapRow}
           >
             <Text style={styles.value}>
               <BoldText>
@@ -196,7 +189,7 @@ function AdpositionDisplay({ adposition }: { adposition: string }) {
   };
 
   useEffect(() => {
-    getWord();
+    getWord().then();
   }, []);
 
   return (
@@ -296,6 +289,12 @@ const styles = StyleSheet.create({
   container: {
     padding: 16,
   },
+  buttonContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 16,
+  },
   label: {
     fontSize: 18,
   },
@@ -308,5 +307,9 @@ const styles = StyleSheet.create({
     flex: 1,
     marginBottom: 16,
     borderRadius: 8,
+  },
+  wrapRow: {
+    flexDirection: "row",
+    flexWrap: "wrap"
   },
 });

@@ -22,7 +22,7 @@ const Languages: LanguageMeta[] = [
   { value: "ru", label: "Русский", ui: true, results: true },
   { value: "sv", label: "Svenska", ui: true, results: true },
   { value: "tr", label: "Türkçe", ui: true, results: true },
-  { value: "uk", label: "Українська", ui: true, results: false },
+  { value: "uk", label: "Українська", ui: true, results: true },
 ];
 
 export const AppLanguages = Languages.filter((l) => l.ui);
