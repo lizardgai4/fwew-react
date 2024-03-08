@@ -56,6 +56,7 @@ const strings: UITranslation = {
     search: "Busca",
     naviOnly: "Sólo busca palabras Na'vi",
     audio: "Audio",
+    navi: "Na'vi",
     partOfSpeech: "Parte de la oración",
     definition: "Definición",
     breakdown: "Sílabas",

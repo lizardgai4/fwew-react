@@ -9,10 +9,10 @@ export EXPO_PUBLIC_GIT_COMMIT_HASH = $(COMMIT_SHA)
 default: build
 
 build:
-	eas build -p android -e preview --local --output="$(OUTPUT_DIR)/fwew-react-next-$(BUILD_DATE)-$(COMMIT_SHA).apk"
+	eas build -p android -e preview --local --output="$(OUTPUT_DIR)/fwew-react-$(GIT_BRANCH)-$(BUILD_DATE)-$(COMMIT_SHA).apk"
 
 build-prod:
-	eas build -p android -e production --local --output="$(OUTPUT_DIR)/fwew-react-next-$(BUILD_DATE)-$(COMMIT_SHA).apk"
+	eas build -p android -e production --local --output="$(OUTPUT_DIR)/fwew-react-$(GIT_BRANCH)-$(BUILD_DATE)-$(COMMIT_SHA).aab"
 
 build-remote:
 	eas build -p android -e preview

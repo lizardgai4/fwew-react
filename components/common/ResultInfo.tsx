@@ -10,8 +10,10 @@ import Colors from "@/constants/Colors";
 import { LenitingAdpositions } from "@/constants/Lenition";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
+import { useFavoritesContext } from "@/context/FavoritesContext";
 import { useResultsLanguageContext } from "@/context/ResultsLanguageContext";
 import { useSound } from "@/hooks/useSound";
+import { useTheme } from "@react-navigation/native";
 import { fwewSimple, type LanguageCode, type Word } from "fwew.js";
 import { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
@@ -30,14 +32,25 @@ export function ResultInfo({ word }: ResultInfoProps) {
 
   return (
     <CardView style={styles.container}>
-      <Button
-        onPress={() => playSound(word.ID)}
-        disabled={disabled}
-        icon="volume-up"
-        text={ui.search.audio}
-        style={styles.audioButton}
-        textStyle={{ color: Colors.dark.text }}
-      />
+      <CardView
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 16,
+        }}
+      >
+        <Button
+          onPress={() => playSound(word.ID)}
+          disabled={disabled}
+          icon="volume-up"
+          text={ui.search.audio}
+          style={styles.audioButton}
+          textStyle={{ color: Colors.dark.text }}
+        />
+        <FavoriteButton word={word} />
+      </CardView>
+      <DetailItem label={ui.search.navi} value={word.Navi} />
       <DetailItem
         label={ui.search.partOfSpeech}
         value={`${word.PartOfSpeech} (${
@@ -90,6 +103,27 @@ export function ResultInfo({ word }: ResultInfoProps) {
       )}
       <DetailItem link label={ui.search.source} value={word.Source} />
     </CardView>
+  );
+}
+
+function FavoriteButton({ word }: { word: Word }) {
+  const theme = useTheme();
+  const { isFavorite, toggleFavorite } = useFavoritesContext();
+
+  const faved = isFavorite(word);
+  return (
+    <Button
+      onPress={() => toggleFavorite(word)}
+      icon={faved ? "star" : "star-o"}
+      text="Favorite"
+      style={{
+        ...styles.audioButton,
+        backgroundColor: faved
+          ? theme.colors?.primary
+          : Colors[theme.dark ? "dark" : "light"].innerCard,
+      }}
+      textStyle={{ color: Colors.dark.text }}
+    />
   );
 }
 
@@ -165,7 +199,11 @@ function AdpositionDisplay({ adposition }: { adposition: string }) {
     getWord();
   }, []);
 
-  return <ItalicText style={styles.value}>{display ?? adposition}</ItalicText>;
+  return (
+    <ItalicText selectable style={styles.value}>
+      {display ?? adposition}
+    </ItalicText>
+  );
 }
 
 type DetailItemProps = {
@@ -177,17 +215,21 @@ type DetailItemProps = {
 function DetailItem({ label, value, link }: DetailItemProps) {
   return (
     <CardView>
-      <BoldText style={styles.label}>{label}:</BoldText>
+      <BoldText selectable style={styles.label}>
+        {label}:
+      </BoldText>
       {link ? (
         <Autolink
           url
+          selectable
           text={value}
-          selectable={true}
           style={styles.value}
           component={Text}
         />
       ) : (
-        <Text style={styles.value}>{value}</Text>
+        <Text selectable style={styles.value}>
+          {value}
+        </Text>
       )}
     </CardView>
   );
@@ -202,7 +244,9 @@ function Pronunciation({ IPA, Stressed, Syllables }: PronunciationProps) {
     <>
       <DetailItem label={ui.search.ipa} value={`[${IPA}]`} />
       <CardView>
-        <BoldText style={styles.label}>{ui.search.breakdown}:</BoldText>
+        <BoldText selectable style={styles.label}>
+          {ui.search.breakdown}:
+        </BoldText>
         <Breakdown Stressed={Stressed} Syllables={Syllables} />
       </CardView>
     </>
@@ -233,10 +277,14 @@ function Breakdown({ Stressed, Syllables }: BreakdownProps) {
     }
   }
   if (syllables.length === 1) {
-    return <Text style={styles.value}>{syllables[0]}</Text>;
+    return (
+      <Text selectable style={styles.value}>
+        {syllables[0]}
+      </Text>
+    );
   }
   return (
-    <Text style={styles.value}>
+    <Text selectable style={styles.value}>
       {before}
       <UnderlinedText>{stressed}</UnderlinedText>
       {after}
@@ -257,6 +305,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   audioButton: {
+    flex: 1,
     marginBottom: 16,
     borderRadius: 8,
   },

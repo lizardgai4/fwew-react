@@ -56,6 +56,7 @@ const strings: UITranslation = {
     search: "Otsing",
     naviOnly: "Otsi ainult Na'vi sõnu",
     audio: "Audio",
+    navi: "Na'vi",
     partOfSpeech: "Sõnaliik",
     definition: "Definitsioon",
     breakdown: "Silbitus",

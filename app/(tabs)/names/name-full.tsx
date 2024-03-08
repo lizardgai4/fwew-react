@@ -3,20 +3,18 @@ import { Button } from "@/components/common/Button";
 import { NumericTextInput } from "@/components/common/NumericTextInput";
 import { OptionSelect } from "@/components/common/OptionSelect";
 import { ResultCount } from "@/components/common/ResultCount";
-import { CardView, Text, View } from "@/components/common/Themed";
+import { Text, View } from "@/components/common/Themed";
 import { NameResults } from "@/components/names/NameResults";
 import Colors from "@/constants/Colors";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useNameFull } from "@/hooks/useNameFull";
-import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 import * as Clipboard from "expo-clipboard";
 import {
   RefreshControl,
   ScrollView,
   StyleSheet,
-  TouchableOpacity,
   useColorScheme,
 } from "react-native";
 

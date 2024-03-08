@@ -28,6 +28,7 @@ export type SearchStrings = {
   search: string;
   naviOnly: string;
   audio: string;
+  navi: string;
   partOfSpeech: string;
   definition: string;
   breakdown: string;

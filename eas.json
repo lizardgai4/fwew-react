@@ -23,6 +23,7 @@
     },
     "production": {
       "extends": "base",
+      "distribution": "store",
       "env": {
         "EXPO_PUBLIC_GIT_BRANCH": "main"
       }
