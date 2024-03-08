@@ -72,6 +72,13 @@ function RootLayoutNav() {
               <Stack>
                 <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
                 <Stack.Screen
+                  name="favorites"
+                  options={{
+                    title: "Favorites",
+                    presentation: "modal",
+                  }}
+                />
+                <Stack.Screen
                   name="settings"
                   options={{
                     title: i18n[appLanguage].screens.settings,
