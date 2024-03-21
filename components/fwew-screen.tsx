@@ -55,9 +55,8 @@ function FwewScreen({ navigation, route }): JSX.Element {
   const [err, setErr] = useState({} as FwewError)
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [selectedItem, setSelectedItem] = useState({} as Word)
-  const { settingsGlobal, settingsFwew, onUpdateSettingsFwew } = useContext(
-    SettingsContext
-  )
+  const { settingsGlobal, settingsFwew, onUpdateSettingsFwew } =
+    useContext(SettingsContext)
   const { isReverseEnabled } = settingsFwew
   const { languageCodeUI, languageCode } = settingsGlobal
   const strings = ui[languageCodeUI].fwewScreen
@@ -119,7 +118,7 @@ function FwewScreen({ navigation, route }): JSX.Element {
     axios
       .get<Word[]>(encodeURI(endpoint))
       .then((response: AxiosResponse<Word[]>) => {
-        setData(response.data)
+        setData(response.data.filter((item) => item.ID.length))
         setIsLoading(false)
       })
       .catch((e) => {
