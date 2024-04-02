@@ -10,10 +10,10 @@ import Colors from "@/constants/Colors";
 import { LenitingAdpositions } from "@/constants/Lenition";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
-// import { useFavoritesContext } from "@/context/FavoritesContext";
+import { useFavoritesContext } from "@/context/FavoritesContext";
 import { useResultsLanguageContext } from "@/context/ResultsLanguageContext";
 import { useSound } from "@/hooks/useSound";
-// import { useTheme } from "@react-navigation/native";
+import { useTheme } from "@react-navigation/native";
 import { fwewSimple, type LanguageCode, type Word } from "fwew.js";
 import { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
@@ -41,7 +41,7 @@ export function ResultInfo({ word }: ResultInfoProps) {
           style={styles.audioButton}
           textStyle={{ color: Colors.dark.text }}
         />
-        {/*<FavoriteButton word={word} />*/}
+        <FavoriteButton word={word} />
       </CardView>
       <DetailItem label={ui.search.navi} value={word.Navi} />
       <DetailItem
@@ -99,26 +99,26 @@ export function ResultInfo({ word }: ResultInfoProps) {
   );
 }
 
-// function FavoriteButton({ word }: { word: Word }) {
-//   const theme = useTheme();
-//   const { isFavorite, toggleFavorite } = useFavoritesContext();
-//
-//   const faved = isFavorite(word);
-//   return (
-//     <Button
-//       onPress={() => toggleFavorite(word)}
-//       icon={faved ? "star" : "star-o"}
-//       text="Favorite"
-//       style={{
-//         ...styles.audioButton,
-//         backgroundColor: faved
-//           ? theme.colors?.primary
-//           : Colors[theme.dark ? "dark" : "light"].innerCard,
-//       }}
-//       textStyle={{ color: Colors.dark.text }}
-//     />
-//   );
-// }
+function FavoriteButton({ word }: { word: Word }) {
+  const theme = useTheme();
+  const { isFavorite, toggleFavorite } = useFavoritesContext();
+
+  const faved = isFavorite(word);
+  return (
+    <Button
+      onPress={() => toggleFavorite(word)}
+      icon={faved ? "heart" : "heart-o"}
+      text="Favorite"
+      style={{
+        ...styles.audioButton,
+        backgroundColor: faved
+          ? theme.colors?.primary
+          : Colors[theme.dark ? "dark" : "light"].innerCard,
+      }}
+      textStyle={{ color: Colors.dark.text }}
+    />
+  );
+}
 
 type AffixDetailProps = {
   label: string;
@@ -137,10 +137,7 @@ function AffixDetail({ label, value, type }: AffixDetailProps) {
       {affixes.map((affix, i) => {
         if (affix?.navi) {
           return (
-            <CardView
-              key={`rip_a_${i}`}
-              style={styles.wrapRow}
-            >
+            <CardView key={`rip_a_${i}`} style={styles.wrapRow}>
               <Text style={styles.value}>
                 <BoldText>{affix.navi}</BoldText>{" "}
                 <ItalicText>{affix.display}</ItalicText> (
@@ -151,10 +148,7 @@ function AffixDetail({ label, value, type }: AffixDetailProps) {
           );
         }
         return (
-          <CardView
-            key={`rip_a_${i}`}
-            style={styles.wrapRow}
-          >
+          <CardView key={`rip_a_${i}`} style={styles.wrapRow}>
             <Text style={styles.value}>
               <BoldText>
                 -{value[i]}
@@ -310,6 +304,6 @@ const styles = StyleSheet.create({
   },
   wrapRow: {
     flexDirection: "row",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
   },
 });
