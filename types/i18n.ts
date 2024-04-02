@@ -21,6 +21,7 @@ export type ScreenStrings = {
   random: string;
   numbers: string;
   names: string;
+  favorites: string;
   settings: string;
 };
 

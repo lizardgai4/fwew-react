@@ -74,7 +74,7 @@ function RootLayoutNav() {
                 <Stack.Screen
                   name="favorites"
                   options={{
-                    title: "Favorites",
+                    title: i18n[appLanguage].screens.favorites,
                     presentation: "modal",
                   }}
                 />

@@ -50,6 +50,7 @@ const strings: UITranslation = {
     random: "Випадково",
     numbers: "Числа",
     names: "Імена",
+    favorites: "Вибране",
     settings: "Налаштування",
   },
   search: {

@@ -65,6 +65,7 @@ const strings: UITranslation = {
     random: "Случайные слова",
     numbers: "Числа",
     names: "Имена",
+    favorites: "Избранное",
     settings: "Настройки",
   },
   search: {
