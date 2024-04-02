@@ -17,8 +17,9 @@ export function useFavorites() {
       const savedWordsArr: Word[] = JSON.parse(value);
       if (savedWordsArr == null) return;
       setFavorites(savedWordsArr);
-    } catch (e) {
-      // error reading value
+    } catch (error) {
+      console.error(error);
+      return;
     }
   }
 
