@@ -26,9 +26,9 @@ export function useFavorites() {
     try {
       const exists = isFavorite(word);
       if (exists) return;
-      const value = JSON.stringify([...favorites, word]);
+      const value = JSON.stringify([word, ...favorites]);
       await setItem(value);
-      setFavorites((prev) => [...prev, word]);
+      setFavorites((prev) => [word, ...prev]);
     } catch (error) {
       console.error(error);
       return;
