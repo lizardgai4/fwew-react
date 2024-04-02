@@ -50,9 +50,9 @@ export function useFavorites() {
 
   async function toggleFavorite(word: Word) {
     if (isFavorite(word)) {
-      removeFavorite(word);
+      await removeFavorite(word);
     } else {
-      addFavorite(word);
+      await addFavorite(word);
     }
   }
 
