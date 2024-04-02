@@ -57,6 +57,7 @@ const strings: UITranslation = {
     search: "Пошук",
     naviOnly: "Пошук лише за словами На'ві",
     audio: "Вимова",
+    favorite: "Вибране",
     navi: "На'ві",
     partOfSpeech: "Частина мови",
     definition: "Визначення",

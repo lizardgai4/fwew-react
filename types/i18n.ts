@@ -29,6 +29,7 @@ export type SearchStrings = {
   search: string;
   naviOnly: string;
   audio: string;
+  favorite: string;
   navi: string;
   partOfSpeech: string;
   definition: string;

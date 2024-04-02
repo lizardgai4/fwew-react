@@ -102,13 +102,15 @@ export function ResultInfo({ word }: ResultInfoProps) {
 function FavoriteButton({ word }: { word: Word }) {
   const theme = useTheme();
   const { isFavorite, toggleFavorite } = useFavoritesContext();
+  const { appLanguage } = useAppLanguageContext();
+  const ui = i18n[appLanguage];
 
   const faved = isFavorite(word);
   return (
     <Button
       onPress={() => toggleFavorite(word)}
       icon={faved ? "heart" : "heart-o"}
-      text="Favorite"
+      text={ui.search.favorite}
       style={{
         ...styles.audioButton,
         backgroundColor: faved

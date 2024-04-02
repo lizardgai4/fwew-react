@@ -57,6 +57,7 @@ const strings: UITranslation = {
     search: "Zoeken",
     naviOnly: "Alleen Na'vi woorden zoeken",
     audio: "Audio",
+    favorite: "Favoriet",
     navi: "Na'vi",
     partOfSpeech: "Woordsoort",
     definition: "Definitie",

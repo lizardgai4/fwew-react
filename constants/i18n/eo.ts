@@ -57,6 +57,7 @@ const strings: UITranslation = {
     search: "Serĉi",
     naviOnly: "Serĉi nur Na'viajn vortojn",
     audio: "Audio",
+    favorite: "Favorato",
     navi: "Na'via vorto",
     partOfSpeech: "Vorttipo",
     definition: "Difino",
