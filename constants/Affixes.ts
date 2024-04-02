@@ -88,8 +88,8 @@ export const Affixes: FwewAffixes = {
     },
     nì: {
       navi: "nì-",
-      productive: false,
-      for: null,
+      productive: true,
+      for: "adjectives, ordinal numbers, and pronouns",
       display: "[word]ly; creates adverbs from existing words",
     },
     pay: {
