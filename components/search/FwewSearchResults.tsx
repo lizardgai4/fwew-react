@@ -34,7 +34,12 @@ export function FwewSearchResults(props: FwewSearchResultsProps) {
                 </View>
               );
             }
-            return <ResultCard key={word.ID} word={word} />;
+            return (
+              <ResultCard
+                key={`sre_${word.ID}_${JSON.stringify(word.Affixes)}`}
+                word={word}
+              />
+            );
           })}
         </View>
       ))}
