@@ -29,8 +29,8 @@ export function useStats() {
 
     let data1: String;
     let data2: Map<string,Map<string,Map<string,number>>>
+    let value1: Map<string,Map<string,number>>
     
-
     try {
         data1 = await dictLen({
           signal: abortController.signal,
@@ -50,7 +50,7 @@ export function useStats() {
     let clusters1: string[] = ["f", "s", "ts"];
     let clusters2: string[] = ["p", "t", "k", "px", "tx", "kx", "m", "n", "ng", "r", "l", "w", "y"];
 
-    data2.forEach((value1: Map<string,Map<string,number>>, key: string) => {
+    for (const [key, value1] of data2.entries()) {
       if (key == "Clusters") {
         i = 0
         clusters1.forEach((consonant1: string) => {
@@ -62,14 +62,14 @@ export function useStats() {
         });
       } else {
         i = 0
-        value1.forEach((value2: Map<string,number>, key: string) => {
-          value2.forEach((value3: number, key: string) => {
+        for (const [key, value2] of Object.entries(value1)) {
+          for (const [key, value3] of Object.entries(value2)) {
             phonemeGrid[i].push(String(value3) + " " + key)
-          });
+          }
           i += 1
-        });
+        }
       }
-    });
+    }
     
     setLoading(false);
   };

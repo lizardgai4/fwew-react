@@ -33,7 +33,6 @@ export default function StatsScreen() {
 
   return (
     <View style={styles.container}>
-      phonemes
     </View>
   );
 }
