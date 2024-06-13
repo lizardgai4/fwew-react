@@ -1,7 +1,7 @@
 import { ResultCount } from "@/components/common/ResultCount";
 import { SearchBar } from "@/components/common/SearchBar";
 import { SwitchInput } from "@/components/common/SwitchInput";
-import { MultiIPAResults } from "@/components/multi_ipa/MultiIPA";
+import { NonSearchResults } from "@/components/multi_ipa/MultiIPA";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useOddballs } from "@/hooks/useOddballs";
@@ -35,7 +35,7 @@ export default function OddballsScreen() {
         visible={resultCount > 0}
         resultCount={resultCount}
       />
-      <MultiIPAResults loading={loading} results={results} />
+      <NonSearchResults loading={loading} results={results} />
     </ScrollView>
   );
 }

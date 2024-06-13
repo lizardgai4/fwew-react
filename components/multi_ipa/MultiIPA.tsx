@@ -5,12 +5,12 @@ import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import type { Word } from "fwew.js";
 import { ActivityIndicator, Platform, StyleSheet } from "react-native";
 
-type MultiIPAResultsProps = {
+type NonSearchResultsProps = {
   loading?: boolean;
   results: Word[][];
 };
 
-export function MultiIPAResults(props: MultiIPAResultsProps) {
+export function NonSearchResults(props: NonSearchResultsProps) {
   const { loading, results } = props;
   const { appLanguage } = useAppLanguageContext();
   const { common } = i18n[appLanguage];

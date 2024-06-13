@@ -3,32 +3,37 @@ import { CardView, Text, View } from "@/components/common/Themed";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { Link } from "expo-router";
+import { useStats } from "@/hooks/useStats";
 import { StyleSheet } from "react-native";
 
-export default function ListsScreen() {
+function makeTableHTML(myArray: string[][]) {
+  var result = "<table border=1>";
+  for(var i=0; i<myArray.length; i++) {
+      result += "<tr>";
+      for(var j=0; j<myArray[i].length; j++){
+          result += "<td>"+myArray[i][j]+"</td>";
+      }
+      result += "</tr>";
+  }
+  result += "</table>";
+
+  return result;
+}
+
+export default function StatsScreen() {
+  const {
+    phonemeGrid,
+    clusterMap,
+    loading,
+  } = useStats();
   const { appLanguage } = useAppLanguageContext();
   const { names } = i18n[appLanguage];
 
+  const phonemes = makeTableHTML(phonemeGrid)
+
   return (
     <View style={styles.container}>
-      <Link href="/(tabs)/toybox/stats">
-        <CardView style={styles.card}>
-          <Text style={styles.text}>{names.single}</Text>
-          <ItalicText>Neytiri</ItalicText>
-        </CardView>
-      </Link>
-      <Link href="/(tabs)/toybox/stats">
-        <CardView style={styles.card}>
-          <Text style={styles.text}>{names.full}</Text>
-          <ItalicText>Neytiri te Tskaha Mo'at'ite</ItalicText>
-        </CardView>
-      </Link>
-      <Link href="/(tabs)/toybox/stats">
-        <CardView style={styles.card}>
-          <Text style={styles.text}>{names.alu}</Text>
-          <ItalicText>Neytiri alu Taronyu Teyluä</ItalicText>
-        </CardView>
-      </Link>
+      phonemes
     </View>
   );
 }
