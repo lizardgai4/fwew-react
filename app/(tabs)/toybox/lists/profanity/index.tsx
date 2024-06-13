@@ -4,18 +4,17 @@ import { SwitchInput } from "@/components/common/SwitchInput";
 import { FwewSearchResults } from "@/components/search/FwewSearchResults";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
-import { useMultiIPA } from "@/hooks/useMultiIPA";
+import { useProfanity } from "@/hooks/useProfanity";
 import { useTheme } from "@react-navigation/native";
 import { RefreshControl, ScrollView, StyleSheet } from "react-native";
 
-export default function MultiIPAScreen() {
+export default function ProfanityScreen() {
   const {
-    query,
     results,
     resultCount,
     loading,
     execute,
-  } = useMultiIPA();
+  } = useProfanity();
   const { colors } = useTheme();
   const { appLanguage } = useAppLanguageContext();
   const ui = i18n[appLanguage].search;
@@ -33,7 +32,7 @@ export default function MultiIPAScreen() {
       }
     >
       <ResultCount
-        visible={query.length > 0 && resultCount > 0}
+        visible={resultCount > 0}
         resultCount={resultCount}
       />
       <FwewSearchResults loading={loading} results={results} />

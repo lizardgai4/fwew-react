@@ -1,21 +1,20 @@
 import { ResultCount } from "@/components/common/ResultCount";
 import { SearchBar } from "@/components/common/SearchBar";
 import { SwitchInput } from "@/components/common/SwitchInput";
-import { FwewSearchResults } from "@/components/search/FwewSearchResults";
+import { MultiIPAResults } from "@/components/multi_ipa/MultiIPA";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
-import { useMultiIPA } from "@/hooks/useMultiIPA";
+import { useHomonyms } from "@/hooks/useHomonyms";
 import { useTheme } from "@react-navigation/native";
 import { RefreshControl, ScrollView, StyleSheet } from "react-native";
 
-export default function MultiIPAScreen() {
+export default function HomonymsScreen() {
   const {
-    query,
     results,
     resultCount,
     loading,
     execute,
-  } = useMultiIPA();
+  } = useHomonyms();
   const { colors } = useTheme();
   const { appLanguage } = useAppLanguageContext();
   const ui = i18n[appLanguage].search;
@@ -33,10 +32,10 @@ export default function MultiIPAScreen() {
       }
     >
       <ResultCount
-        visible={query.length > 0 && resultCount > 0}
+        visible={resultCount > 0}
         resultCount={resultCount}
       />
-      <FwewSearchResults loading={loading} results={results} />
+      <MultiIPAResults loading={loading} results={results} />
     </ScrollView>
   );
 }
