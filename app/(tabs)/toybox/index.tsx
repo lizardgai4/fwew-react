@@ -29,6 +29,12 @@ export default function ToyboxScreen() {
           <ItalicText>Stats</ItalicText>
         </CardView>
       </Link>
+      <Link href="/(tabs)/toybox/valid">
+        <CardView style={styles.card}>
+          <Text style={styles.text}>{toybox.valid}</Text>
+          <ItalicText>Valid</ItalicText>
+        </CardView>
+      </Link>
     </ScrollView>
   );
 }
