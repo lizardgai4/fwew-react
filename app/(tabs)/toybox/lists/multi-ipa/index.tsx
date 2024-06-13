@@ -10,15 +10,10 @@ import { RefreshControl, ScrollView, StyleSheet } from "react-native";
 
 export default function MultiIPAScreen() {
   const {
-    query,
-    naviOnly,
     results,
     resultCount,
     loading,
-    search,
-    setNaviOnly,
     execute,
-    cancel,
   } = useMultiIPA();
   const { colors } = useTheme();
   const { appLanguage } = useAppLanguageContext();
@@ -37,7 +32,7 @@ export default function MultiIPAScreen() {
       }
     >
       <ResultCount
-        visible={query.length > 0 && resultCount > 0}
+        visible={resultCount > 0}
         resultCount={resultCount}
       />
       <MultiIPAResults loading={loading} results={results} />

@@ -6,8 +6,6 @@ import { useEffect, useState } from "react";
 
 export function useMultiIPA() {
   const { resultsLanguage } = useResultsLanguageContext();
-  const [query, search] = useState("");
-  const [naviOnly, setNaviOnly] = useState(false);
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<Word[][]>([]);
   const [resultCount, setResultCount] = useState(0);
@@ -15,12 +13,6 @@ export function useMultiIPA() {
   let abortController = new AbortController();
 
   const execute = async () => {
-    if (query === "") {
-      setResults([]);
-      setResultCount(0);
-      return;
-    }
-
     setLoading(true);
 
     let data: Word[][];
@@ -53,16 +45,12 @@ export function useMultiIPA() {
   useEffect(() => {
     debounce(execute);
     return cancel;
-  }, [query, naviOnly, resultsLanguage]);
+  }, [resultsLanguage]);
 
   return {
-    query,
-    naviOnly,
     results,
     resultCount,
     loading,
-    search,
-    setNaviOnly,
     execute,
     cancel,
   } as const;
