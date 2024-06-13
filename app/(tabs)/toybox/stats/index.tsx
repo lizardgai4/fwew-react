@@ -22,6 +22,7 @@ function makeTableHTML(myArray: string[][]) {
 
 export default function StatsScreen() {
   const {
+    wordCount,
     phonemeGrid,
     clusterMap,
     loading,
@@ -29,10 +30,10 @@ export default function StatsScreen() {
   const { appLanguage } = useAppLanguageContext();
   const { names } = i18n[appLanguage];
 
-  const phonemes = makeTableHTML(phonemeGrid)
-
   return (
     <View style={styles.container}>
+      <Text style={styles.label}>{wordCount}</Text>
+      {phonemeGrid}
     </View>
   );
 }

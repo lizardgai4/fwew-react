@@ -19,8 +19,9 @@ function assign(value: number | undefined) {
 export function useStats() {
   const { resultsLanguage } = useResultsLanguageContext();
   const [loading, setLoading] = useState(false);
-  const [phonemeGrid] = useState(0);
-  const [clusterMap] = useState(0)
+  const [wordCount, setWordCount] = useState<String>();
+  const [phonemeGrid, setPhonemes] = useState<String[][]>([]);
+  const [clusterMap, setClusters] = useState<number[][]>([]);
   const debounce = useDebounce();
   let abortController = new AbortController();
 
@@ -63,6 +64,7 @@ export function useStats() {
       } else {
         i = 0
         for (const [key, value2] of Object.entries(value1)) {
+          phonemeGrid[i].push(key)
           for (const [key, value3] of Object.entries(value2)) {
             phonemeGrid[i].push(String(value3) + " " + key)
           }
@@ -71,6 +73,9 @@ export function useStats() {
       }
     }
     
+    setWordCount(data1)
+    setPhonemes(phonemeGrid);
+    setClusters(clusterMap);
     setLoading(false);
   };
 
@@ -86,6 +91,7 @@ export function useStats() {
   }, [resultsLanguage]);
 
   return {
+    wordCount,
     phonemeGrid,
     clusterMap,
     loading,
