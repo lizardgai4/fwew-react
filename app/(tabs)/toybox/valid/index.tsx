@@ -34,7 +34,7 @@ export default function ValidScreen() {
       }
     >
       <SearchBar query={query} search={search} cancel={cancel} autoFocus />
-      <Text>{results}</Text>
+      <p>{results}</p>
     </ScrollView>
   );
 }
