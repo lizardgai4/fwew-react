@@ -33,7 +33,6 @@ export default function ValidScreen() {
         />
       }
     >
-      <SearchBar query={query} search={search} cancel={cancel} autoFocus />
       <p>{results}</p>
     </ScrollView>
   );

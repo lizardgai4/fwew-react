@@ -35,6 +35,12 @@ export default function ToyboxScreen() {
           <ItalicText>Valid</ItalicText>
         </CardView>
       </Link>
+      <Link href="/(tabs)/toybox/lenition">
+        <CardView style={styles.card}>
+          <Text style={styles.text}>{toybox.lenition}</Text>
+          <ItalicText>Lenition</ItalicText>
+        </CardView>
+      </Link>
     </ScrollView>
   );
 }
