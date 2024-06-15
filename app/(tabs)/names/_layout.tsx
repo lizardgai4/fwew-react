@@ -1,3 +1,4 @@
+import { ActionButtons } from "@/components/common/ActionButtons";
 import Colors from "@/constants/Colors";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
@@ -22,20 +23,7 @@ export default function StackLayout() {
         name="index"
         options={{
           title: screens.names,
-          headerRight: () => (
-            <Link href="/settings" asChild>
-              <Pressable style={styles.actionButton}>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="gear"
-                    size={25}
-                    color={Colors.dark.text}
-                    style={{ opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
-          ),
+          headerRight: ActionButtons,
         }}
       />
       <Stack.Screen

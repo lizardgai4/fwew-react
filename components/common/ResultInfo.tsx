@@ -32,14 +32,7 @@ export function ResultInfo({ word }: ResultInfoProps) {
 
   return (
     <CardView style={styles.container}>
-      <CardView
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: 16,
-        }}
-      >
+      <CardView style={styles.buttonContainer}>
         <Button
           onPress={() => playSound(word.ID)}
           disabled={disabled}
@@ -109,13 +102,15 @@ export function ResultInfo({ word }: ResultInfoProps) {
 function FavoriteButton({ word }: { word: Word }) {
   const theme = useTheme();
   const { isFavorite, toggleFavorite } = useFavoritesContext();
+  const { appLanguage } = useAppLanguageContext();
+  const ui = i18n[appLanguage];
 
   const faved = isFavorite(word);
   return (
     <Button
       onPress={() => toggleFavorite(word)}
-      icon={faved ? "star" : "star-o"}
-      text="Favorite"
+      icon={faved ? "heart" : "heart-o"}
+      text={ui.search.favorite}
       style={{
         ...styles.audioButton,
         backgroundColor: faved
@@ -144,10 +139,7 @@ function AffixDetail({ label, value, type }: AffixDetailProps) {
       {affixes.map((affix, i) => {
         if (affix?.navi) {
           return (
-            <CardView
-              key={`rip_a_${i}`}
-              style={{ flexDirection: "row", flexWrap: "wrap" }}
-            >
+            <CardView key={`rip_a_${i}`} style={styles.wrapRow}>
               <Text style={styles.value}>
                 <BoldText>{affix.navi}</BoldText>{" "}
                 <ItalicText>{affix.display}</ItalicText> (
@@ -158,10 +150,7 @@ function AffixDetail({ label, value, type }: AffixDetailProps) {
           );
         }
         return (
-          <CardView
-            key={`rip_a_${i}`}
-            style={{ flexDirection: "row", flexWrap: "wrap" }}
-          >
+          <CardView key={`rip_a_${i}`} style={styles.wrapRow}>
             <Text style={styles.value}>
               <BoldText>
                 -{value[i]}
@@ -196,7 +185,7 @@ function AdpositionDisplay({ adposition }: { adposition: string }) {
   };
 
   useEffect(() => {
-    getWord();
+    getWord().then();
   }, []);
 
   return (
@@ -296,6 +285,12 @@ const styles = StyleSheet.create({
   container: {
     padding: 16,
   },
+  buttonContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 16,
+  },
   label: {
     fontSize: 18,
   },
@@ -308,5 +303,9 @@ const styles = StyleSheet.create({
     flex: 1,
     marginBottom: 16,
     borderRadius: 8,
+  },
+  wrapRow: {
+    flexDirection: "row",
+    flexWrap: "wrap",
   },
 });

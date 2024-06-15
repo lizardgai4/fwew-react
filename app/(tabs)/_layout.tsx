@@ -1,10 +1,11 @@
+import { ActionButtons } from "@/components/common/ActionButtons";
 import Colors from "@/constants/Colors";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useTheme } from "@react-navigation/native";
-import { Link, Tabs } from "expo-router";
-import { Pressable, StyleSheet, useColorScheme } from "react-native";
+import { Tabs } from "expo-router";
+import { useColorScheme } from "react-native";
 
 type TabBarIconProps = {
   name: React.ComponentProps<typeof FontAwesome>["name"];
@@ -37,20 +38,7 @@ export default function TabLayout() {
         options={{
           title: screens.search,
           tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
-          headerRight: () => (
-            <Link href="/settings" asChild>
-              <Pressable style={styles.actionButton}>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="gear"
-                    size={25}
-                    color={Colors.dark.text}
-                    style={{ opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
-          ),
+          headerRight: ActionButtons,
         }}
       />
       <Tabs.Screen
@@ -60,20 +48,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="list-ol" color={color} />
           ),
-          headerRight: () => (
-            <Link href="/settings" asChild>
-              <Pressable style={styles.actionButton}>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="gear"
-                    size={25}
-                    color={Colors.dark.text}
-                    style={{ opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
-          ),
+          headerRight: ActionButtons,
         }}
       />
       <Tabs.Screen
@@ -81,20 +56,7 @@ export default function TabLayout() {
         options={{
           title: screens.random,
           tabBarIcon: ({ color }) => <TabBarIcon name="random" color={color} />,
-          headerRight: () => (
-            <Link href="/settings" asChild>
-              <Pressable style={styles.actionButton}>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="gear"
-                    size={25}
-                    color={Colors.dark.text}
-                    style={{ opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
-          ),
+          headerRight: ActionButtons,
         }}
       />
       <Tabs.Screen
@@ -104,20 +66,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="calculator" color={color} />
           ),
-          headerRight: () => (
-            <Link href="/settings" asChild>
-              <Pressable style={styles.actionButton}>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="gear"
-                    size={25}
-                    color={Colors.dark.text}
-                    style={{ opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
-          ),
+          headerRight: ActionButtons,
         }}
       />
       <Tabs.Screen
@@ -133,12 +82,3 @@ export default function TabLayout() {
     </Tabs>
   );
 }
-
-const styles = StyleSheet.create({
-  actionButton: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 16,
-  },
-});

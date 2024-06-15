@@ -17,8 +17,9 @@ export function useFavorites() {
       const savedWordsArr: Word[] = JSON.parse(value);
       if (savedWordsArr == null) return;
       setFavorites(savedWordsArr);
-    } catch (e) {
-      // error reading value
+    } catch (error) {
+      console.error(error);
+      return;
     }
   }
 
@@ -26,9 +27,9 @@ export function useFavorites() {
     try {
       const exists = isFavorite(word);
       if (exists) return;
-      const value = JSON.stringify([...favorites, word]);
+      const value = JSON.stringify([word, ...favorites]);
       await setItem(value);
-      setFavorites((prev) => [...prev, word]);
+      setFavorites((prev) => [word, ...prev]);
     } catch (error) {
       console.error(error);
       return;
@@ -49,9 +50,9 @@ export function useFavorites() {
 
   async function toggleFavorite(word: Word) {
     if (isFavorite(word)) {
-      removeFavorite(word);
+      await removeFavorite(word);
     } else {
-      addFavorite(word);
+      await addFavorite(word);
     }
   }
 

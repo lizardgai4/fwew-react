@@ -42,15 +42,10 @@ export function useFwew() {
       return;
     }
 
-    const dataNoDuplicates = data.map((words) =>
-      words.filter(
-        (word, index) => words.findIndex((w) => w.ID === word.ID) === index
-      )
-    );
-
-    setResults(dataNoDuplicates);
+    setResults(data);
     setResultCount(
-      dataNoDuplicates.reduce((acc, cur) => acc + cur.length, 0) - data.length
+      // number of actual results = total number of words - number of "blank header words"
+      data.reduce((acc, cur) => acc + cur.length, 0) - data.length
     );
     setLoading(false);
   };

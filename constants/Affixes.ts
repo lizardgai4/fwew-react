@@ -88,8 +88,8 @@ export const Affixes: FwewAffixes = {
     },
     nì: {
       navi: "nì-",
-      productive: false,
-      for: null,
+      productive: true,
+      for: "adjectives, ordinal numbers, and pronouns",
       display: "[word]ly; creates adverbs from existing words",
     },
     pay: {
@@ -201,7 +201,7 @@ export const Affixes: FwewAffixes = {
       navi: "<äng>",
       productive: true,
       for: "verbs",
-      display: "speaker is unhappy about topic",
+      display: "speaker is unhappy or has negative emotion about the action",
     },
     äp: {
       navi: "<äp>",
@@ -213,7 +213,7 @@ export const Affixes: FwewAffixes = {
       navi: "<ei>",
       productive: true,
       for: "verbs",
-      display: "speaker is happy about topic",
+      display: "speaker is happy or has positive emotion about the action",
     },
     er: {
       navi: "<er>",
@@ -234,47 +234,45 @@ export const Affixes: FwewAffixes = {
       productive: true,
       for: "verbs",
       display:
-        "has/have [verb]ed; completed hypothetical action or action removed from reality; want, should, need, etc. to have [verb]ed",
+        "would have [verb]ed; completed hypothetical action or action removed from reality; have [verb]ed",
     },
     imv: {
       navi: "<imv>",
       productive: true,
       for: "verbs",
-      display:
-        "past hypothetical action or action removed from reality; want, should, need, etc. to [verb]",
+      display: "past hypothetical action or action removed from reality",
     },
     irv: {
       navi: "<irv>",
       productive: true,
       for: "verbs",
       display:
-        "is [verb]ing; ongoing hypothetical action or action removed from reality; want, should, need, etc. to be [verb]ing",
+        "would be [verb]ing; ongoing hypothetical action or action removed from reality",
     },
     iv: {
       navi: "<iv>",
       productive: true,
       for: "verbs",
       display:
-        "hypothetical action or action removed from reality; want, should, need, etc. to [verb]",
+        "hypothetical action or action removed from reality; e.g.: want, should, need, etc. to [verb, with <iv> inside]",
     },
     iyev: {
       navi: "<iyev>",
       productive: true,
       for: "verbs",
-      display:
-        "future hypothetical action or action removed from reality; want, should, need, etc. to [verb]",
+      display: "future hypothetical action or action removed from reality",
     },
     ìlm: {
       navi: "<ìlm>",
       productive: true,
       for: "verbs",
-      display: "has/have [verb]ed; completed action in the recent past",
+      display: "had/have just [verb]ed; completed action in the recent past",
     },
     ìly: {
       navi: "<ìly>",
       productive: true,
       for: "verbs",
-      display: "will have [verb]ed; completed action in the near future",
+      display: "will soon have [verb]ed; completed action in the near future",
     },
     ìm: {
       navi: "<ìm>",
@@ -299,20 +297,19 @@ export const Affixes: FwewAffixes = {
       productive: true,
       for: "verbs",
       display:
-        "immediate future tense (with intention or determination of the speaker)",
+        "immediate/near future tense (with intention or determination of the speaker)",
     },
     ìy: {
       navi: "<ìy>",
       productive: true,
       for: "verbs",
-      display: "immediate future tense",
+      display: "immediate/near future tense",
     },
     ìyev: {
       navi: "<ìyev>",
       productive: true,
       for: "verbs",
-      display:
-        "future hypothetical action or action removed from reality; want, should, need, etc. to [verb]",
+      display: "future hypothetical action or action removed from reality",
     },
     ol: {
       navi: "<ol>",
@@ -343,8 +340,8 @@ export const Affixes: FwewAffixes = {
     ä: {
       navi: "-ä",
       productive: true,
-      for: "everything but {\\\\bf a, ä, e, i} and {\\\\bf ì}",
-      display: "of [noun], [noun]'s; possessive",
+      for: "nouns ending with anything except a, ä, e, i, and ì",
+      display: "of [noun], [noun]'s; possessive;",
     },
     e: {
       navi: "-e",
@@ -386,7 +383,7 @@ export const Affixes: FwewAffixes = {
       navi: "-l",
       productive: true,
       for: "nouns ending in a vowel",
-      display: "noun performing the action",
+      display: "noun performing the action (on another noun)",
     },
     lo: {
       navi: "-lo",
@@ -452,7 +449,7 @@ export const Affixes: FwewAffixes = {
       navi: "-tsyìp",
       productive: true,
       for: "nouns",
-      display: "small/little [noun]",
+      display: "small/little/mini [noun]",
     },
     tu: {
       navi: "-tu",
@@ -482,7 +479,7 @@ export const Affixes: FwewAffixes = {
     y: {
       navi: "-y",
       productive: true,
-      for: "pronouns ending in a or e (casual speech)",
+      for: "pronouns ending in a or e; vowel will change to e (oey, ngey); casual shortening of -yä",
       display: "of [noun], [noun]'s; possessive (casual)",
     },
     ya: {
