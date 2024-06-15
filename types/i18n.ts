@@ -21,6 +21,7 @@ export type ScreenStrings = {
   random: string;
   numbers: string;
   names: string;
+  toybox: string;
   favorites: string;
   settings: string;
 };
@@ -99,6 +100,23 @@ export type NameAluStrings = {
   adjModes: OptionType<AdjectiveMode>[];
 };
 
+export type ToyboxStrings = {
+  names: string;
+  lists: string;
+  stats: string;
+  lenition: string;
+  valid: string;
+};
+
+export type ListsStrings = {
+  cameron: string;
+  homonyms: string;
+  multi_ipa: string;
+  oddballs: string;
+  profanity: string;
+  that: string;
+};
+
 export type SettingsStrings = {
   about: string;
   version: string;
@@ -122,6 +140,8 @@ export type UITranslation = {
   nameSingle: NameSingleStrings;
   nameFull: NameFullStrings;
   nameAlu: NameAluStrings;
+  toybox: ToyboxStrings;
+  lists: ListsStrings;
   settings: SettingsStrings;
 };
 

@@ -11,19 +11,19 @@ export default function NamesScreen() {
 
   return (
     <View style={styles.container}>
-      <Link href="/(tabs)/names/name-single">
+      <Link href="/(tabs)/toybox/names/name-single">
         <CardView style={styles.card}>
           <Text style={styles.text}>{names.single}</Text>
           <ItalicText>Neytiri</ItalicText>
         </CardView>
       </Link>
-      <Link href="/(tabs)/names/name-full">
+      <Link href="/(tabs)/toybox/names/name-full">
         <CardView style={styles.card}>
           <Text style={styles.text}>{names.full}</Text>
           <ItalicText>Neytiri te Tskaha Mo'at'ite</ItalicText>
         </CardView>
       </Link>
-      <Link href="/(tabs)/names/name-alu">
+      <Link href="/(tabs)/toybox/names/name-alu">
         <CardView style={styles.card}>
           <Text style={styles.text}>{names.alu}</Text>
           <ItalicText>Neytiri alu Taronyu Teyluä</ItalicText>

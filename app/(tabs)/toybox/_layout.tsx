@@ -22,7 +22,7 @@ export default function StackLayout() {
       <Stack.Screen
         name="index"
         options={{
-          title: screens.names,
+          title: screens.toybox,
           headerRight: ActionButtons,
         }}
       />
