@@ -50,11 +50,5 @@
     "react-test-renderer": "18.2.0",
     "typescript": "~5.3.3"
   },
-  "overrides": {
-    "react-refresh": "~0.14.0"
-  },
-  "resolutions": {
-    "react-refresh": "~0.14.0"
-  },
   "packageManager": "yarn@4.3.0"
 }
