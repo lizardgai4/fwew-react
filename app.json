@@ -12,7 +12,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#7494BA"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "bundleIdentifier": "app.fwew.react",
       "buildNumber": "3.3.3",
@@ -46,7 +48,8 @@
           "android.permission.WRITE_EXTERNAL_STORAGE",
           "android.permission.VIBRATE"
         ]
-      ]
+      ],
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true,
