@@ -7,12 +7,25 @@ import { useStats } from "@/hooks/useStats";
 import { StyleSheet } from "react-native";
 import React from "react"
 
-function makeTableHTML(myArray: String[][]) {
+function makeTableHTML(myArray: String[][], double: boolean) {
   var result = "";
   for(var i=0; i<myArray.length; i++) {
       result += "<tr>";
       for(var j=0; j<myArray[i].length; j++){
-          result += "<td>"+myArray[i][j]+"<td>";
+          if (double) {
+            var splitted = myArray[i][j].split(" ")
+            for(var k=0; k<2; k++) {
+              if (k < splitted.length) {
+                result += "<td>"+splitted[k]+"<td>";
+              } else {
+                result += "<td></td>";
+              }
+            }
+          } else {
+            for(var k=0; k<2; k++) {
+                result += "<td>"+myArray[i][j]+"</td>";
+            }
+          }
       }
       result += "</tr>";
   }
@@ -33,8 +46,8 @@ export default function StatsScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{wordCount}</Text>
-      <table><tbody>{makeTableHTML(phonemeGrid)}</tbody></table>
-      <table><tbody>{makeTableHTML(clusterMap)}</tbody></table>
+      <table><tbody>{makeTableHTML(phonemeGrid, true)}</tbody></table>
+      <table><tbody>{makeTableHTML(clusterMap, false)}</tbody></table>
     </View>
   );
 }

@@ -38,7 +38,6 @@ export function useStats() {
         data2 = await phonemeFrequency({
           signal: abortController.signal,
         });
-        console.log(data2)
     } catch (e: any) {
       setLoading(false);
       return;
