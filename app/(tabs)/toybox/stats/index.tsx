@@ -5,7 +5,6 @@ import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { Link } from "expo-router";
 import { useStats } from "@/hooks/useStats";
 import { StyleSheet } from "react-native";
-import { useTable } from 'react-table';
 import React from "react"
 
 function makeTableHTML(myArray: String[][]) {
