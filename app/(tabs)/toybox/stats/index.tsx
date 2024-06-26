@@ -22,9 +22,7 @@ function makeTableHTML(myArray: String[][], double: boolean) {
               }
             }
           } else {
-            for(var k=0; k<2; k++) {
-                result += "<td>"+myArray[i][j]+"</td>";
-            }
+            result += "<td>"+myArray[i][j]+"</td>";
           }
       }
       result += "</tr>";
