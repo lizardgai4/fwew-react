@@ -16,7 +16,7 @@ function makeTableHTML(myArray: String[][], double: boolean) {
             var splitted = myArray[i][j].split(" ")
             for(var k=0; k<2; k++) {
               if (k < splitted.length) {
-                result += "<td>"+splitted[k]+"<td>";
+                result += "<td>"+splitted[k]+"</td>";
               } else {
                 result += "<td></td>";
               }
