@@ -38,8 +38,8 @@ export default function ValidScreen() {
     >
       <SearchBar query={query} search={search} cancel={cancel} autoFocus />
       {bold = false}
-      {results.map((row) => (
-          <Text style={styles.container}>{row}</Text>
+      {results.map((row, index) => (
+          <Text key={index} style={styles.container}>{row}</Text>
       ))}
     </ScrollView>
   );

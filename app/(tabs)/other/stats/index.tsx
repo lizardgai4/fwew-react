@@ -1,15 +1,8 @@
-import { ItalicText } from "@/components/common/StyledText";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
-import { Link } from "expo-router";
 import { useStats } from "@/hooks/useStats";
 import { Text, View } from "@/components/common/Themed";
 import { ScrollView, StyleSheet } from "react-native"
-import { useTheme } from "@react-navigation/native";
-import { createColumnHelper, useReactTable, getCoreRowModel, flexRender } from "@tanstack/react-table"
-
-const { colors } = useTheme();
-const columnHelper = createColumnHelper<string>();
 
 export default function StatsScreen() {
   const {
@@ -19,17 +12,17 @@ export default function StatsScreen() {
     loading,
   } = useStats();
   const { appLanguage } = useAppLanguageContext();
-  const { names } = i18n[appLanguage];
+  //const { names } = i18n[appLanguage];
 
   return (
     <ScrollView>
       <View style={styles.container} >
         <Text style={styles.header}>{wordCount}</Text>
-        <table className="phonemes">
-          <tbody>{phonemeGrid.map((row) => (
-            <tr>
-              {row.map((cell) => (
-                <td className="users-table-cell">
+        <table>
+          <tbody>{phonemeGrid.map((row, index) => (
+            <tr key={index + "aa"}>
+              {row.map((cell, index2) => (
+                <td key={index2 + "ab"}>
                   <Text style={styles.words}>{cell}</Text>
                 </td>
               ))}
@@ -37,11 +30,11 @@ export default function StatsScreen() {
           ))}</tbody>
         </table>
         <Text style={styles.subheader}>Clusters:</Text>
-        <table className="phonemes">
-          <tbody>{clusterMap.map((row) => (
-            <tr>
-              {row.map((cell) => (
-                <td className="users-table-cell">
+        <table>
+          <tbody>{clusterMap.map((row, index) => (
+            <tr key={index + "ba"}>
+              {row.map((cell, index2) => (
+                <td key={index2 + "bb"}>
                   <Text style={styles.words}>{cell}</Text>
                 </td>
               ))}
