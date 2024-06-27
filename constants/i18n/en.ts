@@ -50,7 +50,7 @@ const strings: UITranslation = {
     random: "Random",
     numbers: "Numbers",
     names: "Names",
-    toybox: "Toybox",
+    other: "Other",
     favorites: "Favorites",
     settings: "Settings",
   },
@@ -211,7 +211,7 @@ const strings: UITranslation = {
       { name: "passive participle verb", value: "passive participle verb" },
     ],
   },
-  toybox: {
+  other: {
     names: "Names",
     lists: "Lists",
     stats: "Stats",

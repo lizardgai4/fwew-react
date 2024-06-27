@@ -4,47 +4,46 @@ import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { Link } from "expo-router";
 import { StyleSheet, ScrollView } from "react-native";
+import { View } from "@/components/common/Themed";
 
-export default function ToyboxScreen() {
+export default function OtherScreen() {
   const { appLanguage } = useAppLanguageContext();
-  const { toybox } = i18n[appLanguage];
+  const { other } = i18n[appLanguage];
 
   return (
-      <ScrollView contentContainerStyle={styles.container}>
-        <span>
-        <Link href="/(tabs)/toybox/names">
+      <ScrollView>
+        <View style={styles.container} >
+        <Link href="/(tabs)/other/names">
           <CardView style={styles.card}>
-            <Text style={styles.text}>{toybox.names}</Text>
+            <Text style={styles.text}>{other.names}</Text>
             <ItalicText>Names</ItalicText>
           </CardView>
         </Link>
-        <Link href="/(tabs)/toybox/lists">
+        <Link href="/(tabs)/other/lists">
           <CardView style={styles.card}>
-            <Text style={styles.text}>{toybox.lists}</Text>
+            <Text style={styles.text}>{other.lists}</Text>
             <ItalicText>Lists</ItalicText>
           </CardView>
         </Link>
-        </span>
-        <span>
-        <Link href="/(tabs)/toybox/stats">
+        <Link href="/(tabs)/other/stats">
           <CardView style={styles.card}>
-            <Text style={styles.text}>{toybox.stats}</Text>
+            <Text style={styles.text}>{other.stats}</Text>
             <ItalicText>Stats</ItalicText>
           </CardView>
         </Link>
-        <Link href="/(tabs)/toybox/valid">
+        <Link href="/(tabs)/other/valid">
           <CardView style={styles.card}>
-            <Text style={styles.text}>{toybox.valid}</Text>
+            <Text style={styles.text}>{other.valid}</Text>
             <ItalicText>Valid</ItalicText>
           </CardView>
         </Link>
-        </span>
-        <Link href="/(tabs)/toybox/lenition">
+        <Link href="/(tabs)/other/lenition">
           <CardView style={styles.card}>
-            <Text style={styles.text}>{toybox.lenition}</Text>
+            <Text style={styles.text}>{other.lenition}</Text>
             <ItalicText>Lenition</ItalicText>
           </CardView>
         </Link>
+        </View>
       </ScrollView>
   );
 }
