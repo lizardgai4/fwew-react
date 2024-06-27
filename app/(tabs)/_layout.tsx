@@ -70,11 +70,11 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="toybox"
+        name="other"
         options={{
-          title: screens.toybox,
+          title: screens.other,
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="user-circle-o" color={color} />
+            <TabBarIcon name="user-circle" color={color} />
           ),
           headerShown: false,
         }}
