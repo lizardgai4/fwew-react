@@ -19,8 +19,8 @@ export function useStats() {
   const { resultsLanguage } = useResultsLanguageContext();
   const [loading, setLoading] = useState(false);
   const [wordCount, setWordCount] = useState<String>();
-  const [phonemeGrid, setPhonemes] = useState<String[][]>([]);
-  const [clusterMap, setClusters] = useState<String[][]>([]);
+  const [phonemeGrid, setPhonemes] = useState<string[][]>([]);
+  const [clusterMap, setClusters] = useState<string[][]>([]);
   const debounce = useDebounce();
   let abortController = new AbortController();
 
@@ -28,7 +28,7 @@ export function useStats() {
     setLoading(true);
 
     let data1: String;
-    let data2: String[][][]
+    let data2: string[][][]
     let value1: Map<string,Map<string,number>>
     
     try {

@@ -5,7 +5,7 @@ import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { Link } from "expo-router";
 import { useStats } from "@/hooks/useStats";
 import { StyleSheet } from "react-native";
-import React from "react"
+import { createColumnHelper, useReactTable, getCoreRowModel, flexRender } from "@tanstack/react-table"
 
 function makeTableHTML(myArray: String[][], double: boolean) {
   var result = "";
@@ -31,6 +31,15 @@ function makeTableHTML(myArray: String[][], double: boolean) {
   return result;
 }
 
+const columnHelper = createColumnHelper<string>();
+
+const columns = [
+  columnHelper.accessor("id", {
+    header: () => 'ID',
+    cell: (info) => info.getValue(),
+  }),
+];
+
 export default function StatsScreen() {
   const {
     wordCount,
@@ -40,12 +49,39 @@ export default function StatsScreen() {
   } = useStats();
   const { appLanguage } = useAppLanguageContext();
   const { names } = i18n[appLanguage];
+  
+  const table = useReactTable({
+    data: phonemeGrid,
+    columns,
+    debugTable: true,
+    getCoreRowModel: getCoreRowModel(),
+  })
 
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{wordCount}</Text>
-      <table><tbody>{makeTableHTML(phonemeGrid, true)}</tbody></table>
-      <table><tbody>{makeTableHTML(clusterMap, false)}</tbody></table>
+      <table className="phonemes">
+        <tbody>{phonemeGrid.map((row) => (
+          <tr>
+            {row.map((cell) => (
+              <td className="users-table-cell">
+                {cell}
+              </td>
+            ))}
+          </tr>
+        ))}</tbody>
+      </table>
+      <table className="phonemes">
+        <tbody>{clusterMap.map((row) => (
+          <tr>
+            {row.map((cell) => (
+              <td className="users-table-cell">
+                {cell}
+              </td>
+            ))}
+          </tr>
+        ))}</tbody>
+      </table>
     </View>
   );
 }
