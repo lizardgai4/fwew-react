@@ -21,7 +21,7 @@ export function useValid() {
 
     setLoading(true);
 
-    let data: string;
+    let data: String;
 
     try {
         data = await valid(query.trim(), {

@@ -11,13 +11,6 @@ import { createColumnHelper, useReactTable, getCoreRowModel, flexRender } from "
 const { colors } = useTheme();
 const columnHelper = createColumnHelper<string>();
 
-const columns = [
-  columnHelper.accessor("id", {
-    header: () => 'ID',
-    cell: (info) => info.getValue(),
-  }),
-];
-
 export default function StatsScreen() {
   const {
     wordCount,
@@ -27,35 +20,29 @@ export default function StatsScreen() {
   } = useStats();
   const { appLanguage } = useAppLanguageContext();
   const { names } = i18n[appLanguage];
-  
-  const table = useReactTable({
-    data: phonemeGrid,
-    columns,
-    debugTable: true,
-    getCoreRowModel: getCoreRowModel(),
-  })
 
   return (
     <ScrollView>
       <View style={styles.container} >
-        <Text>{wordCount}</Text>
+        <Text style={styles.header}>{wordCount}</Text>
         <table className="phonemes">
           <tbody>{phonemeGrid.map((row) => (
             <tr>
               {row.map((cell) => (
                 <td className="users-table-cell">
-                  <Text>{cell}</Text>
+                  <Text style={styles.words}>{cell}</Text>
                 </td>
               ))}
             </tr>
           ))}</tbody>
         </table>
+        <Text style={styles.subheader}>Clusters:</Text>
         <table className="phonemes">
           <tbody>{clusterMap.map((row) => (
             <tr>
               {row.map((cell) => (
                 <td className="users-table-cell">
-                  <Text>{cell}</Text>
+                  <Text style={styles.words}>{cell}</Text>
                 </td>
               ))}
             </tr>
@@ -73,4 +60,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 32,
   },
+  header: {
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  subheader: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  words: {
+    fontSize: 16,
+  }
 });
