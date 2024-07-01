@@ -1,7 +1,7 @@
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useTheme } from "@react-navigation/native";
-import { ScrollView, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, FlatList } from "react-native";
 import { Text, View } from "@/components/common/Themed";
 
 export default function CameronScreen() {
@@ -16,13 +16,22 @@ export default function CameronScreen() {
     >
       <View>
       <Text style={styles.header}>Cameron words:</Text>
-      <ul>
-        <li><Text style={styles.subheader}>A1 Names:</Text> <Text style={styles.words}>Akwey, Ateyo, Eytukan, Eywa, Mo'at, Na'vi, Newey, Neytiri, Ninat, Omatikaya, Otranyu, Rongloa, Silwanin, Tskaha, Tsu'tey, Tsumongwi</Text></li>
-        <li><Text style={styles.subheader}>A2 Names:</Text> <Text style={styles.words}>Aonung, Kiri, Lo'ak, Neteyam, Ronal, Rotxo, Tonowari, Tuktirey, Tsireya</Text></li>
-        <li><Text style={styles.subheader}>Nouns:</Text> <Text style={styles.words}>'itan, 'ite, atan, au *(drum)*, eyktan, i'en, Iknimaya, mikyun, ontu, seyri, tsaheylu, tsahìk, unil</Text></li>
-        <li><Text style={styles.subheader}>Life:</Text> <Text style={styles.words}>Atokirina', Ikran, Palulukan, Riti, talioang, teylu, Toruk</Text></li>
-        <li><Text style={styles.subheader}>Other:</Text> <Text style={styles.words}>eyk, irayo, makto, taron, te</Text></li>
-      </ul>
+      <FlatList
+          data={[
+            { key: 'A1 Names:', value: "Akwey, Ateyo, Eytukan, Eywa, Mo'at, Na'vi, Newey, Neytiri, Ninat, Omatikaya, Otranyu, Rongloa, Silwanin, Tskaha, Tsu'tey, Tsumongwi" },
+            { key: 'A2 Names:', value: "Aonung, Kiri, Lo'ak, Neteyam, Ronal, Rotxo, Tonowari, Tuktirey, Tsireya" },
+            { key: 'Nouns:', value: "'itan, 'ite, atan, au (drum), eyktan, i'en, Iknimaya, mikyun, ontu, seyri, tsaheylu, tsahìk, unil" },
+            { key: 'Life:', value: "Atokirina', Ikran, Palulukan, Riti, talioang, teylu, Toruk" },
+            { key: 'Other:', value: 'eyk, irayo, makto, taron, te' },
+          ]}
+          renderItem={({ item }) => {
+            return (
+              <View style={{ marginBottom: 10 }}>
+                <Text><Text style={styles.subheader}>{item.key}</Text> <Text style={styles.words}>{item.value}</Text></Text>
+              </View>
+            );
+          }}
+        />
       </View>
     </ScrollView>
   );
