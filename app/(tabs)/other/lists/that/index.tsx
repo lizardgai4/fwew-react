@@ -2,12 +2,35 @@ import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useTheme } from "@react-navigation/native";
 import { ScrollView, StyleSheet } from "react-native";
-import { Text, View } from "@/components/common/Themed";
+import { Text, View, Table, Row } from "@/components/common/Themed";
 
 export default function CameronScreen() {
   const { colors } = useTheme();
   const { appLanguage } = useAppLanguageContext();
   const ui = i18n[appLanguage].search;
+
+  const thatTable1 = [
+    ["Case", "Noun", "", "Clause", "Wrapper"],
+    ["", "", "proximal", "distal", "answer"],
+    ["Subjective", "Tsaw", "Fwa", "Tsawa", "Teynga"],
+    ["Agentive", "Tsal", "Fula", "Tsala", "Teyngla"],
+    ["Patientive", "Tsat", "Futa", "Tsata", "Teyngta"],
+    ["Genitive", "Tseyä", "N/A", "N/A", ""],
+    ["Dative", "Tsar", "Fura", "Tsara", ""],
+    ["Topical", "Tsari", "Furia", "Tsaria", ""],
+  ];
+
+  const thatTable2 = [
+    ["tsa-", "prefix", "that"],
+    ["tsa'u", "n.", "that (thing)"],
+    ["tsakem", "n.", "that (action)"],
+    ["fmawnta", "sbd.", "that news"],
+    ["fayluta", "sbd.", "these words"],
+    ["tsnì", "sbd.", "that (function word)"],
+    ["tsonta", "conj.", "to (with kxìm)"],
+    ["kuma/akum", "conj.", "that (as a result)"],
+    ["a", "part.", "clause level attributive marker"],
+  ];
 
   return (
     <ScrollView
@@ -15,116 +38,21 @@ export default function CameronScreen() {
       keyboardShouldPersistTaps="always"
     >
       <Text style={styles.header}>"That"s in Na'vi:</Text>
-      <table>
-        <tbody>
-        <tr>
-          <td><Text style={styles.subheader}>Case</Text></td>
-          <td><Text style={styles.subheader}>Noun</Text></td>
-          <td></td>
-          <td><Text style={styles.subheader}>Clause</Text></td>
-          <td><Text style={styles.subheader}>wrapper</Text></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td><Text style={styles.words}>proximal</Text></td>
-          <td><Text style={styles.words}>distal</Text></td>
-          <td><Text style={styles.words}>answer</Text></td>
-        </tr>
-        <tr>
-          <td><Text style={styles.subheader}>Subjective</Text></td>
-          <td><Text style={styles.italic}>Tsaw</Text></td>
-          <td><Text style={styles.italic}>Fwa</Text></td>
-          <td><Text style={styles.italic}>Tsawa</Text></td>
-          <td><Text style={styles.italic}>Teynga</Text></td>
-        </tr>
-        <tr>
-          <td><Text style={styles.subheader}>Agentive</Text></td>
-          <td><Text style={styles.italic}>Tsal</Text></td>
-          <td><Text style={styles.italic}>Fula</Text></td>
-          <td><Text style={styles.italic}>Tsala</Text></td>
-          <td><Text style={styles.italic}>Teyngla</Text></td>
-        </tr>
-        <tr>
-          <td><Text style={styles.subheader}>Patientive</Text></td>
-          <td><Text style={styles.italic}>Tsat</Text></td>
-          <td><Text style={styles.italic}>Futa</Text></td>
-          <td><Text style={styles.italic}>Tsata</Text></td>
-          <td><Text style={styles.italic}>Teyngta</Text></td>
-        </tr>
-        <tr>
-          <td><Text style={styles.subheader}>Genitive</Text></td>
-          <td><Text style={styles.italic}>Tseyä</Text></td>
-          <td><Text style={styles.words}>N/A</Text></td>
-          <td><Text style={styles.words}>N/A</Text></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><Text style={styles.subheader}>Dative</Text></td>
-          <td><Text style={styles.italic}>Tsar</Text></td>
-          <td><Text style={styles.italic}>Fura</Text></td>
-          <td><Text style={styles.italic}>Tsara</Text></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><Text style={styles.subheader}>Topical</Text></td>
-          <td><Text style={styles.italic}>Tsari</Text></td>
-          <td><Text style={styles.italic}>Furia</Text></td>
-          <td><Text style={styles.italic}>Tsaria</Text></td>
-          <td></td>
-        </tr>
-        </tbody>
-      </table>
-      
-      <table>
-      <tbody>
-        <tr>
-          <td><Text style={styles.italic}>tsa-</Text></td>
-          <td><Text style={styles.words}>prefix</Text></td>
-          <td><Text style={styles.words}>that</Text></td>
-        </tr>
-        <tr>
-          <td><Text style={styles.italic}>tsa'u</Text></td>
-          <td><Text style={styles.words}>n.</Text></td>
-          <td><Text style={styles.words}>that (thing)</Text></td>
-        </tr>
-        <tr>
-          <td><Text style={styles.italic}>tsakem</Text></td>
-          <td><Text style={styles.words}>n.</Text></td>
-          <td><Text style={styles.words}>that (action)</Text></td>
-        </tr>
-        <tr>
-          <td><Text style={styles.italic}>fmawnta</Text></td>
-          <td><Text style={styles.words}>sbd.</Text></td>
-          <td><Text style={styles.words}>that news</Text></td>
-        </tr>
-        <tr>
-          <td><Text style={styles.italic}>fayluta</Text></td>
-          <td><Text style={styles.words}>sbd.</Text></td>
-          <td><Text style={styles.words}>these words</Text></td>
-        </tr>
-        <tr>
-          <td><Text style={styles.italic}>tsnì</Text></td>
-          <td><Text style={styles.words}>sbd.</Text></td>
-          <td><Text style={styles.words}>that (function word)</Text></td>
-        </tr>
-        <tr>
-          <td><Text style={styles.italic}>tsonta</Text></td>
-          <td><Text style={styles.words}>conj.</Text></td>
-          <td><Text style={styles.words}>to (with kxìm)</Text></td>
-        </tr>
-        <tr>
-          <td><Text style={styles.italic}>kuma/akum</Text></td>
-          <td><Text style={styles.words}>conj.</Text></td>
-          <td><Text style={styles.words}>that (as a result)</Text></td>
-        </tr>
-        <tr>
-          <td><Text style={styles.italic}>a</Text></td>
-          <td><Text style={styles.words}>part.</Text></td>
-          <td><Text style={styles.words}>clause level attributive marker</Text></td>
-        </tr>
-      </tbody>
-      </table>
+      <View style={styles.thatTable1} >
+        <Table>
+          {thatTable1.map((row, index) => (
+            <Row data={row} flexArr={[3,2,2,2,2]} key={'c'+index.toString()} />
+          ))}
+        </Table>
+      </View>
+
+      <View style={styles.thatTable2} >
+        <Table>
+          {thatTable2.map((row, index) => (
+            <Row data={row} flexArr={[7,4,15]} key={'c'+index.toString()} />
+          ))}
+        </Table>
+      </View>
     </ScrollView>
   );
 }
@@ -133,6 +61,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    gap: 32,
   },
   header: {
     fontSize: 24,
@@ -148,5 +77,14 @@ const styles = StyleSheet.create({
   italic: {
     fontSize: 16,
     fontStyle: 'italic',
-  }
+  },
+  thatTable1: {
+    width: 350,
+    alignSelf: 'center',
+    margin: 20,
+  },
+  thatTable2: {
+    width: 350,
+    alignSelf: 'center'
+  },
 });
