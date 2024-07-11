@@ -1,9 +1,7 @@
-import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useStats } from "@/hooks/useStats";
-import { Text, View } from "@/components/common/Themed";
-import { ScrollView, StyleSheet } from "react-native"
-import { Table, Row } from '@/components/common/Themed';
+import { Text, View, Table, Row } from "@/components/common/Themed";
+import { ScrollView, StyleSheet } from "react-native";
 
 export default function StatsScreen() {
   const {
@@ -13,8 +11,6 @@ export default function StatsScreen() {
     loading,
   } = useStats();
   const { appLanguage } = useAppLanguageContext();
-  //const { names } = i18n[appLanguage];
-  const widthPercentage = "80%";
 
   const styles = StyleSheet.create({
     container: {
