@@ -24,14 +24,22 @@ export function useFwew() {
     setLoading(true);
 
     let data: Word[][];
+    let query_encoded: string;
+    query_encoded = query.trim().replaceAll("/", " ").replaceAll("?", " ").replaceAll("%", " ");
+
+    // Make sure it carries no characters that can disrupt the URL
+    let not_for_url = ["/", "\\", "?", "%", "@", "#"];
+    for (let char of not_for_url) {
+      query_encoded = query_encoded.replaceAll(char, " ");
+    }
 
     try {
       if (naviOnly) {
-        data = await fwew(query.trim(), {
+        data = await fwew(query_encoded, {
           signal: abortController.signal,
         });
       } else {
-        data = await fwewSearch(resultsLanguage, query.trim(), {
+        data = await fwewSearch(resultsLanguage, query_encoded, {
           signal: abortController.signal,
         });
       }
