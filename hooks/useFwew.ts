@@ -25,7 +25,7 @@ export function useFwew() {
 
     let data: Word[][];
     let query_encoded: string;
-    query_encoded = query.trim().replaceAll("/", " ").replaceAll("?", " ").replaceAll("%", " ");
+    query_encoded = query.trim();
 
     // Make sure it carries no characters that can disrupt the URL
     let not_for_url = ["/", "\\", "?", "%", "@", "#"];
