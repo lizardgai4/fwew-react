@@ -24,4 +24,4 @@ run:
 	yarn start
 
 run-better:
-	yarn star --clear --tunnel
+	yarn start --clear --tunnel
