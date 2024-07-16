@@ -9,7 +9,7 @@ export function useValid() {
   const [query, search] = useState("");
   const [naviOnly, setNaviOnly] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [results, setResults] = useState<String[]>([]);
+  const [results, setResults] = useState<string[]>([]);
   const debounce = useDebounce();
   let abortController = new AbortController();
 
@@ -33,7 +33,15 @@ export function useValid() {
       return;
     }
 
-    setResults(data.split("\n"));
+    let tempResults: string[]
+    tempResults = []
+    var thing = data.split("\n")
+
+    for (var k in thing) {
+      tempResults.push(thing[k].replaceAll("**", "`").replaceAll("`", ""))
+    }
+
+    setResults(tempResults);
     setLoading(false);
   };
 

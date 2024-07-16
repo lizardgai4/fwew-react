@@ -7,6 +7,7 @@ import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useValid } from "@/hooks/useValid";
 import { useTheme } from "@react-navigation/native";
 import { RefreshControl, ScrollView, StyleSheet } from "react-native";
+import { Text, View } from "@/components/common/Themed";
 
 export default function ValidScreen() {
   const {
@@ -21,6 +22,8 @@ export default function ValidScreen() {
   const { appLanguage } = useAppLanguageContext();
   const ui = i18n[appLanguage].search;
 
+  var bold = false
+
   return (
     <ScrollView
       style={styles.container}
@@ -34,7 +37,10 @@ export default function ValidScreen() {
       }
     >
       <SearchBar query={query} search={search} cancel={cancel} autoFocus />
-      <p>{results}</p>
+      {bold = false}
+      {results.map((row, index) => (
+          <Text key={index} style={styles.container}>{row}</Text>
+      ))}
     </ScrollView>
   );
 }
@@ -43,5 +49,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    fontSize: 16
   },
 });

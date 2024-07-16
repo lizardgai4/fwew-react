@@ -21,7 +21,7 @@ export function useProfanity() {
     let data: Word[][];
 
     try {
-      data = await fwew("skxawng kalweyaveng kurkung pela'ang pxasìk teylupil tsahey txanfwìngtu vonvä' wiya", {
+      data = await fwew("skxawng kalweyaveng kurkung pela'ang pxasìk teylupil tsahey txanfwìngtu vonvä' wiya yayl", {
           signal: abortController.signal,
       });
     } catch (e: any) {
