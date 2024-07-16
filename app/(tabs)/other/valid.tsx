@@ -1,28 +1,12 @@
-import { ResultCount } from "@/components/common/ResultCount";
 import { SearchBar } from "@/components/common/SearchBar";
-import { SwitchInput } from "@/components/common/SwitchInput";
-import { FwewSearchResults } from "@/components/search/FwewSearchResults";
-import i18n from "@/constants/i18n";
-import { useAppLanguageContext } from "@/context/AppLanguageContext";
+import { Text } from "@/components/common/Themed";
 import { useValid } from "@/hooks/useValid";
 import { useTheme } from "@react-navigation/native";
 import { RefreshControl, ScrollView, StyleSheet } from "react-native";
-import { Text, View } from "@/components/common/Themed";
 
 export default function ValidScreen() {
-  const {
-    query,
-    results,
-    loading,
-    search,
-    execute,
-    cancel,
-  } = useValid();
+  const { query, results, loading, search, execute, cancel } = useValid();
   const { colors } = useTheme();
-  const { appLanguage } = useAppLanguageContext();
-  const ui = i18n[appLanguage].search;
-
-  var bold = false
 
   return (
     <ScrollView
@@ -37,9 +21,10 @@ export default function ValidScreen() {
       }
     >
       <SearchBar query={query} search={search} cancel={cancel} autoFocus />
-      {bold = false}
       {results.map((row, index) => (
-          <Text key={index} style={styles.container}>{row}</Text>
+        <Text key={index} style={styles.container}>
+          {row}
+        </Text>
       ))}
     </ScrollView>
   );
@@ -49,6 +34,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    fontSize: 16
+    fontSize: 16,
   },
 });
