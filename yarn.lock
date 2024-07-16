@@ -4216,7 +4216,7 @@ functions-have-names@^1.2.3:
   resolved "https://registry.yarnpkg.com/functions-have-names/-/functions-have-names-1.2.3.tgz#0404fe4ee2ba2f607f0e0ec3c80bae994133b834"
   integrity sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==
 
-fwew.js@^2.5.2:
+fwew.js@^2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/fwew.js/-/fwew.js-2.6.0.tgz#650452a16a514bdcdeccd20467c5a9a7c7664c9a"
   integrity sha512-6xO9Va7T8Xe95dW8/N5mwk6VexOKS1Gw82t34er3pB1cPKl5iP9pS1w9bywL77YX8hfLLJtwa8Bm8t8LhCmkEQ==
