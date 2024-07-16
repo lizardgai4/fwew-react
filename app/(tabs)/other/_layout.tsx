@@ -29,7 +29,7 @@ export default function StackLayout() {
       <Stack.Screen
         name="lenition"
         options={{
-          title: names.single,
+          title: "Lenition", // TODO: i18n
           headerRight: () => (
             <Link href="/settings" asChild>
               <Pressable style={styles.actionButton}>
@@ -49,7 +49,7 @@ export default function StackLayout() {
       <Stack.Screen
         name="stats"
         options={{
-          title: names.single,
+          title: "Stats", // TODO: i18n
           headerRight: () => (
             <Link href="/settings" asChild>
               <Pressable style={styles.actionButton}>
@@ -69,7 +69,7 @@ export default function StackLayout() {
       <Stack.Screen
         name="valid"
         options={{
-          title: names.single,
+          title: "Valid", // TODO: i18n
           headerRight: () => (
             <Link href="/settings" asChild>
               <Pressable style={styles.actionButton}>
@@ -89,7 +89,7 @@ export default function StackLayout() {
       <Stack.Screen
         name="lists/index"
         options={{
-          title: names.single,
+          title: "Lists", // TODO: i18n
           headerRight: () => (
             <Link href="/settings" asChild>
               <Pressable style={styles.actionButton}>
@@ -109,7 +109,7 @@ export default function StackLayout() {
       <Stack.Screen
         name="lists/cameron"
         options={{
-          title: names.single,
+          title: "Cameron Words", // TODO: i18n
           headerRight: () => (
             <Link href="/settings" asChild>
               <Pressable style={styles.actionButton}>
@@ -129,7 +129,7 @@ export default function StackLayout() {
       <Stack.Screen
         name="lists/homonyms"
         options={{
-          title: names.single,
+          title: "Homonyms", // TODO: I18n
           headerRight: () => (
             <Link href="/settings" asChild>
               <Pressable style={styles.actionButton}>
@@ -149,7 +149,7 @@ export default function StackLayout() {
       <Stack.Screen
         name="lists/multi-ipa"
         options={{
-          title: names.single,
+          title: "Multi IPA", // TODO: i18n
           headerRight: () => (
             <Link href="/settings" asChild>
               <Pressable style={styles.actionButton}>
@@ -169,7 +169,7 @@ export default function StackLayout() {
       <Stack.Screen
         name="lists/oddballs"
         options={{
-          title: names.single,
+          title: "Oddballs", // TODO: i18n
           headerRight: () => (
             <Link href="/settings" asChild>
               <Pressable style={styles.actionButton}>
@@ -189,7 +189,7 @@ export default function StackLayout() {
       <Stack.Screen
         name="lists/profanity"
         options={{
-          title: names.single,
+          title: "Profanity", // TODO: i18n
           headerRight: () => (
             <Link href="/settings" asChild>
               <Pressable style={styles.actionButton}>
@@ -209,7 +209,7 @@ export default function StackLayout() {
       <Stack.Screen
         name="lists/that"
         options={{
-          title: names.single,
+          title: "That", // TOOD: i18n
           headerRight: () => (
             <Link href="/settings" asChild>
               <Pressable style={styles.actionButton}>
@@ -229,7 +229,7 @@ export default function StackLayout() {
       <Stack.Screen
         name="names/index"
         options={{
-          title: names.single,
+          title: screens.names,
           headerRight: () => (
             <Link href="/settings" asChild>
               <Pressable style={styles.actionButton}>
