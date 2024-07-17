@@ -1,14 +1,7 @@
-import i18n from "@/constants/i18n";
-import { useAppLanguageContext } from "@/context/AppLanguageContext";
-import { useTheme } from "@react-navigation/native";
+import { Row, Table, Text, View } from "@/components/common/Themed";
 import { ScrollView, StyleSheet } from "react-native";
-import { Text, View, Table, Row } from "@/components/common/Themed";
 
-export default function CameronScreen() {
-  const { colors } = useTheme();
-  const { appLanguage } = useAppLanguageContext();
-  const ui = i18n[appLanguage].search;
-
+export default function ThatScreen() {
   const thatTable1 = [
     ["Case", "Noun", "", "Clause", "Wrapper"],
     ["", "", "proximal", "distal", "answer"],
@@ -33,23 +26,24 @@ export default function CameronScreen() {
   ];
 
   return (
-    <ScrollView
-      style={styles.container}
-      keyboardShouldPersistTaps="always"
-    >
+    <ScrollView style={styles.container} keyboardShouldPersistTaps="always">
       <Text style={styles.header}>"That"s in Na'vi:</Text>
-      <View style={styles.thatTable1} >
+      <View style={styles.thatTable1}>
         <Table>
           {thatTable1.map((row, index) => (
-            <Row data={row} flexArr={[3,2,2,2,2]} key={'c'+index.toString()} />
+            <Row
+              data={row}
+              flexArr={[3, 2, 2, 2, 2]}
+              key={"c" + index.toString()}
+            />
           ))}
         </Table>
       </View>
 
-      <View style={styles.thatTable2} >
+      <View style={styles.thatTable2}>
         <Table>
           {thatTable2.map((row, index) => (
-            <Row data={row} flexArr={[7,4,15]} key={'c'+index.toString()} />
+            <Row data={row} flexArr={[7, 4, 15]} key={"c" + index.toString()} />
           ))}
         </Table>
       </View>
@@ -65,26 +59,26 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   subheader: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   words: {
     fontSize: 16,
   },
   italic: {
     fontSize: 16,
-    fontStyle: 'italic',
+    fontStyle: "italic",
   },
   thatTable1: {
     width: 350,
-    alignSelf: 'center',
+    alignSelf: "center",
     margin: 20,
   },
   thatTable2: {
     width: 350,
-    alignSelf: 'center'
+    alignSelf: "center",
   },
 });

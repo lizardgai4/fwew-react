@@ -1,18 +1,17 @@
 import { ItalicText } from "@/components/common/StyledText";
-import { CardView, Text } from "@/components/common/Themed";
+import { CardView, Text, View } from "@/components/common/Themed";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { Link } from "expo-router";
-import { StyleSheet, ScrollView } from "react-native";
-import { View } from "@/components/common/Themed";
+import { ScrollView, StyleSheet } from "react-native";
 
 export default function OtherScreen() {
   const { appLanguage } = useAppLanguageContext();
   const { other } = i18n[appLanguage];
 
   return (
-      <ScrollView>
-        <View style={styles.container} >
+    <ScrollView>
+      <View style={styles.container}>
         <Link href="/(tabs)/other/names">
           <CardView style={styles.card}>
             <Text style={styles.text}>{other.names}</Text>
@@ -43,8 +42,8 @@ export default function OtherScreen() {
             <ItalicText>Lenition</ItalicText>
           </CardView>
         </Link>
-        </View>
-      </ScrollView>
+      </View>
+    </ScrollView>
   );
 }
 

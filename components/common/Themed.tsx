@@ -15,17 +15,11 @@ import {
   type ViewProps,
 } from "react-native";
 import {
-  Table as DefaultTable,
-  TableWrapper as DefaultTableWrapper,
   Row as DefaultRow,
-  Rows as DefaultRows,
-  Col as DefaultCol,
-  type TableProps,
-  type TableWrapperProps,
+  Table as DefaultTable,
   type RowProps,
-  type RowsProps,
-  type ColProps,
-} from 'react-native-table-component';
+  type TableProps,
+} from "react-native-table-component";
 
 export function useThemeColor(
   props: { light?: string; dark?: string },
@@ -95,12 +89,7 @@ export function TextInput(props: TextInputProps) {
 }
 
 export function Table(props: TableProps) {
-  const { style, ...otherProps } = props;
-  const { colors } = useTheme();
-
-  return (
-    <DefaultTable {...otherProps}/>
-  );
+  return <DefaultTable {...props} />;
 }
 
 export function Row(props: RowProps) {
@@ -108,6 +97,10 @@ export function Row(props: RowProps) {
   const { colors } = useTheme();
 
   return (
-    <DefaultRow textStyle={[{ color: colors.text }, style]} {...otherProps}/>
+    <DefaultRow
+      textStyle={{ color: colors.text }}
+      style={style}
+      {...otherProps}
+    />
   );
 }

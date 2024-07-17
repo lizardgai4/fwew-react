@@ -74,7 +74,7 @@ export default function TabLayout() {
         options={{
           title: screens.other,
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="user-circle" color={color} />
+            <TabBarIcon name="ellipsis-h" color={color} />
           ),
           headerShown: false,
         }}

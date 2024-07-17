@@ -27,7 +27,227 @@ export default function StackLayout() {
         }}
       />
       <Stack.Screen
-        name="name-single"
+        name="lenition"
+        options={{
+          title: "Lenition", // TODO: i18n
+          headerRight: () => (
+            <Link href="/settings" asChild>
+              <Pressable style={styles.actionButton}>
+                {({ pressed }) => (
+                  <FontAwesome
+                    name="gear"
+                    size={25}
+                    color={Colors.dark.text}
+                    style={{ opacity: pressed ? 0.5 : 1 }}
+                  />
+                )}
+              </Pressable>
+            </Link>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="stats"
+        options={{
+          title: "Stats", // TODO: i18n
+          headerRight: () => (
+            <Link href="/settings" asChild>
+              <Pressable style={styles.actionButton}>
+                {({ pressed }) => (
+                  <FontAwesome
+                    name="gear"
+                    size={25}
+                    color={Colors.dark.text}
+                    style={{ opacity: pressed ? 0.5 : 1 }}
+                  />
+                )}
+              </Pressable>
+            </Link>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="valid"
+        options={{
+          title: "Valid", // TODO: i18n
+          headerRight: () => (
+            <Link href="/settings" asChild>
+              <Pressable style={styles.actionButton}>
+                {({ pressed }) => (
+                  <FontAwesome
+                    name="gear"
+                    size={25}
+                    color={Colors.dark.text}
+                    style={{ opacity: pressed ? 0.5 : 1 }}
+                  />
+                )}
+              </Pressable>
+            </Link>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="lists/index"
+        options={{
+          title: "Lists", // TODO: i18n
+          headerRight: () => (
+            <Link href="/settings" asChild>
+              <Pressable style={styles.actionButton}>
+                {({ pressed }) => (
+                  <FontAwesome
+                    name="gear"
+                    size={25}
+                    color={Colors.dark.text}
+                    style={{ opacity: pressed ? 0.5 : 1 }}
+                  />
+                )}
+              </Pressable>
+            </Link>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="lists/cameron"
+        options={{
+          title: "Cameron Words", // TODO: i18n
+          headerRight: () => (
+            <Link href="/settings" asChild>
+              <Pressable style={styles.actionButton}>
+                {({ pressed }) => (
+                  <FontAwesome
+                    name="gear"
+                    size={25}
+                    color={Colors.dark.text}
+                    style={{ opacity: pressed ? 0.5 : 1 }}
+                  />
+                )}
+              </Pressable>
+            </Link>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="lists/homonyms"
+        options={{
+          title: "Homonyms", // TODO: I18n
+          headerRight: () => (
+            <Link href="/settings" asChild>
+              <Pressable style={styles.actionButton}>
+                {({ pressed }) => (
+                  <FontAwesome
+                    name="gear"
+                    size={25}
+                    color={Colors.dark.text}
+                    style={{ opacity: pressed ? 0.5 : 1 }}
+                  />
+                )}
+              </Pressable>
+            </Link>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="lists/multi-ipa"
+        options={{
+          title: "Multi IPA", // TODO: i18n
+          headerRight: () => (
+            <Link href="/settings" asChild>
+              <Pressable style={styles.actionButton}>
+                {({ pressed }) => (
+                  <FontAwesome
+                    name="gear"
+                    size={25}
+                    color={Colors.dark.text}
+                    style={{ opacity: pressed ? 0.5 : 1 }}
+                  />
+                )}
+              </Pressable>
+            </Link>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="lists/oddballs"
+        options={{
+          title: "Oddballs", // TODO: i18n
+          headerRight: () => (
+            <Link href="/settings" asChild>
+              <Pressable style={styles.actionButton}>
+                {({ pressed }) => (
+                  <FontAwesome
+                    name="gear"
+                    size={25}
+                    color={Colors.dark.text}
+                    style={{ opacity: pressed ? 0.5 : 1 }}
+                  />
+                )}
+              </Pressable>
+            </Link>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="lists/profanity"
+        options={{
+          title: "Profanity", // TODO: i18n
+          headerRight: () => (
+            <Link href="/settings" asChild>
+              <Pressable style={styles.actionButton}>
+                {({ pressed }) => (
+                  <FontAwesome
+                    name="gear"
+                    size={25}
+                    color={Colors.dark.text}
+                    style={{ opacity: pressed ? 0.5 : 1 }}
+                  />
+                )}
+              </Pressable>
+            </Link>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="lists/that"
+        options={{
+          title: "That", // TOOD: i18n
+          headerRight: () => (
+            <Link href="/settings" asChild>
+              <Pressable style={styles.actionButton}>
+                {({ pressed }) => (
+                  <FontAwesome
+                    name="gear"
+                    size={25}
+                    color={Colors.dark.text}
+                    style={{ opacity: pressed ? 0.5 : 1 }}
+                  />
+                )}
+              </Pressable>
+            </Link>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="names/index"
+        options={{
+          title: screens.names,
+          headerRight: () => (
+            <Link href="/settings" asChild>
+              <Pressable style={styles.actionButton}>
+                {({ pressed }) => (
+                  <FontAwesome
+                    name="gear"
+                    size={25}
+                    color={Colors.dark.text}
+                    style={{ opacity: pressed ? 0.5 : 1 }}
+                  />
+                )}
+              </Pressable>
+            </Link>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="names/name-single"
         options={{
           title: names.single,
           headerRight: () => (
@@ -47,7 +267,7 @@ export default function StackLayout() {
         }}
       />
       <Stack.Screen
-        name="name-full"
+        name="names/name-full"
         options={{
           title: names.full,
           headerRight: () => (
@@ -67,7 +287,7 @@ export default function StackLayout() {
         }}
       />
       <Stack.Screen
-        name="name-alu"
+        name="names/name-alu"
         options={{
           title: names.alu,
           headerRight: () => (
