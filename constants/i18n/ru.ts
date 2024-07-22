@@ -246,6 +246,9 @@ const strings: UITranslation = {
     profanity: "Profanity",
     that: "That",
   },
+  stats: {
+    clusters: "Согласные кластеры",
+  },
   settings: {
     about: "О приложении",
     version: "Версия",

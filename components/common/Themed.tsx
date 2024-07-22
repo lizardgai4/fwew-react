@@ -14,12 +14,6 @@ import {
   type TextProps,
   type ViewProps,
 } from "react-native";
-import {
-  Row as DefaultRow,
-  Table as DefaultTable,
-  type RowProps,
-  type TableProps,
-} from "react-native-table-component";
 
 export function useThemeColor(
   props: { light?: string; dark?: string },
@@ -83,23 +77,6 @@ export function TextInput(props: TextInputProps) {
       style={[{ backgroundColor: colors.card, color: colors.text }, style]}
       selectionColor={colors.primary}
       cursorColor={colors.primary}
-      {...otherProps}
-    />
-  );
-}
-
-export function Table(props: TableProps) {
-  return <DefaultTable {...props} />;
-}
-
-export function Row(props: RowProps) {
-  const { style, ...otherProps } = props;
-  const { colors } = useTheme();
-
-  return (
-    <DefaultRow
-      textStyle={{ color: colors.text }}
-      style={style}
       {...otherProps}
     />
   );

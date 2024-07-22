@@ -228,6 +228,9 @@ const strings: UITranslation = {
     profanity: "Profanity",
     that: "That",
   },
+  stats: {
+    clusters: "Konsonantkluster",
+  },
   settings: {
     about: "Om",
     version: "Version",

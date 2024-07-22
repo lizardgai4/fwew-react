@@ -226,6 +226,9 @@ const strings: UITranslation = {
     profanity: "Profanity",
     that: "That",
   },
+  stats: {
+    clusters: "Збори приголосних",
+  },
   settings: {
     about: "про Fwew",
     version: "Версія",
