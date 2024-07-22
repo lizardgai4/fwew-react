@@ -188,11 +188,7 @@ function AdpositionDisplay({ adposition }: { adposition: string }) {
     getWord().then();
   }, []);
 
-  return (
-    <ItalicText selectable style={styles.value}>
-      {display ?? adposition}
-    </ItalicText>
-  );
+  return <ItalicText style={styles.value}>{display ?? adposition}</ItalicText>;
 }
 
 type DetailItemProps = {
@@ -204,21 +200,13 @@ type DetailItemProps = {
 function DetailItem({ label, value, link }: DetailItemProps) {
   return (
     <CardView>
-      <BoldText selectable style={styles.label}>
+      <BoldText style={[styles.label, { userSelect: "text" }]}>
         {label}:
       </BoldText>
       {link ? (
-        <Autolink
-          url
-          selectable
-          text={value}
-          style={styles.value}
-          component={Text}
-        />
+        <Autolink url text={value} style={styles.value} component={Text} />
       ) : (
-        <Text selectable style={styles.value}>
-          {value}
-        </Text>
+        <Text style={styles.value}>{value}</Text>
       )}
     </CardView>
   );
@@ -233,7 +221,7 @@ function Pronunciation({ IPA, Stressed, Syllables }: PronunciationProps) {
     <>
       <DetailItem label={ui.search.ipa} value={`[${IPA}]`} />
       <CardView>
-        <BoldText selectable style={styles.label}>
+        <BoldText style={[styles.label, { userSelect: "text" }]}>
           {ui.search.breakdown}:
         </BoldText>
         <Breakdown Stressed={Stressed} Syllables={Syllables} />
@@ -266,14 +254,10 @@ function Breakdown({ Stressed, Syllables }: BreakdownProps) {
     }
   }
   if (syllables.length === 1) {
-    return (
-      <Text selectable style={styles.value}>
-        {syllables[0]}
-      </Text>
-    );
+    return <Text style={styles.value}>{syllables[0]}</Text>;
   }
   return (
-    <Text selectable style={styles.value}>
+    <Text style={styles.value}>
       {before}
       <UnderlinedText>{stressed}</UnderlinedText>
       {after}
@@ -298,6 +282,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     paddingHorizontal: 16,
     paddingVertical: 8,
+    userSelect: "text",
   },
   audioButton: {
     flex: 1,
