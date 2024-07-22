@@ -10,12 +10,9 @@ type ExternalLinkProps = Omit<React.ComponentProps<typeof Link>, "href"> & {
 export function ExternalLink(props: ExternalLinkProps) {
   return (
     <Link
-      hrefAttrs={{
-        // On web, launch the link in a new tab.
-        target: "_blank",
-      }}
+      // On web, launch the link in a new tab.
+      target="_blank"
       {...props}
-      // @ts-expect-error: External URLs are not typed.
       href={props.href}
       onPress={(e) => {
         if (Platform.OS !== "web") {
