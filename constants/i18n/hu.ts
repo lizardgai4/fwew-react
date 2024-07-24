@@ -226,6 +226,9 @@ const strings: UITranslation = {
     profanity: "Profanity",
     that: "That",
   },
+  stats: {
+    clusters: "Mássalhangzócsoportok",
+  },
   settings: {
     about: "Névjegy",
     version: "Verzió",

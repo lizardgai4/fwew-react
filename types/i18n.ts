@@ -117,6 +117,10 @@ export type ListsStrings = {
   that: string;
 };
 
+export type StatsStrings = {
+  clusters: string;
+};
+
 export type SettingsStrings = {
   about: string;
   version: string;
@@ -142,6 +146,7 @@ export type UITranslation = {
   nameAlu: NameAluStrings;
   other: OtherStrings;
   lists: ListsStrings;
+  stats: StatsStrings;
   settings: SettingsStrings;
 };
 

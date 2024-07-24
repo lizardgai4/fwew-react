@@ -225,6 +225,9 @@ const strings: UITranslation = {
     profanity: "Aylì'u aräptum",
     that: "That",
   },
+  stats: {
+    clusters: "Aysna'o",
+  },
   settings: {
     about: "Teri Fwew",
     version: "Srey",
