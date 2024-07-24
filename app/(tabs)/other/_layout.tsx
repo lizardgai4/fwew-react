@@ -209,7 +209,7 @@ export default function StackLayout() {
       <Stack.Screen
         name="lists/that"
         options={{
-          title: "That", // TOOD: i18n
+          title: "That", // TODO: i18n
           headerRight: () => (
             <Link href="/settings" asChild>
               <Pressable style={styles.actionButton}>

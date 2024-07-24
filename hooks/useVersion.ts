@@ -16,7 +16,7 @@ export function useVersion() {
   };
 
   useEffect(() => {
-    getVersion();
+    void getVersion();
   }, []);
 
   return {

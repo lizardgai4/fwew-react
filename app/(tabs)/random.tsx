@@ -42,7 +42,7 @@ export default function RandomScreen() {
 
   useEffect(() => {
     if (!incomplete) {
-      getData();
+      void getData();
     }
     return cancel;
   }, [incomplete, numWords, filterExpression]);

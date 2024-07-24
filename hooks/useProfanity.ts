@@ -1,7 +1,7 @@
 import { useResultsLanguageContext } from "@/context/ResultsLanguageContext";
 import { useDebounce } from "@/hooks/useDebounce";
 import type { Word } from "fwew.js";
-import { fwew, search as fwewSearch } from "fwew.js";
+import { fwew } from "fwew.js";
 import { useEffect, useState } from "react";
 
 export function useProfanity() {

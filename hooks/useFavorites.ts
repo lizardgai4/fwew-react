@@ -67,7 +67,7 @@ export function useFavorites() {
   }
 
   useEffect(() => {
-    getFavorites();
+    void getFavorites();
   }, []);
 
   return {

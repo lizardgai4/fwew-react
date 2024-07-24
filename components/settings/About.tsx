@@ -1,13 +1,9 @@
 import { CardView } from "@/components/common/Themed";
 import { Credits } from "@/components/settings/Credits";
 import { Version } from "@/components/settings/Version";
-import i18n from "@/constants/i18n";
-import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { StyleSheet } from "react-native";
 
 export function About() {
-  const { appLanguage } = useAppLanguageContext();
-  const ui = i18n[appLanguage];
   return (
     <CardView style={styles.expanded}>
       <Version />

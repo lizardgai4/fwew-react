@@ -3,18 +3,6 @@ import { useDebounce } from "@/hooks/useDebounce";
 import { dictLen, phonemeFrequency } from "fwew.js";
 import { useEffect, useState } from "react";
 
-// Helper to ensure numbers are guaranteed from maps
-let numberOnly: number = 0
-
-function assign(value: number | undefined) {
-  // if value is null or undefined, don't do anything
-  if (typeof value === 'number') {
-     numberOnly = value;
-  } else {
-    numberOnly = 0
-  }
-}
-
 export function useStats() {
   const { resultsLanguage } = useResultsLanguageContext();
   const [loading, setLoading] = useState(false);
@@ -29,8 +17,7 @@ export function useStats() {
 
     let data1: String;
     let data2: string[][][]
-    let value1: Map<string,Map<string,number>>
-    
+
     try {
         data1 = await dictLen({
           signal: abortController.signal,

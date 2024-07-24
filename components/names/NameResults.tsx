@@ -1,7 +1,7 @@
-import { StyleSheet, TouchableOpacity } from "react-native";
-import { CardView, Text, View } from "../common/Themed";
 import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
+import { StyleSheet, TouchableOpacity } from "react-native";
+import { CardView, Text, View } from "../common/Themed";
 
 type NameResultsProps = {
   names: string[];

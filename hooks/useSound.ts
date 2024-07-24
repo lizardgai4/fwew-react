@@ -22,7 +22,7 @@ export function useSound() {
   useEffect(() => {
     return sound
       ? () => {
-          sound.unloadAsync();
+          void sound.unloadAsync();
         }
       : undefined;
   }, [sound]);

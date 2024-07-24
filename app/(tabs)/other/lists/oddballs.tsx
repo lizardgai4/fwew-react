@@ -1,5 +1,5 @@
 import { ResultCount } from "@/components/common/ResultCount";
-import { NonSearchResults } from "@/components/multi_ipa/MultiIPA";
+import { FwewSearchResults } from "@/components/search/FwewSearchResults";
 import { useOddballs } from "@/hooks/useOddballs";
 import { useTheme } from "@react-navigation/native";
 import { RefreshControl, ScrollView, StyleSheet } from "react-native";
@@ -21,7 +21,7 @@ export default function OddballsScreen() {
       }
     >
       <ResultCount visible={resultCount > 0} resultCount={resultCount} />
-      <NonSearchResults loading={loading} results={results} />
+      <FwewSearchResults loading={loading} results={results} />
     </ScrollView>
   );
 }

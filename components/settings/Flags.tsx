@@ -309,7 +309,7 @@ export const Ukraine = (props: SvgProps) => (
 );
 
 type FlagMapType = {
-  [key in ExtendedLanguageCode]: JSX.Element;
+  [key in ExtendedLanguageCode]: React.ReactNode;
 };
 
 export const FlagMap: FlagMapType = {
