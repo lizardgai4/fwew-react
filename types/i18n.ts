@@ -125,6 +125,12 @@ export type CameronWordsStrings = {
   }[];
 };
 
+export type LenitionStrings = {
+  glottalStop: string;
+  lenitingPrefixes: string;
+  lenitingAdpositions: string;
+};
+
 export type StatsStrings = {
   clusters: string;
 };
@@ -155,6 +161,7 @@ export type UITranslation = {
   other: OtherStrings;
   lists: ListsStrings;
   cameronWords: CameronWordsStrings;
+  lenition: LenitionStrings;
   stats: StatsStrings;
   settings: SettingsStrings;
 };

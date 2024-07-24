@@ -1,34 +1,49 @@
+import { BoldText } from "@/components/common/StyledText";
 import { Text, View } from "@/components/common/Themed";
+import i18n from "@/constants/i18n";
+import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { FlatList, StyleSheet } from "react-native";
 
 export default function LenitionScreen() {
+  const { appLanguage } = useAppLanguageContext();
+  const ui = i18n[appLanguage].lenition;
+
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Lenition:</Text>
       <FlatList
-        keyboardShouldPersistTaps="always"
         data={[
-          { key: "Px:", value: "P" },
-          { key: "P:", value: "F" },
-          { key: "Tx:", value: "T" },
-          { key: "T:", value: "S" },
-          { key: "Kx:", value: "K" },
-          { key: "K:", value: "H" },
-          { key: "Ts:", value: "S" },
-          { key: "':", value: "Disappears (except before psuedovowel)" },
-          { key: "Leniting prefixes:", value: "me+, pxe+, ay+, pe+" },
+          { key: "Kx", value: "⇾ K" },
+          { key: "Px", value: "⇾ P" },
+          { key: "Tx", value: "⇾ T" },
+          { key: "K ", value: "⇾ H" },
+          { key: "P ", value: "⇾ F" },
+          { key: "T ", value: "⇾ S" },
+          { key: "Ts", value: "⇾ S" },
+          { key: "' ", value: `⇾ ${ui.glottalStop}` },
+        ]}
+        renderItem={({ item }) => {
+          return (
+            <View style={styles.row}>
+              <BoldText style={styles.lenitionHeader}>{item.key}</BoldText>
+              <Text style={styles.lenitionValue}>{item.value}</Text>
+            </View>
+          );
+        }}
+      />
+
+      <FlatList
+        data={[
+          { key: ui.lenitingPrefixes, value: "me+, pxe+, ay+, pe+" },
           {
-            key: "Leniting adpositions:",
+            key: ui.lenitingAdpositions,
             value: "fpi, ìlä, lisre, mì, nuä, pxisre, ro, sko, sre, wä",
           },
         ]}
         renderItem={({ item }) => {
           return (
-            <View style={{ marginBottom: 10 }}>
-              <Text>
-                <Text style={styles.subheader}>{item.key}</Text>{" "}
-                <Text style={styles.words}>{item.value}</Text>
-              </Text>
+            <View style={styles.row}>
+              <BoldText style={styles.lenitingText}>{item.key}</BoldText>
+              <Text style={styles.lenitingText}>{item.value}</Text>
             </View>
           );
         }}
@@ -39,18 +54,27 @@ export default function LenitionScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 16,
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 16,
   },
-  header: {
-    fontSize: 24,
-    fontWeight: "bold",
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 16,
   },
-  subheader: {
-    fontSize: 16,
-    fontWeight: "bold",
+  lenitionHeader: {
+    fontFamily: "monospace",
+    fontSize: 18,
+    paddingVertical: 8,
   },
-  words: {
-    fontSize: 16,
+  lenitionValue: {
+    fontFamily: "monospace",
+    fontSize: 18,
+    padding: 8,
+  },
+  lenitingText: {
+    fontSize: 18,
+    paddingVertical: 8,
   },
 });

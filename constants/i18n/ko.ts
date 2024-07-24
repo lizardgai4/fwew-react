@@ -248,6 +248,11 @@ const strings: UITranslation = {
       { key: "Other", value: CameronWords.Other },
     ],
   },
+  lenition: {
+    glottalStop: "(Drops, except before ll/rr)",
+    lenitingPrefixes: "Leniting prefixes",
+    lenitingAdpositions: "Leniting adpositions",
+  },
   stats: {
     clusters: "Consonant Clusters",
   },
