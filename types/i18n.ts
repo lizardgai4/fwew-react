@@ -1,3 +1,4 @@
+import { CameronWords } from "./../constants/Cameron";
 import type { ExtendedLanguageCode, OptionType } from "@/types/common";
 import type { ListMenu } from "@/types/list";
 import type { AdjectiveMode, Dialect, NameEnding, NounMode } from "fwew.js";
@@ -117,6 +118,13 @@ export type ListsStrings = {
   that: string;
 };
 
+export type CameronWordsStrings = {
+  data: {
+    key: string;
+    value: string;
+  }[];
+};
+
 export type StatsStrings = {
   clusters: string;
 };
@@ -146,6 +154,7 @@ export type UITranslation = {
   nameAlu: NameAluStrings;
   other: OtherStrings;
   lists: ListsStrings;
+  cameronWords: CameronWordsStrings;
   stats: StatsStrings;
   settings: SettingsStrings;
 };

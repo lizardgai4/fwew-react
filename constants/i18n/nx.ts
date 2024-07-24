@@ -1,3 +1,4 @@
+import { CameronWords } from "@/constants/Cameron";
 import type { UITranslation } from "@/types/i18n";
 
 const partOfSpeech = {
@@ -224,6 +225,27 @@ const strings: UITranslation = {
     oddballs: "Aylì'u a hek",
     profanity: "Aylì'u aräptum",
     that: "That",
+  },
+  cameronWords: {
+    data: [
+      {
+        key: "A1 Names",
+        value: CameronWords.A1Names,
+      },
+      {
+        key: "A2 Names",
+        value: CameronWords.A2Names,
+      },
+      {
+        key: "Nouns",
+        value: CameronWords.Nouns,
+      },
+      {
+        key: "Life",
+        value: CameronWords.Life,
+      },
+      { key: "Other", value: CameronWords.Other },
+    ],
   },
   stats: {
     clusters: "Aysna'o",
