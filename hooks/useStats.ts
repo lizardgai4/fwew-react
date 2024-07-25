@@ -19,13 +19,13 @@ export function useStats() {
     let data2: string[][][];
 
     try {
-      data1 = await dictLen({
-        signal: abortController.current.signal,
-      });
-      data2 = await phonemeFrequency({
-        signal: abortController.current.signal,
-      });
-    } catch {
+        data1 = await dictLen(resultsLanguage, {
+          signal: abortController.signal,
+        });
+        data2 = await phonemeFrequency(resultsLanguage, {
+          signal: abortController.signal,
+        });
+    } catch (e: any) {
       setLoading(false);
       return;
     }
