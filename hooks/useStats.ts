@@ -32,10 +32,10 @@ export function useStats() {
     let value1: Map<string,Map<string,number>>
     
     try {
-        data1 = await dictLen({
+        data1 = await dictLen(resultsLanguage, {
           signal: abortController.signal,
         });
-        data2 = await phonemeFrequency({
+        data2 = await phonemeFrequency(resultsLanguage, {
           signal: abortController.signal,
         });
     } catch (e: any) {
