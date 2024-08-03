@@ -2,7 +2,7 @@ import { useDebounce } from "@/hooks/useDebounce";
 import type { NumericString } from "@/types/common";
 import type { AdjectiveMode, Dialect, NounMode } from "fwew.js";
 import { nameAlu } from "fwew.js";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export function useNameAlu() {
   const [numNames, setNumNames] = useState<NumericString>("4");
@@ -14,7 +14,7 @@ export function useNameAlu() {
   const [names, setNames] = useState<string[]>([]);
   const debounce = useDebounce();
 
-  const execute = async () => {
+  const execute = useCallback(async () => {
     if (!numNames || !numSyllables || !nounMode || !adjMode || !dialect) {
       return;
     }
@@ -28,7 +28,7 @@ export function useNameAlu() {
     );
     setNames(results.trim().split("\n"));
     setLoading(false);
-  };
+  }, [adjMode, dialect, nounMode, numNames, numSyllables]);
 
   const updateNumNames = (text: string) => {
     if (text === "") {
@@ -54,7 +54,7 @@ export function useNameAlu() {
 
   useEffect(() => {
     debounce(execute);
-  }, [numNames, numSyllables, nounMode, adjMode, dialect]);
+  }, [numNames, numSyllables, nounMode, adjMode, dialect, debounce, execute]);
 
   return {
     names,

@@ -62,7 +62,7 @@ export function useFilterExpression() {
         } as FilterExpressionBuilderValue;
       });
     });
-  }, [appLanguage]);
+  }, [appLanguage, ui.list.listMenu.condValues, ui.list.listMenu.whatValues]);
 
   return {
     filters,

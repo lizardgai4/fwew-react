@@ -1,16 +1,14 @@
 import { useAsyncStorage } from "@react-native-async-storage/async-storage";
 import type { Word } from "fwew.js";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export function useFavorites() {
   const [favorites, setFavorites] = useState<Word[]>([]);
   const { getItem, setItem } = useAsyncStorage("savedWords");
 
-  function isFavorite(word: Word) {
-    return favorites.some((w) => w.ID === word.ID);
-  }
+  const isFavorite = (word: Word) => favorites.some((w) => w.ID === word.ID);
 
-  async function getFavorites() {
+  const getFavorites = useCallback(async () => {
     try {
       const value = await getItem();
       if (!value) return;
@@ -21,7 +19,7 @@ export function useFavorites() {
       console.error(error);
       return;
     }
-  }
+  }, [getItem]);
 
   async function addFavorite(word: Word) {
     try {
@@ -68,7 +66,7 @@ export function useFavorites() {
 
   useEffect(() => {
     void getFavorites();
-  }, []);
+  }, [getFavorites]);
 
   return {
     favorites,

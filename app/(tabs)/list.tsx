@@ -5,7 +5,7 @@ import { useDebounce } from "@/hooks/useDebounce";
 import { useFilterExpression } from "@/hooks/useFilterExpression";
 import { useList } from "@/hooks/useList";
 import { useTheme } from "@react-navigation/native";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { RefreshControl, ScrollView, StyleSheet } from "react-native";
 
 export default function ListScreen() {
@@ -16,17 +16,17 @@ export default function ListScreen() {
   const { colors } = useTheme();
   const resultsVisible = filterExpression.length > 0 && results.length > 0;
 
-  const getData = async () => {
+  const getData = useCallback(async () => {
     if (incomplete || filterExpression.length === 0) {
       return;
     }
     debounce(() => execute(filterExpression));
-  };
+  }, [debounce, execute, filterExpression, incomplete]);
 
   useEffect(() => {
     getData();
     return cancel;
-  }, [incomplete, filterExpression]);
+  }, [incomplete, filterExpression, cancel, getData]);
 
   return (
     <ScrollView

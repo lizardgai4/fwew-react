@@ -2,7 +2,7 @@ import { useResultsLanguageContext } from "@/context/ResultsLanguageContext";
 import { useDebounce } from "@/hooks/useDebounce";
 import type { Word } from "fwew.js";
 import { homonyms } from "fwew.js";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export function useHomonyms() {
   const { resultsLanguage } = useResultsLanguageContext();
@@ -10,18 +10,18 @@ export function useHomonyms() {
   const [results, setResults] = useState<Word[][]>([]);
   const [resultCount, setResultCount] = useState(0);
   const debounce = useDebounce();
-  let abortController = new AbortController();
+  let abortController = useRef(new AbortController());
 
-  const execute = async () => {
+  const execute = useCallback(async () => {
     setLoading(true);
 
     let data: Word[][];
 
     try {
-        data = await homonyms({
-          signal: abortController.signal,
-        });
-    } catch (e: any) {
+      data = await homonyms({
+        signal: abortController.current.signal,
+      });
+    } catch {
       setResults([]);
       setResultCount(0);
       setLoading(false);
@@ -34,18 +34,18 @@ export function useHomonyms() {
       data.reduce((acc, cur) => acc + cur.length, 0) - data.length
     );
     setLoading(false);
-  };
+  }, []);
 
-  const cancel = () => {
-    abortController.abort();
-    abortController = new AbortController();
+  const cancel = useCallback(() => {
+    abortController.current.abort();
+    abortController.current = new AbortController();
     setLoading(false);
-  };
+  }, []);
 
   useEffect(() => {
     debounce(execute);
     return cancel;
-  }, [resultsLanguage]);
+  }, [resultsLanguage, cancel, debounce, execute]);
 
   return {
     results,

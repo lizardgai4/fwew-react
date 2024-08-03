@@ -28,7 +28,7 @@ export function useResultsLanguage() {
         return;
       }
     })();
-  }, []);
+  }, [getItem]);
 
   return {
     resultsLanguage,

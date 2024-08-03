@@ -1,7 +1,7 @@
 import { useDebounce } from "@/hooks/useDebounce";
 import type { FwewError, FwewNumber } from "fwew.js";
 import { naviToNumber, numberToNavi } from "fwew.js";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export function useNumber() {
   const [mode, setMode] = useState<"text" | "number">("number");
@@ -22,7 +22,7 @@ export function useNumber() {
     setResult(null);
   };
 
-  const doSearch = async () => {
+  const doSearch = useCallback(async () => {
     if (query === "") {
       setResult(null);
       return;
@@ -47,11 +47,11 @@ export function useNumber() {
       setResult(data);
       return;
     }
-  };
+  }, [query]);
 
   useEffect(() => {
     debounce(doSearch);
-  }, [query, mode]);
+  }, [query, mode, debounce, doSearch]);
 
   return [mode, toggleMode, query, result, search, clear] as const;
 }

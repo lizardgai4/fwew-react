@@ -2,7 +2,7 @@ import { useDebounce } from "@/hooks/useDebounce";
 import type { NumericString } from "@/types/common";
 import type { Dialect, NameEnding } from "fwew.js";
 import { nameFull } from "fwew.js";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export function useNameFull() {
   const [ending, setEnding] = useState<NameEnding>("random");
@@ -15,7 +15,7 @@ export function useNameFull() {
   const [names, setNames] = useState<string[]>([]);
   const debounce = useDebounce();
 
-  const execute = async () => {
+  const execute = useCallback(async () => {
     if (!ending) return;
     if (!numNames) return;
     if (!syllables1) return;
@@ -33,7 +33,7 @@ export function useNameFull() {
     );
     setNames(names.trim().split("\n"));
     setLoading(false);
-  };
+  }, [dialect, ending, numNames, syllables1, syllables2, syllables3]);
 
   const updateNumNames = (text: string) => {
     if (text === "") {
@@ -81,7 +81,16 @@ export function useNameFull() {
 
   useEffect(() => {
     debounce(execute);
-  }, [ending, numNames, syllables1, syllables2, syllables3, dialect]);
+  }, [
+    ending,
+    numNames,
+    syllables1,
+    syllables2,
+    syllables3,
+    dialect,
+    debounce,
+    execute,
+  ]);
 
   return {
     names,

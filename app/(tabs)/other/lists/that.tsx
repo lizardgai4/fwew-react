@@ -39,10 +39,10 @@ function ThatTable1() {
   return (
     <View style={styles.thatTable1}>
       {ThatTable1Data.map((row, index) => {
-        if (index == 0) {
+        if (index === 0) {
           return <ThatTable1HeaderRow1 key={`tt1hr1_r${index}`} row={row} />;
         }
-        if (index == 1) {
+        if (index === 1) {
           return <ThatTable1HeaderRow2 key={`tt1hr2_r${index}`} row={row} />;
         }
         return <ThatTable1Row key={`tt1r_r${index}`} row={row} />;

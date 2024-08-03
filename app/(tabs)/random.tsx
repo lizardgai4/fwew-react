@@ -6,7 +6,7 @@ import { useFilterExpression } from "@/hooks/useFilterExpression";
 import { useRandom } from "@/hooks/useRandom";
 import { NumericString } from "@/types/common";
 import { useTheme } from "@react-navigation/native";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { RefreshControl, ScrollView, StyleSheet } from "react-native";
 
 export default function RandomScreen() {
@@ -30,7 +30,7 @@ export default function RandomScreen() {
     setNumWords(num);
   };
 
-  const getData = async () => {
+  const getData = useCallback(async () => {
     if (numWords.length === 0) {
       return;
     }
@@ -38,14 +38,14 @@ export default function RandomScreen() {
       return;
     }
     debounce(() => execute(numWords, filterExpression));
-  };
+  }, [debounce, execute, filterExpression, incomplete, numWords]);
 
   useEffect(() => {
     if (!incomplete) {
       void getData();
     }
     return cancel;
-  }, [incomplete, numWords, filterExpression]);
+  }, [incomplete, numWords, filterExpression, cancel, getData]);
 
   return (
     <ScrollView

@@ -15,7 +15,7 @@ import { useResultsLanguageContext } from "@/context/ResultsLanguageContext";
 import { useSound } from "@/hooks/useSound";
 import { useTheme } from "@react-navigation/native";
 import { fwewSimple, type LanguageCode, type Word } from "fwew.js";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import Autolink from "react-native-autolink";
 
@@ -170,7 +170,7 @@ function AdpositionDisplay({ adposition }: { adposition: string }) {
   const languageCode = resultsLanguage.toUpperCase() as Uppercase<LanguageCode>;
   const [display, setDisplay] = useState<string>();
 
-  const getWord = async () => {
+  const getWord = useCallback(async () => {
     const results = await fwewSimple(adposition);
     if (
       !results ||
@@ -182,11 +182,11 @@ function AdpositionDisplay({ adposition }: { adposition: string }) {
     }
     const result = results[0][1][languageCode];
     setDisplay(result);
-  };
+  }, [adposition, languageCode]);
 
   useEffect(() => {
     getWord().then();
-  }, []);
+  }, [getWord]);
 
   return <ItalicText style={styles.value}>{display ?? adposition}</ItalicText>;
 }

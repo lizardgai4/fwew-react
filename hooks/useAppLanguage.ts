@@ -24,7 +24,7 @@ export function useAppLanguage() {
         return;
       }
     })();
-  }, []);
+  }, [getItem]);
 
   return {
     appLanguage,

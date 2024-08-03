@@ -1,11 +1,11 @@
 import { NumericString } from "@/types/common";
 import { random, type Word } from "fwew.js";
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 export function useRandom() {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<Word[]>([]);
-  let abortController = new AbortController();
+  let abortController = useRef(new AbortController());
 
   const execute = useCallback(
     async (numWords: NumericString, filterExpression: string) => {
@@ -17,17 +17,17 @@ export function useRandom() {
       try {
         if (filterExpression.length > 0) {
           const data = await random(+numWords, filterExpression, {
-            signal: abortController.signal,
+            signal: abortController.current.signal,
           });
           setResults(data);
           setLoading(false);
           return;
         }
         const data = await random(+numWords, undefined, {
-          signal: abortController.signal,
+          signal: abortController.current.signal,
         });
         setResults(data);
-      } catch (e: any) {
+      } catch {
         setResults([]);
       }
       setLoading(false);
@@ -36,8 +36,8 @@ export function useRandom() {
   );
 
   const cancel = () => {
-    abortController.abort();
-    abortController = new AbortController();
+    abortController.current.abort();
+    abortController.current = new AbortController();
     setLoading(false);
   };
 

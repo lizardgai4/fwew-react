@@ -1,7 +1,7 @@
 import { useResultsLanguageContext } from "@/context/ResultsLanguageContext";
 import { useDebounce } from "@/hooks/useDebounce";
 import { valid } from "fwew.js";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export function useValid() {
   const { resultsLanguage } = useResultsLanguageContext();
@@ -9,9 +9,9 @@ export function useValid() {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<string[]>([]);
   const debounce = useDebounce();
-  let abortController = new AbortController();
+  let abortController = useRef(new AbortController());
 
-  const execute = async () => {
+  const execute = useCallback(async () => {
     if (query === "") {
       setResults([]);
       return;
@@ -19,13 +19,13 @@ export function useValid() {
 
     setLoading(true);
 
-    let data: String;
+    let data: string;
 
     try {
       data = await valid(query.trim(), {
-        signal: abortController.signal,
+        signal: abortController.current.signal,
       });
-    } catch (e: any) {
+    } catch {
       setResults([]);
       setLoading(false);
       return;
@@ -41,18 +41,18 @@ export function useValid() {
 
     setResults(tempResults);
     setLoading(false);
-  };
+  }, [query]);
 
-  const cancel = () => {
-    abortController.abort();
-    abortController = new AbortController();
+  const cancel = useCallback(() => {
+    abortController.current.abort();
+    abortController.current = new AbortController();
     setLoading(false);
-  };
+  }, []);
 
   useEffect(() => {
     debounce(execute);
     return cancel;
-  }, [query, resultsLanguage]);
+  }, [query, resultsLanguage, cancel, debounce, execute]);
 
   return {
     query,
