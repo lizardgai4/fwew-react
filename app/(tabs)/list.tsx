@@ -25,10 +25,10 @@ export default function ListScreen() {
   }, [filterExpression, incomplete]);
 
   useEffect(() => {
-    getData();
+    void getData();
     return cancel;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [incomplete, filterExpression]);
+  }, [getData]);
 
   return (
     <ScrollView

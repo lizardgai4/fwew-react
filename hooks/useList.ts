@@ -1,13 +1,13 @@
 import type { Word } from "fwew.js";
 import { list } from "fwew.js";
-import { useCallback, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 export function useList() {
   const [results, setResults] = useState<Word[]>([]);
   const [loading, setLoading] = useState(false);
   const abortController = useRef(new AbortController());
 
-  const execute = useCallback(async (filterExpression: string) => {
+  const execute = async (filterExpression: string) => {
     if (filterExpression.length === 0) return;
     setLoading(true);
     try {
@@ -19,7 +19,7 @@ export function useList() {
       setResults([]);
     }
     setLoading(false);
-  }, []);
+  };
 
   const cancel = () => {
     abortController.current.abort();
