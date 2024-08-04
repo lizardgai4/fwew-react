@@ -3,7 +3,6 @@ import { CardView, Text, View } from "@/components/common/Themed";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import type { FwewError, FwewNumber } from "fwew.js";
-import { Fragment } from "react";
 import { StyleSheet } from "react-native";
 
 type NumberResultCardProps = {
@@ -60,25 +59,29 @@ function Scientific({ result }: { result: FwewNumber }) {
     .map((digit, i, a) => {
       if (i === 0) {
         return (
-          <Fragment key={`nrp_${digit}_${i}`}>
-            <Power base={`${digit}×8`} exponent={`${a.length - i - 1}`} />
-          </Fragment>
+          <Power
+            key={`nrp_${digit}_${i}`}
+            base={`${digit}×8`}
+            exponent={`${a.length - i - 1}`}
+          />
         );
       }
       return (
-        <Fragment key={`nrp_${digit}_${i}`}>
-          <Power base={` + ${digit}×8`} exponent={`${a.length - i - 1}`} />
-        </Fragment>
+        <Power
+          key={`nrp_${digit}_${i}`}
+          base={` + ${digit}×8`}
+          exponent={`${a.length - i - 1}`}
+        />
       );
     });
-  return <MonoText>{octalDigits}</MonoText>;
+  return <CardView style={{ flexDirection: "row" }}>{octalDigits}</CardView>;
 }
 
 function Power({ base, exponent }: { base: string; exponent: string }) {
   return (
     <CardView style={{ flexDirection: "row" }}>
       <MonoText style={{ fontSize: 18 }}>{base}</MonoText>
-      <MonoText style={{ fontSize: 10 }}>{exponent}</MonoText>
+      <MonoText style={{ fontSize: 12 }}>{exponent}</MonoText>
     </CardView>
   );
 }
