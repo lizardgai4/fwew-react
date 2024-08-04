@@ -47,7 +47,7 @@ export default function RandomScreen() {
     }
     return cancel;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [incomplete, numWords, filterExpression]);
+  }, [getData]);
 
   return (
     <ScrollView

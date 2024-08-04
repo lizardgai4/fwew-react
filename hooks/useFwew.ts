@@ -67,7 +67,7 @@ export function useFwew() {
     debounce(execute);
     return cancel;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query, naviOnly, resultsLanguage]);
+  }, [execute]);
 
   return {
     query,
