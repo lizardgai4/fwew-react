@@ -2,7 +2,7 @@ import { useDebounce } from "@/hooks/useDebounce";
 import type { NumericString } from "@/types/common";
 import type { Dialect, NameEnding } from "fwew.js";
 import { nameFull } from "fwew.js";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export function useNameFull() {
   const [ending, setEnding] = useState<NameEnding>("random");
@@ -14,6 +14,7 @@ export function useNameFull() {
   const [loading, setLoading] = useState(false);
   const [names, setNames] = useState<string[]>([]);
   const debounce = useDebounce();
+  const abortController = useRef(new AbortController());
 
   const execute = useCallback(async () => {
     if (!ending) return;
@@ -29,7 +30,8 @@ export function useNameFull() {
       syllables1,
       syllables2,
       syllables3,
-      dialect
+      dialect,
+      { signal: abortController.current.signal }
     );
     setNames(names.trim().split("\n"));
     setLoading(false);
@@ -79,18 +81,17 @@ export function useNameFull() {
     setSyllables3(`${num}`);
   };
 
+  const cancel = () => {
+    abortController.current.abort();
+    abortController.current = new AbortController();
+    setLoading(false);
+  };
+
   useEffect(() => {
     debounce(execute);
-  }, [
-    ending,
-    numNames,
-    syllables1,
-    syllables2,
-    syllables3,
-    dialect,
-    debounce,
-    execute,
-  ]);
+    return cancel;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ending, numNames, syllables1, syllables2, syllables3, dialect]);
 
   return {
     names,

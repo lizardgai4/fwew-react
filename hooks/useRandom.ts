@@ -5,7 +5,7 @@ import { useCallback, useRef, useState } from "react";
 export function useRandom() {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<Word[]>([]);
-  let abortController = useRef(new AbortController());
+  const abortController = useRef(new AbortController());
 
   const execute = useCallback(
     async (numWords: NumericString, filterExpression: string) => {

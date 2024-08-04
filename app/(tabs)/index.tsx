@@ -36,7 +36,13 @@ export default function SearchScreen() {
         />
       }
     >
-      <SearchBar query={query} search={search} cancel={cancel} autoFocus />
+      <SearchBar
+        query={query}
+        search={search}
+        execute={execute}
+        cancel={cancel}
+        autoFocus
+      />
       <SwitchInput
         leftLabel={ui.naviOnly}
         rightLabel=""

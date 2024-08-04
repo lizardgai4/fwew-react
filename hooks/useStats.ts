@@ -10,7 +10,7 @@ export function useStats() {
   const [phonemeGrid, setPhonemes] = useState<string[][]>([]);
   const [clusterMap, setClusters] = useState<string[][]>([]);
   const debounce = useDebounce();
-  let abortController = useRef(new AbortController());
+  const abortController = useRef(new AbortController());
 
   const execute = useCallback(async () => {
     setLoading(true);
@@ -36,16 +36,17 @@ export function useStats() {
     setLoading(false);
   }, []);
 
-  const cancel = useCallback(() => {
+  const cancel = () => {
     abortController.current.abort();
     abortController.current = new AbortController();
     setLoading(false);
-  }, []);
+  };
 
   useEffect(() => {
     debounce(execute);
     return cancel;
-  }, [resultsLanguage, cancel, debounce, execute]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [resultsLanguage]);
 
   return {
     wordCount,

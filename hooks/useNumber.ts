@@ -9,18 +9,18 @@ export function useNumber() {
   const [result, setResult] = useState<FwewNumber | FwewError | null>(null);
   const debounce = useDebounce();
 
-  const toggleMode = () => {
+  const toggleMode = useCallback(() => {
     if (mode === "number") {
       setMode("text");
     } else {
       setMode("number");
     }
-  };
+  }, [mode]);
 
-  const clear = () => {
+  const clear = useCallback(() => {
     search("");
     setResult(null);
-  };
+  }, []);
 
   const doSearch = useCallback(async () => {
     if (query === "") {
@@ -51,7 +51,8 @@ export function useNumber() {
 
   useEffect(() => {
     debounce(doSearch);
-  }, [query, mode, debounce, doSearch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query, mode]);
 
   return [mode, toggleMode, query, result, search, clear] as const;
 }

@@ -5,7 +5,7 @@ import { useCallback, useRef, useState } from "react";
 export function useList() {
   const [results, setResults] = useState<Word[]>([]);
   const [loading, setLoading] = useState(false);
-  let abortController = useRef(new AbortController());
+  const abortController = useRef(new AbortController());
 
   const execute = useCallback(async (filterExpression: string) => {
     if (filterExpression.length === 0) return;

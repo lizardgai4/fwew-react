@@ -2,7 +2,7 @@ import { useDebounce } from "@/hooks/useDebounce";
 import type { NumericString } from "@/types/common";
 import type { Dialect } from "fwew.js";
 import { nameSingle } from "fwew.js";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export default function useNameSingle() {
   const [numNames, setNumNames] = useState<NumericString>("4");
@@ -11,11 +11,14 @@ export default function useNameSingle() {
   const [loading, setLoading] = useState(false);
   const [names, setNames] = useState<string[]>([]);
   const debounce = useDebounce();
+  const abortController = useRef(new AbortController());
 
   const execute = useCallback(async () => {
     if (!numNames || !numSyllables || !dialect) return;
     setLoading(true);
-    const names = await nameSingle(numNames, numSyllables, dialect);
+    const names = await nameSingle(numNames, numSyllables, dialect, {
+      signal: abortController.current.signal,
+    });
     setNames(names.trim().split("\n"));
     setLoading(false);
   }, [dialect, numNames, numSyllables]);
@@ -42,9 +45,17 @@ export default function useNameSingle() {
     setNumSyllables(`${num}`);
   };
 
+  const cancel = () => {
+    abortController.current.abort();
+    abortController.current = new AbortController();
+    setLoading(false);
+  };
+
   useEffect(() => {
     debounce(execute);
-  }, [numNames, numSyllables, dialect, debounce, execute]);
+    return cancel;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [numNames, numSyllables, dialect]);
 
   return {
     names,

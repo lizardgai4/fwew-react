@@ -12,7 +12,7 @@ export function useProfanity() {
   const [results, setResults] = useState<Word[][]>([]);
   const [resultCount, setResultCount] = useState(0);
   const debounce = useDebounce();
-  let abortController = useRef(new AbortController());
+  const abortController = useRef(new AbortController());
 
   const execute = useCallback(async () => {
     setLoading(true);
@@ -41,16 +41,17 @@ export function useProfanity() {
     setLoading(false);
   }, []);
 
-  const cancel = useCallback(() => {
+  const cancel = () => {
     abortController.current.abort();
     abortController.current = new AbortController();
     setLoading(false);
-  }, []);
+  };
 
   useEffect(() => {
     debounce(execute);
     return cancel;
-  }, [query, naviOnly, resultsLanguage, cancel, debounce, execute]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query, naviOnly, resultsLanguage]);
 
   return {
     query,
