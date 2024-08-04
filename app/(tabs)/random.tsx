@@ -18,7 +18,7 @@ export default function RandomScreen() {
   const { colors } = useTheme();
   const resultsVisible = numWords.length > 0 && results.length > 0;
 
-  const updateNumWords = (num: NumericString) => {
+  const updateNumWords = useCallback((num: NumericString) => {
     if (num === "") {
       setNumWords("");
       return;
@@ -28,7 +28,7 @@ export default function RandomScreen() {
       return;
     }
     setNumWords(num);
-  };
+  }, []);
 
   const getData = useCallback(async () => {
     if (numWords.length === 0) {
@@ -38,14 +38,16 @@ export default function RandomScreen() {
       return;
     }
     debounce(() => execute(numWords, filterExpression));
-  }, [debounce, execute, filterExpression, incomplete, numWords]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filterExpression, incomplete, numWords]);
 
   useEffect(() => {
     if (!incomplete) {
       void getData();
     }
     return cancel;
-  }, [incomplete, numWords, filterExpression, cancel, getData]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [incomplete, numWords, filterExpression]);
 
   return (
     <ScrollView

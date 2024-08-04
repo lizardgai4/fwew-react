@@ -21,12 +21,14 @@ export default function ListScreen() {
       return;
     }
     debounce(() => execute(filterExpression));
-  }, [debounce, execute, filterExpression, incomplete]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filterExpression, incomplete]);
 
   useEffect(() => {
     getData();
     return cancel;
-  }, [incomplete, filterExpression, cancel, getData]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [incomplete, filterExpression]);
 
   return (
     <ScrollView
