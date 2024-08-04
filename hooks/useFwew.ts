@@ -12,7 +12,7 @@ export function useFwew() {
   const [results, setResults] = useState<Word[][]>([]);
   const [resultCount, setResultCount] = useState(0);
   const debounce = useDebounce();
-  let abortController = useRef(new AbortController());
+  const abortController = useRef(new AbortController());
 
   const execute = useCallback(async () => {
     if (query === "") {
@@ -24,8 +24,7 @@ export function useFwew() {
     setLoading(true);
 
     let data: Word[][];
-    let query_encoded: string;
-    query_encoded = query.trim();
+    let query_encoded = query.trim();
 
     // Make sure it carries no characters that can disrupt the URL
     let not_for_url = ["/", "\\", "?", "%", "@", "#"];
@@ -58,16 +57,17 @@ export function useFwew() {
     setLoading(false);
   }, [naviOnly, query, resultsLanguage]);
 
-  const cancel = useCallback(() => {
+  const cancel = () => {
     abortController.current.abort();
     abortController.current = new AbortController();
     setLoading(false);
-  }, []);
+  };
 
   useEffect(() => {
     debounce(execute);
     return cancel;
-  }, [query, naviOnly, resultsLanguage, cancel, debounce, execute]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query, naviOnly, resultsLanguage]);
 
   return {
     query,

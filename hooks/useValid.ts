@@ -9,7 +9,7 @@ export function useValid() {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<string[]>([]);
   const debounce = useDebounce();
-  let abortController = useRef(new AbortController());
+  const abortController = useRef(new AbortController());
 
   const execute = useCallback(async () => {
     if (query === "") {
@@ -43,16 +43,17 @@ export function useValid() {
     setLoading(false);
   }, [query]);
 
-  const cancel = useCallback(() => {
+  const cancel = () => {
     abortController.current.abort();
     abortController.current = new AbortController();
     setLoading(false);
-  }, []);
+  };
 
   useEffect(() => {
     debounce(execute);
     return cancel;
-  }, [query, resultsLanguage, cancel, debounce, execute]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query, resultsLanguage]);
 
   return {
     query,
