@@ -257,6 +257,7 @@ const strings: UITranslation = {
     lenitingAdpositions: "Leniting adpositions",
   },
   stats: {
+    phonemes: "Phoneme Frequencies", // TODO
     clusters: "Konsonantide klastrid",
   },
   settings: {

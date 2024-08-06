@@ -1,5 +1,5 @@
 import { BoldText, MonoText } from "@/components/common/StyledText";
-import { Text, View } from "@/components/common/Themed";
+import { CardView, Text, View } from "@/components/common/Themed";
 import { ListResults } from "@/components/list/ListResults";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
@@ -29,18 +29,18 @@ function LenitionTable() {
     { key: "P ", value: "⇾ F" },
     { key: "T ", value: "⇾ S" },
     { key: "Ts", value: "⇾ S" },
-    { key: "' ", value: `⇾ ${ui.glottalStop}` },
+    { key: "' ", value: `${ui.glottalStop}` },
   ];
 
   return (
-    <View>
+    <CardView style={{ padding: 16 }}>
       {lenitionData.map(({ key, value }, i) => (
-        <View key={`lt_r_${i}`} style={styles.lenitionRow}>
+        <CardView key={`lt_r_${i}`} style={styles.lenitionRow}>
           <MonoText style={styles.lenitionKey}>{key}</MonoText>
           <MonoText style={styles.lenitionValue}>{value}</MonoText>
-        </View>
+        </CardView>
       ))}
-    </View>
+    </CardView>
   );
 }
 
@@ -55,18 +55,22 @@ function LenPreList() {
     "fìme+",
     "fìpxe+",
     "fay+",
-    "tsame+",
+    "\ntsame+",
     "tsapxe+",
     "tsay+",
     "fray+",
-    "pe+",
+    "\npe+",
+    "pem(e)+",
+    "pep(e)+",
     "pay+",
   ];
 
   return (
     <View style={styles.container}>
       <BoldText style={styles.header}>{ui.lenitingPrefixes}</BoldText>
-      <Text style={styles.prefixText}>{lenPrefixes.join(", ")}</Text>
+      <CardView style={{ padding: 16 }}>
+        <Text style={styles.prefixText}>{lenPrefixes.join(", ")}</Text>
+      </CardView>
     </View>
   );
 }
@@ -91,7 +95,7 @@ function LenAdpList() {
 
 const styles = StyleSheet.create({
   lenitionRow: {
-    flexDirection: "row"
+    flexDirection: "row",
   },
   lenitionKey: {
     fontSize: 18,
@@ -109,6 +113,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
   },
   prefixText: {
-    fontSize: 18
+    fontSize: 18,
+    lineHeight: 32,
   },
 });

@@ -33,7 +33,7 @@ export function useValid() {
 
     let tempResults: string[];
     tempResults = [];
-    const thing = data.split("\n");
+    const thing = data.trim().split("\n");
 
     for (const k in thing) {
       tempResults.push(thing[k].replaceAll("**", "`").replaceAll("`", ""));

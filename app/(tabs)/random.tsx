@@ -8,6 +8,8 @@ import { NumericString } from "@/types/common";
 import { useTheme } from "@react-navigation/native";
 import { useCallback, useEffect, useState } from "react";
 import { RefreshControl, ScrollView, StyleSheet } from "react-native";
+import {Button} from "@/components/common/Button";
+import {View} from "@/components/common/Themed";
 
 export default function RandomScreen() {
   const [numWords, setNumWords] = useState<NumericString>("8");
@@ -70,6 +72,14 @@ export default function RandomScreen() {
         update={update}
         incomplete={incomplete}
       />
+      <View style={{ paddingTop: 16 }}>
+        <Button
+          icon="refresh"
+          text=""
+          onPress={() => execute(numWords, filterExpression)}
+          disabled={loading}
+        />
+      </View>
       <ResultCount
         visible={resultsVisible}
         resultCount={results.length}

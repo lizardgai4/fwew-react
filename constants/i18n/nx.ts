@@ -253,6 +253,7 @@ const strings: UITranslation = {
     lenitingAdpositions: "Leniting adpositions",
   },
   stats: {
+    phonemes: "Ayfamrelvi",
     clusters: "Aysna'o",
   },
   settings: {

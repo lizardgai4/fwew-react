@@ -74,12 +74,18 @@ export default function NameSingleScreen() {
           </View>
         }
       />
-      <View style={{ paddingTop: 16 }}>
+      <View style={styles.buttonContainer}>
         <Button
           icon="clipboard"
           text={uiNames.copyAll}
           onPress={copyAll}
           disabled={!resultsVisible}
+        />
+        <Button
+          icon="refresh"
+          text=""
+          onPress={execute}
+          disabled={loading}
         />
       </View>
       <ResultCount
@@ -104,6 +110,13 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 16,
     fontWeight: "bold",
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 16,
+    paddingTop: 16,
   },
   resultCount: {
     padding: 16,
