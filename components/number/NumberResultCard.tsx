@@ -94,9 +94,11 @@ const styles = StyleSheet.create({
   },
   navi: {
     fontSize: 24,
+    userSelect: "text",
   },
   text: {
     fontSize: 18,
     padding: 8,
+    userSelect: "text",
   },
 });
