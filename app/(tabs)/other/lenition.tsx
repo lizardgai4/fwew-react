@@ -99,14 +99,14 @@ const styles = StyleSheet.create({
   },
   lenitionKey: {
     fontSize: 18,
-    paddingVertical: 8
+    paddingVertical: 8,
   },
   lenitionValue: {
     fontSize: 18,
-    padding: 8
+    padding: 8,
   },
   container: {
-    paddingVertical: 8
+    paddingVertical: 8,
   },
   header: {
     fontSize: 20,

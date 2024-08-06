@@ -1,5 +1,5 @@
 import { SearchBar } from "@/components/common/SearchBar";
-import { CardView, View, Text } from "@/components/common/Themed";
+import { CardView, Text, View } from "@/components/common/Themed";
 import { useValid } from "@/hooks/useValid";
 import { useTheme } from "@react-navigation/native";
 import { RefreshControl, ScrollView, StyleSheet } from "react-native";
@@ -24,9 +24,7 @@ export default function ValidScreen() {
         <SearchBar query={query} search={search} cancel={cancel} autoFocus />
         {results.map((row, index) => (
           <CardView key={`vrc_${index}`} style={styles.container}>
-            <Text>
-              {row}
-            </Text>
+            <Text>{row}</Text>
           </CardView>
         ))}
       </View>
@@ -36,7 +34,7 @@ export default function ValidScreen() {
 
 const styles = StyleSheet.create({
   main: {
-    gap: 16
+    gap: 16,
   },
   container: {
     flex: 1,

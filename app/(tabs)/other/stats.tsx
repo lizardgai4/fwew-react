@@ -1,4 +1,4 @@
-import {CardView, Text, View} from "@/components/common/Themed";
+import { CardView, Text, View } from "@/components/common/Themed";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useStats } from "@/hooks/useStats";
