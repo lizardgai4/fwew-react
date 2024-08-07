@@ -131,6 +131,7 @@ export type LenitionStrings = {
 };
 
 export type StatsStrings = {
+  phonemes: string;
   clusters: string;
 };
 

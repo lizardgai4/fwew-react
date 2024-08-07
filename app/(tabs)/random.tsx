@@ -1,4 +1,6 @@
+import { Button } from "@/components/common/Button";
 import { ResultCount } from "@/components/common/ResultCount";
+import { View } from "@/components/common/Themed";
 import { ListResults } from "@/components/list/ListResults";
 import { RandomOptions } from "@/components/random/RandomOptions";
 import { useDebounce } from "@/hooks/useDebounce";
@@ -70,6 +72,14 @@ export default function RandomScreen() {
         update={update}
         incomplete={incomplete}
       />
+      <View style={{ paddingTop: 16 }}>
+        <Button
+          icon="refresh"
+          text=""
+          onPress={() => execute(numWords, filterExpression)}
+          disabled={loading}
+        />
+      </View>
       <ResultCount
         visible={resultsVisible}
         resultCount={results.length}
