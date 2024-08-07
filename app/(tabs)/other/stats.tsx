@@ -1,4 +1,4 @@
-import { CardView, Text, View } from "@/components/common/Themed";
+import { Text, View } from "@/components/common/Themed";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useStats } from "@/hooks/useStats";
@@ -13,6 +13,8 @@ import {
 export default function StatsScreen() {
   const { wordCount, phonemeGrid, clusterName, clusterMap, loading } = useStats();
   const { colors } = useTheme();
+  const { appLanguage } = useAppLanguageContext();
+  const ui = i18n[appLanguage].stats;
   const { width, height } = useWindowDimensions();
   const landscape = width > height;
 
@@ -38,15 +40,12 @@ export default function StatsScreen() {
       >
         <View style={{ alignItems: "center" }}>
           <Text style={styles.header}>{wordCount}</Text>
-        </View>
-
-        <View>
-          <Text style={styles.header}>{ui.phonemes}</Text>
           <PhonemeTable data={phonemeGrid} />
         </View>
 
         <View style={{ alignItems: "center" }}>
           {clusterMap.length > 0 && (
+            //<Text style={styles.header}>{ui.clusters}</Text>
             <Text style={styles.header}>{clusterName}</Text>
           )}
           <ClusterTable data={clusterMap} />
@@ -58,20 +57,20 @@ export default function StatsScreen() {
 
 function PhonemeTable({ data }: { data: string[][] }) {
   return (
-    <CardView style={styles.phonemeTable}>
+    <View style={styles.phonemeTable}>
       {data.map((row, index) => {
         if (index === 0) {
           return <PhonemeTableHeaderRow key={`pthr_r${index}`} row={row} />;
         }
         return <PhonemeTableRow key={`ptr_r${index}`} row={row} />;
       })}
-    </CardView>
+    </View>
   );
 }
 
 function PhonemeTableHeaderRow({ row }: { row: string[] }) {
   return (
-    <CardView style={styles.row}>
+    <View style={styles.row}>
       {row.map((col, i) => {
         return (
           <Text key={`pthr_c${i}`} style={styles.phonemeHeader}>
@@ -79,79 +78,79 @@ function PhonemeTableHeaderRow({ row }: { row: string[] }) {
           </Text>
         );
       })}
-    </CardView>
+    </View>
   );
 }
 
 function PhonemeTableRow({ row }: { row: string[] }) {
   return (
-    <CardView style={styles.row}>
+    <View style={styles.row}>
       {row.map((col, i) => {
         const [phoneme, frequency] = col.split(" ");
         return (
-          <CardView key={`ptr_c${i}`} style={styles.phonemeCol}>
+          <View key={`ptr_c${i}`} style={styles.phonemeCol}>
             <Text style={styles.phoneme}>{phoneme}</Text>
             <Text>{frequency}</Text>
-          </CardView>
+          </View>
         );
       })}
-    </CardView>
+    </View>
   );
 }
 
 function ClusterTable({ data }: { data: string[][] }) {
   return (
-    <CardView style={styles.clusterTable}>
+    <View style={styles.clusterTable}>
       {data.map((row, index) => {
         if (index === 0) {
           return <ClusterTableHeaderRow key={`cthr_r${index}`} row={row} />;
         }
         return <ClusterTableRow key={`ctr_r${index}`} row={row} />;
       })}
-    </CardView>
+    </View>
   );
 }
 
 function ClusterTableHeaderRow({ row }: { row: string[] }) {
   return (
-    <CardView style={styles.row}>
+    <View style={styles.row}>
       {row.map((col, i) => {
         return (
-          <CardView key={`cthr_c${i}`} style={styles.clusterCol}>
+          <View key={`cthr_c${i}`} style={styles.clusterCol}>
             <Text style={styles.clusterHeading}>{col}</Text>
-          </CardView>
+          </View>
         );
       })}
-    </CardView>
+    </View>
   );
 }
 
 function ClusterTableRow({ row }: { row: string[] }) {
   return (
-    <CardView style={styles.row}>
+    <View style={styles.row}>
       {row.map((col, i) => {
         if (i === 0) {
           return <ClusterTableHeaderCol key={`ctr_c${i}`} col={col} />;
         }
         return <ClusterTableCol key={`ctr_c${i}`} col={col} />;
       })}
-    </CardView>
+    </View>
   );
 }
 
 function ClusterTableHeaderCol({ col }: { col: string }) {
   return (
-    <CardView style={styles.clusterCol}>
+    <View style={styles.clusterCol}>
       <Text style={styles.clusterHeading}>{col}</Text>
-    </CardView>
+    </View>
   );
 }
 
 function ClusterTableCol({ col }: { col: string }) {
   return (
-    <CardView style={styles.clusterCol}>
+    <View style={styles.clusterCol}>
       <Text style={styles.clusterCell}>{col}</Text>
-    </CardView>
+    </View>
   );
 }
 
@@ -185,15 +184,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   phonemeTable: {
-    minWidth: 256,
+    width: 200,
     alignSelf: "center",
     gap: 16,
-    padding: 32,
   },
   clusterTable: {
-    minWidth: 256,
+    width: 200,
     alignSelf: "center",
-    padding: 32,
   },
   row: {
     flexDirection: "row",

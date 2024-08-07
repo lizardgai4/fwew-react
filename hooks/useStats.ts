@@ -14,8 +14,6 @@ export function useStats() {
   const [clusterMap, setClusters] = useState<string[][]>([]);
   const debounce = useDebounce();
   const abortController = useRef(new AbortController());
-  const { appLanguage } = useAppLanguageContext();
-  const ui = i18n[appLanguage].stats;
 
   const execute = useCallback(async () => {
     setLoading(true);
@@ -34,9 +32,6 @@ export function useStats() {
       setLoading(false);
       return;
     }
-
-    // 2024-08-06: Comment out once fwew-lib is updated
-    // data2[1][0][0] = ui.clusters
 
     setWordCount(data1);
     setPhonemes(data2[0]);
