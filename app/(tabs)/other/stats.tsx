@@ -11,10 +11,8 @@ import {
 } from "react-native";
 
 export default function StatsScreen() {
-  const { wordCount, phonemeGrid, clusterMap, loading } = useStats();
+  const { wordCount, phonemeGrid, clusterName, clusterMap, loading } = useStats();
   const { colors } = useTheme();
-  const { appLanguage } = useAppLanguageContext();
-  const ui = i18n[appLanguage].stats;
   const { width, height } = useWindowDimensions();
   const landscape = width > height;
 
@@ -45,7 +43,7 @@ export default function StatsScreen() {
 
         <View style={{ alignItems: "center" }}>
           {clusterMap.length > 0 && (
-            <Text style={styles.header}>{ui.clusters}</Text>
+            <Text style={styles.header}>{clusterName}</Text>
           )}
           <ClusterTable data={clusterMap} />
         </View>
