@@ -91,7 +91,7 @@ function PhonemeTableRow({ row }: { row: string[] }) {
           <CardView key={`ptr_c${i}`} style={styles.phonemeCol}>
             <Text style={styles.phoneme}>{phoneme}</Text>
             <Text>{frequency}</Text>
-          </ViewCardView>
+          </CardView>
         );
       })}
     </CardView>
