@@ -1,5 +1,3 @@
-import i18n from "@/constants/i18n";
-import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useResultsLanguageContext } from "@/context/ResultsLanguageContext";
 import { useDebounce } from "@/hooks/useDebounce";
 import { dictLen, phonemeFrequency } from "fwew.js";
@@ -42,7 +40,7 @@ export function useStats() {
     data2[1][0][0] = "";
     setClusters(data2[1]);
     setLoading(false);
-  }, []);
+  }, [resultsLanguage]);
 
   const cancel = () => {
     abortController.current.abort();
