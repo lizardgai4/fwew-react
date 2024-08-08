@@ -91,7 +91,7 @@ export const Hungary = (props: SvgProps) => (
 
 // ko
 export const SouthKorea = (props: SvgProps) => (
-  <Svg viewBox="-72 -48 144 96" width={32} height={32}>
+  <Svg viewBox="-72 -48 144 96" width={32} height={32} {...props}>
     <Defs>
       <Path id="b" d="M-12-2h24v4h-24z" />
       <G id="a">
