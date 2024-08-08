@@ -11,7 +11,7 @@ import {
 } from "react-native";
 
 export default function StatsScreen() {
-  const { wordCount, phonemeGrid, clusterMap, loading } = useStats();
+  const { wordCount, phonemeGrid, clusterName, clusterMap, loading } = useStats();
   const { colors } = useTheme();
   const { appLanguage } = useAppLanguageContext();
   const ui = i18n[appLanguage].stats;
@@ -40,16 +40,13 @@ export default function StatsScreen() {
       >
         <View style={{ alignItems: "center" }}>
           <Text style={styles.header}>{wordCount}</Text>
-        </View>
-
-        <View>
-          <Text style={styles.header}>{ui.phonemes}</Text>
           <PhonemeTable data={phonemeGrid} />
         </View>
 
         <View style={{ alignItems: "center" }}>
           {clusterMap.length > 0 && (
-            <Text style={styles.header}>{ui.clusters}</Text>
+            //<Text style={styles.header}>{ui.clusters}</Text>
+            <Text style={styles.header}>{clusterName}</Text>
           )}
           <ClusterTable data={clusterMap} />
         </View>
