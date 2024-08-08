@@ -15,37 +15,37 @@ export default function ListsScreen() {
         <Link href="/(tabs)/other/lists/cameron">
           <CardView style={styles.card}>
             <Text style={styles.text}>{lists.cameron}</Text>
-            <ItalicText>Cameron Words</ItalicText>
+            <ItalicText>{lists.cameron}</ItalicText>
           </CardView>
         </Link>
         <Link href="/(tabs)/other/lists/homonyms">
           <CardView style={styles.card}>
             <Text style={styles.text}>{lists.homonyms}</Text>
-            <ItalicText>Homonyms</ItalicText>
+            <ItalicText>{lists.homonyms}</ItalicText>
           </CardView>
         </Link>
         <Link href="/(tabs)/other/lists/multi-ipa">
           <CardView style={styles.card}>
             <Text style={styles.text}>{lists.multi_ipa}</Text>
-            <ItalicText>Multi IPA</ItalicText>
+            <ItalicText>{lists.multi_ipa}</ItalicText>
           </CardView>
         </Link>
         <Link href="/(tabs)/other/lists/oddballs">
           <CardView style={styles.card}>
             <Text style={styles.text}>{lists.oddballs}</Text>
-            <ItalicText>Oddball words</ItalicText>
+            <ItalicText>{lists.oddballs}</ItalicText>
           </CardView>
         </Link>
         <Link href="/(tabs)/other/lists/profanity">
           <CardView style={styles.card}>
             <Text style={styles.text}>{lists.profanity}</Text>
-            <ItalicText>Profanity</ItalicText>
+            <ItalicText>{lists.profanity}</ItalicText>
           </CardView>
         </Link>
         <Link href="/(tabs)/other/lists/that">
           <CardView style={styles.card}>
             <Text style={styles.text}>{lists.that}</Text>
-            <ItalicText>"that"</ItalicText>
+            <ItalicText>{lists.that}</ItalicText>
           </CardView>
         </Link>
       </View>

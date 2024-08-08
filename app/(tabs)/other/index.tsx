@@ -15,31 +15,31 @@ export default function OtherScreen() {
         <Link href="/(tabs)/other/names">
           <CardView style={styles.card}>
             <Text style={styles.text}>{other.names}</Text>
-            <ItalicText>Names</ItalicText>
+            <ItalicText>{other.names}</ItalicText>
           </CardView>
         </Link>
         <Link href="/(tabs)/other/lists">
           <CardView style={styles.card}>
             <Text style={styles.text}>{other.lists}</Text>
-            <ItalicText>Lists</ItalicText>
+            <ItalicText>{other.lists}</ItalicText>
           </CardView>
         </Link>
         <Link href="/(tabs)/other/stats">
           <CardView style={styles.card}>
             <Text style={styles.text}>{other.stats}</Text>
-            <ItalicText>Stats</ItalicText>
+            <ItalicText>{other.stats}</ItalicText>
           </CardView>
         </Link>
         <Link href="/(tabs)/other/valid">
           <CardView style={styles.card}>
             <Text style={styles.text}>{other.valid}</Text>
-            <ItalicText>Valid</ItalicText>
+            <ItalicText>{other.valid}</ItalicText>
           </CardView>
         </Link>
         <Link href="/(tabs)/other/lenition">
           <CardView style={styles.card}>
             <Text style={styles.text}>{other.lenition}</Text>
-            <ItalicText>Lenition</ItalicText>
+            <ItalicText>{other.lenition}</ItalicText>
           </CardView>
         </Link>
       </View>
