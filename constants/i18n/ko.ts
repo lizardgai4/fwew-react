@@ -50,8 +50,22 @@ const strings: UITranslation = {
     list: "모아보기",
     random: "무작위 생성",
     numbers: "수",
-    names: "이름 생성",
     other: "기타",
+
+    lenition: "연음화",
+    stats: "통계",
+    valid: "발음 유효성 검사",
+    lists: "일람표",
+
+    cameronWords: "제임스 카메론 자작 단어",
+    homonyms: "동음이의어",
+    multiIPA: "다음어",
+    oddballs: "예외",
+    profanity: "비속어",
+    that: '"그것"',
+
+    names: "이름 생성",
+
     favorites: "즐겨찾기",
     settings: "설정",
   },
@@ -211,21 +225,6 @@ const strings: UITranslation = {
       { name: "동사의 형용사화", value: "participle verb" },
       { name: "동사의 수동태 형용사화", value: "passive participle verb" },
     ],
-  },
-  other: {
-    names: "인명",
-    lists: "일람표",
-    stats: "통계",
-    lenition: "연음화",
-    valid: "발음 유효성 검사",
-  },
-  lists: {
-    cameron: "제임스 카메론 자작 단어",
-    homonyms: "동음이의어",
-    multi_ipa: "다음어",
-    oddballs: "예외",
-    profanity: "비속어",
-    that: '"그것"',
   },
   cameronWords: {
     data: [

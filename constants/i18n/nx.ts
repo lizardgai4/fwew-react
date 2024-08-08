@@ -50,8 +50,22 @@ const strings: UITranslation = {
     list: "Sästarsìm",
     random: "Renulke",
     numbers: "Holpxay",
-    names: "Tstxo",
     other: "Lahe",
+
+    lenition: "Aysälatem Pamä",
+    stats: "Aysäomum",
+    valid: "Kangay",
+    lists: "Aysästarsìm",
+
+    cameronWords: "Aylì'u Kämeronä",
+    homonyms: "Pam fkan teng a aylì'u aketeng",
+    multiIPA: "Melì'upam",
+    oddballs: "Aylì'u a hek",
+    profanity: "Aylì'u aräptum",
+    that: "That",
+
+    names: "Aystxo",
+
     favorites: "Swawneyna Aylì'u",
     settings: "Tìftxey",
   },
@@ -210,21 +224,6 @@ const strings: UITranslation = {
       { name: "kemlì'u a hu -a<us>", value: "active participle verb" },
       { name: "kemlì'u a hu -a<awn>", value: "passive participle verb" },
     ],
-  },
-  other: {
-    names: "Aystxo",
-    lists: "Aysästarsìm",
-    stats: "Aysäomum",
-    lenition: "Aysälatem Pamä",
-    valid: "Kangay",
-  },
-  lists: {
-    cameron: "Aylì'u Kämeronä",
-    homonyms: "Pam fkan teng a aylì'u aketeng",
-    multi_ipa: "Melì'upam",
-    oddballs: "Aylì'u a hek",
-    profanity: "Aylì'u aräptum",
-    that: "That",
   },
   cameronWords: {
     data: [

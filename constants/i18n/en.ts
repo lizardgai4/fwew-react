@@ -50,8 +50,22 @@ const strings: UITranslation = {
     list: "List",
     random: "Random",
     numbers: "Numbers",
-    names: "Names",
     other: "Other",
+
+    lenition: "Lenition",
+    stats: "Stats",
+    valid: "Valid",
+    lists: "Lists",
+
+    cameronWords: "Cameron Words",
+    homonyms: "Homonyms",
+    multiIPA: "Multi IPA",
+    oddballs: "Oddballs",
+    profanity: "Profanity",
+    that: "That",
+
+    names: "Names",
+
     favorites: "Favorites",
     settings: "Settings",
   },
@@ -211,21 +225,6 @@ const strings: UITranslation = {
       { name: "participle verb", value: "participle verb" },
       { name: "passive participle verb", value: "passive participle verb" },
     ],
-  },
-  other: {
-    names: "Names",
-    lists: "Lists",
-    stats: "Stats",
-    lenition: "Lenition",
-    valid: "Valid",
-  },
-  lists: {
-    cameron: "Cameron Words",
-    homonyms: "Homonyms",
-    multi_ipa: "Multi IPA",
-    oddballs: "Oddballs",
-    profanity: "Profanity",
-    that: "That",
   },
   cameronWords: {
     data: [

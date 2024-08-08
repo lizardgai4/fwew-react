@@ -7,45 +7,45 @@ import { ScrollView, StyleSheet } from "react-native";
 
 export default function ListsScreen() {
   const { appLanguage } = useAppLanguageContext();
-  const { lists } = i18n[appLanguage];
+  const { screens } = i18n[appLanguage];
 
   return (
     <ScrollView>
       <View style={styles.container}>
         <Link href="/(tabs)/other/lists/cameron">
           <CardView style={styles.card}>
-            <Text style={styles.text}>{lists.cameron}</Text>
-            <ItalicText>{lists.cameron}</ItalicText>
+            <Text style={styles.text}>{screens.cameronWords}</Text>
+            <ItalicText>{screens.cameronWords}</ItalicText>
           </CardView>
         </Link>
         <Link href="/(tabs)/other/lists/homonyms">
           <CardView style={styles.card}>
-            <Text style={styles.text}>{lists.homonyms}</Text>
-            <ItalicText>{lists.homonyms}</ItalicText>
+            <Text style={styles.text}>{screens.homonyms}</Text>
+            <ItalicText>{screens.homonyms}</ItalicText>
           </CardView>
         </Link>
         <Link href="/(tabs)/other/lists/multi-ipa">
           <CardView style={styles.card}>
-            <Text style={styles.text}>{lists.multi_ipa}</Text>
-            <ItalicText>{lists.multi_ipa}</ItalicText>
+            <Text style={styles.text}>{screens.multiIPA}</Text>
+            <ItalicText>{screens.multiIPA}</ItalicText>
           </CardView>
         </Link>
         <Link href="/(tabs)/other/lists/oddballs">
           <CardView style={styles.card}>
-            <Text style={styles.text}>{lists.oddballs}</Text>
-            <ItalicText>{lists.oddballs}</ItalicText>
+            <Text style={styles.text}>{screens.oddballs}</Text>
+            <ItalicText>{screens.oddballs}</ItalicText>
           </CardView>
         </Link>
         <Link href="/(tabs)/other/lists/profanity">
           <CardView style={styles.card}>
-            <Text style={styles.text}>{lists.profanity}</Text>
-            <ItalicText>{lists.profanity}</ItalicText>
+            <Text style={styles.text}>{screens.profanity}</Text>
+            <ItalicText>{screens.profanity}</ItalicText>
           </CardView>
         </Link>
         <Link href="/(tabs)/other/lists/that">
           <CardView style={styles.card}>
-            <Text style={styles.text}>{lists.that}</Text>
-            <ItalicText>{lists.that}</ItalicText>
+            <Text style={styles.text}>{screens.that}</Text>
+            <ItalicText>{screens.that}</ItalicText>
           </CardView>
         </Link>
       </View>

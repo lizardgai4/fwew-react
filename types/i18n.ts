@@ -20,8 +20,22 @@ export type ScreenStrings = {
   list: string;
   random: string;
   numbers: string;
-  names: string;
   other: string;
+
+  lenition: string;
+  stats: string;
+  valid: string;
+  lists: string;
+
+  cameronWords: string;
+  homonyms: string;
+  multiIPA: string;
+  oddballs: string;
+  profanity: string;
+  that: string;
+
+  names: string;
+
   favorites: string;
   settings: string;
 };
@@ -100,23 +114,6 @@ export type NameAluStrings = {
   adjModes: OptionType<AdjectiveMode>[];
 };
 
-export type OtherStrings = {
-  names: string;
-  lists: string;
-  stats: string;
-  lenition: string;
-  valid: string;
-};
-
-export type ListsStrings = {
-  cameron: string;
-  homonyms: string;
-  multi_ipa: string;
-  oddballs: string;
-  profanity: string;
-  that: string;
-};
-
 export type CameronWordsStrings = {
   data: {
     key: string;
@@ -158,8 +155,6 @@ export type UITranslation = {
   nameSingle: NameSingleStrings;
   nameFull: NameFullStrings;
   nameAlu: NameAluStrings;
-  other: OtherStrings;
-  lists: ListsStrings;
   cameronWords: CameronWordsStrings;
   lenition: LenitionStrings;
   stats: StatsStrings;

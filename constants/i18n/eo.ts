@@ -50,8 +50,22 @@ const strings: UITranslation = {
     list: "Listo",
     random: "Hazarda",
     numbers: "Nombroj",
-    names: "Nomoj",
     other: "Aliaj",
+
+    lenition: "Lenition", // TODO
+    stats: "Stats", // TODO
+    valid: "Valid", // TODO
+    lists: "Lists", // TODO
+
+    cameronWords: "Cameron Words", // TODO
+    homonyms: "Homonyms", // TODO
+    multiIPA: "Multi IPA", // TODO
+    oddballs: "Oddballs", // TODO
+    profanity: "Profanity", // TODO
+    that: "That", // TODO
+
+    names: "Nomoj",
+
     favorites: "Favoratoj",
     settings: "Agordoj",
   },
@@ -217,21 +231,6 @@ const strings: UITranslation = {
       { name: "aktiva participo verbo", value: "active participle verb" },
       { name: "pasiva participo verbo", value: "passive participle verb" },
     ],
-  },
-  other: {
-    names: "Names",
-    lists: "Lists",
-    stats: "Stats",
-    lenition: "Lenition",
-    valid: "Valid",
-  },
-  lists: {
-    cameron: "Cameron Words",
-    homonyms: "Homonyms",
-    multi_ipa: "Multi IPA",
-    oddballs: "Oddballs",
-    profanity: "Profanity",
-    that: "That",
   },
   cameronWords: {
     data: [
