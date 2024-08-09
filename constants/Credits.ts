@@ -16,6 +16,7 @@ const Credits = {
     "Tslakxime (pt)",
     "Tsyili (en, na'vi)",
     "Wllìm (nl)",
+    "유펀 (ko)",
   ],
 };
 

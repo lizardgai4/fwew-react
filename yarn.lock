@@ -4443,9 +4443,9 @@ fast-uri@^3.0.1:
   integrity sha512-MWipKbbYiYI0UC7cl8m/i/IWTqfC8YXsqjzybjddLsFjStroQzsHXkc73JutMvBiXmOvapk+axIl79ig5t55Bw==
 
 fast-xml-parser@^4.0.12, fast-xml-parser@^4.2.4:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/fast-xml-parser/-/fast-xml-parser-4.4.0.tgz#341cc98de71e9ba9e651a67f41f1752d1441a501"
-  integrity sha512-kLY3jFlwIYwBNDojclKsNAC12sfD6NwW74QB2CoNGPvtVxjliYehVunB3HYyNi+n4Tt1dAcgwYvmKF/Z18flqg==
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/fast-xml-parser/-/fast-xml-parser-4.4.1.tgz#86dbf3f18edf8739326447bcaac31b4ae7f6514f"
+  integrity sha512-xkjOecfnKGkSsOwtZ5Pz7Us/T6mrbPQrq0nh+aCO5V9nk5NLWmasAHumTKjiPJPWANe+kAZ84Jc8ooJkzZ88Sw==
   dependencies:
     strnum "^1.0.5"
 
@@ -4709,10 +4709,10 @@ functions-have-names@^1.2.3:
   resolved "https://registry.yarnpkg.com/functions-have-names/-/functions-have-names-1.2.3.tgz#0404fe4ee2ba2f607f0e0ec3c80bae994133b834"
   integrity sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==
 
-fwew.js@^2.7.2:
-  version "2.7.2"
-  resolved "https://registry.yarnpkg.com/fwew.js/-/fwew.js-2.7.2.tgz#e611619f98b72a72fad7d6b9c26a348cdfb7ff09"
-  integrity sha512-bvM6wnGVf0XQzJUnz478MDjYjasNPnTWki/8HzgS7xrRPCSI1ibxygyWtvll4jkpOoMcs9KnNv8MQrVSvjrbKA==
+fwew.js@^2.7.5:
+  version "2.7.5"
+  resolved "https://registry.yarnpkg.com/fwew.js/-/fwew.js-2.7.5.tgz#a2c690e95140cdce13b949a10c6c3a20dca64a2a"
+  integrity sha512-oBUR+gHaEqW1Fvu/C8nPAznFGr8BR+387KK60kNZFjZkMNaQlhbG4H9U9Q879H5V87r5k4uSEsqyeJN51+52Zg==
 
 gensync@^1.0.0-beta.2:
   version "1.0.0-beta.2"

@@ -19,18 +19,18 @@ const partOfSpeech = {
   "vin.": "Edat",
   "vtr.": "Edat",
   "vtrm.": "Edat",
-  // "adj., adv.": "Sıfat, Zarf",
-  // "adj., conj.": "Sıfat, Bağlaç",
-  // "adj., intj.": "Sıfat, Ünlem",
-  // "adj., n.": "Sıfat, İsim",
-  // "adv., conj.": "Zarf, Bağlaç",
-  // "adv., intj.": "Zarf, Ünlem",
-  // "adv., n.": "Zarf, İsim",
-  // "inter., intj.": "Soru, Ünlem",
-  // "n., intj.": "İsim, Ünlem",
-  // "part., intj.": "Parça, Ünlem",
-  // "vin., intj.": "Edat",
-  // "vin., vtr.": "Edat",
+  "adj., adv.": "Sıfat, Zarf",
+  "adj., conj.": "Sıfat, Bağlaç",
+  "adj., intj.": "Sıfat, Ünlem",
+  "adj., n.": "Sıfat, İsim",
+  "adv., conj.": "Zarf, Bağlaç",
+  "adv., intj.": "Zarf, Ünlem",
+  "adv., n.": "Zarf, İsim",
+  "inter., intj.": "Soru, Ünlem",
+  "n., intj.": "İsim, Ünlem",
+  "part., intj.": "Parça, Ünlem",
+  "vin., intj.": "Edat",
+  "vin., vtr.": "Edat",
 };
 
 const partOfSpeechList = Object.entries(partOfSpeech).map(([value, name]) => ({
@@ -50,8 +50,22 @@ const strings: UITranslation = {
     list: "Liste",
     random: "Rastgele",
     numbers: "Sayılar",
-    names: "İsimler",
     other: "Other",
+
+    lenition: "Lenition", // TODO
+    stats: "Stats", // TODO
+    valid: "Valid", // TODO
+    lists: "Lists", // TODO
+
+    cameronWords: "Cameron Words", // TODO
+    homonyms: "Homonyms", // TODO
+    multiIPA: "Multi IPA", // TODO
+    oddballs: "Oddballs", // TODO
+    profanity: "Profanity", // TODO
+    that: "That", // TODO
+
+    names: "İsimler",
+
     favorites: "Favoriler",
     settings: "Ayarlar",
   },
@@ -212,21 +226,6 @@ const strings: UITranslation = {
       { name: "etken sıfat-fiil", value: "active participle verb" },
       { name: "edilgen sıfat-fiil", value: "passive participle verb" },
     ],
-  },
-  other: {
-    names: "Names",
-    lists: "Lists",
-    stats: "Stats",
-    lenition: "Lenition",
-    valid: "Valid",
-  },
-  lists: {
-    cameron: "Cameron Words",
-    homonyms: "Homonyms",
-    multi_ipa: "Multi IPA",
-    oddballs: "Oddballs",
-    profanity: "Profanity",
-    that: "That",
   },
   cameronWords: {
     data: [

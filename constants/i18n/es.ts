@@ -19,18 +19,18 @@ const partOfSpeech = {
   "vin.": "Verbo intransitivo",
   "vtr.": "Verbo transitivo",
   "vtrm.": "Verbo modal transitivo",
-  // "adj., adv.": "Adjetivo, Adverbio",
-  // "adj., conj.": "Adjetivo, Conjunción",
-  // "adj., intj.": "Adjetivo, Interjección",
-  // "adj., n.": "Adjetivo, Nombre",
-  // "adv., conj.": "Adverbio, Conjunción",
-  // "adv., intj.": "Adverbio, Interjección",
-  // "adv., n.": "Adverbio, Nombre",
-  // "inter., intj.": "Interrogativo, Interjección",
-  // "n., intj.": "Nombre, Interjección",
-  // "part., intj.": "Partícula, Interjección",
-  // "vin., intj.": "Verbo intransitivo, Interjección",
-  // "vin., vtr.": "Verbo intransitivo o transitivo",
+  "adj., adv.": "Adjetivo, Adverbio",
+  "adj., conj.": "Adjetivo, Conjunción",
+  "adj., intj.": "Adjetivo, Interjección",
+  "adj., n.": "Adjetivo, Nombre",
+  "adv., conj.": "Adverbio, Conjunción",
+  "adv., intj.": "Adverbio, Interjección",
+  "adv., n.": "Adverbio, Nombre",
+  "inter., intj.": "Interrogativo, Interjección",
+  "n., intj.": "Nombre, Interjección",
+  "part., intj.": "Partícula, Interjección",
+  "vin., intj.": "Verbo intransitivo, Interjección",
+  "vin., vtr.": "Verbo intransitivo o transitivo",
 };
 
 const partOfSpeechList = Object.entries(partOfSpeech).map(([value, name]) => ({
@@ -50,8 +50,22 @@ const strings: UITranslation = {
     list: "Lista",
     random: "Aleatorio",
     numbers: "Números",
-    names: "Nombres",
     other: "Otros",
+
+    lenition: "Lenition", // TODO
+    stats: "Stats", // TODO
+    valid: "Valid", // TODO
+    lists: "Lists", // TODO
+
+    cameronWords: "Cameron Words", // TODO
+    homonyms: "Homonyms", // TODO
+    multiIPA: "Multi IPA", // TODO
+    oddballs: "Oddballs", // TODO
+    profanity: "Profanity", // TODO
+    that: "That", // TODO
+
+    names: "Nombres",
+
     favorites: "Favoritos",
     settings: "Ajustes",
   },
@@ -217,21 +231,6 @@ const strings: UITranslation = {
       { name: "verbo participio activo", value: "active participle verb" },
       { name: "verbo participio pasivo", value: "passive participle verb" },
     ],
-  },
-  other: {
-    names: "Names",
-    lists: "Lists",
-    stats: "Stats",
-    lenition: "Lenition",
-    valid: "Valid",
-  },
-  lists: {
-    cameron: "Cameron Words",
-    homonyms: "Homonyms",
-    multi_ipa: "Multi IPA",
-    oddballs: "Oddballs",
-    profanity: "Profanity",
-    that: "That",
   },
   cameronWords: {
     data: [

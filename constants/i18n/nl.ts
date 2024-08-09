@@ -19,18 +19,18 @@ const partOfSpeech = {
   "vin.": "Intransitief werkwoord",
   "vtr.": "Transitief werkwoord",
   "vtrm.": "Transitief modaal werkwoord",
-  // "adj., adv.": "Bijvoeglijk naamwoord, Bijwoord",
-  // "adj., conj.": "Bijvoeglijk naamwoord, Voegwoord",
-  // "adj., intj.": "Bijvoeglijk naamwoord, Interjectie",
-  // "adj., n.": "Bijvoeglijk naamwoord, Naamwoord",
-  // "adv., conj.": "Bijwoord, Voegwoord",
-  // "adv., intj.": "Bijwoord, Interjectie",
-  // "adv., n.": "Bijwoord, Naamwoord",
-  // "inter., intj.": "Vragend, Interjectie",
-  // "n., intj.": "Naamwoord, Interjectie",
-  // "part., intj.": "Deeltje, Interjectie",
-  // "vin., intj.": "Intransitief werkwoord, Interjectie",
-  // "vin., vtr.": "Intransitief of transitief werkwoord",
+  "adj., adv.": "Bijvoeglijk naamwoord, Bijwoord",
+  "adj., conj.": "Bijvoeglijk naamwoord, Voegwoord",
+  "adj., intj.": "Bijvoeglijk naamwoord, Interjectie",
+  "adj., n.": "Bijvoeglijk naamwoord, Naamwoord",
+  "adv., conj.": "Bijwoord, Voegwoord",
+  "adv., intj.": "Bijwoord, Interjectie",
+  "adv., n.": "Bijwoord, Naamwoord",
+  "inter., intj.": "Vragend, Interjectie",
+  "n., intj.": "Naamwoord, Interjectie",
+  "part., intj.": "Deeltje, Interjectie",
+  "vin., intj.": "Intransitief werkwoord, Interjectie",
+  "vin., vtr.": "Intransitief of transitief werkwoord",
 };
 
 const partOfSpeechList = Object.entries(partOfSpeech).map(([value, name]) => ({
@@ -50,8 +50,22 @@ const strings: UITranslation = {
     list: "Lijst",
     random: "Willekeurig",
     numbers: "Getallen",
-    names: "Namen",
     other: "Other",
+
+    lenition: "Lenition", // TODO
+    stats: "Stats", // TODO
+    valid: "Valid", // TODO
+    lists: "Lists", // TODO
+
+    cameronWords: "Cameron Words", // TODO
+    homonyms: "Homonyms", // TODO
+    multiIPA: "Multi IPA", // TODO
+    oddballs: "Oddballs", // TODO
+    profanity: "Profanity", // TODO
+    that: "That", // TODO
+
+    names: "Namen",
+
     favorites: "Favorieten",
     settings: "Instellingen",
   },
@@ -217,21 +231,6 @@ const strings: UITranslation = {
       { name: "actief deelwoord werkwoord", value: "active participle verb" },
       { name: "passief deelwoord werkwoord", value: "passive participle verb" },
     ],
-  },
-  other: {
-    names: "Names",
-    lists: "Lists",
-    stats: "Stats",
-    lenition: "Lenition",
-    valid: "Valid",
-  },
-  lists: {
-    cameron: "Cameron Words",
-    homonyms: "Homonyms",
-    multi_ipa: "Multi IPA",
-    oddballs: "Oddballs",
-    profanity: "Profanity",
-    that: "That",
   },
   cameronWords: {
     data: [

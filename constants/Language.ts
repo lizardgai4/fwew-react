@@ -16,7 +16,7 @@ const Languages: LanguageMeta[] = [
   { value: "fr", label: "Français", ui: true, results: true },
   { value: "nx", label: "Lì'fya leNa'vi", ui: true, results: false },
   { value: "hu", label: "Magyar", ui: true, results: true },
-  { value: "ko", label: "한국어", ui: false, results: true },
+  { value: "ko", label: "한국어", ui: true, results: true },
   { value: "nl", label: "Nederlands", ui: true, results: true },
   { value: "pl", label: "Polski", ui: true, results: true },
   { value: "pt", label: "Português", ui: true, results: true },

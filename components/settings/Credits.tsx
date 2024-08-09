@@ -33,12 +33,15 @@ function CreditsItem({ title, names }: { title: string; names: string[] }) {
       <Text style={styles.label}>{title}</Text>
       <CardView style={styles.creditsItemContainer}>
         {names.map((name, i) => (
-          <Text
+          <CardView
             key={`ci_${title}_${i}`}
-            style={[styles.text, { backgroundColor: colors.background }]}
+            style={[
+              styles.textContainer,
+              { backgroundColor: colors.background },
+            ]}
           >
-            {name}
-          </Text>
+            <Text style={styles.text}>{name}</Text>
+          </CardView>
         ))}
       </CardView>
     </CardView>
@@ -60,9 +63,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
   },
-  text: {
-    fontSize: 16,
+  textContainer: {
     padding: 8,
     borderRadius: 8,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  text: {
+    fontSize: 16,
   },
 });

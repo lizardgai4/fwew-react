@@ -7,39 +7,39 @@ import { ScrollView, StyleSheet } from "react-native";
 
 export default function OtherScreen() {
   const { appLanguage } = useAppLanguageContext();
-  const { other } = i18n[appLanguage];
+  const { screens } = i18n[appLanguage];
 
   return (
     <ScrollView>
       <View style={styles.container}>
         <Link href="/(tabs)/other/names">
           <CardView style={styles.card}>
-            <Text style={styles.text}>{other.names}</Text>
-            <ItalicText>Names</ItalicText>
+            <Text style={styles.text}>{screens.names}</Text>
+            <ItalicText>{screens.names}</ItalicText>
           </CardView>
         </Link>
         <Link href="/(tabs)/other/lists">
           <CardView style={styles.card}>
-            <Text style={styles.text}>{other.lists}</Text>
-            <ItalicText>Lists</ItalicText>
+            <Text style={styles.text}>{screens.lists}</Text>
+            <ItalicText>{screens.lists}</ItalicText>
           </CardView>
         </Link>
         <Link href="/(tabs)/other/stats">
           <CardView style={styles.card}>
-            <Text style={styles.text}>{other.stats}</Text>
-            <ItalicText>Stats</ItalicText>
+            <Text style={styles.text}>{screens.stats}</Text>
+            <ItalicText>{screens.stats}</ItalicText>
           </CardView>
         </Link>
         <Link href="/(tabs)/other/valid">
           <CardView style={styles.card}>
-            <Text style={styles.text}>{other.valid}</Text>
-            <ItalicText>Valid</ItalicText>
+            <Text style={styles.text}>{screens.valid}</Text>
+            <ItalicText>{screens.valid}</ItalicText>
           </CardView>
         </Link>
         <Link href="/(tabs)/other/lenition">
           <CardView style={styles.card}>
-            <Text style={styles.text}>{other.lenition}</Text>
-            <ItalicText>Lenition</ItalicText>
+            <Text style={styles.text}>{screens.lenition}</Text>
+            <ItalicText>{screens.lenition}</ItalicText>
           </CardView>
         </Link>
       </View>

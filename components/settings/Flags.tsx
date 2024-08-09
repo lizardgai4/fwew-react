@@ -1,5 +1,13 @@
 import type { ExtendedLanguageCode } from "@/types/common";
-import Svg, { Circle, G, Path, Rect, SvgProps } from "react-native-svg";
+import Svg, {
+  Circle,
+  Defs,
+  G,
+  Path,
+  Rect,
+  SvgProps,
+  Use,
+} from "react-native-svg";
 
 // de
 export const Germany = (props: SvgProps) => (
@@ -83,142 +91,38 @@ export const Hungary = (props: SvgProps) => (
 
 // ko
 export const SouthKorea = (props: SvgProps) => (
-  <Svg viewBox="0 0 512 512" width={32} height={32} {...props}>
-    <Rect y="85.331" fill="#FFFFFF" width="512" height="341.337" />
-    <Path
-      fill="#D80027"
-      d="M318.33,255.994c0,15.583-27.906,54.539-62.33,54.539s-62.33-38.957-62.33-54.539  c0-34.424,27.906-62.33,62.33-62.33S318.33,221.57,318.33,255.994z"
-    />
-    <Path
-      fill="#0052B4"
-      d="M318.33,255.994c0,34.424-27.906,62.33-62.33,62.33s-62.33-27.906-62.33-62.33"
-    />
-    <Rect
-      x="324.205"
-      y="300.55"
-      transform="matrix(0.7071 -0.7071 0.7071 0.7071 -119.6501 327.8224)"
-      width="23.374"
-      height="15.582"
-    />
-    <Rect
-      x="296.657"
-      y="328.085"
-      transform="matrix(0.7071 -0.7071 0.7071 0.7071 -147.1889 316.408)"
-      width="23.374"
-      height="15.582"
-    />
-    <Rect
-      x="357.26"
-      y="333.586"
-      transform="matrix(0.7071 -0.7071 0.7071 0.7071 -133.3277 360.8719)"
-      width="23.374"
-      height="15.582"
-    />
-    <Rect
-      x="329.712"
-      y="361.143"
-      transform="matrix(0.7071 -0.7071 0.7071 0.7071 -160.8823 349.464)"
-      width="23.374"
-      height="15.582"
-    />
-    <Rect
-      x="340.732"
-      y="317.068"
-      transform="matrix(0.7071 -0.7071 0.7071 0.7071 -126.4889 344.3472)"
-      width="23.374"
-      height="15.582"
-    />
-    <Rect
-      x="313.185"
-      y="344.614"
-      transform="matrix(0.7071 -0.7071 0.7071 0.7071 -154.0356 332.936)"
-      width="23.374"
-      height="15.582"
-    />
-    <Rect
-      x="307.483"
-      y="165.555"
-      transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 455.5344 535.3814)"
-      width="62.33"
-      height="15.582"
-    />
-    <Rect
-      x="296.656"
-      y="168.315"
-      transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 401.8486 518.6624)"
-      width="23.374"
-      height="15.581"
-    />
-    <Rect
-      x="324.193"
-      y="195.864"
-      transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 429.3763 585.1636)"
-      width="23.374"
-      height="15.581"
-    />
-    <Rect
-      x="329.693"
-      y="135.257"
-      transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 481.6206 485.591)"
-      width="23.374"
-      height="15.582"
-    />
-    <Rect
-      x="357.252"
-      y="162.807"
-      transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 509.1863 552.108)"
-      width="23.374"
-      height="15.582"
-    />
-    <Rect
-      x="125.671"
-      y="347.369"
-      transform="matrix(0.7071 0.7071 -0.7071 0.7071 297.0721 -6.8758)"
-      width="62.33"
-      height="15.582"
-    />
-    <Rect
-      x="175.435"
-      y="344.62"
-      transform="matrix(0.7071 0.7071 -0.7071 0.7071 303.9983 -29.0962)"
-      width="23.374"
-      height="15.581"
-    />
-    <Rect
-      x="147.898"
-      y="317.072"
-      transform="matrix(0.7071 0.7071 -0.7071 0.7071 276.4547 -17.6934)"
-      width="23.374"
-      height="15.582"
-    />
-    <Rect
-      x="158.724"
-      y="314.322"
-      transform="matrix(0.7071 0.7071 -0.7071 0.7071 283.386 -39.9269)"
-      width="62.33"
-      height="15.582"
-    />
-    <Rect
-      x="125.672"
-      y="149.023"
-      transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 378.6212 156.7987)"
-      width="62.33"
-      height="15.582"
-    />
-    <Rect
-      x="142.182"
-      y="165.56"
-      transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 418.4998 173.3536)"
-      width="62.33"
-      height="15.582"
-    />
-    <Rect
-      x="158.712"
-      y="182.089"
-      transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 458.4043 189.8812)"
-      width="62.33"
-      height="15.581"
-    />
+  <Svg viewBox="-72 -48 144 96" width={32} height={32} {...props}>
+    <Defs>
+      <Path id="b" d="M-12-2h24v4h-24z" />
+      <G id="a">
+        <Path d="M-12-2h11v4h-11zM1-2h11v4H1z" />
+      </G>
+    </Defs>
+    <Path fill="#fff" d="M-72-48H72v96H-72z" />
+    <G transform="rotate(56.31)">
+      <Use height="96" transform="translate(0 -38)" width="144" href="#a" />
+      <Use height="96" transform="translate(0 -44)" width="144" href="#b" />
+      <Use height="96" transform="translate(0 -50)" width="144" href="#a" />
+      <Use height="96" transform="translate(0 38)" width="144" href="#b" />
+      <Use height="96" transform="translate(0 44)" width="144" href="#a" />
+      <Use height="96" transform="translate(0 50)" width="144" href="#b" />
+    </G>
+    <G transform="rotate(-56.31)">
+      <Use height="96" transform="translate(0 -38)" width="144" href="#b" />
+      <Use height="96" transform="translate(0 -44)" width="144" href="#b" />
+      <Use height="96" transform="translate(0 -50)" width="144" href="#b" />
+      <Use height="96" transform="translate(0 38)" width="144" href="#a" />
+      <Use height="96" transform="translate(0 44)" width="144" href="#a" />
+      <Use height="96" transform="translate(0 50)" width="144" href="#a" />
+      <Path
+        d="M0 24c13.255 0 24-10.745 24-24S13.255-24 0-24c-9.941 0-18 8.059-18 18s8.059 18 18 18"
+        fill="#c60c30"
+      />
+      <Path
+        d="M0-24c-6.627 0-12 5.373-12 12S-6.627 0 0 0s12 5.373 12 12S6.627 24 0 24c-13.255 0-24-10.745-24-24s10.745-24 24-24"
+        fill="#003478"
+      />
+    </G>
   </Svg>
 );
 

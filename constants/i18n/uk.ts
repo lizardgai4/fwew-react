@@ -19,18 +19,18 @@ const partOfSpeech = {
   "vin.": "Неперехідне дієслово",
   "vtr.": "Перехідне дієслово",
   "vtrm.": "Перехідне модальне дієслово",
-  // "adj., adv.": "Adjective, Adverb",
-  // "adj., conj.": "Adjective, Conjunction",
-  // "adj., intj.": "Adjective, Interjection",
-  // "adj., n.": "Adjective, Noun",
-  // "adv., conj.": "Adverb, Conjunction",
-  // "adv., intj.": "Adverb, Interjection",
-  // "adv., n.": "Adverb, Noun",
-  // "inter., intj.": "Interrogative, Interjection",
-  // "n., intj.": "Noun, Interjection",
-  // "part., intj.": "Particle, Interjection",
-  // "vin., intj.": "Intransitive Verb, Interjection",
-  // "vin., vtr.": "Intransitive Or Transitive Verb",
+  "adj., adv.": "Прикметник, Прислівник",
+  "adj., conj.": "Прикметник, Сполучник",
+  "adj., intj.": "Прикметник, Вставне слово, вигук",
+  "adj., n.": "Прикметник, Іменник",
+  "adv., conj.": "Прислівник, Сполучник",
+  "adv., intj.": "Прислівник, Вставне слово, вигук",
+  "adv., n.": "Прислівник, Іменник",
+  "inter., intj.": "Питальний*, Вставне слово, вигук",
+  "n., intj.": "Іменник, Вставне слово, вигук",
+  "part., intj.": "Частка*, Вставне слово, вигук",
+  "vin., intj.": "Неперехідне дієслово, Вставне слово, вигук",
+  "vin., vtr.": "Неперехідне або Перехідне дієслово",
 };
 
 const partOfSpeechList = Object.entries(partOfSpeech).map(([value, name]) => ({
@@ -50,8 +50,22 @@ const strings: UITranslation = {
     list: "Список",
     random: "Випадково",
     numbers: "Числа",
-    names: "Імена",
     other: "Other",
+
+    lenition: "Lenition", // TODO
+    stats: "Stats", // TODO
+    valid: "Valid", // TODO
+    lists: "Lists", // TODO
+
+    cameronWords: "Cameron Words", // TODO
+    homonyms: "Homonyms", // TODO
+    multiIPA: "Multi IPA", // TODO
+    oddballs: "Oddballs", // TODO
+    profanity: "Profanity", // TODO
+    that: "That", // TODO
+
+    names: "Імена",
+
     favorites: "Вибране",
     settings: "Налаштування",
   },
@@ -211,21 +225,6 @@ const strings: UITranslation = {
       { name: "частка дієслова*", value: "participle verb" },
       { name: "пасивний дієприкметник*", value: "passive participle verb" },
     ],
-  },
-  other: {
-    names: "Names",
-    lists: "Lists",
-    stats: "Stats",
-    lenition: "Lenition",
-    valid: "Valid",
-  },
-  lists: {
-    cameron: "Cameron Words",
-    homonyms: "Homonyms",
-    multi_ipa: "Multi IPA",
-    oddballs: "Oddballs",
-    profanity: "Profanity",
-    that: "That",
   },
   cameronWords: {
     data: [
