@@ -48,7 +48,7 @@ const strings: UITranslation = {
   screens: {
     search: "검색",
     list: "모아보기",
-    random: "무작위 생성",
+    random: "무작위 단어장",
     numbers: "수",
     other: "기타",
 
@@ -156,7 +156,7 @@ const strings: UITranslation = {
     and: "그리고",
   },
   random: {
-    random: "무작위 생성",
+    random: "무작위 단어장",
     randomOptions: "설정",
     numWords: "생성할 단어의 개수",
     where: "추가설정",
