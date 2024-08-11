@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   phonemeTable: {
-    minWidth: 256,
+    minWidth: 320,
     alignSelf: "center",
     gap: 16,
     padding: 32,
