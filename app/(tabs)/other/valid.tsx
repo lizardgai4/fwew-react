@@ -1,27 +1,30 @@
+import { ResultCount } from "@/components/common/ResultCount";
 import { SearchBar } from "@/components/common/SearchBar";
 import { CardView, Text, View } from "@/components/common/Themed";
 import { useValid } from "@/hooks/useValid";
-import { useTheme } from "@react-navigation/native";
-import { RefreshControl, ScrollView, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 
 export default function ValidScreen() {
-  const { query, results, loading, search, execute, cancel } = useValid();
-  const { colors } = useTheme();
+  const { query, results, loading, search, cancel } = useValid();
 
   return (
     <ScrollView
       style={styles.container}
       keyboardShouldPersistTaps="always"
-      refreshControl={
-        <RefreshControl
-          refreshing={loading}
-          onRefresh={execute}
-          colors={[colors.primary]}
-        />
-      }
+      // refreshControl={
+      //   <RefreshControl
+      //     refreshing={loading}
+      //     onRefresh={execute}
+      //     colors={[colors.primary]}
+      //   />
+      // }
     >
       <View style={styles.main}>
         <SearchBar query={query} search={search} cancel={cancel} autoFocus />
+        <ResultCount
+          resultCount={results.length}
+          visible={results.length > 0 && !loading}
+        />
         {results.map((row, index) => (
           <CardView key={`vrc_${index}`} style={styles.container}>
             <Text>{row}</Text>
