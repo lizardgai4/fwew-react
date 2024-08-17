@@ -276,7 +276,7 @@ function ReefMe( IPA: string ) {
             }
           } else if (clusterable.includes(runes[0])) {
             // f/s + other consonant
-            breakdown = breakdown.concat(romamize[runes[0]])
+            breakdown = breakdown.concat(romanize[runes[0]])
             syllable = syllable.slice(runes[0].length)
           }
         } else if (["p", "t", "k"].includes(runes[0])) {
