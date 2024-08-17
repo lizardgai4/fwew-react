@@ -107,7 +107,7 @@ function ReefMe( IPA: string ) {
 	}
 
 	// Replace the spaces so as not to confuse strings.Split()
-	IPA = IPA.replace(" ", "*.");
+	IPA = IPA.replaceAll(" ", "*.");
 
 	// Unstressed ä becomes e
 	let ipa_syllables = IPA.split(".")
@@ -115,7 +115,7 @@ function ReefMe( IPA: string ) {
   ipa_syllables.forEach( (syllable) => {
     new_ipa += "."
 		if (syllable.includes("ˈ")) {
-			new_ipa = new_ipa.concat(syllable.replace("æ", "ɛ"))
+			new_ipa = new_ipa.concat(syllable.replaceAll("æ", "ɛ"))
 		} else {
 			new_ipa = new_ipa.concat(syllable)
 		}
@@ -124,18 +124,18 @@ function ReefMe( IPA: string ) {
 
 	// Reefify the IPA first
   let ipaReef = ""
-  IPA = IPA.replace("·", "")
+  IPA = IPA.replaceAll("·", "")
 	ipaReef = ipaReef.concat(IPA)
 
   // Deal with ejectives
-  ipaReef = ipaReef.replace(".p'", ".b")
-  ipaReef = ipaReef.replace(".ˈp'", ".ˈb")
-  ipaReef = ipaReef.replace(".t'", ".d")
-  ipaReef = ipaReef.replace(".ˈt'", ".ˈd")
-  ipaReef = ipaReef.replace(".k'", ".g")
-  ipaReef = ipaReef.replace(".ˈk'", ".ˈg")
-	ipaReef = ipaReef.replace("t͡sj", "tʃ")
-	ipaReef = ipaReef.replace("sj", "ʃ")
+  ipaReef = ipaReef.replaceAll(".p'", ".b")
+  ipaReef = ipaReef.replaceAll(".ˈp'", ".ˈb")
+  ipaReef = ipaReef.replaceAll(".t'", ".d")
+  ipaReef = ipaReef.replaceAll(".ˈt'", ".ˈd")
+  ipaReef = ipaReef.replaceAll(".k'", ".g")
+  ipaReef = ipaReef.replaceAll(".ˈk'", ".ˈg")
+	ipaReef = ipaReef.replaceAll("t͡sj", "tʃ")
+	ipaReef = ipaReef.replaceAll("sj", "ʃ")
 
   ipaReef = ipaReef.slice(".".length)
 
@@ -175,7 +175,7 @@ function ReefMe( IPA: string ) {
 	let breakdown = ""
 
   for(let s of word) {
-    s = s.replace("]", "")
+    s = s.replaceAll("]", "")
 
     if (s == "or") break;
 
@@ -183,7 +183,7 @@ function ReefMe( IPA: string ) {
 
     // Onset
     for(let a of syllables) {
-      a = a.replace("]", "")
+      a = a.replaceAll("]", "")
   
       if (a == "or") {
         break;
@@ -194,9 +194,9 @@ function ReefMe( IPA: string ) {
       // Onset
       //let syll1 = [...ipaReef]
       for (let syllable of syllables) {
-        syllable = syllable.replace("·", "")
-        syllable = syllable.replace("ˈ", "")
-        syllable = syllable.replace("ˌ", "")
+        syllable = syllable.replaceAll("·", "")
+        syllable = syllable.replaceAll("ˈ", "")
+        syllable = syllable.replaceAll("ˌ", "")
   
         breakdown = breakdown.concat("-")
   
@@ -342,7 +342,7 @@ function ReefMe( IPA: string ) {
     breakdown = breakdown.concat(" ")
   }
 
-  breakdown = breakdown.replace(" -", " ")
+  breakdown = breakdown.replaceAll(" -", " ")
   breakdown = breakdown.trim()
   breakdown = breakdown.slice("-".length)
   
@@ -473,7 +473,7 @@ function Pronunciation({ IPA, Stressed, Syllables }: PronunciationProps) {
   let reefDialect = "Reef dialect: "
   return (
     <>
-      <DetailItem label={ui.search.ipa} value={`[${IPA.replace("ʊ", "u")}] (reef dialect [${reefIPA}])`} />
+      <DetailItem label={ui.search.ipa} value={`[${IPA.replaceAll("ʊ", "u")}] (reef dialect [${reefIPA}])`} />
       <CardView>
         <BoldText style={[styles.label, { userSelect: "text" }]}>
           {ui.search.breakdown}:
