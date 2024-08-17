@@ -248,14 +248,14 @@ function ReefMe( IPA: string ) {
           runes = [...syllable]
           // tsp
           if (unvoiced_plosive.includes(runes[0])) {
-            breakdown = breakdown.concat(runes[0])
+            breakdown = breakdown.concat(romanize[runes[0]])
             syllable = syllable.slice(runes[0].length)
             if (runes[1] == "'") {
               syllable = syllable.slice("'".length)
               breakdown = breakdown.concat("x")
             }
           } else if (clusterable.includes(runes[0])) {
-            breakdown = breakdown.concat(runes[0])
+            breakdown = breakdown.concat(romanize[runes[0]])
             syllable = syllable.slice(runes[0].length)
           }
         } else if (["f", "s"].includes(runes[0])) {
@@ -267,7 +267,7 @@ function ReefMe( IPA: string ) {
           runes = [...syllable]
           // tsp
           if (unvoiced_plosive.includes(runes[0])) {
-            breakdown = breakdown.concat(runes[0])
+            breakdown = breakdown.concat(romanize[runes[0]])
             syllable = syllable.slice(runes[0].length)
             if (runes[1] == "'") {
               // f/s + ejective onset
@@ -276,11 +276,11 @@ function ReefMe( IPA: string ) {
             }
           } else if (clusterable.includes(runes[0])) {
             // f/s + other consonant
-            breakdown = breakdown.concat(runes[0])
+            breakdown = breakdown.concat(romamize[runes[0]])
             syllable = syllable.slice(runes[0].length)
           }
         } else if (["p", "t", "k"].includes(runes[0])) {
-          breakdown = breakdown.concat(runes[0])
+          breakdown = breakdown.concat(romanize[runes[0]])
           syllable = syllable.slice(runes[0].length)
           if (runes[1] == "'") {
             // f/s + ejective onset
