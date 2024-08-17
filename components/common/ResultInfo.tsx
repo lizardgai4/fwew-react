@@ -128,14 +128,31 @@ function ReefMe( IPA: string ) {
 	ipaReef = ipaReef.concat(IPA)
 
   // Deal with ejectives
-  ipaReef = ipaReef.replaceAll(".p'", ".b")
-  ipaReef = ipaReef.replaceAll(".ˈp'", ".ˈb")
-  ipaReef = ipaReef.replaceAll(".t'", ".d")
-  ipaReef = ipaReef.replaceAll(".ˈt'", ".ˈd")
-  ipaReef = ipaReef.replaceAll(".k'", ".g")
-  ipaReef = ipaReef.replaceAll(".ˈk'", ".ˈg")
-	ipaReef = ipaReef.replaceAll("t͡sj", "tʃ")
-	ipaReef = ipaReef.replaceAll("sj", "ʃ")
+	var soften: { [id: string]: string; } = {
+          "p'": "b",
+          "t'": "d",
+          "k'": "g",
+        };
+	const vowels = ["a", "ɛ", "u", "ɪ", "o", "i", "æ", "ʊ"]
+	// atxkxe and ekxtxu become adge and egdu
+	for (let b of ["p'", "t'", "k'"]) {
+		for (let a of ["p'", "t'", "k'"]) {
+			ipaReef = ipaReef.replaceAll(a.concat(".".concat(b)), soften[a].concat(".".concat(soften[b]))
+			ipaReef = ipaReef.replaceAll(a.concat(".ˈ".concat(b)), soften[a].concat(".ˈ".concat(soften[b]))
+		}
+	}
+	// Ejectives before vowels and diphthongs become voiced plosives regardless of syllable boundaries
+	for (let b of ["p'", "t'", "k'"]) {
+		ipaReef = ipaReef.replaceAll(".".concat(b), ".".concat(soften[b])
+		ipaReef = ipaReef.replaceAll(".ˈ".concat(b), ".ˈ".concat(soften[b])
+
+		for (let a of vowels) {
+			ipaReef = ipaReef.replaceAll(b.concat(".".concat(a)), soften[b].concat(".".concat(a)))
+			ipaReef = ipaReef.replaceAll(b.concat(".ˈ".concat(a)), soften[b].concat(".ˈ".concat(a)))
+		}
+	}
+  ipaReef = ipaReef.replaceAll("t͡sj", "tʃ")
+  ipaReef = ipaReef.replaceAll("sj", "ʃ")
 
   ipaReef = ipaReef.slice(".".length)
 
@@ -143,7 +160,7 @@ function ReefMe( IPA: string ) {
 
 	// Glottal stops between two vowels are removed
   const chars = [...ipaReef];
-  const vowels = ["a", "ɛ", "u", "ɪ", "o", "i", "æ", "ʊ"]
+  
   let i = 0
   for(let rune of chars) {
     if (i != 0 && i < chars.length - 1 && rune == 'ʔ') {
