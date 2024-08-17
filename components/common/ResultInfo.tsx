@@ -114,7 +114,7 @@ function ReefMe( IPA: string ) {
 	let new_ipa = ""
   ipa_syllables.forEach( (syllable) => {
     new_ipa += "."
-		if (syllable.includes("ˈ")) {
+		if (!syllable.includes("ˈ")) {
 			new_ipa = new_ipa.concat(syllable.replaceAll("æ", "ɛ"))
 		} else {
 			new_ipa = new_ipa.concat(syllable)
