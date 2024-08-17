@@ -303,9 +303,13 @@ function ReefMe( IPA: string ) {
           let diphthong = romanize[runes[0]]
           diphthong = diphthong.concat(romanize[runes[1]])
           syllable = syllable.slice(diphthong.length)
-        } else if (syllable.includes("ṛ") != syllable.includes("ḷ")) {
+        } else if (syllable.includes("ḷ")) {
           //psuedovowel
-          breakdown = breakdown.concat(romanize[runes[0]])
+          breakdown = breakdown.concat("ll")
+          continue // psuedovowels can't coda
+        } else if (syllable.includes("ṛ")) {
+          //psuedovowel
+          breakdown = breakdown.concat("rr")
           continue // psuedovowels can't coda
         } else {
           // vowel
