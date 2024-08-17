@@ -4,7 +4,7 @@ import {
   ItalicText,
   UnderlinedText,
 } from "@/components/common/StyledText";
-import { CardView, Text } from "@/components/common/Themed";
+import { CardView, Text, View } from "@/components/common/Themed";
 import { Affixes } from "@/constants/Affixes";
 import Colors from "@/constants/Colors";
 import { LenitingAdpositions } from "@/constants/Lenition";
@@ -97,6 +97,256 @@ export function ResultInfo({ word }: ResultInfoProps) {
       <DetailItem link label={ui.search.source} value={word.Source} />
     </CardView>
   );
+}
+
+function ReefMe( IPA: string ) {
+  if (IPA == "ʒɛjk'.ˈsu:.li") {
+		return ["ʒɛjk'.ˈsʊ:.li", "jake-sùl-ly"]
+	} else if (IPA == "ˈz·ɛŋ.kɛ") {
+		return ["ˈz·ɛŋ.kɛ", "zen-ke"]
+	}
+
+	// Replace the spaces so as not to confuse strings.Split()
+	IPA = IPA.replace(" ", "*.");
+
+	// Unstressed ä becomes e
+	let ipa_syllables = IPA.split(".")
+	let new_ipa = ""
+  ipa_syllables.forEach( (syllable) => {
+    new_ipa += "."
+		if (syllable.includes("ˈ")) {
+			new_ipa = new_ipa.concat(syllable.replace("æ", "ɛ"))
+		} else {
+			new_ipa = new_ipa.concat(syllable)
+		}
+  });
+	IPA = new_ipa
+
+	// Reefify the IPA first
+  let ipaReef = ""
+  IPA = IPA.replace("·", "")
+	ipaReef = ipaReef.concat(IPA)
+
+  // Deal with ejectives
+  ipaReef = ipaReef.replace(".p'", ".b")
+  ipaReef = ipaReef.replace(".ˈp'", ".ˈb")
+  ipaReef = ipaReef.replace(".t'", ".d")
+  ipaReef = ipaReef.replace(".ˈt'", ".ˈd")
+  ipaReef = ipaReef.replace(".k'", ".g")
+  ipaReef = ipaReef.replace(".ˈk'", ".ˈg")
+	ipaReef = ipaReef.replace("t͡sj", "tʃ")
+	ipaReef = ipaReef.replace("sj", "ʃ")
+
+  ipaReef = ipaReef.slice(".".length)
+
+	let temp = ""
+
+	// Glottal stops between two vowels are removed
+  const chars = [...ipaReef];
+  const vowels = ["a", "ɛ", "u", "ɪ", "o", "i", "æ", "ʊ"]
+  let i = 0
+  for(let rune of chars) {
+    if (i != 0 && i < chars.length - 1 && rune == 'ʔ') {
+      let firstI = i - 1
+      let secondI = i + 1
+      if (chars[i-1] == ".") {
+        firstI = i - 2
+      } else if (chars[i+1] == ".") {
+        secondI = i + 2
+      } else if (chars[i-1] == "ˈ" && i > 1) {
+        firstI = i - 3
+      }
+      if (vowels.includes(chars[firstI]) && vowels.includes(chars[secondI])) {
+        if (chars[firstI] != chars[secondI]) {
+          i += 1
+          continue
+        }
+      }
+    }
+    temp = temp.concat(rune)
+    i += 1
+  }
+
+  ipaReef = temp
+
+	// now Romanize the reef IPA
+  let word = ipaReef.split(" ")
+
+	let breakdown = ""
+
+  for(let s of word) {
+    s = s.replace("]", "")
+
+    if (s == "or") break;
+
+    let syllables = s.split(".")
+
+    // Onset
+    for(let a of syllables) {
+      a = a.replace("]", "")
+  
+      if (a == "or") {
+        break;
+      }
+  
+      let syllables = a.split(".")
+      
+      // Onset
+      //let syll1 = [...ipaReef]
+      for (let syllable of syllables) {
+        syllable = syllable.replace("·", "")
+        syllable = syllable.replace("ˈ", "")
+        syllable = syllable.replace("ˌ", "")
+  
+        breakdown = breakdown.concat("-")
+  
+        let runes = [...syllable]
+  
+        var romanize: { [id: string]: string; } = {
+          "ʔ": "'",
+          "l": "l",
+          "ɾ": "r",
+          "h": "h",
+          "m": "m",
+          "n": "n",
+          "ŋ": "ng",
+          "v": "v",
+          "w": "w",
+          "j": "y",
+          "z": "z",
+          "b": "b",
+          "d": "d",
+          "g": "g",
+          "ʃ": "sh", // "syawm" only
+          "ʒ": "ch", // "Jakesully" only (even though we caught it above)
+          "ṛ": "rr",
+          "ḷ": "ll",
+          "a": "a",
+          "i": "i",
+          "ɪ": "ì",
+          "o": "o",
+          "ɛ": "e",
+          "u": "u",
+          "æ": "ä",
+          "ʊ": "ù",
+          "p'": "px",
+          "t'": "tx",
+          "k'": "kx",
+        };
+  
+        // tsy
+        if (syllable.startsWith("tʃ")) {
+          breakdown = breakdown.concat("ch")
+          new_ipa = new_ipa.slice("tʃ".length)
+        } else if (syllable.length >= 4 && syllable.startsWith("t͡s")) {
+          // ts
+          breakdown = breakdown.concat("ts")
+          syllable = syllable.slice("t͡s".length)
+  
+          let unvoiced_plosive = ["p", "t", "k"]
+          let clusterable = ["l","ɾ","m","n","ŋ","w","j"]
+          runes = [...syllable]
+          // tsp
+          if (unvoiced_plosive.includes(runes[0])) {
+            breakdown = breakdown.concat(runes[0])
+            syllable = syllable.slice(runes[0].length)
+            if (runes[1] == "'") {
+              syllable = syllable.slice("'".length)
+              breakdown = breakdown.concat("x")
+            }
+          } else if (clusterable.includes(runes[0])) {
+            breakdown = breakdown.concat(runes[0])
+            syllable = syllable.slice(runes[0].length)
+          }
+        } else if (["f", "s"].includes(runes[0])) {
+          breakdown = breakdown.concat(syllable[0])
+          syllable = syllable.slice(syllable[0].length)
+  
+          let unvoiced_plosive = ["p", "t", "k"]
+          let clusterable = ["l","ɾ","m","n","ŋ","w","j"]
+          runes = [...syllable]
+          // tsp
+          if (unvoiced_plosive.includes(runes[0])) {
+            breakdown = breakdown.concat(runes[0])
+            syllable = syllable.slice(runes[0].length)
+            if (runes[1] == "'") {
+              // f/s + ejective onset
+              syllable = syllable.slice("'".length)
+              breakdown = breakdown.concat("x")
+            }
+          } else if (clusterable.includes(runes[0])) {
+            // f/s + other consonant
+            breakdown = breakdown.concat(runes[0])
+            syllable = syllable.slice(runes[0].length)
+          }
+        } else if (["p", "t", "k"].includes(runes[0])) {
+          breakdown = breakdown.concat(runes[0])
+          syllable = syllable.slice(runes[0].length)
+          if (runes[1] == "'") {
+            // f/s + ejective onset
+            syllable = syllable.slice("'".length)
+            breakdown = breakdown.concat("x")
+          }
+        } else if (["ʔ","l","ɾ","h","m","n","ŋ","v","w","j","z","b","d","g","ʃ","ʒ","b","d","g"].includes(runes[0])) {
+          // other normal onset
+          breakdown = breakdown.concat(romanize[runes[0]])
+          syllable = syllable.slice(runes[0].length)
+        }
+  
+        // Nucleus
+        runes = [...syllable]
+  
+        if (runes.length > 1 && ["j","w"].includes(runes[1])) {
+          //diphthong
+          breakdown = breakdown.concat(romanize[runes[1]])
+          let diphthong = romanize[runes[0]]
+          diphthong = diphthong.concat(romanize[runes[1]])
+          syllable = syllable.slice(diphthong.length)
+        } else if (syllable.includes("ṛ") != syllable.includes("ḷ")) {
+          //psuedovowel
+          breakdown = breakdown.concat(romanize[runes[0]])
+          continue // psuedovowels can't coda
+        } else {
+          // vowel
+          breakdown = breakdown.concat(romanize[runes[0]])
+          syllable = syllable.slice(runes[0].length)
+        }
+  
+        // Coda
+        runes = [...syllable]
+  
+        if (syllable.length > 0) {
+          if (runes[0] == "s") {
+            breakdown = breakdown.concat("sss") // oìsss only
+          } else {
+            if (syllable == "k̚") {
+              breakdown = breakdown.concat("k")
+            } else if (syllable == "p̚") {
+              breakdown = breakdown.concat("p")
+            } else if (syllable == "t̚") {
+              breakdown = breakdown.concat("t")
+            } else if (syllable == "ʔ̚") {
+              breakdown = breakdown.concat("'")
+            } else {
+              if (runes[0] == 'k' && syllable.length > 1) {
+                breakdown = breakdown.concat("kx")
+              } else {
+                breakdown = breakdown.concat(romanize[syllable])
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    breakdown = breakdown.concat(" ")
+  }
+
+  breakdown = breakdown.replace(" -", " ")
+  breakdown = breakdown.trim()
+  breakdown = breakdown.slice("-".length)
+  
+	return [ipaReef, breakdown]
 }
 
 function FavoriteButton({ word }: { word: Word }) {
@@ -217,14 +467,24 @@ type PronunciationProps = Pick<Word, "IPA" | "Stressed" | "Syllables">;
 function Pronunciation({ IPA, Stressed, Syllables }: PronunciationProps) {
   const { appLanguage } = useAppLanguageContext();
   const ui = i18n[appLanguage];
+  let reefs = ReefMe(IPA)
+  let reefIPA = reefs[0]
+  let ReefSyllables = reefs[1]
+  let reefDialect = "Reef dialect: "
   return (
     <>
-      <DetailItem label={ui.search.ipa} value={`[${IPA}]`} />
+      <DetailItem label={ui.search.ipa} value={`[${IPA.replace("ʊ", "u")}] (reef dialect [${reefIPA}])`} />
       <CardView>
         <BoldText style={[styles.label, { userSelect: "text" }]}>
           {ui.search.breakdown}:
         </BoldText>
-        <Breakdown Stressed={Stressed} Syllables={Syllables} />
+        <View style={{
+            flexDirection: "row",
+          }} >
+          <Breakdown Stressed={Stressed} Syllables={Syllables} />
+          <Text style={styles.value}>{reefDialect}</Text>
+          <Breakdown Stressed={Stressed} Syllables={ReefSyllables} />
+        </View>
       </CardView>
     </>
   );
