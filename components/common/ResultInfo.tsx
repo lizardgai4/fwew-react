@@ -298,6 +298,7 @@ function ReefMe( IPA: string ) {
   
         if (runes.length > 1 && ["j","w"].includes(runes[1])) {
           //diphthong
+          breakdown = breakdown.concat(romanize[runes[0]])
           breakdown = breakdown.concat(romanize[runes[1]])
           let diphthong = romanize[runes[0]]
           diphthong = diphthong.concat(romanize[runes[1]])
