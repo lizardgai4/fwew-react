@@ -237,7 +237,7 @@ function ReefMe( IPA: string ) {
         // tsy
         if (syllable.startsWith("tʃ")) {
           breakdown = breakdown.concat("ch")
-          new_ipa = new_ipa.slice("tʃ".length)
+          syllable = syllable.slice("tʃ".length)
         } else if (syllable.length >= 4 && syllable.startsWith("t͡s")) {
           // ts
           breakdown = breakdown.concat("ts")
