@@ -120,7 +120,7 @@ function ReefMe( IPA: string ) {
 			new_ipa = new_ipa.concat(syllable)
 		}
   });
-	IPA = new_ipa
+	IPA = new_ipa.replaceAll("*.", " ")
 
 	// Reefify the IPA first
   let ipaReef = ""
@@ -175,9 +175,9 @@ function ReefMe( IPA: string ) {
 	let breakdown = ""
 
   for(let s of word) {
-    s = s.replaceAll("]", "")
-
-    if (s == "or") break;
+    if (s == "or") {
+      break;
+    }
 
     let syllables = s.split(".")
 
@@ -345,6 +345,9 @@ function ReefMe( IPA: string ) {
   breakdown = breakdown.replaceAll(" -", " ")
   breakdown = breakdown.trim()
   breakdown = breakdown.slice("-".length)
+  while (breakdown[0] == "-") {
+    breakdown = breakdown.slice("-".length)
+  }
   
 	return [ipaReef, breakdown]
 }
