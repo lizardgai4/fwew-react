@@ -101,65 +101,65 @@ export function ResultInfo({ word }: ResultInfoProps) {
 
 function ReefMe( IPA: string ) {
   if (IPA == "ʒɛjk'.ˈsu:.li") {
-		return ["ʒɛjk'.ˈsʊ:.li", "jake-sùl-ly"]
-	} else if (IPA == "ˈz·ɛŋ.kɛ") {
-		return ["ˈz·ɛŋ.kɛ", "zen-ke"]
-	}
+    return ["ʒɛjk'.ˈsʊ:.li", "jake-sùl-ly"]
+  } else if (IPA == "ˈz·ɛŋ.kɛ") {
+    return ["ˈz·ɛŋ.kɛ", "zen-ke"]
+  }
 
-	// Replace the spaces so as not to confuse strings.Split()
-	IPA = IPA.replaceAll(" ", "*.");
+  // Replace the spaces so as not to confuse strings.Split()
+  IPA = IPA.replaceAll(" ", "*.");
 
-	// Unstressed ä becomes e
-	let ipa_syllables = IPA.split(".")
-	let new_ipa = ""
+  // Unstressed ä becomes e
+  let ipa_syllables = IPA.split(".")
+  let new_ipa = ""
   ipa_syllables.forEach( (syllable) => {
     new_ipa += "."
-		if (!syllable.includes("ˈ")) {
-			new_ipa = new_ipa.concat(syllable.replaceAll("æ", "ɛ"))
-		} else {
-			new_ipa = new_ipa.concat(syllable)
-		}
+    if (!syllable.includes("ˈ")) {
+      new_ipa = new_ipa.concat(syllable.replaceAll("æ", "ɛ"))
+    } else {
+      new_ipa = new_ipa.concat(syllable)
+    }
   });
-	IPA = new_ipa.replaceAll("*.", " ")
+  IPA = new_ipa.replaceAll("*.", " ")
 
-	// Reefify the IPA first
+  // Reefify the IPA first
   let ipaReef = ""
   IPA = IPA.replaceAll("·", "")
-	ipaReef = ipaReef.concat(IPA)
+  ipaReef = ipaReef.concat(IPA)
 
   // Deal with ejectives
-	var soften: { [id: string]: string; } = {
+  var soften: { [id: string]: string; } = {
           "p'": "b",
           "t'": "d",
           "k'": "g",
         };
-	const vowels = ["a", "ɛ", "u", "ɪ", "o", "i", "æ", "ʊ"]
-	// atxkxe and ekxtxu become adge and egdu
-	let ejectives = ["p'", "t'", "k'"]
-	for (let b of ejectives) {
-		for (let a of ejectives) {
-			ipaReef = ipaReef.replaceAll(a.concat(".".concat(b)), soften[a].concat(".".concat(soften[b])))
-			ipaReef = ipaReef.replaceAll(a.concat(".ˈ".concat(b)), soften[a].concat(".ˈ".concat(soften[b])))
-		}
-	}
-	// Ejectives before vowels and diphthongs become voiced plosives regardless of syllable boundaries
-	for (let b of ejectives) {
-		ipaReef = ipaReef.replaceAll(".".concat(b), ".".concat(soften[b]))
-		ipaReef = ipaReef.replaceAll(".ˈ".concat(b), ".ˈ".concat(soften[b]))
+  const vowels = ["a", "ɛ", "u", "ɪ", "o", "i", "æ", "ʊ"]
+  // atxkxe and ekxtxu become adge and egdu
+  let ejectives = ["p'", "t'", "k'"]
+  for (let b of ejectives) {
+    for (let a of ejectives) {
+      ipaReef = ipaReef.replaceAll(a.concat(".".concat(b)), soften[a].concat(".".concat(soften[b])))
+      ipaReef = ipaReef.replaceAll(a.concat(".ˈ".concat(b)), soften[a].concat(".ˈ".concat(soften[b])))
+    }
+  }
+  // Ejectives before vowels and diphthongs become voiced plosives regardless of syllable boundaries
+  for (let b of ejectives) {
+    ipaReef = ipaReef.replaceAll(".".concat(b), ".".concat(soften[b]))
+    ipaReef = ipaReef.replaceAll(".ˈ".concat(b), ".ˈ".concat(soften[b]))
 
-		for (let a of vowels) {
-			ipaReef = ipaReef.replaceAll(b.concat(".".concat(a)), soften[b].concat(".".concat(a)))
-			ipaReef = ipaReef.replaceAll(b.concat(".ˈ".concat(a)), soften[b].concat(".ˈ".concat(a)))
-		}
-	}
+    for (let a of vowels) {
+      ipaReef = ipaReef.replaceAll(b.concat(".".concat(a)), soften[b].concat(".".concat(a)))
+      ipaReef = ipaReef.replaceAll(b.concat(".ˈ".concat(a)), soften[b].concat(".ˈ".concat(a)))
+    }
+  }
   ipaReef = ipaReef.replaceAll("t͡sj", "tʃ")
   ipaReef = ipaReef.replaceAll("sj", "ʃ")
 
   ipaReef = ipaReef.slice(".".length)
 
-	let temp = ""
+  let temp = ""
 
-	// Glottal stops between two vowels are removed
+  // Glottal stops between two vowels are removed
   const chars = [...ipaReef];
   
   let i = 0
@@ -187,10 +187,10 @@ function ReefMe( IPA: string ) {
 
   ipaReef = temp
 
-	// now Romanize the reef IPA
+  // now Romanize the reef IPA
   let word = ipaReef.split(" ")
 
-	let breakdown = ""
+  let breakdown = ""
 
   for(let s of word) {
     if (s == "or") {
