@@ -100,27 +100,13 @@ export function ResultInfo({ word }: ResultInfoProps) {
 }
 
 function ReefMe( IPA: string ) {
-  if (IPA == "ʒɛjk'.ˈsu:.li") {
+  if (IPA == "ʒɛjk'.ˈsu:.li") { // Obsolete path
     return ["ʒɛjk'.ˈsʊ:.li", "jake-sùl-ly"]
-  } else if (IPA == "ˈz·ɛŋ.kɛ") {
+  } else if (IPA == "ˈz·ɛŋ.kɛ") { // Only IPA not to match the Romanization
     return ["ˈz·ɛŋ.kɛ", "zen-ke"]
+  } else if (IPA == "ɾæ.ˈʔæ" || IPA == "ˈɾæ.ʔæ") { // We hear this in Avatar 2
+    return ["ɾæ.ˈʔæ", "rä-'ä"]
   }
-
-  // Replace the spaces so as not to confuse strings.Split()
-  IPA = IPA.replaceAll(" ", "*.");
-
-  // Unstressed ä becomes e
-  let ipa_syllables = IPA.split(".")
-  let new_ipa = ""
-  ipa_syllables.forEach( (syllable) => {
-    new_ipa += "."
-    if (!syllable.includes("ˈ")) {
-      new_ipa = new_ipa.concat(syllable.replaceAll("æ", "ɛ"))
-    } else {
-      new_ipa = new_ipa.concat(syllable)
-    }
-  });
-  IPA = new_ipa.replaceAll("*.", " ")
 
   // Reefify the IPA first
   let ipaReef = ""
@@ -155,8 +141,6 @@ function ReefMe( IPA: string ) {
   ipaReef = ipaReef.replaceAll("t͡sj", "tʃ")
   ipaReef = ipaReef.replaceAll("sj", "ʃ")
 
-  ipaReef = ipaReef.slice(".".length)
-
   let temp = ""
 
   // Glottal stops between two vowels are removed
@@ -186,6 +170,24 @@ function ReefMe( IPA: string ) {
   }
 
   ipaReef = temp
+
+  // Replace the spaces so as not to confuse strings.Split()
+  ipaReef = ipaReef.replaceAll(" ", "*.");
+
+  // Unstressed ä becomes e
+  let ipa_syllables = ipaReef.split(".")
+  let new_ipa = ""
+  ipa_syllables.forEach( (syllable) => {
+    new_ipa += "."
+    if (!syllable.includes("ˈ")) {
+      new_ipa = new_ipa.concat(syllable.replaceAll("æ", "ɛ"))
+    } else {
+      new_ipa = new_ipa.concat(syllable)
+    }
+  });
+  ipaReef = new_ipa.replaceAll("*.", " ")
+
+  ipaReef = ipaReef.slice(".".length)
 
   // now Romanize the reef IPA
   let word = ipaReef.split(" ")
