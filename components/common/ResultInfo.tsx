@@ -210,7 +210,6 @@ function ReefMe( IPA: string ) {
       let syllables = a.split(".")
       
       // Onset
-      //let syll1 = [...ipaReef]
       for (let syllable of syllables) {
         syllable = syllable.replaceAll("·", "")
         syllable = syllable.replaceAll("ˈ", "")
