@@ -250,6 +250,9 @@ function ReefMe( IPA: string ) {
           "p'": "px",
           "t'": "tx",
           "k'": "kx",
+          "p": "p",
+          "t": "t",
+          "k": "k",
         };
   
         // tsy
