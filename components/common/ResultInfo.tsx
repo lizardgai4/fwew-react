@@ -135,16 +135,17 @@ function ReefMe( IPA: string ) {
         };
 	const vowels = ["a", "ɛ", "u", "ɪ", "o", "i", "æ", "ʊ"]
 	// atxkxe and ekxtxu become adge and egdu
-	for (let b of ["p'", "t'", "k'"]) {
-		for (let a of ["p'", "t'", "k'"]) {
-			ipaReef = ipaReef.replaceAll(a.concat(".".concat(b)), soften[a].concat(".".concat(soften[b]))
-			ipaReef = ipaReef.replaceAll(a.concat(".ˈ".concat(b)), soften[a].concat(".ˈ".concat(soften[b]))
+	let ejectives = ["p'", "t'", "k'"]
+	for (let b of ejectives) {
+		for (let a of ejectives) {
+			ipaReef = ipaReef.replaceAll(a.concat(".".concat(b)), soften[a].concat(".".concat(soften[b])))
+			ipaReef = ipaReef.replaceAll(a.concat(".ˈ".concat(b)), soften[a].concat(".ˈ".concat(soften[b])))
 		}
 	}
 	// Ejectives before vowels and diphthongs become voiced plosives regardless of syllable boundaries
-	for (let b of ["p'", "t'", "k'"]) {
-		ipaReef = ipaReef.replaceAll(".".concat(b), ".".concat(soften[b])
-		ipaReef = ipaReef.replaceAll(".ˈ".concat(b), ".ˈ".concat(soften[b])
+	for (let b of ejectives) {
+		ipaReef = ipaReef.replaceAll(".".concat(b), ".".concat(soften[b]))
+		ipaReef = ipaReef.replaceAll(".ˈ".concat(b), ".ˈ".concat(soften[b]))
 
 		for (let a of vowels) {
 			ipaReef = ipaReef.replaceAll(b.concat(".".concat(a)), soften[b].concat(".".concat(a)))
