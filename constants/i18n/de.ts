@@ -52,17 +52,17 @@ const strings: UITranslation = {
     numbers: "Zahlen",
     other: "Andere",
 
-    lenition: "Lenierung", // TODO
-    stats: "Statistiken", // TODO
-    valid: "Gültig", // TODO
-    lists: "Listen", // TODO
+    lenition: "Lenierung",
+    stats: "Statistiken",
+    valid: "Gültig",
+    lists: "Listen",
 
-    cameronWords: "Cameron-Wörter", // TODO
-    homonyms: "Homonyme", // TODO
-    multiIPA: "Multi IPA", // TODO
-    oddballs: "Sonderlinge", // TODO
-    profanity: "Vulgärsprache", // TODO
-    that: "Dass", // TODO
+    cameronWords: "Cameron-Wörter",
+    homonyms: "Homonyme",
+    multiIPA: "Multi IPA",
+    oddballs: "Sonderlinge",
+    profanity: "Vulgärsprache",
+    that: "Dass",
 
     names: "Namen",
 

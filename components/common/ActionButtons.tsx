@@ -1,11 +1,42 @@
 import Colors from "@/constants/Colors";
+import { useDialectContext } from "@/context/DialectContext";
 import { FontAwesome } from "@expo/vector-icons";
 import { Link } from "expo-router";
-import { Pressable, StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 export function ActionButtons() {
+  const { dialectDisplay, toggleDialect } = useDialectContext();
+
   return (
-    <View style={{ flexDirection: "row", padding: 16, gap: 16 }}>
+    <View
+      style={{
+        flexDirection: "row",
+        padding: 16,
+        gap: 16,
+      }}
+    >
+      <Pressable style={styles.actionButton} onPress={toggleDialect}>
+        {({ pressed }) => (
+          <View
+            style={{
+              height: 25,
+              justifyContent: "center",
+              alignItems: "center",
+              opacity: pressed ? 0.5 : 1,
+            }}
+          >
+            <Text
+              style={{
+                color: "#fff",
+                // fontWeight: "bold",
+                fontSize: 20,
+              }}
+            >
+              {dialectDisplay}
+            </Text>
+          </View>
+        )}
+      </Pressable>
       <Link href="/favorites" asChild>
         <Pressable style={styles.actionButton}>
           {({ pressed }) => (

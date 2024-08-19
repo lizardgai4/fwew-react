@@ -12,6 +12,18 @@ export const FwewDarkTheme: Theme = {
   },
 };
 
+export const FwewDarkReefTheme: Theme = {
+  ...FwewDarkTheme,
+  colors: {
+    ...FwewDarkTheme.colors,
+    primary: "#3a7569",
+    background: "#282b2d",
+    card: "#181a1b",
+    text: "#e8e6e3",
+    border: "#3b786c",
+  },
+};
+
 export const FwewLightTheme: Theme = {
   dark: false,
   colors: {
@@ -21,5 +33,17 @@ export const FwewLightTheme: Theme = {
     card: "#ffffff",
     text: "#000000",
     border: "#537aa8",
+  },
+};
+
+export const FwewLightReefTheme: Theme = {
+  ...FwewLightTheme,
+  colors: {
+    ...FwewLightTheme.colors,
+    primary: "#74baac",
+    background: "#d9e2ed",
+    card: "#ffffff",
+    text: "#000000",
+    border: "#53a897",
   },
 };
