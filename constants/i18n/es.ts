@@ -52,17 +52,17 @@ const strings: UITranslation = {
     numbers: "Números",
     other: "Otros",
 
-    lenition: "Lenition", // TODO
-    stats: "Stats", // TODO
-    valid: "Valid", // TODO
-    lists: "Lists", // TODO
+    lenition: "Lenición",
+    stats: "Estadísticas",
+    valid: "Válido",
+    lists: "Listas",
 
-    cameronWords: "Cameron Words", // TODO
-    homonyms: "Homonyms", // TODO
-    multiIPA: "Multi IPA", // TODO
-    oddballs: "Oddballs", // TODO
-    profanity: "Profanity", // TODO
-    that: "That", // TODO
+    cameronWords: "Palabras de Cameron",
+    homonyms: "Homónimos",
+    multiIPA: "IPA múltiple",
+    oddballs: "Bichos Raros",
+    profanity: "Profanidad",
+    that: "Que",
 
     names: "Nombres",
 
@@ -235,31 +235,31 @@ const strings: UITranslation = {
   cameronWords: {
     data: [
       {
-        key: "A1 Names",
+        key: "Nombres A1",
         value: CameronWords.A1Names,
       },
       {
-        key: "A2 Names",
+        key: "Nombres A2",
         value: CameronWords.A2Names,
       },
       {
-        key: "Nouns",
+        key: "Sustantivos",
         value: CameronWords.Nouns,
       },
       {
-        key: "Life",
+        key: "Vida",
         value: CameronWords.Life,
       },
-      { key: "Other", value: CameronWords.Other },
+      { key: "Otro", value: CameronWords.Other },
     ],
   },
   lenition: {
-    glottalStop: "(Drops, except before ll/rr)",
-    lenitingPrefixes: "Leniting prefixes",
-    lenitingAdpositions: "Leniting adpositions",
+    glottalStop: "(Se va, excepto antes de ll/rr)",
+    lenitingPrefixes: "Prefijos lenitivos",
+    lenitingAdpositions: "Adposiciónes lenitivas",
   },
   stats: {
-    phonemes: "Phoneme Frequencies", // TODO
+    phonemes: "Frecuencias de fonemas",
     clusters: "Grupos de consonantes",
   },
   settings: {

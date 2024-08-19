@@ -52,17 +52,17 @@ const strings: UITranslation = {
     numbers: "Nombroj",
     other: "Aliaj",
 
-    lenition: "Lenition", // TODO
-    stats: "Stats", // TODO
-    valid: "Valid", // TODO
-    lists: "Lists", // TODO
+    lenition: "Lenition",
+    stats: "Statistiko",
+    valid: "Valida",
+    lists: "Listoj",
 
-    cameronWords: "Cameron Words", // TODO
-    homonyms: "Homonyms", // TODO
-    multiIPA: "Multi IPA", // TODO
-    oddballs: "Oddballs", // TODO
-    profanity: "Profanity", // TODO
-    that: "That", // TODO
+    cameronWords: "Vortoj de Kameron",
+    homonyms: "Homonimoj",
+    multiIPA: "Multobla IPA",
+    oddballs: "Anomalio",
+    profanity: "Vortoj Malĝentilaj",
+    that: "Tiu",
 
     names: "Nomoj",
 
@@ -254,12 +254,12 @@ const strings: UITranslation = {
     ],
   },
   lenition: {
-    glottalStop: "(Drops, except before ll/rr)",
+    glottalStop: "(Foriras, escepte antaŭ ll/rr)",
     lenitingPrefixes: "Leniting prefixes",
     lenitingAdpositions: "Leniting adpositions",
   },
   stats: {
-    phonemes: "Phoneme Frequencies", // TODO
+    phonemes: "Frekvencoj de Fonemoj",
     clusters: "Konsonantgrupoj",
   },
   settings: {

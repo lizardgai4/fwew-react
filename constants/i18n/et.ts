@@ -52,17 +52,17 @@ const strings: UITranslation = {
     numbers: "Numbrid",
     other: "Other",
 
-    lenition: "Lenition", // TODO
-    stats: "Stats", // TODO
-    valid: "Valid", // TODO
-    lists: "Lists", // TODO
+    lenition: "Lenition",
+    stats: "Statistika",
+    valid: "Kehtiv",
+    lists: "Loendid",
 
-    cameronWords: "Cameron Words", // TODO
-    homonyms: "Homonyms", // TODO
-    multiIPA: "Multi IPA", // TODO
-    oddballs: "Oddballs", // TODO
-    profanity: "Profanity", // TODO
-    that: "That", // TODO
+    cameronWords: "Cameroni sõnad",
+    homonyms: "Homonüümid",
+    multiIPA: "Mitu IPA",
+    oddballs: "Veidrused",
+    profanity: "Roppused",
+    that: "See",
 
     names: "Nimed",
 
@@ -232,31 +232,31 @@ const strings: UITranslation = {
   cameronWords: {
     data: [
       {
-        key: "A1 Names",
+        key: "A1 Nimed",
         value: CameronWords.A1Names,
       },
       {
-        key: "A2 Names",
+        key: "A2 Nimed",
         value: CameronWords.A2Names,
       },
       {
-        key: "Nouns",
+        key: "Nimisõnad",
         value: CameronWords.Nouns,
       },
       {
-        key: "Life",
+        key: "Elu",
         value: CameronWords.Life,
       },
-      { key: "Other", value: CameronWords.Other },
+      { key: "Muud", value: CameronWords.Other },
     ],
   },
   lenition: {
-    glottalStop: "(Drops, except before ll/rr)",
-    lenitingPrefixes: "Leniting prefixes",
-    lenitingAdpositions: "Leniting adpositions",
+    glottalStop: "(Langeb, välja arvatud enne ll/rr)",
+    lenitingPrefixes: "Leniting eesliited",
+    lenitingAdpositions: "Leniteerivad adpositsioonid",
   },
   stats: {
-    phonemes: "Phoneme Frequencies", // TODO
+    phonemes: "Foneemi sagedused",
     clusters: "Konsonantide klastrid",
   },
   settings: {

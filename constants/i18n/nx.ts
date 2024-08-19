@@ -228,22 +228,22 @@ const strings: UITranslation = {
   cameronWords: {
     data: [
       {
-        key: "A1 Names",
+        key: "Ta 'Awvea Uniltìrantokx a Stxo",
         value: CameronWords.A1Names,
       },
       {
-        key: "A2 Names",
+        key: "Ta Muvea UNiltìrantokx a Stxo",
         value: CameronWords.A2Names,
       },
       {
-        key: "Nouns",
+        key: "Aystxolì'u",
         value: CameronWords.Nouns,
       },
       {
-        key: "Life",
+        key: "Tìrey",
         value: CameronWords.Life,
       },
-      { key: "Other", value: CameronWords.Other },
+      { key: "Lahe", value: CameronWords.Other },
     ],
   },
   lenition: {
