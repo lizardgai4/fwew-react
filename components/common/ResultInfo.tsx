@@ -187,11 +187,10 @@ function ReefMe( IPA: string ) {
       }
     });
     ipaReef = new_ipa
+    ipaReef = ipaReef.slice(".".length)
   }
 
   ipaReef = ipaReef.replaceAll("*.", " ")
-
-  ipaReef = ipaReef.slice(".".length)
 
   // now Romanize the reef IPA
   let word = ipaReef.split(" ")
