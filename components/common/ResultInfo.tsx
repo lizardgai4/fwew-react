@@ -176,16 +176,20 @@ function ReefMe( IPA: string ) {
 
   // Unstressed ä becomes e
   let ipa_syllables = ipaReef.split(".")
-  let new_ipa = ""
-  ipa_syllables.forEach( (syllable) => {
-    new_ipa += "."
-    if (!syllable.includes("ˈ")) {
-      new_ipa = new_ipa.concat(syllable.replaceAll("æ", "ɛ"))
-    } else {
-      new_ipa = new_ipa.concat(syllable)
-    }
-  });
-  ipaReef = new_ipa.replaceAll("*.", " ")
+  if (ipa_syllables.length > 1) {
+    let new_ipa = ""
+    ipa_syllables.forEach( (syllable) => {
+      new_ipa += "."
+      if (!syllable.includes("ˈ")) {
+        new_ipa = new_ipa.concat(syllable.replaceAll("æ", "ɛ"))
+      } else {
+        new_ipa = new_ipa.concat(syllable)
+      }
+    });
+    ipaReef = new_ipa
+  }
+
+  ipaReef = ipaReef.replaceAll("*.", " ")
 
   ipaReef = ipaReef.slice(".".length)
 
