@@ -102,8 +102,8 @@ export function ResultInfo({ word }: ResultInfoProps) {
 function ReefMe( IPA: string ) {
   if (IPA == "ʒɛjk'.ˈsu:.li") { // Obsolete path
     return ["ʒɛjk'.ˈsʊ:.li", "jake-sùl-ly"]
-  } else if (IPA == "ˈz·ɛŋ.kɛ") { // Only IPA not to match the Romanization
-    return ["ˈz·ɛŋ.kɛ", "zen-ke"]
+  } else if (IPA.replaceAll("·", "") == "ˈzɛŋ.kɛ") { // Only IPA not to match the Romanization
+    return ["ˈz·ɛŋ·.kɛ", "zen-ke"]
   } else if (IPA == "ɾæ.ˈʔæ" || IPA == "ˈɾæ.ʔæ") { // We hear this in Avatar 2
     return ["ɾæ.ˈʔæ", "rä-'ä"]
   }
