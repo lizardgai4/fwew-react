@@ -559,10 +559,12 @@ function Breakdown({ Stressed, Syllables }: BreakdownProps) {
   const individualWord = Syllables.toLowerCase().split(" ");
   let everything = []
   // split by spaces first
-  for (let h = 0; h < individualWord.length; h++) {
+  let stressH = 0
+  for (let h = 0; h < individualWord.length; ) {
     // then split by hyphens
     let syllables = individualWord[h].split("-");
     if (individualWord[h] == "or") {
+      stressH = 0
       everything.push(" or ")
       continue
     }
@@ -570,12 +572,10 @@ function Breakdown({ Stressed, Syllables }: BreakdownProps) {
       return <Text style={styles.value}>{syllables[0]}</Text>;
     }
     for (let i = 0; i < syllables.length; i++) {
-      if (i < stressedIndex) {
-        everything.push(syllables[i] + "-");
-      } else if (i === stressedIndex) {
+      if (stressH === stressedIndex) {
         everything.push(<UnderlinedText key={`srl_${h}${i}`}>{syllables[i].toUpperCase()}</UnderlinedText>);
       } else {
-        if (i === stressedIndex + 1) {
+        if (stressedIndex != -1 && i === stressedIndex + 1) {
           everything.push("-");
         }
         everything.push(syllables[i]);
@@ -583,6 +583,11 @@ function Breakdown({ Stressed, Syllables }: BreakdownProps) {
           everything.push("-");
         }
       }
+      stressH++
+    }
+    h++
+    if (h < individualWord.length) {
+      everything.push(" ")
     }
   }
 
