@@ -105,7 +105,7 @@ function ReefMe( IPA: string ) {
   } else if (IPA.replaceAll("·", "") == "ˈzɛŋ.kɛ") { // Only IPA not to match the Romanization
     return ["ˈz·ɛŋ·.kɛ", "zen-ke"]
   } else if (IPA == "ɾæ.ˈʔæ" || IPA == "ˈɾæ.ʔæ") { // We hear this in Avatar 2
-    return ["ɾæ.ˈʔæ", "rä-'ä or rä-ä"]
+    return ["ɾæ.ˈʔæ] or [ɾæ.ˈæ", "rä-'ä or rä-ä"]
   }
 
   // Reefify the IPA first
@@ -563,7 +563,7 @@ function Breakdown({ Stressed, Syllables }: BreakdownProps) {
     // then split by hyphens
     let syllables = individualWord[h].split("-");
     if (individualWord[h] == "or") {
-      everything.push(<Text> or </Text>)
+      everything.push(<Text key={`srl_${h}`}> or </Text>)
       continue
     }
     if (syllables.length === 1 && individualWord.length === 1) {
