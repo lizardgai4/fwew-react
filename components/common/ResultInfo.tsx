@@ -563,7 +563,7 @@ function Breakdown({ Stressed, Syllables }: BreakdownProps) {
     // then split by hyphens
     let syllables = individualWord[h].split("-");
     if (individualWord[h] == "or") {
-      everything.push(<Text key={`srl_${h}`}> or </Text>)
+      everything.push(" or ")
       continue
     }
     if (syllables.length === 1 && individualWord.length === 1) {
