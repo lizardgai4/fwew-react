@@ -199,7 +199,8 @@ function ReefMe( IPA: string ) {
 
   for(let s of word) {
     if (s == "or") {
-      break;
+      breakdown = breakdown.concat("or ")
+      continue;
     }
 
     let syllables = s.split(".")
@@ -207,10 +208,7 @@ function ReefMe( IPA: string ) {
     // Onset
     for(let a of syllables) {
       a = a.replaceAll("]", "")
-  
-      if (a == "or") {
-        break;
-      }
+      a = a.replaceAll("[", "")
   
       let syllables = a.split(".")
       
