@@ -565,7 +565,8 @@ function Breakdown({ Stressed, Syllables }: BreakdownProps) {
     let syllables = individualWord[h].split("-");
     if (individualWord[h] == "or") {
       stressH = 0
-      everything.push(" or ")
+      everything.push("or ")
+      h++
       continue
     }
     if (syllables.length === 1 && individualWord.length === 1) {
