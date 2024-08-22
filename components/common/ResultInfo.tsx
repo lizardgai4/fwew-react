@@ -378,6 +378,35 @@ function ReefMe( IPA: string ) {
   while (breakdown[0] == "-") {
     breakdown = breakdown.slice("-".length)
   }
+
+  // If there's a tìftang between two identical vowels, the tìftang is optional
+  let shortString = ipaReef.replaceAll("ˈ", "")
+  shortString = shortString.replaceAll(".", "")
+  for(let a of ["a", "ɛ", "ɪ", "o", "u", "i", "æ", "ʊ"]) {
+    if (shortString.includes(a+"ʔ"+a)) {
+      // fix IPA
+      let noTìftangIPA = ipaReef.replaceAll(a+".ˈʔ"+a, a+".ˈ"+a)
+      noTìftangIPA = noTìftangIPA.replaceAll(a+".ʔ"+a, a+"."+a)
+      noTìftangIPA = noTìftangIPA.replaceAll(a+"ʔ."+a, a+"."+a)
+      noTìftangIPA = noTìftangIPA.replaceAll(a+"ʔ.ˈ"+a, a+".ˈ"+a)
+
+      ipaReef = ipaReef.concat("] or [")
+      ipaReef = ipaReef.concat(noTìftangIPA)
+    }
+  }
+
+  // fix breakdown
+  shortString = breakdown.replaceAll("-", "")
+  for(let a of ["a", "e", "ì", "o", "u", "i", "ä", "ù"]) {
+    if (shortString.includes(a+"'"+a)) {
+      // fix IPA
+      let noTìftangBreakdown = breakdown.replaceAll(a+"'-"+a, a+"-"+a)
+      noTìftangBreakdown = noTìftangBreakdown.replaceAll(a+"-'"+a, a+"-"+a)
+
+      breakdown = breakdown.concat(" or ")
+      breakdown = breakdown.concat(noTìftangBreakdown)
+    }
+  }
   
 	return [ipaReef, breakdown]
 }
@@ -527,33 +556,39 @@ type BreakdownProps = Pick<Word, "Stressed" | "Syllables">;
 
 function Breakdown({ Stressed, Syllables }: BreakdownProps) {
   const stressedIndex = +Stressed - 1;
-  const syllables = Syllables.toLowerCase().replace(/ /g, "-").split("-");
-  let before = "";
-  let stressed = "";
-  let after = "";
-  for (let i = 0; i < syllables.length; i++) {
-    if (i < stressedIndex) {
-      before += syllables[i] + "-";
-    } else if (i === stressedIndex) {
-      stressed = syllables[i].toUpperCase();
-    } else {
-      if (i === stressedIndex + 1) {
-        after += "-";
-      }
-      after += syllables[i];
-      if (i < syllables.length - 1) {
-        after += "-";
+  const individualWord = Syllables.toLowerCase().split(" ");
+  let fullWord = ""
+  // split by spaces first
+  for (let h = 0; h < individualWord.length; h++) {
+    // then split by hyphens
+    let syllables = individualWord[h].split("-");
+    if (individualWord[h] == "or") {
+      fullWord += " or "
+      continue
+    }
+    if (syllables.length === 1 && individualWord.length === 1) {
+      return <Text style={styles.value}>{syllables[0]}</Text>;
+    }
+    for (let i = 0; i < syllables.length; i++) {
+      if (i < stressedIndex) {
+        fullWord += syllables[i] + "-";
+      } else if (i === stressedIndex) {
+        fullWord += syllables[i].toUpperCase();
+      } else {
+        if (i === stressedIndex + 1) {
+          fullWord += "-";
+        }
+        fullWord += syllables[i];
+        if (i < syllables.length - 1) {
+          fullWord += "-";
+        }
       }
     }
   }
-  if (syllables.length === 1) {
-    return <Text style={styles.value}>{syllables[0]}</Text>;
-  }
+
   return (
     <Text style={styles.value}>
-      {before}
-      <UnderlinedText>{stressed}</UnderlinedText>
-      {after}
+      {fullWord}
     </Text>
   );
 }
