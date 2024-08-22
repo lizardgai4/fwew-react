@@ -105,7 +105,7 @@ function ReefMe( IPA: string ) {
   } else if (IPA.replaceAll("·", "") == "ˈzɛŋ.kɛ") { // Only IPA not to match the Romanization
     return ["ˈz·ɛŋ·.kɛ", "zen-ke"]
   } else if (IPA == "ɾæ.ˈʔæ" || IPA == "ˈɾæ.ʔæ") { // We hear this in Avatar 2
-    return ["ɾæ.ˈʔæ", "rä-'ä"]
+    return ["ɾæ.ˈʔæ", "rä-'ä or rä-ä"]
   }
 
   // Reefify the IPA first
@@ -573,7 +573,7 @@ function Breakdown({ Stressed, Syllables }: BreakdownProps) {
       if (i < stressedIndex) {
         everything.push(syllables[i] + "-");
       } else if (i === stressedIndex) {
-        everything.push(<UnderlinedText key={`srl_${i}`}>{syllables[i].toUpperCase()}</UnderlinedText>);
+        everything.push(<UnderlinedText key={`srl_${h}${i}`}>{syllables[i].toUpperCase()}</UnderlinedText>);
       } else {
         if (i === stressedIndex + 1) {
           everything.push("-");
