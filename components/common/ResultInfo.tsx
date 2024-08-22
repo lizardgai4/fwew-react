@@ -557,13 +557,13 @@ type BreakdownProps = Pick<Word, "Stressed" | "Syllables">;
 function Breakdown({ Stressed, Syllables }: BreakdownProps) {
   const stressedIndex = +Stressed - 1;
   const individualWord = Syllables.toLowerCase().split(" ");
-  let fullWord = ""
+  let everything = []
   // split by spaces first
   for (let h = 0; h < individualWord.length; h++) {
     // then split by hyphens
     let syllables = individualWord[h].split("-");
     if (individualWord[h] == "or") {
-      fullWord += " or "
+      everything.push(<Text> or </Text>)
       continue
     }
     if (syllables.length === 1 && individualWord.length === 1) {
@@ -571,16 +571,16 @@ function Breakdown({ Stressed, Syllables }: BreakdownProps) {
     }
     for (let i = 0; i < syllables.length; i++) {
       if (i < stressedIndex) {
-        fullWord += syllables[i] + "-";
+        everything.push(syllables[i] + "-");
       } else if (i === stressedIndex) {
-        fullWord += syllables[i].toUpperCase();
+        everything.push(<UnderlinedText key={`srl_${i}`}>{syllables[i].toUpperCase()}</UnderlinedText>);
       } else {
         if (i === stressedIndex + 1) {
-          fullWord += "-";
+          everything.push("-");
         }
-        fullWord += syllables[i];
+        everything.push(syllables[i]);
         if (i < syllables.length - 1) {
-          fullWord += "-";
+          everything.push("-");
         }
       }
     }
@@ -588,7 +588,7 @@ function Breakdown({ Stressed, Syllables }: BreakdownProps) {
 
   return (
     <Text style={styles.value}>
-      {fullWord}
+      {everything}
     </Text>
   );
 }
