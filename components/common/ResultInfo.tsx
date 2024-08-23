@@ -539,7 +539,7 @@ function Pronunciation({ IPA, Stressed, Syllables }: PronunciationProps) {
           {ui.search.breakdown}:
         </BoldText>
         <View style={{
-            flexDirection: "row",
+            flexDirection: "column",
           }} >
           <Breakdown Stressed={Stressed} Syllables={Syllables} />
           <Text style={styles.value}>{reefDialect}</Text>
