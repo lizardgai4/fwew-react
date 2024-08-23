@@ -574,7 +574,7 @@ function Breakdown({ Stressed, Syllables }: BreakdownProps) {
       if (stressH === stressedIndex) {
         everything.push(<UnderlinedText key={`srl_${h}${i}`}>{syllables[i].toUpperCase()}</UnderlinedText>);
       } else {
-        if (stressedIndex != -1 && i === stressedIndex + 1) {
+        if (stressedIndex != -1 && stressH === stressedIndex + 1 && i != 0) {
           everything.push("-");
         }
         everything.push(syllables[i]);
