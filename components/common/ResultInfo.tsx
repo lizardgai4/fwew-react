@@ -538,13 +538,9 @@ function Pronunciation({ IPA, Stressed, Syllables }: PronunciationProps) {
         <BoldText style={[styles.label, { userSelect: "text" }]}>
           {ui.search.breakdown}:
         </BoldText>
-        <View style={{
-            flexDirection: "column",
-          }} >
           <Breakdown Stressed={Stressed} Syllables={Syllables} />
           <Text style={styles.value}>{reefDialect}</Text>
           <Breakdown Stressed={Stressed} Syllables={ReefSyllables} />
-        </View>
       </CardView>
     </>
   );
