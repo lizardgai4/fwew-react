@@ -599,16 +599,13 @@ function Breakdown({ IPA, Stressed, Syllables }: BreakdownProps) {
       return <Text style={styles.value}>{syllables[0]}</Text>;
     }
     for (let i = 0; i < syllables.length; i++) {
-      if (i != 0 && i >= syllables.length - 1) {
+      if (i != 0) {
         everything.push("-");
       }
       if (stressed[superH] && stressedIndex != -1) { // underlined
         everything.push(<UnderlinedText key={`srl_${h}${i}`}>{syllables[i].toUpperCase()}</UnderlinedText>);
       } else { // not underlined
         everything.push(syllables[i]);
-      }
-      if (i < syllables.length - 1 && stressedIndex != -1) {
-        everything.push("-");
       }
       superH++
     }
