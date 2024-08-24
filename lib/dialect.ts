@@ -372,7 +372,6 @@ export function ReefMe(IPA: string): [string, string, string] {
 
   let reefWord = ""
   if (nonPhoneticSpellings.has(IPA)) {
-    // Obsolete path
     reefWord = nonPhoneticSpellings.get(IPA)!; // non-null assertion
   } else {
     reefWord = breakdown.split(" or ",1)[0].replaceAll("-","")
