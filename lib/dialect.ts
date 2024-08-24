@@ -1,33 +1,26 @@
-const nonPhoneticSpellings = new Map<string, [string, string]>([
-  ["ʒɛjk'.ˈsu:.li", ["ʒɛjk'.ˈsʊ:.li", "jake-sùl-ly"]], // Obsolete path
+const nonPhoneticSpellings = new Map<string, string>([
+  ["ʒɛjk'.ˈsu:.li", "jake-sùl-ly"], // Obsolete path
   // We hear this in Avatar 2
-  ["ɾæ.ˈʔæ", ["ɾæ.ˈʔæ] or [ɾæ.ˈæ", "rä-'ä or rä-ä"]],
-  ["ˈɾæ.ʔæ", ["ɾæ.ˈʔæ] or [ɾæ.ˈæ", "rä-'ä or rä-ä"]],
+  ["ɾæ.ˈʔæ", "rä'ä"],
+  ["ˈɾæ.ʔæ", "rä'ä"],
   // zenke sounds like zengke
-  ["ˈzɛŋ.kɛ", ["ˈz·ɛŋ·.kɛ", "zen-ke"]],
-  ["ˈzɛŋ·.kɛ", ["ˈz·ɛŋ·.kɛ", "zen-ke"]],
-  ["ˈzɛŋ.·kɛ", ["ˈz·ɛŋ·.kɛ", "zen-ke"]],
+  ["ˈzɛŋ.kɛ", "zenke"],
+  ["ˈzɛŋ·.kɛ", "zenke"],
+  ["ˈzɛŋ.·kɛ", "zenke"],
   // ayoeng sounds like ayweng
-  ["aj.ˈwɛŋ", ["aj.ˈwɛŋ", "ay-oeng"]],
-  ["nɪ.aj.ˈwɛŋ] or [naj.ˈwɛŋ", ["nɪ.aj.ˈwɛŋ] or [naj.ˈwɛŋ", "nì-ay-oeng or nay-oeng"]],
+  ["aj.ˈwɛŋ", "ayoeng"],
+  ["nɪ.aj.ˈwɛŋ] or [naj.ˈwɛŋ", "nìayoeng"],
 ]);
 
 /**
  * Get Reef IPA and Syllables by forest IPA
  *
  * @param {string} IPA forest IPA
- * @returns {[string, string]} Reef IPA, Reef Syllables
+ * @returns {[string, string, string]} Reef Word, Reef IPA, Reef Syllables
  */
-export function ReefMe(IPA: string): [string, string] {
-  if (nonPhoneticSpellings.has(IPA)) {
-    // Obsolete path
-    return nonPhoneticSpellings.get(IPA)!; // non-null assertion
-  }
-
+export function ReefMe(IPA: string): [string, string, string] {
   // Reefify the IPA first
-  let ipaReef = "";
-  IPA = IPA.replaceAll("·", "");
-  ipaReef = ipaReef.concat(IPA);
+  let ipaReef = IPA.replaceAll("·", "");
 
   // Deal with ejectives
   var soften: { [id: string]: string } = {
@@ -374,5 +367,13 @@ export function ReefMe(IPA: string): [string, string] {
     }
   }
 
-  return [ipaReef, breakdown];
+  let reefWord = ""
+  if (nonPhoneticSpellings.has(IPA)) {
+    // Obsolete path
+    reefWord = nonPhoneticSpellings.get(IPA)!; // non-null assertion
+  } else {
+    reefWord = breakdown.split(" or ",1)[0].replaceAll("-","")
+  }
+
+  return [reefWord, ipaReef, breakdown];
 }
