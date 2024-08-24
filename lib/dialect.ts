@@ -28,7 +28,9 @@ export function ReefMe(IPA: string): [string, string, string] {
     "t'": "d",
     "k'": "g",
   };
+  
   const vowels = ["a", "ɛ", "u", "ɪ", "o", "i", "æ", "ʊ"];
+
   // atxkxe and ekxtxu become adge and egdu
   let ejectives = ["p'", "t'", "k'"];
   for (let b of ejectives) {
@@ -43,6 +45,7 @@ export function ReefMe(IPA: string): [string, string, string] {
       );
     }
   }
+
   // Ejectives before vowels and diphthongs become voiced plosives regardless of syllable boundaries
   for (let b of ejectives) {
     ipaReef = ipaReef.replaceAll(".".concat(b), ".".concat(soften[b]));
