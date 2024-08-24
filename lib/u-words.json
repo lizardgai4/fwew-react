@@ -1,0 +1,598 @@
+[
+    {
+        "reef": "'avùn",
+        "forest": "'avun"
+    },
+    {
+        "reef": "'ekxinùm",
+        "forest": "'ekxinum"
+    },
+    {
+        "reef": "'opinsùng",
+        "forest": "'opinsung"
+    },
+    {
+        "reef": "'ùmtsa",
+        "forest": "'umtsa"
+    },
+    {
+        "reef": "'ùpxare",
+        "forest": "'upxare"
+    },
+    {
+        "reef": "'ùr",
+        "forest": "'ur"
+    },
+    {
+        "reef": "anùk",
+        "forest": "anuk"
+    },
+    {
+        "reef": "artsùt",
+        "forest": "artsut"
+    },
+    {
+        "reef": "fe'lùp",
+        "forest": "fe'lup"
+    },
+    {
+        "reef": "fkarùt",
+        "forest": "fkarut"
+    },
+    {
+        "reef": "fnetxùm",
+        "forest": "fnetxum"
+    },
+    {
+        "reef": "fyolùp",
+        "forest": "fyolup"
+    },
+    {
+        "reef": "hiùp",
+        "forest": "hiup"
+    },
+    {
+        "reef": "hùltstxem",
+        "forest": "hultstxem"
+    },
+    {
+        "reef": "hùm",
+        "forest": "hum"
+    },
+    {
+        "reef": "ikùt",
+        "forest": "ikut"
+    },
+    {
+        "reef": "kavùk",
+        "forest": "kavuk"
+    },
+    {
+        "reef": "kawnomùm",
+        "forest": "kawnomum"
+    },
+    {
+        "reef": "kämùnge",
+        "forest": "kämunge"
+    },
+    {
+        "reef": "keltsùn",
+        "forest": "keltsun"
+    },
+    {
+        "reef": "ketsùkanom",
+        "forest": "ketsukanom"
+    },
+    {
+        "reef": "ketsùklewn",
+        "forest": "ketsuklewn"
+    },
+    {
+        "reef": "ketsùktiam",
+        "forest": "ketsuktiam"
+    },
+    {
+        "reef": "ketsùktswa'",
+        "forest": "ketsuktswa'"
+    },
+    {
+        "reef": "keykùr",
+        "forest": "keykur"
+    },
+    {
+        "reef": "keyeùng",
+        "forest": "keye'ung"
+    },
+    {
+        "reef": "komùm",
+        "forest": "komum"
+    },
+    {
+        "reef": "koùm",
+        "forest": "koum"
+    },
+    {
+        "reef": "kuùp",
+        "forest": "ku'up"
+    },
+    {
+        "reef": "kùnsìp",
+        "forest": "kunsìp"
+    },
+    {
+        "reef": "kùng",
+        "forest": "kung"
+    },
+    {
+        "reef": "kùr",
+        "forest": "kur"
+    },
+    {
+        "reef": "kùrfyan",
+        "forest": "kurfyan"
+    },
+    {
+        "reef": "kùrfyavi",
+        "forest": "kurfyavi"
+    },
+    {
+        "reef": "kurkùng",
+        "forest": "kurkung"
+    },
+    {
+        "reef": "kxùm",
+        "forest": "kxum"
+    },
+    {
+        "reef": "kxùmpay",
+        "forest": "kxumpay"
+    },
+    {
+        "reef": "kxùmpaysyar",
+        "forest": "kxumpaysyar"
+    },
+    {
+        "reef": "laùm",
+        "forest": "la'um"
+    },
+    {
+        "reef": "lekyeùng",
+        "forest": "lekye'ung"
+    },
+    {
+        "reef": "lenomùm",
+        "forest": "lenomum"
+    },
+    {
+        "reef": "letùt",
+        "forest": "letut"
+    },
+    {
+        "reef": "letsùnslu",
+        "forest": "letsunslu"
+    },
+    {
+        "reef": "loakùr",
+        "forest": "loakur"
+    },
+    {
+        "reef": "lùpra",
+        "forest": "lupra"
+    },
+    {
+        "reef": "mùn'i",
+        "forest": "mun'i"
+    },
+    {
+        "reef": "mùnge",
+        "forest": "munge"
+    },
+    {
+        "reef": "mùngsye",
+        "forest": "mungsye"
+    },
+    {
+        "reef": "mùngwrr",
+        "forest": "mungwrr"
+    },
+    {
+        "reef": "mùngwrrtxo",
+        "forest": "mungwrrtxo"
+    },
+    {
+        "reef": "nawmtorùktek",
+        "forest": "nawmtoruktek"
+    },
+    {
+        "reef": "newomùm",
+        "forest": "newomum"
+    },
+    {
+        "reef": "nìawnomùm",
+        "forest": "nìawnomum"
+    },
+    {
+        "reef": "nìktùngzup",
+        "forest": "nìktungzup"
+    },
+    {
+        "reef": "nìsùng",
+        "forest": "nìsung"
+    },
+    {
+        "reef": "nìtùt",
+        "forest": "nìtut"
+    },
+    {
+        "reef": "nìTsyùngwen",
+        "forest": "nìTsyungwen"
+    },
+    {
+        "reef": "numùltxa",
+        "forest": "numultxa"
+    },
+    {
+        "reef": "numùltxatu",
+        "forest": "numultxatu"
+    },
+    {
+        "reef": "ngimpùp",
+        "forest": "ngimpup"
+    },
+    {
+        "reef": "ngùngùng",
+        "forest": "ngùngung"
+    },
+    {
+        "reef": "okùp",
+        "forest": "okup"
+    },
+    {
+        "reef": "omùm",
+        "forest": "omum"
+    },
+    {
+        "reef": "parùl",
+        "forest": "parul"
+    },
+    {
+        "reef": "parùlnga'",
+        "forest": "parulnga'"
+    },
+    {
+        "reef": "parùltsyìp",
+        "forest": "parultsyìp"
+    },
+    {
+        "reef": "pasùk",
+        "forest": "pasuk"
+    },
+    {
+        "reef": "paysmùng",
+        "forest": "paysmung"
+    },
+    {
+        "reef": "peùn",
+        "forest": "pe'un"
+    },
+    {
+        "reef": "peekxinùm",
+        "forest": "pekxinum"
+    },
+    {
+        "reef": "prrsmùng",
+        "forest": "prrsmung"
+    },
+    {
+        "reef": "pùk",
+        "forest": "puk"
+    },
+    {
+        "reef": "pùktsyìp",
+        "forest": "puktsyìp"
+    },
+    {
+        "reef": "pùm",
+        "forest": "pum"
+    },
+    {
+        "reef": "pùp",
+        "forest": "pup"
+    },
+    {
+        "reef": "pxasùl",
+        "forest": "pxasul"
+    },
+    {
+        "reef": "pxìmùn'i",
+        "forest": "pxìmun'i"
+    },
+    {
+        "reef": "raùn",
+        "forest": "ra'un"
+    },
+    {
+        "reef": "räptùm",
+        "forest": "räptum"
+    },
+    {
+        "reef": "rùrùr",
+        "forest": "rùrur"
+    },
+    {
+        "reef": "sämùnge",
+        "forest": "sämunge"
+    },
+    {
+        "reef": "säomùm",
+        "forest": "säomum"
+    },
+    {
+        "reef": "snanumùltxa",
+        "forest": "snanumultxa"
+    },
+    {
+        "reef": "snolùp",
+        "forest": "snolup"
+    },
+    {
+        "reef": "snùmìna",
+        "forest": "snumìna"
+    },
+    {
+        "reef": "sosùl",
+        "forest": "sosul"
+    },
+    {
+        "reef": "srùng",
+        "forest": "srung"
+    },
+    {
+        "reef": "srùnga'",
+        "forest": "srunga'"
+    },
+    {
+        "reef": "srùngtsyìp",
+        "forest": "srungtsyìp"
+    },
+    {
+        "reef": "stùm",
+        "forest": "stum"
+    },
+    {
+        "reef": "sùng",
+        "forest": "sung"
+    },
+    {
+        "reef": "syaksyùk",
+        "forest": "syaksyuk"
+    },
+    {
+        "reef": "syokùp",
+        "forest": "syokup"
+    },
+    {
+        "reef": "syusmùng",
+        "forest": "syusmung"
+    },
+    {
+        "reef": "takùk",
+        "forest": "takuk"
+    },
+    {
+        "reef": "talun(a)",
+        "forest": "talun(a)"
+    },
+    {
+        "reef": "terkùp",
+        "forest": "terkup"
+    },
+    {
+        "reef": "tìlaùm",
+        "forest": "tìla'um"
+    },
+    {
+        "reef": "tìmùngwrr",
+        "forest": "tìmungwrr"
+    },
+    {
+        "reef": "tìnomùm",
+        "forest": "tìnomum"
+    },
+    {
+        "reef": "tìomùm",
+        "forest": "tìomum"
+    },
+    {
+        "reef": "tìpeùn",
+        "forest": "tìpe'un"
+    },
+    {
+        "reef": "tìraùn",
+        "forest": "tìra'un"
+    },
+    {
+        "reef": "tìsùng",
+        "forest": "tìsung"
+    },
+    {
+        "reef": "tìterkùp",
+        "forest": "tìterkup"
+    },
+    {
+        "reef": "tìtxùla",
+        "forest": "tìtxula"
+    },
+    {
+        "reef": "tìtsùkanom",
+        "forest": "tìtsukanom"
+    },
+    {
+        "reef": "tìtsùnslu",
+        "forest": "tìtsunslu"
+    },
+    {
+        "reef": "torùk",
+        "forest": "toruk"
+    },
+    {
+        "reef": "torùkspxam",
+        "forest": "torukspxam"
+    },
+    {
+        "reef": "tùkru",
+        "forest": "tukru"
+    },
+    {
+        "reef": "tùlkun",
+        "forest": "tulkun"
+    },
+    {
+        "reef": "tumpasùk",
+        "forest": "tumpasuk"
+    },
+    {
+        "reef": "tùng",
+        "forest": "tung"
+    },
+    {
+        "reef": "tùngzup",
+        "forest": "tungzup"
+    },
+    {
+        "reef": "tùp",
+        "forest": "tup"
+    },
+    {
+        "reef": "tùt",
+        "forest": "tut"
+    },
+    {
+        "reef": "txekxùmpay",
+        "forest": "txekxumpay"
+    },
+    {
+        "reef": "txùla",
+        "forest": "txula"
+    },
+    {
+        "reef": "txùm",
+        "forest": "txum"
+    },
+    {
+        "reef": "txùmnga'",
+        "forest": "txumnga'"
+    },
+    {
+        "reef": "txùmpaywll",
+        "forest": "txumpaywll"
+    },
+    {
+        "reef": "txùmtsä'wll",
+        "forest": "txumtsä'wll"
+    },
+    {
+        "reef": "tsamkùk",
+        "forest": "tsamkuk"
+    },
+    {
+        "reef": "tsawlùltxa",
+        "forest": "tsawlultxa"
+    },
+    {
+        "reef": "tseltsùl",
+        "forest": "tseltsul"
+    },
+    {
+        "reef": "tsùkanom",
+        "forest": "tsukanom"
+    },
+    {
+        "reef": "tsùkmong",
+        "forest": "tsukmong"
+    },
+    {
+        "reef": "tsùktswa'",
+        "forest": "tsuktswa'"
+    },
+    {
+        "reef": "tsùkx",
+        "forest": "tsukx"
+    },
+    {
+        "reef": "tsùkyom",
+        "forest": "tsukyom"
+    },
+    {
+        "reef": "tsùlfä",
+        "forest": "tsulfä"
+    },
+    {
+        "reef": "tsùlfätu",
+        "forest": "tsulfätu"
+    },
+    {
+        "reef": "tsùlfätunay",
+        "forest": "tsulfätunay"
+    },
+    {
+        "reef": "tsùn",
+        "forest": "tsun"
+    },
+    {
+        "reef": "tsùnslu",
+        "forest": "tsunslu"
+    },
+    {
+        "reef": "tsùpx",
+        "forest": "tsupx"
+    },
+    {
+        "reef": "ùk",
+        "forest": "uk"
+    },
+    {
+        "reef": "ùltxa",
+        "forest": "ultxa"
+    },
+    {
+        "reef": "ùltxarun",
+        "forest": "ultxarun"
+    },
+    {
+        "reef": "ùltxatu",
+        "forest": "ultxatu"
+    },
+    {
+        "reef": "ùm",
+        "forest": "um"
+    },
+    {
+        "reef": "utùru",
+        "forest": "uturu"
+    },
+    {
+        "reef": "vozampasùkut",
+        "forest": "vozampasukut"
+    },
+    {
+        "reef": "wùm",
+        "forest": "wum"
+    },
+    {
+        "reef": "zamùnge",
+        "forest": "zamunge"
+    },
+    {
+        "reef": "zeykùp",
+        "forest": "zeykup"
+    },
+    {
+        "reef": "zùm",
+        "forest": "zum"
+    },
+    {
+        "reef": "zùng",
+        "forest": "zung"
+    }
+]

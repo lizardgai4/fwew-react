@@ -1,12 +1,19 @@
 import GlobalStyle from "@/components/common/GlobalStyle";
 import i18n from "@/constants/i18n";
 import { AppLanguageProvider } from "@/context/AppLanguageContext";
+import { DialectProvider } from "@/context/DialectContext";
 import { FavoritesProvider } from "@/context/FavoritesContext";
 import { ResultsLanguageProvider } from "@/context/ResultsLanguageContext";
 import { useAppLanguage } from "@/hooks/useAppLanguage";
+import { useDialect } from "@/hooks/useDialect";
 import { useFavorites } from "@/hooks/useFavorites";
 import { useResultsLanguage } from "@/hooks/useResultsLanguage";
-import { FwewDarkTheme, FwewLightTheme } from "@/themes";
+import {
+  FwewDarkReefTheme,
+  FwewDarkTheme,
+  FwewLightReefTheme,
+  FwewLightTheme,
+} from "@/themes";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
@@ -57,36 +64,48 @@ function RootLayoutNav() {
   const appLanguageValue = useAppLanguage();
   const { appLanguage } = appLanguageValue;
   const resultsLanguage = useResultsLanguage();
+  const dialect = useDialect();
   const favorites = useFavorites();
+  const theme =
+    colorScheme === "dark"
+      ? dialect.dialect === "reef"
+        ? FwewDarkReefTheme
+        : FwewDarkTheme
+      : dialect.dialect === "reef"
+      ? FwewLightReefTheme
+      : FwewLightTheme;
 
   return (
     <>
       <GlobalStyle />
       <StatusBar style="light" />
-      <ThemeProvider
-        value={colorScheme === "dark" ? FwewDarkTheme : FwewLightTheme}
-      >
+      <ThemeProvider value={theme}>
         <AppLanguageProvider value={appLanguageValue}>
           <ResultsLanguageProvider value={resultsLanguage}>
-            <FavoritesProvider value={favorites}>
-              <Stack>
-                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-                <Stack.Screen
-                  name="favorites"
-                  options={{
-                    title: i18n[appLanguage].screens.favorites,
-                    presentation: "modal",
-                  }}
-                />
-                <Stack.Screen
-                  name="settings"
-                  options={{
-                    title: i18n[appLanguage].screens.settings,
-                    presentation: "modal",
-                  }}
-                />
-              </Stack>
-            </FavoritesProvider>
+            <DialectProvider value={dialect}>
+              <FavoritesProvider value={favorites}>
+                <Stack>
+                  <Stack.Screen
+                    name="(tabs)"
+                    options={{ headerShown: false }}
+                  />
+                  <Stack.Screen
+                    name="favorites"
+                    options={{
+                      title: i18n[appLanguage].screens.favorites,
+                      presentation: "modal",
+                    }}
+                  />
+                  <Stack.Screen
+                    name="settings"
+                    options={{
+                      title: i18n[appLanguage].screens.settings,
+                      presentation: "modal",
+                    }}
+                  />
+                </Stack>
+              </FavoritesProvider>
+            </DialectProvider>
           </ResultsLanguageProvider>
         </AppLanguageProvider>
       </ThemeProvider>

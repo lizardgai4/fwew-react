@@ -19,7 +19,8 @@ export function useFavorites() {
       console.error(error);
       return;
     }
-  }, [getItem]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   async function addFavorite(word: Word) {
     try {
@@ -66,7 +67,8 @@ export function useFavorites() {
 
   useEffect(() => {
     void getFavorites();
-  }, [getFavorites]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return {
     favorites,

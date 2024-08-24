@@ -52,17 +52,17 @@ const strings: UITranslation = {
     numbers: "Számok",
     other: "Other",
 
-    lenition: "Lenition", // TODO
-    stats: "Stats", // TODO
-    valid: "Valid", // TODO
-    lists: "Lists", // TODO
+    lenition: "Leníció",
+    stats: "Statisztika",
+    valid: "Érvényes",
+    lists: "Listák",
 
-    cameronWords: "Cameron Words", // TODO
-    homonyms: "Homonyms", // TODO
-    multiIPA: "Multi IPA", // TODO
-    oddballs: "Oddballs", // TODO
-    profanity: "Profanity", // TODO
-    that: "That", // TODO
+    cameronWords: "Cameron szavak",
+    homonyms: "Homonimák",
+    multiIPA: "Többszörös IPA",
+    oddballs: "Anomáliák",
+    profanity: "Káromkodás",
+    that: "Hogy",
 
     names: "Név",
 
@@ -83,7 +83,7 @@ const strings: UITranslation = {
     prefixes: "Előtagok",
     infixes: "Infixes",
     suffixes: "Utótagok",
-    lenition: "Lenition",
+    lenition: "Leníció",
     comment: "Megjegyzés",
     source: "Forrás",
     ipa: "IPA",
@@ -229,31 +229,31 @@ const strings: UITranslation = {
   cameronWords: {
     data: [
       {
-        key: "A1 Names",
+        key: "A1 Nevek",
         value: CameronWords.A1Names,
       },
       {
-        key: "A2 Names",
+        key: "A2 Nevek",
         value: CameronWords.A2Names,
       },
       {
-        key: "Nouns",
+        key: "Főnevek",
         value: CameronWords.Nouns,
       },
       {
-        key: "Life",
+        key: "Élet",
         value: CameronWords.Life,
       },
-      { key: "Other", value: CameronWords.Other },
+      { key: "Más", value: CameronWords.Other },
     ],
   },
   lenition: {
-    glottalStop: "(Drops, except before ll/rr)",
-    lenitingPrefixes: "Leniting prefixes",
-    lenitingAdpositions: "Leniting adpositions",
+    glottalStop: "(Elmegy, kivéve ll/rr előtt)",
+    lenitingPrefixes: "leníciót okozó előtagok",
+    lenitingAdpositions: "leníciót okozó adpozíciók",
   },
   stats: {
-    phonemes: "Phoneme Frequencies", // TODO
+    phonemes: "Fonémafrekvenciák",
     clusters: "Mássalhangzócsoportok",
   },
   settings: {

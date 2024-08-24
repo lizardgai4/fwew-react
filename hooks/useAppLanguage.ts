@@ -24,7 +24,8 @@ export function useAppLanguage() {
         return;
       }
     })();
-  }, [getItem]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return {
     appLanguage,
