@@ -1,5 +1,5 @@
 const nonPhoneticSpellings = new Map<string, string>([
-  ["ʒɛjk'.ˈsu:.li", "jake-sùl-ly"], // Obsolete path
+  ["ʒɛjk'.ˈsu:.li", "jakesùlly"], // Obsolete path
   // We hear this in Avatar 2
   ["ɾæ.ˈʔæ", "rä'ä"],
   ["ˈɾæ.ʔæ", "rä'ä"],
@@ -28,7 +28,7 @@ export function ReefMe(IPA: string): [string, string, string] {
     "t'": "d",
     "k'": "g",
   };
-  
+
   const vowels = ["a", "ɛ", "u", "ɪ", "o", "i", "æ", "ʊ"];
 
   // atxkxe and ekxtxu become adge and egdu
@@ -115,7 +115,7 @@ export function ReefMe(IPA: string): [string, string, string] {
 
   // Unstressed ä becomes e
   let ipa_syllables = ipaReef.split(".");
-  if (ipa_syllables.length > 1) {
+  if (ipa_syllables.length > 1 && IPA != "ɾæ.ˈʔæ") {
     let new_ipa = "";
     ipa_syllables.forEach((syllable) => {
       new_ipa += ".";
