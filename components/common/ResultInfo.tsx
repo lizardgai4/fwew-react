@@ -33,14 +33,14 @@ export function ResultInfo({ word }: ResultInfoProps) {
   const ui = i18n[appLanguage];
   const { dialect } = useDialectContext();
   const forestNavi = word.Navi;
-  const reefNavi = ReefMe(word.IPA)[1].replaceAll("-", "");
+  const reefNavi = ReefMe(word.IPA)[0];
 
   return (
     <CardView style={styles.container}>
       <CardView style={styles.buttonContainer}>
         <Button
           onPress={() => playSound(word.ID)}
-          disabled={disabled}
+          disabled={disabled || dialect === "reef"}
           icon="volume-up"
           text={ui.search.audio}
           style={styles.audioButton}
@@ -228,8 +228,8 @@ function Pronunciation({ IPA, Stressed, Syllables }: PronunciationProps) {
   const { dialect } = useDialectContext();
   let reefs = ReefMe(IPA);
   let forestIPA = IPA.replaceAll("ʊ", "u");
-  let reefIPA = reefs[0];
-  let ReefSyllables = reefs[1];
+  let reefIPA = reefs[1];
+  let ReefSyllables = reefs[2];
   return (
     <>
       <DetailItem

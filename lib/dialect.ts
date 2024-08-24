@@ -1,25 +1,26 @@
+const nonPhoneticSpellings = new Map<string, string>([
+  ["ʒɛjk'.ˈsu:.li", "jakesùlly"], // Obsolete path
+  // We hear this in Avatar 2
+  ["ɾæ.ˈʔæ", "rä'ä"],
+  ["ˈɾæ.ʔæ", "rä'ä"],
+  // zenke sounds like zengke
+  ["ˈzɛŋ.kɛ", "zenke"],
+  ["ˈzɛŋ·.kɛ", "zenke"],
+  ["ˈzɛŋ.·kɛ", "zenke"],
+  // ayoeng sounds like ayweng
+  ["aj.ˈwɛŋ", "ayoeng"],
+  ["nɪ.aj.ˈwɛŋ] or [naj.ˈwɛŋ", "nìayoeng"],
+]);
+
 /**
  * Get Reef IPA and Syllables by forest IPA
  *
  * @param {string} IPA forest IPA
- * @returns {[string, string]} Reef IPA, Reef Syllables
+ * @returns {[string, string, string]} Reef Word, Reef IPA, Reef Syllables
  */
-export function ReefMe(IPA: string): [string, string] {
-  if (IPA === "ʒɛjk'.ˈsu:.li") {
-    // Obsolete path
-    return ["ʒɛjk'.ˈsʊ:.li", "jake-sùl-ly"];
-  } else if (IPA.replaceAll("·", "") === "ˈzɛŋ.kɛ") {
-    // Only IPA not to match the Romanization
-    return ["ˈz·ɛŋ·.kɛ", "zen-ke"];
-  } else if (IPA === "ɾæ.ˈʔæ" || IPA === "ˈɾæ.ʔæ") {
-    // We hear this in Avatar 2
-    return ["ɾæ.ˈʔæ] or [ɾæ.ˈæ", "rä-'ä or rä-ä"];
-  }
-
+export function ReefMe(IPA: string): [string, string, string] {
   // Reefify the IPA first
-  let ipaReef = "";
-  IPA = IPA.replaceAll("·", "");
-  ipaReef = ipaReef.concat(IPA);
+  let ipaReef = IPA.replaceAll("·", "");
 
   // Deal with ejectives
   var soften: { [id: string]: string } = {
@@ -27,7 +28,9 @@ export function ReefMe(IPA: string): [string, string] {
     "t'": "d",
     "k'": "g",
   };
+
   const vowels = ["a", "ɛ", "u", "ɪ", "o", "i", "æ", "ʊ"];
+
   // atxkxe and ekxtxu become adge and egdu
   let ejectives = ["p'", "t'", "k'"];
   for (let b of ejectives) {
@@ -42,6 +45,7 @@ export function ReefMe(IPA: string): [string, string] {
       );
     }
   }
+
   // Ejectives before vowels and diphthongs become voiced plosives regardless of syllable boundaries
   for (let b of ejectives) {
     ipaReef = ipaReef.replaceAll(".".concat(b), ".".concat(soften[b]));
@@ -111,7 +115,7 @@ export function ReefMe(IPA: string): [string, string] {
 
   // Unstressed ä becomes e
   let ipa_syllables = ipaReef.split(".");
-  if (ipa_syllables.length > 1) {
+  if (ipa_syllables.length > 1 && IPA != "ɾæ.ˈʔæ") {
     let new_ipa = "";
     ipa_syllables.forEach((syllable) => {
       new_ipa += ".";
@@ -366,5 +370,12 @@ export function ReefMe(IPA: string): [string, string] {
     }
   }
 
-  return [ipaReef, breakdown];
+  let reefWord = ""
+  if (nonPhoneticSpellings.has(IPA)) {
+    reefWord = nonPhoneticSpellings.get(IPA)!; // non-null assertion
+  } else {
+    reefWord = breakdown.split(" or ",1)[0].replaceAll("-","")
+  }
+
+  return [reefWord, ipaReef, breakdown];
 }
