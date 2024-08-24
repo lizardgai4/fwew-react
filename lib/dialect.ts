@@ -1,3 +1,17 @@
+const nonPhoneticSpellings = new Map<string, [string, string]>([
+  ["ʒɛjk'.ˈsu:.li", ["ʒɛjk'.ˈsʊ:.li", "jake-sùl-ly"]], // Obsolete path
+  // We hear this in Avatar 2
+  ["ɾæ.ˈʔæ", ["ɾæ.ˈʔæ] or [ɾæ.ˈæ", "rä-'ä or rä-ä"]],
+  ["ˈɾæ.ʔæ", ["ɾæ.ˈʔæ] or [ɾæ.ˈæ", "rä-'ä or rä-ä"]],
+  // zenke sounds like zengke
+  ["ˈzɛŋ.kɛ", ["ˈz·ɛŋ·.kɛ", "zen-ke"]],
+  ["ˈzɛŋ·.kɛ", ["ˈz·ɛŋ·.kɛ", "zen-ke"]],
+  ["ˈzɛŋ.·kɛ", ["ˈz·ɛŋ·.kɛ", "zen-ke"]],
+  // ayoeng sounds like ayweng
+  ["aj.ˈwɛŋ", ["aj.ˈwɛŋ", "ay-oeng"]],
+  ["nɪ.aj.ˈwɛŋ] or [naj.ˈwɛŋ", ["nɪ.aj.ˈwɛŋ] or [naj.ˈwɛŋ", "nì-ay-oeng or nay-oeng"]],
+]);
+
 /**
  * Get Reef IPA and Syllables by forest IPA
  *
@@ -5,15 +19,9 @@
  * @returns {[string, string]} Reef IPA, Reef Syllables
  */
 export function ReefMe(IPA: string): [string, string] {
-  if (IPA === "ʒɛjk'.ˈsu:.li") {
+  if (nonPhoneticSpellings.has(IPA)) {
     // Obsolete path
-    return ["ʒɛjk'.ˈsʊ:.li", "jake-sùl-ly"];
-  } else if (IPA.replaceAll("·", "") === "ˈzɛŋ.kɛ") {
-    // Only IPA not to match the Romanization
-    return ["ˈz·ɛŋ·.kɛ", "zen-ke"];
-  } else if (IPA === "ɾæ.ˈʔæ" || IPA === "ˈɾæ.ʔæ") {
-    // We hear this in Avatar 2
-    return ["ɾæ.ˈʔæ] or [ɾæ.ˈæ", "rä-'ä or rä-ä"];
+    return nonPhoneticSpellings.get(IPA)!; // non-null assertion
   }
 
   // Reefify the IPA first
