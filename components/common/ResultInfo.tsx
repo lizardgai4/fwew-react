@@ -530,7 +530,8 @@ function Pronunciation({ IPA, Stressed, Syllables }: PronunciationProps) {
   let reefs = ReefMe(IPA)
   let reefIPA = reefs[0]
   let ReefSyllables = reefs[1]
-  let reefDialect = "Reef dialect: "
+  let space = " "
+  let reefDialect = "reef dialect: "
   return (
     <>
       <DetailItem label={ui.search.ipa} value={`[${IPA.replaceAll("ʊ", "u")}] (reef dialect [${reefIPA}])`} />
@@ -538,9 +539,11 @@ function Pronunciation({ IPA, Stressed, Syllables }: PronunciationProps) {
         <BoldText style={[styles.label, { userSelect: "text" }]}>
           {ui.search.breakdown}:
         </BoldText>
+        <Text style={styles.value}>
           <Breakdown Stressed={Stressed} Syllables={Syllables} />
-          <Text style={styles.value}>{reefDialect}</Text>
-          <Breakdown Stressed={Stressed} Syllables={ReefSyllables} />
+          {space}({reefDialect}
+          <Breakdown Stressed={Stressed} Syllables={ReefSyllables} />)
+        </Text>
       </CardView>
     </>
   );
@@ -587,9 +590,7 @@ function Breakdown({ Stressed, Syllables }: BreakdownProps) {
   }
 
   return (
-    <Text style={styles.value}>
-      {everything}
-    </Text>
+    everything
   );
 }
 
