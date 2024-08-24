@@ -1,5 +1,5 @@
 import Colors from "@/constants/Colors";
-import { getReefNavi } from "@/lib/dialect";
+import { ReefMe } from "@/lib/dialect";
 import type { Dialect, Word } from "fwew.js";
 import { StyleSheet, View } from "react-native";
 import { MonoText } from "./StyledText";
@@ -18,10 +18,13 @@ export function ResultOverview({
   colors,
   local,
 }: ResultOverviewProps) {
+  const forestNavi = word.Navi;
+  const reefNavi = ReefMe(word.IPA)[1].replaceAll("-", "");
+
   return (
     <View style={styles.closedContainer}>
       <Text style={styles.navi}>
-        {dialect === "reef" ? getReefNavi(word) : word.Navi}
+        {dialect === "reef" ? reefNavi : forestNavi}
       </Text>
       <View
         style={[styles.posContainer, { backgroundColor: colors.innerCard }]}

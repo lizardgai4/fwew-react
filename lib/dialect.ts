@@ -1,174 +1,370 @@
-import { Word } from "fwew.js";
-import reefForestPairs from "./u-words.json";
-
 /**
- * converts a single syllable of forest dialect IPA to reef
+ * Get Reef IPA and Syllables by forest IPA
  *
- * @param forestSyllableIPA single syllable unit of forest dialect IPA
- * @returns {string} corresponding single syllable unit of reef dialect IPA
+ * @param {string} IPA forest IPA
+ * @returns {[string, string]} Reef IPA, Reef Syllables
  */
-function convertSyllableIPA(forestSyllableIPA: string): string {
-  return forestSyllableIPA;
-}
-
-/**
- * converts IPA in forest dialect to IPA in reef dialect
- *
- * @param {string} forestIPA forest dialect IPA
- * @returns {string} reef dialect IPA
- */
-export function getReefIPA(forestIPA: string): string {
-  if (forestIPA.replaceAll("·", "") === "ˈzɛŋ.kɛ") {
-    return "ˈz·ɛŋ·.kɛ";
-  } else if (forestIPA === "ɾæ.ˈʔæ" || forestIPA === "ˈɾæ.ʔæ") {
-    return "ɾæ.ˈʔæ";
+export function ReefMe(IPA: string): [string, string] {
+  if (IPA === "ʒɛjk'.ˈsu:.li") {
+    // Obsolete path
+    return ["ʒɛjk'.ˈsʊ:.li", "jake-sùl-ly"];
+  } else if (IPA.replaceAll("·", "") === "ˈzɛŋ.kɛ") {
+    // Only IPA not to match the Romanization
+    return ["ˈz·ɛŋ·.kɛ", "zen-ke"];
+  } else if (IPA === "ɾæ.ˈʔæ" || IPA === "ˈɾæ.ʔæ") {
+    // We hear this in Avatar 2
+    return ["ɾæ.ˈʔæ] or [ɾæ.ˈæ", "rä-'ä or rä-ä"];
   }
 
-  const syllables = forestIPA.replace(" ", ". .").split(".");
-  const reefSyllables: string[] = [];
+  // Reefify the IPA first
+  let ipaReef = "";
+  IPA = IPA.replaceAll("·", "");
+  ipaReef = ipaReef.concat(IPA);
 
-  for (const syllable of syllables) {
-    reefSyllables.push(convertSyllableIPA(syllable));
+  // Deal with ejectives
+  var soften: { [id: string]: string } = {
+    "p'": "b",
+    "t'": "d",
+    "k'": "g",
+  };
+  const vowels = ["a", "ɛ", "u", "ɪ", "o", "i", "æ", "ʊ"];
+  // atxkxe and ekxtxu become adge and egdu
+  let ejectives = ["p'", "t'", "k'"];
+  for (let b of ejectives) {
+    for (let a of ejectives) {
+      ipaReef = ipaReef.replaceAll(
+        a.concat(".".concat(b)),
+        soften[a].concat(".".concat(soften[b]))
+      );
+      ipaReef = ipaReef.replaceAll(
+        a.concat(".ˈ".concat(b)),
+        soften[a].concat(".ˈ".concat(soften[b]))
+      );
+    }
   }
+  // Ejectives before vowels and diphthongs become voiced plosives regardless of syllable boundaries
+  for (let b of ejectives) {
+    ipaReef = ipaReef.replaceAll(".".concat(b), ".".concat(soften[b]));
+    ipaReef = ipaReef.replaceAll(".ˈ".concat(b), ".ˈ".concat(soften[b]));
+    // in case there's a space before the ejective
+    ipaReef = ipaReef.replaceAll(" ".concat(b), " ".concat(soften[b]));
+    ipaReef = ipaReef.replaceAll(" ˈ".concat(b), " ˈ".concat(soften[b]));
 
-  return reefSyllables.join("");
-}
+    // start without stress marker
+    if (ipaReef.startsWith(b)) {
+      ipaReef = ipaReef.slice(b.length);
+      ipaReef = soften[b] + ipaReef;
+    }
 
-/**
- * converts a single syllable in forest dialect to reef dialect
- *
- * @param {string} forestSyllable forest dialect syllable
- * @returns {string} reef dialect syllable
- */
-function getReefSyllable(forestSyllable: string): string {
-  return forestSyllable;
-}
+    // start with stress marker
+    if (ipaReef.startsWith("ˈ" + b)) {
+      ipaReef = ipaReef.slice(("ˈ" + b).length);
+      ipaReef = "ˈ" + soften[b] + ipaReef;
+    }
 
-/**
- * converts syllable breakdown in forest dialect to syllable breakdown in reef dialect
- *
- * @param {string} forestSyllables forest dialect syllables
- * @returns {string} reef dialect syllables
- */
-export function getReefSyllables(forestSyllables: string): string {
-  return getReefSyllable(forestSyllables);
-}
-
-/**
- * converts Na'vi word in forest dialect to reef dialect
- *
- * References:
- * - https://naviteri.org/2022/12/neytiriya-waytelem-neytiris-song-cord/
- * - https://naviteri.org/2023/01/reef-navi-part-1-phonetics-and-phonology/
- * - https://naviteri.org/2023/01/2653/
- * - https://naviteri.org/2023/05/reef-navi-part-2-morphology-syntax-lexicon-and-more/
- * - https://naviteri.org/2023/07/the-complete-u-u-list-for-reef-navi/
- *
- * @param {Word} word forest dialect Na'vi word
- * @returns {string} reef dialect Na'vi word
- */
-export function getReefNavi(word: Word): string {
-  // ätxäle corresponds to edäle when the RN changes are implemented.
-  if (word.Navi === "ätxäle") {
-    return "edäle";
+    for (let a of vowels) {
+      ipaReef = ipaReef.replaceAll(
+        b.concat(".".concat(a)),
+        soften[b].concat(".".concat(a))
+      );
+      ipaReef = ipaReef.replaceAll(
+        b.concat(".ˈ".concat(a)),
+        soften[b].concat(".ˈ".concat(a))
+      );
+    }
   }
-  if (word.Navi === "ätxäle si") {
-    return "edäle si";
-  }
+  ipaReef = ipaReef.replaceAll("t͡sj", "tʃ");
+  ipaReef = ipaReef.replaceAll("sj", "ʃ");
 
-  let reefNavi = "";
-  let forestNavi = word.Navi.split("");
+  let temp = "";
 
-  // unstressed ä -> e
-  if (forestNavi.includes("ä") && +word.Syllables > 1) {
-    for (let i = 0; i < forestNavi.length; i++) {
-      let vowelCount = 0;
-      if (forestNavi[i].match(/[aäeiìouéù]/)) {
-        vowelCount++;
-        if (vowelCount === +word.Stressed && forestNavi[i] === "ä") {
-          forestNavi[i] = "e";
+  // Glottal stops between two vowels are removed
+  const chars = [...ipaReef];
+
+  let i = 0;
+  for (let rune of chars) {
+    if (i !== 0 && i < chars.length - 1 && rune === "ʔ") {
+      let firstI = i - 1;
+      let secondI = i + 1;
+      if (chars[i - 1] === ".") {
+        firstI = i - 2;
+      } else if (chars[i + 1] === ".") {
+        secondI = i + 2;
+      } else if (chars[i - 1] === "ˈ" && i > 1) {
+        firstI = i - 3;
+      }
+      if (vowels.includes(chars[firstI]) && vowels.includes(chars[secondI])) {
+        if (chars[firstI] !== chars[secondI]) {
+          i += 1;
+          continue;
         }
       }
     }
-    word.Navi = forestNavi.join("");
+    temp = temp.concat(rune);
+    i += 1;
   }
 
-  // ù https://naviteri.org/2023/07/the-complete-u-u-list-for-reef-navi/
-  for (const pair of reefForestPairs) {
-    if (pair.forest === word.Navi) {
-      reefNavi = pair.reef;
-      break;
+  ipaReef = temp;
+
+  // Replace the spaces so as not to confuse strings.Split()
+  ipaReef = ipaReef.replaceAll(" ", "*.");
+
+  // Unstressed ä becomes e
+  let ipa_syllables = ipaReef.split(".");
+  if (ipa_syllables.length > 1) {
+    let new_ipa = "";
+    ipa_syllables.forEach((syllable) => {
+      new_ipa += ".";
+      if (!syllable.includes("ˈ")) {
+        new_ipa = new_ipa.concat(syllable.replaceAll("æ", "ɛ"));
+      } else {
+        new_ipa = new_ipa.concat(syllable);
+      }
+    });
+    ipaReef = new_ipa;
+    ipaReef = ipaReef.slice(".".length);
+  }
+
+  ipaReef = ipaReef.replaceAll("*.", " ");
+
+  // now Romanize the reef IPA
+  let word = ipaReef.split(" ");
+
+  let breakdown = "";
+
+  for (let s of word) {
+    if (s === "or") {
+      breakdown = breakdown.concat("or ");
+      continue;
+    }
+
+    let syllables = s.split(".");
+
+    // Onset
+    for (let a of syllables) {
+      a = a.replaceAll("]", "");
+      a = a.replaceAll("[", "");
+
+      let syllables = a.split(".");
+
+      // Onset
+      for (let syllable of syllables) {
+        syllable = syllable.replaceAll("·", "");
+        syllable = syllable.replaceAll("ˈ", "");
+        syllable = syllable.replaceAll("ˌ", "");
+
+        breakdown = breakdown.concat("-");
+
+        let runes = [...syllable];
+
+        var romanize: { [id: string]: string } = {
+          ʔ: "'",
+          l: "l",
+          ɾ: "r",
+          h: "h",
+          m: "m",
+          n: "n",
+          ŋ: "ng",
+          v: "v",
+          w: "w",
+          j: "y",
+          z: "z",
+          b: "b",
+          d: "d",
+          g: "g",
+          ʃ: "sh", // "syawm" only
+          ʒ: "ch", // "Jakesully" only (even though we caught it above)
+          ṛ: "rr",
+          ḷ: "ll",
+          a: "a",
+          i: "i",
+          ɪ: "ì",
+          o: "o",
+          ɛ: "e",
+          u: "u",
+          æ: "ä",
+          ʊ: "ù",
+          "p'": "px",
+          "t'": "tx",
+          "k'": "kx",
+          p: "p",
+          t: "t",
+          k: "k",
+        };
+
+        // tsy
+        if (syllable.startsWith("tʃ")) {
+          breakdown = breakdown.concat("ch");
+          syllable = syllable.slice("tʃ".length);
+        } else if (syllable.length >= 4 && syllable.startsWith("t͡s")) {
+          // ts
+          breakdown = breakdown.concat("ts");
+          syllable = syllable.slice("t͡s".length);
+
+          let unvoiced_plosive = ["p", "t", "k"];
+          let clusterable = ["l", "ɾ", "m", "n", "ŋ", "w", "j"];
+          runes = [...syllable];
+          // tsp
+          if (unvoiced_plosive.includes(runes[0])) {
+            breakdown = breakdown.concat(romanize[runes[0]]);
+            syllable = syllable.slice(runes[0].length);
+            if (runes[1] === "'") {
+              syllable = syllable.slice("'".length);
+              breakdown = breakdown.concat("x");
+            }
+          } else if (clusterable.includes(runes[0])) {
+            breakdown = breakdown.concat(romanize[runes[0]]);
+            syllable = syllable.slice(runes[0].length);
+          }
+        } else if (["f", "s"].includes(runes[0])) {
+          breakdown = breakdown.concat(syllable[0]);
+          syllable = syllable.slice(syllable[0].length);
+
+          let unvoiced_plosive = ["p", "t", "k"];
+          let clusterable = ["l", "ɾ", "m", "n", "ŋ", "w", "j"];
+          runes = [...syllable];
+          // tsp
+          if (unvoiced_plosive.includes(runes[0])) {
+            breakdown = breakdown.concat(romanize[runes[0]]);
+            syllable = syllable.slice(runes[0].length);
+            if (runes[1] === "'") {
+              // f/s + ejective onset
+              syllable = syllable.slice("'".length);
+              breakdown = breakdown.concat("x");
+            }
+          } else if (clusterable.includes(runes[0])) {
+            // f/s + other consonant
+            breakdown = breakdown.concat(romanize[runes[0]]);
+            syllable = syllable.slice(runes[0].length);
+          }
+        } else if (["p", "t", "k"].includes(runes[0])) {
+          breakdown = breakdown.concat(romanize[runes[0]]);
+          syllable = syllable.slice(runes[0].length);
+          if (runes[1] === "'") {
+            // f/s + ejective onset
+            syllable = syllable.slice("'".length);
+            breakdown = breakdown.concat("x");
+          }
+        } else if (
+          [
+            "ʔ",
+            "l",
+            "ɾ",
+            "h",
+            "m",
+            "n",
+            "ŋ",
+            "v",
+            "w",
+            "j",
+            "z",
+            "b",
+            "d",
+            "g",
+            "ʃ",
+            "ʒ",
+            "b",
+            "d",
+            "g",
+          ].includes(runes[0])
+        ) {
+          // other normal onset
+          breakdown = breakdown.concat(romanize[runes[0]]);
+          syllable = syllable.slice(runes[0].length);
+        }
+
+        // Nucleus
+        runes = [...syllable];
+
+        if (runes.length > 1 && ["j", "w"].includes(runes[1])) {
+          //diphthong
+          breakdown = breakdown.concat(romanize[runes[0]]);
+          breakdown = breakdown.concat(romanize[runes[1]]);
+          let diphthong = romanize[runes[0]];
+          diphthong = diphthong.concat(romanize[runes[1]]);
+          syllable = syllable.slice(diphthong.length);
+        } else if (syllable.includes("ḷ")) {
+          //psuedovowel
+          breakdown = breakdown.concat("ll");
+          continue; // psuedovowels can't coda
+        } else if (syllable.includes("ṛ")) {
+          //psuedovowel
+          breakdown = breakdown.concat("rr");
+          continue; // psuedovowels can't coda
+        } else {
+          // vowel
+          breakdown = breakdown.concat(romanize[runes[0]]);
+          syllable = syllable.slice(runes[0].length);
+        }
+
+        // Coda
+        runes = [...syllable];
+
+        if (syllable.length > 0) {
+          if (runes[0] === "s") {
+            breakdown = breakdown.concat("sss"); // oìsss only
+          } else {
+            if (syllable === "k̚") {
+              breakdown = breakdown.concat("k");
+            } else if (syllable === "p̚") {
+              breakdown = breakdown.concat("p");
+            } else if (syllable === "t̚") {
+              breakdown = breakdown.concat("t");
+            } else if (syllable === "ʔ̚") {
+              breakdown = breakdown.concat("'");
+            } else {
+              if (runes[0] === "k" && syllable.length > 1) {
+                breakdown = breakdown.concat("kx");
+              } else {
+                breakdown = breakdown.concat(romanize[syllable]);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    breakdown = breakdown.concat(" ");
+  }
+
+  breakdown = breakdown.replaceAll(" -", " ");
+  breakdown = breakdown.trim();
+  breakdown = breakdown.slice("-".length);
+  while (breakdown[0] === "-") {
+    breakdown = breakdown.slice("-".length);
+  }
+
+  // If there's a tìftang between two identical vowels, the tìftang is optional
+  let shortString = ipaReef.replaceAll("ˈ", "");
+  shortString = shortString.replaceAll(".", "");
+  for (let a of ["a", "ɛ", "ɪ", "o", "u", "i", "æ", "ʊ"]) {
+    if (shortString.includes(a + "ʔ" + a)) {
+      // fix IPA
+      let noTìftangIPA = ipaReef.replaceAll(a + ".ˈʔ" + a, a + ".ˈ" + a);
+      noTìftangIPA = noTìftangIPA.replaceAll(a + ".ʔ" + a, a + "." + a);
+      noTìftangIPA = noTìftangIPA.replaceAll(a + "ʔ." + a, a + "." + a);
+      noTìftangIPA = noTìftangIPA.replaceAll(a + "ʔ.ˈ" + a, a + ".ˈ" + a);
+
+      ipaReef = ipaReef.concat("] or [");
+      ipaReef = ipaReef.concat(noTìftangIPA);
     }
   }
 
-  if (reefNavi === "") {
-    reefNavi = `${word.Navi}`;
+  // fix breakdown
+  shortString = breakdown.replaceAll("-", "");
+  for (let a of ["a", "e", "ì", "o", "u", "i", "ä", "ù"]) {
+    if (shortString.includes(a + "'" + a)) {
+      // fix IPA
+      let noTìftangBreakdown = breakdown.replaceAll(a + "'-" + a, a + "-" + a);
+      noTìftangBreakdown = noTìftangBreakdown.replaceAll(
+        a + "-'" + a,
+        a + "-" + a
+      );
+
+      breakdown = breakdown.concat(" or ");
+      breakdown = breakdown.concat(noTìftangBreakdown);
+    }
   }
 
-  // tsy -> ch
-  reefNavi = reefNavi.replace("tsy", "ch");
-  // sy -> sh
-  reefNavi = reefNavi.replace("sy", "sh");
-
-  // ' lost between non-identical vowels
-  // ' lost optionally between identical vowels
-  // no merge if ' lost between identical vowels
-  // rää, apxaa, meeveng, seii, etc. remain
-  const reGlottalStop = new RegExp(
-    `([aeiouìäéùAEIOUÌÄÉÙ])'([aeiouìäéùAEIOUÌÄÉÙ])`,
-    "g"
-  );
-
-  reefNavi = reefNavi.replaceAll(reGlottalStop, "$1$2");
-
-  // px,tx,kx -> b,d,g @ syllable onset
-  // 'awkx -> 'awgìl
-  // px
-  var rePx0 = new RegExp(`px([aeiouìäéùAEIOUÌÄÉÙ])`, "g");
-  reefNavi = reefNavi.replaceAll(rePx0, "b$1");
-  var rePx1 = new RegExp(`px(ll|rr)`, "g");
-  reefNavi = reefNavi.replaceAll(rePx1, "b$1");
-  // tx
-  var reTx0 = new RegExp(`tx([aeiouìäéùAEIOUÌÄÉÙ])`, "g");
-  reefNavi = reefNavi.replaceAll(reTx0, "d$1");
-  var reTx1 = new RegExp(`tx(ll|rr)`, "g");
-  reefNavi = reefNavi.replaceAll(reTx1, "d$1");
-  // kx
-  var reKx0 = new RegExp(`kx([aeiouìäéùAEIOUÌÄÉÙ])`, "g");
-  reefNavi = reefNavi.replaceAll(reKx0, "g$1");
-  var reKx1 = new RegExp(`kx(ll|rr)`, "g");
-  reefNavi = reefNavi.replaceAll(reKx1, "g$1");
-
-  // It's adge and egdu
-  // dg etc.
-  var reTx2 = new RegExp(`tx([bdg])`, "g");
-  reefNavi = reefNavi.replaceAll(reTx2, "d$1");
-  // gd etc.
-  var reKx2 = new RegExp(`kx([bdg])`, "g");
-  reefNavi = reefNavi.replaceAll(reKx2, "g$1");
-  // for good measure, bg etc.
-  var rePx2 = new RegExp(`px([bdg])`, "g");
-  reefNavi = reefNavi.replaceAll(rePx2, "b$1");
-
-  return reefNavi;
-}
-
-/**
- * converts angle-bracket infix locations from forest dialect to reef dialect
- *
- * @param {string} forestInfixBrackets forest dialect infix brackets
- * @returns {string} reef dialect infix brackets
- */
-export function getReefInfixBrackets(forestInfixBrackets: string): string {
-  return forestInfixBrackets;
-}
-
-/**
- * converts dot notation infix locations from forest dialect to reef dialect
- *
- * @param {string} forestInfixDots forest dialect infix dots
- * @returns {string} reef dialect infix dots
- */
-export function getReefInfixDots(forestInfixDots: string): string {
-  return forestInfixDots;
+  return [ipaReef, breakdown];
 }
