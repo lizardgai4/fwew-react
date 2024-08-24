@@ -133,6 +133,18 @@ function ReefMe( IPA: string ) {
     ipaReef = ipaReef.replaceAll(".".concat(b), ".".concat(soften[b]))
     ipaReef = ipaReef.replaceAll(".ˈ".concat(b), ".ˈ".concat(soften[b]))
 
+    // start without stress marker
+    if (ipaReef.startsWith(b)) {
+      ipaReef = ipaReef.slice(b.length)
+      ipaReef = soften[b] + ipaReef
+    }
+
+    // start with stress marker
+    if (ipaReef.startsWith("ˈ"+b)) {
+      ipaReef = ipaReef.slice(("ˈ"+b).length)
+      ipaReef = "ˈ" + soften[b] + ipaReef
+    }
+
     for (let a of vowels) {
       ipaReef = ipaReef.replaceAll(b.concat(".".concat(a)), soften[b].concat(".".concat(a)))
       ipaReef = ipaReef.replaceAll(b.concat(".ˈ".concat(a)), soften[b].concat(".ˈ".concat(a)))
@@ -540,28 +552,42 @@ function Pronunciation({ IPA, Stressed, Syllables }: PronunciationProps) {
           {ui.search.breakdown}:
         </BoldText>
         <Text style={styles.value}>
-          <Breakdown Stressed={Stressed} Syllables={Syllables} />
+          <Breakdown IPA={IPA} Stressed={Stressed} Syllables={Syllables} />
           {space}({reefDialect}
-          <Breakdown Stressed={Stressed} Syllables={ReefSyllables} />)
+          <Breakdown IPA={reefIPA} Stressed={Stressed} Syllables={ReefSyllables} />)
         </Text>
       </CardView>
     </>
   );
 }
 
-type BreakdownProps = Pick<Word, "Stressed" | "Syllables">;
+type BreakdownProps = Pick<Word, "IPA" | "Stressed" | "Syllables">;
 
-function Breakdown({ Stressed, Syllables }: BreakdownProps) {
+function Breakdown({ IPA, Stressed, Syllables }: BreakdownProps) {
   const stressedIndex = +Stressed - 1;
   const individualWord = Syllables.toLowerCase().split(" ");
+  // Get stress markers out of the IPA
+  let stressed = []
+  let splitIPA = IPA.replaceAll(" ", ".").split(".")
+  for (let a of splitIPA) {
+    if (a.includes("ˈ")) {
+      stressed.push(true)
+    } else {
+      stressed.push(false)
+    }
+  }
+
   let everything = []
   // split by spaces first
-  let stressH = 0
+  let superH = 0
   for (let h = 0; h < individualWord.length; ) {
     // then split by hyphens
     let syllables = individualWord[h].split("-");
     if (individualWord[h] == "or") {
-      stressH = 0
+      if (stressedIndex == -1) {
+        return everything // don't continue for same word different stress
+      }
+      superH++
       everything.push("or ")
       h++
       continue
@@ -570,21 +596,21 @@ function Breakdown({ Stressed, Syllables }: BreakdownProps) {
       return <Text style={styles.value}>{syllables[0]}</Text>;
     }
     for (let i = 0; i < syllables.length; i++) {
-      if (stressH === stressedIndex) {
+      if (stressed[superH] && stressedIndex != -1) { // underlined
         everything.push(<UnderlinedText key={`srl_${h}${i}`}>{syllables[i].toUpperCase()}</UnderlinedText>);
-      } else {
-        if (stressedIndex != -1 && stressH === stressedIndex + 1 && i != 0) {
+      } else { // not underlined
+        if (i != 0 && i >= syllables.length - 1) {
           everything.push("-");
         }
         everything.push(syllables[i]);
-        if (i < syllables.length - 1) {
+        if (i < syllables.length - 1 && stressedIndex != -1) {
           everything.push("-");
         }
       }
-      stressH++
+      superH++
     }
     h++
-    if (h < individualWord.length) {
+    if (h < individualWord.length && stressedIndex != -1) {
       everything.push(" ")
     }
   }
