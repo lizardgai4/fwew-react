@@ -132,6 +132,9 @@ function ReefMe( IPA: string ) {
   for (let b of ejectives) {
     ipaReef = ipaReef.replaceAll(".".concat(b), ".".concat(soften[b]))
     ipaReef = ipaReef.replaceAll(".ˈ".concat(b), ".ˈ".concat(soften[b]))
+    // in case there's a space before the ejective
+    ipaReef = ipaReef.replaceAll(" ".concat(b), " ".concat(soften[b]))
+    ipaReef = ipaReef.replaceAll(" ˈ".concat(b), " ˈ".concat(soften[b]))
 
     // start without stress marker
     if (ipaReef.startsWith(b)) {
