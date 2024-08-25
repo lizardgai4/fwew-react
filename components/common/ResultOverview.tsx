@@ -19,7 +19,7 @@ export function ResultOverview({
   local,
 }: ResultOverviewProps) {
   const forestNavi = word.Navi;
-  const reefNavi = ReefMe(word.IPA)[0];
+  const reefNavi = ReefMe(word.IPA, word.Navi)[0];
 
   return (
     <View style={styles.closedContainer}>

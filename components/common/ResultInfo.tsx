@@ -34,7 +34,7 @@ export function ResultInfo({ word }: ResultInfoProps) {
   const ui = i18n[appLanguage];
   const { dialect } = useDialectContext();
   const forestNavi = word.Navi;
-  const reef = ReefMe(word.IPA)
+  const reef = ReefMe(word.IPA, forestNavi)
   const reefNavi = reef[0];
 
   return (
@@ -222,13 +222,13 @@ function DetailItem({ label, value, link }: DetailItemProps) {
   );
 }
 
-type PronunciationProps = Pick<Word, "IPA" | "Stressed" | "Syllables">;
+type PronunciationProps = Pick<Word, "IPA" | "Stressed" | "Navi">;
 
-function Pronunciation({ IPA, Stressed, Syllables }: PronunciationProps) {
+function Pronunciation({ IPA, Stressed, Navi }: PronunciationProps) {
   const { appLanguage } = useAppLanguageContext();
   const ui = i18n[appLanguage];
   const { dialect } = useDialectContext();
-  let reefs = ReefMe(IPA);
+  let reefs = ReefMe(IPA, Navi);
   let forestIPA = IPA.replaceAll("ʊ", "u");
   let reefIPA = reefs[1];
   let ReefSyllables = reefs[2];
