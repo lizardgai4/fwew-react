@@ -14,9 +14,9 @@ const nonPhoneticSpellings = new Map<string, string>([
 
 const nonPhoneticVerbs = new Map<string, [string, string]>([
   // zenke sounds like zengke
-  ["ˈz·ɛŋ.kɛ", ["z.en.ke", "z<0><1>eng<2>ke"]],
-  ["ˈz·ɛŋ·.kɛ", ["z.en.ke", "z<0><1>eng<2>ke"]],
-  ["ˈz·ɛŋ.·kɛ", ["z.en.ke", "z<0><1>eng<2>ke"]],
+  ["ˈz·ɛŋ.kɛ", ["z.en.ke", "z<0><1>en<2>ke"]],
+  ["ˈz·ɛŋ·.kɛ", ["z.en.ke", "z<0><1>en<2>ke"]],
+  ["ˈz·ɛŋ.·kɛ", ["z.en.ke", "z<0><1>en<2>ke"]],
 ]);
 
 /**
