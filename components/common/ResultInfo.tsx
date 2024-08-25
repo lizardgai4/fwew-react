@@ -231,7 +231,7 @@ function Pronunciation({ IPA, Stressed, Syllables }: PronunciationProps) {
   let forestIPA = IPA.replaceAll("ʊ", "u");
   let reefIPA = reefs[1];
   let ReefSyllables = reefs[2];
-  let ForestSyllables = Romanize(IPA)
+  let ForestSyllables = Romanize(forestIPA)
   return (
     <>
       <DetailItem
