@@ -310,7 +310,11 @@ export function ReefMe(IPA: string, Navi: string): [string, string, string, stri
 
         if (syllable.length > 0) {
           if (runes[0] === "s") {
-            breakdown = breakdown.concat("sss"); // oìsss only
+            // oìsss only
+            breakdown = breakdown.concat("sss");
+          } else if (runes[0] === ":") {
+            // saa and ìì only
+            breakdown = breakdown.concat(breakdown.slice(-1));
           } else {
             if (syllable === "k̚") {
               breakdown = breakdown.concat("k");
