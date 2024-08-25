@@ -22,10 +22,10 @@ const nonPhoneticVerbs = new Map<string, [string, string]>([
 /**
  * Get Reef IPA and Syllables by forest IPA
  *
- * @param {string} IPA forest IPA
+ * @param {[string, string]} IPA forest IPA, breakdown
  * @returns {[string, string, string, string, string]} Reef Word, Reef IPA, Reef Syllables, infix dots, infix slots
  */
-export function ReefMe(IPA: string): [string, string, string, string, string] {
+export function ReefMe(IPA: string, Navi: string): [string, string, string, string, string] {
   // Reefify the IPA first
   let ipaReef = IPA;
 
@@ -404,6 +404,66 @@ export function ReefMe(IPA: string): [string, string, string, string, string] {
     reefWord = nonPhoneticSpellings.get(IPA)!; // non-null assertion
   } else {
     reefWord = breakdown.split(" or ", 1)[0].replaceAll("-", "");
+  }
+
+  // Capitalize The Reef Na'vi Word
+  
+  if (Navi !== Navi.toLowerCase()) {
+    let reefSplit = reefWord.split(" ")
+    let naviSplit = Navi.split(" ")
+    reefWord = ""
+
+    i = 0
+
+    while (i < reefSplit.length) {
+      let newReef = "";
+      let thisReef = reefSplit[i]
+      let thisNavi = naviSplit[i]
+      if (thisNavi !== thisNavi.toLowerCase()) {
+        let tìftang = false;
+        let reefRunes = [...thisReef]
+        let naviRunes = [...thisNavi]
+        if (naviRunes[0] == "'") {
+          tìftang = true;
+          newReef = newReef.concat("'");
+          reefRunes.shift();
+          naviRunes.shift()
+        }
+        
+        // if the first is capitalized (needed for CheykSuli)
+        if (naviRunes[0] !== naviRunes[0].toLowerCase()) {
+          newReef = newReef.concat(reefRunes.shift()?.toUpperCase()!)
+          naviRunes.shift()
+        }
+    
+        // find what needs to be capitalized
+        let lettersToCapitalize: Array<string> = [];
+        for (let a of naviRunes) {
+          if (a !== a.toLowerCase()) {
+            lettersToCapitalize = lettersToCapitalize.concat(a.toLowerCase())
+          }
+        }
+    
+        // capitalize it
+        let letterIndex = 0
+        for (let a of reefRunes) {
+          if (a === lettersToCapitalize[letterIndex]) {
+            letterIndex += 1
+            newReef = newReef.concat(a.toUpperCase())
+          } else {
+            newReef = newReef.concat(a)
+          }
+        }
+    
+        reefWord = reefWord.concat(newReef)
+      }
+  
+      i += 1
+  
+      if (i < reefSplit.length) {
+        reefWord = reefWord.concat(" ")
+      }
+    }
   }
 
   return [reefWord, ipaReef, breakdown, infixDots, infixSlots];
