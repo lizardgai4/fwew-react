@@ -4,9 +4,9 @@ const nonPhoneticSpellings = new Map<string, string>([
   ["ɾæ.ˈʔæ", "rä'ä"],
   ["ˈɾæ.ʔæ", "rä'ä"],
   // zenke sounds like zengke
-  ["ˈzɛŋ.kɛ", "zenke"],
-  ["ˈzɛŋ·.kɛ", "zenke"],
-  ["ˈzɛŋ.·kɛ", "zenke"],
+  ["ˈz·ɛŋ.kɛ", "zenke"],
+  ["ˈz·ɛŋ·.kɛ", "zenke"],
+  ["ˈz·ɛŋ.·kɛ", "zenke"],
   // ayoeng sounds like ayweng
   ["aj.ˈwɛŋ", "ayoeng"],
   ["nɪ.aj.ˈwɛŋ] or [naj.ˈwɛŋ", "nìayoeng"],
