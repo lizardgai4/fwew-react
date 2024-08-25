@@ -422,17 +422,11 @@ export function ReefMe(IPA: string, Navi: string): [string, string, string, stri
       if (thisNavi !== thisNavi.toLowerCase()) {
         let tìftang = false;
         let reefRunes = [...thisReef]
-        let naviRunes = [...thisNavi]
+        let naviRunes = [...thisNavi.replaceAll("Tsy", "Ch")] //edge case of capitalization
         if (naviRunes[0] == "'") {
           tìftang = true;
           newReef = newReef.concat("'");
           reefRunes.shift();
-          naviRunes.shift()
-        }
-        
-        // if the first is capitalized (needed for CheykSuli)
-        if (naviRunes[0] !== naviRunes[0].toLowerCase()) {
-          newReef = newReef.concat(reefRunes.shift()?.toUpperCase()!)
           naviRunes.shift()
         }
     
