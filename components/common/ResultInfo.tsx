@@ -34,7 +34,8 @@ export function ResultInfo({ word }: ResultInfoProps) {
   const ui = i18n[appLanguage];
   const { dialect } = useDialectContext();
   const forestNavi = word.Navi;
-  const reefNavi = ReefMe(word.IPA)[0];
+  const reef = ReefMe(word.IPA)
+  const reefNavi = reef[0];
 
   return (
     <CardView style={styles.container}>
@@ -63,10 +64,10 @@ export function ResultInfo({ word }: ResultInfoProps) {
       <Pronunciation {...word} />
       {word.PartOfSpeech.startsWith("v") && (
         <>
-          <DetailItem label={ui.search.infixDots} value={word.InfixDots} />
+          <DetailItem label={ui.search.infixDots} value={dialect === "reef" ? reef[3] : word.InfixDots} />
           <DetailItem
             label={ui.search.infixSlots}
-            value={word.InfixLocations}
+            value={dialect === "reef" ? reef[4] : word.InfixDots}
           />
         </>
       )}
