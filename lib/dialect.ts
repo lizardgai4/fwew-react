@@ -22,7 +22,7 @@ const nonPhoneticVerbs = new Map<string, [string, string]>([
 /**
  * Get Reef IPA and Syllables by forest IPA
  *
- * @param {[string, string]} IPA forest IPA, breakdown
+ * @param {[string, string]} IPA forest IPA, Na'vi word
  * @returns {[string, string, string, string, string]} Reef Word, Reef IPA, Reef Syllables, infix dots, infix slots
  */
 export function ReefMe(IPA: string, Navi: string): [string, string, string, string, string] {
