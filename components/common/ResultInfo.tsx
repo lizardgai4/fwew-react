@@ -15,6 +15,7 @@ import { useFavoritesContext } from "@/context/FavoritesContext";
 import { useResultsLanguageContext } from "@/context/ResultsLanguageContext";
 import { useSound } from "@/hooks/useSound";
 import { ReefMe } from "@/lib/dialect";
+import { Romanize } from "@/lib/romanize"
 import { useTheme } from "@react-navigation/native";
 import { fwewSimple, type LanguageCode, type Word } from "fwew.js";
 import { useCallback, useEffect, useState } from "react";
@@ -230,6 +231,7 @@ function Pronunciation({ IPA, Stressed, Syllables }: PronunciationProps) {
   let forestIPA = IPA.replaceAll("ʊ", "u");
   let reefIPA = reefs[1];
   let ReefSyllables = reefs[2];
+  let ForestSyllables = Romanize(IPA)
   return (
     <>
       <DetailItem
@@ -248,7 +250,7 @@ function Pronunciation({ IPA, Stressed, Syllables }: PronunciationProps) {
               Syllables={ReefSyllables}
             />
           ) : (
-            <Breakdown IPA={IPA} Stressed={Stressed} Syllables={Syllables} />
+            <Breakdown IPA={IPA} Stressed={Stressed} Syllables={ForestSyllables} />
           )}
         </Text>
       </CardView>
