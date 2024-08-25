@@ -4,23 +4,30 @@ const nonPhoneticSpellings = new Map<string, string>([
   ["ɾæ.ˈʔæ", "rä'ä"],
   ["ˈɾæ.ʔæ", "rä'ä"],
   // zenke sounds like zengke
-  ["ˈzɛŋ.kɛ", "zenke"],
-  ["ˈzɛŋ·.kɛ", "zenke"],
-  ["ˈzɛŋ.·kɛ", "zenke"],
+  ["ˈz·ɛŋ.kɛ", "zenke"],
+  ["ˈz·ɛŋ·.kɛ", "zenke"],
+  ["ˈz·ɛŋ.·kɛ", "zenke"],
   // ayoeng sounds like ayweng
   ["aj.ˈwɛŋ", "ayoeng"],
   ["nɪ.aj.ˈwɛŋ] or [naj.ˈwɛŋ", "nìayoeng"],
+]);
+
+const nonPhoneticVerbs = new Map<string, [string, string]>([
+  // zenke sounds like zengke
+  ["ˈz·ɛŋ.kɛ", ["z.en.ke", "z<0><1>en<2>ke"]],
+  ["ˈz·ɛŋ·.kɛ", ["z.en.ke", "z<0><1>en<2>ke"]],
+  ["ˈz·ɛŋ.·kɛ", ["z.en.ke", "z<0><1>en<2>ke"]],
 ]);
 
 /**
  * Get Reef IPA and Syllables by forest IPA
  *
  * @param {string} IPA forest IPA
- * @returns {[string, string, string]} Reef Word, Reef IPA, Reef Syllables
+ * @returns {[string, string, string, string, string]} Reef Word, Reef IPA, Reef Syllables, infix dots, infix slots
  */
-export function ReefMe(IPA: string): [string, string, string] {
+export function ReefMe(IPA: string): [string, string, string, string, string] {
   // Reefify the IPA first
-  let ipaReef = IPA.replaceAll("·", "");
+  let ipaReef = IPA;
 
   // Deal with ejectives
   var soften: { [id: string]: string } = {
@@ -48,33 +55,25 @@ export function ReefMe(IPA: string): [string, string, string] {
 
   // Ejectives before vowels and diphthongs become voiced plosives regardless of syllable boundaries
   for (let b of ejectives) {
-    ipaReef = ipaReef.replaceAll(".".concat(b), ".".concat(soften[b]));
-    ipaReef = ipaReef.replaceAll(".ˈ".concat(b), ".ˈ".concat(soften[b]));
-    // in case there's a space before the ejective
-    ipaReef = ipaReef.replaceAll(" ".concat(b), " ".concat(soften[b]));
-    ipaReef = ipaReef.replaceAll(" ˈ".concat(b), " ˈ".concat(soften[b]));
+    for (let c of ["·", ""]) { // infix markers
+      for (let d of ["ˈ", ""]) { // stress markers
+        ipaReef = ipaReef.replaceAll(".".concat(d).concat(b).concat(c), ".".concat(d).concat(soften[b]).concat(c));
+        // in case there's a space before the ejective
+        ipaReef = ipaReef.replaceAll(" ".concat(d).concat(b).concat(c), " ".concat(d).concat(soften[b]).concat(c));
 
-    // start without stress marker
-    if (ipaReef.startsWith(b)) {
-      ipaReef = ipaReef.slice(b.length);
-      ipaReef = soften[b] + ipaReef;
-    }
+        // start of a word
+        if (ipaReef.startsWith(d + b)) {
+          ipaReef = ipaReef.slice((d + b).length);
+          ipaReef = d + soften[b] + ipaReef;
+        }
 
-    // start with stress marker
-    if (ipaReef.startsWith("ˈ" + b)) {
-      ipaReef = ipaReef.slice(("ˈ" + b).length);
-      ipaReef = "ˈ" + soften[b] + ipaReef;
-    }
-
-    for (let a of vowels) {
-      ipaReef = ipaReef.replaceAll(
-        b.concat(".".concat(a)),
-        soften[b].concat(".".concat(a))
-      );
-      ipaReef = ipaReef.replaceAll(
-        b.concat(".ˈ".concat(a)),
-        soften[b].concat(".ˈ".concat(a))
-      );
+        for (let a of vowels) {
+          ipaReef = ipaReef.replaceAll(
+            b.concat(".".concat(d).concat(a)),
+            soften[b].concat(".".concat(d).concat(a))
+          );
+        }
+      }
     }
   }
   ipaReef = ipaReef.replaceAll("t͡sj", "tʃ");
@@ -153,7 +152,6 @@ export function ReefMe(IPA: string): [string, string, string] {
 
       // Onset
       for (let syllable of syllables) {
-        syllable = syllable.replaceAll("·", "");
         syllable = syllable.replaceAll("ˈ", "");
         syllable = syllable.replaceAll("ˌ", "");
 
@@ -280,6 +278,12 @@ export function ReefMe(IPA: string): [string, string, string] {
         // Nucleus
         runes = [...syllable];
 
+        if (runes[0] === "·") {
+          breakdown = breakdown.concat("·")
+          syllable = syllable.slice("·".length);
+          runes = [...syllable];
+        }
+
         if (runes.length > 1 && ["j", "w"].includes(runes[1])) {
           //diphthong
           breakdown = breakdown.concat(romanize[runes[0]]);
@@ -370,6 +374,31 @@ export function ReefMe(IPA: string): [string, string, string] {
     }
   }
 
+  let infixDots = "NULL"
+  let infixSlots = "NULL"
+
+  // Make infix locations
+  if (ipaReef.includes("·")) {
+    if (nonPhoneticVerbs.has(IPA)) {
+      let reefVerb = nonPhoneticVerbs.get(IPA)!; // non-null assertion
+      infixDots = reefVerb[0]
+      infixSlots = reefVerb[1]
+    } else {
+      infixSlots = breakdown.replaceAll("-", "")
+      infixSlots = infixSlots.replace("·", "<0><1>")
+      infixSlots = infixSlots.replace("·", "<2>")
+
+      if (!infixSlots.includes("<2>")) {
+        infixSlots = infixSlots.replace("<0><1>", "<0><1><2>")
+      }
+
+      infixDots = infixSlots.replaceAll("<0><1>", ".")
+      infixDots = infixDots.replaceAll("<2>", ".")
+    }
+    breakdown = breakdown.replaceAll("·","")
+  }
+
+  // show the first word
   let reefWord = "";
   if (nonPhoneticSpellings.has(IPA)) {
     reefWord = nonPhoneticSpellings.get(IPA)!; // non-null assertion
@@ -377,5 +406,5 @@ export function ReefMe(IPA: string): [string, string, string] {
     reefWord = breakdown.split(" or ", 1)[0].replaceAll("-", "");
   }
 
-  return [reefWord, ipaReef, breakdown];
+  return [reefWord, ipaReef, breakdown, infixDots, infixSlots];
 }
