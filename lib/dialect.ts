@@ -447,7 +447,7 @@ export function ReefMe(IPA: string, Navi: string): [string, string, string, stri
         // capitalize it
         let letterIndex = 0
         for (let a of reefRunes) {
-          if (a === lettersToCapitalize[letterIndex]) {
+          if (letterIndex < lettersToCapitalize.length && a === lettersToCapitalize[letterIndex]) {
             letterIndex += 1
             newReef = newReef.concat(a.toUpperCase())
           } else {
