@@ -115,7 +115,7 @@ export function ReefMe(IPA: string): [string, string, string] {
 
   // Unstressed ä becomes e
   let ipa_syllables = ipaReef.split(".");
-  if (ipa_syllables.length > 1 && IPA != "ɾæ.ˈʔæ") {
+  if (ipa_syllables.length > 1 && IPA !== "ɾæ.ˈʔæ") {
     let new_ipa = "";
     ipa_syllables.forEach((syllable) => {
       new_ipa += ".";
@@ -370,11 +370,11 @@ export function ReefMe(IPA: string): [string, string, string] {
     }
   }
 
-  let reefWord = ""
+  let reefWord = "";
   if (nonPhoneticSpellings.has(IPA)) {
     reefWord = nonPhoneticSpellings.get(IPA)!; // non-null assertion
   } else {
-    reefWord = breakdown.split(" or ",1)[0].replaceAll("-","")
+    reefWord = breakdown.split(" or ", 1)[0].replaceAll("-", "");
   }
 
   return [reefWord, ipaReef, breakdown];
