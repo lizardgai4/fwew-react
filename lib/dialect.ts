@@ -12,6 +12,13 @@ const nonPhoneticSpellings = new Map<string, string>([
   ["nɪ.aj.ˈwɛŋ] or [naj.ˈwɛŋ", "nìayoeng"],
 ]);
 
+const nonPhoneticVerbs = new Map<string, [string, string]>([
+  // zenke sounds like zengke
+  ["ˈz·ɛŋ.kɛ", ["z.en.ke", "z<0><1>eng<2>ke"]],
+  ["ˈz·ɛŋ·.kɛ", ["z.en.ke", "z<0><1>eng<2>ke"]],
+  ["ˈz·ɛŋ.·kɛ", ["z.en.ke", "z<0><1>eng<2>ke"]],
+]);
+
 /**
  * Get Reef IPA and Syllables by forest IPA
  *
@@ -370,12 +377,24 @@ export function ReefMe(IPA: string): [string, string, string, string, string] {
   let infixDots = "NULL"
   let infixSlots = "NULL"
 
+  // Make infix locations
   if (ipaReef.includes("·")) {
-    infixDots = breakdown.replaceAll("-", "")
-    infixSlots = infixDots.replaceAll("·", ".")
-    infixDots = infixDots.replace("·", "<0><1>")
-    infixDots = infixDots.replace("·", "<2>")
+    if (nonPhoneticVerbs.has(IPA)) {
+      let reefVerb = nonPhoneticVerbs.get(IPA)!; // non-null assertion
+      infixDots = reefVerb[0]
+      infixSlots = reefVerb[1]
+    } else {
+      infixSlots = breakdown.replaceAll("-", "")
+      infixSlots = infixSlots.replace("·", "<0><1>")
+      infixSlots = infixSlots.replace("·", "<2>")
 
+      if (!infixSlots.includes("<2>")) {
+        infixSlots = infixSlots.replace("<0><1>", "<0><1><2>")
+      }
+
+      infixDots = infixSlots.replaceAll("<0><1>", ".")
+      infixDots = infixDots.replaceAll("<2>", ".")
+    }
     breakdown = breakdown.replaceAll("·","")
   }
 
@@ -387,5 +406,5 @@ export function ReefMe(IPA: string): [string, string, string, string, string] {
     reefWord = breakdown.split(" or ",1)[0].replaceAll("-","")
   }
 
-  return [reefWord, ipaReef, breakdown, infixSlots, infixDots];
+  return [reefWord, ipaReef, breakdown, infixDots, infixSlots];
 }
