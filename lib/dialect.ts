@@ -327,7 +327,11 @@ export function ReefMe(IPA: string, Navi: string): ReefData {
 
         if (syllable.length > 0) {
           if (runes[0] === "s") {
-            breakdown = breakdown.concat("sss"); // oìsss only
+            // oìsss only
+            breakdown = breakdown.concat("sss");
+          } else if (runes[0] === ":") {
+            // saa and ìì only
+            breakdown = breakdown.concat(breakdown.slice(-1));
           } else {
             if (syllable === "k̚") {
               breakdown = breakdown.concat("k");
@@ -437,17 +441,21 @@ export function ReefMe(IPA: string, Navi: string): ReefData {
       let thisReef = reefSplit[i];
       let thisNavi = naviSplit[i];
       if (thisNavi !== thisNavi.toLowerCase()) {
+        let tìftang = false;
+        let briefReef = thisNavi.replaceAll("Tsy", "Ch"); //edge cases of capitalization
+        briefReef = briefReef.replaceAll("tsy", "ch");
+        briefReef = briefReef.replaceAll("Px", "B");
+        briefReef = briefReef.replaceAll("px", "b");
+        briefReef = briefReef.replaceAll("Tx", "D");
+        briefReef = briefReef.replaceAll("tx", "d");
+        briefReef = briefReef.replaceAll("Kx", "G");
+        briefReef = briefReef.replaceAll("kx", "g");
         let reefRunes = [...thisReef];
-        let naviRunes = [...thisNavi];
-        if (naviRunes[0] === "'") {
+        let naviRunes = [...briefReef];
+        if (naviRunes[0] == "'") {
+          tìftang = true;
           newReef = newReef.concat("'");
           reefRunes.shift();
-          naviRunes.shift();
-        }
-
-        // if the first is capitalized (needed for CheykSuli)
-        if (naviRunes[0] !== naviRunes[0].toLowerCase()) {
-          newReef = newReef.concat(reefRunes.shift()?.toUpperCase()!);
           naviRunes.shift();
         }
 
