@@ -421,8 +421,16 @@ export function ReefMe(IPA: string, Navi: string): [string, string, string, stri
       let thisNavi = naviSplit[i]
       if (thisNavi !== thisNavi.toLowerCase()) {
         let tìftang = false;
+        let briefReef = thisNavi.replaceAll("Tsy", "Ch") //edge cases of capitalization
+        briefReef = briefReef.replaceAll("tsy", "ch")
+        briefReef = briefReef.replaceAll("Px", "B")
+        briefReef = briefReef.replaceAll("px", "b")
+        briefReef = briefReef.replaceAll("Tx", "D")
+        briefReef = briefReef.replaceAll("tx", "d")
+        briefReef = briefReef.replaceAll("Kx", "G")
+        briefReef = briefReef.replaceAll("kx", "g")
         let reefRunes = [...thisReef]
-        let naviRunes = [...thisNavi.replaceAll("Tsy", "Ch")] //edge case of capitalization
+        let naviRunes = [...briefReef]
         if (naviRunes[0] == "'") {
           tìftang = true;
           newReef = newReef.concat("'");
