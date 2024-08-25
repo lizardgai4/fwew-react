@@ -19,13 +19,22 @@ const nonPhoneticVerbs = new Map<string, [string, string]>([
   ["ˈz·ɛŋ.·kɛ", ["z.en.ke", "z<0><1>en<2>ke"]],
 ]);
 
+export type ReefData = {
+  reefNavi: string;
+  reefIPA: string;
+  reefSyllables: string;
+  reefInfixDots: string;
+  reefInfixSlots: string;
+};
+
 /**
- * Get Reef IPA and Syllables by forest IPA
+ * Get Reef IPA and Syllables by forest IPA and Na'vi
  *
- * @param {[string, string]} IPA forest IPA, Na'vi word
- * @returns {[string, string, string, string, string]} Reef Word, Reef IPA, Reef Syllables, infix dots, infix slots
+ * @param {string} IPA forest IPA
+ * @param {string} Navi forest Na'vi
+ * @returns {ReefData} Reef Word, IPA, Syllables, infix dots, and infix slots
  */
-export function ReefMe(IPA: string, Navi: string): [string, string, string, string, string] {
+export function ReefMe(IPA: string, Navi: string): ReefData {
   // Reefify the IPA first
   let ipaReef = IPA;
 
@@ -55,11 +64,19 @@ export function ReefMe(IPA: string, Navi: string): [string, string, string, stri
 
   // Ejectives before vowels and diphthongs become voiced plosives regardless of syllable boundaries
   for (let b of ejectives) {
-    for (let c of ["·", ""]) { // infix markers
-      for (let d of ["ˈ", ""]) { // stress markers
-        ipaReef = ipaReef.replaceAll(".".concat(d).concat(b).concat(c), ".".concat(d).concat(soften[b]).concat(c));
+    for (let c of ["·", ""]) {
+      // infix markers
+      for (let d of ["ˈ", ""]) {
+        // stress markers
+        ipaReef = ipaReef.replaceAll(
+          ".".concat(d).concat(b).concat(c),
+          ".".concat(d).concat(soften[b]).concat(c)
+        );
         // in case there's a space before the ejective
-        ipaReef = ipaReef.replaceAll(" ".concat(d).concat(b).concat(c), " ".concat(d).concat(soften[b]).concat(c));
+        ipaReef = ipaReef.replaceAll(
+          " ".concat(d).concat(b).concat(c),
+          " ".concat(d).concat(soften[b]).concat(c)
+        );
 
         // start of a word
         if (ipaReef.startsWith(d + b)) {
@@ -279,7 +296,7 @@ export function ReefMe(IPA: string, Navi: string): [string, string, string, stri
         runes = [...syllable];
 
         if (runes[0] === "·") {
-          breakdown = breakdown.concat("·")
+          breakdown = breakdown.concat("·");
           syllable = syllable.slice("·".length);
           runes = [...syllable];
         }
@@ -378,28 +395,28 @@ export function ReefMe(IPA: string, Navi: string): [string, string, string, stri
     }
   }
 
-  let infixDots = "NULL"
-  let infixSlots = "NULL"
+  let infixDots = "NULL";
+  let infixSlots = "NULL";
 
   // Make infix locations
   if (ipaReef.includes("·")) {
     if (nonPhoneticVerbs.has(IPA)) {
       let reefVerb = nonPhoneticVerbs.get(IPA)!; // non-null assertion
-      infixDots = reefVerb[0]
-      infixSlots = reefVerb[1]
+      infixDots = reefVerb[0];
+      infixSlots = reefVerb[1];
     } else {
-      infixSlots = breakdown.replaceAll("-", "")
-      infixSlots = infixSlots.replace("·", "<0><1>")
-      infixSlots = infixSlots.replace("·", "<2>")
+      infixSlots = breakdown.replaceAll("-", "");
+      infixSlots = infixSlots.replace("·", "<0><1>");
+      infixSlots = infixSlots.replace("·", "<2>");
 
       if (!infixSlots.includes("<2>")) {
-        infixSlots = infixSlots.replace("<0><1>", "<0><1><2>")
+        infixSlots = infixSlots.replace("<0><1>", "<0><1><2>");
       }
 
-      infixDots = infixSlots.replaceAll("<0><1>", ".")
-      infixDots = infixDots.replaceAll("<2>", ".")
+      infixDots = infixSlots.replaceAll("<0><1>", ".");
+      infixDots = infixDots.replaceAll("<2>", ".");
     }
-    breakdown = breakdown.replaceAll("·","")
+    breakdown = breakdown.replaceAll("·", "");
   }
 
   // show the first word
@@ -411,66 +428,75 @@ export function ReefMe(IPA: string, Navi: string): [string, string, string, stri
   }
 
   // Capitalize The Reef Na'vi Word
-  
-  if (Navi !== Navi.toLowerCase()) {
-    let reefSplit = reefWord.split(" ")
-    let naviSplit = Navi.split(" ")
-    reefWord = ""
 
-    i = 0
+  if (Navi !== Navi.toLowerCase()) {
+    let reefSplit = reefWord.split(" ");
+    let naviSplit = Navi.split(" ");
+    reefWord = "";
+
+    i = 0;
 
     while (i < reefSplit.length) {
       let newReef = "";
-      let thisReef = reefSplit[i]
-      let thisNavi = naviSplit[i]
+      let thisReef = reefSplit[i];
+      let thisNavi = naviSplit[i];
       if (thisNavi !== thisNavi.toLowerCase()) {
         let tìftang = false;
-        let briefReef = thisNavi.replaceAll("Tsy", "Ch") //edge cases of capitalization
-        briefReef = briefReef.replaceAll("tsy", "ch")
-        briefReef = briefReef.replaceAll("Px", "B")
-        briefReef = briefReef.replaceAll("px", "b")
-        briefReef = briefReef.replaceAll("Tx", "D")
-        briefReef = briefReef.replaceAll("tx", "d")
-        briefReef = briefReef.replaceAll("Kx", "G")
-        briefReef = briefReef.replaceAll("kx", "g")
-        let reefRunes = [...thisReef]
-        let naviRunes = [...briefReef]
+        let briefReef = thisNavi.replaceAll("Tsy", "Ch"); //edge cases of capitalization
+        briefReef = briefReef.replaceAll("tsy", "ch");
+        briefReef = briefReef.replaceAll("Px", "B");
+        briefReef = briefReef.replaceAll("px", "b");
+        briefReef = briefReef.replaceAll("Tx", "D");
+        briefReef = briefReef.replaceAll("tx", "d");
+        briefReef = briefReef.replaceAll("Kx", "G");
+        briefReef = briefReef.replaceAll("kx", "g");
+        let reefRunes = [...thisReef];
+        let naviRunes = [...briefReef];
         if (naviRunes[0] == "'") {
           tìftang = true;
           newReef = newReef.concat("'");
           reefRunes.shift();
-          naviRunes.shift()
+          naviRunes.shift();
         }
-    
+
         // find what needs to be capitalized
-        let lettersToCapitalize: Array<string> = [];
+        let lettersToCapitalize: string[] = [];
         for (let a of naviRunes) {
           if (a !== a.toLowerCase()) {
-            lettersToCapitalize = lettersToCapitalize.concat(a.toLowerCase())
+            lettersToCapitalize = lettersToCapitalize.concat(a.toLowerCase());
           }
         }
-    
+
         // capitalize it
-        let letterIndex = 0
+        let letterIndex = 0;
         for (let a of reefRunes) {
-          if (letterIndex < lettersToCapitalize.length && a === lettersToCapitalize[letterIndex]) {
-            letterIndex += 1
-            newReef = newReef.concat(a.toUpperCase())
+          if (
+            letterIndex < lettersToCapitalize.length &&
+            a === lettersToCapitalize[letterIndex]
+          ) {
+            letterIndex += 1;
+            newReef = newReef.concat(a.toUpperCase());
           } else {
-            newReef = newReef.concat(a)
+            newReef = newReef.concat(a);
           }
         }
-    
-        reefWord = reefWord.concat(newReef)
+
+        reefWord = reefWord.concat(newReef);
       }
-  
-      i += 1
-  
+
+      i += 1;
+
       if (i < reefSplit.length) {
-        reefWord = reefWord.concat(" ")
+        reefWord = reefWord.concat(" ");
       }
     }
   }
 
-  return [reefWord, ipaReef, breakdown, infixDots, infixSlots];
+  return {
+    reefNavi: reefWord,
+    reefIPA: ipaReef,
+    reefSyllables: breakdown,
+    reefInfixDots: infixDots,
+    reefInfixSlots: infixSlots,
+  };
 }

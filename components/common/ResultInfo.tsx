@@ -15,7 +15,7 @@ import { useFavoritesContext } from "@/context/FavoritesContext";
 import { useResultsLanguageContext } from "@/context/ResultsLanguageContext";
 import { useSound } from "@/hooks/useSound";
 import { ReefMe } from "@/lib/dialect";
-import { Romanize } from "@/lib/romanize"
+import { Romanize } from "@/lib/romanize";
 import { useTheme } from "@react-navigation/native";
 import { fwewSimple, type LanguageCode, type Word } from "fwew.js";
 import { useCallback, useEffect, useState } from "react";
@@ -34,8 +34,10 @@ export function ResultInfo({ word }: ResultInfoProps) {
   const ui = i18n[appLanguage];
   const { dialect } = useDialectContext();
   const forestNavi = word.Navi;
-  const reef = ReefMe(word.IPA, forestNavi)
-  const reefNavi = reef[0];
+  const { reefNavi, reefInfixDots, reefInfixSlots } = ReefMe(
+    word.IPA,
+    forestNavi
+  );
 
   return (
     <CardView style={styles.container}>
@@ -64,10 +66,13 @@ export function ResultInfo({ word }: ResultInfoProps) {
       <Pronunciation {...word} />
       {word.PartOfSpeech.startsWith("v") && (
         <>
-          <DetailItem label={ui.search.infixDots} value={dialect === "reef" ? reef[3] : word.InfixDots} />
+          <DetailItem
+            label={ui.search.infixDots}
+            value={dialect === "reef" ? reefInfixDots : word.InfixDots}
+          />
           <DetailItem
             label={ui.search.infixSlots}
-            value={dialect === "reef" ? reef[4] : word.InfixDots}
+            value={dialect === "reef" ? reefInfixSlots : word.InfixLocations}
           />
         </>
       )}
@@ -228,11 +233,10 @@ function Pronunciation({ IPA, Stressed, Navi }: PronunciationProps) {
   const { appLanguage } = useAppLanguageContext();
   const ui = i18n[appLanguage];
   const { dialect } = useDialectContext();
-  let reefs = ReefMe(IPA, Navi);
+  let { reefIPA, reefSyllables } = ReefMe(IPA, Navi);
   let forestIPA = IPA.replaceAll("ʊ", "u");
-  let reefIPA = reefs[1];
-  let ReefSyllables = reefs[2];
-  let ForestSyllables = Romanize(forestIPA)
+  let ForestSyllables = Romanize(forestIPA);
+
   return (
     <>
       <DetailItem
@@ -248,10 +252,14 @@ function Pronunciation({ IPA, Stressed, Navi }: PronunciationProps) {
             <Breakdown
               IPA={reefIPA}
               Stressed={Stressed}
-              Syllables={ReefSyllables}
+              Syllables={reefSyllables}
             />
           ) : (
-            <Breakdown IPA={IPA} Stressed={Stressed} Syllables={ForestSyllables} />
+            <Breakdown
+              IPA={IPA}
+              Stressed={Stressed}
+              Syllables={ForestSyllables}
+            />
           )}
         </Text>
       </CardView>
