@@ -28,9 +28,15 @@ export default function ThatScreen() {
 
   return (
     <ScrollView style={styles.container}>
-      <ThatTable1 />
-      <Divider />
-      <ThatTable2 />
+        <View
+          style={{
+            maxWidth: "100%",
+          }}
+        >
+          <ThatTable1 />
+          <Divider />
+          <ThatTable2 />
+        </View>
     </ScrollView>
   );
 }
