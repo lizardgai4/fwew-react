@@ -44,7 +44,7 @@ export function ResultInfo({ word }: ResultInfoProps) {
       <CardView style={styles.buttonContainer}>
         <Button
           onPress={() => playSound(word.ID)}
-          disabled={disabled || dialect === "reef"}
+          disabled={disabled || (dialect === "reef" && forestNavi !== reefNavi)}
           icon="volume-up"
           text={ui.search.audio}
           style={styles.audioButton}
