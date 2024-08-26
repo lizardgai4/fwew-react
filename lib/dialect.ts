@@ -39,7 +39,7 @@ export function ReefMe(IPA: string, Navi: string): ReefData {
   let ipaReef = IPA;
 
   // Deal with ejectives
-  var soften: { [id: string]: string } = {
+  const soften: { [id: string]: string } = {
     "p'": "b",
     "t'": "d",
     "k'": "g",
@@ -48,7 +48,7 @@ export function ReefMe(IPA: string, Navi: string): ReefData {
   const vowels = ["a", "ɛ", "u", "ɪ", "o", "i", "æ", "ʊ"];
 
   // atxkxe and ekxtxu become adge and egdu
-  let ejectives = ["p'", "t'", "k'"];
+  const ejectives = ["p'", "t'", "k'"];
   for (let b of ejectives) {
     for (let a of ejectives) {
       ipaReef = ipaReef.replaceAll(
@@ -176,7 +176,7 @@ export function ReefMe(IPA: string, Navi: string): ReefData {
 
         let runes = [...syllable];
 
-        var romanize: { [id: string]: string } = {
+        const romanize: { [id: string]: string } = {
           ʔ: "'",
           l: "l",
           ɾ: "r",
@@ -420,7 +420,7 @@ export function ReefMe(IPA: string, Navi: string): ReefData {
   }
 
   // show the first word
-  let reefWord = "";
+  let reefWord;
   if (nonPhoneticSpellings.has(IPA)) {
     reefWord = nonPhoneticSpellings.get(IPA)!; // non-null assertion
   } else {
