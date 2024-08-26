@@ -12,7 +12,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#7494BA"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "bundleIdentifier": "app.fwew.react",
       "buildNumber": "4.0.0",
@@ -60,6 +62,7 @@
       "eas": {
         "projectId": "8dda2b73-89f1-448d-9bd3-b4d8919d2851"
       }
-    }
+    },
+    "owner": "fwew"
   }
 }
