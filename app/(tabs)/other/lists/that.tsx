@@ -28,15 +28,9 @@ export default function ThatScreen() {
 
   return (
     <ScrollView style={styles.container}>
-        <View
-          style={{
-            maxWidth: "100%",
-          }}
-        >
-          <ThatTable1 />
-          <Divider />
-          <ThatTable2 />
-        </View>
+      <ThatTable1 />
+      <Divider />
+      <ThatTable2 />
     </ScrollView>
   );
 }
@@ -132,7 +126,9 @@ function Divider({ vertical }: { vertical?: boolean }) {
       style={{
         backgroundColor: theme.colors.text,
         height: vertical ? 360 : 1,
+        maxHeight: vertical ? "93%" : 1,
         width: vertical ? 1 : 360,
+        maxWidth: vertical ? 1 : "93%",
         alignSelf: "center",
         margin: vertical ? 32 : 0,
       }}
@@ -157,6 +153,7 @@ function ThatTable2Row({ row }: { row: string[] }) {
         const widths = [100, 60, 100];
         const fontWeight = i === 0 ? "bold" : "normal";
         const fontStyle = i === 1 ? "italic" : "normal";
+        const fontSize = i === 0 ? 16 : 14;
         return (
           <Text
             key={`tt2r_c${i}`}
@@ -164,6 +161,7 @@ function ThatTable2Row({ row }: { row: string[] }) {
               width: widths[i],
               fontWeight,
               fontStyle,
+              fontSize,
             }}
           >
             {col}
@@ -177,7 +175,6 @@ function ThatTable2Row({ row }: { row: string[] }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
     gap: 32,
   },
   header: {
@@ -198,14 +195,14 @@ const styles = StyleSheet.create({
   },
   thatTable1: {
     alignSelf: "center",
-    padding: 16,
-    paddingTop: 0,
-    gap: 16,
+    padding: 12,
+    paddingTop: 12,
+    gap: 12,
   },
   thatTable2: {
     alignSelf: "center",
-    padding: 16,
-    gap: 16,
+    padding: 12,
+    gap: 12,
     paddingBottom: 32,
   },
   tableRow: {
@@ -217,7 +214,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    gap: 16,
+    gap: 12,
   },
   table1Col1: {
     fontSize: 16,
@@ -225,6 +222,7 @@ const styles = StyleSheet.create({
     width: 80,
   },
   table1Col: {
+    fontSize: 14,
     width: 50,
   },
 });
