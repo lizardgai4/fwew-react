@@ -2,9 +2,19 @@ import Colors from "@/constants/Colors";
 import { useDialectContext } from "@/context/DialectContext";
 import { FontAwesome } from "@expo/vector-icons";
 import { Link } from "expo-router";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  type ViewStyle,
+} from "react-native";
 
-export function ActionButtons() {
+type ActionButtonsProps = {
+  style?: ViewStyle;
+};
+
+export function ActionButtons({ style }: ActionButtonsProps) {
   const { dialectDisplay, toggleDialect } = useDialectContext();
 
   return (
@@ -13,6 +23,7 @@ export function ActionButtons() {
         flexDirection: "row",
         padding: 16,
         gap: 16,
+        ...style,
       }}
     >
       <Pressable style={styles.actionButton} onPress={toggleDialect}>
@@ -28,7 +39,6 @@ export function ActionButtons() {
             <Text
               style={{
                 color: "#fff",
-                // fontWeight: "bold",
                 fontSize: 20,
               }}
             >
