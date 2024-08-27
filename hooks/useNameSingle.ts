@@ -1,13 +1,13 @@
+import { useDialectContext } from "@/context/DialectContext";
 import { useDebounce } from "@/hooks/useDebounce";
 import type { NumericString } from "@/types/common";
-import type { Dialect } from "fwew.js";
 import { nameSingle } from "fwew.js";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 export default function useNameSingle() {
   const [numNames, setNumNames] = useState<NumericString>("4");
   const [numSyllables, setNumSyllables] = useState<NumericString>("0");
-  const [dialect, setDialect] = useState<Dialect>("forest");
+  const { dialect } = useDialectContext();
   const [loading, setLoading] = useState(false);
   const [names, setNames] = useState<string[]>([]);
   const debounce = useDebounce();
@@ -63,8 +63,6 @@ export default function useNameSingle() {
     updateNumNames,
     numSyllables,
     updateNumSyllables,
-    dialect,
-    setDialect,
     loading,
     execute,
   };

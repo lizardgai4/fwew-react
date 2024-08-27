@@ -32,8 +32,6 @@ export default function NameFullScreen() {
     updateSyllables2,
     syllables3,
     updateSyllables3,
-    dialect,
-    setDialect,
     ending,
     setEnding,
     loading,
@@ -102,12 +100,6 @@ export default function NameFullScreen() {
               items={uiNameFull.nameEndingOptions}
               active={(value) => ending === value}
               onSelect={setEnding}
-            />
-            <Text style={styles.label}>{uiNames.dialect}</Text>
-            <OptionSelect
-              items={uiNames.dialects}
-              active={(value) => dialect === value}
-              onSelect={setDialect}
             />
           </View>
         }

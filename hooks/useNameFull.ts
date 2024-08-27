@@ -1,6 +1,7 @@
+import { useDialectContext } from "@/context/DialectContext";
 import { useDebounce } from "@/hooks/useDebounce";
 import type { NumericString } from "@/types/common";
-import type { Dialect, NameEnding } from "fwew.js";
+import type { NameEnding } from "fwew.js";
 import { nameFull } from "fwew.js";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -10,7 +11,7 @@ export function useNameFull() {
   const [syllables1, setSyllables1] = useState<NumericString>("0");
   const [syllables2, setSyllables2] = useState<NumericString>("0");
   const [syllables3, setSyllables3] = useState<NumericString>("0");
-  const [dialect, setDialect] = useState<Dialect>("forest");
+  const { dialect } = useDialectContext();
   const [loading, setLoading] = useState(false);
   const [names, setNames] = useState<string[]>([]);
   const debounce = useDebounce();
@@ -103,8 +104,6 @@ export function useNameFull() {
     updateSyllables2,
     syllables3,
     updateSyllables3,
-    dialect,
-    setDialect,
     ending,
     setEnding,
     loading,

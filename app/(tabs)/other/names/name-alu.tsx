@@ -24,8 +24,6 @@ export default function NameAluScreen() {
     setNounMode,
     adjMode,
     setAdjMode,
-    dialect,
-    setDialect,
     loading,
     execute,
   } = useNameAlu();
@@ -81,12 +79,6 @@ export default function NameAluScreen() {
               items={uiNameAlu.adjModes}
               active={(value) => adjMode === value}
               onSelect={setAdjMode}
-            />
-            <Text style={styles.label}>{uiNames.dialect}</Text>
-            <OptionSelect
-              items={uiNames.dialects}
-              active={(value) => dialect === value}
-              onSelect={setDialect}
             />
           </View>
         }
