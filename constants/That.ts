@@ -20,3 +20,8 @@ export const ThatTable2Data = [
   ["kuma/akum", "conj.", "that (as a result)"],
   ["a", "part.", "clause level attributive marker"],
 ];
+
+export const reefReplacements = new Map<string, string>([
+  ["tseyä", "tseye"],
+  ["tsa'u", "tsau"],
+]);

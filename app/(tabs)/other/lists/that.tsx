@@ -1,7 +1,8 @@
 import { Text, View } from "@/components/common/Themed";
-import { ThatTable1Data, ThatTable2Data } from "@/constants/That";
+import { ThatTable1Data, ThatTable2Data, reefReplacements } from "@/constants/That";
 import { useTheme } from "@react-navigation/native";
 import { ScrollView, StyleSheet, useWindowDimensions } from "react-native";
+import { useDialectContext } from "@/context/DialectContext";
 
 export default function ThatScreen() {
   const { width, height } = useWindowDimensions();
@@ -53,10 +54,14 @@ function ThatTable1() {
 
 function ThatTable1HeaderRow1({ row }: { row: string[] }) {
   const widths = [50, 50, 120, 0];
+  const { dialect } = useDialectContext();
 
   return (
     <View style={styles.tableRow}>
       {row.map((col, i) => {
+        if (dialect === "reef" && reefReplacements.has(col)) {
+          col = reefReplacements.get(col)!; // non-null assertion
+        }
         return (
           <Text
             key={`tt1hr1_c${i}`}
@@ -76,10 +81,14 @@ function ThatTable1HeaderRow1({ row }: { row: string[] }) {
 
 function ThatTable1HeaderRow2({ row }: { row: string[] }) {
   const widths = [0, 110, 70, 44, 55];
+  const { dialect } = useDialectContext();
 
   return (
     <View style={styles.tableRow}>
       {row.map((col, i) => {
+        if (dialect === "reef" && reefReplacements.has(col)) {
+          col = reefReplacements.get(col)!; // non-null assertion
+        }
         return (
           <Text
             key={`tt1hr2_c${i}`}

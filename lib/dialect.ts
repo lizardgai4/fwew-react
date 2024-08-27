@@ -492,6 +492,11 @@ export function ReefMe(IPA: string, Navi: string): ReefData {
     }
   }
 
+  // leniting adpositions
+  if (Navi.endsWith("+")) {
+    reefWord += "+"
+  }
+
   return {
     reefNavi: reefWord,
     reefIPA: ipaReef,
