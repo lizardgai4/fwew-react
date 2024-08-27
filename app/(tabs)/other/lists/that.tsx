@@ -54,14 +54,10 @@ function ThatTable1() {
 
 function ThatTable1HeaderRow1({ row }: { row: string[] }) {
   const widths = [50, 50, 120, 0];
-  const { dialect } = useDialectContext();
 
   return (
     <View style={styles.tableRow}>
       {row.map((col, i) => {
-        if (dialect === "reef" && reefReplacements.has(col)) {
-          col = reefReplacements.get(col)!; // non-null assertion
-        }
         return (
           <Text
             key={`tt1hr1_c${i}`}
@@ -81,14 +77,10 @@ function ThatTable1HeaderRow1({ row }: { row: string[] }) {
 
 function ThatTable1HeaderRow2({ row }: { row: string[] }) {
   const widths = [0, 110, 70, 44, 55];
-  const { dialect } = useDialectContext();
 
   return (
     <View style={styles.tableRow}>
       {row.map((col, i) => {
-        if (dialect === "reef" && reefReplacements.has(col)) {
-          col = reefReplacements.get(col)!; // non-null assertion
-        }
         return (
           <Text
             key={`tt1hr2_c${i}`}
@@ -107,9 +99,14 @@ function ThatTable1HeaderRow2({ row }: { row: string[] }) {
 }
 
 function ThatTable1Row({ row }: { row: string[] }) {
+  const { dialect } = useDialectContext();
   return (
     <View style={styles.tableRowWithGap}>
       {row.map((col, i) => {
+        console.log(col)
+        if (dialect === "reef" && reefReplacements.has(col)) {
+          col = reefReplacements.get(col)!; // non-null assertion
+        }
         if (i === 0) {
           return (
             <Text key={`tt1r_c${i}`} style={styles.table1Col1}>
@@ -159,6 +156,11 @@ function ThatTable2Row({ row }: { row: string[] }) {
   return (
     <View style={styles.tableRow}>
       {row.map((col, i) => {
+        const { dialect } = useDialectContext();
+        console.log(col)
+        if (dialect === "reef" && reefReplacements.has(col)) {
+          col = reefReplacements.get(col)!; // non-null assertion
+        }
         const widths = [100, 60, 100];
         const fontWeight = i === 0 ? "bold" : "normal";
         const fontStyle = i === 1 ? "italic" : "normal";

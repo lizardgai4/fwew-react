@@ -22,6 +22,6 @@ export const ThatTable2Data = [
 ];
 
 export const reefReplacements = new Map<string, string>([
-  ["tseyä", "tseye"],
+  ["Tseyä", "Tseye"],
   ["tsa'u", "tsau"],
 ]);
