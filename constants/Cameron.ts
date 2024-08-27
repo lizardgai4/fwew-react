@@ -18,3 +18,10 @@ export const CameronWords = {
   Life,
   Other,
 };
+
+export const reefReplacements = new Map<string, string>([
+  ["Mo'at", "Moat"],
+  ["Lo'ak", "Loak"],
+  ["Rotxo", "Rodo"],
+  ["i'en", "ien"],
+])
