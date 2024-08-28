@@ -104,10 +104,10 @@ function ThatTable1HeaderRow2({ row }: { row: string[] }) {
 
 function ThatTable1Row({ row }: { row: string[] }) {
   const { dialect } = useDialectContext();
+
   return (
     <View style={styles.tableRowWithGap}>
       {row.map((col, i) => {
-        console.log(col);
         if (dialect === "reef" && reefReplacements.has(col)) {
           col = reefReplacements.get(col)!; // non-null assertion
         }
