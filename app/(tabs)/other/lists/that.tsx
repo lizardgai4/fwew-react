@@ -1,8 +1,8 @@
-import { Text, View } from "@/components/common/Themed";
-import { ThatTable1Data, ThatTable2Data, reefReplacements } from "@/constants/That";
-import { useTheme } from "@react-navigation/native";
-import { ScrollView, StyleSheet, useWindowDimensions } from "react-native";
-import { useDialectContext } from "@/context/DialectContext";
+import {Text, View} from "@/components/common/Themed";
+import {reefReplacements, ThatTable1Data, ThatTable2Data} from "@/constants/That";
+import {useTheme} from "@react-navigation/native";
+import {ScrollView, StyleSheet, useWindowDimensions} from "react-native";
+import {useDialectContext} from "@/context/DialectContext";
 
 export default function ThatScreen() {
   const { width, height } = useWindowDimensions();
@@ -153,11 +153,11 @@ function ThatTable2() {
 }
 
 function ThatTable2Row({ row }: { row: string[] }) {
+  const { dialect } = useDialectContext();
+
   return (
     <View style={styles.tableRow}>
       {row.map((col, i) => {
-        const { dialect } = useDialectContext();
-        console.log(col)
         if (dialect === "reef" && reefReplacements.has(col)) {
           col = reefReplacements.get(col)!; // non-null assertion
         }
