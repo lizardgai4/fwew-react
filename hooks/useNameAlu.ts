@@ -29,7 +29,7 @@ export function useNameAlu() {
       dialect,
       { signal: abortController.current.signal }
     );
-    setNames(results.trim().replaceAll("__", "").split("\n"));
+    setNames(results.trim().split("\n"));
     setLoading(false);
   }, [adjMode, dialect, nounMode, numNames, numSyllables]);
 
