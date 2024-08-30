@@ -9,6 +9,7 @@ import { useTheme } from "@react-navigation/native";
 import { Tabs } from "expo-router";
 import { useColorScheme } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
+import { View } from "react-native";
 
 type TabBarIconProps = {
   name: React.ComponentProps<typeof FontAwesome>["name"];
@@ -31,6 +32,7 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
+        headerStyle: { backgroundColor: theme.colors.primary },
         headerTintColor: Colors.dark.text,
         tabBarActiveTintColor: theme.colors.primary,
         tabBarInactiveTintColor: colors.placeholder,
