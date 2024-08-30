@@ -1,5 +1,5 @@
 import GlobalStyle from "@/components/common/GlobalStyle";
-import i18n from "@/constants/i18n";
+import { getUI } from "@/constants/i18n";
 import { AppLanguageProvider } from "@/context/AppLanguageContext";
 import { DialectProvider } from "@/context/DialectContext";
 import { FavoritesProvider } from "@/context/FavoritesContext";
@@ -64,14 +64,15 @@ function RootLayoutNav() {
   const appLanguageValue = useAppLanguage();
   const { appLanguage } = appLanguageValue;
   const resultsLanguage = useResultsLanguage();
-  const dialect = useDialect();
+  const dialectValue = useDialect();
+  const { dialect } = dialectValue;
   const favorites = useFavorites();
   const theme =
     colorScheme === "dark"
-      ? dialect.dialect === "reef"
+      ? dialectValue.dialect === "reef"
         ? FwewDarkReefTheme
         : FwewDarkTheme
-      : dialect.dialect === "reef"
+      : dialectValue.dialect === "reef"
       ? FwewLightReefTheme
       : FwewLightTheme;
 
@@ -82,7 +83,7 @@ function RootLayoutNav() {
       <ThemeProvider value={theme}>
         <AppLanguageProvider value={appLanguageValue}>
           <ResultsLanguageProvider value={resultsLanguage}>
-            <DialectProvider value={dialect}>
+            <DialectProvider value={dialectValue}>
               <FavoritesProvider value={favorites}>
                 <Stack>
                   <Stack.Screen
@@ -92,14 +93,14 @@ function RootLayoutNav() {
                   <Stack.Screen
                     name="favorites"
                     options={{
-                      title: i18n[appLanguage].screens.favorites,
+                      title: getUI(appLanguage, dialect).screens.favorites,
                       presentation: "modal",
                     }}
                   />
                   <Stack.Screen
                     name="settings"
                     options={{
-                      title: i18n[appLanguage].screens.settings,
+                      title: getUI(appLanguage, dialect).screens.settings,
                       presentation: "modal",
                     }}
                   />

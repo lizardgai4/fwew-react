@@ -1,15 +1,17 @@
 import { MonoText } from "@/components/common/StyledText";
 import { CardView, Text } from "@/components/common/Themed";
 import { GitDetails } from "@/components/settings/GitDetails";
-import i18n from "@/constants/i18n";
+import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
+import { useDialectContext } from "@/context/DialectContext";
 import { useVersion } from "@/hooks/useVersion";
 import { StyleSheet } from "react-native";
 
 export function Version() {
   const version = useVersion();
   const { appLanguage } = useAppLanguageContext();
-  const ui = i18n[appLanguage];
+  const { dialect } = useDialectContext();
+  const ui = getUI(appLanguage, dialect);
 
   return (
     <>

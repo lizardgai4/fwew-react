@@ -183,7 +183,7 @@ const strings: UITranslation = {
     dialect: "Dialecto",
     dialects: [
       { name: "bosque", value: "forest" },
-      { name: "interdialectal", value: "interdialect" },
+      // { name: "interdialectal", value: "interdialect" },
       { name: "arrecife", value: "reef" },
     ],
     syllablesOptions: [

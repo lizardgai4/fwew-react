@@ -180,7 +180,7 @@ const strings: UITranslation = {
     dialect: "Dialekt",
     dialects: [
       { name: "leśny", value: "forest" },
-      { name: "międzydialektalny", value: "interdialect" },
+      // { name: "międzydialektalny", value: "interdialect" },
       { name: "riffowy", value: "reef" },
     ],
     syllablesOptions: [

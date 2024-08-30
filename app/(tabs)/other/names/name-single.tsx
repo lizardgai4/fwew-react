@@ -5,8 +5,9 @@ import { OptionSelect } from "@/components/common/OptionSelect";
 import { ResultCount } from "@/components/common/ResultCount";
 import { Text, View } from "@/components/common/Themed";
 import { NameResults } from "@/components/names/NameResults";
-import i18n from "@/constants/i18n";
+import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
+import { useDialectContext } from "@/context/DialectContext";
 import useNameSingle from "@/hooks/useNameSingle";
 import { useTheme } from "@react-navigation/native";
 import * as Clipboard from "expo-clipboard";
@@ -23,7 +24,11 @@ export default function NameSingleScreen() {
     execute,
   } = useNameSingle();
   const { appLanguage } = useAppLanguageContext();
-  const { names: uiNames, nameSingle: uiNameSingle } = i18n[appLanguage];
+  const { dialect } = useDialectContext();
+  const { names: uiNames, nameSingle: uiNameSingle } = getUI(
+    appLanguage,
+    dialect
+  );
   const theme = useTheme();
   const resultsVisible = numNames.length > 0 && names.length > 0;
 

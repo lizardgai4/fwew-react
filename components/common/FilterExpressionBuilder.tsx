@@ -2,8 +2,9 @@ import { AlphaTextInput } from "@/components/common/AlphaTextInput";
 import { DropDownSelect } from "@/components/common/DropDownSelect";
 import { NumericTextInput } from "@/components/common/NumericTextInput";
 import { Text, View } from "@/components/common/Themed";
-import i18n from "@/constants/i18n";
+import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
+import { useDialectContext } from "@/context/DialectContext";
 import type {
   FilterExpressionBuilderValue,
   ListMenuCondItem,
@@ -19,7 +20,8 @@ type FilterExpressionBuilderProps = {
 export function FilterExpressionBuilder(props: FilterExpressionBuilderProps) {
   const { value, onChange } = props;
   const { appLanguage } = useAppLanguageContext();
-  const { list, common } = i18n[appLanguage];
+  const { dialect } = useDialectContext();
+  const { list, common } = getUI(appLanguage, dialect);
   const whatValues = list.listMenu.whatValues;
   const condValues = value.what
     ? list.listMenu.condValues[value.what.value]

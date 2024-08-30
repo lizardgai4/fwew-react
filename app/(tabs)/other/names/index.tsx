@@ -1,13 +1,15 @@
 import { ItalicText } from "@/components/common/StyledText";
 import { CardView, Text, View } from "@/components/common/Themed";
-import i18n from "@/constants/i18n";
+import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
+import { useDialectContext } from "@/context/DialectContext";
 import { Link } from "expo-router";
 import { StyleSheet } from "react-native";
 
 export default function NamesScreen() {
   const { appLanguage } = useAppLanguageContext();
-  const { names } = i18n[appLanguage];
+  const { dialect } = useDialectContext();
+  const { names } = getUI(appLanguage, dialect);
 
   return (
     <View style={styles.container}>

@@ -1,6 +1,8 @@
 import { CameronWords } from "@/constants/Cameron";
 import type { UITranslation } from "@/types/i18n";
 
+// Lì'fya leNa'vi (Na'rìngä)
+
 const partOfSpeech = {
   "adj.": "syonlì'u",
   "adp.": "starlì'u",
@@ -177,7 +179,7 @@ const strings: UITranslation = {
     dialect: "Lì'fyafnel",
     dialects: [
       { name: "lì'fya na'rìngä", value: "forest" },
-      { name: "melì'fyafnel", value: "interdialect" },
+      // { name: "melì'fyafnel", value: "interdialect" },
       { name: "lì'fya wione", value: "reef" },
     ],
     syllablesOptions: [
@@ -232,7 +234,7 @@ const strings: UITranslation = {
         value: CameronWords.A1Names,
       },
       {
-        key: "Ta Muvea UNiltìrantokx a Stxo",
+        key: "Ta Muvea Uniltìrantokx a Stxo",
         value: CameronWords.A2Names,
       },
       {
@@ -247,9 +249,9 @@ const strings: UITranslation = {
     ],
   },
   lenition: {
-    glottalStop: "(Drops, except before ll/rr)",
-    lenitingPrefixes: "Leniting prefixes",
-    lenitingAdpositions: "Leniting adpositions",
+    glottalStop: "('ìp mungwrr sre 'll fu 'rr)",
+    lenitingPrefixes: "ayeolì'uvi a leykatem 'awvea pamit lì'uä",
+    lenitingAdpositions: "aystarlìu a leykatem 'awvea pamit lì'uä",
   },
   stats: {
     phonemes: "Ayfamrelvi",

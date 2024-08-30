@@ -8,7 +8,7 @@ import { CardView, Text } from "@/components/common/Themed";
 import { Affixes } from "@/constants/Affixes";
 import Colors from "@/constants/Colors";
 import { LenitingAdpositions } from "@/constants/Lenition";
-import i18n from "@/constants/i18n";
+import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
 import { useFavoritesContext } from "@/context/FavoritesContext";
@@ -31,8 +31,8 @@ export function ResultInfo({ word }: ResultInfoProps) {
   const { resultsLanguage } = useResultsLanguageContext();
   const local = word[resultsLanguage.toUpperCase() as Uppercase<LanguageCode>];
   const { appLanguage } = useAppLanguageContext();
-  const ui = i18n[appLanguage];
   const { dialect } = useDialectContext();
+  const ui = getUI(appLanguage, dialect);
   const forestNavi = word.Navi;
   const { reefNavi, reefInfixDots, reefInfixSlots } = ReefMe(
     word.IPA,
@@ -118,7 +118,8 @@ function FavoriteButton({ word }: { word: Word }) {
   const theme = useTheme();
   const { isFavorite, toggleFavorite } = useFavoritesContext();
   const { appLanguage } = useAppLanguageContext();
-  const ui = i18n[appLanguage];
+  const { dialect } = useDialectContext();
+  const ui = getUI(appLanguage, dialect);
 
   const faved = isFavorite(word);
   return (
@@ -231,8 +232,8 @@ type PronunciationProps = Pick<Word, "IPA" | "Stressed" | "Navi">;
 
 function Pronunciation({ IPA, Stressed, Navi }: PronunciationProps) {
   const { appLanguage } = useAppLanguageContext();
-  const ui = i18n[appLanguage];
   const { dialect } = useDialectContext();
+  const ui = getUI(appLanguage, dialect);
   let { reefIPA, reefSyllables } = ReefMe(IPA, Navi);
   let forestIPA = IPA.replaceAll("ʊ", "u");
   let ForestSyllables = Romanize(forestIPA);

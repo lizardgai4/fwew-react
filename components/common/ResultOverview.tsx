@@ -1,6 +1,7 @@
 import Colors from "@/constants/Colors";
 import { ReefMe } from "@/lib/dialect";
-import type { Dialect, Word } from "fwew.js";
+import type { Dialect } from "@/types/common";
+import type { Word } from "fwew.js";
 import { StyleSheet, View } from "react-native";
 import { MonoText } from "./StyledText";
 import { Text } from "./Themed";

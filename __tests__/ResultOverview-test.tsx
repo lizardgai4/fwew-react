@@ -1,14 +1,14 @@
 import { ResultOverview } from "@/components/common/ResultOverview";
 import Colors from "@/constants/Colors";
 import { render } from "@testing-library/react-native";
-import { Word } from "fwew.js";
+import type { Word } from "fwew.js";
 
 describe("<ResultOverview />", () => {
   type Param = { forest: string; ipa: string; reef: string };
 
   const params: Param[] = [
     { forest: "kaltxì", ipa: "kal.ˈt'ɪ", reef: "kaldì" },
-    { forest: "rä'ä", ipa: "ɾæ.ˈʔæ",  reef: "rä'ä" },
+    { forest: "rä'ä", ipa: "ɾæ.ˈʔæ", reef: "rä'ä" },
     // { forest: "rä'ä", ipa: "ɾæ.ˈʔæ",  reef: "rää" },
     { forest: "syaw", ipa: "sj·aw", reef: "shaw" },
     { forest: "tsyo", ipa: "t͡sjo", reef: "cho" },

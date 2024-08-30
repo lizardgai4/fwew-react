@@ -177,7 +177,7 @@ const strings: UITranslation = {
     dialect: "지역방언",
     dialects: [
       { name: "숲 부족", value: "forest" },
-      { name: "둘 다", value: "interdialect" },
+      // { name: "둘 다", value: "interdialect" },
       { name: "산호초 부족", value: "reef" },
     ],
     syllablesOptions: [

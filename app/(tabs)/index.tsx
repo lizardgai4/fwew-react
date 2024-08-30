@@ -2,8 +2,9 @@ import { ResultCount } from "@/components/common/ResultCount";
 import { SearchBar } from "@/components/common/SearchBar";
 import { SwitchInput } from "@/components/common/SwitchInput";
 import { FwewSearchResults } from "@/components/search/FwewSearchResults";
-import i18n from "@/constants/i18n";
+import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
+import { useDialectContext } from "@/context/DialectContext";
 import { useFwew } from "@/hooks/useFwew";
 import { useTheme } from "@react-navigation/native";
 import { RefreshControl, ScrollView, StyleSheet } from "react-native";
@@ -22,7 +23,8 @@ export default function SearchScreen() {
   } = useFwew();
   const { colors } = useTheme();
   const { appLanguage } = useAppLanguageContext();
-  const ui = i18n[appLanguage].search;
+  const { dialect } = useDialectContext();
+  const ui = getUI(appLanguage, dialect).search;
 
   return (
     <ScrollView

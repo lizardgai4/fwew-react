@@ -1,7 +1,8 @@
 import { ActionButtons } from "@/components/common/ActionButtons";
 import Colors from "@/constants/Colors";
-import i18n from "@/constants/i18n";
+import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
+import { useDialectContext } from "@/context/DialectContext";
 import { useTheme } from "@react-navigation/native";
 import { Stack } from "expo-router";
 import { Platform, StyleSheet, View } from "react-native";
@@ -9,7 +10,8 @@ import { Platform, StyleSheet, View } from "react-native";
 export default function StackLayout() {
   const theme = useTheme();
   const { appLanguage } = useAppLanguageContext();
-  const { screens, names } = i18n[appLanguage];
+  const { dialect } = useDialectContext();
+  const { screens, names } = getUI(appLanguage, dialect);
 
   return (
     <Stack

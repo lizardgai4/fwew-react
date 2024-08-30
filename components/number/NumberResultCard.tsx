@@ -1,7 +1,8 @@
 import { MonoText } from "@/components/common/StyledText";
 import { CardView, Text, View } from "@/components/common/Themed";
-import i18n from "@/constants/i18n";
+import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
+import { useDialectContext } from "@/context/DialectContext";
 import type { FwewError, FwewNumber } from "fwew.js";
 import { StyleSheet } from "react-native";
 
@@ -10,9 +11,9 @@ type NumberResultCardProps = {
 };
 
 export function NumberResultCard({ result }: NumberResultCardProps) {
-  const appLanguageValue = useAppLanguageContext();
-  const appLanguage = appLanguageValue?.appLanguage ?? "en";
-  const ui = i18n[appLanguage];
+  const { appLanguage } = useAppLanguageContext();
+  const { dialect } = useDialectContext();
+  const ui = getUI(appLanguage, dialect);
 
   if (!result) {
     return null;

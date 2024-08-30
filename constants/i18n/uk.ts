@@ -177,7 +177,7 @@ const strings: UITranslation = {
     dialect: "Діалект",
     dialects: [
       { name: "Лісовий", value: "forest" },
-      { name: "Міждіалектний", value: "interdialect" },
+      // { name: "Міждіалектний", value: "interdialect" },
       { name: "Рифовий", value: "reef" },
     ],
     syllablesOptions: [

@@ -3,14 +3,16 @@ import { About } from "@/components/settings/About";
 import { AppLanguageSelect } from "@/components/settings/AppLanguageSelect";
 import { DialectSelect } from "@/components/settings/DialectSelect";
 import { ResultsLanguageSelect } from "@/components/settings/ResultsLanguageSelect";
-import i18n from "@/constants/i18n";
+import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
+import { useDialectContext } from "@/context/DialectContext";
 import { StatusBar } from "expo-status-bar";
 import { Platform, ScrollView, StyleSheet } from "react-native";
 
 export default function SettingsScreen() {
   const { appLanguage } = useAppLanguageContext();
-  const ui = i18n[appLanguage];
+  const { dialect } = useDialectContext();
+  const ui = getUI(appLanguage, dialect);
 
   return (
     <ScrollView>

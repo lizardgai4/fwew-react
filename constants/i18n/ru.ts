@@ -195,7 +195,7 @@ const strings: UITranslation = {
     dialect: "Диалект",
     dialects: [
       { name: "лесной", value: "forest" },
-      { name: "междиалектный", value: "interdialect" },
+      // { name: "междиалектный", value: "interdialect" },
       { name: "рифовый", value: "reef" },
     ],
     syllablesOptions: [
