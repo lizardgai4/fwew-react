@@ -7,6 +7,7 @@ import fr from "@/constants/i18n/fr";
 import hu from "@/constants/i18n/hu";
 import ko from "@/constants/i18n/ko";
 import nl from "@/constants/i18n/nl";
+import lw from "@/constants/i18n/lw";
 import nx from "@/constants/i18n/nx";
 import pl from "@/constants/i18n/pl";
 import pt from "@/constants/i18n/pt";
@@ -27,6 +28,7 @@ const i18n: I18N = {
   ko,
   nl,
   nx,
+  lw,
   pl,
   pt,
   ru,

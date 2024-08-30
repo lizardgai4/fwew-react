@@ -227,6 +227,7 @@ export const FlagMap: FlagMapType = {
   ko: <SouthKorea />,
   nl: <Netherlands />,
   nx: <Navi />,
+  lw: <Navi />,
   pl: <Poland />,
   pt: <Brazil />,
   ru: <Russia />,
