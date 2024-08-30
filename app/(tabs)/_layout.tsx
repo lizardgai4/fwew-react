@@ -50,7 +50,26 @@ export default function TabLayout() {
         tabBarInactiveTintColor: colors.placeholder,
         headerLeft: () => <Logo />,
         headerRight: () => <ActionButtons />,
+        headerBackground: () => (
+          <LinearGradient
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 1 }}
+            //colors={["#88FFFF", "#55DDDD", "#0044FF"]}
+            colors={[theme.colors.primary, theme.colors.primary]}
+            style={{ height: "100%" }}
+          />
+        ),
+        tabBarBackground: () => (
+          <LinearGradient
+            start={{ x: 0, y: 0 }}
+            end={{ x: 0, y: 1 }}
+            //colors={["#00FFFF", "#0044FF", "#006699"]}
+            colors={[theme.colors.primary, theme.colors.primary]}
+            style={{ height: "100%" }}
+          />
+        ),
       }}
+      
     >
       <Tabs.Screen
         name="index"
