@@ -9,6 +9,8 @@ import { useFwew } from "@/hooks/useFwew";
 import { useTheme } from "@react-navigation/native";
 import { RefreshControl, ScrollView, StyleSheet, View } from "react-native";
 import { Background, BackgroundReef } from "@/themes/frutigerAero";
+import { RefreshControl, ScrollView, StyleSheet } from "react-native";
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function SearchScreen() {
   const {
