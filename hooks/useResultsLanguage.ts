@@ -8,7 +8,7 @@ export function useResultsLanguage() {
   const { getItem, setItem } = useAsyncStorage("fw_lang_results");
 
   async function saveResultsLanguage(value: ExtendedLanguageCode) {
-    if (value === "eo" || value === "nx") {
+    if (value === "eo" || value === "nx" || value == "lw") {
       return;
     }
     try {
