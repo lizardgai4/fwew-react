@@ -7,6 +7,7 @@ import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useFwew } from "@/hooks/useFwew";
 import { useTheme } from "@react-navigation/native";
 import { RefreshControl, ScrollView, StyleSheet } from "react-native";
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function SearchScreen() {
   const {
@@ -25,6 +26,13 @@ export default function SearchScreen() {
   const ui = i18n[appLanguage].search;
 
   return (
+    <LinearGradient
+    start={{ x: 0, y: 0 }}
+    end={{ x: 0, y: 1 }}
+    //colors={["#000033", "#000033", "#0000AA"]}
+    colors={[colors.background, colors.background]}
+    style={{ height: "100%" }}
+  >
     <ScrollView
       style={styles.container}
       keyboardShouldPersistTaps="always"
@@ -55,6 +63,7 @@ export default function SearchScreen() {
       />
       <FwewSearchResults loading={loading} results={results} />
     </ScrollView>
+    </LinearGradient>
   );
 }
 
