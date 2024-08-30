@@ -19,14 +19,12 @@ export default function NameSingleScreen() {
     updateNumNames,
     numSyllables,
     updateNumSyllables,
-    dialect,
-    setDialect,
     loading,
     execute,
   } = useNameSingle();
   const { appLanguage } = useAppLanguageContext();
   const { names: uiNames, nameSingle: uiNameSingle } = i18n[appLanguage];
-  const { colors } = useTheme();
+  const theme = useTheme();
   const resultsVisible = numNames.length > 0 && names.length > 0;
 
   const copyAll = async () => {
@@ -45,7 +43,7 @@ export default function NameSingleScreen() {
         <RefreshControl
           refreshing={loading}
           onRefresh={execute}
-          colors={[colors.primary]}
+          colors={[theme.colors.primary]}
         />
       }
     >
@@ -64,12 +62,6 @@ export default function NameSingleScreen() {
               items={uiNames.syllablesOptions}
               active={(value) => numSyllables === value}
               onSelect={updateNumSyllables}
-            />
-            <Text style={styles.label}>{uiNames.dialect}</Text>
-            <OptionSelect
-              items={uiNames.dialects}
-              active={(value) => dialect === value}
-              onSelect={setDialect}
             />
           </View>
         }

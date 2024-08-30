@@ -492,7 +492,7 @@ export function ReefMe(IPA: string, Navi: string): ReefData {
 
   // leniting adpositions
   if (Navi.endsWith("+")) {
-    reefWord += "+"
+    reefWord += "+";
   }
 
   return {

@@ -1,6 +1,7 @@
+import { useDialectContext } from "@/context/DialectContext";
 import { useDebounce } from "@/hooks/useDebounce";
 import type { NumericString } from "@/types/common";
-import type { AdjectiveMode, Dialect, NounMode } from "fwew.js";
+import type { AdjectiveMode, NounMode } from "fwew.js";
 import { nameAlu } from "fwew.js";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -9,7 +10,7 @@ export function useNameAlu() {
   const [numSyllables, setNumSyllables] = useState<NumericString>("0");
   const [nounMode, setNounMode] = useState<NounMode>("something");
   const [adjMode, setAdjMode] = useState<AdjectiveMode>("something");
-  const [dialect, setDialect] = useState<Dialect>("forest");
+  const { dialect } = useDialectContext();
   const [loading, setLoading] = useState(false);
   const [names, setNames] = useState<string[]>([]);
   const debounce = useDebounce();
@@ -76,8 +77,6 @@ export function useNameAlu() {
     setNounMode,
     adjMode,
     setAdjMode,
-    dialect,
-    setDialect,
     loading,
     execute,
   };

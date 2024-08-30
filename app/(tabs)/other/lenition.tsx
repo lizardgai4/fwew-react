@@ -1,3 +1,4 @@
+import { ResultCount } from "@/components/common/ResultCount";
 import { BoldText, MonoText } from "@/components/common/StyledText";
 import { CardView, Text, View } from "@/components/common/Themed";
 import { ListResults } from "@/components/list/ListResults";
@@ -88,6 +89,11 @@ function LenAdpList() {
   return (
     <View style={styles.container}>
       <BoldText style={styles.header}>{ui.lenitingAdpositions}</BoldText>
+      <ResultCount
+        resultCount={results.length}
+        visible={!loading && results.length > 0}
+        style={{ paddingBottom: 12 }}
+      />
       <ListResults results={results} loading={loading} />
     </View>
   );

@@ -1,9 +1,9 @@
 import { Text, View } from "@/components/common/Themed";
+import { reefReplacements } from "@/constants/Cameron";
 import i18n from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
-import { FlatList, StyleSheet } from "react-native";
-import { reefReplacements } from "@/constants/Cameron"
 import { useDialectContext } from "@/context/DialectContext";
+import { FlatList, StyleSheet } from "react-native";
 
 export default function CameronScreen() {
   const { appLanguage } = useAppLanguageContext();
@@ -15,22 +15,21 @@ export default function CameronScreen() {
       <FlatList
         data={ui.data}
         renderItem={({ item }) => {
-          let newValue = item.value
+          let newValue = item.value;
           if (dialect === "reef") {
-            newValue = ""
-            let start = true
+            newValue = "";
+            let start = true;
             for (let a of item.value.split(", ", 100)) {
               if (!start) {
-                newValue = newValue.concat(", ")
+                newValue = newValue.concat(", ");
               }
-              start = false
+              start = false;
               if (reefReplacements.has(a)) {
                 newValue = newValue.concat(reefReplacements.get(a)!); // non-null assertion
               } else {
                 newValue = newValue.concat(a);
               }
             }
-            
           }
           return (
             <View style={styles.row}>

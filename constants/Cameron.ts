@@ -24,4 +24,4 @@ export const reefReplacements = new Map<string, string>([
   ["Lo'ak", "Loak"],
   ["Rotxo", "Rodo"],
   ["i'en", "ien"],
-])
+]);
