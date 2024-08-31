@@ -1,5 +1,5 @@
 import { Dialects } from "@/constants/Dialects";
-import i18n from "@/constants/i18n";
+import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
 import { StyleSheet } from "react-native";
@@ -10,7 +10,7 @@ import { CardView, Text } from "../common/Themed";
 export function DialectSelect() {
   const { dialect, dialectDisplay, saveDialect } = useDialectContext();
   const { appLanguage } = useAppLanguageContext();
-  const ui = i18n[appLanguage];
+  const ui = getUI(appLanguage, dialect);
 
   return (
     <Accordion

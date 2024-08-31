@@ -1,7 +1,8 @@
 import { ActionButtons } from "@/components/common/ActionButtons";
 import Colors from "@/constants/Colors";
-import i18n from "@/constants/i18n";
+import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
+import { useDialectContext } from "@/context/DialectContext";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useTheme } from "@react-navigation/native";
 import { Tabs } from "expo-router";
@@ -24,7 +25,8 @@ export default function TabLayout() {
   const colors = Colors[colorScheme ?? "light"];
   const theme = useTheme();
   const { appLanguage } = useAppLanguageContext();
-  const { screens } = i18n[appLanguage];
+  const { dialect } = useDialectContext();
+  const { screens } = getUI(appLanguage, dialect);
 
   return (
     <Tabs

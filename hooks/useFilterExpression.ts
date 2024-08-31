@@ -1,5 +1,6 @@
-import i18n from "@/constants/i18n";
+import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
+import { useDialectContext } from "@/context/DialectContext";
 import { FilterExpressionBuilderValue } from "@/types/list";
 import { useEffect, useState } from "react";
 
@@ -9,7 +10,8 @@ export function useFilterExpression() {
   ]);
 
   const { appLanguage } = useAppLanguageContext();
-  const ui = i18n[appLanguage];
+  const { dialect } = useDialectContext();
+  const ui = getUI(appLanguage, dialect);
 
   const filterExpression = filters
     .map((f) =>

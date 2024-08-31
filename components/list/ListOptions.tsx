@@ -1,8 +1,9 @@
 import { Accordion } from "@/components/common/Accordion";
 import { FilterExpressionBuilderList } from "@/components/common/FilterExpressionBuilderList";
 import { Text } from "@/components/common/Themed";
-import i18n from "@/constants/i18n";
+import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
+import { useDialectContext } from "@/context/DialectContext";
 import type { FilterExpressionBuilderValue } from "@/types/list";
 
 type ListOptionsProps = {
@@ -16,7 +17,8 @@ type ListOptionsProps = {
 export function ListOptions(props: ListOptionsProps) {
   const { filters, add, remove, update, incomplete } = props;
   const { appLanguage } = useAppLanguageContext();
-  const { list } = i18n[appLanguage];
+  const { dialect } = useDialectContext();
+  const { list } = getUI(appLanguage, dialect);
 
   return (
     <Accordion

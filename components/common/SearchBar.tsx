@@ -1,7 +1,8 @@
 import { CardView, TextInput } from "@/components/common/Themed";
 import Colors from "@/constants/Colors";
-import i18n from "@/constants/i18n";
+import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
+import { useDialectContext } from "@/context/DialectContext";
 import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 import {
@@ -32,7 +33,8 @@ export function SearchBar(props: SearchBarProps) {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
   const { appLanguage } = useAppLanguageContext();
-  const ui = i18n[appLanguage];
+  const { dialect } = useDialectContext();
+  const ui = getUI(appLanguage, dialect);
 
   const clear = () => {
     search("");

@@ -1,5 +1,5 @@
 const Credits = {
-  development: ["Tirea Aean"],
+  development: ["Tirea Aean", "Txonpay"],
   design: ["Tirea Aean", "Tsyili"],
   testing: ["Palusyulang", "Tsyili", "Txonpay"],
   translation: [
@@ -13,8 +13,10 @@ const Credits = {
     "Palusyulang (pt, na'vi)",
     "Tan Jala (ru)",
     "Tirea Aean (en, eo, na'vi)",
+    "Tìtstewan (de)",
     "Tslakxime (pt)",
     "Tsyili (en, na'vi)",
+    "Vawmataw (fr)",
     "Wllìm (nl)",
     "유펀 (ko)",
   ],

@@ -1,13 +1,15 @@
 import { ItalicText } from "@/components/common/StyledText";
 import { CardView, Text, View } from "@/components/common/Themed";
-import i18n from "@/constants/i18n";
+import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
+import { useDialectContext } from "@/context/DialectContext";
 import { Link } from "expo-router";
 import { ScrollView, StyleSheet } from "react-native";
 
 export default function ListsScreen() {
   const { appLanguage } = useAppLanguageContext();
-  const { screens } = i18n[appLanguage];
+  const { dialect } = useDialectContext();
+  const { screens } = getUI(appLanguage, dialect);
 
   return (
     <ScrollView>

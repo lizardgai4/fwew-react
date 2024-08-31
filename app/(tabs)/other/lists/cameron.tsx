@@ -1,14 +1,14 @@
 import { Text, View } from "@/components/common/Themed";
 import { reefReplacements } from "@/constants/Cameron";
-import i18n from "@/constants/i18n";
+import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
 import { FlatList, StyleSheet } from "react-native";
 
 export default function CameronScreen() {
   const { appLanguage } = useAppLanguageContext();
-  const ui = i18n[appLanguage].cameronWords;
   const { dialect } = useDialectContext();
+  const ui = getUI(appLanguage, dialect).cameronWords;
 
   return (
     <View style={styles.container}>

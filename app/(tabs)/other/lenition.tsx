@@ -2,8 +2,9 @@ import { ResultCount } from "@/components/common/ResultCount";
 import { BoldText, MonoText } from "@/components/common/StyledText";
 import { CardView, Text, View } from "@/components/common/Themed";
 import { ListResults } from "@/components/list/ListResults";
-import i18n from "@/constants/i18n";
+import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
+import { useDialectContext } from "@/context/DialectContext";
 import { useList } from "@/hooks/useList";
 import { useEffect } from "react";
 import { ScrollView, StyleSheet } from "react-native";
@@ -20,7 +21,8 @@ export default function LenitionScreen() {
 
 function LenitionTable() {
   const { appLanguage } = useAppLanguageContext();
-  const ui = i18n[appLanguage].lenition;
+  const { dialect } = useDialectContext();
+  const ui = getUI(appLanguage, dialect).lenition;
 
   const lenitionData = [
     { key: "Kx", value: "⇾ K" },
@@ -47,7 +49,8 @@ function LenitionTable() {
 
 function LenPreList() {
   const { appLanguage } = useAppLanguageContext();
-  const ui = i18n[appLanguage].lenition;
+  const { dialect } = useDialectContext();
+  const ui = getUI(appLanguage, dialect).lenition;
 
   const lenPrefixes = [
     "me+",
@@ -78,7 +81,8 @@ function LenPreList() {
 
 function LenAdpList() {
   const { appLanguage } = useAppLanguageContext();
-  const ui = i18n[appLanguage].lenition;
+  const { dialect } = useDialectContext();
+  const ui = getUI(appLanguage, dialect).lenition;
   const { loading, execute, results } = useList();
 
   useEffect(() => {

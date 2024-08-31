@@ -3,15 +3,17 @@ import { OptionItem } from "@/components/common/OptionItem";
 import { CardView, Text } from "@/components/common/Themed";
 import { FlagMap } from "@/components/settings/Flags";
 import { ResultsLanguages } from "@/constants/Language";
-import i18n from "@/constants/i18n";
+import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
+import { useDialectContext } from "@/context/DialectContext";
 import { useResultsLanguageContext } from "@/context/ResultsLanguageContext";
 import { StyleSheet } from "react-native";
 
 export function ResultsLanguageSelect() {
   const { resultsLanguage, saveResultsLanguage } = useResultsLanguageContext();
   const { appLanguage } = useAppLanguageContext();
-  const ui = i18n[appLanguage];
+  const { dialect } = useDialectContext();
+  const ui = getUI(appLanguage, dialect);
 
   return (
     <Accordion

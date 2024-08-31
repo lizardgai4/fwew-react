@@ -1,14 +1,9 @@
-import type { LanguageCode } from "fwew.js";
+import type { Dialect as FwDialect, LanguageCode } from "fwew.js";
 
-export type ExtendedLanguageCode = LanguageCode | "eo" | "nx" | "lw";
+export type ExtendedLanguageCode = LanguageCode | "eo" | "nx0" | "nx1";
 
 export type NumericString = `${number}` | "";
 
 export type OptionType<T> = { name: string; value: T };
 
-const dialect = {
-  FOREST: "forest",
-  REEF: "reef",
-} as const;
-
-export type Dialect = (typeof dialect)[keyof typeof dialect];
+export type Dialect = Exclude<FwDialect, "interdialect">;

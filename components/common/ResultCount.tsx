@@ -1,6 +1,7 @@
 import { Text } from "@/components/common/Themed";
-import i18n from "@/constants/i18n";
+import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
+import { useDialectContext } from "@/context/DialectContext";
 import { StyleSheet, TextStyle } from "react-native";
 
 type ResultCountProps = {
@@ -11,10 +12,11 @@ type ResultCountProps = {
 
 export function ResultCount({ visible, resultCount, style }: ResultCountProps) {
   const { appLanguage } = useAppLanguageContext();
-  const ui = i18n[appLanguage];
+  const { dialect } = useDialectContext();
+  const ui = getUI(appLanguage, dialect);
   if (!visible) return null;
 
-  if (appLanguage === "nx") {
+  if (["nx0", "nx1"].includes(appLanguage)) {
     const octalResultCount = resultCount.toString(8);
     return (
       <Text style={[styles.resultCount, style]}>

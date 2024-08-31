@@ -1,7 +1,8 @@
 import { ResultCard } from "@/components/common/ResultCard";
 import { Text, View } from "@/components/common/Themed";
-import i18n from "@/constants/i18n";
+import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
+import { useDialectContext } from "@/context/DialectContext";
 import type { Word } from "fwew.js";
 import { ActivityIndicator, Platform, StyleSheet } from "react-native";
 
@@ -12,7 +13,8 @@ type ListResultsProps = {
 
 export function ListResults({ loading, results }: ListResultsProps) {
   const { appLanguage } = useAppLanguageContext();
-  const { common } = i18n[appLanguage];
+  const { dialect } = useDialectContext();
+  const { common } = getUI(appLanguage, dialect);
 
   if (loading && Platform.OS === "web") {
     return <ActivityIndicator size="large" />;

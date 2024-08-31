@@ -6,8 +6,9 @@ import { ResultCount } from "@/components/common/ResultCount";
 import { Text, View } from "@/components/common/Themed";
 import { NameResults } from "@/components/names/NameResults";
 import Colors from "@/constants/Colors";
-import i18n from "@/constants/i18n";
+import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
+import { useDialectContext } from "@/context/DialectContext";
 import { useNameFull } from "@/hooks/useNameFull";
 import { useTheme } from "@react-navigation/native";
 import * as Clipboard from "expo-clipboard";
@@ -38,7 +39,8 @@ export default function NameFullScreen() {
     execute,
   } = useNameFull();
   const { appLanguage } = useAppLanguageContext();
-  const { names: uiNames, nameFull: uiNameFull } = i18n[appLanguage];
+  const { dialect } = useDialectContext();
+  const { names: uiNames, nameFull: uiNameFull } = getUI(appLanguage, dialect);
   const resultsVisible = numNames.length > 0 && names.length > 0;
 
   const copyAll = async () => {

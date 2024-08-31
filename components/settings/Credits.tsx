@@ -1,13 +1,15 @@
 import { CardView, Text } from "@/components/common/Themed";
 import credits from "@/constants/Credits";
-import i18n from "@/constants/i18n";
+import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
+import { useDialectContext } from "@/context/DialectContext";
 import { useTheme } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
 
 export function Credits() {
   const { appLanguage } = useAppLanguageContext();
-  const ui = i18n[appLanguage];
+  const { dialect } = useDialectContext();
+  const ui = getUI(appLanguage, dialect);
   return (
     <CardView style={styles.creditsContainer}>
       <Text style={styles.label}>{ui.settings.credits}</Text>
