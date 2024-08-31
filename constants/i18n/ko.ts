@@ -103,7 +103,7 @@ const strings: UITranslation = {
       condValues: {
         pos: [
           { value: "starts", description: "다음으로 시작할 것" },
-          { value: "ends", description: "다음으로 시작할 것" },
+          { value: "ends", description: "다음으로 끝날 것" },
           { value: "is", description: "다음과 동일할 것" },
           { value: "has", description: "다음을 포함할 것" },
           { value: "like", description: "다음과 비슷할 것" },
@@ -115,7 +115,7 @@ const strings: UITranslation = {
         ],
         word: [
           { value: "starts", description: "다음으로 시작할 것" },
-          { value: "ends", description: "다음으로 시작할 것" },
+          { value: "ends", description: "다음으로 끝날 것" },
           { value: "has", description: "다음을 포함할 것" },
           { value: "like", description: "다음과 비슷할 것" },
           { value: "not-starts", description: "다음으로 시작하지 않을 것" },
