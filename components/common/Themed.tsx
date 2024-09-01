@@ -14,9 +14,8 @@ import {
   type TextProps,
   type ViewProps,
 } from "react-native";
-import { LinearGradient } from 'expo-linear-gradient';
-import { StyleCard, StyleCardReef } from "@/themes/frutigerAero";
 import { useDialectContext } from "@/context/DialectContext";
+import { LinearGradient } from 'expo-linear-gradient';
 
 export function useThemeColor(
   props: { light?: string; dark?: string },
@@ -45,10 +44,10 @@ export function View(props: ViewProps) {
   const { style, ...otherProps } = props;
 
   return (
-    <DefaultView
-      style={[style]}
-      {...otherProps}
-    />
+      <DefaultView
+        style={[style]}
+        {...otherProps}
+      />
   );
 }
 
