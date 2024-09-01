@@ -1,5 +1,5 @@
 import { ItalicText } from "@/components/common/StyledText";
-import { CardView, Text, View } from "@/components/common/Themed";
+import { CardView, GradientCardView, Text, View } from "@/components/common/Themed";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
