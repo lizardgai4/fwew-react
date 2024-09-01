@@ -4,6 +4,7 @@ import Colors from "@/constants/Colors";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
+//import { useAuxthemeContext } from "@/context/AuxthemeContext";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useTheme } from "@react-navigation/native";
 import { Tabs } from "expo-router";
@@ -28,14 +29,16 @@ export default function TabLayout() {
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const { screens } = getUI(appLanguage, dialect);
+  //const { auxtheme } = useAuxthemeContext();
+  const auxtheme = "normal" as string
 
-  const frutigerForest = [["#2288FF", "#2244FF"],["#004499", "#2288FF"]]
-  const frutigerReef = [["#44BBBB", "#227A92"],["#006A6A", "#44BBBB"]]
+  const frutiger = dialect === "reef" ? [["#44BBBB", "#227A92"],["#006A6A", "#44BBBB"]] : [["#2288FF", "#2244FF"],["#004499", "#2288FF"]]
+  const plainHeader = [theme.colors.primary,theme.colors.primary]
+  const plainFooter = [theme.colors.card,theme.colors.card]
 
   return (
     <Tabs
       screenOptions={{
-        headerStyle: { backgroundColor: theme.colors.primary },
         headerTintColor: Colors.dark.text,
         tabBarActiveTintColor: theme.colors.primary,
         tabBarInactiveTintColor: colors.placeholder,
