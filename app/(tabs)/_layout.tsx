@@ -29,6 +29,9 @@ export default function TabLayout() {
   const { dialect } = useDialectContext();
   const { screens } = getUI(appLanguage, dialect);
 
+  const frutigerForest = [["#2288FF", "#2244FF"],["#004499", "#2288FF"]]
+  const frutigerReef = [["#44BBBB", "#227A92"],["#006A6A", "#44BBBB"]]
+
   return (
     <Tabs
       screenOptions={{
