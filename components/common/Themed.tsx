@@ -16,6 +16,7 @@ import {
 } from "react-native";
 import { useDialectContext } from "@/context/DialectContext";
 import { LinearGradient } from 'expo-linear-gradient';
+//import { useAuxtheme } from "@/hooks/useAuxtheme";
 
 export function useThemeColor(
   props: { light?: string; dark?: string },
