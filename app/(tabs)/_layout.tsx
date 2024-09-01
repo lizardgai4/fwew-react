@@ -46,8 +46,9 @@ export default function TabLayout() {
   const plainHeader = [theme.colors.primary,theme.colors.primary]
   const plainFooter = [theme.colors.card,theme.colors.card]
 
-  const frutigerForest = [["#2288FF", "#2244FF"],["#004499", "#2288FF"]]
-  const frutigerReef = [["#44BBBB", "#227A92"],["#006A6A", "#44BBBB"]]
+  const frutiger = dialect === "reef" ? [["#44BBBB", "#227A92"],["#006A6A", "#44BBBB"]] : [["#2288FF", "#2244FF"],["#004499", "#2288FF"]]
+  const plainHeader = [theme.colors.primary,theme.colors.primary]
+  const plainFooter = [theme.colors.card,theme.colors.card]
 
   return (
     <View>
