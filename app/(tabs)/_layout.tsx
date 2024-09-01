@@ -42,13 +42,13 @@ export default function TabLayout() {
   routeConv['numbers'] = 'number'
   routeConv['other'] = 'other'
 
-  const frutigerForest = [["#2288FF", "#2244FF"],["#004499", "#2288FF"]]
-  const frutigerReef = [["#44BBBB", "#227A92"],["#006A6A", "#44BBBB"]]
+  const frutiger = dialect === "reef" ? [["#44BBBB", "#227A92"],["#006A6A", "#44BBBB"]] : [["#2288FF", "#2244FF"],["#004499", "#2288FF"]]
+  const plainHeader = [theme.colors.primary,theme.colors.primary]
+  const plainFooter = [theme.colors.card,theme.colors.card]
 
   return (
     <Tabs
       screenOptions={{
-        headerStyle: { backgroundColor: theme.colors.primary },
         headerTintColor: Colors.dark.text,
         tabBarActiveTintColor: theme.colors.primary,
         tabBarInactiveTintColor: colors.placeholder,
@@ -59,14 +59,14 @@ export default function TabLayout() {
             <LinearGradient
               start={{ x: 0, y: 0 }}
               end={{ x: 0, y: 1 }}
-              colors={dialect === "reef" ? frutigerReef[0] : frutigerForest[0]}
+              colors={auxtheme === "normal" ? plainHeader : frutiger[0]}
               //colors={[theme.colors.primary, theme.colors.primary]}
               style={{ height: "50%" }}
             />
             <LinearGradient
               start={{ x: 0, y: 0 }}
               end={{ x: 0, y: 1 }}
-              colors={dialect === "reef" ? frutigerReef[1] : frutigerForest[1]}
+              colors={auxtheme === "normal" ? plainHeader : frutiger[0]}
               //colors={[theme.colors.primary, theme.colors.primary]}
               style={{ height: "50%" }}
             />
@@ -77,14 +77,14 @@ export default function TabLayout() {
             <LinearGradient
               start={{ x: 0, y: 0 }}
               end={{ x: 0, y: 1 }}
-              colors={dialect === "reef" ? frutigerReef[0] : frutigerForest[0]}
+              colors={auxtheme === "normal" ? plainFooter : frutiger[1]}
               //colors={[theme.colors.card, theme.colors.card]}
               style={{ height: "50%" }}
             />
             <LinearGradient
               start={{ x: 0, y: 0 }}
               end={{ x: 0, y: 1 }}
-              colors={dialect === "reef" ? frutigerReef[1] : frutigerForest[1]}
+              colors={auxtheme === "normal" ? plainFooter : frutiger[1]}
               //colors={[theme.colors.card, theme.colors.card]}
               style={{ height: "50%" }}
             />
