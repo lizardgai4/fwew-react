@@ -24,23 +24,32 @@ export function Credits() {
       <CreditsItem names={credits.testing} />
       <Text style={styles.label}>{ui.settings.translation}</Text>
       {AppLanguages.map((language, i) => {
-        return (
-          <LanguageCreditsItem
-            key={`sct_${i}_${language.value}`}
-            language={language.value}
-            names={credits.translation[language.value]}
-          />
-        );
+        const names = credits.translation[language.value];
+        if (names.length > 0)
+          return (
+            <CreditsItem
+              key={`sct_${i}_${language.value}`}
+              language={language.value}
+              names={names}
+            />
+          );
       })}
     </CardView>
   );
 }
 
-function CreditsItem({ names }: { names: string[] }) {
+function CreditsItem({
+  language,
+  names,
+}: {
+  language?: ExtendedLanguageCode;
+  names: string[];
+}) {
   const { colors } = useTheme();
 
   return (
     <CardView style={styles.creditsItemContainer}>
+      {language && FlagMap[language]}
       {names.map((name, i) => (
         <CardView
           key={`ci_${name}_${i}`}
@@ -53,27 +62,17 @@ function CreditsItem({ names }: { names: string[] }) {
   );
 }
 
-function LanguageCreditsItem({
-  language,
-  names,
-}: {
-  language: ExtendedLanguageCode;
-  names: string[];
-}) {
-  if (names.length > 0)
-    return (
-      <CardView style={styles.creditsItemContainer}>
-        {FlagMap[language]} <CreditsItem names={names} />
-      </CardView>
-    );
-}
-
 const styles = StyleSheet.create({
   creditsContainer: {
     paddingTop: 8,
     gap: 8,
   },
   creditsItemContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 8,
+  },
+  languageCreditsItemContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
     gap: 8,
