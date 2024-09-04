@@ -1,4 +1,5 @@
 import { ActionButtons } from "@/components/common/ActionButtons";
+import { Logo } from "@/components/common/Logo";
 import Colors from "@/constants/Colors";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
@@ -33,6 +34,8 @@ export default function TabLayout() {
         headerTintColor: Colors.dark.text,
         tabBarActiveTintColor: theme.colors.primary,
         tabBarInactiveTintColor: colors.placeholder,
+        headerLeft: () => <Logo />,
+        headerRight: () => <ActionButtons />,
       }}
     >
       <Tabs.Screen
@@ -40,7 +43,6 @@ export default function TabLayout() {
         options={{
           title: screens.search,
           tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
-          headerRight: () => <ActionButtons />,
         }}
       />
       <Tabs.Screen
@@ -50,7 +52,6 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="list-ol" color={color} />
           ),
-          headerRight: () => <ActionButtons />,
         }}
       />
       <Tabs.Screen
@@ -58,7 +59,6 @@ export default function TabLayout() {
         options={{
           title: screens.random,
           tabBarIcon: ({ color }) => <TabBarIcon name="random" color={color} />,
-          headerRight: () => <ActionButtons />,
         }}
       />
       <Tabs.Screen
@@ -68,7 +68,6 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="calculator" color={color} />
           ),
-          headerRight: () => <ActionButtons />,
         }}
       />
       <Tabs.Screen
