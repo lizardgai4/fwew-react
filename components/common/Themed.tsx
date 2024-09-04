@@ -17,8 +17,6 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import { StyleCard, StyleCardReef } from "@/themes/frutigerAero";
 import { useDialectContext } from "@/context/DialectContext";
-import { LinearGradient } from 'expo-linear-gradient';
-//import { useAuxtheme } from "@/hooks/useAuxtheme";
 
 export function useThemeColor(
   props: { light?: string; dark?: string },
