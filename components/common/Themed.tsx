@@ -14,9 +14,9 @@ import {
   type TextProps,
   type ViewProps,
 } from "react-native";
-import { useDialectContext } from "@/context/DialectContext";
 import { LinearGradient } from 'expo-linear-gradient';
-//import { useAuxtheme } from "@/hooks/useAuxtheme";
+import { StyleCard, StyleCardReef } from "@/themes/frutigerAero";
+import { useDialectContext } from "@/context/DialectContext";
 
 export function useThemeColor(
   props: { light?: string; dark?: string },
