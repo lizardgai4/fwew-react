@@ -82,6 +82,11 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     gap: 8,
   },
+  label: {
+    paddingBottom: 10,
+    fontSize: 16,
+    fontWeight: "bold",
+  },
   textContainer: {
     padding: 8,
     borderRadius: 8,
