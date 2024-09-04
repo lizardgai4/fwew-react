@@ -30,6 +30,9 @@ export default function StackLayout() {
             <ActionButtons />
           </View>
         ),
+        headerBackground: () => (
+          Topbar()
+        )
       }}
     >
       <Stack.Screen name="index" options={{ title: screens.other }} />

@@ -54,44 +54,13 @@ export default function TabLayout() {
         tabBarInactiveTintColor: colors.placeholder,
         headerLeft: () => <Logo />,
         headerRight: () => <ActionButtons />,
-        headerBackground: () => (
-          <View style={{ height: "100%" }}>
-            <LinearGradient
-              start={{ x: 0, y: 0 }}
-              end={{ x: 0, y: 1 }}
-              colors={auxtheme === "normal" ? plainHeader : frutiger[0]}
-              //colors={[theme.colors.primary, theme.colors.primary]}
-              style={{ height: "50%" }}
-            />
-            <LinearGradient
-              start={{ x: 0, y: 0 }}
-              end={{ x: 0, y: 1 }}
-              colors={auxtheme === "normal" ? plainHeader : frutiger[0]}
-              //colors={[theme.colors.primary, theme.colors.primary]}
-              style={{ height: "50%" }}
-            />
-          </View>
-        ),
-        tabBarBackground: () => (
-          <View style={{ height: "100%" }}>
-            <LinearGradient
-              start={{ x: 0, y: 0 }}
-              end={{ x: 0, y: 1 }}
-              colors={auxtheme === "normal" ? plainFooter : frutiger[1]}
-              //colors={[theme.colors.card, theme.colors.card]}
-              style={{ height: "50%" }}
-            />
-            <LinearGradient
-              start={{ x: 0, y: 0 }}
-              end={{ x: 0, y: 1 }}
-              colors={auxtheme === "normal" ? plainFooter : frutiger[1]}
-              //colors={[theme.colors.card, theme.colors.card]}
-              style={{ height: "50%" }}
-            />
-          </View>
-        ),
+        headerBackground: () => (dialect === "reef"
+          ? TopbarReef()
+          : Topbar()),
+        tabBarBackground: () => (dialect === "reef"
+          ? BottombarReef()
+          : Bottombar()),
       }}
-      
     >
       <Tabs.Screen
         name="index"

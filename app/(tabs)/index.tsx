@@ -11,6 +11,8 @@ import { RefreshControl, ScrollView, StyleSheet, View } from "react-native";
 import { Background, BackgroundReef } from "@/themes/frutigerAero";
 import { RefreshControl, ScrollView, StyleSheet } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
+import { Background, BackgroundReef } from "@/themes/frutigerAero";
+import { useColorScheme } from "react-native";
 
 export default function SearchScreen() {
   const {
@@ -61,6 +63,42 @@ export default function SearchScreen() {
       <FwewSearchResults loading={loading} results={results} />
     </ScrollView>
     </View>
+)
+  
+  return dialect === "reef"
+  ? BackgroundReef(content)
+  : Background(content);
+  const content = (
+    <ScrollView
+      style={styles.container}
+      keyboardShouldPersistTaps="always"
+      refreshControl={
+        <RefreshControl
+          refreshing={loading}
+          onRefresh={execute}
+          colors={[colors.primary]}
+        />
+      }
+    >
+      <SearchBar
+        query={query}
+        search={search}
+        execute={execute}
+        cancel={cancel}
+        autoFocus
+      />
+      <SwitchInput
+        leftLabel={ui.naviOnly}
+        rightLabel=""
+        value={naviOnly}
+        onValueChange={setNaviOnly}
+      />
+      <ResultCount
+        visible={query.length > 0 && resultCount > 0}
+        resultCount={resultCount}
+      />
+      <FwewSearchResults loading={loading} results={results} />
+    </ScrollView>
 )
   
   return dialect === "reef"
