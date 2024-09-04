@@ -49,15 +49,22 @@ function CreditsItem({
 
   return (
     <CardView style={styles.creditsItemContainer}>
-      {language && FlagMap[language]}
-      {names.map((name, i) => (
-        <CardView
-          key={`ci_${name}_${i}`}
-          style={[styles.textContainer, { backgroundColor: colors.background }]}
-        >
-          <Text style={styles.text}>{name}</Text>
+      <CardView>{language && FlagMap[language]}</CardView>
+      <CardView style={{ flex: 1 }}>
+        <CardView style={styles.creditsItemContainer}>
+          {names.map((name, i) => (
+            <CardView
+              key={`ci_${name}_${i}`}
+              style={[
+                styles.textContainer,
+                { backgroundColor: colors.background },
+              ]}
+            >
+              <Text style={styles.text}>{name}</Text>
+            </CardView>
+          ))}
         </CardView>
-      ))}
+      </CardView>
     </CardView>
   );
 }
@@ -67,20 +74,15 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     gap: 8,
   },
-  creditsItemContainer: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: 8,
-  },
-  languageCreditsItemContainer: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: 8,
-  },
   label: {
     paddingBottom: 10,
     fontSize: 16,
     fontWeight: "bold",
+  },
+  creditsItemContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 8,
   },
   textContainer: {
     padding: 8,
