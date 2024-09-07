@@ -1,4 +1,5 @@
 import { ActionButtons } from "@/components/common/ActionButtons";
+import { Logo } from "@/components/common/Logo";
 import Colors from "@/constants/Colors";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
@@ -94,7 +95,6 @@ export default function TabLayout() {
             tabBarIcon: ({ color }) => (
               <TabBarIcon name="calculator" color={color} />
             ),
-            headerRight: () => <ActionButtons />,
           }}
         />
         <Tabs.Screen

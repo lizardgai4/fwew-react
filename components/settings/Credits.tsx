@@ -1,10 +1,13 @@
 import { GradientCardView, Text } from "@/components/common/Themed";
 import credits from "@/constants/Credits";
 import { getUI } from "@/constants/i18n";
+import { AppLanguages } from "@/constants/Language";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
+import { ExtendedLanguageCode } from "@/types/common";
 import { useTheme } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
+import { FlagMap } from "./Flags";
 
 export function Credits() {
   const { appLanguage } = useAppLanguageContext();
@@ -27,7 +30,13 @@ export function Credits() {
   );
 }
 
-function CreditsItem({ title, names }: { title: string; names: string[] }) {
+function CreditsItem({
+  language,
+  names,
+}: {
+  language?: ExtendedLanguageCode;
+  names: string[];
+}) {
   const { colors } = useTheme();
 
   return (
@@ -55,15 +64,15 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     gap: 8,
   },
-  creditsItemContainer: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: 8,
-  },
   label: {
     paddingBottom: 10,
     fontSize: 16,
     fontWeight: "bold",
+  },
+  creditsItemContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 8,
   },
   textContainer: {
     padding: 8,
