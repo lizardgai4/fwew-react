@@ -42,14 +42,6 @@ export default function TabLayout() {
   routeConv['numbers'] = 'number'
   routeConv['other'] = 'other'
 
-  const frutiger = dialect === "reef" ? [["#44BBBB", "#227A92"],["#006A6A", "#44BBBB"]] : [["#2288FF", "#2244FF"],["#004499", "#2288FF"]]
-  const plainHeader = [theme.colors.primary,theme.colors.primary]
-  const plainFooter = [theme.colors.card,theme.colors.card]
-
-  const frutiger = dialect === "reef" ? [["#44BBBB", "#227A92"],["#006A6A", "#44BBBB"]] : [["#2288FF", "#2244FF"],["#004499", "#2288FF"]]
-  const plainHeader = [theme.colors.primary,theme.colors.primary]
-  const plainFooter = [theme.colors.card,theme.colors.card]
-
   return (
     <Tabs
       screenOptions={{
@@ -65,12 +57,18 @@ export default function TabLayout() {
           ? BottombarReef()
           : Bottombar()),
       }}
+      screenListeners={({route}) => ({
+        tabPress: () => {
+          saveActiveWindow(routeConv[route.name])
+        }
+      })}
     >
       <Tabs.Screen
         name="index"
         options={{
           title: screens.search,
           tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
+          headerRight: () => <ActionButtons />,
         }}
       />
       <Tabs.Screen
@@ -80,6 +78,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="list-ol" color={color} />
           ),
+          headerRight: () => <ActionButtons />,
         }}
       />
       <Tabs.Screen
@@ -87,6 +86,7 @@ export default function TabLayout() {
         options={{
           title: screens.random,
           tabBarIcon: ({ color }) => <TabBarIcon name="random" color={color} />,
+          headerRight: () => <ActionButtons />,
         }}
       />
       <Tabs.Screen
@@ -96,6 +96,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="calculator" color={color} />
           ),
+          headerRight: () => <ActionButtons />,
         }}
       />
       <Tabs.Screen
