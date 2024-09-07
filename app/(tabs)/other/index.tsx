@@ -1,52 +1,57 @@
 import { ItalicText } from "@/components/common/StyledText";
-import { CardView, Text, View } from "@/components/common/Themed";
+import { GradientCardView, Text, View } from "@/components/common/Themed";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
 import { Link } from "expo-router";
 import { ScrollView, StyleSheet } from "react-native";
+import { Background, BackgroundReef } from "@/themes/frutigerAero";
 
 export default function OtherScreen() {
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const { screens } = getUI(appLanguage, dialect);
 
-  return (
+  const content = (
     <ScrollView>
       <View style={styles.container}>
         <Link href="/(tabs)/other/names">
-          <CardView style={styles.card}>
+          <GradientCardView style={styles.card}>
             <Text style={styles.text}>{screens.names}</Text>
             <ItalicText>{screens.names}</ItalicText>
-          </CardView>
+          </GradientCardView>
         </Link>
         <Link href="/(tabs)/other/lists">
-          <CardView style={styles.card}>
+          <GradientCardView style={styles.card}>
             <Text style={styles.text}>{screens.lists}</Text>
             <ItalicText>{screens.lists}</ItalicText>
-          </CardView>
+          </GradientCardView>
         </Link>
         <Link href="/(tabs)/other/stats">
-          <CardView style={styles.card}>
+          <GradientCardView style={styles.card}>
             <Text style={styles.text}>{screens.stats}</Text>
             <ItalicText>{screens.stats}</ItalicText>
-          </CardView>
+          </GradientCardView>
         </Link>
         <Link href="/(tabs)/other/valid">
-          <CardView style={styles.card}>
+          <GradientCardView style={styles.card}>
             <Text style={styles.text}>{screens.valid}</Text>
             <ItalicText>{screens.valid}</ItalicText>
-          </CardView>
+          </GradientCardView>
         </Link>
         <Link href="/(tabs)/other/lenition">
-          <CardView style={styles.card}>
+          <GradientCardView style={styles.card}>
             <Text style={styles.text}>{screens.lenition}</Text>
             <ItalicText>{screens.lenition}</ItalicText>
-          </CardView>
+          </GradientCardView>
         </Link>
       </View>
     </ScrollView>
   );
+
+  return dialect === "reef"
+  ? BackgroundReef(content)
+  : Background(content);
 }
 
 const styles = StyleSheet.create({

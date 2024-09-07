@@ -7,8 +7,8 @@ import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
 import { useFwew } from "@/hooks/useFwew";
 import { useTheme } from "@react-navigation/native";
-import { RefreshControl, ScrollView, StyleSheet } from "react-native";
-import { LinearGradient } from 'expo-linear-gradient';
+import { RefreshControl, ScrollView, StyleSheet, View } from "react-native";
+import { Background, BackgroundReef } from "@/themes/frutigerAero";
 
 export default function SearchScreen() {
   const {
@@ -26,15 +26,8 @@ export default function SearchScreen() {
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const ui = getUI(appLanguage, dialect).search;
-
-  return (
-    <LinearGradient
-    start={{ x: 0, y: 0 }}
-    end={{ x: 0, y: 1 }}
-    colors={["#000033", "#000033", "#0000AA"]}
-    //colors={[colors.background, colors.background]}
-    style={{ height: "100%" }}
-  >
+  const content = (
+    <View style={{height: "100%"}}>
     <ScrollView
       style={styles.container}
       keyboardShouldPersistTaps="always"
@@ -65,8 +58,12 @@ export default function SearchScreen() {
       />
       <FwewSearchResults loading={loading} results={results} />
     </ScrollView>
-    </LinearGradient>
-  );
+    </View>
+)
+  
+  return dialect === "reef"
+  ? BackgroundReef(content)
+  : Background(content);
 }
 
 const styles = StyleSheet.create({

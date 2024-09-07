@@ -14,6 +14,9 @@ import {
   type TextProps,
   type ViewProps,
 } from "react-native";
+import { LinearGradient } from 'expo-linear-gradient';
+import { StyleCard, StyleCardReef } from "@/themes/frutigerAero";
+import { useDialectContext } from "@/context/DialectContext";
 
 export function useThemeColor(
   props: { light?: string; dark?: string },
@@ -34,7 +37,7 @@ export function Text(props: TextProps) {
   const { colors } = useTheme();
 
   return (
-    <DefaultText style={[{ color: colors.text }, style]} {...otherProps} />
+      <DefaultText style={[{ color: colors.text }, style]} {...otherProps} />
   );
 }
 
@@ -42,14 +45,14 @@ export function View(props: ViewProps) {
   const { style, ...otherProps } = props;
 
   return (
-    <DefaultView
-      style={[style]}
-      {...otherProps}
-    />
+      <DefaultView
+        style={[style]}
+        {...otherProps}
+      />
   );
 }
 
-export function CardView(props: ViewProps) {
+export function PlainCardView(props: ViewProps) {
   const { style, ...otherProps } = props;
   const { colors } = useTheme();
 
@@ -57,7 +60,7 @@ export function CardView(props: ViewProps) {
     <DefaultView
       style={[
         {
-          backgroundColor: colors.card,
+          //backgroundColor: colors.card,
           borderRadius: 8,
         },
         style,
@@ -67,13 +70,26 @@ export function CardView(props: ViewProps) {
   );
 }
 
+export function GradientCardView(props: ViewProps) {
+  const { style, ...otherProps } = props;
+  //const auxtheme = useAuxtheme().auxtheme
+  const auxtheme = "frutiger" as string
+  const { colors } = useTheme();
+  const { dialect } = useDialectContext();
+  const content = (<DefaultView style={style} {...otherProps}/>)
+
+  return dialect === "reef"
+  ? StyleCardReef(content)
+  : StyleCard(content);
+}
+
 export function TextInput(props: TextInputProps) {
   const { style, ...otherProps } = props;
   const { colors } = useTheme();
 
   return (
     <DefaultTextInput
-      style={[{ backgroundColor: colors.card, color: colors.text }, style]}
+      style={[{ color: colors.text }, style]}
       selectionColor={colors.primary}
       cursorColor={colors.primary}
       {...otherProps}

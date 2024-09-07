@@ -3,12 +3,14 @@ import Colors from "@/constants/Colors";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
+import { useActiveWindowContext } from "@/context/ActiveWindowContext";
+//import { useAuxthemeContext } from "@/context/AuxthemeContext";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useTheme } from "@react-navigation/native";
 import { Tabs } from "expo-router";
-import { useColorScheme } from "react-native";
-import { LinearGradient } from 'expo-linear-gradient';
-import { View } from "react-native";
+import { useColorScheme, View } from "react-native";
+import { Topbar, TopbarReef, Bottombar, BottombarReef } from "@/themes/frutigerAero";
+import { ActiveWindow } from "@/types/common";
 
 type TabBarIconProps = {
   name: React.ComponentProps<typeof FontAwesome>["name"];
@@ -20,6 +22,10 @@ function TabBarIcon(props: TabBarIconProps) {
   return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
 }
 
+type RouteToWindow = {
+  [id: string]: ActiveWindow
+}
+
 export default function TabLayout() {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
@@ -27,99 +33,85 @@ export default function TabLayout() {
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const { screens } = getUI(appLanguage, dialect);
+  const { activeWindow, saveActiveWindow } = useActiveWindowContext();
+  const routeConv: RouteToWindow = {};
+  routeConv['index'] = 'search'
+  routeConv['list'] = 'list'
+  routeConv['random'] = 'random'
+  routeConv['numbers'] = 'number'
+  routeConv['other'] = 'other'
 
   return (
-    <Tabs
-      screenOptions={{
-        headerStyle: { backgroundColor: theme.colors.primary },
-        headerTintColor: Colors.dark.text,
-        tabBarActiveTintColor: theme.colors.primary,
-        tabBarInactiveTintColor: colors.placeholder,
-        headerBackground: () => (
-          <View style={{ height: "100%" }}>
-            <LinearGradient
-              start={{ x: 0, y: 0 }}
-              end={{ x: 0, y: 1 }}
-              colors={["#55DDFF", "#88FFFF"]}
-              //colors={[theme.colors.primary, theme.colors.primary]}
-              style={{ height: "50%" }}
-            />
-            <LinearGradient
-              start={{ x: 0, y: 0 }}
-              end={{ x: 0, y: 1 }}
-              colors={["#66BBFF", "#55DDFF"]}
-              //colors={[theme.colors.primary, theme.colors.primary]}
-              style={{ height: "50%" }}
-            />
-          </View>
-        ),
-        tabBarBackground: () => (
-          <View style={{ height: "100%" }}>
-            <LinearGradient
-              start={{ x: 0, y: 0 }}
-              end={{ x: 0, y: 1 }}
-              colors={["#00FFFF", "#006699"]}
-              //colors={[theme.colors.card, theme.colors.card]}
-              style={{ height: "50%" }}
-            />
-            <LinearGradient
-              start={{ x: 0, y: 0 }}
-              end={{ x: 0, y: 1 }}
-              colors={["#0044FF", "#00FFFF"]}
-              //colors={[theme.colors.card, theme.colors.card]}
-              style={{ height: "50%" }}
-            />
-          </View>
-        ),
-      }}
-      
-    >
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: screens.search,
-          tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
-          headerRight: () => <ActionButtons />,
+    <View style={{height:"100%"}}>
+      <Tabs
+        screenOptions={{
+          headerTintColor: Colors.dark.text,
+          tabBarActiveTintColor: theme.colors.primary,
+          tabBarInactiveTintColor: colors.placeholder,
+          headerBackground: () => (dialect === "reef"
+            ? TopbarReef()
+            : Topbar()),
+          tabBarBackground: () => (dialect === "reef"
+            ? BottombarReef()
+            : Bottombar()),
         }}
-      />
-      <Tabs.Screen
-        name="list"
-        options={{
-          title: screens.list,
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="list-ol" color={color} />
-          ),
-          headerRight: () => <ActionButtons />,
-        }}
-      />
-      <Tabs.Screen
-        name="random"
-        options={{
-          title: screens.random,
-          tabBarIcon: ({ color }) => <TabBarIcon name="random" color={color} />,
-          headerRight: () => <ActionButtons />,
-        }}
-      />
-      <Tabs.Screen
-        name="numbers"
-        options={{
-          title: screens.numbers,
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="calculator" color={color} />
-          ),
-          headerRight: () => <ActionButtons />,
-        }}
-      />
-      <Tabs.Screen
-        name="other"
-        options={{
-          title: screens.other,
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="ellipsis-h" color={color} />
-          ),
-          headerShown: false,
-        }}
-      />
-    </Tabs>
+        screenListeners={({route}) => ({
+          tabPress: () => {
+            saveActiveWindow(routeConv[route.name])
+          }
+        })}
+      >
+        <Tabs.Screen
+          name="index"
+          options={{
+            title: screens.search,
+            tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
+            headerRight: () => <ActionButtons />,
+          }}
+        />
+        <Tabs.Screen
+          name="list"
+          options={{
+            title: screens.list,
+            tabBarIcon: ({ color }) => (
+              <TabBarIcon name="list-ol" color={color} />
+            ),
+            headerRight: () => <ActionButtons />,
+          }}
+        />
+        <Tabs.Screen
+          name="random"
+          options={{
+            title: screens.random,
+            tabBarIcon: ({ color }) => <TabBarIcon name="random" color={color} />,
+            headerRight: () => <ActionButtons />,
+          }}
+        />
+        <Tabs.Screen
+          name="numbers"
+          options={{
+            title: screens.numbers,
+            tabBarIcon: ({ color }) => (
+              <TabBarIcon name="calculator" color={color} />
+            ),
+            headerRight: () => <ActionButtons />,
+          }}
+        />
+        <Tabs.Screen
+          name="other"
+          options={{
+            title: screens.other,
+            tabBarIcon: ({ color }) => (
+              <TabBarIcon name="ellipsis-h" color={color} />
+            ),
+            headerShown: false,
+          }}
+        />
+      </Tabs>
+      <View style={{position:'absolute', height:"100%"}}>
+        <View style={{height:"90%"}}></View>
+        <View style={{backgroundColor: "#FFF"}}>{activeWindow}</View>
+      </View>
+    </View>
   );
 }
