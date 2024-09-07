@@ -16,16 +16,24 @@ export function Credits() {
   return (
     <GradientCardView style={styles.creditsContainer}>
       <Text style={styles.label}>{ui.settings.credits}</Text>
-      <CreditsItem
-        title={ui.settings.development}
-        names={credits.development}
-      />
-      <CreditsItem title={ui.settings.design} names={credits.design} />
-      <CreditsItem title={ui.settings.testing} names={credits.testing} />
-      <CreditsItem
-        title={ui.settings.translation}
-        names={credits.translation}
-      />
+      <Text style={styles.label}>{ui.settings.development}</Text>
+      <CreditsItem names={credits.development} />
+      <Text style={styles.label}>{ui.settings.design}</Text>
+      <CreditsItem names={credits.design} />
+      <Text style={styles.label}>{ui.settings.testing}</Text>
+      <CreditsItem names={credits.testing} />
+      <Text style={styles.label}>{ui.settings.translation}</Text>
+      {AppLanguages.map((language, i) => {
+        const names = credits.translation[language.value];
+        if (names.length > 0)
+          return (
+            <CreditsItem
+              key={`sct_${i}_${language.value}`}
+              language={language.value}
+              names={names}
+            />
+          );
+      })}
     </GradientCardView>
   );
 }
@@ -40,20 +48,22 @@ function CreditsItem({
   const { colors } = useTheme();
 
   return (
-    <GradientCardView>
-      <Text style={styles.label}>{title}</Text>
-      <GradientCardView style={styles.creditsItemContainer}>
-        {names.map((name, i) => (
-          <GradientCardView
-            key={`ci_${title}_${i}`}
-            style={[
-              styles.textContainer,
-              { backgroundColor: colors.background },
-            ]}
-          >
-            <Text style={styles.text}>{name}</Text>
-          </GradientCardView>
-        ))}
+    <GradientCardView style={styles.creditsItemContainer}>
+      <GradientCardView>{language && FlagMap[language]}</GradientCardView>
+      <GradientCardView style={{ flex: 1 }}>
+        <GradientCardView style={styles.creditsItemContainer}>
+          {names.map((name, i) => (
+            <GradientCardView
+              key={`ci_${name}_${i}`}
+              style={[
+                styles.textContainer,
+                { backgroundColor: colors.background },
+              ]}
+            >
+              <Text style={styles.text}>{name}</Text>
+            </GradientCardView>
+          ))}
+        </GradientCardView>
       </GradientCardView>
     </GradientCardView>
   );
