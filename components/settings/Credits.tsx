@@ -1,4 +1,4 @@
-import { GradientCardView, Text } from "@/components/common/Themed";
+import { PlainCardView, GradientCardView, Text } from "@/components/common/Themed";
 import credits from "@/constants/Credits";
 import { getUI } from "@/constants/i18n";
 import { AppLanguages } from "@/constants/Language";
@@ -14,7 +14,7 @@ export function Credits() {
   const { dialect } = useDialectContext();
   const ui = getUI(appLanguage, dialect);
   return (
-    <GradientCardView style={styles.creditsContainer}>
+    <PlainCardView style={styles.creditsContainer}>
       <Text style={styles.label}>{ui.settings.credits}</Text>
       <Text style={styles.label}>{ui.settings.development}</Text>
       <CreditsItem names={credits.development} />
@@ -34,7 +34,7 @@ export function Credits() {
             />
           );
       })}
-    </GradientCardView>
+    </PlainCardView>
   );
 }
 
