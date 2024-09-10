@@ -30,7 +30,6 @@ type RouteToWindow = {
 export default function TabLayout() {
   const auxtheme = getTheme()
   const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? "light"];
   const theme = useTheme();
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
@@ -43,13 +42,15 @@ export default function TabLayout() {
   routeConv['numbers'] = 'number'
   routeConv['other'] = 'other'
 
+  const inactiveTint = colorScheme === "light" ? auxtheme.bottomButtonColor : auxtheme.bottomButtonColorDark
+
   return (
     <View style={{height:"100%"}}>
       <Tabs
         screenOptions={{
           headerTintColor: Colors.dark.text,
           tabBarActiveTintColor: theme.colors.primary,
-          tabBarInactiveTintColor: colors.placeholder,
+          tabBarInactiveTintColor: inactiveTint,
           headerLeft: () => (
             <View style={styles.logo}>
               <Logo />
@@ -58,12 +59,8 @@ export default function TabLayout() {
           headerRight: () => (
             <ActionButtons />
           ),
-          headerBackground: () => (dialect === "reef"
-            ? auxtheme.TopbarReef()
-            : auxtheme.Topbar()),
-          tabBarBackground: () => (dialect === "reef"
-            ? auxtheme.BottombarReef(auxtheme.highlight())
-            : auxtheme.Bottombar(auxtheme.highlight())),
+          headerBackground: () => (auxtheme.Topbar()),
+          tabBarBackground: () => (auxtheme.Bottombar(auxtheme.highlight())),
         }}
         screenListeners={({route}) => ({
           tabPress: () => {
