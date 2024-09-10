@@ -4,13 +4,15 @@ import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
 import { StyleSheet } from "react-native";
+import { getTheme } from "@/hooks/useAuxtheme";
 
 export default function NamesScreen() {
+  const auxtheme = getTheme();
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const { names } = getUI(appLanguage, dialect);
 
-  return (
+  return auxtheme.Background(
     <View style={styles.container}>
       <ScreenLinkCard
         href="/other/names/name-single"
