@@ -4,12 +4,13 @@ import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
 import { ScrollView, StyleSheet } from "react-native";
-import { Background, BackgroundReef } from "@/themes/frutigerAero";
+import { getTheme } from "@/hooks/useAuxtheme";
 
 export default function OtherScreen() {
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const { screens } = getUI(appLanguage, dialect);
+  const auxtheme = getTheme()
 
   const content = (
     <ScrollView>
@@ -27,8 +28,8 @@ export default function OtherScreen() {
   );
 
   return dialect === "reef"
-  ? BackgroundReef(content)
-  : Background(content);
+  ? auxtheme.BackgroundReef(content)
+  : auxtheme.Background(content);
 }
 
 const styles = StyleSheet.create({
