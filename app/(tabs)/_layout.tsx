@@ -83,6 +83,11 @@ export default function TabLayout() {
             title: screens.search,
             tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
           }}
+          listeners={() => ({
+            focus: () => {
+              saveActiveWindow("search")
+            }
+          })}
         />
         <Tabs.Screen
           name="list"
@@ -92,6 +97,11 @@ export default function TabLayout() {
               <TabBarIcon name="list-ol" color={color} />
             ),
           }}
+          listeners={() => ({
+            focus: () => {
+              saveActiveWindow("list")
+            }
+          })}
         />
         <Tabs.Screen
           name="random"
@@ -99,6 +109,11 @@ export default function TabLayout() {
             title: screens.random,
             tabBarIcon: ({ color }) => <TabBarIcon name="random" color={color} />,
           }}
+          listeners={() => ({
+            focus: () => {
+              saveActiveWindow("random")
+            }
+          })}
         />
         <Tabs.Screen
           name="numbers"
@@ -108,6 +123,11 @@ export default function TabLayout() {
               <TabBarIcon name="calculator" color={color} />
             ),
           }}
+          listeners={() => ({
+            focus: () => {
+              saveActiveWindow("number")
+            }
+          })}
         />
         <Tabs.Screen
           name="other"
@@ -118,6 +138,11 @@ export default function TabLayout() {
             ),
             headerShown: false,
           }}
+          listeners={() => ({
+            focus: () => {
+              saveActiveWindow("other")
+            }
+          })}
         />
       </Tabs>
     </View>
