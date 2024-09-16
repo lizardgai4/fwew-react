@@ -62,11 +62,6 @@ export default function TabLayout() {
           headerBackground: () => (auxtheme.Topbar()),
           tabBarBackground: () => (auxtheme.Bottombar(auxtheme.highlight())),
         }}
-        screenListeners={({route}) => ({
-          tabPress: () => {
-            saveActiveWindow(routeConv[route.name])
-          }
-        })}
       >
         <Tabs.Screen
           name="index"
@@ -75,6 +70,11 @@ export default function TabLayout() {
             tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
             headerRight: () => <ActionButtons />,
           }}
+          listeners={() => ({
+            focus: () => {
+              saveActiveWindow("search")
+            }
+          })}
         />
         <Tabs.Screen
           name="list"
@@ -85,6 +85,11 @@ export default function TabLayout() {
             ),
             headerRight: () => <ActionButtons />,
           }}
+          listeners={() => ({
+            focus: () => {
+              saveActiveWindow("list")
+            }
+          })}
         />
         <Tabs.Screen
           name="random"
@@ -93,6 +98,11 @@ export default function TabLayout() {
             tabBarIcon: ({ color }) => <TabBarIcon name="random" color={color} />,
             headerRight: () => <ActionButtons />,
           }}
+          listeners={() => ({
+            focus: () => {
+              saveActiveWindow("random")
+            }
+          })}
         />
         <Tabs.Screen
           name="numbers"
@@ -102,6 +112,11 @@ export default function TabLayout() {
               <TabBarIcon name="calculator" color={color} />
             ),
           }}
+          listeners={() => ({
+            focus: () => {
+              saveActiveWindow("number")
+            }
+          })}
         />
         <Tabs.Screen
           name="other"
@@ -112,6 +127,11 @@ export default function TabLayout() {
             ),
             headerShown: false,
           }}
+          listeners={() => ({
+            focus: () => {
+              saveActiveWindow("other")
+            }
+          })}
         />
       </Tabs>
     </View>
