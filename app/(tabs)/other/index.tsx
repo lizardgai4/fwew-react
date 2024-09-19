@@ -1,4 +1,3 @@
-import { ItalicText } from "@/components/common/StyledText";
 import { CardView, Text, View } from "@/components/common/Themed";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
@@ -17,31 +16,28 @@ export default function OtherScreen() {
         <Link href="/(tabs)/other/names">
           <CardView style={styles.card}>
             <Text style={styles.text}>{screens.names}</Text>
-            <ItalicText>{screens.names}</ItalicText>
           </CardView>
         </Link>
         <Link href="/(tabs)/other/lists">
           <CardView style={styles.card}>
-            <Text style={styles.text}>{screens.lists}</Text>
-            <ItalicText>{screens.lists}</ItalicText>
+            <Text style={styles.text}>
+              {screens.lists.replaceAll(" ", "\n")}
+            </Text>
           </CardView>
         </Link>
         <Link href="/(tabs)/other/stats">
           <CardView style={styles.card}>
             <Text style={styles.text}>{screens.stats}</Text>
-            <ItalicText>{screens.stats}</ItalicText>
           </CardView>
         </Link>
         <Link href="/(tabs)/other/valid">
           <CardView style={styles.card}>
             <Text style={styles.text}>{screens.valid}</Text>
-            <ItalicText>{screens.valid}</ItalicText>
           </CardView>
         </Link>
         <Link href="/(tabs)/other/lenition">
           <CardView style={styles.card}>
             <Text style={styles.text}>{screens.lenition}</Text>
-            <ItalicText>{screens.lenition}</ItalicText>
           </CardView>
         </Link>
       </View>
