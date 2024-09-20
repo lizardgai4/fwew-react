@@ -1,9 +1,9 @@
-import { CardView, Text, View } from "@/components/common/Themed";
-import { getUI } from "@/constants/i18n";
-import { useAppLanguageContext } from "@/context/AppLanguageContext";
-import { useDialectContext } from "@/context/DialectContext";
-import { Link } from "expo-router";
-import { ScrollView, StyleSheet } from "react-native";
+import {CardView, Text, View} from "@/components/common/Themed";
+import {getUI} from "@/constants/i18n";
+import {useAppLanguageContext} from "@/context/AppLanguageContext";
+import {useDialectContext} from "@/context/DialectContext";
+import {Link} from "expo-router";
+import {ScrollView, StyleSheet} from "react-native";
 
 export default function OtherScreen() {
   const { appLanguage } = useAppLanguageContext();
@@ -20,9 +20,13 @@ export default function OtherScreen() {
         </Link>
         <Link href="/(tabs)/other/lists">
           <CardView style={styles.card}>
-            <Text style={styles.text}>
-              {screens.lists.replaceAll(" ", "\n")}
-            </Text>
+            <CardView style={{ alignItems: "center" }}>
+              {screens.lists.split(" ").map((listsNameWord, i) => (
+                <Text key={`lnw_${i}`} style={styles.text}>
+                  {listsNameWord}
+                </Text>
+              ))}
+            </CardView>
           </CardView>
         </Link>
         <Link href="/(tabs)/other/stats">
