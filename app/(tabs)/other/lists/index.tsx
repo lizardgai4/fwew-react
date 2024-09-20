@@ -1,9 +1,9 @@
-import { CardView, Text, View } from "@/components/common/Themed";
-import { getUI } from "@/constants/i18n";
-import { useAppLanguageContext } from "@/context/AppLanguageContext";
-import { useDialectContext } from "@/context/DialectContext";
-import { Link } from "expo-router";
-import { ScrollView, StyleSheet } from "react-native";
+import {View} from "@/components/common/Themed";
+import {getUI} from "@/constants/i18n";
+import {useAppLanguageContext} from "@/context/AppLanguageContext";
+import {useDialectContext} from "@/context/DialectContext";
+import {ScrollView, StyleSheet} from "react-native";
+import {ScreenLinkCard} from "@/components/common/ScreenLinkCard";
 
 export default function ListsScreen() {
   const { appLanguage } = useAppLanguageContext();
@@ -13,36 +13,12 @@ export default function ListsScreen() {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <Link href="/(tabs)/other/lists/cameron">
-          <CardView style={styles.card}>
-            <Text style={styles.text}>{screens.cameronWords}</Text>
-          </CardView>
-        </Link>
-        <Link href="/(tabs)/other/lists/homonyms">
-          <CardView style={styles.card}>
-            <Text style={styles.text}>{screens.homonyms}</Text>
-          </CardView>
-        </Link>
-        <Link href="/(tabs)/other/lists/multi-ipa">
-          <CardView style={styles.card}>
-            <Text style={styles.text}>{screens.multiIPA}</Text>
-          </CardView>
-        </Link>
-        <Link href="/(tabs)/other/lists/oddballs">
-          <CardView style={styles.card}>
-            <Text style={styles.text}>{screens.oddballs}</Text>
-          </CardView>
-        </Link>
-        <Link href="/(tabs)/other/lists/profanity">
-          <CardView style={styles.card}>
-            <Text style={styles.text}>{screens.profanity}</Text>
-          </CardView>
-        </Link>
-        <Link href="/(tabs)/other/lists/that">
-          <CardView style={styles.card}>
-            <Text style={styles.text}>{screens.that}</Text>
-          </CardView>
-        </Link>
+        <ScreenLinkCard href="/other/lists/cameron" title={screens.cameronWords} />
+        <ScreenLinkCard href={"/other/lists/homonyms"} title={screens.homonyms} />
+        <ScreenLinkCard href={"/other/lists/multi-ipa"} title={screens.multiIPA} />
+        <ScreenLinkCard href={"/(tabs)/other/lists/oddballs"} title={screens.oddballs} />
+        <ScreenLinkCard href={"/other/lists/profanity"} title={screens.profanity} />
+        <ScreenLinkCard href={"/other/lists/that"} title={screens.that} />
       </View>
     </ScrollView>
   );
@@ -55,17 +31,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 32,
     padding: 16,
-  },
-  card: {
-    padding: 32,
-    width: 256,
-    height: 128,
-    borderRadius: 8,
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 16,
-  },
-  text: {
-    fontSize: 24,
   },
 });

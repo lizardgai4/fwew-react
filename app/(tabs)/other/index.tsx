@@ -1,9 +1,9 @@
-import {CardView, Text, View} from "@/components/common/Themed";
+import {View} from "@/components/common/Themed";
 import {getUI} from "@/constants/i18n";
 import {useAppLanguageContext} from "@/context/AppLanguageContext";
 import {useDialectContext} from "@/context/DialectContext";
-import {Link} from "expo-router";
 import {ScrollView, StyleSheet} from "react-native";
+import {ScreenLinkCard} from "@/components/common/ScreenLinkCard";
 
 export default function OtherScreen() {
   const { appLanguage } = useAppLanguageContext();
@@ -13,37 +13,11 @@ export default function OtherScreen() {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <Link href="/(tabs)/other/names">
-          <CardView style={styles.card}>
-            <Text style={styles.text}>{screens.names}</Text>
-          </CardView>
-        </Link>
-        <Link href="/(tabs)/other/lists">
-          <CardView style={styles.card}>
-            <CardView style={{ alignItems: "center" }}>
-              {screens.lists.split(" ").map((listsNameWord, i) => (
-                <Text key={`lnw_${i}`} style={styles.text}>
-                  {listsNameWord}
-                </Text>
-              ))}
-            </CardView>
-          </CardView>
-        </Link>
-        <Link href="/(tabs)/other/stats">
-          <CardView style={styles.card}>
-            <Text style={styles.text}>{screens.stats}</Text>
-          </CardView>
-        </Link>
-        <Link href="/(tabs)/other/valid">
-          <CardView style={styles.card}>
-            <Text style={styles.text}>{screens.valid}</Text>
-          </CardView>
-        </Link>
-        <Link href="/(tabs)/other/lenition">
-          <CardView style={styles.card}>
-            <Text style={styles.text}>{screens.lenition}</Text>
-          </CardView>
-        </Link>
+        <ScreenLinkCard href="/(tabs)/other/names" title={screens.names} />
+        <ScreenLinkCard href="/(tabs)/other/lists" title={screens.lists} />
+        <ScreenLinkCard href="/(tabs)/other/stats" title={screens.stats} />
+        <ScreenLinkCard href={"/(tabs)/other/valid"} title={screens.valid} />
+        <ScreenLinkCard href="/(tabs)/other/lenition" title={screens.lenition} />
       </View>
     </ScrollView>
   );
@@ -56,17 +30,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 32,
     padding: 16,
-  },
-  card: {
-    padding: 32,
-    width: 256,
-    height: 128,
-    borderRadius: 8,
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 16,
-  },
-  text: {
-    fontSize: 24,
   },
 });
