@@ -1,10 +1,9 @@
-import { ItalicText } from "@/components/common/StyledText";
-import { CardView, Text, View } from "@/components/common/Themed";
-import { getUI } from "@/constants/i18n";
-import { useAppLanguageContext } from "@/context/AppLanguageContext";
-import { useDialectContext } from "@/context/DialectContext";
-import { Link } from "expo-router";
-import { StyleSheet } from "react-native";
+import {View} from "@/components/common/Themed";
+import {getUI} from "@/constants/i18n";
+import {useAppLanguageContext} from "@/context/AppLanguageContext";
+import {useDialectContext} from "@/context/DialectContext";
+import {StyleSheet} from "react-native";
+import {ScreenLinkCard} from "@/components/common/ScreenLinkCard";
 
 export default function NamesScreen() {
   const { appLanguage } = useAppLanguageContext();
@@ -13,24 +12,9 @@ export default function NamesScreen() {
 
   return (
     <View style={styles.container}>
-      <Link href="/(tabs)/other/names/name-single">
-        <CardView style={styles.card}>
-          <Text style={styles.text}>{names.single}</Text>
-          <ItalicText>Neytiri</ItalicText>
-        </CardView>
-      </Link>
-      <Link href="/(tabs)/other/names/name-full">
-        <CardView style={styles.card}>
-          <Text style={styles.text}>{names.full}</Text>
-          <ItalicText>Neytiri te Tskaha Mo'at'ite</ItalicText>
-        </CardView>
-      </Link>
-      <Link href="/(tabs)/other/names/name-alu">
-        <CardView style={styles.card}>
-          <Text style={styles.text}>{names.alu}</Text>
-          <ItalicText>Neytiri alu Taronyu Teyluä</ItalicText>
-        </CardView>
-      </Link>
+      <ScreenLinkCard href="/other/names/name-single" title={names.single} description="Neytiri" />
+      <ScreenLinkCard href="/other/names/name-full" title={names.full} description="Neytiri te Tskaha Mo'at'ite" />
+      <ScreenLinkCard href="/other/names/name-alu" title={names.alu} description="Neytiri alu Taronyu Teyluä" />
     </View>
   );
 }
@@ -41,17 +25,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     gap: 32,
-  },
-  card: {
-    padding: 32,
-    width: 256,
-    height: 128,
-    borderRadius: 8,
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 16,
-  },
-  text: {
-    fontSize: 24,
   },
 });
