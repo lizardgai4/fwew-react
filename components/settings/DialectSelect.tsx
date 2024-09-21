@@ -1,4 +1,4 @@
-import { Dialects } from "@/constants/Dialects";
+import { DialectDisplay, Dialects } from "@/constants/Dialects";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
@@ -8,7 +8,7 @@ import { OptionItem } from "../common/OptionItem";
 import { CardView, Text } from "../common/Themed";
 
 export function DialectSelect() {
-  const { dialect, dialectDisplay, saveDialect } = useDialectContext();
+  const { dialect, saveDialect } = useDialectContext();
   const { appLanguage } = useAppLanguageContext();
   const ui = getUI(appLanguage, dialect);
 
@@ -16,7 +16,9 @@ export function DialectSelect() {
     <Accordion
       closedContent={
         <CardView style={styles.iconContainer}>
-          <Text style={[styles.icon, styles.value]}>{dialectDisplay}</Text>
+          <Text style={[styles.icon, styles.value]}>
+            {DialectDisplay[dialect].abbr}
+          </Text>
           <Text style={styles.value}>{ui.names.dialect}</Text>
         </CardView>
       }
@@ -25,7 +27,7 @@ export function DialectSelect() {
           {Dialects.map((d, i) => (
             <CardView key={`sd_${i}`}>
               <OptionItem
-                icon={null}
+                icon={<Text style={[styles.icon, styles.value]}>{d.abbr}</Text>}
                 value={d.name}
                 selected={dialect === d.value}
                 onSelect={() => saveDialect(d.value)}

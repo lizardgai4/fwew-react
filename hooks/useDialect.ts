@@ -2,11 +2,6 @@ import { Dialect } from "@/types/common";
 import { useAsyncStorage } from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
 
-const dialectAbbr: { [key in Dialect]: string } = {
-  forest: "LN",
-  reef: "LW",
-};
-
 export function useDialect() {
   const [dialect, setDialect] = useState<Dialect>("forest");
   const { getItem, setItem } = useAsyncStorage("fw_dialect");
@@ -39,7 +34,6 @@ export function useDialect() {
 
   return {
     dialect,
-    dialectDisplay: dialectAbbr[dialect],
     saveDialect,
     toggleDialect,
   };
