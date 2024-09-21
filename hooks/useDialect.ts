@@ -18,7 +18,7 @@ export function useDialect() {
 
   async function toggleDialect() {
     const value = dialect === "forest" ? "reef" : "forest";
-    void saveDialect(value);
+    await saveDialect(value);
   }
 
   useEffect(() => {
