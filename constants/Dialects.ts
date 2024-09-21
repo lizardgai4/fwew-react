@@ -1,6 +1,11 @@
-import { Dialect } from "@/types/common";
+import { DialectDisplayType, DialectMeta } from "@/types/common";
 
-export const Dialects: { name: string; value: Dialect }[] = [
-  { name: "Lì'fya Na'rìngä", value: "forest" },
-  { name: "Lì'fya Wione", value: "reef" },
-];
+export const Dialects: DialectMeta[] = [
+  { name: "Lì'fya Na'rìngä", value: "forest", abbr: "LN" },
+  { name: "Lì'fya Wione", value: "reef", abbr: "LW" },
+] as const;
+
+export const DialectDisplay: DialectDisplayType = {
+  forest: Dialects[0],
+  reef: Dialects[1],
+} as const;

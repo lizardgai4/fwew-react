@@ -7,3 +7,11 @@ export type NumericString = `${number}` | "";
 export type OptionType<T> = { name: string; value: T };
 
 export type Dialect = Exclude<FwDialect, "interdialect">;
+
+export type DialectAbbr = "LN" | "LW";
+
+export type DialectMeta = { name: string; value: Dialect; abbr: DialectAbbr };
+
+export type DialectDisplayType = {
+  [key in Dialect]: DialectMeta;
+};
