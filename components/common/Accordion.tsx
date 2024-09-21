@@ -16,27 +16,19 @@ export function Accordion(props: AccordionProps) {
   const colorScheme = useColorScheme();
   const colors = Colors[colorScheme ?? "light"];
 
-  const toggleExpanded = () => setExpanded(!expanded);
-
   return (
     <CardView>
-      <TouchableOpacity style={styles.container} onPress={toggleExpanded}>
+      <TouchableOpacity
+        style={styles.container}
+        onPress={() => setExpanded((e) => !e)}
+      >
         {closedContent}
-        {expanded ? (
-          <FontAwesome
-            size={24}
-            name="chevron-down"
-            color={colors.text}
-            style={styles.arrow}
-          />
-        ) : (
-          <FontAwesome
-            size={24}
-            name="chevron-right"
-            color={colors.text}
-            style={styles.arrow}
-          />
-        )}
+        <FontAwesome
+          size={24}
+          name={expanded ? "chevron-down" : "chevron-right"}
+          color={colors.text}
+          style={styles.arrow}
+        />
       </TouchableOpacity>
       {expanded && openedContent}
     </CardView>
