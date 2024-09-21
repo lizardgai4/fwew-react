@@ -16,14 +16,14 @@ export function DialectSelect() {
     <Accordion
       closedContent={
         <CardView style={styles.iconContainer}>
-          <Text style={styles.value}>{dialectDisplay}</Text>
+          <Text style={[styles.icon, styles.value]}>{dialectDisplay}</Text>
           <Text style={styles.value}>{ui.names.dialect}</Text>
         </CardView>
       }
       openedContent={
-        <CardView>
+        <CardView style={styles.contentContainer}>
           {Dialects.map((d, i) => (
-            <CardView key={`sd_${i}`} style={{ paddingHorizontal: 8 }}>
+            <CardView key={`sd_${i}`}>
               <OptionItem
                 icon={null}
                 value={d.name}
@@ -43,6 +43,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 16,
+  },
+  contentContainer: {
+    padding: 16,
+    paddingTop: 0,
+  },
+  icon: {
+    paddingHorizontal: 4,
   },
   value: {
     fontSize: 16,
