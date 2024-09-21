@@ -25,12 +25,12 @@ function LanguageDisplay() {
   const index = Languages.indexOf(resultsLanguage);
   const resultsFlag = FlagMap[resultsLanguage];
 
-  const nextLanguage = () => {
+  const nextLanguage = async () => {
     if (index < 0 || index === Languages.length - 1) {
-      saveResultsLanguage(Languages[0]);
+      await saveResultsLanguage(Languages[0]);
       return;
     }
-    saveResultsLanguage(Languages[index + 1]);
+    await saveResultsLanguage(Languages[index + 1]);
   };
 
   return (
