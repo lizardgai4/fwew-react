@@ -7,14 +7,15 @@ import { FontAwesome } from "@expo/vector-icons";
 import { Href, Link } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { FlagMap } from "../settings/Flags";
+import { DialectDisplay } from "@/constants/Dialects";
 
 export function ActionButtons() {
   return (
     <View style={styles.container}>
-      <DialectButton />
-      <LanguageDisplay />
-      <ActionButton href="/favorites" icon="heart" />
-      <ActionButton href="/settings" icon="gear" />
+      <DialectButton/>
+      <LanguageDisplay/>
+      <ActionButton href="/favorites" icon="heart"/>
+      <ActionButton href="/settings" icon="gear"/>
     </View>
   );
 }
@@ -43,12 +44,12 @@ function LanguageDisplay() {
 }
 
 function DialectButton() {
-  const { dialectDisplay, toggleDialect } = useDialectContext();
+  const { dialect, toggleDialect } = useDialectContext();
   return (
     <Pressable style={styles.actionButton} onPress={toggleDialect}>
       {({ pressed }) => (
         <View style={[styles.dialectButton, { opacity: pressed ? 0.5 : 1 }]}>
-          <Text style={styles.dialectText}>{dialectDisplay}</Text>
+          <Text style={styles.dialectText}>{DialectDisplay[dialect].abbr}</Text>
         </View>
       )}
     </Pressable>
