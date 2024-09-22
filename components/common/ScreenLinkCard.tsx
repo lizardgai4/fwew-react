@@ -14,11 +14,7 @@ export function ScreenLinkCard({ href, title, description }: Props) {
     <Link href={href}>
       <CardView style={styles.card}>
         <CardView style={styles.textGroup}>
-          {title.split(" ").map((titleWord, i) => (
-            <Text key={`lnw_names_${i}`} style={styles.text}>
-              {titleWord}
-            </Text>
-          ))}
+          <Text style={styles.text}>{title}</Text>
           {description && <ItalicText>{description}</ItalicText>}
         </CardView>
       </CardView>
@@ -29,14 +25,11 @@ export function ScreenLinkCard({ href, title, description }: Props) {
 const styles = StyleSheet.create({
   card: {
     padding: 32,
-    width: 256,
-    height: 128,
+    width: 320,
     borderRadius: 8,
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 16,
   },
   textGroup: {
+    justifyContent: "center",
     alignItems: "center",
     gap: 16,
   },

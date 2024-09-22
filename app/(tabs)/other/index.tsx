@@ -29,9 +29,8 @@ export default function OtherScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    padding: 16,
     alignItems: "center",
     gap: 32,
-    padding: 16,
   },
 });
