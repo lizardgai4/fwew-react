@@ -91,7 +91,8 @@ const styles = StyleSheet.create({
   },
   dialectText: {
     color: "#fff",
-    fontSize: 20,
+    fontSize: 24,
+    paddingTop: 8,
   },
   actionButton: {
     flexDirection: "row",
