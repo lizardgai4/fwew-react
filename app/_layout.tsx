@@ -8,12 +8,7 @@ import { useAppLanguage } from "@/hooks/useAppLanguage";
 import { useDialect } from "@/hooks/useDialect";
 import { useFavorites } from "@/hooks/useFavorites";
 import { useResultsLanguage } from "@/hooks/useResultsLanguage";
-import {
-  FwewDarkReefTheme,
-  FwewDarkTheme,
-  FwewLightReefTheme,
-  FwewLightTheme,
-} from "@/themes";
+import { getTheme } from "@/themes";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
@@ -56,7 +51,7 @@ export default function RootLayout() {
     return null;
   }
 
-  return <RootLayoutNav />;
+  return <RootLayoutNav/>;
 }
 
 function RootLayoutNav() {
@@ -67,19 +62,12 @@ function RootLayoutNav() {
   const dialectValue = useDialect();
   const { dialect } = dialectValue;
   const favorites = useFavorites();
-  const theme =
-    colorScheme === "dark"
-      ? dialectValue.dialect === "reef"
-        ? FwewDarkReefTheme
-        : FwewDarkTheme
-      : dialectValue.dialect === "reef"
-      ? FwewLightReefTheme
-      : FwewLightTheme;
+  const theme = getTheme({ fwewTheme: "fwew", colorScheme, dialect });
 
   return (
     <>
-      <GlobalStyle />
-      <StatusBar style="light" />
+      <GlobalStyle/>
+      <StatusBar style="light"/>
       <ThemeProvider value={theme}>
         <AppLanguageProvider value={appLanguageValue}>
           <ResultsLanguageProvider value={resultsLanguage}>
