@@ -3,7 +3,7 @@ import { View } from "@/components/common/Themed";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
-import { StyleSheet } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 
 export default function NamesScreen() {
   const { appLanguage } = useAppLanguageContext();
@@ -11,30 +11,32 @@ export default function NamesScreen() {
   const { names } = getUI(appLanguage, dialect);
 
   return (
-    <View style={styles.container}>
-      <ScreenLinkCard
-        href="/other/names/name-single"
-        title={names.single}
-        description="Neytiri"
-      />
-      <ScreenLinkCard
-        href="/other/names/name-full"
-        title={names.full}
-        description="Neytiri te Tskaha Mo'at'ite"
-      />
-      <ScreenLinkCard
-        href="/other/names/name-alu"
-        title={names.alu}
-        description="Neytiri alu Taronyu Teyluä"
-      />
-    </View>
+    <ScrollView>
+      <View style={styles.container}>
+        <ScreenLinkCard
+          href="/other/names/name-single"
+          title={names.single}
+          description="Neytiri"
+        />
+        <ScreenLinkCard
+          href="/other/names/name-full"
+          title={names.full}
+          description="Neytiri te Tskaha Mo'at'ite"
+        />
+        <ScreenLinkCard
+          href="/other/names/name-alu"
+          title={names.alu}
+          description="Neytiri alu Taronyu Teyluä"
+        />
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    padding: 16,
     alignItems: "center",
     gap: 32,
   },
