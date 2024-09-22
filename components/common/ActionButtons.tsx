@@ -5,7 +5,7 @@ import { useResultsLanguageContext } from "@/context/ResultsLanguageContext";
 import { FontAwesomeIconName } from "@/types/icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { Href, Link } from "expo-router";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { FlagMap } from "../settings/Flags";
 import { DialectDisplay } from "@/constants/Dialects";
 
@@ -91,8 +91,8 @@ const styles = StyleSheet.create({
   },
   dialectText: {
     color: "#fff",
-    fontSize: 24,
-    paddingTop: 8,
+    fontSize: Platform.OS === "web" ? 24 : 20,
+    paddingTop: Platform.OS === "web" ? 8 : 0,
   },
   actionButton: {
     flexDirection: "row",
