@@ -1,6 +1,8 @@
 import { type Theme } from "@react-navigation/native";
+import { type ColorSchemeName } from "react-native";
+import { type Dialect } from "@/types/common";
 
-export const FwewDarkTheme: Theme = {
+const FwewDarkTheme: Theme = {
   dark: true,
   colors: {
     primary: "#3a5575",
@@ -12,7 +14,7 @@ export const FwewDarkTheme: Theme = {
   },
 };
 
-export const FwewDarkReefTheme: Theme = {
+const FwewDarkReefTheme: Theme = {
   dark: true,
   colors: {
     primary: "#3a7569",
@@ -24,7 +26,7 @@ export const FwewDarkReefTheme: Theme = {
   },
 };
 
-export const FwewLightTheme: Theme = {
+const FwewLightTheme: Theme = {
   dark: false,
   colors: {
     primary: "#7494ba",
@@ -36,7 +38,7 @@ export const FwewLightTheme: Theme = {
   },
 };
 
-export const FwewLightReefTheme: Theme = {
+const FwewLightReefTheme: Theme = {
   dark: false,
   colors: {
     primary: "#74baac",
@@ -47,3 +49,32 @@ export const FwewLightReefTheme: Theme = {
     notification: "#ff3b30",
   },
 };
+
+const ThemeMap = {
+  fwew: {
+    light: {
+      forest: FwewLightTheme,
+      reef: FwewLightReefTheme,
+    },
+    dark: {
+      forest: FwewDarkTheme,
+      reef: FwewDarkReefTheme,
+    }
+  }
+} as const;
+
+export const FwewThemeNames = ["fwew"] as const;
+export type FwewThemeName = typeof FwewThemeNames[number];
+
+type ThemeParams = {
+  fwewTheme: FwewThemeName,
+  colorScheme: ColorSchemeName,
+  dialect: Dialect
+};
+
+export function getTheme({ fwewTheme, colorScheme, dialect }: ThemeParams): Theme {
+  if (!colorScheme) {
+    return FwewLightTheme
+  }
+  return ThemeMap[fwewTheme][colorScheme][dialect];
+}
