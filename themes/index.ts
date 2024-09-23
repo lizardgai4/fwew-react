@@ -9,6 +9,7 @@ const ThemeMap = {
 } as const;
 
 export type ThemeName = keyof typeof ThemeMap;
+export const ThemeNames = Object.keys(ThemeMap) as ThemeName[];
 
 export function getTheme({
   themeName,
