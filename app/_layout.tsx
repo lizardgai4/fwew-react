@@ -51,7 +51,7 @@ export default function RootLayout() {
     return null;
   }
 
-  return <RootLayoutNav/>;
+  return <RootLayoutNav />;
 }
 
 function RootLayoutNav() {
@@ -62,12 +62,12 @@ function RootLayoutNav() {
   const dialectValue = useDialect();
   const { dialect } = dialectValue;
   const favorites = useFavorites();
-  const theme = getTheme({ fwewTheme: "fwew", colorScheme, dialect });
+  const theme = getTheme({ themeName: "fwew", colorScheme, dialect });
 
   return (
     <>
-      <GlobalStyle/>
-      <StatusBar style="light"/>
+      <GlobalStyle />
+      <StatusBar style="light" />
       <ThemeProvider value={theme}>
         <AppLanguageProvider value={appLanguageValue}>
           <ResultsLanguageProvider value={resultsLanguage}>

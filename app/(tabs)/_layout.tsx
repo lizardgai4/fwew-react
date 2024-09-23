@@ -1,9 +1,9 @@
 import { ActionButtons } from "@/components/common/ActionButtons";
 import { Logo } from "@/components/common/Logo";
-import Colors from "@/constants/Colors";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
+import { getColorExtension } from "@/themes";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useTheme } from "@react-navigation/native";
 import { Tabs } from "expo-router";
@@ -21,7 +21,8 @@ function TabBarIcon(props: TabBarIconProps) {
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? "light"];
+  const colorExtension = getColorExtension("fwew");
+  const colors = colorExtension[colorScheme ?? "light"];
   const theme = useTheme();
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
@@ -31,7 +32,7 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         headerStyle: { backgroundColor: theme.colors.primary },
-        headerTintColor: Colors.dark.text,
+        headerTintColor: colorExtension.dark.text,
         tabBarActiveTintColor: theme.colors.primary,
         tabBarInactiveTintColor: colors.placeholder,
         headerLeft: () => <Logo />,

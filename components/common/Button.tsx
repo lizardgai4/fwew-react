@@ -1,5 +1,5 @@
 import { Text } from "@/components/common/Themed";
-import Colors from "@/constants/Colors";
+import { getColorExtension } from "@/themes";
 import type { FontAwesomeIconName } from "@/types/icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
@@ -23,7 +23,8 @@ type ButtonProps = {
 export function Button(props: ButtonProps) {
   const { onPress, disabled, icon, text, style, textStyle } = props;
   const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? "light"];
+  const colorExtension = getColorExtension("fwew");
+  const colors = colorExtension[colorScheme ?? "light"];
   const theme = useTheme();
 
   return (
@@ -38,9 +39,11 @@ export function Button(props: ButtonProps) {
       ]}
       disabled={disabled}
     >
-      <FontAwesome name={icon} size={24} color={Colors.dark.text} />
+      <FontAwesome name={icon} size={24} color={colorExtension.dark.text} />
       {text && (
-        <Text style={{ color: Colors.dark.text, ...textStyle }}>{text}</Text>
+        <Text style={{ color: colorExtension.dark.text, ...textStyle }}>
+          {text}
+        </Text>
       )}
     </TouchableOpacity>
   );

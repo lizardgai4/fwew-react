@@ -1,21 +1,21 @@
-import Colors from "@/constants/Colors";
+import { DialectDisplay } from "@/constants/Dialects";
 import { ResultsLanguages } from "@/constants/Language";
 import { useDialectContext } from "@/context/DialectContext";
 import { useResultsLanguageContext } from "@/context/ResultsLanguageContext";
+import { getColorExtension } from "@/themes";
 import { FontAwesomeIconName } from "@/types/icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { Href, Link } from "expo-router";
 import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { FlagMap } from "../settings/Flags";
-import { DialectDisplay } from "@/constants/Dialects";
 
 export function ActionButtons() {
   return (
     <View style={styles.container}>
-      <DialectButton/>
-      <LanguageDisplay/>
-      <ActionButton href="/favorites" icon="heart"/>
-      <ActionButton href="/settings" icon="gear"/>
+      <DialectButton />
+      <LanguageDisplay />
+      <ActionButton href="/favorites" icon="heart" />
+      <ActionButton href="/settings" icon="gear" />
     </View>
   );
 }
@@ -62,6 +62,7 @@ type ABProps = {
 };
 
 function ActionButton({ href, icon }: ABProps) {
+  const colorExtension = getColorExtension("fwew");
   return (
     <Link href={href} asChild>
       <Pressable style={styles.actionButton}>
@@ -69,7 +70,7 @@ function ActionButton({ href, icon }: ABProps) {
           <FontAwesome
             name={icon}
             size={25}
-            color={Colors.dark.text}
+            color={colorExtension.dark.text}
             style={{ opacity: pressed ? 0.5 : 1 }}
           />
         )}

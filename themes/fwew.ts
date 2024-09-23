@@ -1,3 +1,4 @@
+import type { ColorExtension } from "@/types/theme";
 import type { Theme } from "@react-navigation/native";
 
 const FwewDarkTheme: Theme = {
@@ -48,6 +49,29 @@ const FwewLightReefTheme: Theme = {
   },
 };
 
+export const FwewColorExtension: ColorExtension = {
+  light: {
+    text: "#000",
+    background: "#fff",
+    tint: "#2e77d1",
+    placeholder: "#555",
+    tabIconDefault: "#ccc",
+    tabIconSelected: "#2e77d1",
+    link: "#007aff",
+    innerCard: "#d9d9d9",
+  },
+  dark: {
+    text: "#fff",
+    background: "#000",
+    tint: "#547aab",
+    placeholder: "#999",
+    tabIconDefault: "#ccc",
+    tabIconSelected: "#547aab",
+    link: "#62a0ea",
+    innerCard: "#2d3133",
+  },
+};
+
 export const FwewTheme = {
   light: {
     forest: FwewLightTheme,
@@ -56,5 +80,6 @@ export const FwewTheme = {
   dark: {
     forest: FwewDarkTheme,
     reef: FwewDarkReefTheme,
-  }
+  },
+  ext: FwewColorExtension,
 } as const;

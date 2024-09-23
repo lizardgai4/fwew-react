@@ -1,6 +1,6 @@
 import { ExternalLink } from "@/components/common/ExternalLink";
 import { MonoText } from "@/components/common/StyledText";
-import Colors from "@/constants/Colors";
+import { getColorExtension } from "@/themes";
 import { StyleSheet, useColorScheme } from "react-native";
 
 type GitDetailsProps = {
@@ -10,7 +10,8 @@ type GitDetailsProps = {
 
 export function GitDetails({ branch, commitHash }: GitDetailsProps) {
   const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? "light"];
+  const colorExtension = getColorExtension("fwew");
+  const colors = colorExtension[colorScheme ?? "light"];
 
   if (!branch || !commitHash) {
     return null;

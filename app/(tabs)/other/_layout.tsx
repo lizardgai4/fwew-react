@@ -1,15 +1,16 @@
 import { ActionButtons } from "@/components/common/ActionButtons";
 import { Logo } from "@/components/common/Logo";
-import Colors from "@/constants/Colors";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
+import { getColorExtension } from "@/themes";
 import { useTheme } from "@react-navigation/native";
 import { Stack } from "expo-router";
 import { Platform, StyleSheet, View } from "react-native";
 
 export default function StackLayout() {
   const theme = useTheme();
+  const colorExtension = getColorExtension("fwew");
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const { screens, names } = getUI(appLanguage, dialect);
@@ -18,7 +19,7 @@ export default function StackLayout() {
     <Stack
       screenOptions={{
         headerStyle: { backgroundColor: theme.colors.primary },
-        headerTintColor: Colors.dark.text,
+        headerTintColor: colorExtension.dark.text,
         headerLeft: () => (
           <View style={styles.logo}>
             <Logo />

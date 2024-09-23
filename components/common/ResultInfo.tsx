@@ -6,7 +6,6 @@ import {
 } from "@/components/common/StyledText";
 import { CardView, Text } from "@/components/common/Themed";
 import { Affixes } from "@/constants/Affixes";
-import Colors from "@/constants/Colors";
 import { LenitingAdpositions } from "@/constants/Lenition";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
@@ -16,6 +15,7 @@ import { useResultsLanguageContext } from "@/context/ResultsLanguageContext";
 import { useSound } from "@/hooks/useSound";
 import { ReefMe } from "@/lib/dialect";
 import { Romanize } from "@/lib/romanize";
+import { getColorExtension } from "@/themes";
 import { useTheme } from "@react-navigation/native";
 import { fwewSimple, type LanguageCode, type Word } from "fwew.js";
 import { useCallback, useEffect, useState } from "react";
@@ -33,6 +33,7 @@ export function ResultInfo({ word }: ResultInfoProps) {
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const ui = getUI(appLanguage, dialect);
+  const colorExtension = getColorExtension("fwew");
   const forestNavi = word.Navi;
   const { reefNavi, reefInfixDots, reefInfixSlots } = ReefMe(
     word.IPA,
@@ -48,7 +49,7 @@ export function ResultInfo({ word }: ResultInfoProps) {
           icon="volume-up"
           text={ui.search.audio}
           style={styles.audioButton}
-          textStyle={{ color: Colors.dark.text }}
+          textStyle={{ color: colorExtension.dark.text }}
         />
         <FavoriteButton word={word} />
       </CardView>
@@ -120,6 +121,7 @@ function FavoriteButton({ word }: { word: Word }) {
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const ui = getUI(appLanguage, dialect);
+  const colorExtension = getColorExtension("fwew");
 
   const faved = isFavorite(word);
   return (
@@ -131,9 +133,9 @@ function FavoriteButton({ word }: { word: Word }) {
         ...styles.audioButton,
         backgroundColor: faved
           ? theme.colors?.primary
-          : Colors[theme.dark ? "dark" : "light"].innerCard,
+          : colorExtension[theme.dark ? "dark" : "light"].innerCard,
       }}
-      textStyle={{ color: Colors.dark.text }}
+      textStyle={{ color: colorExtension.dark.text }}
     />
   );
 }
