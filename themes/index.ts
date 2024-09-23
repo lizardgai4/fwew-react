@@ -8,14 +8,14 @@ const ThemeMap = {
   fwew: FwewTheme,
 } as const;
 
-type FwewThemeName = keyof typeof ThemeMap;
+type ThemeName = keyof typeof ThemeMap;
 
 export function getTheme({
   themeName,
   colorScheme,
   dialect,
 }: {
-  themeName: FwewThemeName;
+  themeName: ThemeName;
   colorScheme: ColorSchemeName;
   dialect: Dialect;
 }): Theme {
@@ -25,6 +25,6 @@ export function getTheme({
   return ThemeMap[themeName][colorScheme][dialect];
 }
 
-export function getColorExtension(themeName: FwewThemeName): ColorExtension {
+export function getColorExtension(themeName: ThemeName): ColorExtension {
   return ThemeMap[themeName].ext;
 }
