@@ -8,7 +8,7 @@ const ThemeMap = {
   fwew: FwewTheme,
 } as const;
 
-type ThemeName = keyof typeof ThemeMap;
+export type ThemeName = keyof typeof ThemeMap;
 
 export function getTheme({
   themeName,
