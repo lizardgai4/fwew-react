@@ -29,14 +29,14 @@ export function DialectSelect() {
       openedContent={
         <CardView style={styles.contentContainer}>
           {Dialects.map((d, i) => (
-            <CardView key={`sd_${i}`}>
+            <View key={`sd_${i}`}>
               <OptionItem
                 icon={<Text style={[styles.icon, styles.value]}>{d.abbr}</Text>}
                 value={d.name}
                 selected={dialect === d.value}
                 onSelect={() => saveDialect(d.value)}
               />
-            </CardView>
+            </View>
           ))}
         </CardView>
       }
