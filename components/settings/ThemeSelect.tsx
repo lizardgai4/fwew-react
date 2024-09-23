@@ -1,9 +1,9 @@
 import { useThemeNameContext } from "@/context/ThemeNameContext";
-import { Accordion } from "../common/Accordion";
-import { CardView, Text } from "../common/Themed";
-import { StyleSheet } from "react-native";
 import { ThemeNames } from "@/themes";
+import { StyleSheet, View } from "react-native";
+import { Accordion } from "../common/Accordion";
 import { OptionItem } from "../common/OptionItem";
+import { CardView, Text } from "../common/Themed";
 
 export function ThemeSelect() {
   const { themeName, saveThemeName } = useThemeNameContext();
@@ -12,9 +12,11 @@ export function ThemeSelect() {
     <Accordion
       closedContent={
         <CardView style={styles.iconContainer}>
-          <Text style={[styles.icon, styles.value]}>
-            {themeName.slice(0, 2).toUpperCase()}
-          </Text>
+          <View style={styles.icon}>
+            <Text style={styles.value}>
+              {themeName.slice(0, 2).toUpperCase()}
+            </Text>
+          </View>
           <Text style={styles.value}>Theme</Text>
         </CardView>
       }
@@ -51,6 +53,9 @@ const styles = StyleSheet.create({
     paddingTop: 0,
   },
   icon: {
+    width: 40,
+    justifyContent: "center",
+    alignItems: "center",
     paddingHorizontal: 4,
   },
   value: {
