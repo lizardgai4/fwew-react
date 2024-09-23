@@ -1,4 +1,4 @@
-import { CardView, Text } from "@/components/common/Themed";
+import { Text } from "@/components/common/Themed";
 import { getColorExtension } from "@/themes";
 import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
@@ -24,7 +24,7 @@ export function OptionItem(props: OptionItemProps) {
 
   return (
     <TouchableOpacity onPress={onSelect}>
-      <CardView
+      <View
         style={[
           styles.container,
           {
@@ -48,7 +48,7 @@ export function OptionItem(props: OptionItemProps) {
             />
           )}
         </View>
-      </CardView>
+      </View>
     </TouchableOpacity>
   );
 }
