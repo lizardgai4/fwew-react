@@ -5,11 +5,11 @@ import { OptionSelect } from "@/components/common/OptionSelect";
 import { ResultCount } from "@/components/common/ResultCount";
 import { Text, View } from "@/components/common/Themed";
 import { NameResults } from "@/components/names/NameResults";
-import Colors from "@/constants/Colors";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
 import { useNameFull } from "@/hooks/useNameFull";
+import { getColorExtension } from "@/themes";
 import { useTheme } from "@react-navigation/native";
 import * as Clipboard from "expo-clipboard";
 import {
@@ -22,7 +22,8 @@ import {
 export default function NameFullScreen() {
   const theme = useTheme();
   const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? "light"];
+  const colorExtension = getColorExtension("fwew");
+  const colors = colorExtension[colorScheme ?? "light"];
   const {
     names,
     numNames,

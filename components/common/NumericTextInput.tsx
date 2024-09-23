@@ -1,6 +1,6 @@
 import { SmallButton } from "@/components/common/SmallButton";
 import { CardView, TextInput } from "@/components/common/Themed";
-import Colors from "@/constants/Colors";
+import { getColorExtension } from "@/themes";
 import type { NumericString } from "@/types/common";
 import { StyleSheet, useColorScheme } from "react-native";
 
@@ -14,7 +14,8 @@ type NumericTextInputProps = {
 export function NumericTextInput(props: NumericTextInputProps) {
   const { value, onChangeText, placeholder, autoFocus } = props;
   const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? "light"];
+  const colorExtension = getColorExtension("fwew");
+  const colors = colorExtension[colorScheme ?? "light"];
 
   return (
     <CardView style={styles.inputContainer}>

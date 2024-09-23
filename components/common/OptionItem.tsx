@@ -1,5 +1,5 @@
 import { CardView, Text } from "@/components/common/Themed";
-import Colors from "@/constants/Colors";
+import { getColorExtension } from "@/themes";
 import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 import { StyleSheet, TouchableOpacity } from "react-native";
@@ -14,11 +14,12 @@ type OptionItemProps = {
 export function OptionItem(props: OptionItemProps) {
   const { icon, value, selected, onSelect } = props;
   const theme = useTheme();
+  const colorExtension = getColorExtension("fwew");
 
   const getTextColor = () => {
-    if (selected) return Colors.dark.text;
-    if (theme.dark) return Colors.dark.placeholder;
-    return Colors.light.text;
+    if (selected) return colorExtension.dark.text;
+    if (theme.dark) return colorExtension.dark.placeholder;
+    return colorExtension.light.text;
   };
 
   return (
@@ -39,7 +40,7 @@ export function OptionItem(props: OptionItemProps) {
           <FontAwesome
             name="check"
             size={24}
-            color={Colors.dark.text}
+            color={colorExtension.dark.text}
             style={styles.check}
           />
         )}

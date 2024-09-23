@@ -1,26 +1,23 @@
-import Colors from "@/constants/Colors";
 import { ReefMe } from "@/lib/dialect";
+import { getColorExtension } from "@/themes";
 import type { Dialect } from "@/types/common";
 import type { Word } from "fwew.js";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, useColorScheme, View } from "react-native";
 import { MonoText } from "./StyledText";
 import { Text } from "./Themed";
 
 type ResultOverviewProps = {
   dialect: Dialect;
   word: Word;
-  colors: (typeof Colors)["light"];
   local: string;
 };
 
-export function ResultOverview({
-  dialect,
-  word,
-  colors,
-  local,
-}: ResultOverviewProps) {
+export function ResultOverview({ dialect, word, local }: ResultOverviewProps) {
   const forestNavi = word.Navi;
   const { reefNavi } = ReefMe(word.IPA, word.Navi);
+  const colorScheme = useColorScheme();
+  const colorExtension = getColorExtension("fwew");
+  const colors = colorExtension[colorScheme ?? "light"];
 
   return (
     <View style={styles.closedContainer}>

@@ -1,4 +1,4 @@
-import Colors from "@/constants/Colors";
+import { getColorExtension } from "@/themes";
 import { FontAwesome } from "@expo/vector-icons";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
 
@@ -9,7 +9,8 @@ type BackButtonProps = {
 
 export function BackButton({ onPress, disabled }: BackButtonProps) {
   const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? "light"];
+  const colorExtension = getColorExtension("fwew");
+  const colors = colorExtension[colorScheme ?? "light"];
 
   return (
     <TouchableOpacity

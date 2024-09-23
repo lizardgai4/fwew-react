@@ -1,9 +1,9 @@
 import { SmallButton } from "@/components/common/SmallButton";
 import { TextInput, View } from "@/components/common/Themed";
-import Colors from "@/constants/Colors";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
+import { getColorExtension } from "@/themes";
 import { Platform, StyleSheet, useColorScheme } from "react-native";
 
 type NumberSearchBarProps = {
@@ -17,7 +17,8 @@ type NumberSearchBarProps = {
 export function NumberSearchBar(props: NumberSearchBarProps) {
   const { mode, toggleMode, query, search, clear } = props;
   const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? "light"];
+  const colorExtension = getColorExtension("fwew");
+  const colors = colorExtension[colorScheme ?? "light"];
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   let ui = getUI(appLanguage, dialect);

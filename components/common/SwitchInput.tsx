@@ -1,5 +1,5 @@
 import { Text, View } from "@/components/common/Themed";
-import Colors from "@/constants/Colors";
+import { getColorExtension } from "@/themes";
 import { useTheme } from "@react-navigation/native";
 import { StyleSheet, Switch, useColorScheme } from "react-native";
 
@@ -14,7 +14,8 @@ export function SwitchInput(props: SwitchInputProps) {
   const { leftLabel, rightLabel, value, onValueChange } = props;
   const theme = useTheme();
   const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? "light"];
+  const colorExtension = getColorExtension("fwew");
+  const colors = colorExtension[colorScheme ?? "light"];
 
   return (
     <View style={styles.switch}>
@@ -26,7 +27,7 @@ export function SwitchInput(props: SwitchInputProps) {
           false: colors.placeholder,
           true: colors.tint,
         }}
-        thumbColor={Colors.light.background}
+        thumbColor={colorExtension.light.background}
         // @ts-ignore
         activeThumbColor={theme.colors.text}
         ios_backgroundColor={theme.colors.card}

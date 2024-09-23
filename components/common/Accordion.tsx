@@ -1,5 +1,5 @@
 import { CardView } from "@/components/common/Themed";
-import Colors from "@/constants/Colors";
+import { getColorExtension } from "@/themes";
 import { FontAwesome } from "@expo/vector-icons";
 import { useState } from "react";
 import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
@@ -14,7 +14,8 @@ export function Accordion(props: AccordionProps) {
   const { closedContent, openedContent, initiallyOpen } = props;
   const [expanded, setExpanded] = useState(initiallyOpen ?? false);
   const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? "light"];
+  const colorExtension = getColorExtension("fwew");
+  const colors = colorExtension[colorScheme ?? "light"];
 
   return (
     <CardView>

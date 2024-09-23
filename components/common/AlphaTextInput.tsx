@@ -1,6 +1,6 @@
 import { SmallButton } from "@/components/common/SmallButton";
 import { CardView, TextInput } from "@/components/common/Themed";
-import Colors from "@/constants/Colors";
+import { getColorExtension } from "@/themes";
 import { StyleSheet, useColorScheme } from "react-native";
 
 type AlphaTextInputProps = {
@@ -13,7 +13,8 @@ type AlphaTextInputProps = {
 export function AlphaTextInput(props: AlphaTextInputProps) {
   const { value, onChangeText, placeholder, autoFocus } = props;
   const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? "light"];
+  const colorExtension = getColorExtension("fwew");
+  const colors = colorExtension[colorScheme ?? "light"];
 
   return (
     <CardView style={styles.inputContainer}>

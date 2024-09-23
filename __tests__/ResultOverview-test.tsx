@@ -1,5 +1,4 @@
 import { ResultOverview } from "@/components/common/ResultOverview";
-import Colors from "@/constants/Colors";
 import { render } from "@testing-library/react-native";
 import type { Word } from "fwew.js";
 
@@ -27,7 +26,6 @@ describe("<ResultOverview />", () => {
         <ResultOverview
           dialect="reef"
           word={{ Navi: forest, IPA: ipa } as Word}
-          colors={Colors["light"]}
           local="EN"
         />
       );
