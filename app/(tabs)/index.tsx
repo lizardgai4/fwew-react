@@ -7,7 +7,7 @@ import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
 import { useFwew } from "@/hooks/useFwew";
 import { useTheme } from "@react-navigation/native";
-import { RefreshControl, ScrollView, StyleSheet } from "react-native";
+import { RefreshControl, ScrollView, StyleSheet, View } from "react-native";
 
 export default function SearchScreen() {
   const {
@@ -28,7 +28,6 @@ export default function SearchScreen() {
 
   return (
     <ScrollView
-      style={styles.container}
       keyboardShouldPersistTaps="always"
       refreshControl={
         <RefreshControl
@@ -38,24 +37,26 @@ export default function SearchScreen() {
         />
       }
     >
-      <SearchBar
-        query={query}
-        search={search}
-        execute={execute}
-        cancel={cancel}
-        autoFocus
-      />
-      <SwitchInput
-        leftLabel={ui.naviOnly}
-        rightLabel=""
-        value={naviOnly}
-        onValueChange={setNaviOnly}
-      />
-      <ResultCount
-        visible={query.length > 0 && resultCount > 0}
-        resultCount={resultCount}
-      />
-      <FwewSearchResults loading={loading} results={results} />
+      <View style={styles.container}>
+        <SearchBar
+          query={query}
+          search={search}
+          execute={execute}
+          cancel={cancel}
+          autoFocus
+        />
+        <SwitchInput
+          leftLabel={ui.naviOnly}
+          rightLabel=""
+          value={naviOnly}
+          onValueChange={setNaviOnly}
+        />
+        <ResultCount
+          visible={query.length > 0 && resultCount > 0}
+          resultCount={resultCount}
+        />
+        <FwewSearchResults loading={loading} results={results} />
+      </View>
     </ScrollView>
   );
 }
