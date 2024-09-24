@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    padding: 14,
+    padding: 16,
     fontSize: 16,
     borderRadius: 8,
   },
@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 8,
+    paddingTop: 4,
     marginRight: 8,
     height: Platform.OS === "web" ? null : 50,
   },
