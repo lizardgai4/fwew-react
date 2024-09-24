@@ -53,10 +53,13 @@ const styles = StyleSheet.create({
     paddingTop: 0,
   },
   icon: {
-    width: 40,
+    height: 32,
+    width: 32,
+    paddingVertical: 2,
     justifyContent: "center",
     alignItems: "center",
-    paddingHorizontal: 4,
+    borderRadius: 2,
+    marginHorizontal: 4,
   },
   value: {
     fontSize: 16,
