@@ -1,9 +1,8 @@
 import { ScreenLinkCard } from "@/components/common/ScreenLinkCard";
-import { View } from "@/components/common/Themed";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
-import { ScrollView, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 
 export default function NamesScreen() {
   const { appLanguage } = useAppLanguageContext();
@@ -38,6 +37,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     alignItems: "center",
-    gap: 32,
+    gap: 16,
   },
 });

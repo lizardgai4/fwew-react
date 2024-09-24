@@ -1,4 +1,4 @@
-import { Text, View } from "@/components/common/Themed";
+import { Text } from "@/components/common/Themed";
 import {
   reefReplacements,
   ThatTable1Data,
@@ -6,7 +6,12 @@ import {
 } from "@/constants/That";
 import { useDialectContext } from "@/context/DialectContext";
 import { useTheme } from "@react-navigation/native";
-import { ScrollView, StyleSheet, useWindowDimensions } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  useWindowDimensions,
+  View,
+} from "react-native";
 
 export default function ThatScreen() {
   const { width, height } = useWindowDimensions();

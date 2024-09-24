@@ -1,6 +1,5 @@
 import { Button } from "@/components/common/Button";
 import { ResultCount } from "@/components/common/ResultCount";
-import { View } from "@/components/common/Themed";
 import { ListResults } from "@/components/list/ListResults";
 import { RandomOptions } from "@/components/random/RandomOptions";
 import { useDebounce } from "@/hooks/useDebounce";
@@ -9,7 +8,7 @@ import { useRandom } from "@/hooks/useRandom";
 import { NumericString } from "@/types/common";
 import { useTheme } from "@react-navigation/native";
 import { useCallback, useEffect, useState } from "react";
-import { RefreshControl, ScrollView, StyleSheet } from "react-native";
+import { RefreshControl, ScrollView, StyleSheet, View } from "react-native";
 
 export default function RandomScreen() {
   const [numWords, setNumWords] = useState<NumericString>("8");

@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     padding: 8,
+    borderRadius: 8,
   },
   itemContainer: {
     flexDirection: "row",
