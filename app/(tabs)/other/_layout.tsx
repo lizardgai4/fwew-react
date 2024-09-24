@@ -20,11 +20,6 @@ export default function StackLayout() {
       screenOptions={{
         headerStyle: { backgroundColor: theme.colors.primary },
         headerTintColor: colorExtension.dark.text,
-        headerLeft: () => (
-          <View style={styles.logo}>
-            <Logo />
-          </View>
-        ),
         headerRight: () => (
           <View style={styles.actionButton}>
             <ActionButtons />
@@ -32,7 +27,17 @@ export default function StackLayout() {
         ),
       }}
     >
-      <Stack.Screen name="index" options={{ title: screens.other }} />
+      <Stack.Screen
+        name="index"
+        options={{
+          title: screens.other,
+          headerLeft: () => (
+            <View style={styles.logo}>
+              <Logo />
+            </View>
+          ),
+        }}
+      />
       <Stack.Screen name="lenition" options={{ title: screens.lenition }} />
       <Stack.Screen name="stats" options={{ title: screens.stats }} />
       <Stack.Screen name="valid" options={{ title: screens.valid }} />
