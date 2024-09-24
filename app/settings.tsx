@@ -1,4 +1,4 @@
-import { Text, View } from "@/components/common/Themed";
+import { Text } from "@/components/common/Themed";
 import { About } from "@/components/settings/About";
 import { AppLanguageSelect } from "@/components/settings/AppLanguageSelect";
 import { DialectSelect } from "@/components/settings/DialectSelect";
@@ -8,7 +8,7 @@ import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
 import { StatusBar } from "expo-status-bar";
-import { Platform, ScrollView, StyleSheet } from "react-native";
+import { Platform, ScrollView, StyleSheet, View } from "react-native";
 
 export default function SettingsScreen() {
   const { appLanguage } = useAppLanguageContext();

@@ -1,8 +1,7 @@
 import { ResultCard } from "@/components/common/ResultCard";
-import { View } from "@/components/common/Themed";
 import { useFavorites } from "@/hooks/useFavorites";
 import { StatusBar } from "expo-status-bar";
-import { Platform, ScrollView, StyleSheet } from "react-native";
+import { Platform, ScrollView, StyleSheet, View } from "react-native";
 
 export default function FavoritesScreen() {
   const { favorites } = useFavorites();

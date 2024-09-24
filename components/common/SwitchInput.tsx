@@ -1,7 +1,7 @@
-import { Text, View } from "@/components/common/Themed";
+import { Text } from "@/components/common/Themed";
 import { getColorExtension } from "@/themes";
 import { useTheme } from "@react-navigation/native";
-import { StyleSheet, Switch, useColorScheme } from "react-native";
+import { StyleSheet, Switch, useColorScheme, View } from "react-native";
 
 type SwitchInputProps = {
   leftLabel: string;

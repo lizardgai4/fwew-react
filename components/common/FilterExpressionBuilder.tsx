@@ -1,7 +1,7 @@
 import { AlphaTextInput } from "@/components/common/AlphaTextInput";
 import { DropDownSelect } from "@/components/common/DropDownSelect";
 import { NumericTextInput } from "@/components/common/NumericTextInput";
-import { Text, View } from "@/components/common/Themed";
+import { Text } from "@/components/common/Themed";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
@@ -10,7 +10,7 @@ import type {
   ListMenuCondItem,
   ListMenuWhatItem,
 } from "@/types/list";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 type FilterExpressionBuilderProps = {
   value: FilterExpressionBuilderValue;

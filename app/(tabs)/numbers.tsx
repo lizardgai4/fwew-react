@@ -1,8 +1,7 @@
-import { View } from "@/components/common/Themed";
 import { NumberResultCard } from "@/components/number/NumberResultCard";
 import { NumberSearchBar } from "@/components/number/NumberSearchBar";
 import { useNumber } from "@/hooks/useNumber";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 export default function NumbersScreen() {
   const [mode, toggleMode, query, result, search, clear] = useNumber();
