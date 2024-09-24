@@ -25,3 +25,7 @@ run:
 
 run-better:
 	yarn start --clear --tunnel
+
+run-offline:
+	yarn start --offline
+
