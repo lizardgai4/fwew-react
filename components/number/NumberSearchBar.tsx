@@ -1,10 +1,10 @@
 import { SmallButton } from "@/components/common/SmallButton";
-import { TextInput, View } from "@/components/common/Themed";
+import { TextInput } from "@/components/common/Themed";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
 import { getColorExtension } from "@/themes";
-import { Platform, StyleSheet, useColorScheme } from "react-native";
+import { Platform, StyleSheet, useColorScheme, View } from "react-native";
 
 type NumberSearchBarProps = {
   mode: string;

@@ -52,7 +52,6 @@ export default function RandomScreen() {
 
   return (
     <ScrollView
-      style={styles.container}
       keyboardShouldPersistTaps="always"
       refreshControl={
         <RefreshControl
@@ -62,29 +61,34 @@ export default function RandomScreen() {
         />
       }
     >
-      <RandomOptions
-        numWords={numWords}
-        updateNumWords={updateNumWords}
-        filters={filters}
-        add={add}
-        remove={remove}
-        update={update}
-        incomplete={incomplete}
-      />
-      <View style={{ paddingTop: 16 }}>
-        <Button
-          icon="refresh"
-          text=""
-          onPress={() => execute(numWords, filterExpression)}
-          disabled={loading}
+      <View style={styles.container}>
+        <RandomOptions
+          numWords={numWords}
+          updateNumWords={updateNumWords}
+          filters={filters}
+          add={add}
+          remove={remove}
+          update={update}
+          incomplete={incomplete}
+        />
+        <View style={{ paddingTop: 16 }}>
+          <Button
+            icon="refresh"
+            text=""
+            onPress={() => execute(numWords, filterExpression)}
+            disabled={loading}
+          />
+        </View>
+        <ResultCount
+          visible={resultsVisible}
+          resultCount={results.length}
+          style={styles.resultCount}
+        />
+        <ListResults
+          loading={loading}
+          results={resultsVisible ? results : []}
         />
       </View>
-      <ResultCount
-        visible={resultsVisible}
-        resultCount={results.length}
-        style={styles.resultCount}
-      />
-      <ListResults loading={loading} results={resultsVisible ? results : []} />
     </ScrollView>
   );
 }

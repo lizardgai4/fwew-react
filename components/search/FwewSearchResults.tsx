@@ -1,10 +1,10 @@
 import { ResultCard } from "@/components/common/ResultCard";
-import { Text, View } from "@/components/common/Themed";
+import { Text } from "@/components/common/Themed";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
 import type { Word } from "fwew.js";
-import { ActivityIndicator, Platform, StyleSheet } from "react-native";
+import { ActivityIndicator, Platform, StyleSheet, View } from "react-native";
 
 type FwewSearchResultsProps = {
   loading?: boolean;
