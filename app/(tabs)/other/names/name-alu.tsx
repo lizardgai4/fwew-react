@@ -3,7 +3,7 @@ import { Button } from "@/components/common/Button";
 import { NumericTextInput } from "@/components/common/NumericTextInput";
 import { OptionSelect } from "@/components/common/OptionSelect";
 import { ResultCount } from "@/components/common/ResultCount";
-import { Text, View } from "@/components/common/Themed";
+import { Text } from "@/components/common/Themed";
 import { NameResults } from "@/components/names/NameResults";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
@@ -11,7 +11,7 @@ import { useDialectContext } from "@/context/DialectContext";
 import { useNameAlu } from "@/hooks/useNameAlu";
 import { useTheme } from "@react-navigation/native";
 import * as Clipboard from "expo-clipboard";
-import { RefreshControl, ScrollView, StyleSheet } from "react-native";
+import { RefreshControl, ScrollView, StyleSheet, View } from "react-native";
 
 export default function NameAluScreen() {
   const theme = useTheme();
@@ -43,7 +43,6 @@ export default function NameAluScreen() {
 
   return (
     <ScrollView
-      style={styles.container}
       keyboardShouldPersistTaps="always"
       refreshControl={
         <RefreshControl
@@ -53,53 +52,60 @@ export default function NameAluScreen() {
         />
       }
     >
-      <Accordion
-        closedContent={<Text>{uiNames.options}</Text>}
-        openedContent={
-          <View style={styles.optionContainer}>
-            <Text style={styles.label}>{uiNames.numNames}</Text>
-            <NumericTextInput
-              value={numNames}
-              onChangeText={updateNumNames}
-              placeholder="1-50"
-              autoFocus
-            />
-            <Text style={styles.label}>{uiNameAlu.numSyllables}</Text>
-            <OptionSelect
-              items={uiNames.syllablesOptions}
-              active={(value) => numSyllables === value}
-              onSelect={updateNumSyllables}
-            />
-            <Text style={styles.label}>{uiNameAlu.nounMode}</Text>
-            <OptionSelect
-              items={uiNameAlu.nounModes}
-              active={(value) => nounMode === value}
-              onSelect={setNounMode}
-            />
-            <Text style={styles.label}>{uiNameAlu.adjMode}</Text>
-            <OptionSelect
-              items={uiNameAlu.adjModes}
-              active={(value) => adjMode === value}
-              onSelect={setAdjMode}
-            />
-          </View>
-        }
-      />
-      <View style={styles.buttonContainer}>
-        <Button
-          icon="clipboard"
-          text={uiNames.copyAll}
-          onPress={copyAll}
-          disabled={!resultsVisible}
+      <View style={styles.container}>
+        <Accordion
+          closedContent={<Text>{uiNames.options}</Text>}
+          openedContent={
+            <View
+              style={[
+                styles.optionContainer,
+                { backgroundColor: theme.colors.background },
+              ]}
+            >
+              <Text style={styles.label}>{uiNames.numNames}</Text>
+              <NumericTextInput
+                value={numNames}
+                onChangeText={updateNumNames}
+                placeholder="1-50"
+                autoFocus
+              />
+              <Text style={styles.label}>{uiNameAlu.numSyllables}</Text>
+              <OptionSelect
+                items={uiNames.syllablesOptions}
+                active={(value) => numSyllables === value}
+                onSelect={updateNumSyllables}
+              />
+              <Text style={styles.label}>{uiNameAlu.nounMode}</Text>
+              <OptionSelect
+                items={uiNameAlu.nounModes}
+                active={(value) => nounMode === value}
+                onSelect={setNounMode}
+              />
+              <Text style={styles.label}>{uiNameAlu.adjMode}</Text>
+              <OptionSelect
+                items={uiNameAlu.adjModes}
+                active={(value) => adjMode === value}
+                onSelect={setAdjMode}
+              />
+            </View>
+          }
         />
-        <Button icon="refresh" text="" onPress={execute} disabled={loading} />
+        <View style={styles.buttonContainer}>
+          <Button
+            icon="clipboard"
+            text={uiNames.copyAll}
+            onPress={copyAll}
+            disabled={!resultsVisible}
+          />
+          <Button icon="refresh" text="" onPress={execute} disabled={loading} />
+        </View>
+        <ResultCount
+          visible={resultsVisible}
+          resultCount={names.length}
+          style={styles.resultCount}
+        />
+        <NameResults names={names} copyName={copy} />
       </View>
-      <ResultCount
-        visible={resultsVisible}
-        resultCount={names.length}
-        style={styles.resultCount}
-      />
-      <NameResults names={names} copyName={copy} />
     </ScrollView>
   );
 }
@@ -109,11 +115,9 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
   },
-  optionContainer: {
-    paddingTop: 4,
-  },
+  optionContainer: {},
   label: {
-    padding: 10,
+    paddingVertical: 16,
     fontSize: 16,
     fontWeight: "bold",
   },
