@@ -11,10 +11,12 @@ import { ScrollView, StyleSheet, View } from "react-native";
 
 export default function LenitionScreen() {
   return (
-    <ScrollView style={{ padding: 16 }}>
-      <LenitionTable />
-      <LenPreList />
-      <LenAdpList />
+    <ScrollView>
+      <View style={{ padding: 16 }}>
+        <LenitionTable />
+        <LenPreList />
+        <LenAdpList />
+      </View>
     </ScrollView>
   );
 }

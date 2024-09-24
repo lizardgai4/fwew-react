@@ -2,7 +2,7 @@ import { ResultCount } from "@/components/common/ResultCount";
 import { FwewSearchResults } from "@/components/search/FwewSearchResults";
 import { useHomonyms } from "@/hooks/useHomonyms";
 import { useTheme } from "@react-navigation/native";
-import { RefreshControl, ScrollView, StyleSheet } from "react-native";
+import { RefreshControl, ScrollView, StyleSheet, View } from "react-native";
 
 export default function HomonymsScreen() {
   const { results, resultCount, loading, execute } = useHomonyms();
@@ -10,7 +10,6 @@ export default function HomonymsScreen() {
 
   return (
     <ScrollView
-      style={styles.container}
       keyboardShouldPersistTaps="always"
       refreshControl={
         <RefreshControl
@@ -20,8 +19,10 @@ export default function HomonymsScreen() {
         />
       }
     >
-      <ResultCount visible={resultCount > 0} resultCount={resultCount} />
-      <FwewSearchResults loading={loading} results={results} />
+      <View style={styles.container}>
+        <ResultCount visible={resultCount > 0} resultCount={resultCount} />
+        <FwewSearchResults loading={loading} results={results} />
+      </View>
     </ScrollView>
   );
 }
