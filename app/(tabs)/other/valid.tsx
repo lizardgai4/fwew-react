@@ -8,8 +8,8 @@ export default function ValidScreen() {
   const { query, results, loading, search, cancel } = useValid();
 
   return (
-    <ScrollView style={styles.container} keyboardShouldPersistTaps="always">
-      <View style={styles.main}>
+    <ScrollView keyboardShouldPersistTaps="always">
+      <View style={styles.container}>
         <SearchBar query={query} search={search} cancel={cancel} autoFocus />
         <ResultCount
           resultCount={results.length}
@@ -26,11 +26,9 @@ export default function ValidScreen() {
 }
 
 const styles = StyleSheet.create({
-  main: {
-    gap: 16,
-  },
   container: {
     flex: 1,
+    gap: 16,
     padding: 16,
     fontSize: 16,
   },

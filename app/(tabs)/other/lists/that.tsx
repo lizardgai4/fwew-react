@@ -19,14 +19,17 @@ export default function ThatScreen() {
 
   if (landscape) {
     return (
-      <ScrollView style={styles.container}>
+      <ScrollView>
         <View
-          style={{
-            height: "100%",
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
+          style={[
+            styles.container,
+            {
+              height: "100%",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+            },
+          ]}
         >
           <ThatTable1 />
           <Divider vertical />
@@ -37,10 +40,12 @@ export default function ThatScreen() {
   }
 
   return (
-    <ScrollView style={styles.container}>
-      <ThatTable1 />
-      <Divider />
-      <ThatTable2 />
+    <ScrollView>
+      <View style={styles.container}>
+        <ThatTable1 />
+        <Divider />
+        <ThatTable2 />
+      </View>
     </ScrollView>
   );
 }

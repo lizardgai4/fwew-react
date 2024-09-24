@@ -2,7 +2,7 @@ import { ResultCount } from "@/components/common/ResultCount";
 import { FwewSearchResults } from "@/components/search/FwewSearchResults";
 import { useOddballs } from "@/hooks/useOddballs";
 import { useTheme } from "@react-navigation/native";
-import { RefreshControl, ScrollView, StyleSheet } from "react-native";
+import { RefreshControl, ScrollView, StyleSheet, View } from "react-native";
 
 export default function OddballsScreen() {
   const { results, resultCount, loading, execute } = useOddballs();
@@ -10,7 +10,6 @@ export default function OddballsScreen() {
 
   return (
     <ScrollView
-      style={styles.container}
       keyboardShouldPersistTaps="always"
       refreshControl={
         <RefreshControl
@@ -20,8 +19,10 @@ export default function OddballsScreen() {
         />
       }
     >
-      <ResultCount visible={resultCount > 0} resultCount={resultCount} />
-      <FwewSearchResults loading={loading} results={results} />
+      <View style={styles.container}>
+        <ResultCount visible={resultCount > 0} resultCount={resultCount} />
+        <FwewSearchResults loading={loading} results={results} />
+      </View>
     </ScrollView>
   );
 }
