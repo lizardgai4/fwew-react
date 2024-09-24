@@ -25,16 +25,14 @@ export function ListOptions(props: ListOptionsProps) {
       initiallyOpen
       closedContent={<Text>{list.listOptions}</Text>}
       openedContent={
-        <>
-          <FilterExpressionBuilderList
-            filters={filters}
-            add={add}
-            remove={remove}
-            update={update}
-            disabled={incomplete}
-            mode="list"
-          />
-        </>
+        <FilterExpressionBuilderList
+          filters={filters}
+          add={add}
+          remove={remove}
+          update={update}
+          disabled={incomplete}
+          mode="list"
+        />
       }
     />
   );
