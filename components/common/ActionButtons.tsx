@@ -82,7 +82,7 @@ function ActionButton({ href, icon }: ABProps) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    padding: 16,
+    paddingHorizontal: 16,
     gap: 16,
   },
   dialectButton: {
