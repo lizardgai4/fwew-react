@@ -2,7 +2,7 @@ import { SmallButton } from "@/components/common/SmallButton";
 import { CardView, TextInput } from "@/components/common/Themed";
 import { getColorExtension } from "@/themes";
 import type { NumericString } from "@/types/common";
-import { StyleSheet, useColorScheme } from "react-native";
+import { StyleSheet, useColorScheme, View } from "react-native";
 
 type NumericTextInputProps = {
   value?: string | NumericString;
@@ -31,11 +31,11 @@ export function NumericTextInput(props: NumericTextInputProps) {
         clearButtonMode="never"
         autoFocus={autoFocus}
       />
-      <CardView style={styles.clearButton}>
+      <View style={styles.clearButton}>
         {value && value.length > 0 && (
           <SmallButton icon="close" onPress={() => onChangeText("")} />
         )}
-      </CardView>
+      </View>
     </CardView>
   );
 }

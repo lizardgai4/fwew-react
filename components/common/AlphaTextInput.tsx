@@ -1,7 +1,7 @@
 import { SmallButton } from "@/components/common/SmallButton";
 import { CardView, TextInput } from "@/components/common/Themed";
 import { getColorExtension } from "@/themes";
-import { StyleSheet, useColorScheme } from "react-native";
+import { StyleSheet, useColorScheme, View } from "react-native";
 
 type AlphaTextInputProps = {
   value?: string | `${number}` | undefined;
@@ -33,7 +33,7 @@ export function AlphaTextInput(props: AlphaTextInputProps) {
       {value ? (
         <SmallButton icon="close" onPress={() => onChangeText("")} />
       ) : (
-        <CardView style={[styles.clearButton, { borderColor: colors.text }]} />
+        <View style={[styles.clearButton, { borderColor: colors.text }]} />
       )}
     </CardView>
   );

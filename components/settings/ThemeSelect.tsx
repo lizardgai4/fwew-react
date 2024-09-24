@@ -3,7 +3,7 @@ import { ThemeNames } from "@/themes";
 import { StyleSheet, View } from "react-native";
 import { Accordion } from "../common/Accordion";
 import { OptionItem } from "../common/OptionItem";
-import { CardView, Text } from "../common/Themed";
+import { Text } from "../common/Themed";
 
 export function ThemeSelect() {
   const { themeName, saveThemeName } = useThemeNameContext();
@@ -11,19 +11,19 @@ export function ThemeSelect() {
   return (
     <Accordion
       closedContent={
-        <CardView style={styles.iconContainer}>
+        <View style={styles.iconContainer}>
           <View style={styles.icon}>
             <Text style={styles.value}>
               {themeName.slice(0, 2).toUpperCase()}
             </Text>
           </View>
           <Text style={styles.value}>Theme</Text>
-        </CardView>
+        </View>
       }
       openedContent={
-        <CardView style={styles.contentContainer}>
+        <View style={styles.contentContainer}>
           {ThemeNames.map((tn, i) => (
-            <CardView key={`stn_${i}`}>
+            <View key={`stn_${i}`}>
               <OptionItem
                 icon={
                   <Text style={[styles.icon, styles.value]}>
@@ -34,9 +34,9 @@ export function ThemeSelect() {
                 selected={themeName === tn}
                 onSelect={() => saveThemeName(tn)}
               />
-            </CardView>
+            </View>
           ))}
-        </CardView>
+        </View>
       }
     />
   );

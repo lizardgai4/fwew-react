@@ -1,13 +1,13 @@
 import { Button } from "@/components/common/Button";
 import { FilterExpressionBuilder } from "@/components/common/FilterExpressionBuilder";
 import { SmallButton } from "@/components/common/SmallButton";
-import { CardView, Text, View } from "@/components/common/Themed";
+import { Text } from "@/components/common/Themed";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
 import { FilterExpressionBuilderValue } from "@/types/list";
 import { useTheme } from "@react-navigation/native";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 type FilterExpressionBuilderListProps = {
   filters: FilterExpressionBuilderValue[];
@@ -39,10 +39,12 @@ export function FilterExpressionBuilderList(
   };
 
   return (
-    <CardView>
+    <View>
       {filters.map((_, i) => (
         <View key={`feb_${i}`}>
-          <View style={styles.febHeader}>
+          <View
+            style={[styles.febHeader, { backgroundColor: colors.background }]}
+          >
             <Text style={styles.label}>
               {i > 0 ? list.and : getHeaderText()}
             </Text>
@@ -61,7 +63,7 @@ export function FilterExpressionBuilderList(
       <View style={{ paddingTop: 10 }}>
         <Button onPress={add} icon="plus" disabled={disabled} />
       </View>
-    </CardView>
+    </View>
   );
 }
 

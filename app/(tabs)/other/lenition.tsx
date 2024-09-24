@@ -1,13 +1,13 @@
 import { ResultCount } from "@/components/common/ResultCount";
 import { BoldText, MonoText } from "@/components/common/StyledText";
-import { CardView, Text, View } from "@/components/common/Themed";
+import { CardView, Text } from "@/components/common/Themed";
 import { ListResults } from "@/components/list/ListResults";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
 import { useList } from "@/hooks/useList";
 import { useEffect } from "react";
-import { ScrollView, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 
 export default function LenitionScreen() {
   return (
@@ -38,10 +38,10 @@ function LenitionTable() {
   return (
     <CardView style={{ padding: 16 }}>
       {lenitionData.map(({ key, value }, i) => (
-        <CardView key={`lt_r_${i}`} style={styles.lenitionRow}>
+        <View key={`lt_r_${i}`} style={styles.lenitionRow}>
           <MonoText style={styles.lenitionKey}>{key}</MonoText>
           <MonoText style={styles.lenitionValue}>{value}</MonoText>
-        </CardView>
+        </View>
       ))}
     </CardView>
   );

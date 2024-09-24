@@ -1,11 +1,11 @@
 import { MonoText } from "@/components/common/StyledText";
-import { CardView, Text } from "@/components/common/Themed";
+import { Text } from "@/components/common/Themed";
 import { GitDetails } from "@/components/settings/GitDetails";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
 import { useVersion } from "@/hooks/useVersion";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 export function Version() {
   const version = useVersion();
@@ -16,14 +16,14 @@ export function Version() {
   return (
     <>
       <Text style={styles.label}>{ui.settings.version}</Text>
-      <CardView style={styles.versionContainer}>
-        <CardView>
+      <View style={styles.versionContainer}>
+        <View>
           <MonoText style={styles.text}>fwew-react</MonoText>
           <MonoText style={styles.text}>fwew-api </MonoText>
           <MonoText style={styles.text}>fwew-lib</MonoText>
           <MonoText style={styles.text}>dictionary</MonoText>
-        </CardView>
-        <CardView>
+        </View>
+        <View>
           <MonoText style={styles.text}>
             {version.AppVersion}{" "}
             <GitDetails
@@ -34,8 +34,8 @@ export function Version() {
           <MonoText style={styles.text}>{version.APIVersion || "?"}</MonoText>
           <MonoText style={styles.text}>{version.FwewVersion || "?"}</MonoText>
           <MonoText style={styles.text}>{version.DictVersion || "?"}</MonoText>
-        </CardView>
-      </CardView>
+        </View>
+      </View>
     </>
   );
 }
