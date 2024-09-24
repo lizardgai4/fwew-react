@@ -1,4 +1,4 @@
-import { Text, CardView } from "@/components/common/Themed";
+import { CardView, Text } from "@/components/common/Themed";
 import { reefReplacements } from "@/constants/Cameron";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
