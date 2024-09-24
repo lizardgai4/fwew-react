@@ -1,9 +1,11 @@
-import { Word } from "fwew.js";
 import { useResultsLanguageContext } from "@/context/ResultsLanguageContext";
-import { useCallback, useEffect, useRef, useState } from "react";
 import { useDebounce } from "@/hooks/useDebounce";
+import { Word } from "fwew.js";
+import { useCallback, useEffect, useRef, useState } from "react";
 
-export function useStaticList(reqFn: (init?: RequestInit) => Promise<Word[][]>) {
+export function useStaticList(
+  reqFn: (init?: RequestInit) => Promise<Word[][]>
+) {
   const { resultsLanguage } = useResultsLanguageContext();
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<Word[][]>([]);

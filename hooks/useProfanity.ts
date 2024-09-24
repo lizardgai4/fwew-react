@@ -15,4 +15,4 @@ const profanityQuery = [
   "yayl",
 ].join(" ");
 
-export const useProfanity = () => useStaticList((s) => fwew(profanityQuery, s))
+export const useProfanity = () => useStaticList((s) => fwew(profanityQuery, s));
