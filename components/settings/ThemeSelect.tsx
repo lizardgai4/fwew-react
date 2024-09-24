@@ -26,9 +26,11 @@ export function ThemeSelect() {
             <View key={`stn_${i}`}>
               <OptionItem
                 icon={
-                  <Text style={[styles.icon, styles.value]}>
-                    {tn.slice(0, 2).toUpperCase()}
-                  </Text>
+                  <View style={styles.icon}>
+                    <Text style={styles.value}>
+                      {tn.slice(0, 2).toUpperCase()}
+                    </Text>
+                  </View>
                 }
                 value={tn}
                 selected={themeName === tn}

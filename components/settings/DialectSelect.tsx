@@ -31,7 +31,11 @@ export function DialectSelect() {
           {Dialects.map((d, i) => (
             <View key={`sd_${i}`}>
               <OptionItem
-                icon={<Text style={[styles.icon, styles.value]}>{d.abbr}</Text>}
+                icon={
+                  <View style={styles.icon}>
+                    <Text style={styles.value}>{d.abbr}</Text>
+                  </View>
+                }
                 value={d.name}
                 selected={dialect === d.value}
                 onSelect={() => saveDialect(d.value)}
