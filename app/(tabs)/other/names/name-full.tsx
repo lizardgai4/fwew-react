@@ -124,7 +124,7 @@ export default function NameFullScreen() {
             onPress={copyAll}
             disabled={!resultsVisible}
           />
-          <Button icon="refresh" text="" onPress={execute} disabled={loading} />
+          <Button icon="refresh" onPress={execute} disabled={loading} />
         </View>
         <ResultCount
           visible={resultsVisible}

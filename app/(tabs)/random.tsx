@@ -74,7 +74,6 @@ export default function RandomScreen() {
         <View style={{ paddingTop: 16 }}>
           <Button
             icon="refresh"
-            text=""
             onPress={() => execute(numWords, filterExpression)}
             disabled={loading}
           />
