@@ -1,24 +1,14 @@
 import { ResultCount } from "@/components/common/ResultCount";
 import { SearchBar } from "@/components/common/SearchBar";
-import { CardView, Text, View } from "@/components/common/Themed";
+import { CardView, Text } from "@/components/common/Themed";
 import { useValid } from "@/hooks/useValid";
-import { ScrollView, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 
 export default function ValidScreen() {
   const { query, results, loading, search, cancel } = useValid();
 
   return (
-    <ScrollView
-      style={styles.container}
-      keyboardShouldPersistTaps="always"
-      // refreshControl={
-      //   <RefreshControl
-      //     refreshing={loading}
-      //     onRefresh={execute}
-      //     colors={[colors.primary]}
-      //   />
-      // }
-    >
+    <ScrollView style={styles.container} keyboardShouldPersistTaps="always">
       <View style={styles.main}>
         <SearchBar query={query} search={search} cancel={cancel} autoFocus />
         <ResultCount

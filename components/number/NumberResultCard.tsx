@@ -1,10 +1,10 @@
 import { MonoText } from "@/components/common/StyledText";
-import { CardView, Text, View } from "@/components/common/Themed";
+import { CardView, Text } from "@/components/common/Themed";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
 import type { FwewError, FwewNumber } from "fwew.js";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 type NumberResultCardProps = {
   result: FwewNumber | FwewError | null;
@@ -30,7 +30,7 @@ export function NumberResultCard({ result }: NumberResultCardProps) {
   return (
     <CardView style={styles.container}>
       <Text style={styles.navi}>{result.name}</Text>
-      <CardView
+      <View
         style={{
           flexDirection: "row",
           alignItems: "center",
@@ -39,15 +39,15 @@ export function NumberResultCard({ result }: NumberResultCardProps) {
           gap: 16,
         }}
       >
-        <CardView style={{ alignItems: "flex-end" }}>
+        <View style={{ alignItems: "flex-end" }}>
           <Text style={styles.text}>{ui.numbers.octal}</Text>
           <Text style={styles.text}>{ui.numbers.decimal}</Text>
-        </CardView>
-        <CardView style={{ alignItems: "flex-end" }}>
+        </View>
+        <View style={{ alignItems: "flex-end" }}>
           <MonoText style={styles.text}>{result.octal}</MonoText>
           <MonoText style={styles.text}>{result.decimal}</MonoText>
-        </CardView>
-      </CardView>
+        </View>
+      </View>
       <Scientific result={result} />
     </CardView>
   );
@@ -75,15 +75,15 @@ function Scientific({ result }: { result: FwewNumber }) {
         />
       );
     });
-  return <CardView style={{ flexDirection: "row" }}>{octalDigits}</CardView>;
+  return <View style={{ flexDirection: "row" }}>{octalDigits}</View>;
 }
 
 function Power({ base, exponent }: { base: string; exponent: string }) {
   return (
-    <CardView style={{ flexDirection: "row" }}>
+    <View style={{ flexDirection: "row" }}>
       <MonoText style={{ fontSize: 18 }}>{base}</MonoText>
       <MonoText style={{ fontSize: 12 }}>{exponent}</MonoText>
-    </CardView>
+    </View>
   );
 }
 

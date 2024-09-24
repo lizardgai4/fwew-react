@@ -6,7 +6,7 @@ import { useTheme } from "@react-navigation/native";
 import { StyleSheet, View } from "react-native";
 import { Accordion } from "../common/Accordion";
 import { OptionItem } from "../common/OptionItem";
-import { CardView, Text } from "../common/Themed";
+import { Text } from "../common/Themed";
 
 export function DialectSelect() {
   const { dialect, saveDialect } = useDialectContext();
@@ -17,17 +17,17 @@ export function DialectSelect() {
   return (
     <Accordion
       closedContent={
-        <CardView style={styles.iconContainer}>
+        <View style={styles.iconContainer}>
           <View
             style={[styles.icon, { backgroundColor: theme.colors.primary }]}
           >
             <Text style={styles.value}>{DialectDisplay[dialect].abbr}</Text>
           </View>
           <Text style={styles.value}>{ui.names.dialect}</Text>
-        </CardView>
+        </View>
       }
       openedContent={
-        <CardView style={styles.contentContainer}>
+        <View style={styles.contentContainer}>
           {Dialects.map((d, i) => (
             <View key={`sd_${i}`}>
               <OptionItem
@@ -38,7 +38,7 @@ export function DialectSelect() {
               />
             </View>
           ))}
-        </CardView>
+        </View>
       }
     />
   );

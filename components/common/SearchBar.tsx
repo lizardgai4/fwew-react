@@ -10,6 +10,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   useColorScheme,
+  View,
 } from "react-native";
 
 type SearchBarProps = {
@@ -84,9 +85,9 @@ function SearchBarRight({ showClear, clear }: SearchBarRightProps) {
   }
 
   return (
-    <CardView style={styles.button}>
+    <View style={styles.button}>
       <FontAwesome name="search" size={24} color={colors.placeholder} />
-    </CardView>
+    </View>
   );
 }
 

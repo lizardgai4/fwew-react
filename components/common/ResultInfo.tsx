@@ -4,7 +4,7 @@ import {
   ItalicText,
   UnderlinedText,
 } from "@/components/common/StyledText";
-import { CardView, Text } from "@/components/common/Themed";
+import { Text } from "@/components/common/Themed";
 import { Affixes } from "@/constants/Affixes";
 import { LenitingAdpositions } from "@/constants/Lenition";
 import { getUI } from "@/constants/i18n";
@@ -19,7 +19,7 @@ import { getColorExtension } from "@/themes";
 import { useTheme } from "@react-navigation/native";
 import { fwewSimple, type LanguageCode, type Word } from "fwew.js";
 import { useCallback, useEffect, useState } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Autolink from "react-native-autolink";
 
 type ResultInfoProps = {
@@ -41,8 +41,8 @@ export function ResultInfo({ word }: ResultInfoProps) {
   );
 
   return (
-    <CardView style={styles.container}>
-      <CardView style={styles.buttonContainer}>
+    <View style={styles.container}>
+      <View style={styles.buttonContainer}>
         <Button
           onPress={() => playSound(word.ID)}
           disabled={disabled || (dialect === "reef" && forestNavi !== reefNavi)}
@@ -52,7 +52,7 @@ export function ResultInfo({ word }: ResultInfoProps) {
           textStyle={{ color: colorExtension.dark.text }}
         />
         <FavoriteButton word={word} />
-      </CardView>
+      </View>
       <DetailItem
         label={ui.search.navi}
         value={dialect === "reef" ? reefNavi : forestNavi}
@@ -111,7 +111,7 @@ export function ResultInfo({ word }: ResultInfoProps) {
         />
       )}
       <DetailItem link label={ui.search.source} value={word.Source} />
-    </CardView>
+    </View>
   );
 }
 
@@ -152,23 +152,23 @@ function AffixDetail({ label, value, type }: AffixDetailProps) {
   const affixes = value.map((v) => Affixes[type][v]);
 
   return (
-    <CardView>
+    <View>
       <BoldText style={styles.label}>{label}:</BoldText>
       {affixes.map((affix, i) => {
         if (affix?.navi) {
           return (
-            <CardView key={`rip_a_${i}`} style={styles.wrapRow}>
+            <View key={`rip_a_${i}`} style={styles.wrapRow}>
               <Text style={styles.value}>
                 <BoldText>{affix.navi}</BoldText>{" "}
                 <ItalicText>{affix.display}</ItalicText> (
                 {affix.productive ? "" : "not "}
                 productive{affix.productive ? ` for ${affix.for}` : ""})
               </Text>
-            </CardView>
+            </View>
           );
         }
         return (
-          <CardView key={`rip_a_${i}`} style={styles.wrapRow}>
+          <View key={`rip_a_${i}`} style={styles.wrapRow}>
             <Text style={styles.value}>
               <BoldText>
                 -{value[i]}
@@ -176,10 +176,10 @@ function AffixDetail({ label, value, type }: AffixDetailProps) {
               </BoldText>{" "}
               <AdpositionDisplay adposition={value[i]} /> (productive for nouns)
             </Text>
-          </CardView>
+          </View>
         );
       })}
-    </CardView>
+    </View>
   );
 }
 
@@ -217,7 +217,7 @@ type DetailItemProps = {
 
 function DetailItem({ label, value, link }: DetailItemProps) {
   return (
-    <CardView>
+    <View>
       <BoldText style={[styles.label, { userSelect: "text" }]}>
         {label}:
       </BoldText>
@@ -226,7 +226,7 @@ function DetailItem({ label, value, link }: DetailItemProps) {
       ) : (
         <Text style={styles.value}>{value}</Text>
       )}
-    </CardView>
+    </View>
   );
 }
 
@@ -246,7 +246,7 @@ function Pronunciation({ IPA, Stressed, Navi }: PronunciationProps) {
         label={ui.search.ipa}
         value={`[${dialect === "reef" ? reefIPA : forestIPA}]`}
       />
-      <CardView>
+      <View>
         <BoldText style={[styles.label, { userSelect: "text" }]}>
           {ui.search.breakdown}:
         </BoldText>
@@ -265,7 +265,7 @@ function Pronunciation({ IPA, Stressed, Navi }: PronunciationProps) {
             />
           )}
         </Text>
-      </CardView>
+      </View>
     </>
   );
 }

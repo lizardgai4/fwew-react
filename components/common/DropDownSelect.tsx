@@ -2,7 +2,7 @@ import { CardView } from "@/components/common/Themed";
 import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 import { useState } from "react";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 
 type DropDownSelectProps<T> = {
   options: T[];
@@ -44,7 +44,7 @@ export function DropDownSelect<T>(props: DropDownSelectProps<T>) {
           paddingVertical: 8,
         }}
       >
-        {value ? renderOption(value) : <CardView style={{ padding: 16 }} />}
+        {value ? renderOption(value) : <View style={{ padding: 16 }} />}
         <FontAwesome
           name={open ? "chevron-down" : "chevron-right"}
           size={24}

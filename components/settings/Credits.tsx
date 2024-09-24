@@ -1,4 +1,4 @@
-import { CardView, Text } from "@/components/common/Themed";
+import { Text } from "@/components/common/Themed";
 import credits from "@/constants/Credits";
 import { getUI } from "@/constants/i18n";
 import { AppLanguages } from "@/constants/Language";
@@ -6,7 +6,7 @@ import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
 import { ExtendedLanguageCode } from "@/types/common";
 import { useTheme } from "@react-navigation/native";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { FlagMap } from "./Flags";
 
 export function Credits() {
@@ -14,7 +14,7 @@ export function Credits() {
   const { dialect } = useDialectContext();
   const ui = getUI(appLanguage, dialect);
   return (
-    <CardView style={styles.creditsContainer}>
+    <View style={styles.creditsContainer}>
       <Text style={styles.label}>{ui.settings.credits}</Text>
       <Text style={styles.label}>{ui.settings.development}</Text>
       <CreditsItem names={credits.development} />
@@ -34,7 +34,7 @@ export function Credits() {
             />
           );
       })}
-    </CardView>
+    </View>
   );
 }
 
@@ -48,12 +48,12 @@ function CreditsItem({
   const { colors } = useTheme();
 
   return (
-    <CardView style={styles.creditsItemContainer}>
-      <CardView>{language && FlagMap[language]}</CardView>
-      <CardView style={{ flex: 1 }}>
-        <CardView style={styles.creditsItemContainer}>
+    <View style={styles.creditsItemContainer}>
+      <View>{language && FlagMap[language]}</View>
+      <View style={{ flex: 1 }}>
+        <View style={styles.creditsItemContainer}>
           {names.map((name, i) => (
-            <CardView
+            <View
               key={`ci_${name}_${i}`}
               style={[
                 styles.textContainer,
@@ -61,11 +61,11 @@ function CreditsItem({
               ]}
             >
               <Text style={styles.text}>{name}</Text>
-            </CardView>
+            </View>
           ))}
-        </CardView>
-      </CardView>
-    </CardView>
+        </View>
+      </View>
+    </View>
   );
 }
 
