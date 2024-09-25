@@ -1,6 +1,6 @@
 import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import { CardView, Text } from "../common/Themed";
 
 type NameResultsProps = {
@@ -13,12 +13,16 @@ export function NameResults({ names, copyName }: NameResultsProps) {
   return (
     <View style={styles.results}>
       {names.map((name, i) => (
-        <TouchableOpacity key={`nr_${i}`} onPress={() => copyName(name)}>
+        <Pressable
+          key={`nr_${i}`}
+          onPress={() => copyName(name)}
+          style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1 })}
+        >
           <CardView style={styles.nameCard}>
             <Text style={styles.name}>{name}</Text>
             <FontAwesome name="copy" size={24} color={theme.colors.text} />
           </CardView>
-        </TouchableOpacity>
+        </Pressable>
       ))}
     </View>
   );

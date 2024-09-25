@@ -7,8 +7,8 @@ import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 import {
   Platform,
+  Pressable,
   StyleSheet,
-  TouchableOpacity,
   useColorScheme,
   View,
 } from "react-native";
@@ -78,9 +78,12 @@ function SearchBarRight({ showClear, clear }: SearchBarRightProps) {
 
   if (showClear) {
     return (
-      <TouchableOpacity style={styles.button} onPress={clear}>
+      <Pressable
+        style={({ pressed }) => [styles.button, { opacity: pressed ? 0.5 : 1 }]}
+        onPress={clear}
+      >
         <FontAwesome name="close" size={24} color={theme.colors.text} />
-      </TouchableOpacity>
+      </Pressable>
     );
   }
 

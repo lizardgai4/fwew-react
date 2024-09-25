@@ -2,7 +2,7 @@ import { Text } from "@/components/common/Themed";
 import { getColorExtension } from "@/themes";
 import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 
 type OptionItemProps = {
   icon?: React.ReactNode;
@@ -23,7 +23,10 @@ export function OptionItem(props: OptionItemProps) {
   };
 
   return (
-    <TouchableOpacity onPress={onSelect}>
+    <Pressable
+      onPress={onSelect}
+      style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1 })}
+    >
       <View
         style={[
           styles.container,
@@ -49,7 +52,7 @@ export function OptionItem(props: OptionItemProps) {
           )}
         </View>
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 }
 
