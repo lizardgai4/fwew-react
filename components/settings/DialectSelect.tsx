@@ -6,13 +6,16 @@ import { useTheme } from "@react-navigation/native";
 import { StyleSheet, View } from "react-native";
 import { Accordion } from "../common/Accordion";
 import { OptionItem } from "../common/OptionItem";
-import { Text } from "../common/Themed";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getThemedComponents } from "@/themes";
 
 export function DialectSelect() {
   const { dialect, saveDialect } = useDialectContext();
   const { appLanguage } = useAppLanguageContext();
   const ui = getUI(appLanguage, dialect);
   const theme = useTheme();
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
 
   return (
     <Accordion
@@ -21,9 +24,11 @@ export function DialectSelect() {
           <View
             style={[styles.icon, { backgroundColor: theme.colors.primary }]}
           >
-            <Text style={styles.value}>{DialectDisplay[dialect].abbr}</Text>
+            <Themed.Text style={styles.value}>
+              {DialectDisplay[dialect].abbr}
+            </Themed.Text>
           </View>
-          <Text style={styles.value}>{ui.names.dialect}</Text>
+          <Themed.Text style={styles.value}>{ui.names.dialect}</Themed.Text>
         </View>
       }
       openedContent={
@@ -33,7 +38,7 @@ export function DialectSelect() {
               <OptionItem
                 icon={
                   <View style={styles.icon}>
-                    <Text style={styles.value}>{d.abbr}</Text>
+                    <Themed.Text style={styles.value}>{d.abbr}</Themed.Text>
                   </View>
                 }
                 value={d.name}

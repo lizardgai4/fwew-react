@@ -1,23 +1,23 @@
 import { useThemeNameContext } from "@/context/ThemeNameContext";
-import { ThemeNames } from "@/themes";
+import { getThemedComponents, ThemeNames } from "@/themes";
 import { StyleSheet, View } from "react-native";
 import { Accordion } from "../common/Accordion";
 import { OptionItem } from "../common/OptionItem";
-import { Text } from "../common/Themed";
 
 export function ThemeSelect() {
   const { themeName, saveThemeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
 
   return (
     <Accordion
       closedContent={
         <View style={styles.iconContainer}>
           <View style={styles.icon}>
-            <Text style={styles.value}>
+            <Themed.Text style={styles.value}>
               {themeName.slice(0, 2).toUpperCase()}
-            </Text>
+            </Themed.Text>
           </View>
-          <Text style={styles.value}>Theme</Text>
+          <Themed.Text style={styles.value}>Theme</Themed.Text>
         </View>
       }
       openedContent={
@@ -27,9 +27,9 @@ export function ThemeSelect() {
               <OptionItem
                 icon={
                   <View style={styles.icon}>
-                    <Text style={styles.value}>
+                    <Themed.Text style={styles.value}>
                       {tn.slice(0, 2).toUpperCase()}
-                    </Text>
+                    </Themed.Text>
                   </View>
                 }
                 value={tn}

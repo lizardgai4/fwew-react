@@ -1,7 +1,8 @@
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getThemedComponents } from "@/themes";
 import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 import { Pressable, StyleSheet, View } from "react-native";
-import { CardView, Text } from "../common/Themed";
 
 type NameResultsProps = {
   names: string[];
@@ -10,6 +11,9 @@ type NameResultsProps = {
 
 export function NameResults({ names, copyName }: NameResultsProps) {
   const theme = useTheme();
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
+
   return (
     <View style={styles.results}>
       {names.map((name, i) => (
@@ -18,10 +22,10 @@ export function NameResults({ names, copyName }: NameResultsProps) {
           onPress={() => copyName(name)}
           style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1 })}
         >
-          <CardView style={styles.nameCard}>
-            <Text style={styles.name}>{name}</Text>
+          <Themed.CardView style={styles.nameCard}>
+            <Themed.Text style={styles.name}>{name}</Themed.Text>
             <FontAwesome name="copy" size={24} color={theme.colors.text} />
-          </CardView>
+          </Themed.CardView>
         </Pressable>
       ))}
     </View>
