@@ -1,5 +1,4 @@
-import type { ThemeType } from "@/themes";
-import type { ColorExtension } from "@/types/theme";
+import type { ColorExtension, ThemeType } from "@/types/theme";
 import { useTheme, type Theme } from "@react-navigation/native";
 import {
   Text as DefaultText,
