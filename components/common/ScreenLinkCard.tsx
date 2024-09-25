@@ -1,5 +1,5 @@
-import { ItalicText } from "@/components/common/StyledText";
-import { CardView, Text } from "@/components/common/Themed";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getThemedComponents } from "@/themes";
 import { Href, Link } from "expo-router";
 import { StyleSheet, View } from "react-native";
 
@@ -10,14 +10,17 @@ type Props = {
 };
 
 export function ScreenLinkCard({ href, title, description }: Props) {
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
+
   return (
     <Link href={href}>
-      <CardView style={styles.card}>
+      <Themed.CardView style={styles.card}>
         <View style={styles.textGroup}>
-          <Text style={styles.text}>{title}</Text>
-          {description && <ItalicText>{description}</ItalicText>}
+          <Themed.Text style={styles.text}>{title}</Themed.Text>
+          {description && <Themed.ItalicText>{description}</Themed.ItalicText>}
         </View>
-      </CardView>
+      </Themed.CardView>
     </Link>
   );
 }

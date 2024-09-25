@@ -1,5 +1,5 @@
-import { Text } from "@/components/common/Themed";
-import { getColorExtension } from "@/themes";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getColorExtension, getThemedComponents } from "@/themes";
 import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 import { Pressable, StyleSheet, View } from "react-native";
@@ -14,7 +14,9 @@ type OptionItemProps = {
 export function OptionItem(props: OptionItemProps) {
   const { icon, value, selected, onSelect } = props;
   const theme = useTheme();
-  const colorExtension = getColorExtension("fwew");
+  const { themeName } = useThemeNameContext();
+  const colorExtension = getColorExtension(themeName);
+  const Themed = getThemedComponents(themeName);
 
   const getTextColor = () => {
     if (selected) return colorExtension.dark.text;
@@ -39,7 +41,9 @@ export function OptionItem(props: OptionItemProps) {
       >
         <View style={styles.itemContainer}>
           {icon}
-          <Text style={[styles.value, { color: getTextColor() }]}>{value}</Text>
+          <Themed.Text style={[styles.value, { color: getTextColor() }]}>
+            {value}
+          </Themed.Text>
         </View>
         <View style={styles.itemContainer}>
           {selected && (

@@ -1,9 +1,10 @@
-import { Text } from "@/components/common/Themed";
 import credits from "@/constants/Credits";
 import { getUI } from "@/constants/i18n";
 import { AppLanguages } from "@/constants/Language";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getThemedComponents } from "@/themes";
 import { ExtendedLanguageCode } from "@/types/common";
 import { useTheme } from "@react-navigation/native";
 import { StyleSheet, View } from "react-native";
@@ -13,16 +14,19 @@ export function Credits() {
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const ui = getUI(appLanguage, dialect);
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
+
   return (
     <View style={styles.creditsContainer}>
-      <Text style={styles.label}>{ui.settings.credits}</Text>
-      <Text style={styles.label}>{ui.settings.development}</Text>
+      <Themed.Text style={styles.label}>{ui.settings.credits}</Themed.Text>
+      <Themed.Text style={styles.label}>{ui.settings.development}</Themed.Text>
       <CreditsItem names={credits.development} />
-      <Text style={styles.label}>{ui.settings.design}</Text>
+      <Themed.Text style={styles.label}>{ui.settings.design}</Themed.Text>
       <CreditsItem names={credits.design} />
-      <Text style={styles.label}>{ui.settings.testing}</Text>
+      <Themed.Text style={styles.label}>{ui.settings.testing}</Themed.Text>
       <CreditsItem names={credits.testing} />
-      <Text style={styles.label}>{ui.settings.translation}</Text>
+      <Themed.Text style={styles.label}>{ui.settings.translation}</Themed.Text>
       {AppLanguages.map((language, i) => {
         const names = credits.translation[language.value];
         if (names.length > 0)
@@ -46,6 +50,8 @@ function CreditsItem({
   names: string[];
 }) {
   const { colors } = useTheme();
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
 
   return (
     <View style={styles.creditsItemContainer}>
@@ -60,7 +66,7 @@ function CreditsItem({
                 { backgroundColor: colors.background },
               ]}
             >
-              <Text style={styles.text}>{name}</Text>
+              <Themed.Text style={styles.text}>{name}</Themed.Text>
             </View>
           ))}
         </View>

@@ -1,10 +1,11 @@
 import { AlphaTextInput } from "@/components/common/AlphaTextInput";
 import { DropDownSelect } from "@/components/common/DropDownSelect";
 import { NumericTextInput } from "@/components/common/NumericTextInput";
-import { Text } from "@/components/common/Themed";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getThemedComponents } from "@/themes";
 import type {
   FilterExpressionBuilderValue,
   ListMenuCondItem,
@@ -22,6 +23,9 @@ export function FilterExpressionBuilder(props: FilterExpressionBuilderProps) {
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const { list, common } = getUI(appLanguage, dialect);
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
+
   const whatValues = list.listMenu.whatValues;
   const condValues = value.what
     ? list.listMenu.condValues[value.what.value]
@@ -82,7 +86,7 @@ export function FilterExpressionBuilder(props: FilterExpressionBuilderProps) {
         value={value.what}
         initiallyOpen={!value.what}
         renderOption={(option) => (
-          <Text style={styles.text}>{option?.description}</Text>
+          <Themed.Text style={styles.text}>{option?.description}</Themed.Text>
         )}
         keyExtractor={(option, i) => `dd_${option?.value}_${i}`}
         onChange={setWhat}
@@ -94,7 +98,7 @@ export function FilterExpressionBuilder(props: FilterExpressionBuilderProps) {
           value={value.cond}
           initiallyOpen={!value.cond}
           renderOption={(option) => (
-            <Text style={styles.text}>{option?.description}</Text>
+            <Themed.Text style={styles.text}>{option?.description}</Themed.Text>
           )}
           keyExtractor={(option, i) => `dd_${option?.value}_${i}`}
           onChange={setCond}
@@ -110,11 +114,11 @@ export function FilterExpressionBuilder(props: FilterExpressionBuilderProps) {
           }}
           initiallyOpen={!value.spec}
           renderOption={(option) => (
-            <Text style={styles.text}>
+            <Themed.Text style={styles.text}>
               {option.value && option.name
                 ? `${option.value} (${option.name})`
                 : " "}
-            </Text>
+            </Themed.Text>
           )}
           keyExtractor={(option, i) => `dd_${option}_${i}`}
           onChange={(option) => setSpec(option.value)}

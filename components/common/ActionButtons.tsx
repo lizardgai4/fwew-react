@@ -8,6 +8,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import { Href, Link } from "expo-router";
 import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import { FlagMap } from "../settings/Flags";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
 
 export function ActionButtons() {
   return (
@@ -62,7 +63,9 @@ type ABProps = {
 };
 
 function ActionButton({ href, icon }: ABProps) {
-  const colorExtension = getColorExtension("fwew");
+  const { themeName } = useThemeNameContext();
+  const colorExtension = getColorExtension(themeName);
+
   return (
     <Link href={href} asChild>
       <Pressable style={styles.actionButton}>

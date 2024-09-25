@@ -1,8 +1,8 @@
-import { CardView, TextInput } from "@/components/common/Themed";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
-import { getColorExtension } from "@/themes";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getColorExtension, getThemedComponents } from "@/themes";
 import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 import {
@@ -32,11 +32,13 @@ export function SearchBar(props: SearchBarProps) {
     cancel,
   } = props;
   const colorScheme = useColorScheme();
-  const colorExtension = getColorExtension("fwew");
+  const { themeName } = useThemeNameContext();
+  const colorExtension = getColorExtension(themeName);
   const colors = colorExtension[colorScheme ?? "light"];
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const ui = getUI(appLanguage, dialect);
+  const Themed = getThemedComponents(themeName);
 
   const clear = () => {
     search("");
@@ -44,8 +46,8 @@ export function SearchBar(props: SearchBarProps) {
   };
 
   return (
-    <CardView style={styles.searchContainer}>
-      <TextInput
+    <Themed.CardView style={styles.searchContainer}>
+      <Themed.TextInput
         style={styles.input}
         placeholder={placeholder ?? ui.search.search}
         placeholderTextColor={colors.placeholder}
@@ -61,7 +63,7 @@ export function SearchBar(props: SearchBarProps) {
         onSubmitEditing={execute}
       />
       <SearchBarRight showClear={query.length > 0} clear={clear} />
-    </CardView>
+    </Themed.CardView>
   );
 }
 
@@ -73,7 +75,8 @@ type SearchBarRightProps = {
 function SearchBarRight({ showClear, clear }: SearchBarRightProps) {
   const theme = useTheme();
   const colorScheme = useColorScheme();
-  const colorExtension = getColorExtension("fwew");
+  const { themeName } = useThemeNameContext();
+  const colorExtension = getColorExtension(themeName);
   const colors = colorExtension[colorScheme ?? "light"];
 
   if (showClear) {

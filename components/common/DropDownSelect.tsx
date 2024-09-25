@@ -1,4 +1,5 @@
-import { CardView } from "@/components/common/Themed";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getThemedComponents } from "@/themes";
 import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 import { useState } from "react";
@@ -24,6 +25,8 @@ export function DropDownSelect<T>(props: DropDownSelectProps<T>) {
   } = props;
   const [open, setOpen] = useState(initiallyOpen ?? false);
   const { colors } = useTheme();
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
 
   const toggle = () => setOpen((prev) => !prev);
 
@@ -33,7 +36,7 @@ export function DropDownSelect<T>(props: DropDownSelectProps<T>) {
   };
 
   return (
-    <CardView>
+    <Themed.CardView>
       <Pressable
         onPress={toggle}
         style={({ pressed }) => ({
@@ -65,6 +68,6 @@ export function DropDownSelect<T>(props: DropDownSelectProps<T>) {
           ))}
         </>
       )}
-    </CardView>
+    </Themed.CardView>
   );
 }

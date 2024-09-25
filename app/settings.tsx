@@ -1,4 +1,3 @@
-import { Text } from "@/components/common/Themed";
 import { About } from "@/components/settings/About";
 import { AppLanguageSelect } from "@/components/settings/AppLanguageSelect";
 import { DialectSelect } from "@/components/settings/DialectSelect";
@@ -7,6 +6,8 @@ import { ThemeSelect } from "@/components/settings/ThemeSelect";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getThemedComponents } from "@/themes";
 import { StatusBar } from "expo-status-bar";
 import { Platform, ScrollView, StyleSheet, View } from "react-native";
 
@@ -14,6 +15,8 @@ export default function SettingsScreen() {
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const ui = getUI(appLanguage, dialect);
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
 
   return (
     <ScrollView>
@@ -24,7 +27,7 @@ export default function SettingsScreen() {
         <ResultsLanguageSelect />
         <DialectSelect />
         <ThemeSelect />
-        <Text style={styles.value}>{ui.settings.about}</Text>
+        <Themed.Text style={styles.value}>{ui.settings.about}</Themed.Text>
         <About />
       </View>
     </ScrollView>

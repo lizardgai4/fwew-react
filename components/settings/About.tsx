@@ -1,14 +1,18 @@
-import { CardView } from "@/components/common/Themed";
 import { Credits } from "@/components/settings/Credits";
 import { Version } from "@/components/settings/Version";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getThemedComponents } from "@/themes";
 import { StyleSheet } from "react-native";
 
 export function About() {
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
+
   return (
-    <CardView style={styles.expanded}>
+    <Themed.CardView style={styles.expanded}>
       <Version />
       <Credits />
-    </CardView>
+    </Themed.CardView>
   );
 }
 

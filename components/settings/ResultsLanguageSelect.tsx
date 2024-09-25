@@ -1,12 +1,13 @@
 import { Accordion } from "@/components/common/Accordion";
 import { OptionItem } from "@/components/common/OptionItem";
-import { Text } from "@/components/common/Themed";
 import { FlagMap } from "@/components/settings/Flags";
 import { ResultsLanguages } from "@/constants/Language";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
 import { useResultsLanguageContext } from "@/context/ResultsLanguageContext";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getThemedComponents } from "@/themes";
 import { StyleSheet, View } from "react-native";
 
 export function ResultsLanguageSelect() {
@@ -14,13 +15,17 @@ export function ResultsLanguageSelect() {
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const ui = getUI(appLanguage, dialect);
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
 
   return (
     <Accordion
       closedContent={
         <View style={styles.iconContainer}>
           <View style={styles.icon}>{FlagMap[resultsLanguage]}</View>
-          <Text style={styles.value}>{ui.settings.resultsLanguage}</Text>
+          <Themed.Text style={styles.value}>
+            {ui.settings.resultsLanguage}
+          </Themed.Text>
         </View>
       }
       openedContent={

@@ -1,10 +1,10 @@
-import { MonoText } from "@/components/common/StyledText";
-import { Text } from "@/components/common/Themed";
 import { GitDetails } from "@/components/settings/GitDetails";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { useVersion } from "@/hooks/useVersion";
+import { getThemedComponents } from "@/themes";
 import { StyleSheet, View } from "react-native";
 
 export function Version() {
@@ -12,28 +12,36 @@ export function Version() {
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const ui = getUI(appLanguage, dialect);
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
 
   return (
     <>
-      <Text style={styles.label}>{ui.settings.version}</Text>
+      <Themed.Text style={styles.label}>{ui.settings.version}</Themed.Text>
       <View style={styles.versionContainer}>
         <View>
-          <MonoText style={styles.text}>fwew-react</MonoText>
-          <MonoText style={styles.text}>fwew-api </MonoText>
-          <MonoText style={styles.text}>fwew-lib</MonoText>
-          <MonoText style={styles.text}>dictionary</MonoText>
+          <Themed.MonoText style={styles.text}>fwew-react</Themed.MonoText>
+          <Themed.MonoText style={styles.text}>fwew-api </Themed.MonoText>
+          <Themed.MonoText style={styles.text}>fwew-lib</Themed.MonoText>
+          <Themed.MonoText style={styles.text}>dictionary</Themed.MonoText>
         </View>
         <View>
-          <MonoText style={styles.text}>
+          <Themed.MonoText style={styles.text}>
             {version.AppVersion}{" "}
             <GitDetails
               branch={version.Branch}
               commitHash={version.CommitHash}
             />
-          </MonoText>
-          <MonoText style={styles.text}>{version.APIVersion || "?"}</MonoText>
-          <MonoText style={styles.text}>{version.FwewVersion || "?"}</MonoText>
-          <MonoText style={styles.text}>{version.DictVersion || "?"}</MonoText>
+          </Themed.MonoText>
+          <Themed.MonoText style={styles.text}>
+            {version.APIVersion || "?"}
+          </Themed.MonoText>
+          <Themed.MonoText style={styles.text}>
+            {version.FwewVersion || "?"}
+          </Themed.MonoText>
+          <Themed.MonoText style={styles.text}>
+            {version.DictVersion || "?"}
+          </Themed.MonoText>
         </View>
       </View>
     </>

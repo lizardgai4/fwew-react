@@ -3,6 +3,7 @@ import { Logo } from "@/components/common/Logo";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { getColorExtension } from "@/themes";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useTheme } from "@react-navigation/native";
@@ -21,7 +22,8 @@ function TabBarIcon(props: TabBarIconProps) {
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
-  const colorExtension = getColorExtension("fwew");
+  const { themeName } = useThemeNameContext();
+  const colorExtension = getColorExtension(themeName);
   const colors = colorExtension[colorScheme ?? "light"];
   const theme = useTheme();
   const { appLanguage } = useAppLanguageContext();
