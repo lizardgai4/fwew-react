@@ -4,8 +4,8 @@ import type { FontAwesomeIconName } from "@/types/icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 import {
+  Pressable,
   StyleSheet,
-  TouchableOpacity,
   useColorScheme,
   type TextStyle,
   type ViewStyle,
@@ -28,12 +28,13 @@ export function Button(props: ButtonProps) {
   const theme = useTheme();
 
   return (
-    <TouchableOpacity
+    <Pressable
       onPress={onPress}
-      style={[
+      style={({ pressed }) => [
         styles.button,
         {
           backgroundColor: disabled ? colors.placeholder : theme.colors.primary,
+          opacity: pressed ? 0.5 : 1,
           ...style,
         },
       ]}
@@ -45,7 +46,7 @@ export function Button(props: ButtonProps) {
           {text}
         </Text>
       )}
-    </TouchableOpacity>
+    </Pressable>
   );
 }
 

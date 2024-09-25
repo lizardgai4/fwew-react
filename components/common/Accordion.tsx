@@ -2,7 +2,7 @@ import { CardView } from "@/components/common/Themed";
 import { getColorExtension } from "@/themes";
 import { FontAwesome } from "@expo/vector-icons";
 import { useState } from "react";
-import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
+import { Pressable, StyleSheet, useColorScheme } from "react-native";
 
 type AccordionProps = {
   closedContent: React.ReactNode;
@@ -19,8 +19,11 @@ export function Accordion(props: AccordionProps) {
 
   return (
     <CardView>
-      <TouchableOpacity
-        style={styles.container}
+      <Pressable
+        style={({ pressed }) => [
+          styles.container,
+          { opacity: pressed ? 0.5 : 1 },
+        ]}
         onPress={() => setExpanded((e) => !e)}
       >
         {closedContent}
@@ -30,7 +33,7 @@ export function Accordion(props: AccordionProps) {
           color={colors.text}
           style={styles.arrow}
         />
-      </TouchableOpacity>
+      </Pressable>
       {expanded && openedContent}
     </CardView>
   );

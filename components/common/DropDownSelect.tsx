@@ -2,7 +2,7 @@ import { CardView } from "@/components/common/Themed";
 import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 import { useState } from "react";
-import { TouchableOpacity, View } from "react-native";
+import { Pressable, View } from "react-native";
 
 type DropDownSelectProps<T> = {
   options: T[];
@@ -34,15 +34,16 @@ export function DropDownSelect<T>(props: DropDownSelectProps<T>) {
 
   return (
     <CardView>
-      <TouchableOpacity
+      <Pressable
         onPress={toggle}
-        style={{
+        style={({ pressed }) => ({
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
           paddingRight: 10,
           paddingVertical: 8,
-        }}
+          opacity: pressed ? 0.5 : 1,
+        })}
       >
         {value ? renderOption(value) : <View style={{ padding: 16 }} />}
         <FontAwesome
@@ -50,16 +51,17 @@ export function DropDownSelect<T>(props: DropDownSelectProps<T>) {
           size={24}
           color={colors.text}
         />
-      </TouchableOpacity>
+      </Pressable>
       {open && (
         <>
           {options.map((option, i) => (
-            <TouchableOpacity
+            <Pressable
               key={keyExtractor(option, i)}
               onPress={() => handleChange(option)}
+              style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1 })}
             >
               {renderOption(option)}
-            </TouchableOpacity>
+            </Pressable>
           ))}
         </>
       )}
