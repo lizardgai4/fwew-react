@@ -1,8 +1,28 @@
-import { FwewTheme } from "@/themes/fwew";
+import FwewTheme from "@/themes/fwew";
 import { type Dialect } from "@/types/common";
 import { type ColorExtension } from "@/types/theme";
 import { type Theme } from "@react-navigation/native";
-import { type ColorSchemeName } from "react-native";
+import {
+  TextInputProps,
+  TextProps,
+  ViewProps,
+  type ColorSchemeName,
+} from "react-native";
+
+export type ThemeType = {
+  light: Record<Dialect, Theme>;
+  dark: Record<Dialect, Theme>;
+  ext: ColorExtension;
+  components: {
+    Text: (props: TextProps) => JSX.Element;
+    MonoText: (props: TextProps) => JSX.Element;
+    BoldText: (props: TextProps) => JSX.Element;
+    ItalicText: (props: TextProps) => JSX.Element;
+    UnderlinedText: (props: TextProps) => JSX.Element;
+    CardView: (props: ViewProps) => JSX.Element;
+    TextInput: (props: TextInputProps) => JSX.Element;
+  };
+};
 
 const ThemeMap = {
   fwew: FwewTheme,

@@ -1,3 +1,4 @@
+import type { ThemeType } from "@/themes";
 import type { ColorExtension } from "@/types/theme";
 import { useTheme, type Theme } from "@react-navigation/native";
 import {
@@ -142,7 +143,7 @@ function TextInput(props: TextInputProps) {
   );
 }
 
-export const FwewTheme = {
+const FwewTheme: ThemeType = {
   light: {
     forest: FwewLightTheme,
     reef: FwewLightReefTheme,
@@ -161,4 +162,6 @@ export const FwewTheme = {
     CardView,
     TextInput,
   },
-} as const;
+};
+
+export default FwewTheme;
