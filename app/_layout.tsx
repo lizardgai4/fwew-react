@@ -66,7 +66,7 @@ function RootLayoutNav() {
   const favorites = useFavorites();
   const themeNameValue = useThemeName();
   const { themeName } = themeNameValue;
-  const theme = getTheme({ themeName, colorScheme, dialect });
+  const theme = getTheme(themeName, colorScheme, dialect);
 
   return (
     <>
