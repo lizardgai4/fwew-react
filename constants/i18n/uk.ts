@@ -52,16 +52,16 @@ const strings: UITranslation = {
     numbers: "Числа",
     other: "Інше",
 
-    lenition: "Lenition", // TODO
+    lenition: "Леніція",
     stats: "Статистика",
-    valid: "Valid", // TODO
-    lists: "Додаткові категорії",
+    valid: "Перевірка слів",
+    lists: "Додатково",
 
-    cameronWords: "слова Кемерона",
+    cameronWords: "Слова Кемерона",
     homonyms: "Омоніми",
-    multiIPA: "Multi IPA", // TODO
-    oddballs: "Oddballs", // TODO
-    profanity: "Profanity", // TODO
+    multiIPA: "IPA (MФА)",
+    oddballs: "Винятки",
+    profanity: "Нецензурна лексика",
     that: "That", // TODO
 
     names: "Імена",
@@ -157,7 +157,7 @@ const strings: UITranslation = {
   },
   random: {
     random: "Випадкові",
-    randomOptions: "Параметри випадкових слів",
+    randomOptions: "Критерії випадкових слів",
     numWords: "Кількість випадкових слів",
     where: "де....",
   },
