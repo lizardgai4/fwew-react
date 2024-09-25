@@ -1,7 +1,8 @@
-import { Text } from "@/components/common/Themed";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getThemedComponents } from "@/themes";
 import { StyleSheet, TextStyle } from "react-native";
 
 type ResultCountProps = {
@@ -14,21 +15,24 @@ export function ResultCount({ visible, resultCount, style }: ResultCountProps) {
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const ui = getUI(appLanguage, dialect);
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
+
   if (!visible) return null;
 
   if (["nx0", "nx1"].includes(appLanguage)) {
     const octalResultCount = resultCount.toString(8);
     return (
-      <Text style={[styles.resultCount, style]}>
+      <Themed.Text style={[styles.resultCount, style]}>
         {`°${octalResultCount}a ${ui.common.results(resultCount)}`}
-      </Text>
+      </Themed.Text>
     );
   }
 
   return (
-    <Text style={[styles.resultCount, style]}>
+    <Themed.Text style={[styles.resultCount, style]}>
       {`${resultCount} ${ui.common.results(resultCount)}`}
-    </Text>
+    </Themed.Text>
   );
 }
 

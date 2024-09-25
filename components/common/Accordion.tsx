@@ -1,5 +1,5 @@
-import { CardView } from "@/components/common/Themed";
-import { getColorExtension } from "@/themes";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getColorExtension, getThemedComponents } from "@/themes";
 import { FontAwesome } from "@expo/vector-icons";
 import { useState } from "react";
 import { Pressable, StyleSheet, useColorScheme } from "react-native";
@@ -14,11 +14,13 @@ export function Accordion(props: AccordionProps) {
   const { closedContent, openedContent, initiallyOpen } = props;
   const [expanded, setExpanded] = useState(initiallyOpen ?? false);
   const colorScheme = useColorScheme();
-  const colorExtension = getColorExtension("fwew");
+  const { themeName } = useThemeNameContext();
+  const colorExtension = getColorExtension(themeName);
   const colors = colorExtension[colorScheme ?? "light"];
+  const Themed = getThemedComponents(themeName);
 
   return (
-    <CardView>
+    <Themed.CardView>
       <Pressable
         style={({ pressed }) => [
           styles.container,
@@ -35,7 +37,7 @@ export function Accordion(props: AccordionProps) {
         />
       </Pressable>
       {expanded && openedContent}
-    </CardView>
+    </Themed.CardView>
   );
 }
 

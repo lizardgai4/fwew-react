@@ -25,3 +25,7 @@ export function getTheme(
 export function getColorExtension(themeName: ThemeName): ColorExtension {
   return ThemeMap[themeName].ext;
 }
+
+export function getThemedComponents(themeName: ThemeName) {
+  return ThemeMap[themeName].components;
+}

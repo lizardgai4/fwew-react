@@ -3,13 +3,13 @@ import { Button } from "@/components/common/Button";
 import { NumericTextInput } from "@/components/common/NumericTextInput";
 import { OptionSelect } from "@/components/common/OptionSelect";
 import { ResultCount } from "@/components/common/ResultCount";
-import { Text } from "@/components/common/Themed";
 import { NameResults } from "@/components/names/NameResults";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { useNameFull } from "@/hooks/useNameFull";
-import { getColorExtension } from "@/themes";
+import { getColorExtension, getThemedComponents } from "@/themes";
 import { useTheme } from "@react-navigation/native";
 import * as Clipboard from "expo-clipboard";
 import {
@@ -23,7 +23,8 @@ import {
 export default function NameFullScreen() {
   const theme = useTheme();
   const colorScheme = useColorScheme();
-  const colorExtension = getColorExtension("fwew");
+  const { themeName } = useThemeNameContext();
+  const colorExtension = getColorExtension(themeName);
   const colors = colorExtension[colorScheme ?? "light"];
   const {
     names,
@@ -44,6 +45,7 @@ export default function NameFullScreen() {
   const { dialect } = useDialectContext();
   const { names: uiNames, nameFull: uiNameFull } = getUI(appLanguage, dialect);
   const resultsVisible = numNames.length > 0 && names.length > 0;
+  const Themed = getThemedComponents(themeName);
 
   const copyAll = async () => {
     await Clipboard.setStringAsync(names.join("\n"));
@@ -66,7 +68,7 @@ export default function NameFullScreen() {
     >
       <View style={styles.container}>
         <Accordion
-          closedContent={<Text>{uiNames.options}</Text>}
+          closedContent={<Themed.Text>{uiNames.options}</Themed.Text>}
           openedContent={
             <View
               style={[
@@ -74,33 +76,41 @@ export default function NameFullScreen() {
                 { backgroundColor: theme.colors.background },
               ]}
             >
-              <Text style={styles.label}>{uiNames.numNames}</Text>
+              <Themed.Text style={styles.label}>{uiNames.numNames}</Themed.Text>
               <NumericTextInput
                 value={numNames}
                 onChangeText={updateNumNames}
                 placeholder="1-50"
                 autoFocus
               />
-              <Text style={styles.label}>{uiNameFull.numSyllables1}</Text>
+              <Themed.Text style={styles.label}>
+                {uiNameFull.numSyllables1}
+              </Themed.Text>
               <OptionSelect
                 items={uiNames.syllablesOptions}
                 active={(value) => syllables1 === value}
                 onSelect={updateSyllables1}
               />
-              <Text style={styles.label}>{uiNameFull.numSyllables2}</Text>
+              <Themed.Text style={styles.label}>
+                {uiNameFull.numSyllables2}
+              </Themed.Text>
               <OptionSelect
                 items={uiNames.syllablesOptions}
                 active={(value) => syllables2 === value}
                 onSelect={updateSyllables2}
               />
-              <Text style={styles.label}>{uiNameFull.numSyllables3}</Text>
+              <Themed.Text style={styles.label}>
+                {uiNameFull.numSyllables3}
+              </Themed.Text>
               <OptionSelect
                 items={uiNames.syllablesOptions}
                 active={(value) => syllables3 === value}
                 onSelect={updateSyllables3}
               />
-              <Text style={styles.label}>{uiNameFull.nameEnding}</Text>
-              <Text
+              <Themed.Text style={styles.label}>
+                {uiNameFull.nameEnding}
+              </Themed.Text>
+              <Themed.Text
                 style={{
                   color: colors.placeholder,
                   padding: 10,
@@ -108,7 +118,7 @@ export default function NameFullScreen() {
                 }}
               >
                 {uiNameFull.nameEndingHint}
-              </Text>
+              </Themed.Text>
               <OptionSelect
                 items={uiNameFull.nameEndingOptions}
                 active={(value) => ending === value}

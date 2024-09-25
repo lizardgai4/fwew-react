@@ -1,6 +1,6 @@
 import { SmallButton } from "@/components/common/SmallButton";
-import { CardView, TextInput } from "@/components/common/Themed";
-import { getColorExtension } from "@/themes";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getColorExtension, getThemedComponents } from "@/themes";
 import type { NumericString } from "@/types/common";
 import { StyleSheet, useColorScheme, View } from "react-native";
 
@@ -14,12 +14,14 @@ type NumericTextInputProps = {
 export function NumericTextInput(props: NumericTextInputProps) {
   const { value, onChangeText, placeholder, autoFocus } = props;
   const colorScheme = useColorScheme();
-  const colorExtension = getColorExtension("fwew");
+  const { themeName } = useThemeNameContext();
+  const colorExtension = getColorExtension(themeName);
   const colors = colorExtension[colorScheme ?? "light"];
+  const Themed = getThemedComponents(themeName);
 
   return (
-    <CardView style={styles.inputContainer}>
-      <TextInput
+    <Themed.CardView style={styles.inputContainer}>
+      <Themed.TextInput
         placeholder={placeholder}
         placeholderTextColor={colors.placeholder}
         value={value}
@@ -36,7 +38,7 @@ export function NumericTextInput(props: NumericTextInputProps) {
           <SmallButton icon="close" onPress={() => onChangeText("")} />
         )}
       </View>
-    </CardView>
+    </Themed.CardView>
   );
 }
 

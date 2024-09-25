@@ -1,14 +1,17 @@
-import { CardView, Text } from "@/components/common/Themed";
 import { reefReplacements } from "@/constants/Cameron";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getThemedComponents } from "@/themes";
 import { FlatList, StyleSheet, View } from "react-native";
 
 export default function CameronScreen() {
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const ui = getUI(appLanguage, dialect).cameronWords;
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
 
   return (
     <View style={styles.container}>
@@ -33,12 +36,12 @@ export default function CameronScreen() {
             }
           }
           return (
-            <CardView style={styles.row}>
+            <Themed.CardView style={styles.row}>
               <View style={styles.col}>
-                <Text style={styles.subheader}>{item.key}</Text>
-                <Text style={styles.words}>{newValue}</Text>
+                <Themed.Text style={styles.subheader}>{item.key}</Themed.Text>
+                <Themed.Text style={styles.words}>{newValue}</Themed.Text>
               </View>
-            </CardView>
+            </Themed.CardView>
           );
         }}
       />

@@ -1,9 +1,9 @@
 import { SmallButton } from "@/components/common/SmallButton";
-import { TextInput } from "@/components/common/Themed";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
-import { getColorExtension } from "@/themes";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getColorExtension, getThemedComponents } from "@/themes";
 import { Platform, StyleSheet, useColorScheme, View } from "react-native";
 
 type NumberSearchBarProps = {
@@ -17,15 +17,17 @@ type NumberSearchBarProps = {
 export function NumberSearchBar(props: NumberSearchBarProps) {
   const { mode, toggleMode, query, search, clear } = props;
   const colorScheme = useColorScheme();
-  const colorExtension = getColorExtension("fwew");
+  const { themeName } = useThemeNameContext();
+  const colorExtension = getColorExtension(themeName);
   const colors = colorExtension[colorScheme ?? "light"];
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   let ui = getUI(appLanguage, dialect);
+  const Themed = getThemedComponents(themeName);
 
   return (
     <View style={styles.inputContainer}>
-      <TextInput
+      <Themed.TextInput
         value={query}
         onChangeText={search}
         placeholder={

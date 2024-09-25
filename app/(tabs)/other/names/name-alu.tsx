@@ -3,12 +3,13 @@ import { Button } from "@/components/common/Button";
 import { NumericTextInput } from "@/components/common/NumericTextInput";
 import { OptionSelect } from "@/components/common/OptionSelect";
 import { ResultCount } from "@/components/common/ResultCount";
-import { Text } from "@/components/common/Themed";
 import { NameResults } from "@/components/names/NameResults";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { useNameAlu } from "@/hooks/useNameAlu";
+import { getThemedComponents } from "@/themes";
 import { useTheme } from "@react-navigation/native";
 import * as Clipboard from "expo-clipboard";
 import { RefreshControl, ScrollView, StyleSheet, View } from "react-native";
@@ -32,6 +33,8 @@ export default function NameAluScreen() {
   const { dialect } = useDialectContext();
   const { names: uiNames, nameAlu: uiNameAlu } = getUI(appLanguage, dialect);
   const resultsVisible = numNames.length > 0 && names.length > 0;
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
 
   const copyAll = async () => {
     await Clipboard.setStringAsync(names.join("\n"));
@@ -54,7 +57,7 @@ export default function NameAluScreen() {
     >
       <View style={styles.container}>
         <Accordion
-          closedContent={<Text>{uiNames.options}</Text>}
+          closedContent={<Themed.Text>{uiNames.options}</Themed.Text>}
           openedContent={
             <View
               style={[
@@ -62,26 +65,32 @@ export default function NameAluScreen() {
                 { backgroundColor: theme.colors.background },
               ]}
             >
-              <Text style={styles.label}>{uiNames.numNames}</Text>
+              <Themed.Text style={styles.label}>{uiNames.numNames}</Themed.Text>
               <NumericTextInput
                 value={numNames}
                 onChangeText={updateNumNames}
                 placeholder="1-50"
                 autoFocus
               />
-              <Text style={styles.label}>{uiNameAlu.numSyllables}</Text>
+              <Themed.Text style={styles.label}>
+                {uiNameAlu.numSyllables}
+              </Themed.Text>
               <OptionSelect
                 items={uiNames.syllablesOptions}
                 active={(value) => numSyllables === value}
                 onSelect={updateNumSyllables}
               />
-              <Text style={styles.label}>{uiNameAlu.nounMode}</Text>
+              <Themed.Text style={styles.label}>
+                {uiNameAlu.nounMode}
+              </Themed.Text>
               <OptionSelect
                 items={uiNameAlu.nounModes}
                 active={(value) => nounMode === value}
                 onSelect={setNounMode}
               />
-              <Text style={styles.label}>{uiNameAlu.adjMode}</Text>
+              <Themed.Text style={styles.label}>
+                {uiNameAlu.adjMode}
+              </Themed.Text>
               <OptionSelect
                 items={uiNameAlu.adjModes}
                 active={(value) => adjMode === value}

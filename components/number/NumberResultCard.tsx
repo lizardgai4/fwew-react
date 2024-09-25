@@ -1,8 +1,8 @@
-import { MonoText } from "@/components/common/StyledText";
-import { CardView, Text } from "@/components/common/Themed";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getThemedComponents } from "@/themes";
 import type { FwewError, FwewNumber } from "fwew.js";
 import { StyleSheet, View } from "react-native";
 
@@ -14,6 +14,8 @@ export function NumberResultCard({ result }: NumberResultCardProps) {
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const ui = getUI(appLanguage, dialect);
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
 
   if (!result) {
     return null;
@@ -22,14 +24,14 @@ export function NumberResultCard({ result }: NumberResultCardProps) {
   if ("message" in result) {
     return (
       <View style={styles.container}>
-        <Text>{ui.common.noResults}</Text>
+        <Themed.Text>{ui.common.noResults}</Themed.Text>
       </View>
     );
   }
 
   return (
-    <CardView style={styles.container}>
-      <Text style={styles.navi}>{result.name}</Text>
+    <Themed.CardView style={styles.container}>
+      <Themed.Text style={styles.navi}>{result.name}</Themed.Text>
       <View
         style={{
           flexDirection: "row",
@@ -40,16 +42,18 @@ export function NumberResultCard({ result }: NumberResultCardProps) {
         }}
       >
         <View style={{ alignItems: "flex-end" }}>
-          <Text style={styles.text}>{ui.numbers.octal}</Text>
-          <Text style={styles.text}>{ui.numbers.decimal}</Text>
+          <Themed.Text style={styles.text}>{ui.numbers.octal}</Themed.Text>
+          <Themed.Text style={styles.text}>{ui.numbers.decimal}</Themed.Text>
         </View>
         <View style={{ alignItems: "flex-end" }}>
-          <MonoText style={styles.text}>{result.octal}</MonoText>
-          <MonoText style={styles.text}>{result.decimal}</MonoText>
+          <Themed.MonoText style={styles.text}>{result.octal}</Themed.MonoText>
+          <Themed.MonoText style={styles.text}>
+            {result.decimal}
+          </Themed.MonoText>
         </View>
       </View>
       <Scientific result={result} />
-    </CardView>
+    </Themed.CardView>
   );
 }
 
@@ -79,10 +83,13 @@ function Scientific({ result }: { result: FwewNumber }) {
 }
 
 function Power({ base, exponent }: { base: string; exponent: string }) {
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
+
   return (
     <View style={{ flexDirection: "row" }}>
-      <MonoText style={{ fontSize: 18 }}>{base}</MonoText>
-      <MonoText style={{ fontSize: 12 }}>{exponent}</MonoText>
+      <Themed.MonoText style={{ fontSize: 18 }}>{base}</Themed.MonoText>
+      <Themed.MonoText style={{ fontSize: 12 }}>{exponent}</Themed.MonoText>
     </View>
   );
 }

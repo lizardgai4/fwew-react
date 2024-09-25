@@ -1,6 +1,6 @@
 import { SmallButton } from "@/components/common/SmallButton";
-import { CardView, TextInput } from "@/components/common/Themed";
-import { getColorExtension } from "@/themes";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getColorExtension, getThemedComponents } from "@/themes";
 import { StyleSheet, useColorScheme, View } from "react-native";
 
 type AlphaTextInputProps = {
@@ -13,12 +13,14 @@ type AlphaTextInputProps = {
 export function AlphaTextInput(props: AlphaTextInputProps) {
   const { value, onChangeText, placeholder, autoFocus } = props;
   const colorScheme = useColorScheme();
-  const colorExtension = getColorExtension("fwew");
+  const { themeName } = useThemeNameContext();
+  const colorExtension = getColorExtension(themeName);
   const colors = colorExtension[colorScheme ?? "light"];
+  const Themed = getThemedComponents(themeName);
 
   return (
-    <CardView style={styles.inputContainer}>
-      <TextInput
+    <Themed.CardView style={styles.inputContainer}>
+      <Themed.TextInput
         placeholder={placeholder}
         placeholderTextColor={colors.placeholder}
         value={value}
@@ -35,7 +37,7 @@ export function AlphaTextInput(props: AlphaTextInputProps) {
       ) : (
         <View style={[styles.clearButton, { borderColor: colors.text }]} />
       )}
-    </CardView>
+    </Themed.CardView>
   );
 }
 

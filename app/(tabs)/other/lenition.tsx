@@ -1,11 +1,11 @@
 import { ResultCount } from "@/components/common/ResultCount";
-import { BoldText, MonoText } from "@/components/common/StyledText";
-import { CardView, Text } from "@/components/common/Themed";
 import { ListResults } from "@/components/list/ListResults";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { useList } from "@/hooks/useList";
+import { getThemedComponents } from "@/themes";
 import { useEffect } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 
@@ -25,6 +25,8 @@ function LenitionTable() {
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const ui = getUI(appLanguage, dialect).lenition;
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
 
   const lenitionData = [
     { key: "Kx", value: "⇾ K" },
@@ -38,14 +40,16 @@ function LenitionTable() {
   ];
 
   return (
-    <CardView style={{ padding: 16 }}>
+    <Themed.CardView style={{ padding: 16 }}>
       {lenitionData.map(({ key, value }, i) => (
         <View key={`lt_r_${i}`} style={styles.lenitionRow}>
-          <MonoText style={styles.lenitionKey}>{key}</MonoText>
-          <MonoText style={styles.lenitionValue}>{value}</MonoText>
+          <Themed.MonoText style={styles.lenitionKey}>{key}</Themed.MonoText>
+          <Themed.MonoText style={styles.lenitionValue}>
+            {value}
+          </Themed.MonoText>
         </View>
       ))}
-    </CardView>
+    </Themed.CardView>
   );
 }
 
@@ -53,6 +57,8 @@ function LenPreList() {
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const ui = getUI(appLanguage, dialect).lenition;
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
 
   const lenPrefixes = [
     "me+",
@@ -73,10 +79,14 @@ function LenPreList() {
 
   return (
     <View style={styles.container}>
-      <BoldText style={styles.header}>{ui.lenitingPrefixes}</BoldText>
-      <CardView style={{ padding: 16 }}>
-        <Text style={styles.prefixText}>{lenPrefixes.join(", ")}</Text>
-      </CardView>
+      <Themed.BoldText style={styles.header}>
+        {ui.lenitingPrefixes}
+      </Themed.BoldText>
+      <Themed.CardView style={{ padding: 16 }}>
+        <Themed.Text style={styles.prefixText}>
+          {lenPrefixes.join(", ")}
+        </Themed.Text>
+      </Themed.CardView>
     </View>
   );
 }
@@ -86,6 +96,8 @@ function LenAdpList() {
   const { dialect } = useDialectContext();
   const ui = getUI(appLanguage, dialect).lenition;
   const { loading, execute, results } = useList();
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
 
   useEffect(() => {
     void execute("pos has adp. and word ends +");
@@ -94,7 +106,9 @@ function LenAdpList() {
 
   return (
     <View style={styles.container}>
-      <BoldText style={styles.header}>{ui.lenitingAdpositions}</BoldText>
+      <Themed.BoldText style={styles.header}>
+        {ui.lenitingAdpositions}
+      </Themed.BoldText>
       <ResultCount
         resultCount={results.length}
         visible={!loading && results.length > 0}

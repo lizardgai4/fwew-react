@@ -1,10 +1,11 @@
 import { Button } from "@/components/common/Button";
 import { FilterExpressionBuilder } from "@/components/common/FilterExpressionBuilder";
 import { SmallButton } from "@/components/common/SmallButton";
-import { Text } from "@/components/common/Themed";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getThemedComponents } from "@/themes";
 import { FilterExpressionBuilderValue } from "@/types/list";
 import { useTheme } from "@react-navigation/native";
 import { StyleSheet, View } from "react-native";
@@ -26,6 +27,8 @@ export function FilterExpressionBuilderList(
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const { list, random } = getUI(appLanguage, dialect);
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
 
   const getHeaderText = () => {
     switch (mode) {
@@ -45,9 +48,9 @@ export function FilterExpressionBuilderList(
           <View
             style={[styles.febHeader, { backgroundColor: colors.background }]}
           >
-            <Text style={styles.label}>
+            <Themed.Text style={styles.label}>
               {i > 0 ? list.and : getHeaderText()}
-            </Text>
+            </Themed.Text>
             <SmallButton
               onPress={() => remove(i)}
               icon="trash"

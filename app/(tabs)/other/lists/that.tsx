@@ -1,10 +1,11 @@
-import { Text } from "@/components/common/Themed";
 import {
   reefReplacements,
   ThatTable1Data,
   ThatTable2Data,
 } from "@/constants/That";
 import { useDialectContext } from "@/context/DialectContext";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getThemedComponents } from "@/themes";
 import { useTheme } from "@react-navigation/native";
 import {
   ScrollView,
@@ -68,12 +69,14 @@ function ThatTable1() {
 
 function ThatTable1HeaderRow1({ row }: { row: string[] }) {
   const widths = [50, 50, 120, 0];
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
 
   return (
     <View style={styles.tableRow}>
       {row.map((col, i) => {
         return (
-          <Text
+          <Themed.Text
             key={`tt1hr1_c${i}`}
             style={{
               fontSize: 16,
@@ -82,7 +85,7 @@ function ThatTable1HeaderRow1({ row }: { row: string[] }) {
             }}
           >
             {col}
-          </Text>
+          </Themed.Text>
         );
       })}
     </View>
@@ -91,12 +94,14 @@ function ThatTable1HeaderRow1({ row }: { row: string[] }) {
 
 function ThatTable1HeaderRow2({ row }: { row: string[] }) {
   const widths = [0, 110, 70, 44, 55];
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
 
   return (
     <View style={styles.tableRow}>
       {row.map((col, i) => {
         return (
-          <Text
+          <Themed.Text
             key={`tt1hr2_c${i}`}
             style={{
               fontSize: 16,
@@ -105,7 +110,7 @@ function ThatTable1HeaderRow2({ row }: { row: string[] }) {
             }}
           >
             {col}
-          </Text>
+          </Themed.Text>
         );
       })}
     </View>
@@ -114,6 +119,8 @@ function ThatTable1HeaderRow2({ row }: { row: string[] }) {
 
 function ThatTable1Row({ row }: { row: string[] }) {
   const { dialect } = useDialectContext();
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
 
   return (
     <View style={styles.tableRowWithGap}>
@@ -123,15 +130,15 @@ function ThatTable1Row({ row }: { row: string[] }) {
         }
         if (i === 0) {
           return (
-            <Text key={`tt1r_c${i}`} style={styles.table1Col1}>
+            <Themed.Text key={`tt1r_c${i}`} style={styles.table1Col1}>
               {col}
-            </Text>
+            </Themed.Text>
           );
         }
         return (
-          <Text key={`tt1r_c${i}`} style={styles.table1Col}>
+          <Themed.Text key={`tt1r_c${i}`} style={styles.table1Col}>
             {col}
-          </Text>
+          </Themed.Text>
         );
       })}
     </View>
@@ -168,6 +175,8 @@ function ThatTable2() {
 
 function ThatTable2Row({ row }: { row: string[] }) {
   const { dialect } = useDialectContext();
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
 
   return (
     <View style={styles.tableRow}>
@@ -180,7 +189,7 @@ function ThatTable2Row({ row }: { row: string[] }) {
         const fontStyle = i === 1 ? "italic" : "normal";
         const fontSize = i === 0 ? 16 : 14;
         return (
-          <Text
+          <Themed.Text
             key={`tt2r_c${i}`}
             style={{
               width: widths[i],
@@ -190,7 +199,7 @@ function ThatTable2Row({ row }: { row: string[] }) {
             }}
           >
             {col}
-          </Text>
+          </Themed.Text>
         );
       })}
     </View>

@@ -1,5 +1,6 @@
-import { CardView, Text } from "@/components/common/Themed";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { useStats } from "@/hooks/useStats";
+import { getThemedComponents } from "@/themes";
 import { useTheme } from "@react-navigation/native";
 import {
   ActivityIndicator,
@@ -15,6 +16,8 @@ export default function StatsScreen() {
   const { colors } = useTheme();
   const { width, height } = useWindowDimensions();
   const landscape = width > height;
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
 
   if (loading) {
     return (
@@ -37,13 +40,13 @@ export default function StatsScreen() {
         ]}
       >
         <View style={{ alignItems: "center" }}>
-          <Text style={styles.header}>{wordCount}</Text>
+          <Themed.Text style={styles.header}>{wordCount}</Themed.Text>
           <PhonemeTable data={phonemeGrid} />
         </View>
 
         <View style={{ alignItems: "center" }}>
           {clusterMap.length > 0 && (
-            <Text style={styles.header}>{clusterName}</Text>
+            <Themed.Text style={styles.header}>{clusterName}</Themed.Text>
           )}
           <ClusterTable data={clusterMap} />
         </View>
@@ -53,26 +56,30 @@ export default function StatsScreen() {
 }
 
 function PhonemeTable({ data }: { data: string[][] }) {
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
   return (
-    <CardView style={styles.phonemeTable}>
+    <Themed.CardView style={styles.phonemeTable}>
       {data.map((row, index) => {
         if (index === 0) {
           return <PhonemeTableHeaderRow key={`pthr_r${index}`} row={row} />;
         }
         return <PhonemeTableRow key={`ptr_r${index}`} row={row} />;
       })}
-    </CardView>
+    </Themed.CardView>
   );
 }
 
 function PhonemeTableHeaderRow({ row }: { row: string[] }) {
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
   return (
     <View style={styles.row}>
       {row.map((col, i) => {
         return (
-          <Text key={`pthr_c${i}`} style={styles.phonemeHeader}>
+          <Themed.Text key={`pthr_c${i}`} style={styles.phonemeHeader}>
             {col}
-          </Text>
+          </Themed.Text>
         );
       })}
     </View>
@@ -80,14 +87,16 @@ function PhonemeTableHeaderRow({ row }: { row: string[] }) {
 }
 
 function PhonemeTableRow({ row }: { row: string[] }) {
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
   return (
     <View style={styles.row}>
       {row.map((col, i) => {
         const [phoneme, frequency] = col.split(" ");
         return (
           <View key={`ptr_c${i}`} style={styles.phonemeCol}>
-            <Text style={styles.phoneme}>{phoneme}</Text>
-            <Text>{frequency}</Text>
+            <Themed.Text style={styles.phoneme}>{phoneme}</Themed.Text>
+            <Themed.Text>{frequency}</Themed.Text>
           </View>
         );
       })}
@@ -96,25 +105,29 @@ function PhonemeTableRow({ row }: { row: string[] }) {
 }
 
 function ClusterTable({ data }: { data: string[][] }) {
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
   return (
-    <CardView style={styles.clusterTable}>
+    <Themed.CardView style={styles.clusterTable}>
       {data.map((row, index) => {
         if (index === 0) {
           return <ClusterTableHeaderRow key={`cthr_r${index}`} row={row} />;
         }
         return <ClusterTableRow key={`ctr_r${index}`} row={row} />;
       })}
-    </CardView>
+    </Themed.CardView>
   );
 }
 
 function ClusterTableHeaderRow({ row }: { row: string[] }) {
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
   return (
     <View style={styles.row}>
       {row.map((col, i) => {
         return (
           <View key={`cthr_c${i}`} style={styles.clusterCol}>
-            <Text style={styles.clusterHeading}>{col}</Text>
+            <Themed.Text style={styles.clusterHeading}>{col}</Themed.Text>
           </View>
         );
       })}
@@ -136,17 +149,21 @@ function ClusterTableRow({ row }: { row: string[] }) {
 }
 
 function ClusterTableHeaderCol({ col }: { col: string }) {
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
   return (
     <View style={styles.clusterCol}>
-      <Text style={styles.clusterHeading}>{col}</Text>
+      <Themed.Text style={styles.clusterHeading}>{col}</Themed.Text>
     </View>
   );
 }
 
 function ClusterTableCol({ col }: { col: string }) {
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
   return (
     <View style={styles.clusterCol}>
-      <Text style={styles.clusterCell}>{col}</Text>
+      <Themed.Text style={styles.clusterCell}>{col}</Themed.Text>
     </View>
   );
 }

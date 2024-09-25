@@ -3,6 +3,7 @@ import { Logo } from "@/components/common/Logo";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { getColorExtension } from "@/themes";
 import { useTheme } from "@react-navigation/native";
 import { Stack } from "expo-router";
@@ -10,7 +11,8 @@ import { Platform, StyleSheet, View } from "react-native";
 
 export default function StackLayout() {
   const theme = useTheme();
-  const colorExtension = getColorExtension("fwew");
+  const { themeName } = useThemeNameContext();
+  const colorExtension = getColorExtension(themeName);
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const { screens, names } = getUI(appLanguage, dialect);

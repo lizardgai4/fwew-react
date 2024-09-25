@@ -1,8 +1,9 @@
 import { ResultCard } from "@/components/common/ResultCard";
-import { Text } from "@/components/common/Themed";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getThemedComponents } from "@/themes";
 import type { Word } from "fwew.js";
 import { ActivityIndicator, Platform, StyleSheet, View } from "react-native";
 
@@ -15,6 +16,8 @@ export function ListResults({ loading, results }: ListResultsProps) {
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const { common } = getUI(appLanguage, dialect);
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
 
   if (loading && Platform.OS === "web") {
     return <ActivityIndicator size="large" />;
@@ -25,7 +28,7 @@ export function ListResults({ loading, results }: ListResultsProps) {
   }
 
   if (results.length === 0) {
-    return <Text style={styles.text}>{common.noResults}</Text>;
+    return <Themed.Text style={styles.text}>{common.noResults}</Themed.Text>;
   }
 
   return (
