@@ -81,11 +81,9 @@ const FwewColorExtension: ColorExtension = {
 };
 
 function Text(props: TextProps) {
-  const { style, ...otherProps } = props;
   const { colors } = useTheme();
-
   return (
-    <DefaultText style={[{ color: colors.text }, style]} {...otherProps} />
+    <DefaultText {...props} style={[{ color: colors.text }, props.style]} />
   );
 }
 
