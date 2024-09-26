@@ -7,7 +7,7 @@ import { StyleSheet, View } from "react-native";
 import { Accordion } from "../common/Accordion";
 import { OptionItem } from "../common/OptionItem";
 import { useThemeNameContext } from "@/context/ThemeNameContext";
-import { getThemedComponents } from "@/themes";
+import { getColorExtension, getThemedComponents } from "@/themes";
 
 export function DialectSelect() {
   const { dialect, saveDialect } = useDialectContext();
@@ -15,6 +15,7 @@ export function DialectSelect() {
   const ui = getUI(appLanguage, dialect);
   const theme = useTheme();
   const { themeName } = useThemeNameContext();
+  const colorExtension = getColorExtension(themeName);
   const Themed = getThemedComponents(themeName);
 
   return (
@@ -24,9 +25,11 @@ export function DialectSelect() {
           <View
             style={[styles.icon, { backgroundColor: theme.colors.primary }]}
           >
-            <Themed.Text style={styles.value}>
+            <Themed.MonoText
+              style={[styles.value, { color: colorExtension.dark.text }]}
+            >
               {DialectDisplay[dialect].abbr}
-            </Themed.Text>
+            </Themed.MonoText>
           </View>
           <Themed.Text style={styles.value}>{ui.names.dialect}</Themed.Text>
         </View>
@@ -38,7 +41,19 @@ export function DialectSelect() {
               <OptionItem
                 icon={
                   <View style={styles.icon}>
-                    <Themed.Text style={styles.value}>{d.abbr}</Themed.Text>
+                    <Themed.MonoText
+                      style={[
+                        styles.value,
+                        {
+                          color:
+                            dialect === d.value
+                              ? colorExtension.dark.text
+                              : theme.colors.text,
+                        },
+                      ]}
+                    >
+                      {d.abbr}
+                    </Themed.MonoText>
                   </View>
                 }
                 value={d.name}
