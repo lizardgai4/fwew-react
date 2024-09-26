@@ -50,19 +50,19 @@ const strings: UITranslation = {
     list: "Lista",
     random: "Aleatório",
     numbers: "Números",
-    other: "Other",
+    other: "Outro",
 
-    lenition: "Lenition", // TODO
-    stats: "Stats", // TODO
-    valid: "Valid", // TODO
-    lists: "Lists", // TODO
+    lenition: "Lenição",
+    stats: "Estátisticas",
+    valid: "Válido",
+    lists: "Listas",
 
-    cameronWords: "Cameron Words", // TODO
-    homonyms: "Homonyms", // TODO
-    multiIPA: "Multi IPA", // TODO
-    oddballs: "Oddballs", // TODO
-    profanity: "Profanity", // TODO
-    that: "That", // TODO
+    cameronWords: "Palavras do Cameron",
+    homonyms: "Homônimo",
+    multiIPA: "IPA Múltiplo",
+    oddballs: "Bolas curvas",
+    profanity: "Insultos",
+    that: "Aquilo",
 
     names: "Nomes",
 
@@ -113,7 +113,7 @@ const strings: UITranslation = {
           { value: "not-starts", description: "não começa com" },
           { value: "not-ends", description: "não termina com" },
           { value: "not-is", description: "não é" },
-          { value: "not-has", description: "não tem" },
+          { value: "not-has", description: "não possui" },
           { value: "not-like", description: "não é como" },
         ],
         word: [
@@ -131,8 +131,8 @@ const strings: UITranslation = {
           { value: "last", description: "palavras mais recentes" },
         ],
         syllables: [
-          { value: "<", description: "menos que" },
-          { value: "<=", description: "menos que ou igual a" },
+          { value: "<", description: "menor que" },
+          { value: "<=", description: "menor que ou igual a" },
           { value: "=", description: "igual a" },
           { value: ">=", description: "maior ou igual a" },
           { value: ">", description: "maior que" },
@@ -160,7 +160,7 @@ const strings: UITranslation = {
   },
   random: {
     random: "Aleatório",
-    randomOptions: "Opções de Randomização",
+    randomOptions: "Opções de Aleatorização",
     numWords: "Número de palavras aleatórias",
     where: "onde...",
   },
@@ -238,35 +238,35 @@ const strings: UITranslation = {
   cameronWords: {
     data: [
       {
-        key: "A1 Names",
+        key: "Nomes em A1",
         value: CameronWords.A1Names,
       },
       {
-        key: "A2 Names",
+        key: "Nomes em A2",
         value: CameronWords.A2Names,
       },
       {
-        key: "Nouns",
+        key: "Substantivos",
         value: CameronWords.Nouns,
       },
       {
-        key: "Life",
+        key: "Vida",
         value: CameronWords.Life,
       },
-      { key: "Other", value: CameronWords.Other },
+      { key: "Outro", value: CameronWords.Other },
     ],
   },
   lenition: {
-    glottalStop: "(Drops, except before ll/rr)",
-    lenitingPrefixes: "Leniting prefixes",
-    lenitingAdpositions: "Leniting adpositions",
+    glottalStop: "(Desaparece, exceto antes de ll/rr)",
+    lenitingPrefixes: "Prefixos que causam lenição",
+    lenitingAdpositions: "Adposições que causam lenição",
   },
   stats: {
-    phonemes: "Phoneme Frequencies", // TODO
-    clusters: "Aglomerados de consoantes",
+    phonemes: "Frequência de Fonemas",
+    clusters: "Aglomerados de Consoantes",
   },
   settings: {
-    about: "Sobre",
+    about: "Sobre o Fwew",
     version: "Versão",
     credits: "Créditos",
     development: "Desenvolvimento",
