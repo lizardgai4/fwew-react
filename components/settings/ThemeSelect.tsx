@@ -1,11 +1,14 @@
 import { useThemeNameContext } from "@/context/ThemeNameContext";
-import { getThemedComponents, ThemeNames } from "@/themes";
+import { getColorExtension, getThemedComponents, ThemeNames } from "@/themes";
 import { StyleSheet, View } from "react-native";
 import { Accordion } from "../common/Accordion";
 import { OptionItem } from "../common/OptionItem";
+import { useTheme } from "@react-navigation/native";
 
 export function ThemeSelect() {
   const { themeName, saveThemeName } = useThemeNameContext();
+  const colorExtension = getColorExtension(themeName);
+  const theme = useTheme();
   const Themed = getThemedComponents(themeName);
 
   return (
@@ -27,9 +30,19 @@ export function ThemeSelect() {
               <OptionItem
                 icon={
                   <View style={styles.icon}>
-                    <Themed.Text style={styles.value}>
+                    <Themed.MonoText
+                      style={[
+                        styles.value,
+                        {
+                          color:
+                            themeName === tn
+                              ? colorExtension.dark.text
+                              : theme.colors.text,
+                        },
+                      ]}
+                    >
                       {tn.slice(0, 2).toUpperCase()}
-                    </Themed.Text>
+                    </Themed.MonoText>
                   </View>
                 }
                 value={tn}
