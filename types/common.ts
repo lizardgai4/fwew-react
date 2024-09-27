@@ -1,3 +1,4 @@
+import type { Href } from "expo-router";
 import type { Dialect as FwDialect, LanguageCode } from "fwew.js";
 
 export type ExtendedLanguageCode = LanguageCode | "eo" | "nx0" | "nx1";
@@ -14,4 +15,9 @@ export type DialectMeta = { name: string; value: Dialect; abbr: DialectAbbr };
 
 export type DialectDisplayType = {
   [key in Dialect]: DialectMeta;
+};
+
+export type LinkType = {
+  href: Href<string>;
+  title: string;
 };

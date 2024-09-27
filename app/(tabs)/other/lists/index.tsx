@@ -1,49 +1,22 @@
-import { ScreenLinkCard } from "@/components/common/ScreenLinkCard";
+import { IndexGrid } from "@/components/common/IndexGrid";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
-import { ScrollView, StyleSheet, View } from "react-native";
+import type { LinkType } from "@/types/common";
 
 export default function ListsScreen() {
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const { screens } = getUI(appLanguage, dialect);
 
-  return (
-    <ScrollView>
-      <View style={styles.container}>
-        <ScreenLinkCard
-          href="/other/lists/cameron"
-          title={screens.cameronWords}
-        />
-        <ScreenLinkCard
-          href={"/other/lists/homonyms"}
-          title={screens.homonyms}
-        />
-        <ScreenLinkCard
-          href={"/other/lists/multi-ipa"}
-          title={screens.multiIPA}
-        />
-        <ScreenLinkCard
-          href={"/(tabs)/other/lists/oddballs"}
-          title={screens.oddballs}
-        />
-        <ScreenLinkCard
-          href={"/other/lists/profanity"}
-          title={screens.profanity}
-        />
-        <ScreenLinkCard href={"/other/lists/that"} title={screens.that} />
-      </View>
-    </ScrollView>
-  );
-}
+  const links: LinkType[] = [
+    { href: "/other/lists/cameron", title: screens.cameronWords },
+    { href: "/other/lists/homonyms", title: screens.homonyms },
+    { href: "/other/lists/multi-ipa", title: screens.multiIPA },
+    { href: "/other/lists/oddballs", title: screens.oddballs },
+    { href: "/other/lists/profanity", title: screens.profanity },
+    { href: "/other/lists/that", title: screens.that },
+  ];
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 16,
-    padding: 16,
-  },
-});
+  return <IndexGrid links={links} />;
+}
