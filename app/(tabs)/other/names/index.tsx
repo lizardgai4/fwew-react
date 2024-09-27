@@ -1,42 +1,19 @@
-import { ScreenLinkCard } from "@/components/common/ScreenLinkCard";
+import { IndexGrid } from "@/components/common/IndexGrid";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
-import { ScrollView, StyleSheet, View } from "react-native";
+import type { LinkType } from "@/types/common";
 
 export default function NamesScreen() {
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const { names } = getUI(appLanguage, dialect);
 
-  return (
-    <ScrollView>
-      <View style={styles.container}>
-        <ScreenLinkCard
-          href="/other/names/name-single"
-          title={names.single}
-          description="Neytiri"
-        />
-        <ScreenLinkCard
-          href="/other/names/name-full"
-          title={names.full}
-          description="Neytiri te Tskaha Mo'at'ite"
-        />
-        <ScreenLinkCard
-          href="/other/names/name-alu"
-          title={names.alu}
-          description="Neytiri alu Taronyu Teyluä"
-        />
-      </View>
-    </ScrollView>
-  );
-}
+  const links: LinkType[] = [
+    { href: "/other/names/name-single", title: names.single },
+    { href: "/other/names/name-full", title: names.full },
+    { href: "/other/names/name-alu", title: names.alu },
+  ];
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-    alignItems: "center",
-    gap: 16,
-  },
-});
+  return <IndexGrid links={links} />;
+}
