@@ -1,14 +1,16 @@
 import { ScreenLinkCard } from "@/components/common/ScreenLinkCard";
 import type { LinkType } from "@/types/common";
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 
 export function IndexGrid({ links }: { links: LinkType[] }) {
   return (
-    <View style={styles.grid}>
-      {links.map((link) => (
-        <ScreenLinkCard key={`oi_${link.title}`} {...link} />
-      ))}
-    </View>
+    <ScrollView>
+      <View style={styles.grid}>
+        {links.map((link) => (
+          <ScreenLinkCard key={`oi_${link.title}`} {...link} />
+        ))}
+      </View>
+    </ScrollView>
   );
 }
 
