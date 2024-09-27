@@ -3,7 +3,11 @@ import { ResultsLanguages } from "@/constants/Language";
 import { useDialectContext } from "@/context/DialectContext";
 import { useResultsLanguageContext } from "@/context/ResultsLanguageContext";
 import { useThemeNameContext } from "@/context/ThemeNameContext";
-import { getColorExtension, getThemedComponents } from "@/themes";
+import {
+  getColorExtension,
+  getPWAThemeUpdater,
+  getThemedComponents,
+} from "@/themes";
 import { FontAwesomeIconName } from "@/types/icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { Href, useRouter } from "expo-router";
@@ -45,11 +49,19 @@ function LanguageDisplay() {
 }
 
 function DialectButton() {
-  const { dialect, toggleDialect } = useDialectContext();
+  const { dialect, saveDialect } = useDialectContext();
   const { themeName } = useThemeNameContext();
   const Themed = getThemedComponents(themeName);
+  const updatePWATheme = getPWAThemeUpdater(themeName);
   return (
-    <Pressable style={styles.actionButton} onPress={toggleDialect}>
+    <Pressable
+      style={styles.actionButton}
+      onPress={async () => {
+        const value = dialect === "forest" ? "reef" : "forest";
+        await saveDialect(value);
+        updatePWATheme(value);
+      }}
+    >
       {({ pressed }) => (
         <View style={[styles.dialectButton, { opacity: pressed ? 0.5 : 1 }]}>
           <Themed.MonoText style={styles.dialectText}>
