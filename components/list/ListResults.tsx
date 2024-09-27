@@ -43,7 +43,7 @@ export function ListResults({ loading, results }: ListResultsProps) {
 const styles = StyleSheet.create({
   container: {
     gap: 8,
-    paddingBottom: 32,
+    // paddingBottom: 32,
   },
   text: {
     alignSelf: "center",
