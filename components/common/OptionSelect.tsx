@@ -1,7 +1,6 @@
 import { OptionItem } from "@/components/common/OptionItem";
-import { View } from "@/components/common/Themed";
 import { OptionType } from "@/types/common";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 export type OptionSelectProps<T extends string> = {
   items: OptionType<T>[];

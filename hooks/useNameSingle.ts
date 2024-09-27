@@ -6,12 +6,13 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 export default function useNameSingle() {
   const [numNames, setNumNames] = useState<NumericString>("4");
-  const [numSyllables, setNumSyllables] = useState<NumericString>("0");
   const { dialect } = useDialectContext();
   const [loading, setLoading] = useState(false);
   const [names, setNames] = useState<string[]>([]);
   const debounce = useDebounce();
   const abortController = useRef(new AbortController());
+
+  const [numSyllables, setNumSyllables] = useState<NumericString>("0");
 
   const execute = useCallback(async () => {
     if (!numNames || !numSyllables || !dialect) return;

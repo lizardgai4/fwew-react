@@ -1,15 +1,16 @@
-import { CardView, TextInput } from "@/components/common/Themed";
-import Colors from "@/constants/Colors";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getColorExtension, getThemedComponents } from "@/themes";
 import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 import {
   Platform,
+  Pressable,
   StyleSheet,
-  TouchableOpacity,
   useColorScheme,
+  View,
 } from "react-native";
 
 type SearchBarProps = {
@@ -31,10 +32,13 @@ export function SearchBar(props: SearchBarProps) {
     cancel,
   } = props;
   const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? "light"];
+  const { themeName } = useThemeNameContext();
+  const colorExtension = getColorExtension(themeName);
+  const colors = colorExtension[colorScheme ?? "light"];
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const ui = getUI(appLanguage, dialect);
+  const Themed = getThemedComponents(themeName);
 
   const clear = () => {
     search("");
@@ -42,8 +46,8 @@ export function SearchBar(props: SearchBarProps) {
   };
 
   return (
-    <CardView style={styles.searchContainer}>
-      <TextInput
+    <Themed.CardView style={styles.searchContainer}>
+      <Themed.TextInput
         style={styles.input}
         placeholder={placeholder ?? ui.search.search}
         placeholderTextColor={colors.placeholder}
@@ -59,7 +63,7 @@ export function SearchBar(props: SearchBarProps) {
         onSubmitEditing={execute}
       />
       <SearchBarRight showClear={query.length > 0} clear={clear} />
-    </CardView>
+    </Themed.CardView>
   );
 }
 
@@ -71,20 +75,25 @@ type SearchBarRightProps = {
 function SearchBarRight({ showClear, clear }: SearchBarRightProps) {
   const theme = useTheme();
   const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? "light"];
+  const { themeName } = useThemeNameContext();
+  const colorExtension = getColorExtension(themeName);
+  const colors = colorExtension[colorScheme ?? "light"];
 
   if (showClear) {
     return (
-      <TouchableOpacity style={styles.button} onPress={clear}>
+      <Pressable
+        style={({ pressed }) => [styles.button, { opacity: pressed ? 0.5 : 1 }]}
+        onPress={clear}
+      >
         <FontAwesome name="close" size={24} color={theme.colors.text} />
-      </TouchableOpacity>
+      </Pressable>
     );
   }
 
   return (
-    <CardView style={styles.button}>
+    <View style={styles.button}>
       <FontAwesome name="search" size={24} color={colors.placeholder} />
-    </CardView>
+    </View>
   );
 }
 
@@ -96,7 +105,7 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    padding: 14,
+    padding: 16,
     fontSize: 16,
     borderRadius: 8,
   },
@@ -104,6 +113,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 8,
+    paddingTop: 4,
     marginRight: 8,
     height: Platform.OS === "web" ? null : 50,
   },

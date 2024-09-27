@@ -1,8 +1,9 @@
-import { CardView } from "@/components/common/Themed";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getThemedComponents } from "@/themes";
 import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 import { useState } from "react";
-import { TouchableOpacity } from "react-native";
+import { Pressable, View } from "react-native";
 
 type DropDownSelectProps<T> = {
   options: T[];
@@ -24,6 +25,8 @@ export function DropDownSelect<T>(props: DropDownSelectProps<T>) {
   } = props;
   const [open, setOpen] = useState(initiallyOpen ?? false);
   const { colors } = useTheme();
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
 
   const toggle = () => setOpen((prev) => !prev);
 
@@ -33,36 +36,38 @@ export function DropDownSelect<T>(props: DropDownSelectProps<T>) {
   };
 
   return (
-    <CardView>
-      <TouchableOpacity
+    <Themed.CardView>
+      <Pressable
         onPress={toggle}
-        style={{
+        style={({ pressed }) => ({
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
           paddingRight: 10,
           paddingVertical: 8,
-        }}
+          opacity: pressed ? 0.5 : 1,
+        })}
       >
-        {value ? renderOption(value) : <CardView style={{ padding: 16 }} />}
+        {value ? renderOption(value) : <View style={{ padding: 16 }} />}
         <FontAwesome
           name={open ? "chevron-down" : "chevron-right"}
           size={24}
           color={colors.text}
         />
-      </TouchableOpacity>
+      </Pressable>
       {open && (
         <>
           {options.map((option, i) => (
-            <TouchableOpacity
+            <Pressable
               key={keyExtractor(option, i)}
               onPress={() => handleChange(option)}
+              style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1 })}
             >
               {renderOption(option)}
-            </TouchableOpacity>
+            </Pressable>
           ))}
         </>
       )}
-    </CardView>
+    </Themed.CardView>
   );
 }

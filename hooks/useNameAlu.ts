@@ -7,14 +7,15 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 export function useNameAlu() {
   const [numNames, setNumNames] = useState<NumericString>("4");
-  const [numSyllables, setNumSyllables] = useState<NumericString>("0");
-  const [nounMode, setNounMode] = useState<NounMode>("something");
-  const [adjMode, setAdjMode] = useState<AdjectiveMode>("something");
   const { dialect } = useDialectContext();
   const [loading, setLoading] = useState(false);
   const [names, setNames] = useState<string[]>([]);
   const debounce = useDebounce();
   const abortController = useRef(new AbortController());
+
+  const [numSyllables, setNumSyllables] = useState<NumericString>("0");
+  const [nounMode, setNounMode] = useState<NounMode>("something");
+  const [adjMode, setAdjMode] = useState<AdjectiveMode>("something");
 
   const execute = useCallback(async () => {
     if (!numNames || !numSyllables || !nounMode || !adjMode || !dialect) {

@@ -10,7 +10,6 @@ export default function Root({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-
         {/* 
           This viewport disables scaling which makes the mobile website act more like a native app.
           However, this does reduce built-in accessibility. If you want to enable scaling, use this instead:
@@ -19,6 +18,19 @@ export default function Root({ children }: { children: React.ReactNode }) {
         <meta
           name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1.00001,viewport-fit=cover"
+        />
+        {/* Link the PWA manifest file. */}
+        <link rel="manifest" href="/manifest.json" />
+        {/* PWA Statusbar / Splash Theme */}
+        <meta
+          name="theme-color"
+          content="#7494ba"
+          media="(prefers-color-scheme: light)"
+        />
+        <meta
+          name="theme-color"
+          content="#3a5575"
+          media="(prefers-color-scheme: dark)"
         />
         {/* 
           Disable body scrolling on web. This makes ScrollView components work closer to how they do on native. 
@@ -37,10 +49,10 @@ export default function Root({ children }: { children: React.ReactNode }) {
 
 const responsiveBackground = `
 body {
-  background-color: #fff;
+  background-color: #d9e2ed;
 }
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: #000;
+    background-color: #282b2d;
   }
 }`;

@@ -1,8 +1,8 @@
-import { CardView, Text } from "@/components/common/Themed";
-import Colors from "@/constants/Colors";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getColorExtension, getThemedComponents } from "@/themes";
 import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 
 type OptionItemProps = {
   icon?: React.ReactNode;
@@ -14,18 +14,24 @@ type OptionItemProps = {
 export function OptionItem(props: OptionItemProps) {
   const { icon, value, selected, onSelect } = props;
   const theme = useTheme();
+  const { themeName } = useThemeNameContext();
+  const colorExtension = getColorExtension(themeName);
+  const Themed = getThemedComponents(themeName);
 
   const getTextColor = () => {
-    if (selected) return Colors.dark.text;
-    if (theme.dark) return Colors.dark.placeholder;
-    return Colors.light.text;
+    if (selected) return colorExtension.dark.text;
+    if (theme.dark) return colorExtension.dark.placeholder;
+    return colorExtension.light.text;
   };
 
   return (
-    <TouchableOpacity onPress={onSelect}>
-      <CardView
+    <Pressable
+      onPress={onSelect}
+      style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1 })}
+    >
+      <View
         style={[
-          styles.iconContainer,
+          styles.container,
           {
             backgroundColor: selected
               ? theme.colors.primary
@@ -33,26 +39,38 @@ export function OptionItem(props: OptionItemProps) {
           },
         ]}
       >
-        {icon}
-        <Text style={[styles.value, { color: getTextColor() }]}>{value}</Text>
-        {selected && (
-          <FontAwesome
-            name="check"
-            size={24}
-            color={Colors.dark.text}
-            style={styles.check}
-          />
-        )}
-      </CardView>
-    </TouchableOpacity>
+        <View style={styles.itemContainer}>
+          {icon}
+          <Themed.Text style={[styles.value, { color: getTextColor() }]}>
+            {value}
+          </Themed.Text>
+        </View>
+        <View style={styles.itemContainer}>
+          {selected && (
+            <FontAwesome
+              name="check"
+              size={24}
+              color={colorExtension.dark.text}
+              style={styles.check}
+            />
+          )}
+        </View>
+      </View>
+    </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
-  iconContainer: {
+  container: {
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "space-between",
     padding: 8,
+    borderRadius: 8,
+  },
+  itemContainer: {
+    flexDirection: "row",
+    alignItems: "center",
   },
   value: {
     fontSize: 16,

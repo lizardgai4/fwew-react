@@ -3,15 +3,16 @@ import { Button } from "@/components/common/Button";
 import { NumericTextInput } from "@/components/common/NumericTextInput";
 import { OptionSelect } from "@/components/common/OptionSelect";
 import { ResultCount } from "@/components/common/ResultCount";
-import { Text, View } from "@/components/common/Themed";
 import { NameResults } from "@/components/names/NameResults";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
 import useNameSingle from "@/hooks/useNameSingle";
+import { getThemedComponents } from "@/themes";
 import { useTheme } from "@react-navigation/native";
 import * as Clipboard from "expo-clipboard";
-import { RefreshControl, ScrollView, StyleSheet } from "react-native";
+import { RefreshControl, ScrollView, StyleSheet, View } from "react-native";
 
 export default function NameSingleScreen() {
   const {
@@ -31,6 +32,8 @@ export default function NameSingleScreen() {
   );
   const theme = useTheme();
   const resultsVisible = numNames.length > 0 && names.length > 0;
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
 
   const copyAll = async () => {
     await Clipboard.setStringAsync(names.join("\n"));
@@ -42,7 +45,6 @@ export default function NameSingleScreen() {
 
   return (
     <ScrollView
-      style={styles.container}
       keyboardShouldPersistTaps="always"
       refreshControl={
         <RefreshControl
@@ -52,40 +54,50 @@ export default function NameSingleScreen() {
         />
       }
     >
-      <Accordion
-        closedContent={<Text>{uiNames.options}</Text>}
-        openedContent={
-          <View style={styles.optionContainer}>
-            <NumericTextInput
-              placeholder={`${uiNames.numNames} (1-50)`}
-              value={numNames}
-              onChangeText={updateNumNames}
-              autoFocus
-            />
-            <Text style={styles.label}>{uiNameSingle.numSyllables}</Text>
-            <OptionSelect
-              items={uiNames.syllablesOptions}
-              active={(value) => numSyllables === value}
-              onSelect={updateNumSyllables}
-            />
-          </View>
-        }
-      />
-      <View style={styles.buttonContainer}>
-        <Button
-          icon="clipboard"
-          text={uiNames.copyAll}
-          onPress={copyAll}
-          disabled={!resultsVisible}
+      <View style={styles.container}>
+        <Accordion
+          closedContent={<Themed.Text>{uiNames.options}</Themed.Text>}
+          openedContent={
+            <View
+              style={[
+                styles.optionContainer,
+                { backgroundColor: theme.colors.background },
+              ]}
+            >
+              <Themed.Text style={styles.label}>{uiNames.numNames}</Themed.Text>
+              <NumericTextInput
+                placeholder={`${uiNames.numNames} (1-50)`}
+                value={numNames}
+                onChangeText={updateNumNames}
+                autoFocus
+              />
+              <Themed.Text style={styles.label}>
+                {uiNameSingle.numSyllables}
+              </Themed.Text>
+              <OptionSelect
+                items={uiNames.syllablesOptions}
+                active={(value) => numSyllables === value}
+                onSelect={updateNumSyllables}
+              />
+            </View>
+          }
         />
-        <Button icon="refresh" text="" onPress={execute} disabled={loading} />
+        <View style={styles.buttonContainer}>
+          <Button
+            icon="clipboard"
+            text={uiNames.copyAll}
+            onPress={copyAll}
+            disabled={!resultsVisible}
+          />
+          <Button icon="refresh" onPress={execute} disabled={loading} />
+        </View>
+        <ResultCount
+          visible={resultsVisible}
+          resultCount={names.length}
+          style={styles.resultCount}
+        />
+        <NameResults names={names} copyName={copy} />
       </View>
-      <ResultCount
-        visible={resultsVisible}
-        resultCount={names.length}
-        style={styles.resultCount}
-      />
-      <NameResults names={names} copyName={copy} />
     </ScrollView>
   );
 }
@@ -95,11 +107,9 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
   },
-  optionContainer: {
-    paddingTop: 4,
-  },
+  optionContainer: {},
   label: {
-    padding: 10,
+    paddingVertical: 16,
     fontSize: 16,
     fontWeight: "bold",
   },

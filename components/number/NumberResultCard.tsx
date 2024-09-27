@@ -1,10 +1,10 @@
-import { MonoText } from "@/components/common/StyledText";
-import { CardView, Text, View } from "@/components/common/Themed";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getThemedComponents } from "@/themes";
 import type { FwewError, FwewNumber } from "fwew.js";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 type NumberResultCardProps = {
   result: FwewNumber | FwewError | null;
@@ -14,6 +14,8 @@ export function NumberResultCard({ result }: NumberResultCardProps) {
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const ui = getUI(appLanguage, dialect);
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
 
   if (!result) {
     return null;
@@ -22,15 +24,15 @@ export function NumberResultCard({ result }: NumberResultCardProps) {
   if ("message" in result) {
     return (
       <View style={styles.container}>
-        <Text>{ui.common.noResults}</Text>
+        <Themed.Text>{ui.common.noResults}</Themed.Text>
       </View>
     );
   }
 
   return (
-    <CardView style={styles.container}>
-      <Text style={styles.navi}>{result.name}</Text>
-      <CardView
+    <Themed.CardView style={styles.container}>
+      <Themed.Text style={styles.navi}>{result.name}</Themed.Text>
+      <View
         style={{
           flexDirection: "row",
           alignItems: "center",
@@ -39,17 +41,19 @@ export function NumberResultCard({ result }: NumberResultCardProps) {
           gap: 16,
         }}
       >
-        <CardView style={{ alignItems: "flex-end" }}>
-          <Text style={styles.text}>{ui.numbers.octal}</Text>
-          <Text style={styles.text}>{ui.numbers.decimal}</Text>
-        </CardView>
-        <CardView style={{ alignItems: "flex-end" }}>
-          <MonoText style={styles.text}>{result.octal}</MonoText>
-          <MonoText style={styles.text}>{result.decimal}</MonoText>
-        </CardView>
-      </CardView>
+        <View style={{ alignItems: "flex-end" }}>
+          <Themed.Text style={styles.text}>{ui.numbers.octal}</Themed.Text>
+          <Themed.Text style={styles.text}>{ui.numbers.decimal}</Themed.Text>
+        </View>
+        <View style={{ alignItems: "flex-end" }}>
+          <Themed.MonoText style={styles.text}>{result.octal}</Themed.MonoText>
+          <Themed.MonoText style={styles.text}>
+            {result.decimal}
+          </Themed.MonoText>
+        </View>
+      </View>
       <Scientific result={result} />
-    </CardView>
+    </Themed.CardView>
   );
 }
 
@@ -75,15 +79,18 @@ function Scientific({ result }: { result: FwewNumber }) {
         />
       );
     });
-  return <CardView style={{ flexDirection: "row" }}>{octalDigits}</CardView>;
+  return <View style={{ flexDirection: "row" }}>{octalDigits}</View>;
 }
 
 function Power({ base, exponent }: { base: string; exponent: string }) {
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
+
   return (
-    <CardView style={{ flexDirection: "row" }}>
-      <MonoText style={{ fontSize: 18 }}>{base}</MonoText>
-      <MonoText style={{ fontSize: 12 }}>{exponent}</MonoText>
-    </CardView>
+    <View style={{ flexDirection: "row" }}>
+      <Themed.MonoText style={{ fontSize: 18 }}>{base}</Themed.MonoText>
+      <Themed.MonoText style={{ fontSize: 12 }}>{exponent}</Themed.MonoText>
+    </View>
   );
 }
 

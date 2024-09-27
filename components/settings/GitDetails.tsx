@@ -1,6 +1,6 @@
 import { ExternalLink } from "@/components/common/ExternalLink";
-import { MonoText } from "@/components/common/StyledText";
-import Colors from "@/constants/Colors";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getColorExtension, getThemedComponents } from "@/themes";
 import { StyleSheet, useColorScheme } from "react-native";
 
 type GitDetailsProps = {
@@ -10,22 +10,25 @@ type GitDetailsProps = {
 
 export function GitDetails({ branch, commitHash }: GitDetailsProps) {
   const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? "light"];
+  const { themeName } = useThemeNameContext();
+  const colorExtension = getColorExtension(themeName);
+  const colors = colorExtension[colorScheme ?? "light"];
+  const Themed = getThemedComponents(themeName);
 
   if (!branch || !commitHash) {
     return null;
   }
 
   return (
-    <MonoText style={styles.text}>
+    <Themed.MonoText style={styles.text}>
       (
       <ExternalLink href={`https://github.com/corscheid/fwew-react/tree/next`}>
-        <MonoText style={{ color: colors.link }}>
+        <Themed.MonoText style={{ color: colors.link }}>
           {branch} {commitHash?.substring(0, 7)}
-        </MonoText>
+        </Themed.MonoText>
       </ExternalLink>
       )
-    </MonoText>
+    </Themed.MonoText>
   );
 }
 

@@ -6,7 +6,7 @@ import { useFilterExpression } from "@/hooks/useFilterExpression";
 import { useList } from "@/hooks/useList";
 import { useTheme } from "@react-navigation/native";
 import { useCallback, useEffect } from "react";
-import { RefreshControl, ScrollView, StyleSheet } from "react-native";
+import { RefreshControl, ScrollView, StyleSheet, View } from "react-native";
 
 export default function ListScreen() {
   const { filters, filterExpression, incomplete, add, remove, update } =
@@ -32,7 +32,6 @@ export default function ListScreen() {
 
   return (
     <ScrollView
-      style={styles.container}
       keyboardShouldPersistTaps="always"
       refreshControl={
         <RefreshControl
@@ -42,19 +41,24 @@ export default function ListScreen() {
         />
       }
     >
-      <ListOptions
-        filters={filters}
-        add={add}
-        remove={remove}
-        update={update}
-        incomplete={incomplete}
-      />
-      <ResultCount
-        visible={resultsVisible}
-        resultCount={results.length}
-        style={styles.resultCount}
-      />
-      <ListResults loading={loading} results={resultsVisible ? results : []} />
+      <View style={styles.container}>
+        <ListOptions
+          filters={filters}
+          add={add}
+          remove={remove}
+          update={update}
+          incomplete={incomplete}
+        />
+        <ResultCount
+          visible={resultsVisible}
+          resultCount={results.length}
+          style={styles.resultCount}
+        />
+        <ListResults
+          loading={loading}
+          results={resultsVisible ? results : []}
+        />
+      </View>
     </ScrollView>
   );
 }

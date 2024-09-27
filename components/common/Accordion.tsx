@@ -1,8 +1,8 @@
-import { CardView } from "@/components/common/Themed";
-import Colors from "@/constants/Colors";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getColorExtension, getThemedComponents } from "@/themes";
 import { FontAwesome } from "@expo/vector-icons";
 import { useState } from "react";
-import { StyleSheet, TouchableOpacity, useColorScheme } from "react-native";
+import { Pressable, StyleSheet, useColorScheme } from "react-native";
 
 type AccordionProps = {
   closedContent: React.ReactNode;
@@ -14,32 +14,30 @@ export function Accordion(props: AccordionProps) {
   const { closedContent, openedContent, initiallyOpen } = props;
   const [expanded, setExpanded] = useState(initiallyOpen ?? false);
   const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? "light"];
-
-  const toggleExpanded = () => setExpanded(!expanded);
+  const { themeName } = useThemeNameContext();
+  const colorExtension = getColorExtension(themeName);
+  const colors = colorExtension[colorScheme ?? "light"];
+  const Themed = getThemedComponents(themeName);
 
   return (
-    <CardView>
-      <TouchableOpacity style={styles.container} onPress={toggleExpanded}>
+    <Themed.CardView>
+      <Pressable
+        style={({ pressed }) => [
+          styles.container,
+          { opacity: pressed ? 0.5 : 1 },
+        ]}
+        onPress={() => setExpanded((e) => !e)}
+      >
         {closedContent}
-        {expanded ? (
-          <FontAwesome
-            size={24}
-            name="chevron-down"
-            color={colors.text}
-            style={styles.arrow}
-          />
-        ) : (
-          <FontAwesome
-            size={24}
-            name="chevron-right"
-            color={colors.text}
-            style={styles.arrow}
-          />
-        )}
-      </TouchableOpacity>
+        <FontAwesome
+          size={24}
+          name={expanded ? "chevron-down" : "chevron-right"}
+          color={colors.text}
+          style={styles.arrow}
+        />
+      </Pressable>
       {expanded && openedContent}
-    </CardView>
+    </Themed.CardView>
   );
 }
 

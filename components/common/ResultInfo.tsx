@@ -1,25 +1,20 @@
 import { Button } from "@/components/common/Button";
-import {
-  BoldText,
-  ItalicText,
-  UnderlinedText,
-} from "@/components/common/StyledText";
-import { CardView, Text } from "@/components/common/Themed";
 import { Affixes } from "@/constants/Affixes";
-import Colors from "@/constants/Colors";
 import { LenitingAdpositions } from "@/constants/Lenition";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
 import { useFavoritesContext } from "@/context/FavoritesContext";
 import { useResultsLanguageContext } from "@/context/ResultsLanguageContext";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { useSound } from "@/hooks/useSound";
 import { ReefMe } from "@/lib/dialect";
 import { Romanize } from "@/lib/romanize";
+import { getColorExtension, getThemedComponents } from "@/themes";
 import { useTheme } from "@react-navigation/native";
 import { fwewSimple, type LanguageCode, type Word } from "fwew.js";
 import { useCallback, useEffect, useState } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Autolink from "react-native-autolink";
 
 type ResultInfoProps = {
@@ -33,6 +28,8 @@ export function ResultInfo({ word }: ResultInfoProps) {
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const ui = getUI(appLanguage, dialect);
+  const { themeName } = useThemeNameContext();
+  const colorExtension = getColorExtension(themeName);
   const forestNavi = word.Navi;
   const { reefNavi, reefInfixDots, reefInfixSlots } = ReefMe(
     word.IPA,
@@ -40,18 +37,18 @@ export function ResultInfo({ word }: ResultInfoProps) {
   );
 
   return (
-    <CardView style={styles.container}>
-      <CardView style={styles.buttonContainer}>
+    <View style={styles.container}>
+      <View style={styles.buttonContainer}>
         <Button
           onPress={() => playSound(word.ID)}
           disabled={disabled || (dialect === "reef" && forestNavi !== reefNavi)}
           icon="volume-up"
           text={ui.search.audio}
           style={styles.audioButton}
-          textStyle={{ color: Colors.dark.text }}
+          textStyle={{ color: colorExtension.dark.text }}
         />
         <FavoriteButton word={word} />
-      </CardView>
+      </View>
       <DetailItem
         label={ui.search.navi}
         value={dialect === "reef" ? reefNavi : forestNavi}
@@ -110,7 +107,7 @@ export function ResultInfo({ word }: ResultInfoProps) {
         />
       )}
       <DetailItem link label={ui.search.source} value={word.Source} />
-    </CardView>
+    </View>
   );
 }
 
@@ -120,6 +117,8 @@ function FavoriteButton({ word }: { word: Word }) {
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const ui = getUI(appLanguage, dialect);
+  const { themeName } = useThemeNameContext();
+  const colorExtension = getColorExtension(themeName);
 
   const faved = isFavorite(word);
   return (
@@ -131,9 +130,9 @@ function FavoriteButton({ word }: { word: Word }) {
         ...styles.audioButton,
         backgroundColor: faved
           ? theme.colors?.primary
-          : Colors[theme.dark ? "dark" : "light"].innerCard,
+          : colorExtension[theme.dark ? "dark" : "light"].innerCard,
       }}
-      textStyle={{ color: Colors.dark.text }}
+      textStyle={{ color: colorExtension.dark.text }}
     />
   );
 }
@@ -145,39 +144,42 @@ type AffixDetailProps = {
 };
 
 function AffixDetail({ label, value, type }: AffixDetailProps) {
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
+
   if (value.length === 0) return null;
 
   const affixes = value.map((v) => Affixes[type][v]);
 
   return (
-    <CardView>
-      <BoldText style={styles.label}>{label}:</BoldText>
+    <View>
+      <Themed.BoldText style={styles.label}>{label}:</Themed.BoldText>
       {affixes.map((affix, i) => {
         if (affix?.navi) {
           return (
-            <CardView key={`rip_a_${i}`} style={styles.wrapRow}>
-              <Text style={styles.value}>
-                <BoldText>{affix.navi}</BoldText>{" "}
-                <ItalicText>{affix.display}</ItalicText> (
+            <View key={`rip_a_${i}`} style={styles.wrapRow}>
+              <Themed.Text style={styles.value}>
+                <Themed.BoldText>{affix.navi}</Themed.BoldText>{" "}
+                <Themed.ItalicText>{affix.display}</Themed.ItalicText> (
                 {affix.productive ? "" : "not "}
                 productive{affix.productive ? ` for ${affix.for}` : ""})
-              </Text>
-            </CardView>
+              </Themed.Text>
+            </View>
           );
         }
         return (
-          <CardView key={`rip_a_${i}`} style={styles.wrapRow}>
-            <Text style={styles.value}>
-              <BoldText>
+          <View key={`rip_a_${i}`} style={styles.wrapRow}>
+            <Themed.Text style={styles.value}>
+              <Themed.BoldText>
                 -{value[i]}
                 {LenitingAdpositions.includes(value[i]) ? "+" : ""}
-              </BoldText>{" "}
+              </Themed.BoldText>{" "}
               <AdpositionDisplay adposition={value[i]} /> (productive for nouns)
-            </Text>
-          </CardView>
+            </Themed.Text>
+          </View>
         );
       })}
-    </CardView>
+    </View>
   );
 }
 
@@ -185,6 +187,8 @@ function AdpositionDisplay({ adposition }: { adposition: string }) {
   const { resultsLanguage } = useResultsLanguageContext();
   const languageCode = resultsLanguage.toUpperCase() as Uppercase<LanguageCode>;
   const [display, setDisplay] = useState<string>();
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
 
   const getWord = useCallback(async () => {
     const results = await fwewSimple(adposition);
@@ -204,7 +208,11 @@ function AdpositionDisplay({ adposition }: { adposition: string }) {
     getWord().then();
   }, [getWord]);
 
-  return <ItalicText style={styles.value}>{display ?? adposition}</ItalicText>;
+  return (
+    <Themed.ItalicText style={styles.value}>
+      {display ?? adposition}
+    </Themed.ItalicText>
+  );
 }
 
 type DetailItemProps = {
@@ -214,17 +222,24 @@ type DetailItemProps = {
 };
 
 function DetailItem({ label, value, link }: DetailItemProps) {
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
   return (
-    <CardView>
-      <BoldText style={[styles.label, { userSelect: "text" }]}>
+    <View>
+      <Themed.BoldText style={[styles.label, { userSelect: "text" }]}>
         {label}:
-      </BoldText>
+      </Themed.BoldText>
       {link ? (
-        <Autolink url text={value} style={styles.value} component={Text} />
+        <Autolink
+          url
+          text={value}
+          style={styles.value}
+          component={Themed.Text}
+        />
       ) : (
-        <Text style={styles.value}>{value}</Text>
+        <Themed.Text style={styles.value}>{value}</Themed.Text>
       )}
-    </CardView>
+    </View>
   );
 }
 
@@ -234,6 +249,9 @@ function Pronunciation({ IPA, Stressed, Navi }: PronunciationProps) {
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const ui = getUI(appLanguage, dialect);
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
+
   let { reefIPA, reefSyllables } = ReefMe(IPA, Navi);
   let forestIPA = IPA.replaceAll("ʊ", "u");
   let ForestSyllables = Romanize(forestIPA);
@@ -244,11 +262,11 @@ function Pronunciation({ IPA, Stressed, Navi }: PronunciationProps) {
         label={ui.search.ipa}
         value={`[${dialect === "reef" ? reefIPA : forestIPA}]`}
       />
-      <CardView>
-        <BoldText style={[styles.label, { userSelect: "text" }]}>
+      <View>
+        <Themed.BoldText style={[styles.label, { userSelect: "text" }]}>
           {ui.search.breakdown}:
-        </BoldText>
-        <Text style={styles.value}>
+        </Themed.BoldText>
+        <Themed.Text style={styles.value}>
           {dialect === "reef" ? (
             <Breakdown
               IPA={reefIPA}
@@ -262,8 +280,8 @@ function Pronunciation({ IPA, Stressed, Navi }: PronunciationProps) {
               Syllables={ForestSyllables}
             />
           )}
-        </Text>
-      </CardView>
+        </Themed.Text>
+      </View>
     </>
   );
 }
@@ -271,6 +289,9 @@ function Pronunciation({ IPA, Stressed, Navi }: PronunciationProps) {
 type BreakdownProps = Pick<Word, "IPA" | "Stressed" | "Syllables">;
 
 function Breakdown({ IPA, Stressed, Syllables }: BreakdownProps) {
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
+
   const stressedIndex = +Stressed - 1;
   const individualWord = Syllables.toLowerCase().split(" ");
   // Get stress markers out of the IPA
@@ -300,7 +321,7 @@ function Breakdown({ IPA, Stressed, Syllables }: BreakdownProps) {
       continue;
     }
     if (syllables.length === 1 && individualWord.length === 1) {
-      return <Text style={styles.value}>{syllables[0]}</Text>;
+      return <Themed.Text style={styles.value}>{syllables[0]}</Themed.Text>;
     }
     for (let i = 0; i < syllables.length; i++) {
       if (i !== 0) {
@@ -309,9 +330,9 @@ function Breakdown({ IPA, Stressed, Syllables }: BreakdownProps) {
       if (stressed[superH] && stressedIndex !== -1) {
         // underlined
         everything.push(
-          <UnderlinedText key={`srl_${h}${i}`}>
+          <Themed.UnderlinedText key={`srl_${h}${i}`}>
             {syllables[i].toUpperCase()}
-          </UnderlinedText>
+          </Themed.UnderlinedText>
         );
       } else {
         // not underlined

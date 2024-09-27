@@ -3,13 +3,13 @@ import { Button } from "@/components/common/Button";
 import { NumericTextInput } from "@/components/common/NumericTextInput";
 import { OptionSelect } from "@/components/common/OptionSelect";
 import { ResultCount } from "@/components/common/ResultCount";
-import { Text, View } from "@/components/common/Themed";
 import { NameResults } from "@/components/names/NameResults";
-import Colors from "@/constants/Colors";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { useNameFull } from "@/hooks/useNameFull";
+import { getColorExtension, getThemedComponents } from "@/themes";
 import { useTheme } from "@react-navigation/native";
 import * as Clipboard from "expo-clipboard";
 import {
@@ -17,12 +17,15 @@ import {
   ScrollView,
   StyleSheet,
   useColorScheme,
+  View,
 } from "react-native";
 
 export default function NameFullScreen() {
   const theme = useTheme();
   const colorScheme = useColorScheme();
-  const colors = Colors[colorScheme ?? "light"];
+  const { themeName } = useThemeNameContext();
+  const colorExtension = getColorExtension(themeName);
+  const colors = colorExtension[colorScheme ?? "light"];
   const {
     names,
     numNames,
@@ -42,6 +45,7 @@ export default function NameFullScreen() {
   const { dialect } = useDialectContext();
   const { names: uiNames, nameFull: uiNameFull } = getUI(appLanguage, dialect);
   const resultsVisible = numNames.length > 0 && names.length > 0;
+  const Themed = getThemedComponents(themeName);
 
   const copyAll = async () => {
     await Clipboard.setStringAsync(names.join("\n"));
@@ -53,7 +57,6 @@ export default function NameFullScreen() {
 
   return (
     <ScrollView
-      style={styles.container}
       keyboardShouldPersistTaps="always"
       refreshControl={
         <RefreshControl
@@ -63,64 +66,83 @@ export default function NameFullScreen() {
         />
       }
     >
-      <Accordion
-        closedContent={<Text>{uiNames.options}</Text>}
-        openedContent={
-          <View style={styles.optionContainer}>
-            <Text style={styles.label}>{uiNames.numNames}</Text>
-            <NumericTextInput
-              value={numNames}
-              onChangeText={updateNumNames}
-              placeholder="1-50"
-              autoFocus
-            />
-            <Text style={styles.label}>{uiNameFull.numSyllables1}</Text>
-            <OptionSelect
-              items={uiNames.syllablesOptions}
-              active={(value) => syllables1 === value}
-              onSelect={updateSyllables1}
-            />
-            <Text style={styles.label}>{uiNameFull.numSyllables2}</Text>
-            <OptionSelect
-              items={uiNames.syllablesOptions}
-              active={(value) => syllables2 === value}
-              onSelect={updateSyllables2}
-            />
-            <Text style={styles.label}>{uiNameFull.numSyllables3}</Text>
-            <OptionSelect
-              items={uiNames.syllablesOptions}
-              active={(value) => syllables3 === value}
-              onSelect={updateSyllables3}
-            />
-            <Text style={styles.label}>{uiNameFull.nameEnding}</Text>
-            <Text
-              style={{ color: colors.placeholder, padding: 10, paddingTop: 0 }}
+      <View style={styles.container}>
+        <Accordion
+          closedContent={<Themed.Text>{uiNames.options}</Themed.Text>}
+          openedContent={
+            <View
+              style={[
+                styles.optionContainer,
+                { backgroundColor: theme.colors.background },
+              ]}
             >
-              {uiNameFull.nameEndingHint}
-            </Text>
-            <OptionSelect
-              items={uiNameFull.nameEndingOptions}
-              active={(value) => ending === value}
-              onSelect={setEnding}
-            />
-          </View>
-        }
-      />
-      <View style={styles.buttonContainer}>
-        <Button
-          icon="clipboard"
-          text={uiNames.copyAll}
-          onPress={copyAll}
-          disabled={!resultsVisible}
+              <Themed.Text style={styles.label}>{uiNames.numNames}</Themed.Text>
+              <NumericTextInput
+                value={numNames}
+                onChangeText={updateNumNames}
+                placeholder="1-50"
+                autoFocus
+              />
+              <Themed.Text style={styles.label}>
+                {uiNameFull.numSyllables1}
+              </Themed.Text>
+              <OptionSelect
+                items={uiNames.syllablesOptions}
+                active={(value) => syllables1 === value}
+                onSelect={updateSyllables1}
+              />
+              <Themed.Text style={styles.label}>
+                {uiNameFull.numSyllables2}
+              </Themed.Text>
+              <OptionSelect
+                items={uiNames.syllablesOptions}
+                active={(value) => syllables2 === value}
+                onSelect={updateSyllables2}
+              />
+              <Themed.Text style={styles.label}>
+                {uiNameFull.numSyllables3}
+              </Themed.Text>
+              <OptionSelect
+                items={uiNames.syllablesOptions}
+                active={(value) => syllables3 === value}
+                onSelect={updateSyllables3}
+              />
+              <Themed.Text style={styles.label}>
+                {uiNameFull.nameEnding}
+              </Themed.Text>
+              <Themed.Text
+                style={{
+                  color: colors.placeholder,
+                  padding: 10,
+                  paddingTop: 0,
+                }}
+              >
+                {uiNameFull.nameEndingHint}
+              </Themed.Text>
+              <OptionSelect
+                items={uiNameFull.nameEndingOptions}
+                active={(value) => ending === value}
+                onSelect={setEnding}
+              />
+            </View>
+          }
         />
-        <Button icon="refresh" text="" onPress={execute} disabled={loading} />
+        <View style={styles.buttonContainer}>
+          <Button
+            icon="clipboard"
+            text={uiNames.copyAll}
+            onPress={copyAll}
+            disabled={!resultsVisible}
+          />
+          <Button icon="refresh" onPress={execute} disabled={loading} />
+        </View>
+        <ResultCount
+          visible={resultsVisible}
+          resultCount={names.length}
+          style={styles.resultCount}
+        />
+        <NameResults names={names} copyName={copy} />
       </View>
-      <ResultCount
-        visible={resultsVisible}
-        resultCount={names.length}
-        style={styles.resultCount}
-      />
-      <NameResults names={names} copyName={copy} />
     </ScrollView>
   );
 }
@@ -130,11 +152,9 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
   },
-  optionContainer: {
-    paddingTop: 4,
-  },
+  optionContainer: {},
   label: {
-    padding: 10,
+    paddingVertical: 16,
     fontSize: 16,
     fontWeight: "bold",
   },

@@ -1,9 +1,10 @@
 import { Accordion } from "@/components/common/Accordion";
 import { FilterExpressionBuilderList } from "@/components/common/FilterExpressionBuilderList";
-import { Text } from "@/components/common/Themed";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getThemedComponents } from "@/themes";
 import type { FilterExpressionBuilderValue } from "@/types/list";
 
 type ListOptionsProps = {
@@ -19,22 +20,22 @@ export function ListOptions(props: ListOptionsProps) {
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const { list } = getUI(appLanguage, dialect);
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
 
   return (
     <Accordion
       initiallyOpen
-      closedContent={<Text>{list.listOptions}</Text>}
+      closedContent={<Themed.Text>{list.listOptions}</Themed.Text>}
       openedContent={
-        <>
-          <FilterExpressionBuilderList
-            filters={filters}
-            add={add}
-            remove={remove}
-            update={update}
-            disabled={incomplete}
-            mode="list"
-          />
-        </>
+        <FilterExpressionBuilderList
+          filters={filters}
+          add={add}
+          remove={remove}
+          update={update}
+          disabled={incomplete}
+          mode="list"
+        />
       }
     />
   );

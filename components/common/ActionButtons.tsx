@@ -1,85 +1,129 @@
-import Colors from "@/constants/Colors";
+import { DialectDisplay } from "@/constants/Dialects";
+import { ResultsLanguages } from "@/constants/Language";
 import { useDialectContext } from "@/context/DialectContext";
-import { FontAwesome } from "@expo/vector-icons";
-import { Link } from "expo-router";
+import { useResultsLanguageContext } from "@/context/ResultsLanguageContext";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
 import {
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-  type ViewStyle,
-} from "react-native";
+  getColorExtension,
+  getPWAThemeUpdater,
+  getThemedComponents,
+} from "@/themes";
+import { FontAwesomeIconName } from "@/types/icons";
+import { FontAwesome } from "@expo/vector-icons";
+import { Href, useRouter } from "expo-router";
+import { Platform, Pressable, StyleSheet, View } from "react-native";
+import { FlagMap } from "../settings/Flags";
 
-type ActionButtonsProps = {
-  style?: ViewStyle;
-};
-
-export function ActionButtons({ style }: ActionButtonsProps) {
-  const { dialectDisplay, toggleDialect } = useDialectContext();
-
+export function ActionButtons() {
   return (
-    <View
-      style={{
-        flexDirection: "row",
-        padding: 16,
-        gap: 16,
-        ...style,
-      }}
-    >
-      <Pressable style={styles.actionButton} onPress={toggleDialect}>
-        {({ pressed }) => (
-          <View
-            style={{
-              height: 25,
-              justifyContent: "center",
-              alignItems: "center",
-              opacity: pressed ? 0.5 : 1,
-            }}
-          >
-            <Text
-              style={{
-                color: "#fff",
-                fontSize: 20,
-              }}
-            >
-              {dialectDisplay}
-            </Text>
-          </View>
-        )}
-      </Pressable>
-      <Link href="/favorites" asChild>
-        <Pressable style={styles.actionButton}>
-          {({ pressed }) => (
-            <FontAwesome
-              name="heart"
-              size={25}
-              color={Colors.dark.text}
-              style={{ opacity: pressed ? 0.5 : 1 }}
-            />
-          )}
-        </Pressable>
-      </Link>
-      <Link href="/settings" asChild>
-        <Pressable style={styles.actionButton}>
-          {({ pressed }) => (
-            <FontAwesome
-              name="gear"
-              size={25}
-              color={Colors.dark.text}
-              style={{ opacity: pressed ? 0.5 : 1 }}
-            />
-          )}
-        </Pressable>
-      </Link>
+    <View style={styles.container}>
+      <DialectButton />
+      <LanguageDisplay />
+      <ActionButton href="/favorites" icon="heart" />
+      <ActionButton href="/settings" icon="gear" />
     </View>
   );
 }
 
+function LanguageDisplay() {
+  const { resultsLanguage, saveResultsLanguage } = useResultsLanguageContext();
+  const Languages = ResultsLanguages.map((rl) => rl.value);
+  const index = Languages.indexOf(resultsLanguage);
+  const resultsFlag = FlagMap[resultsLanguage];
+
+  const nextLanguage = async () => {
+    if (index < 0 || index === Languages.length - 1) {
+      await saveResultsLanguage(Languages[0]);
+      return;
+    }
+    await saveResultsLanguage(Languages[index + 1]);
+  };
+
+  return (
+    <Pressable style={styles.actionButton} onPress={nextLanguage}>
+      {({ pressed }) => (
+        <View style={{ opacity: pressed ? 0.5 : 1 }}>{resultsFlag}</View>
+      )}
+    </Pressable>
+  );
+}
+
+function DialectButton() {
+  const { dialect, saveDialect } = useDialectContext();
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
+  const updatePWATheme = getPWAThemeUpdater(themeName);
+  return (
+    <Pressable
+      style={styles.actionButton}
+      onPress={async () => {
+        const value = dialect === "forest" ? "reef" : "forest";
+        await saveDialect(value);
+        updatePWATheme(value);
+      }}
+    >
+      {({ pressed }) => (
+        <View style={[styles.dialectButton, { opacity: pressed ? 0.5 : 1 }]}>
+          <Themed.MonoText style={styles.dialectText}>
+            {DialectDisplay[dialect].abbr}
+          </Themed.MonoText>
+        </View>
+      )}
+    </Pressable>
+  );
+}
+
+type ABProps = {
+  href: Href<string>;
+  icon: FontAwesomeIconName;
+};
+
+function ActionButton({ href, icon }: ABProps) {
+  const { themeName } = useThemeNameContext();
+  const colorExtension = getColorExtension(themeName);
+  const router = useRouter();
+
+  return (
+    <Pressable
+      style={styles.actionButton}
+      onPress={() => router.navigate(href)}
+    >
+      {({ pressed }) => (
+        <FontAwesome
+          name={icon}
+          size={25}
+          color={colorExtension.dark.text}
+          style={{ opacity: pressed ? 0.5 : 1 }}
+        />
+      )}
+    </Pressable>
+  );
+}
+
 const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingRight: 12,
+    gap: 12,
+  },
+  dialectButton: {
+    height: 25,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  dialectText: {
+    color: "#fff",
+    fontFamily: "Monospace",
+    fontSize: Platform.OS === "web" ? 24 : 20,
+    paddingTop: Platform.OS === "web" ? 8 : 0,
+    marginTop: Platform.OS === "web" ? -10 : -3,
+  },
   actionButton: {
+    width: 32,
+    height: 32,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    // padding: 16,
   },
 });

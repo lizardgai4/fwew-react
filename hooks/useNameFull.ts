@@ -6,16 +6,17 @@ import { nameFull } from "fwew.js";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 export function useNameFull() {
-  const [ending, setEnding] = useState<NameEnding>("random");
   const [numNames, setNumNames] = useState<NumericString>("4");
-  const [syllables1, setSyllables1] = useState<NumericString>("0");
-  const [syllables2, setSyllables2] = useState<NumericString>("0");
-  const [syllables3, setSyllables3] = useState<NumericString>("0");
   const { dialect } = useDialectContext();
   const [loading, setLoading] = useState(false);
   const [names, setNames] = useState<string[]>([]);
   const debounce = useDebounce();
   const abortController = useRef(new AbortController());
+
+  const [syllables1, setSyllables1] = useState<NumericString>("0");
+  const [syllables2, setSyllables2] = useState<NumericString>("0");
+  const [syllables3, setSyllables3] = useState<NumericString>("0");
+  const [ending, setEnding] = useState<NameEnding>("random");
 
   const execute = useCallback(async () => {
     if (!ending) return;

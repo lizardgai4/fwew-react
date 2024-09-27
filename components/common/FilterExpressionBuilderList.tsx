@@ -1,13 +1,14 @@
 import { Button } from "@/components/common/Button";
 import { FilterExpressionBuilder } from "@/components/common/FilterExpressionBuilder";
 import { SmallButton } from "@/components/common/SmallButton";
-import { CardView, Text, View } from "@/components/common/Themed";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getThemedComponents } from "@/themes";
 import { FilterExpressionBuilderValue } from "@/types/list";
 import { useTheme } from "@react-navigation/native";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 type FilterExpressionBuilderListProps = {
   filters: FilterExpressionBuilderValue[];
@@ -26,6 +27,8 @@ export function FilterExpressionBuilderList(
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const { list, random } = getUI(appLanguage, dialect);
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
 
   const getHeaderText = () => {
     switch (mode) {
@@ -39,13 +42,15 @@ export function FilterExpressionBuilderList(
   };
 
   return (
-    <CardView>
+    <View>
       {filters.map((_, i) => (
         <View key={`feb_${i}`}>
-          <View style={styles.febHeader}>
-            <Text style={styles.label}>
+          <View
+            style={[styles.febHeader, { backgroundColor: colors.background }]}
+          >
+            <Themed.Text style={styles.label}>
               {i > 0 ? list.and : getHeaderText()}
-            </Text>
+            </Themed.Text>
             <SmallButton
               onPress={() => remove(i)}
               icon="trash"
@@ -61,7 +66,7 @@ export function FilterExpressionBuilderList(
       <View style={{ paddingTop: 10 }}>
         <Button onPress={add} icon="plus" disabled={disabled} />
       </View>
-    </CardView>
+    </View>
   );
 }
 
@@ -72,7 +77,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   label: {
-    padding: 16,
+    paddingVertical: 16,
+    fontSize: 16,
     fontWeight: "bold",
   },
 });

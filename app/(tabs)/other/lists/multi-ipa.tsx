@@ -1,27 +1,17 @@
 import { ResultCount } from "@/components/common/ResultCount";
 import { FwewSearchResults } from "@/components/search/FwewSearchResults";
 import { useMultiIPA } from "@/hooks/useMultiIPA";
-import { useTheme } from "@react-navigation/native";
-import { RefreshControl, ScrollView, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 
 export default function MultiIPAScreen() {
-  const { results, resultCount, loading, execute } = useMultiIPA();
-  const { colors } = useTheme();
+  const { results, resultCount, loading } = useMultiIPA();
 
   return (
-    <ScrollView
-      style={styles.container}
-      keyboardShouldPersistTaps="always"
-      refreshControl={
-        <RefreshControl
-          refreshing={loading}
-          onRefresh={execute}
-          colors={[colors.primary]}
-        />
-      }
-    >
-      <ResultCount visible={resultCount > 0} resultCount={resultCount} />
-      <FwewSearchResults loading={loading} results={results} />
+    <ScrollView>
+      <View style={styles.container}>
+        <ResultCount visible={resultCount > 0} resultCount={resultCount} />
+        <FwewSearchResults loading={loading} results={results} />
+      </View>
     </ScrollView>
   );
 }

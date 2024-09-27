@@ -1,49 +1,36 @@
-import { DarkTheme, DefaultTheme, type Theme } from "@react-navigation/native";
+import FwewTheme from "@/themes/fwew";
+import { type Dialect } from "@/types/common";
+import { type ColorExtension } from "@/types/theme";
+import { type Theme } from "@react-navigation/native";
+import { type ColorSchemeName } from "react-native";
 
-export const FwewDarkTheme: Theme = {
-  dark: true,
-  colors: {
-    ...DarkTheme.colors,
-    primary: "#3a5575",
-    background: "#282b2d",
-    card: "#181a1b",
-    text: "#e8e6e3",
-    border: "#3b5778",
-  },
+const ThemeMap = {
+  fwew: FwewTheme,
 };
 
-export const FwewDarkReefTheme: Theme = {
-  ...FwewDarkTheme,
-  colors: {
-    ...FwewDarkTheme.colors,
-    primary: "#3a7569",
-    background: "#282b2d",
-    card: "#181a1b",
-    text: "#e8e6e3",
-    border: "#3b786c",
-  },
-};
+export type ThemeName = keyof typeof ThemeMap;
 
-export const FwewLightTheme: Theme = {
-  dark: false,
-  colors: {
-    ...DefaultTheme.colors,
-    primary: "#7494ba",
-    background: "#d9e2ed",
-    card: "#ffffff",
-    text: "#000000",
-    border: "#537aa8",
-  },
-};
+export const ThemeNames = Object.keys(ThemeMap) as ThemeName[];
 
-export const FwewLightReefTheme: Theme = {
-  ...FwewLightTheme,
-  colors: {
-    ...FwewLightTheme.colors,
-    primary: "#74baac",
-    background: "#d9e2ed",
-    card: "#ffffff",
-    text: "#000000",
-    border: "#53a897",
-  },
-};
+export function getTheme(
+  themeName: ThemeName,
+  colorScheme: ColorSchemeName,
+  dialect: Dialect
+): Theme {
+  if (!colorScheme) {
+    colorScheme = "light";
+  }
+  return ThemeMap[themeName][colorScheme][dialect];
+}
+
+export function getColorExtension(themeName: ThemeName): ColorExtension {
+  return ThemeMap[themeName].ext;
+}
+
+export function getThemedComponents(themeName: ThemeName) {
+  return ThemeMap[themeName].components;
+}
+
+export function getPWAThemeUpdater(themeName: ThemeName) {
+  return ThemeMap[themeName].updatePWATheme;
+}

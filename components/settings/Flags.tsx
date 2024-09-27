@@ -1,4 +1,5 @@
 import type { ExtendedLanguageCode } from "@/types/common";
+import { View } from "react-native";
 import Svg, {
   Circle,
   Defs,
@@ -91,39 +92,41 @@ export const Hungary = (props: SvgProps) => (
 
 // ko
 export const SouthKorea = (props: SvgProps) => (
-  <Svg viewBox="-72 -48 144 96" width={32} height={32} {...props}>
-    <Defs>
-      <Path id="b" d="M-12-2h24v4h-24z" />
-      <G id="a">
-        <Path d="M-12-2h11v4h-11zM1-2h11v4H1z" />
+  <View style={{ paddingVertical: 5 }}>
+    <Svg viewBox="-72 -48 144 96" width={32} height={22} {...props}>
+      <Defs>
+        <Path id="b" d="M-12-2h24v4h-24z" />
+        <G id="a">
+          <Path d="M-12-2h11v4h-11zM1-2h11v4H1z" />
+        </G>
+      </Defs>
+      <Path fill="#fff" d="M-72-48H72v96H-72z" />
+      <G transform="rotate(56.31)">
+        <Use height="96" transform="translate(0 -38)" width="144" href="#a" />
+        <Use height="96" transform="translate(0 -44)" width="144" href="#b" />
+        <Use height="96" transform="translate(0 -50)" width="144" href="#a" />
+        <Use height="96" transform="translate(0 38)" width="144" href="#b" />
+        <Use height="96" transform="translate(0 44)" width="144" href="#a" />
+        <Use height="96" transform="translate(0 50)" width="144" href="#b" />
       </G>
-    </Defs>
-    <Path fill="#fff" d="M-72-48H72v96H-72z" />
-    <G transform="rotate(56.31)">
-      <Use height="96" transform="translate(0 -38)" width="144" href="#a" />
-      <Use height="96" transform="translate(0 -44)" width="144" href="#b" />
-      <Use height="96" transform="translate(0 -50)" width="144" href="#a" />
-      <Use height="96" transform="translate(0 38)" width="144" href="#b" />
-      <Use height="96" transform="translate(0 44)" width="144" href="#a" />
-      <Use height="96" transform="translate(0 50)" width="144" href="#b" />
-    </G>
-    <G transform="rotate(-56.31)">
-      <Use height="96" transform="translate(0 -38)" width="144" href="#b" />
-      <Use height="96" transform="translate(0 -44)" width="144" href="#b" />
-      <Use height="96" transform="translate(0 -50)" width="144" href="#b" />
-      <Use height="96" transform="translate(0 38)" width="144" href="#a" />
-      <Use height="96" transform="translate(0 44)" width="144" href="#a" />
-      <Use height="96" transform="translate(0 50)" width="144" href="#a" />
-      <Path
-        d="M0 24c13.255 0 24-10.745 24-24S13.255-24 0-24c-9.941 0-18 8.059-18 18s8.059 18 18 18"
-        fill="#c60c30"
-      />
-      <Path
-        d="M0-24c-6.627 0-12 5.373-12 12S-6.627 0 0 0s12 5.373 12 12S6.627 24 0 24c-13.255 0-24-10.745-24-24s10.745-24 24-24"
-        fill="#003478"
-      />
-    </G>
-  </Svg>
+      <G transform="rotate(-56.31)">
+        <Use height="96" transform="translate(0 -38)" width="144" href="#b" />
+        <Use height="96" transform="translate(0 -44)" width="144" href="#b" />
+        <Use height="96" transform="translate(0 -50)" width="144" href="#b" />
+        <Use height="96" transform="translate(0 38)" width="144" href="#a" />
+        <Use height="96" transform="translate(0 44)" width="144" href="#a" />
+        <Use height="96" transform="translate(0 50)" width="144" href="#a" />
+        <Path
+          d="M0 24c13.255 0 24-10.745 24-24S13.255-24 0-24c-9.941 0-18 8.059-18 18s8.059 18 18 18"
+          fill="#c60c30"
+        />
+        <Path
+          d="M0-24c-6.627 0-12 5.373-12 12S-6.627 0 0 0s12 5.373 12 12S6.627 24 0 24c-13.255 0-24-10.745-24-24s10.745-24 24-24"
+          fill="#003478"
+        />
+      </G>
+    </Svg>
+  </View>
 );
 
 // nl

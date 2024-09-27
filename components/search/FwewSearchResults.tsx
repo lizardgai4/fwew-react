@@ -1,10 +1,11 @@
 import { ResultCard } from "@/components/common/ResultCard";
-import { Text, View } from "@/components/common/Themed";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getThemedComponents } from "@/themes";
 import type { Word } from "fwew.js";
-import { ActivityIndicator, Platform, StyleSheet } from "react-native";
+import { ActivityIndicator, Platform, StyleSheet, View } from "react-native";
 
 type FwewSearchResultsProps = {
   loading?: boolean;
@@ -16,6 +17,8 @@ export function FwewSearchResults(props: FwewSearchResultsProps) {
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const { common } = getUI(appLanguage, dialect);
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
 
   if (loading && Platform.OS === "web") {
     return <ActivityIndicator size="large" />;
@@ -29,9 +32,11 @@ export function FwewSearchResults(props: FwewSearchResultsProps) {
             if (!word.ID) {
               return (
                 <View key={`srl_${i}${j}`}>
-                  <Text style={styles.label}>{word.Navi}</Text>
+                  <Themed.Text style={styles.label}>{word.Navi}</Themed.Text>
                   {j === result.length - 1 && (
-                    <Text style={styles.text}>{common.noResults}</Text>
+                    <Themed.Text style={styles.text}>
+                      {common.noResults}
+                    </Themed.Text>
                   )}
                 </View>
               );
@@ -52,7 +57,7 @@ export function FwewSearchResults(props: FwewSearchResultsProps) {
 const styles = StyleSheet.create({
   outerContainer: {
     gap: 16,
-    paddingBottom: 32,
+    // paddingBottom: 32,
   },
   innerContainer: {
     gap: 8,

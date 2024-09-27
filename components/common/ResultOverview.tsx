@@ -1,40 +1,40 @@
-import Colors from "@/constants/Colors";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { ReefMe } from "@/lib/dialect";
+import { getColorExtension, getThemedComponents } from "@/themes";
 import type { Dialect } from "@/types/common";
 import type { Word } from "fwew.js";
-import { StyleSheet, View } from "react-native";
-import { MonoText } from "./StyledText";
-import { Text } from "./Themed";
+import { StyleSheet, useColorScheme, View } from "react-native";
 
 type ResultOverviewProps = {
   dialect: Dialect;
   word: Word;
-  colors: (typeof Colors)["light"];
   local: string;
 };
 
-export function ResultOverview({
-  dialect,
-  word,
-  colors,
-  local,
-}: ResultOverviewProps) {
+export function ResultOverview({ dialect, word, local }: ResultOverviewProps) {
   const forestNavi = word.Navi;
   const { reefNavi } = ReefMe(word.IPA, word.Navi);
+  const colorScheme = useColorScheme();
+  const { themeName } = useThemeNameContext();
+  const colorExtension = getColorExtension(themeName);
+  const colors = colorExtension[colorScheme ?? "light"];
+  const Themed = getThemedComponents(themeName);
 
   return (
     <View style={styles.closedContainer}>
-      <Text style={styles.navi}>
+      <Themed.Text style={styles.navi}>
         {dialect === "reef" ? reefNavi : forestNavi}
-      </Text>
+      </Themed.Text>
       <View
         style={[styles.posContainer, { backgroundColor: colors.innerCard }]}
       >
-        <MonoText style={styles.pos}>{word.PartOfSpeech}</MonoText>
+        <Themed.MonoText style={styles.pos}>
+          {word.PartOfSpeech}
+        </Themed.MonoText>
       </View>
-      <Text style={styles.local} numberOfLines={1}>
+      <Themed.Text style={styles.local} numberOfLines={1}>
         {local}
-      </Text>
+      </Themed.Text>
     </View>
   );
 }

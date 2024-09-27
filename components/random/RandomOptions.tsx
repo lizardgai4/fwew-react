@@ -1,12 +1,15 @@
 import { Accordion } from "@/components/common/Accordion";
 import { FilterExpressionBuilderList } from "@/components/common/FilterExpressionBuilderList";
 import { NumericTextInput } from "@/components/common/NumericTextInput";
-import { Text, View } from "@/components/common/Themed";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getThemedComponents } from "@/themes";
 import type { NumericString } from "@/types/common";
 import type { FilterExpressionBuilderValue } from "@/types/list";
+import { useTheme } from "@react-navigation/native";
+import { StyleSheet, View } from "react-native";
 
 type RandomOptionsProps = {
   numWords: NumericString;
@@ -24,12 +27,21 @@ export function RandomOptions(props: RandomOptionsProps) {
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const ui = getUI(appLanguage, dialect);
+  const theme = useTheme();
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
 
   return (
     <Accordion
-      closedContent={<Text>{ui.random.randomOptions}</Text>}
+      closedContent={<Themed.Text>{ui.random.randomOptions}</Themed.Text>}
       openedContent={
-        <View style={{ paddingTop: 4 }}>
+        <View
+          style={[
+            styles.optionContainer,
+            { backgroundColor: theme.colors.background },
+          ]}
+        >
+          <Themed.Text style={styles.label}>{ui.random.numWords}</Themed.Text>
           <NumericTextInput
             placeholder={`${ui.random.numWords} (1-100)`}
             onChangeText={updateNumWords}
@@ -49,3 +61,26 @@ export function RandomOptions(props: RandomOptionsProps) {
     />
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 16,
+  },
+  optionContainer: {},
+  label: {
+    paddingVertical: 16,
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 16,
+    paddingTop: 16,
+  },
+  resultCount: {
+    padding: 16,
+  },
+});

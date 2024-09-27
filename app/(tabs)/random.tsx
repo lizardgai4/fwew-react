@@ -1,6 +1,5 @@
 import { Button } from "@/components/common/Button";
 import { ResultCount } from "@/components/common/ResultCount";
-import { View } from "@/components/common/Themed";
 import { ListResults } from "@/components/list/ListResults";
 import { RandomOptions } from "@/components/random/RandomOptions";
 import { useDebounce } from "@/hooks/useDebounce";
@@ -9,7 +8,7 @@ import { useRandom } from "@/hooks/useRandom";
 import { NumericString } from "@/types/common";
 import { useTheme } from "@react-navigation/native";
 import { useCallback, useEffect, useState } from "react";
-import { RefreshControl, ScrollView, StyleSheet } from "react-native";
+import { RefreshControl, ScrollView, StyleSheet, View } from "react-native";
 
 export default function RandomScreen() {
   const [numWords, setNumWords] = useState<NumericString>("8");
@@ -53,7 +52,6 @@ export default function RandomScreen() {
 
   return (
     <ScrollView
-      style={styles.container}
       keyboardShouldPersistTaps="always"
       refreshControl={
         <RefreshControl
@@ -63,29 +61,33 @@ export default function RandomScreen() {
         />
       }
     >
-      <RandomOptions
-        numWords={numWords}
-        updateNumWords={updateNumWords}
-        filters={filters}
-        add={add}
-        remove={remove}
-        update={update}
-        incomplete={incomplete}
-      />
-      <View style={{ paddingTop: 16 }}>
-        <Button
-          icon="refresh"
-          text=""
-          onPress={() => execute(numWords, filterExpression)}
-          disabled={loading}
+      <View style={styles.container}>
+        <RandomOptions
+          numWords={numWords}
+          updateNumWords={updateNumWords}
+          filters={filters}
+          add={add}
+          remove={remove}
+          update={update}
+          incomplete={incomplete}
+        />
+        <View style={{ paddingTop: 16 }}>
+          <Button
+            icon="refresh"
+            onPress={() => execute(numWords, filterExpression)}
+            disabled={loading}
+          />
+        </View>
+        <ResultCount
+          visible={resultsVisible}
+          resultCount={results.length}
+          style={styles.resultCount}
+        />
+        <ListResults
+          loading={loading}
+          results={resultsVisible ? results : []}
         />
       </View>
-      <ResultCount
-        visible={resultsVisible}
-        resultCount={results.length}
-        style={styles.resultCount}
-      />
-      <ListResults loading={loading} results={resultsVisible ? results : []} />
     </ScrollView>
   );
 }
