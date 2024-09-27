@@ -16,11 +16,6 @@ export function useDialect() {
     setDialect(value);
   }
 
-  async function toggleDialect() {
-    const value = dialect === "forest" ? "reef" : "forest";
-    await saveDialect(value);
-  }
-
   useEffect(() => {
     (async () => {
       const value = await getItem();
@@ -35,6 +30,5 @@ export function useDialect() {
   return {
     dialect,
     saveDialect,
-    toggleDialect,
   };
 }

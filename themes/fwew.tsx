@@ -1,3 +1,4 @@
+import type { Dialect } from "@/types/common";
 import type { ColorExtension, ThemeType } from "@/types/theme";
 import { useTheme, type Theme } from "@react-navigation/native";
 import {
@@ -140,6 +141,30 @@ function TextInput(props: TextInputProps) {
   );
 }
 
+function updatePWATheme(dialect: Dialect) {
+  const attrThemeColor = "name=theme-color";
+  const attrBackground = "name=background-color";
+
+  const attrMediaLight = "media='(prefers-color-scheme: light)'";
+  const attrMediaDark = "media='(prefers-color-scheme: dark)'";
+
+  document
+    .querySelector(`meta[${attrThemeColor}][${attrMediaLight}]`)
+    ?.setAttribute("content", FwewTheme.light[dialect].colors.primary);
+
+  document
+    .querySelector(`meta[${attrThemeColor}][${attrMediaDark}]`)
+    ?.setAttribute("content", FwewTheme.dark[dialect].colors.primary);
+
+  document
+    .querySelector(`meta[${attrBackground}][${attrMediaLight}]`)
+    ?.setAttribute("content", FwewTheme.light[dialect].colors.background);
+
+  document
+    .querySelector(`meta[${attrBackground}][${attrMediaDark}]`)
+    ?.setAttribute("content", FwewTheme.dark[dialect].colors.background);
+}
+
 const FwewTheme: ThemeType = {
   light: {
     forest: FwewLightTheme,
@@ -159,6 +184,7 @@ const FwewTheme: ThemeType = {
     CardView,
     TextInput,
   },
+  updatePWATheme,
 };
 
 export default FwewTheme;

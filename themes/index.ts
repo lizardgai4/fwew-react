@@ -30,3 +30,7 @@ export function getColorExtension(themeName: ThemeName): ColorExtension {
 export function getThemedComponents(themeName: ThemeName) {
   return ThemeMap[themeName].components;
 }
+
+export function getPWAThemeUpdater(themeName: ThemeName) {
+  return ThemeMap[themeName].updatePWATheme;
+}

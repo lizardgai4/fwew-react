@@ -29,4 +29,5 @@ export type ThemeType = {
     CardView: (props: ViewProps) => JSX.Element;
     TextInput: (props: TextInputProps) => JSX.Element;
   };
+  updatePWATheme: (dialect: Dialect) => void;
 };

@@ -2,12 +2,16 @@ import { DialectDisplay, Dialects } from "@/constants/Dialects";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import {
+  getColorExtension,
+  getPWAThemeUpdater,
+  getThemedComponents,
+} from "@/themes";
 import { useTheme } from "@react-navigation/native";
 import { StyleSheet, View } from "react-native";
 import { Accordion } from "../common/Accordion";
 import { OptionItem } from "../common/OptionItem";
-import { useThemeNameContext } from "@/context/ThemeNameContext";
-import { getColorExtension, getThemedComponents } from "@/themes";
 
 export function DialectSelect() {
   const { dialect, saveDialect } = useDialectContext();
@@ -17,6 +21,7 @@ export function DialectSelect() {
   const { themeName } = useThemeNameContext();
   const colorExtension = getColorExtension(themeName);
   const Themed = getThemedComponents(themeName);
+  const updatePWATheme = getPWAThemeUpdater(themeName);
 
   return (
     <Accordion
@@ -58,7 +63,10 @@ export function DialectSelect() {
                 }
                 value={d.name}
                 selected={dialect === d.value}
-                onSelect={() => saveDialect(d.value)}
+                onSelect={async () => {
+                  await saveDialect(d.value);
+                  updatePWATheme(d.value);
+                }}
               />
             </View>
           ))}
