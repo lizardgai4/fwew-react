@@ -1,4 +1,5 @@
 import { ResultOverview } from "@/components/common/ResultOverview";
+import { ThemeNameProvider } from "@/context/ThemeNameContext";
 import { render } from "@testing-library/react-native";
 import type { Word } from "fwew.js";
 
@@ -23,11 +24,18 @@ describe("<ResultOverview />", () => {
   params.forEach(({ forest, ipa, reef }) => {
     test(`[Reef] Na'vi: ${forest} -> ${reef}`, () => {
       const { getByText } = render(
-        <ResultOverview
-          dialect="reef"
-          word={{ Navi: forest, IPA: ipa } as Word}
-          local="EN"
-        />
+        <ThemeNameProvider
+          value={{
+            themeName: "fwew",
+            saveThemeName: async (_: "fwew") => {},
+          }}
+        >
+          <ResultOverview
+            dialect="reef"
+            word={{ Navi: forest, IPA: ipa } as Word}
+            local="EN"
+          />
+        </ThemeNameProvider>
       );
 
       getByText(reef);
