@@ -78,7 +78,7 @@ function LenPreList() {
   ];
 
   return (
-    <View style={styles.container}>
+    <View>
       <Themed.BoldText style={styles.header}>
         {ui.lenitingPrefixes}
       </Themed.BoldText>
@@ -105,7 +105,7 @@ function LenAdpList() {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <View>
       <Themed.BoldText style={styles.header}>
         {ui.lenitingAdpositions}
       </Themed.BoldText>
@@ -130,9 +130,6 @@ const styles = StyleSheet.create({
   lenitionValue: {
     fontSize: 18,
     padding: 8,
-  },
-  container: {
-    paddingVertical: 8,
   },
   header: {
     fontSize: 20,
