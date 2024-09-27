@@ -141,9 +141,8 @@ function TextInput(props: TextInputProps) {
   );
 }
 
-function updatePWATheme(dialect: Dialect) {
+function updatePWATheme(dialect: Dialect): void {
   const attrThemeColor = "name=theme-color";
-  const attrBackground = "name=background-color";
 
   const attrMediaLight = "media='(prefers-color-scheme: light)'";
   const attrMediaDark = "media='(prefers-color-scheme: dark)'";
@@ -155,14 +154,6 @@ function updatePWATheme(dialect: Dialect) {
   document
     .querySelector(`meta[${attrThemeColor}][${attrMediaDark}]`)
     ?.setAttribute("content", FwewTheme.dark[dialect].colors.primary);
-
-  document
-    .querySelector(`meta[${attrBackground}][${attrMediaLight}]`)
-    ?.setAttribute("content", FwewTheme.light[dialect].colors.background);
-
-  document
-    .querySelector(`meta[${attrBackground}][${attrMediaDark}]`)
-    ?.setAttribute("content", FwewTheme.dark[dialect].colors.background);
 }
 
 const FwewTheme: ThemeType = {

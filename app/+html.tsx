@@ -28,18 +28,8 @@ export default function Root({ children }: { children: React.ReactNode }) {
           media="(prefers-color-scheme: light)"
         />
         <meta
-          name="background-color"
-          content="#d9e2ed"
-          media="(prefers-color-scheme: light)"
-        />
-        <meta
           name="theme-color"
           content="#3a5575"
-          media="(prefers-color-scheme: dark)"
-        />
-        <meta
-          name="background-color"
-          content="#282b2d"
           media="(prefers-color-scheme: dark)"
         />
         {/* 
