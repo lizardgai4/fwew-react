@@ -81,7 +81,7 @@ export default function ListScreen() {
         />
       }
     >
-      <View style={styles.containerPortroit}>
+      <View style={styles.container}>
         <ListOptions
           filters={filters}
           add={add}
@@ -100,16 +100,9 @@ export default function ListScreen() {
 }
 
 const styles = StyleSheet.create({
-  containerPortroit: {
+  container: {
     flex: 1,
     padding: 16,
-    gap: 16,
-  },
-  containerLandscape: {
-    flexDirection: "row",
-    flex: 1,
-    padding: 16,
-    paddingBottom: 0,
     gap: 16,
   },
   bottomPadded: {
