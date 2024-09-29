@@ -41,7 +41,6 @@ export function RandomOptions(props: RandomOptionsProps) {
             placeholder={`${ui.random.numWords} (1-100)`}
             onChangeText={updateNumWords}
             value={numWords}
-            autoFocus
           />
           <FilterExpressionBuilderList
             filters={filters}
