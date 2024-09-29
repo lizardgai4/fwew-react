@@ -1,6 +1,7 @@
 import { ResultCount } from "@/components/common/ResultCount";
 import { SearchBar } from "@/components/common/SearchBar";
 import { SwitchInput } from "@/components/common/SwitchInput";
+import { WideLayout } from "@/components/common/WideLayout";
 import { FwewSearchResults } from "@/components/search/FwewSearchResults";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
@@ -33,51 +34,75 @@ export default function SearchScreen() {
   const ui = getUI(appLanguage, dialect).search;
   const { width } = useWindowDimensions();
   const wide = width > 720;
-  const ratio =
-    [
-      { breakpoint: 1280, value: 3 },
-      { breakpoint: 950, value: 2 },
-      { breakpoint: 720, value: 1 },
-    ].filter((b) => width >= b.breakpoint)[0]?.value ?? 1;
+
+  if (wide) {
+    return (
+      <WideLayout
+        sidebar={
+          <>
+            <SearchBar
+              query={query}
+              search={search}
+              execute={execute}
+              cancel={cancel}
+              autoFocus
+            />
+            <SwitchInput
+              leftLabel={ui.naviOnly}
+              rightLabel=""
+              value={naviOnly}
+              onValueChange={setNaviOnly}
+            />
+          </>
+        }
+        header={
+          <ResultCount
+            visible={query.length > 0 && resultCount > 0}
+            resultCount={resultCount}
+            style={styles.bottomPadded}
+          />
+        }
+        main={<FwewSearchResults loading={loading} results={results} />}
+        refresh={{
+          loading,
+          getData: execute,
+          colors: [colors.primary],
+        }}
+      />
+    );
+  }
 
   return (
-    <View
-      style={[styles.container, { flexDirection: wide ? "row" : "column" }]}
-    >
-      <View style={{ flex: wide ? 1 : undefined }}>
-        <SearchBar
-          query={query}
-          search={search}
-          execute={execute}
-          cancel={cancel}
-          autoFocus
-        />
-        <SwitchInput
-          leftLabel={ui.naviOnly}
-          rightLabel=""
-          value={naviOnly}
-          onValueChange={setNaviOnly}
-        />
-      </View>
-      <View style={{ flex: ratio }}>
-        <ResultCount
-          visible={query.length > 0 && resultCount > 0}
-          resultCount={resultCount}
-          style={styles.resultCount}
-        />
-        <ScrollView
-          keyboardShouldPersistTaps="always"
-          refreshControl={
-            <RefreshControl
-              refreshing={loading}
-              onRefresh={execute}
-              colors={[colors.primary]}
-            />
-          }
-        >
-          <FwewSearchResults loading={loading} results={results} />
-        </ScrollView>
-      </View>
+    <View style={styles.container}>
+      <SearchBar
+        query={query}
+        search={search}
+        execute={execute}
+        cancel={cancel}
+        autoFocus
+      />
+      <SwitchInput
+        leftLabel={ui.naviOnly}
+        rightLabel=""
+        value={naviOnly}
+        onValueChange={setNaviOnly}
+      />
+      <ResultCount
+        visible={query.length > 0 && resultCount > 0}
+        resultCount={resultCount}
+      />
+      <ScrollView
+        keyboardShouldPersistTaps="always"
+        refreshControl={
+          <RefreshControl
+            refreshing={loading}
+            onRefresh={execute}
+            colors={[colors.primary]}
+          />
+        }
+      >
+        <FwewSearchResults loading={loading} results={results} />
+      </ScrollView>
     </View>
   );
 }
@@ -88,7 +113,7 @@ const styles = StyleSheet.create({
     padding: 16,
     gap: 16,
   },
-  resultCount: {
-    padding: 16,
+  bottomPadded: {
+    paddingBottom: 16,
   },
 });
