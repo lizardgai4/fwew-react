@@ -41,26 +41,10 @@ export default function SearchScreen() {
     ].filter((b) => width >= b.breakpoint)[0]?.value ?? 1;
 
   return (
-    // <ScrollView
-    //   keyboardShouldPersistTaps="always"
-    //   refreshControl={
-    //     <RefreshControl
-    //       refreshing={loading}
-    //       onRefresh={execute}
-    //       colors={[colors.primary]}
-    //     />
-    //   }
-    // >
     <View
       style={[styles.container, { flexDirection: wide ? "row" : "column" }]}
     >
-      <View
-        style={{
-          flex: wide ? 1 : undefined,
-          padding: 16,
-          paddingBottom: 0,
-        }}
-      >
+      <View style={{ flex: wide ? 1 : undefined }}>
         <SearchBar
           query={query}
           search={search}
@@ -76,12 +60,11 @@ export default function SearchScreen() {
         />
       </View>
       <View style={{ flex: ratio }}>
-        <View style={{ padding: 16, paddingTop: wide ? 16 : 0 }}>
-          <ResultCount
-            visible={query.length > 0 && resultCount > 0}
-            resultCount={resultCount}
-          />
-        </View>
+        <ResultCount
+          visible={query.length > 0 && resultCount > 0}
+          resultCount={resultCount}
+          style={styles.resultCount}
+        />
         <ScrollView
           keyboardShouldPersistTaps="always"
           refreshControl={
@@ -92,19 +75,20 @@ export default function SearchScreen() {
             />
           }
         >
-          <View style={{ padding: 16, paddingTop: 0 }}>
-            <FwewSearchResults loading={loading} results={results} />
-          </View>
+          <FwewSearchResults loading={loading} results={results} />
         </ScrollView>
       </View>
     </View>
-    /* </ScrollView> */
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 16,
     gap: 16,
+  },
+  resultCount: {
+    padding: 16,
   },
 });
