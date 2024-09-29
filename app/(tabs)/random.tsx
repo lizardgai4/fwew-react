@@ -65,50 +65,50 @@ export default function RandomScreen() {
   }, [getData]);
 
   return (
-    <ScrollView
-      keyboardShouldPersistTaps="always"
-      refreshControl={
-        <RefreshControl
-          refreshing={loading}
-          onRefresh={getData}
-          colors={[colors.primary]}
-        />
-      }
+    <View
+      style={[styles.container, { flexDirection: wide ? "row" : "column" }]}
     >
-      <View
-        style={[styles.container, { flexDirection: wide ? "row" : "column" }]}
-      >
-        <View style={{ flex: wide ? 1 : undefined }}>
-          <RandomOptions
-            numWords={numWords}
-            updateNumWords={updateNumWords}
-            filters={filters}
-            add={add}
-            remove={remove}
-            update={update}
-            incomplete={incomplete}
+      <ScrollView style={{ flex: wide ? 1 : undefined }}>
+        <RandomOptions
+          numWords={numWords}
+          updateNumWords={updateNumWords}
+          filters={filters}
+          add={add}
+          remove={remove}
+          update={update}
+          incomplete={incomplete}
+        />
+        <View style={{ paddingTop: 16 }}>
+          <Button
+            icon="refresh"
+            onPress={() => execute(numWords, filterExpression)}
+            disabled={loading}
           />
-          <View style={{ paddingTop: 16 }}>
-            <Button
-              icon="refresh"
-              onPress={() => execute(numWords, filterExpression)}
-              disabled={loading}
-            />
-          </View>
         </View>
-        <View style={{ flex: ratio }}>
-          <ResultCount
-            visible={resultsVisible}
-            resultCount={results.length}
-            style={styles.resultCount}
-          />
+      </ScrollView>
+      <View style={{ flex: ratio }}>
+        <ResultCount
+          visible={resultsVisible}
+          resultCount={results.length}
+          style={styles.resultCount}
+        />
+        <ScrollView
+          keyboardShouldPersistTaps="always"
+          refreshControl={
+            <RefreshControl
+              refreshing={loading}
+              onRefresh={getData}
+              colors={[colors.primary]}
+            />
+          }
+        >
           <ListResults
             loading={loading}
             results={resultsVisible ? results : []}
           />
-        </View>
+        </ScrollView>
       </View>
-    </ScrollView>
+    </View>
   );
 }
 
