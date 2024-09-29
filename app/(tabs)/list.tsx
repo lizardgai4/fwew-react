@@ -6,7 +6,13 @@ import { useFilterExpression } from "@/hooks/useFilterExpression";
 import { useList } from "@/hooks/useList";
 import { useTheme } from "@react-navigation/native";
 import { useCallback, useEffect } from "react";
-import { RefreshControl, ScrollView, StyleSheet, View } from "react-native";
+import {
+  RefreshControl,
+  ScrollView,
+  StyleSheet,
+  useWindowDimensions,
+  View,
+} from "react-native";
 
 export default function ListScreen() {
   const { filters, filterExpression, incomplete, add, remove, update } =
@@ -15,6 +21,14 @@ export default function ListScreen() {
   const debounce = useDebounce();
   const { colors } = useTheme();
   const resultsVisible = filterExpression.length > 0 && results.length > 0;
+  const { width } = useWindowDimensions();
+  const wide = width > 720;
+  const ratio =
+    [
+      { breakpoint: 1280, value: 3 },
+      { breakpoint: 950, value: 2 },
+      { breakpoint: 720, value: 1 },
+    ].filter((b) => width >= b.breakpoint)[0]?.value ?? 1;
 
   const getData = useCallback(async () => {
     if (incomplete || filterExpression.length === 0) {
@@ -41,23 +55,29 @@ export default function ListScreen() {
         />
       }
     >
-      <View style={styles.container}>
-        <ListOptions
-          filters={filters}
-          add={add}
-          remove={remove}
-          update={update}
-          incomplete={incomplete}
-        />
-        <ResultCount
-          visible={resultsVisible}
-          resultCount={results.length}
-          style={styles.resultCount}
-        />
-        <ListResults
-          loading={loading}
-          results={resultsVisible ? results : []}
-        />
+      <View
+        style={[styles.container, { flexDirection: wide ? "row" : "column" }]}
+      >
+        <View style={{ flex: wide ? 1 : undefined }}>
+          <ListOptions
+            filters={filters}
+            add={add}
+            remove={remove}
+            update={update}
+            incomplete={incomplete}
+          />
+        </View>
+        <View style={{ flex: ratio }}>
+          <ResultCount
+            visible={resultsVisible}
+            resultCount={results.length}
+            style={styles.resultCount}
+          />
+          <ListResults
+            loading={loading}
+            results={resultsVisible ? results : []}
+          />
+        </View>
       </View>
     </ScrollView>
   );
@@ -67,6 +87,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    gap: 16,
   },
   resultCount: {
     padding: 16,
