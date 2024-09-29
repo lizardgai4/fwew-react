@@ -125,7 +125,7 @@ export default function RandomScreen() {
           update={update}
           incomplete={incomplete}
         />
-        <View style={{ paddingTop: 16 }}>
+        <View style={{}}>
           <Button
             icon="refresh"
             onPress={() => execute(numWords, filterExpression)}
