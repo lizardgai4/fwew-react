@@ -1,5 +1,6 @@
 import { Button } from "@/components/common/Button";
 import { ResultCount } from "@/components/common/ResultCount";
+import { WideLayout } from "@/components/common/WideLayout";
 import { ListResults } from "@/components/list/ListResults";
 import { RandomOptions } from "@/components/random/RandomOptions";
 import { useDebounce } from "@/hooks/useDebounce";
@@ -22,16 +23,10 @@ export default function RandomScreen() {
     useFilterExpression();
   const { loading, results, execute, cancel } = useRandom();
   const debounce = useDebounce();
-  const { colors } = useTheme();
+  const theme = useTheme();
   const resultsVisible = numWords.length > 0 && results.length > 0;
   const { width } = useWindowDimensions();
   const wide = width > 720;
-  const ratio =
-    [
-      { breakpoint: 1280, value: 3 },
-      { breakpoint: 950, value: 2 },
-      { breakpoint: 720, value: 1 },
-    ].filter((b) => width >= b.breakpoint)[0]?.value ?? 1;
 
   const updateNumWords = useCallback((num: NumericString) => {
     if (num === "") {
@@ -64,11 +59,63 @@ export default function RandomScreen() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getData]);
 
+  if (wide) {
+    return (
+      <WideLayout
+        sidebar={
+          <>
+            <RandomOptions
+              numWords={numWords}
+              updateNumWords={updateNumWords}
+              filters={filters}
+              add={add}
+              remove={remove}
+              update={update}
+              incomplete={incomplete}
+            />
+            <View style={{ paddingTop: 16 }}>
+              <Button
+                icon="refresh"
+                onPress={() => execute(numWords, filterExpression)}
+                disabled={loading}
+              />
+            </View>
+          </>
+        }
+        header={
+          <ResultCount
+            visible={resultsVisible}
+            resultCount={results.length}
+            style={styles.bottomPadded}
+          />
+        }
+        main={
+          <ListResults
+            loading={loading}
+            results={resultsVisible ? results : []}
+          />
+        }
+        refresh={{
+          loading,
+          getData,
+          colors: [theme.colors.primary],
+        }}
+      />
+    );
+  }
+
   return (
-    <View
-      style={[styles.container, { flexDirection: wide ? "row" : "column" }]}
+    <ScrollView
+      keyboardShouldPersistTaps="always"
+      refreshControl={
+        <RefreshControl
+          refreshing={loading}
+          onRefresh={getData}
+          colors={[theme.colors.primary]}
+        />
+      }
     >
-      <ScrollView style={{ flex: wide ? 1 : undefined }}>
+      <View style={styles.container}>
         <RandomOptions
           numWords={numWords}
           updateNumWords={updateNumWords}
@@ -85,30 +132,13 @@ export default function RandomScreen() {
             disabled={loading}
           />
         </View>
-      </ScrollView>
-      <View style={{ flex: ratio }}>
-        <ResultCount
-          visible={resultsVisible}
-          resultCount={results.length}
-          style={styles.resultCount}
+        <ResultCount visible={resultsVisible} resultCount={results.length} />
+        <ListResults
+          loading={loading}
+          results={resultsVisible ? results : []}
         />
-        <ScrollView
-          keyboardShouldPersistTaps="always"
-          refreshControl={
-            <RefreshControl
-              refreshing={loading}
-              onRefresh={getData}
-              colors={[colors.primary]}
-            />
-          }
-        >
-          <ListResults
-            loading={loading}
-            results={resultsVisible ? results : []}
-          />
-        </ScrollView>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -118,7 +148,7 @@ const styles = StyleSheet.create({
     padding: 16,
     gap: 16,
   },
-  resultCount: {
-    padding: 16,
+  bottomPadded: {
+    paddingBottom: 16,
   },
 });
