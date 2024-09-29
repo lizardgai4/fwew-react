@@ -40,24 +40,17 @@ export default function RandomScreen() {
     setNumWords(num);
   }, []);
 
-  const getData = useCallback(async () => {
-    if (numWords.length === 0) {
-      return;
-    }
-    if (filterExpression.length > 0 && incomplete) {
-      return;
-    }
-    debounce(() => execute(numWords, filterExpression));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filterExpression, incomplete, numWords]);
+  const getData = () =>
+    debounce(async () => await execute(numWords, filterExpression));
 
   useEffect(() => {
-    if (!incomplete) {
-      void getData();
+    if (numWords.length === 0 || incomplete || filterExpression.length === 0) {
+      return;
     }
+    getData();
     return cancel;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [getData]);
+  }, [filterExpression, incomplete, numWords]);
 
   if (wide) {
     return (
