@@ -73,37 +73,38 @@ export default function SearchScreen() {
   }
 
   return (
-    <View style={styles.container}>
-      <SearchBar
-        query={query}
-        search={search}
-        execute={execute}
-        cancel={cancel}
-        autoFocus
-      />
-      <SwitchInput
-        leftLabel={ui.naviOnly}
-        rightLabel=""
-        value={naviOnly}
-        onValueChange={setNaviOnly}
-      />
-      <ResultCount
-        visible={query.length > 0 && resultCount > 0}
-        resultCount={resultCount}
-      />
-      <ScrollView
-        keyboardShouldPersistTaps="always"
-        refreshControl={
-          <RefreshControl
-            refreshing={loading}
-            onRefresh={execute}
-            colors={[colors.primary]}
-          />
-        }
-      >
+    <ScrollView
+      keyboardShouldPersistTaps="always"
+      refreshControl={
+        <RefreshControl
+          refreshing={loading}
+          onRefresh={execute}
+          colors={[colors.primary]}
+        />
+      }
+    >
+      <View style={styles.container}>
+        <SearchBar
+          query={query}
+          search={search}
+          execute={execute}
+          cancel={cancel}
+          autoFocus
+        />
+        <SwitchInput
+          leftLabel={ui.naviOnly}
+          rightLabel=""
+          value={naviOnly}
+          onValueChange={setNaviOnly}
+        />
+        <ResultCount
+          visible={query.length > 0 && resultCount > 0}
+          resultCount={resultCount}
+        />
+
         <FwewSearchResults loading={loading} results={results} />
-      </ScrollView>
-    </View>
+      </View>
+    </ScrollView>
   );
 }
 
