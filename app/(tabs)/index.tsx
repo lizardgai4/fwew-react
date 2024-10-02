@@ -1,7 +1,6 @@
 import { ResultCount } from "@/components/common/ResultCount";
 import { SearchBar } from "@/components/common/SearchBar";
 import { SwitchInput } from "@/components/common/SwitchInput";
-import { WideLayout } from "@/components/common/WideLayout";
 import { FwewSearchResults } from "@/components/search/FwewSearchResults";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
@@ -35,43 +34,6 @@ export default function SearchScreen() {
   const { width } = useWindowDimensions();
   const wide = width > 720;
 
-  if (wide) {
-    return (
-      <WideLayout
-        sidebar={
-          <>
-            <SearchBar
-              query={query}
-              search={search}
-              execute={execute}
-              cancel={cancel}
-              autoFocus
-            />
-            <SwitchInput
-              leftLabel={ui.naviOnly}
-              rightLabel=""
-              value={naviOnly}
-              onValueChange={setNaviOnly}
-            />
-          </>
-        }
-        header={
-          <ResultCount
-            visible={query.length > 0 && resultCount > 0}
-            resultCount={resultCount}
-            style={styles.bottomPadded}
-          />
-        }
-        main={<FwewSearchResults loading={loading} results={results} />}
-        refresh={{
-          loading,
-          getData: execute,
-          colors: [colors.primary],
-        }}
-      />
-    );
-  }
-
   return (
     <ScrollView
       keyboardShouldPersistTaps="always"
@@ -83,26 +45,28 @@ export default function SearchScreen() {
         />
       }
     >
-      <View style={styles.container}>
-        <SearchBar
-          query={query}
-          search={search}
-          execute={execute}
-          cancel={cancel}
-          autoFocus
-        />
-        <SwitchInput
-          leftLabel={ui.naviOnly}
-          rightLabel=""
-          value={naviOnly}
-          onValueChange={setNaviOnly}
-        />
-        <ResultCount
-          visible={query.length > 0 && resultCount > 0}
-          resultCount={resultCount}
-        />
+      <View style={{ alignItems: "center" }}>
+        <View style={[styles.container, { width: wide ? "66%" : "100%" }]}>
+          <SearchBar
+            query={query}
+            search={search}
+            execute={execute}
+            cancel={cancel}
+            autoFocus
+          />
+          <SwitchInput
+            leftLabel={ui.naviOnly}
+            rightLabel=""
+            value={naviOnly}
+            onValueChange={setNaviOnly}
+          />
+          <ResultCount
+            visible={query.length > 0 && resultCount > 0}
+            resultCount={resultCount}
+          />
 
-        <FwewSearchResults loading={loading} results={results} />
+          <FwewSearchResults loading={loading} results={results} />
+        </View>
       </View>
     </ScrollView>
   );
@@ -112,7 +76,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
-    gap: 16,
   },
   bottomPadded: {
     paddingBottom: 16,

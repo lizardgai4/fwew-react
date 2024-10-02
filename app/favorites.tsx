@@ -1,6 +1,6 @@
+import { NoResults } from "@/components/common/NoResults";
 import { ResultCard } from "@/components/common/ResultCard";
 import { SearchBar } from "@/components/common/SearchBar";
-import { WideLayout } from "@/components/common/WideLayout";
 import { useResultsLanguageContext } from "@/context/ResultsLanguageContext";
 import { useFavorites } from "@/hooks/useFavorites";
 import { StatusBar } from "expo-status-bar";
@@ -16,43 +16,27 @@ export default function FavoritesScreen() {
   const { width } = useWindowDimensions();
   const wide = width > 720;
 
-  if (wide) {
-    return (
-      <WideLayout
-        sidebar={<SearchBar query={query} search={search} />}
-        main={
-          <View style={{ gap: 16 }}>
-            {favorites
-              .filter(
-                (w) =>
-                  w.Navi.includes(query) ||
-                  w.EN.includes(query) ||
-                  w[languageCode].includes(query)
-              )
-              .map((word) => (
-                <ResultCard key={word.ID} word={word} />
-              ))}
-          </View>
-        }
-      />
-    );
-  }
-
   return (
     <ScrollView>
       <StatusBar style="light" />
-      <View style={{ gap: 16, padding: 16 }}>
-        <SearchBar query={query} search={search} />
-        {favorites
-          .filter(
-            (w) =>
-              w.Navi.includes(query) ||
-              w.EN.includes(query) ||
-              w[languageCode].includes(query)
-          )
-          .map((word) => (
-            <ResultCard key={word.ID} word={word} />
-          ))}
+      <View style={{ alignItems: "center" }}>
+        <View style={{ width: wide ? "66%" : "100%", gap: 16, padding: 16 }}>
+          {favorites.length > 0 ? (
+            <SearchBar query={query} search={search} />
+          ) : (
+            <NoResults />
+          )}
+          {favorites
+            .filter(
+              (w) =>
+                w.Navi.includes(query) ||
+                w.EN.includes(query) ||
+                w[languageCode].includes(query)
+            )
+            .map((word) => (
+              <ResultCard key={word.ID} word={word} />
+            ))}
+        </View>
       </View>
     </ScrollView>
   );
