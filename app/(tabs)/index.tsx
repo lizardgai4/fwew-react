@@ -7,6 +7,7 @@ import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
 import { useFwew } from "@/hooks/useFwew";
 import { useTheme } from "@react-navigation/native";
+import { router } from "expo-router";
 import {
   RefreshControl,
   ScrollView,
@@ -49,7 +50,10 @@ export default function SearchScreen() {
         <View style={[styles.container, { width: wide ? "66%" : "100%" }]}>
           <SearchBar
             query={query}
-            search={search}
+            search={(q) => {
+              router.setParams({ q });
+              search(q);
+            }}
             execute={execute}
             cancel={cancel}
             autoFocus
