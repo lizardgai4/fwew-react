@@ -1,6 +1,5 @@
 import { ResultCount } from "@/components/common/ResultCount";
 import { SearchBar } from "@/components/common/SearchBar";
-import { WideLayout } from "@/components/common/WideLayout";
 import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { useValid } from "@/hooks/useValid";
 import { getThemedComponents } from "@/themes";
@@ -18,45 +17,21 @@ export default function ValidScreen() {
   const { width } = useWindowDimensions();
   const wide = width > 720;
 
-  if (wide) {
-    return (
-      <WideLayout
-        sidebar={
+  return (
+    <ScrollView keyboardShouldPersistTaps="always">
+      <View style={{ alignItems: "center" }}>
+        <View style={[styles.container, { width: wide ? "66%" : "100%" }]}>
           <SearchBar query={query} search={search} cancel={cancel} autoFocus />
-        }
-        header={
           <ResultCount
             resultCount={results.length}
             visible={results.length > 0 && !loading}
-            style={styles.bottomPadded}
           />
-        }
-        main={
-          <View style={{ gap: 16 }}>
-            {results.map((row, index) => (
-              <Themed.CardView key={`vrc_${index}`} style={styles.container}>
-                <Themed.Text>{row}</Themed.Text>
-              </Themed.CardView>
-            ))}
-          </View>
-        }
-      />
-    );
-  }
-
-  return (
-    <ScrollView keyboardShouldPersistTaps="always">
-      <View style={styles.container}>
-        <SearchBar query={query} search={search} cancel={cancel} autoFocus />
-        <ResultCount
-          resultCount={results.length}
-          visible={results.length > 0 && !loading}
-        />
-        {results.map((row, index) => (
-          <Themed.CardView key={`vrc_${index}`} style={styles.container}>
-            <Themed.Text>{row}</Themed.Text>
-          </Themed.CardView>
-        ))}
+          {results.map((row, index) => (
+            <Themed.CardView key={`vrc_${index}`} style={styles.container}>
+              <Themed.Text>{row}</Themed.Text>
+            </Themed.CardView>
+          ))}
+        </View>
       </View>
     </ScrollView>
   );

@@ -1,4 +1,3 @@
-import { WideLayout } from "@/components/common/WideLayout";
 import { NumberResultCard } from "@/components/number/NumberResultCard";
 import { NumberSearchBar } from "@/components/number/NumberSearchBar";
 import { useNumber } from "@/hooks/useNumber";
@@ -9,33 +8,18 @@ export default function NumbersScreen() {
   const { width } = useWindowDimensions();
   const wide = width > 720;
 
-  if (wide) {
-    return (
-      <WideLayout
-        sidebar={
-          <NumberSearchBar
-            mode={mode}
-            toggleMode={toggleMode}
-            query={query}
-            search={search}
-            clear={clear}
-          />
-        }
-        main={<NumberResultCard result={result} />}
-      />
-    );
-  }
-
   return (
-    <View style={styles.container}>
-      <NumberSearchBar
-        mode={mode}
-        toggleMode={toggleMode}
-        query={query}
-        search={search}
-        clear={clear}
-      />
-      <NumberResultCard result={result} />
+    <View style={{ flex: 1, alignItems: "center" }}>
+      <View style={[styles.container, { width: wide ? "66%" : "100%" }]}>
+        <NumberSearchBar
+          mode={mode}
+          toggleMode={toggleMode}
+          query={query}
+          search={search}
+          clear={clear}
+        />
+        <NumberResultCard result={result} />
+      </View>
     </View>
   );
 }
