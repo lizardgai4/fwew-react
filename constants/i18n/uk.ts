@@ -66,14 +66,14 @@ const strings: UITranslation = {
 
     names: "Імена",
 
-    favorites: "Вибране",
+    favorites: "Обране",
     settings: "Налаштування",
   },
   search: {
     search: "Пошук",
     naviOnly: "Пошук лише за словами На'ві",
     audio: "Вимова",
-    favorite: "Вибране",
+    favorite: "Обране",
     navi: "На'ві",
     partOfSpeech: "Частина мови",
     definition: "Визначення",
@@ -90,7 +90,7 @@ const strings: UITranslation = {
   },
   list: {
     list: "Список",
-    listOptions: "Параметри списку",
+    listOptions: "критерії списку",
     listMenu: {
       whatValues: [
         { value: "pos", description: "частина мови" },
@@ -170,8 +170,8 @@ const strings: UITranslation = {
   names: {
     single: "Скорочене ім'я",
     full: "Повне ім'я",
-    alu: "Ім'я з Alu",
-    options: "Параметри",
+    alu: `Ім'я з "alu"`,
+    options: "Критерії",
     numNames: "Кількість імен, що генеруються",
     copyAll: "Копіювати все",
     dialect: "Діалект",
@@ -181,7 +181,7 @@ const strings: UITranslation = {
       { name: "Рифовий", value: "reef" },
     ],
     syllablesOptions: [
-      { name: "випадковий", value: "0" },
+      { name: "Випадково", value: "0" },
       { name: "1", value: "1" },
       { name: "2", value: "2" },
       { name: "3", value: "3" },
@@ -199,7 +199,7 @@ const strings: UITranslation = {
     nameEndingHint:
       "-'itan   чол.рід, -'ite  жін.рід, -'itu  середній рід. (не є канонічним)",
     nameEndingOptions: [
-      { value: "random", name: "випадковий" },
+      { value: "random", name: "Випадково" },
       { value: "'ite", name: "-'ite" },
       { value: "'itan", name: "-'itan" },
       { value: "'itu", name: "-'itu" },
@@ -266,6 +266,8 @@ const strings: UITranslation = {
     translation: "Переклад",
     appLanguage: "Мова застосунку",
     resultsLanguage: "Мова результату",
+    dialect: "Діалект",
+    theme: "тема",
   },
 };
 

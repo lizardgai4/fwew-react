@@ -267,6 +267,8 @@ const strings: UITranslation = {
     translation: "Çevirmen",
     appLanguage: "Uygulama Dili",
     resultsLanguage: "Sonuç Dili",
+    dialect: "Lehçe",
+    theme: "Theme",
   },
 };
 

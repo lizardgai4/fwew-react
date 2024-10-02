@@ -267,6 +267,8 @@ const strings: UITranslation = {
     translation: "Ralpengyu",
     appLanguage: "'Ure lì'fya",
     resultsLanguage: "Kume lì'fya",
+    dialect: "Lì'fyafnel",
+    theme: "Lupra",
   },
 };
 

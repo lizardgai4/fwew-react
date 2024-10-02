@@ -1,15 +1,21 @@
+import { Accordion } from "@/components/common/Accordion";
+import { OptionItem } from "@/components/common/OptionItem";
+import { getUI } from "@/constants/i18n";
+import { useAppLanguageContext } from "@/context/AppLanguageContext";
+import { useDialectContext } from "@/context/DialectContext";
 import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { getColorExtension, getThemedComponents, ThemeNames } from "@/themes";
-import { StyleSheet, View } from "react-native";
-import { Accordion } from "../common/Accordion";
-import { OptionItem } from "../common/OptionItem";
 import { useTheme } from "@react-navigation/native";
+import { StyleSheet, View } from "react-native";
 
 export function ThemeSelect() {
   const { themeName, saveThemeName } = useThemeNameContext();
   const colorExtension = getColorExtension(themeName);
   const theme = useTheme();
   const Themed = getThemedComponents(themeName);
+  const { appLanguage } = useAppLanguageContext();
+  const { dialect } = useDialectContext();
+  const ui = getUI(appLanguage, dialect);
 
   return (
     <Accordion
@@ -20,7 +26,7 @@ export function ThemeSelect() {
               {themeName.slice(0, 2).toUpperCase()}
             </Themed.Text>
           </View>
-          <Themed.Text style={styles.value}>Theme</Themed.Text>
+          <Themed.Text style={styles.value}>{ui.settings.theme}</Themed.Text>
         </View>
       }
       openedContent={

@@ -266,6 +266,8 @@ const strings: UITranslation = {
     translation: "Fordítás",
     appLanguage: "Alkalmazás nyelve",
     resultsLanguage: "Eredmények nyelve",
+    dialect: "Dialektus",
+    theme: "Theme",
   },
 };
 

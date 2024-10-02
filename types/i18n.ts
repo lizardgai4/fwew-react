@@ -142,6 +142,8 @@ export type SettingsStrings = {
   translation: string;
   appLanguage: string;
   resultsLanguage: string;
+  dialect: string;
+  theme: string;
 };
 
 export type UITranslation = {

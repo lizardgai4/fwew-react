@@ -36,7 +36,7 @@ export function DialectSelect() {
               {DialectDisplay[dialect].abbr}
             </Themed.MonoText>
           </View>
-          <Themed.Text style={styles.value}>{ui.names.dialect}</Themed.Text>
+          <Themed.Text style={styles.value}>{ui.settings.dialect}</Themed.Text>
         </View>
       }
       openedContent={
