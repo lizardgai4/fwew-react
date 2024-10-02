@@ -90,7 +90,7 @@ const strings: UITranslation = {
   },
   list: {
     list: "Список",
-    listOptions: "критерії списку",
+    listOptions: "Kритерії списку",
     listMenu: {
       whatValues: [
         { value: "pos", description: "частина мови" },
