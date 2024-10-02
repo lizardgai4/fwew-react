@@ -267,7 +267,7 @@ const strings: UITranslation = {
     appLanguage: "Мова застосунку",
     resultsLanguage: "Мова результату",
     dialect: "Діалект",
-    theme: "тема",
+    theme: "Тема",
   },
 };
 
