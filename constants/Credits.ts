@@ -28,7 +28,7 @@ const Credits: CreditsType = {
     nx0: ["Tsyili", "Palusyulang", "Tirea Aean"],
     nx1: ["Txonpay", "Tirea Aean"],
     pl: [],
-    pt: ["Palusyulang", "Tslakxime", "'Ìohan"],
+    pt: ["Palusyulang", "Tslakxime", "Zeykoyu", "'Ìohan"],
     ru: ["Tan Jala"],
     sv: [],
     tr: ["İsmail yiğit"],
