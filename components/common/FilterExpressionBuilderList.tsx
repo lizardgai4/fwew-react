@@ -30,15 +30,10 @@ export function FilterExpressionBuilderList(
   const { themeName } = useThemeNameContext();
   const Themed = getThemedComponents(themeName);
 
-  const getHeaderText = () => {
-    switch (mode) {
-      case "list":
-        return "";
-      case "random":
-        return random.where;
-      default:
-        return "";
-    }
+  const getHeaderText = (index: number) => {
+    if (index > 0) return list.and;
+    if (mode === "random") return random.where;
+    return "";
   };
 
   return (
@@ -48,9 +43,7 @@ export function FilterExpressionBuilderList(
           <View
             style={[styles.febHeader, { backgroundColor: colors.background }]}
           >
-            <Themed.Text style={styles.label}>
-              {i > 0 ? list.and : getHeaderText()}
-            </Themed.Text>
+            <Themed.Text style={styles.label}>{getHeaderText(i)}</Themed.Text>
             <SmallButton
               onPress={() => remove(i)}
               icon="trash"
