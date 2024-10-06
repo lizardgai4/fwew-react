@@ -1,42 +1,50 @@
 import { CameronWords } from "@/constants/Cameron";
-import type { UITranslation } from "@/types/i18n";
+import type { PartOfSpeech, UITranslation } from "@/types/i18n";
 
-const partOfSpeech = {
-  "adj.": "adjektivo",
-  "adp.": "adpozicio",
-  "adv.": "adverbo",
-  "conj.": "konjunkcio",
-  "inter.": "interrogativa vorto",
-  "intj.": "interjekcio",
-  "n.": "substantivo",
-  "num.": "numero",
-  "part.": "partiklo",
-  "ph.": "frazo",
-  "pn.": "pronomo",
-  "prop.n.": "propra nomo",
-  "sbd.": "subordinanto",
-  "vim.": "netranzitiva modalverbo",
-  "vin.": "netranzitiva verbo",
-  "vtr.": "tranzitiva verbo",
-  "vtrm.": "tranzitiva modalverbo",
-  "adj., adv.": "adjektivo, adverbo",
-  "adj., conj.": "adjektivo, konjunkcio",
-  "adj., intj.": "adjektivo, interjekcio",
-  "adj., n.": "adjektivo, substantivo",
-  "adv., conj.": "adverbo, konjunkcio",
-  "adv., intj.": "adverbo, interjekcio",
-  "adv., n.": "adverbo, substantivo",
-  "inter., intj.": "interrogativa vorto, interjekcio",
-  "n., intj.": "substantivo, interjekcio",
-  "part., intj.": "partiklo, interjekcio",
-  "vin., intj.": "netranzitiva verbo, interjekcio",
-  "vin., vtr.": "netranzitiva aŭ tranzitiva verbo",
+const partOfSpeech: PartOfSpeech = {
+  "adj.": { abbr: "adj.", name: "adjektivo" },
+  "adp.": { abbr: "adp.", name: "adpozicio" },
+  "adv.": { abbr: "adv.", name: "adverbo" },
+  "conj.": { abbr: "conj.", name: "konjunkcio" },
+  "inter.": { abbr: "inter.", name: "interrogativa vorto" },
+  "intj.": { abbr: "intj.", name: "interjekcio" },
+  "n.": { abbr: "n.", name: "substantivo" },
+  "num.": { abbr: "num.", name: "numero" },
+  "part.": { abbr: "part.", name: "partiklo" },
+  "ph.": { abbr: "ph.", name: "frazo" },
+  "pn.": { abbr: "pn.", name: "pronomo" },
+  "prop.n.": { abbr: "prop.n.", name: "propra nomo" },
+  "sbd.": { abbr: "sbd.", name: "subordinanto" },
+  "vim.": { abbr: "vim.", name: "netranzitiva modalverbo" },
+  "vin.": { abbr: "vin.", name: "netranzitiva verbo" },
+  "vtr.": { abbr: "vtr.", name: "tranzitiva verbo" },
+  "vtrm.": { abbr: "vtrm.", name: "tranzitiva modalverbo" },
+  "adj., adv.": { abbr: "adj., adv.", name: "adjektivo, adverbo" },
+  "adj., conj.": { abbr: "adj., conj.", name: "adjektivo, konjunkcio" },
+  "adj., intj.": { abbr: "adj., intj.", name: "adjektivo, interjekcio" },
+  "adj., n.": { abbr: "adj., n.", name: "adjektivo, substantivo" },
+  "adv., conj.": { abbr: "adv., conj.", name: "adverbo, konjunkcio" },
+  "adv., intj.": { abbr: "adv., intj.", name: "adverbo, interjekcio" },
+  "adv., n.": { abbr: "adv., n.", name: "adverbo, substantivo" },
+  "inter., intj.": {
+    abbr: "inter., intj.",
+    name: "interrogativa vorto, interjekcio",
+  },
+  "n., intj.": { abbr: "n., intj.", name: "substantivo, interjekcio" },
+  "part., intj.": { abbr: "part., intj.", name: "partiklo, interjekcio" },
+  "vin., intj.": {
+    abbr: "vin., intj.",
+    name: "netranzitiva verbo, interjekcio",
+  },
+  "vin., vtr.": {
+    abbr: "vin., vtr.",
+    name: "netranzitiva aŭ tranzitiva verbo",
+  },
 };
 
-const partOfSpeechList = Object.entries(partOfSpeech).map(([value, name]) => ({
-  value,
-  name,
-}));
+const partOfSpeechList = Object.entries(partOfSpeech).map(
+  ([value, { name }]) => ({ name, value })
+);
 
 const strings: UITranslation = {
   common: {

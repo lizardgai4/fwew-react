@@ -110,7 +110,7 @@ export function FilterExpressionBuilder(props: FilterExpressionBuilderProps) {
           options={common.partOfSpeechList}
           value={{
             value: value.spec,
-            name: common.partOfSpeech[value.spec],
+            name: common.partOfSpeech[value.spec].name,
           }}
           initiallyOpen={!value.spec}
           renderOption={(option) => (

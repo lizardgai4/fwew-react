@@ -1,42 +1,41 @@
 import { CameronWords } from "@/constants/Cameron";
-import type { UITranslation } from "@/types/i18n";
+import type { PartOfSpeech, UITranslation } from "@/types/i18n";
 
-const partOfSpeech = {
-  "adj.": "melléknév",
-  "adp.": "Adposition",
-  "adv.": "Adverb",
-  "conj.": "Conjunction",
-  "inter.": "Kérdő",
-  "intj.": "Közbeszólás",
-  "n.": "Főnév",
-  "szám.": "Szám",
-  "rész.": "Részecske",
-  "ph.": "Kifejezés",
-  "pn.": "Névmás",
-  "prop.n.": "Tulajdonnév",
-  "sbd.": "Beosztott",
-  "vim.": "Intransitív modális ige",
-  "vin.": "Intransitív ige",
-  "vtr.": "Tranzitív ige",
-  "vtrm.": "Tranzitív modális ige",
-  "adj., adv.": "Melléknév, határozószó",
-  "adj., conj.": "melléknév, kötőszó",
-  "adj., intj.": "melléknév, közbeszólás",
-  "adj., n.": "melléknév, főnév",
-  "adv., conj.": "Adverb, Conjuction",
-  "adv., intj.": "Adverb, Interjective",
-  "adv., n.": "határozószó, főnév",
-  "inter., intj.": "Kérdés, közbeszólás",
-  "n., intj.": "Főnév, Közbeszólás",
-  "part., intj.": "Particle, Interjection",
-  "vin., intj.": "Intransitív ige, közbeszólás",
-  "vin., vtr.": "Intransitive Or Transitive Verb",
+const partOfSpeech: PartOfSpeech = {
+  "adj.": { abbr: "adj.", name: "melléknév" },
+  "adp.": { abbr: "adp.", name: "Adposition" },
+  "adv.": { abbr: "adv.", name: "Adverb" },
+  "conj.": { abbr: "conj.", name: "Conjunction" },
+  "inter.": { abbr: "inter.", name: "Kérdő" },
+  "intj.": { abbr: "intj.", name: "Közbeszólás" },
+  "n.": { abbr: "n.", name: "Főnév" },
+  "szám.": { abbr: "szám.", name: "Szám" },
+  "rész.": { abbr: "rész.", name: "Részecske" },
+  "ph.": { abbr: "ph.", name: "Kifejezés" },
+  "pn.": { abbr: "pn.", name: "Névmás" },
+  "prop.n.": { abbr: "prop.n.", name: "Tulajdonnév" },
+  "sbd.": { abbr: "sbd.", name: "Beosztott" },
+  "vim.": { abbr: "vim.", name: "Intransitív modális ige" },
+  "vin.": { abbr: "vin.", name: "Intransitív ige" },
+  "vtr.": { abbr: "vtr.", name: "Tranzitív ige" },
+  "vtrm.": { abbr: "vtrm.", name: "Tranzitív modális ige" },
+  "adj., adv.": { abbr: "adj., adv.", name: "Melléknév, határozószó" },
+  "adj., conj.": { abbr: "adj., conj.", name: "melléknév, kötőszó" },
+  "adj., intj.": { abbr: "adj., intj.", name: "melléknév, közbeszólás" },
+  "adj., n.": { abbr: "adj., n.", name: "melléknév, főnév" },
+  "adv., conj.": { abbr: "adv., conj.", name: "Adverb, Conjuction" },
+  "adv., intj.": { abbr: "adv., intj.", name: "Adverb, Interjective" },
+  "adv., n.": { abbr: "adv., n.", name: "határozószó, főnév" },
+  "inter., intj.": { abbr: "inter., intj.", name: "Kérdés, közbeszólás" },
+  "n., intj.": { abbr: "n., intj.", name: "Főnév, Közbeszólás" },
+  "part., intj.": { abbr: "part., intj.", name: "Particle, Interjection" },
+  "vin., intj.": { abbr: "vin., intj.", name: "Intransitív ige, közbeszólás" },
+  "vin., vtr.": { abbr: "vin., vtr.", name: "Intransitive Or Transitive Verb" },
 };
 
-const partOfSpeechList = Object.entries(partOfSpeech).map(([value, name]) => ({
-  value,
-  name,
-}));
+const partOfSpeechList = Object.entries(partOfSpeech).map(
+  ([value, { name }]) => ({ name, value })
+);
 
 const strings: UITranslation = {
   common: {

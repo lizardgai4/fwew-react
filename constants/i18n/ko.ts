@@ -1,42 +1,41 @@
 import { CameronWords } from "@/constants/Cameron";
-import type { UITranslation } from "@/types/i18n";
+import type { PartOfSpeech, UITranslation } from "@/types/i18n";
 
-const partOfSpeech = {
-  "adj.": "형용사",
-  "adp.": "부치사",
-  "adv.": "부사",
-  "conj.": "접속사",
-  "inter.": "의문사",
-  "intj.": "감탄사",
-  "n.": "명사",
-  "num.": "수사",
-  "part.": "불변화사",
-  "ph.": "구",
-  "pn.": "대명사",
-  "prop.n.": "고유명사",
-  "sbd.": "종속접속사",
-  "vim.": "조동사(자)",
-  "vin.": "자동사",
-  "vtr.": "타동사",
-  "vtrm.": "조동사(타)",
-  "adj., adv.": "형용사, 부사",
-  "adj., conj.": "형용사, 접속사",
-  "adj., intj.": "형용사, 감탄사",
-  "adj., n.": "형용사, 명사",
-  "adv., conj.": "부사, 접속사",
-  "adv., intj.": "부사, 감탄사",
-  "adv., n.": "부사, 명사",
-  "inter., intj.": "의문사, 감탄사",
-  "n., intj.": "명사, 감탄사",
-  "part., intj.": "불변화사, 감탄사",
-  "vin., intj.": "자동사, 감탄사",
-  "vin., vtr.": "자동사, 타동사",
+const partOfSpeech: PartOfSpeech = {
+  "adj.": { abbr: "형", name: "형용사" },
+  "adp.": { abbr: "부치", name: "부치사" },
+  "adv.": { abbr: "부", name: "부사" },
+  "conj.": { abbr: "접속", name: "접속사" },
+  "inter.": { abbr: "의문", name: "의문사" },
+  "intj.": { abbr: "감탄", name: "감탄사" },
+  "n.": { abbr: "명", name: "명사" },
+  "num.": { abbr: "수", name: "수사" },
+  "part.": { abbr: "불변화사", name: "불변화사" },
+  "ph.": { abbr: "구", name: "구" },
+  "pn.": { abbr: "대", name: "대명사" },
+  "prop.n.": { abbr: "고유", name: "고유명사" },
+  "sbd.": { abbr: "종속접속사", name: "종속접속사" },
+  "vim.": { abbr: "(조)자동", name: "조동사(자)" },
+  "vin.": { abbr: "자동", name: "자동사" },
+  "vtr.": { abbr: "타동", name: "타동사" },
+  "vtrm.": { abbr: "(조)타동", name: "조동사(타)" },
+  "adj., adv.": { abbr: "형/부", name: "형용사, 부사" },
+  "adj., conj.": { abbr: "형/접속", name: "형용사, 접속사" },
+  "adj., intj.": { abbr: "형/감탄", name: "형용사, 감탄사" },
+  "adj., n.": { abbr: "형/명", name: "형용사, 명사" },
+  "adv., conj.": { abbr: "부/접속", name: "부사, 접속사" },
+  "adv., intj.": { abbr: "부/감탄", name: "부사, 감탄사" },
+  "adv., n.": { abbr: "부/명", name: "부사, 명사" },
+  "inter., intj.": { abbr: "의문/감탄", name: "의문사, 감탄사" },
+  "n., intj.": { abbr: "명/감탄", name: "명사, 감탄사" },
+  "part., intj.": { abbr: "불변화사/감탄", name: "불변화사, 감탄사" },
+  "vin., intj.": { abbr: "자동/감탄", name: "자동사, 감탄사" },
+  "vin., vtr.": { abbr: "동", name: "자동사, 타동사" },
 };
 
-const partOfSpeechList = Object.entries(partOfSpeech).map(([value, name]) => ({
-  name,
-  value,
-}));
+const partOfSpeechList = Object.entries(partOfSpeech).map(
+  ([value, { name }]) => ({ name, value })
+);
 
 const strings: UITranslation = {
   common: {

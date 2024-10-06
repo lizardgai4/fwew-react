@@ -5,7 +5,7 @@ import type { AdjectiveMode, NameEnding, NounMode } from "fwew.js";
 export type SyllableCount = "0" | "1" | "2" | "3" | "4";
 
 export type PartOfSpeech = {
-  [key: string]: string;
+  [key: string]: { abbr: string; name: string };
 };
 
 export type CommonStrings = {

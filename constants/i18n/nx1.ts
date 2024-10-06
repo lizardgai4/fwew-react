@@ -1,44 +1,43 @@
 import { CameronWords } from "@/constants/Cameron";
-import type { UITranslation } from "@/types/i18n";
+import type { PartOfSpeech, UITranslation } from "@/types/i18n";
 
 // Lì'fya leNa'vi (Wione)
 
-const partOfSpeech = {
-  "adj.": "shonlìu",
-  "adp.": "starlìu",
-  "adv.": "fyalìu",
-  "conj.": "tilìu",
-  "inter.": "tìpawm",
-  "intj.": "tìleym",
-  "n.": "tstxolìu",
-  "num.": "holbay",
-  "part.": "lahea fnel",
-  "ph.": "lìukìngvi",
-  "pn.": "tstxolìu a vll",
-  "prop.n.": "tstxo",
-  "sbd.": "zeya fnetilìu",
-  "vim.": "srungaa kemlìu (kea -l/-t)",
-  "vin.": "kemlìu (kea -l/-t)",
-  "vtr.": "kemlìu (-l/-t)",
-  "vtrm.": "srungaa kemlìu tìlateme",
-  "adj., adv.": "shonlìu, fyalìu",
-  "adj., conj.": "shonlìu, tilìu",
-  "adj., intj.": "shonlìu, tìleym",
-  "adj., n.": "shonlìu, tstxolìu",
-  "adv., conj.": "fyalìu, tilìu",
-  "adv., intj.": "fyalìu, tìleym",
-  "adv., n.": "fyalìu, tstxolìu",
-  "inter., intj.": "tìpawm, tìleym",
-  "n., intj.": "tstxolìu, tìleym",
-  "part., intj.": "lahea fnel, tìleym",
-  "vin., intj.": "kemlìu (kea -l/-t), tìleym",
-  "vin., vtr.": "kemlìu",
+const partOfSpeech: PartOfSpeech = {
+  "adj.": { abbr: "adj.", name: "shonlìu" },
+  "adp.": { abbr: "adp.", name: "starlìu" },
+  "adv.": { abbr: "adv.", name: "fyalìu" },
+  "conj.": { abbr: "conj.", name: "tilìu" },
+  "inter.": { abbr: "inter.", name: "tìpawm" },
+  "intj.": { abbr: "intj.", name: "tìleym" },
+  "n.": { abbr: "n.", name: "tstxolìu" },
+  "num.": { abbr: "num.", name: "holbay" },
+  "part.": { abbr: "part.", name: "lahea fnel" },
+  "ph.": { abbr: "ph.", name: "lìukìngvi" },
+  "pn.": { abbr: "pn.", name: "tstxolìu a vll" },
+  "prop.n.": { abbr: "prop.n.", name: "tstxo" },
+  "sbd.": { abbr: "sbd.", name: "zeya fnetilìu" },
+  "vim.": { abbr: "vim.", name: "srungaa kemlìu (kea -l/-t)" },
+  "vin.": { abbr: "vin.", name: "kemlìu (kea -l/-t)" },
+  "vtr.": { abbr: "vtr.", name: "kemlìu (-l/-t)" },
+  "vtrm.": { abbr: "vtrm.", name: "srungaa kemlìu tìlateme" },
+  "adj., adv.": { abbr: "adj., adv.", name: "shonlìu, fyalìu" },
+  "adj., conj.": { abbr: "adj., conj.", name: "shonlìu, tilìu" },
+  "adj., intj.": { abbr: "adj., intj.", name: "shonlìu, tìleym" },
+  "adj., n.": { abbr: "adj., n.", name: "shonlìu, tstxolìu" },
+  "adv., conj.": { abbr: "adv., conj.", name: "fyalìu, tilìu" },
+  "adv., intj.": { abbr: "adv., intj.", name: "fyalìu, tìleym" },
+  "adv., n.": { abbr: "adv., n.", name: "fyalìu, tstxolìu" },
+  "inter., intj.": { abbr: "inter., intj.", name: "tìpawm, tìleym" },
+  "n., intj.": { abbr: "n., intj.", name: "tstxolìu, tìleym" },
+  "part., intj.": { abbr: "part., intj.", name: "lahea fnel, tìleym" },
+  "vin., intj.": { abbr: "vin., intj.", name: "kemlìu (kea -l/-t), tìleym" },
+  "vin., vtr.": { abbr: "vin., vtr.", name: "kemlìu" },
 };
 
-const partOfSpeechList = Object.entries(partOfSpeech).map(([value, name]) => ({
-  value,
-  name,
-}));
+const partOfSpeechList = Object.entries(partOfSpeech).map(
+  ([value, { name }]) => ({ name, value })
+);
 
 const strings: UITranslation = {
   common: {

@@ -1,42 +1,41 @@
 import { CameronWords } from "@/constants/Cameron";
-import type { UITranslation } from "@/types/i18n";
+import type { PartOfSpeech, UITranslation } from "@/types/i18n";
 
-const partOfSpeech = {
-  "adj.": "Sıfat",
-  "adp.": "Edat",
-  "adv.": "Zarf",
-  "conj.": "Bağlaç",
-  "inter.": "Soru",
-  "intj.": "Ünlem",
-  "n.": "İsim",
-  "num.": "Sayı",
-  "part.": "Parça",
-  "ph.": "İfade",
-  "pn.": "Zamir",
-  "prop.n.": "Özel isim",
-  "sbd.": "Edat",
-  "vim.": "Edat",
-  "vin.": "Edat",
-  "vtr.": "Edat",
-  "vtrm.": "Edat",
-  "adj., adv.": "Sıfat, Zarf",
-  "adj., conj.": "Sıfat, Bağlaç",
-  "adj., intj.": "Sıfat, Ünlem",
-  "adj., n.": "Sıfat, İsim",
-  "adv., conj.": "Zarf, Bağlaç",
-  "adv., intj.": "Zarf, Ünlem",
-  "adv., n.": "Zarf, İsim",
-  "inter., intj.": "Soru, Ünlem",
-  "n., intj.": "İsim, Ünlem",
-  "part., intj.": "Parça, Ünlem",
-  "vin., intj.": "Edat",
-  "vin., vtr.": "Edat",
+const partOfSpeech: PartOfSpeech = {
+  "adj.": { abbr: "adj.", name: "Sıfat" },
+  "adp.": { abbr: "adp.", name: "Edat" },
+  "adv.": { abbr: "adv.", name: "Zarf" },
+  "conj.": { abbr: "conj.", name: "Bağlaç" },
+  "inter.": { abbr: "inter.", name: "Soru" },
+  "intj.": { abbr: "intj.", name: "Ünlem" },
+  "n.": { abbr: "n.", name: "İsim" },
+  "num.": { abbr: "num.", name: "Sayı" },
+  "part.": { abbr: "part.", name: "Parça" },
+  "ph.": { abbr: "ph.", name: "İfade" },
+  "pn.": { abbr: "pn.", name: "Zamir" },
+  "prop.n.": { abbr: "prop.n.", name: "Özel isim" },
+  "sbd.": { abbr: "sbd.", name: "Edat" },
+  "vim.": { abbr: "vim.", name: "Edat" },
+  "vin.": { abbr: "vin.", name: "Edat" },
+  "vtr.": { abbr: "vtr.", name: "Edat" },
+  "vtrm.": { abbr: "vtrm.", name: "Edat" },
+  "adj., adv.": { abbr: "adj., adv.", name: "Sıfat, Zarf" },
+  "adj., conj.": { abbr: "adj., conj.", name: "Sıfat, Bağlaç" },
+  "adj., intj.": { abbr: "adj., intj.", name: "Sıfat, Ünlem" },
+  "adj., n.": { abbr: "adj., n.", name: "Sıfat, İsim" },
+  "adv., conj.": { abbr: "adv., conj.", name: "Zarf, Bağlaç" },
+  "adv., intj.": { abbr: "adv., intj.", name: "Zarf, Ünlem" },
+  "adv., n.": { abbr: "adv., n.", name: "Zarf, İsim" },
+  "inter., intj.": { abbr: "inter., intj.", name: "Soru, Ünlem" },
+  "n., intj.": { abbr: "n., intj.", name: "İsim, Ünlem" },
+  "part., intj.": { abbr: "part., intj.", name: "Parça, Ünlem" },
+  "vin., intj.": { abbr: "vin., intj.", name: "Edat" },
+  "vin., vtr.": { abbr: "vin., vtr.", name: "Edat" },
 };
 
-const partOfSpeechList = Object.entries(partOfSpeech).map(([value, name]) => ({
-  value,
-  name,
-}));
+const partOfSpeechList = Object.entries(partOfSpeech).map(
+  ([value, { name }]) => ({ name, value })
+);
 
 const strings: UITranslation = {
   common: {

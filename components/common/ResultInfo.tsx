@@ -25,9 +25,8 @@ export function ResultInfo({ word }: ResultInfoProps) {
   const { playSound, disabled } = useSound();
   const { resultsLanguage } = useResultsLanguageContext();
   const local = word[resultsLanguage.toUpperCase() as Uppercase<LanguageCode>];
-  const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
-  const ui = getUI(appLanguage, dialect);
+  const ui = getUI(resultsLanguage, dialect);
   const { themeName } = useThemeNameContext();
   const colorExtension = getColorExtension(themeName);
   const forestNavi = word.Navi;
@@ -39,6 +38,7 @@ export function ResultInfo({ word }: ResultInfoProps) {
   return (
     <View style={styles.container}>
       <View style={styles.buttonContainer}>
+        {/* Audio Button */}
         <Button
           onPress={() => playSound(word.ID)}
           disabled={disabled || (dialect === "reef" && forestNavi !== reefNavi)}
@@ -47,32 +47,41 @@ export function ResultInfo({ word }: ResultInfoProps) {
           style={styles.audioButton}
           textStyle={{ color: colorExtension.dark.text }}
         />
+        {/* Favorite Button */}
         <FavoriteButton word={word} />
       </View>
+      {/* Na'vi */}
       <DetailItem
         label={ui.search.navi}
         value={dialect === "reef" ? reefNavi : forestNavi}
       />
+      {/* Part Of Speech */}
       <DetailItem
         label={ui.search.partOfSpeech}
-        value={`${word.PartOfSpeech} (${
-          ui.common.partOfSpeech[word.PartOfSpeech]
+        value={`${ui.common.partOfSpeech[word.PartOfSpeech].abbr} (${
+          ui.common.partOfSpeech[word.PartOfSpeech].name
         })`}
       />
+      {/* Definition */}
       <DetailItem label={ui.search.definition} value={local} />
+      {/* IPA, Breakdown */}
       <Pronunciation {...word} />
+      {/* Infix Locations */}
       {word.PartOfSpeech.startsWith("v") && (
         <>
+          {/* Dots */}
           <DetailItem
             label={ui.search.infixDots}
             value={dialect === "reef" ? reefInfixDots : word.InfixDots}
           />
+          {/* Brackets */}
           <DetailItem
             label={ui.search.infixSlots}
             value={dialect === "reef" ? reefInfixSlots : word.InfixLocations}
           />
         </>
       )}
+      {/* Prefixes */}
       {word.Affixes.Prefix && (
         <AffixDetail
           label={ui.search.prefixes}
@@ -80,6 +89,7 @@ export function ResultInfo({ word }: ResultInfoProps) {
           type="prefix"
         />
       )}
+      {/* Infixes */}
       {word.Affixes.Infix && (
         <AffixDetail
           label={ui.search.infixes}
@@ -87,6 +97,7 @@ export function ResultInfo({ word }: ResultInfoProps) {
           type="infix"
         />
       )}
+      {/* Suffixes */}
       {word.Affixes.Suffix && (
         <AffixDetail
           label={ui.search.suffixes}
@@ -94,18 +105,21 @@ export function ResultInfo({ word }: ResultInfoProps) {
           type="suffix"
         />
       )}
+      {/* Lenition */}
       {word.Affixes.Lenition && (
         <DetailItem
           label={ui.search.lenition}
           value={word.Affixes.Lenition.join(", ")}
         />
       )}
+      {/* Comment */}
       {word.Affixes.Comment && (
         <DetailItem
           label={ui.search.comment}
           value={word.Affixes.Comment.join(", ")}
         />
       )}
+      {/* Source */}
       <DetailItem link label={ui.search.source} value={word.Source} />
     </View>
   );

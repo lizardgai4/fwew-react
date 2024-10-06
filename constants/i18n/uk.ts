@@ -1,42 +1,59 @@
 import { CameronWords } from "@/constants/Cameron";
-import type { UITranslation } from "@/types/i18n";
+import type { PartOfSpeech, UITranslation } from "@/types/i18n";
 
-const partOfSpeech = {
-  "adj.": "Прикметник",
-  "adp.": "Прийменник",
-  "adv.": "Прислівник",
-  "conj.": "Сполучник",
-  "inter.": "Питальний*",
-  "intj.": "Вставне слово, вигук",
-  "n.": "Іменник",
-  "num.": "Чисельник",
-  "part.": "Частка*",
-  "ph.": "Речення*",
-  "pn.": "Займенник",
-  "prop.n.": "Власна назва*",
-  "sbd.": "іменник*",
-  "vim.": "Неперехідне модальне дієслово",
-  "vin.": "Неперехідне дієслово",
-  "vtr.": "Перехідне дієслово",
-  "vtrm.": "Перехідне модальне дієслово",
-  "adj., adv.": "Прикметник, Прислівник",
-  "adj., conj.": "Прикметник, Сполучник",
-  "adj., intj.": "Прикметник, Вставне слово, вигук",
-  "adj., n.": "Прикметник, Іменник",
-  "adv., conj.": "Прислівник, Сполучник",
-  "adv., intj.": "Прислівник, Вставне слово, вигук",
-  "adv., n.": "Прислівник, Іменник",
-  "inter., intj.": "Питальний*, Вставне слово, вигук",
-  "n., intj.": "Іменник, Вставне слово, вигук",
-  "part., intj.": "Частка*, Вставне слово, вигук",
-  "vin., intj.": "Неперехідне дієслово, Вставне слово, вигук",
-  "vin., vtr.": "Неперехідне або Перехідне дієслово",
+const partOfSpeech: PartOfSpeech = {
+  "adj.": { abbr: "прикм.", name: "Прикметник" },
+  "adp.": { abbr: "adp.", name: "Прийменник" },
+  "adv.": { abbr: "присл.", name: "Прислівник" },
+  "conj.": { abbr: "conj.", name: "Сполучник" },
+  "inter.": { abbr: "inter.", name: "Питальний*" },
+  "intj.": { abbr: "intj.", name: "Вставне слово, вигук" },
+  "n.": { abbr: "ім.", name: "Іменник" },
+  "num.": { abbr: "числ.", name: "Числівник" },
+  "part.": { abbr: "part.", name: "Частка*" },
+  "ph.": { abbr: "ph.", name: "Речення*" },
+  "pn.": { abbr: "pn.", name: "Займенник" },
+  "prop.n.": { abbr: "prop.n.", name: "Власна назва*" },
+  "sbd.": { abbr: "sbd.", name: "іменник*" },
+  "vim.": { abbr: "vim.", name: "Неперехідне модальне дієслово" },
+  "vin.": { abbr: "vin.", name: "Неперехідне дієслово" },
+  "vtr.": { abbr: "vtr.", name: "Перехідне дієслово" },
+  "vtrm.": { abbr: "vtrm.", name: "Перехідне модальне дієслово" },
+  "adj., adv.": { abbr: "прикм., adv.", name: "Прикметник, Прислівник" },
+  "adj., conj.": { abbr: "прикм., conj.", name: "Прикметник, Сполучник" },
+  "adj., intj.": {
+    abbr: "прикм., intj.",
+    name: "Прикметник, Вставне слово, вигук",
+  },
+  "adj., n.": { abbr: "прикм., ім.", name: "Прикметник, Іменник" },
+  "adv., conj.": { abbr: "присл., conj.", name: "Прислівник, Сполучник" },
+  "adv., intj.": {
+    abbr: "присл., intj.",
+    name: "Прислівник, Вставне слово, вигук",
+  },
+  "adv., n.": { abbr: "присл., ім.", name: "Прислівник, Іменник" },
+  "inter., intj.": {
+    abbr: "inter., intj.",
+    name: "Питальний*, Вставне слово, вигук",
+  },
+  "n., intj.": { abbr: "ім., intj.", name: "Іменник, Вставне слово, вигук" },
+  "part., intj.": {
+    abbr: "part., intj.",
+    name: "Частка*, Вставне слово, вигук",
+  },
+  "vin., intj.": {
+    abbr: "vin., intj.",
+    name: "Неперехідне дієслово, Вставне слово, вигук",
+  },
+  "vin., vtr.": {
+    abbr: "vin., vtr.",
+    name: "Неперехідне або Перехідне дієслово",
+  },
 };
 
-const partOfSpeechList = Object.entries(partOfSpeech).map(([value, name]) => ({
-  name,
-  value,
-}));
+const partOfSpeechList = Object.entries(partOfSpeech).map(
+  ([value, { name }]) => ({ name, value })
+);
 
 const strings: UITranslation = {
   common: {
