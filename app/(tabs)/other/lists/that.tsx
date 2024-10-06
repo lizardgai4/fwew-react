@@ -19,20 +19,14 @@ export default function ThatScreen() {
   if (landscape) {
     return (
       <ScrollView>
-        <View
-          style={[
-            styles.container,
-            {
-              height: "100%",
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center",
-            },
-          ]}
-        >
-          <ThatTable1 />
+        <View style={[styles.container, styles.rowContainer]}>
+          <View style={styles.tableContainer}>
+            <ThatTable1 />
+          </View>
           <Divider vertical />
-          <ThatTable2 />
+          <View style={styles.tableContainer}>
+            <ThatTable2 />
+          </View>
         </View>
       </ScrollView>
     );
@@ -52,98 +46,21 @@ export default function ThatScreen() {
 function ThatTable1() {
   const { resultsLanguage } = useResultsLanguageContext();
   const { dialect } = useDialectContext();
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
   const ui = getUI(resultsLanguage, dialect);
 
   return (
-    <View style={styles.thatTable1}>
-      {ui.that.table1Data.map((row, index) => {
-        if (index === 0) {
-          return <ThatTable1HeaderRow1 key={`tt1hr1_r${index}`} row={row} />;
-        }
-        if (index === 1) {
-          return <ThatTable1HeaderRow2 key={`tt1hr2_r${index}`} row={row} />;
-        }
-        return <ThatTable1Row key={`tt1r_r${index}`} row={row} />;
-      })}
-    </View>
-  );
-}
-
-function ThatTable1HeaderRow1({ row }: { row: string[] }) {
-  const widths = [50, 50, 120, 0];
-  const { themeName } = useThemeNameContext();
-  const Themed = getThemedComponents(themeName);
-
-  return (
-    <View style={styles.tableRow}>
-      {row.map((col, i) => {
-        return (
-          <Themed.Text
-            key={`tt1hr1_c${i}`}
-            style={{
-              fontSize: 16,
-              fontWeight: "bold",
-              width: widths[i],
-            }}
-          >
-            {col}
-          </Themed.Text>
-        );
-      })}
-    </View>
-  );
-}
-
-function ThatTable1HeaderRow2({ row }: { row: string[] }) {
-  const widths = [0, 110, 70, 44, 55];
-  const { themeName } = useThemeNameContext();
-  const Themed = getThemedComponents(themeName);
-
-  return (
-    <View style={styles.tableRow}>
-      {row.map((col, i) => {
-        return (
-          <Themed.Text
-            key={`tt1hr2_c${i}`}
-            style={{
-              fontSize: 16,
-              fontWeight: "bold",
-              width: widths[i],
-            }}
-          >
-            {col}
-          </Themed.Text>
-        );
-      })}
-    </View>
-  );
-}
-
-function ThatTable1Row({ row }: { row: string[] }) {
-  const { dialect } = useDialectContext();
-  const { themeName } = useThemeNameContext();
-  const Themed = getThemedComponents(themeName);
-
-  return (
-    <View style={styles.tableRowWithGap}>
-      {row.map((col, i) => {
-        if (dialect === "reef" && reefReplacements.has(col)) {
-          col = reefReplacements.get(col)!; // non-null assertion
-        }
-        if (i === 0) {
-          return (
-            <Themed.Text key={`tt1r_c${i}`} style={styles.table1Col1}>
-              {col}
-            </Themed.Text>
-          );
-        }
-        return (
-          <Themed.Text key={`tt1r_c${i}`} style={styles.table1Col}>
-            {col}
-          </Themed.Text>
-        );
-      })}
-    </View>
+    <ThatTable
+      data={ui.that.table1Data}
+      renderItem={(col, c) => (
+        <Themed.Text key={`tt1_c${c}`} style={{ flex: c > 0 ? 1 : 1.5 }}>
+          {dialect === "reef" && reefReplacements.get(col)
+            ? reefReplacements.get(col)
+            : col}
+        </Themed.Text>
+      )}
+    />
   );
 }
 
@@ -159,7 +76,6 @@ function Divider({ vertical }: { vertical?: boolean }) {
         width: vertical ? 1 : 360,
         maxWidth: vertical ? 1 : "93%",
         alignSelf: "center",
-        margin: vertical ? 32 : 0,
       }}
     />
   );
@@ -168,47 +84,52 @@ function Divider({ vertical }: { vertical?: boolean }) {
 function ThatTable2() {
   const { resultsLanguage } = useResultsLanguageContext();
   const { dialect } = useDialectContext();
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
   const ui = getUI(resultsLanguage, dialect);
 
   return (
-    <View style={styles.thatTable2}>
-      {ui.that.table2Data.map((row, index) => (
-        <ThatTable2Row key={`tt2r_r${index}`} row={row} />
-      ))}
-    </View>
+    <ThatTable
+      data={ui.that.table2Data}
+      renderItem={(col, c) => (
+        <Themed.Text
+          key={`tt2_c${c}`}
+          style={{
+            flex: 1,
+            fontStyle: c === 1 ? "italic" : "normal",
+          }}
+        >
+          {dialect === "reef" && reefReplacements.get(col)
+            ? reefReplacements.get(col)
+            : col}
+        </Themed.Text>
+      )}
+    />
   );
 }
 
-function ThatTable2Row({ row }: { row: string[] }) {
-  const { dialect } = useDialectContext();
+type ThatTableProps = {
+  data: string[][];
+  renderItem: (value: string, index: number, array: string[]) => JSX.Element;
+};
+
+function ThatTable({ data, renderItem }: ThatTableProps) {
   const { themeName } = useThemeNameContext();
   const Themed = getThemedComponents(themeName);
 
   return (
-    <View style={styles.tableRow}>
-      {row.map((col, i) => {
-        if (dialect === "reef" && reefReplacements.has(col)) {
-          col = reefReplacements.get(col)!; // non-null assertion
-        }
-        const widths = [100, 60, 100];
-        const fontWeight = i === 0 ? "bold" : "normal";
-        const fontStyle = i === 1 ? "italic" : "normal";
-        const fontSize = i === 0 ? 16 : 14;
-        return (
-          <Themed.Text
-            key={`tt2r_c${i}`}
-            style={{
-              width: widths[i],
-              fontWeight,
-              fontStyle,
-              fontSize,
-            }}
-          >
-            {col}
-          </Themed.Text>
-        );
-      })}
-    </View>
+    <Themed.CardView
+      style={{
+        gap: 16,
+        padding: 16,
+      }}
+    >
+      {data.map((row, r) => (
+        <View key={`tt2_r${r}`} style={styles.tableRow}>
+          {row.map(renderItem)}
+        </View>
+      ))}
+    </Themed.CardView>
   );
 }
 
@@ -216,53 +137,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     gap: 32,
+    padding: 16,
   },
-  header: {
-    fontSize: 24,
-    fontWeight: "bold",
-    alignSelf: "center",
+  rowContainer: {
+    flexDirection: "row",
+    alignItems: "center",
   },
-  subheader: {
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-  words: {
-    fontSize: 16,
-  },
-  italic: {
-    fontSize: 16,
-    fontStyle: "italic",
-  },
-  thatTable1: {
-    alignSelf: "center",
-    padding: 12,
-    paddingTop: 12,
-    gap: 12,
-  },
-  thatTable2: {
-    alignSelf: "center",
-    padding: 12,
-    gap: 12,
-    paddingBottom: 32,
+  tableContainer: {
+    flex: 1,
   },
   tableRow: {
     flexDirection: "row",
+    gap: 8,
+    justifyContent: "center",
     alignItems: "center",
-    justifyContent: "space-between",
-  },
-  tableRowWithGap: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    gap: 12,
-  },
-  table1Col1: {
-    fontSize: 16,
-    fontWeight: "bold",
-    width: 80,
-  },
-  table1Col: {
-    fontSize: 14,
-    width: 50,
   },
 });

@@ -38,7 +38,7 @@ const partOfSpeechList = Object.entries(partOfSpeech).map(
 );
 
 const table1Data = [
-  ["격", "명사", "접속사", ""],
+  ["격", "명사", "", "접속사", ""],
   ["", "", "근경", "원경", "답변"],
   ["기본형", "Tsaw", "Fwa", "Tsawa", "Teynga"],
   ["주어", "Tsal", "Fula", "Tsala", "Teyngla"],

@@ -37,7 +37,7 @@ const partOfSpeechList = Object.entries(partOfSpeech).map(
 );
 
 const table1Data = [
-  ["Case", "Noun", "Clause Wrapper", ""],
+  ["Case", "Noun", "", "Clause Wrapper", ""],
   ["", "", "proximal", "distal", "answer"],
   ["Subjective", "Tsaw", "Fwa", "Tsawa", "Teynga"],
   ["Agentive", "Tsal", "Fula", "Tsala", "Teyngla"],
