@@ -42,6 +42,29 @@ const partOfSpeechList = Object.entries(partOfSpeech).map(
   ([value, { name }]) => ({ name, value })
 );
 
+const table1Data = [
+  ["Case", "Noun", "Clause Wrapper", ""],
+  ["", "", "proximal", "distal", "answer"],
+  ["Subjective", "Tsaw", "Fwa", "Tsawa", "Teynga"],
+  ["Agentive", "Tsal", "Fula", "Tsala", "Teyngla"],
+  ["Patientive", "Tsat", "Futa", "Tsata", "Teyngta"],
+  ["Genitive", "Tseyä", "N/A", "N/A", ""],
+  ["Dative", "Tsar", "Fura", "Tsara", ""],
+  ["Topical", "Tsari", "Furia", "Tsaria", ""],
+];
+
+const table2Data = [
+  ["tsa-", "prefix", "that"],
+  ["tsa'u", "n.", "that (thing)"],
+  ["tsakem", "n.", "that (action)"],
+  ["fmawnta", "sbd.", "that news"],
+  ["fayluta", "sbd.", "these words"],
+  ["tsnì", "sbd.", "that (function word)"],
+  ["tsonta", "conj.", "to (with kxìm)"],
+  ["kuma/akum", "conj.", "that (as a result)"],
+  ["a", "part.", "clause level attributive marker"],
+];
+
 const getResultText = (count: number) => {
   const lastDigit = count % 10;
   const lastTwoDigits = count % 100;
@@ -279,6 +302,10 @@ const strings: UITranslation = {
   stats: {
     phonemes: "Phoneme Frequencies", // TODO
     clusters: "Согласные кластеры",
+  },
+  that: {
+    table1Data,
+    table2Data,
   },
   settings: {
     about: "О приложении",

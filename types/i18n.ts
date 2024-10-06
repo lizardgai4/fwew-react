@@ -132,6 +132,11 @@ export type StatsStrings = {
   clusters: string;
 };
 
+export type ThatStrings = {
+  table1Data: string[][];
+  table2Data: string[][];
+};
+
 export type SettingsStrings = {
   about: string;
   version: string;
@@ -160,6 +165,7 @@ export type UITranslation = {
   cameronWords: CameronWordsStrings;
   lenition: LenitionStrings;
   stats: StatsStrings;
+  that: ThatStrings;
   settings: SettingsStrings;
 };
 

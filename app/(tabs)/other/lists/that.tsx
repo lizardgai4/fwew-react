@@ -1,9 +1,7 @@
-import {
-  reefReplacements,
-  ThatTable1Data,
-  ThatTable2Data,
-} from "@/constants/That";
+import { getUI } from "@/constants/i18n";
+import { reefReplacements } from "@/constants/That";
 import { useDialectContext } from "@/context/DialectContext";
+import { useResultsLanguageContext } from "@/context/ResultsLanguageContext";
 import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { getThemedComponents } from "@/themes";
 import { useTheme } from "@react-navigation/native";
@@ -52,9 +50,13 @@ export default function ThatScreen() {
 }
 
 function ThatTable1() {
+  const { resultsLanguage } = useResultsLanguageContext();
+  const { dialect } = useDialectContext();
+  const ui = getUI(resultsLanguage, dialect);
+
   return (
     <View style={styles.thatTable1}>
-      {ThatTable1Data.map((row, index) => {
+      {ui.that.table1Data.map((row, index) => {
         if (index === 0) {
           return <ThatTable1HeaderRow1 key={`tt1hr1_r${index}`} row={row} />;
         }
@@ -164,9 +166,13 @@ function Divider({ vertical }: { vertical?: boolean }) {
 }
 
 function ThatTable2() {
+  const { resultsLanguage } = useResultsLanguageContext();
+  const { dialect } = useDialectContext();
+  const ui = getUI(resultsLanguage, dialect);
+
   return (
     <View style={styles.thatTable2}>
-      {ThatTable2Data.map((row, index) => (
+      {ui.that.table2Data.map((row, index) => (
         <ThatTable2Row key={`tt2r_r${index}`} row={row} />
       ))}
     </View>
