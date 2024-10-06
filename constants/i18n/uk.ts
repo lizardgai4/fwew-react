@@ -45,10 +45,6 @@ const partOfSpeech: PartOfSpeech = {
     abbr: "vin., intj.",
     name: "Неперехідне дієслово, Вставне слово, вигук",
   },
-  "vin., vtr.": {
-    abbr: "vin., vtr.",
-    name: "Неперехідне або Перехідне дієслово",
-  },
 };
 
 const partOfSpeechList = Object.entries(partOfSpeech).map(

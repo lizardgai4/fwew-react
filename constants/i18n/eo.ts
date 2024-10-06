@@ -36,10 +36,6 @@ const partOfSpeech: PartOfSpeech = {
     abbr: "vin., intj.",
     name: "netranzitiva verbo, interjekcio",
   },
-  "vin., vtr.": {
-    abbr: "vin., vtr.",
-    name: "netranzitiva aŭ tranzitiva verbo",
-  },
 };
 
 const partOfSpeechList = Object.entries(partOfSpeech).map(

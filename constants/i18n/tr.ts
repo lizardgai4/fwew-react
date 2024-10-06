@@ -30,7 +30,6 @@ const partOfSpeech: PartOfSpeech = {
   "n., intj.": { abbr: "n., intj.", name: "İsim, Ünlem" },
   "part., intj.": { abbr: "part., intj.", name: "Parça, Ünlem" },
   "vin., intj.": { abbr: "vin., intj.", name: "Edat" },
-  "vin., vtr.": { abbr: "vin., vtr.", name: "Edat" },
 };
 
 const partOfSpeechList = Object.entries(partOfSpeech).map(

@@ -36,10 +36,6 @@ const partOfSpeech: PartOfSpeech = {
     abbr: "vin., intj.",
     name: "Verbo intransitivo, Interjeição",
   },
-  "vin., vtr.": {
-    abbr: "vin., vtr.",
-    name: "Verbo Intransitivo ou Transitivo",
-  },
 };
 
 const partOfSpeechList = Object.entries(partOfSpeech).map(

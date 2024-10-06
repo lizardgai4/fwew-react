@@ -30,7 +30,6 @@ const partOfSpeech: PartOfSpeech = {
   "n., intj.": { abbr: "n., intj.", name: "Főnév, Közbeszólás" },
   "part., intj.": { abbr: "part., intj.", name: "Particle, Interjection" },
   "vin., intj.": { abbr: "vin., intj.", name: "Intransitív ige, közbeszólás" },
-  "vin., vtr.": { abbr: "vin., vtr.", name: "Intransitive Or Transitive Verb" },
 };
 
 const partOfSpeechList = Object.entries(partOfSpeech).map(

@@ -36,10 +36,6 @@ const partOfSpeech: PartOfSpeech = {
     abbr: "vin., intj.",
     name: "czasownik nieprzechodni, wykrzyknik",
   },
-  "vin., vtr.": {
-    abbr: "vin., vtr.",
-    name: "czasownik nieprzechodni lub przechodni",
-  },
 };
 
 const partOfSpeechList = Object.entries(partOfSpeech).map(

@@ -32,7 +32,6 @@ const partOfSpeech: PartOfSpeech = {
   "n., intj.": { abbr: "n., intj.", name: "tstxolìu, tìleym" },
   "part., intj.": { abbr: "part., intj.", name: "lahea fnel, tìleym" },
   "vin., intj.": { abbr: "vin., intj.", name: "kemlìu (kea -l/-t), tìleym" },
-  "vin., vtr.": { abbr: "vin., vtr.", name: "kemlìu" },
 };
 
 const partOfSpeechList = Object.entries(partOfSpeech).map(
