@@ -38,26 +38,30 @@ const partOfSpeechList = Object.entries(partOfSpeech).map(
 );
 
 const table1Data = [
-  ["Case", "Noun", "Clause Wrapper", ""],
-  ["", "", "proximal", "distal", "answer"],
-  ["Subjective", "Tsaw", "Fwa", "Tsawa", "Teynga"],
-  ["Agentive", "Tsal", "Fula", "Tsala", "Teyngla"],
-  ["Patientive", "Tsat", "Futa", "Tsata", "Teyngta"],
-  ["Genitive", "Tseyä", "N/A", "N/A", ""],
-  ["Dative", "Tsar", "Fura", "Tsara", ""],
-  ["Topical", "Tsari", "Furia", "Tsaria", ""],
+  ["격", "명사", "접속사", ""],
+  ["", "", "근경", "원경", "답변"],
+  ["기본형", "Tsaw", "Fwa", "Tsawa", "Teynga"],
+  ["주어", "Tsal", "Fula", "Tsala", "Teyngla"],
+  ["직접목적어", "Tsat", "Futa", "Tsata", "Teyngta"],
+  ["소유", "Tseyä", "N/A", "N/A", ""],
+  ["간접목적어", "Tsar", "Fura", "Tsara", ""],
+  ["주제문", "Tsari", "Furia", "Tsaria", ""],
 ];
 
 const table2Data = [
-  ["tsa-", "prefix", "that"],
-  ["tsa'u", "n.", "that (thing)"],
-  ["tsakem", "n.", "that (action)"],
-  ["fmawnta", "sbd.", "that news"],
-  ["fayluta", "sbd.", "these words"],
-  ["tsnì", "sbd.", "that (function word)"],
-  ["tsonta", "conj.", "to (with kxìm)"],
-  ["kuma/akum", "conj.", "that (as a result)"],
-  ["a", "part.", "clause level attributive marker"],
+  ["tsa-", "접두사", "그것"],
+  ["tsa'u", "명", "그것(사물)"],
+  ["tsakem", "명", "그것(행위)"],
+  ["fmawnta", "종속접속사", "그 소식"],
+  ["fayluta", "종속접속사", "그 말, 그 단어들"],
+  ["tsnì", "종속접속사", "(특정 동사와 함께 사용하는 종속접속사)"],
+  [
+    "tsonta",
+    "접속",
+    "~하라고, ~하도록(kxìm'명령하다' 동사와 함께 사용하는 종속접속사)",
+  ],
+  ["kuma/akum", "접속", "그리하여, 결과적으로"],
+  ["a", "불변화사", "~한, ~하는 (절 단위의 명사접속사)"],
 ];
 
 const strings: UITranslation = {
