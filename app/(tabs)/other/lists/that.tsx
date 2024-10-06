@@ -43,6 +43,31 @@ export default function ThatScreen() {
   );
 }
 
+type ThatTableProps = {
+  data: string[][];
+  renderItem: (value: string, row: number, col: number) => JSX.Element;
+};
+
+function ThatTable({ data, renderItem }: ThatTableProps) {
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
+
+  return (
+    <Themed.CardView
+      style={{
+        gap: 16,
+        padding: 16,
+      }}
+    >
+      {data.map((row, r) => (
+        <View key={`tt2_r${r}`} style={styles.tableRow}>
+          {row.map((col, c) => renderItem(col, r, c))}
+        </View>
+      ))}
+    </Themed.CardView>
+  );
+}
+
 function ThatTable1() {
   const { resultsLanguage } = useResultsLanguageContext();
   const { dialect } = useDialectContext();
@@ -53,8 +78,41 @@ function ThatTable1() {
   return (
     <ThatTable
       data={ui.that.table1Data}
-      renderItem={(col, c) => (
-        <Themed.Text key={`tt1_c${c}`} style={{ flex: c > 0 ? 1 : 1.5 }}>
+      renderItem={(col, r, c) => (
+        <Themed.Text
+          key={`tt1_r${r}_c${c}`}
+          style={{
+            flex: c > 0 ? 1 : 1.5,
+            fontWeight: r < 2 ? "bold" : "normal",
+          }}
+        >
+          {dialect === "reef" && reefReplacements.get(col)
+            ? reefReplacements.get(col)
+            : col}
+        </Themed.Text>
+      )}
+    />
+  );
+}
+
+function ThatTable2() {
+  const { resultsLanguage } = useResultsLanguageContext();
+  const { dialect } = useDialectContext();
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
+  const ui = getUI(resultsLanguage, dialect);
+
+  return (
+    <ThatTable
+      data={ui.that.table2Data}
+      renderItem={(col, r, c) => (
+        <Themed.Text
+          key={`tt2_r${r}_c${c}`}
+          style={{
+            flex: 1,
+            fontStyle: c === 1 ? "italic" : "normal",
+          }}
+        >
           {dialect === "reef" && reefReplacements.get(col)
             ? reefReplacements.get(col)
             : col}
@@ -78,58 +136,6 @@ function Divider({ vertical }: { vertical?: boolean }) {
         alignSelf: "center",
       }}
     />
-  );
-}
-
-function ThatTable2() {
-  const { resultsLanguage } = useResultsLanguageContext();
-  const { dialect } = useDialectContext();
-  const { themeName } = useThemeNameContext();
-  const Themed = getThemedComponents(themeName);
-  const ui = getUI(resultsLanguage, dialect);
-
-  return (
-    <ThatTable
-      data={ui.that.table2Data}
-      renderItem={(col, c) => (
-        <Themed.Text
-          key={`tt2_c${c}`}
-          style={{
-            flex: 1,
-            fontStyle: c === 1 ? "italic" : "normal",
-          }}
-        >
-          {dialect === "reef" && reefReplacements.get(col)
-            ? reefReplacements.get(col)
-            : col}
-        </Themed.Text>
-      )}
-    />
-  );
-}
-
-type ThatTableProps = {
-  data: string[][];
-  renderItem: (value: string, index: number, array: string[]) => JSX.Element;
-};
-
-function ThatTable({ data, renderItem }: ThatTableProps) {
-  const { themeName } = useThemeNameContext();
-  const Themed = getThemedComponents(themeName);
-
-  return (
-    <Themed.CardView
-      style={{
-        gap: 16,
-        padding: 16,
-      }}
-    >
-      {data.map((row, r) => (
-        <View key={`tt2_r${r}`} style={styles.tableRow}>
-          {row.map(renderItem)}
-        </View>
-      ))}
-    </Themed.CardView>
   );
 }
 
