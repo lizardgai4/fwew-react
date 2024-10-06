@@ -5,6 +5,7 @@ import {
   Text as DefaultText,
   TextInput as DefaultTextInput,
   View as DefaultView,
+  Platform,
   type TextInputProps,
   type TextProps,
   type ViewProps,
@@ -142,6 +143,10 @@ function TextInput(props: TextInputProps) {
 }
 
 function updatePWATheme(dialect: Dialect): void {
+  if (Platform.OS !== "web") {
+    return;
+  }
+
   const attrThemeColor = "name=theme-color";
 
   const attrMediaLight = "media='(prefers-color-scheme: light)'";
