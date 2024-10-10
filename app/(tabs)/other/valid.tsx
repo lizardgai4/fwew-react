@@ -17,10 +17,27 @@ export default function ValidScreen() {
   const { width } = useWindowDimensions();
   const wide = width > 720;
 
+  if (wide) {
+    return (
+      <View style={{ gap: 16 }}>
+        <SearchBar query={query} search={search} cancel={cancel} autoFocus />
+        <ResultCount
+          resultCount={results.length}
+          visible={results.length > 0 && !loading}
+        />
+        {results.map((row, index) => (
+          <Themed.CardView key={`vrc_${index}`} style={styles.container}>
+            <Themed.Text>{row}</Themed.Text>
+          </Themed.CardView>
+        ))}
+      </View>
+    );
+  }
+
   return (
     <ScrollView keyboardShouldPersistTaps="always">
       <View style={{ alignItems: "center" }}>
-        <View style={[styles.container, { width: wide ? "66%" : "100%" }]}>
+        <View style={styles.container}>
           <SearchBar query={query} search={search} cancel={cancel} autoFocus />
           <ResultCount
             resultCount={results.length}

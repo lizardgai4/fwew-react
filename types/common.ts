@@ -20,4 +20,6 @@ export type DialectDisplayType = {
 export type LinkType = {
   href: Href<string>;
   title: string;
+  Component?: () => JSX.Element;
+  links?: LinkType[];
 };

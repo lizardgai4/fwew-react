@@ -38,8 +38,8 @@ export default function TabLayout() {
         headerTintColor: colorExtension.dark.text,
         tabBarActiveTintColor: theme.colors.primary,
         tabBarInactiveTintColor: colors.placeholder,
-        headerLeft: () => <Logo />,
-        headerRight: () => <ActionButtons />,
+        headerLeft: Logo,
+        headerRight: ActionButtons,
       }}
     >
       <Tabs.Screen
@@ -81,7 +81,6 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="ellipsis-h" color={color} />
           ),
-          headerShown: false,
         }}
       />
     </Tabs>

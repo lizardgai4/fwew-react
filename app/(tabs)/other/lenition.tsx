@@ -22,6 +22,7 @@ export default function LenitionScreen() {
   if (wide) {
     return (
       <WideLayout
+        containerStyle={{ padding: 0 }}
         sidebar={
           <>
             <LenitionTable />
