@@ -8,7 +8,7 @@ import {
   getPWAThemeUpdater,
   getThemedComponents,
 } from "@/themes";
-import { FontAwesomeIconName } from "@/types/icons";
+import type { FAIconName } from "@/types/icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { Href, useRouter } from "expo-router";
 import { Platform, Pressable, StyleSheet, View } from "react-native";
@@ -75,7 +75,7 @@ function DialectButton() {
 
 type ABProps = {
   href: Href<string>;
-  icon: FontAwesomeIconName;
+  icon: FAIconName;
 };
 
 function ActionButton({ href, icon }: ABProps) {

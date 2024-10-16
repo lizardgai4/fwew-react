@@ -1,11 +1,11 @@
-import type { FontAwesomeIconName } from "@/types/icons";
+import type { FAIconName } from "@/types/icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 import { Pressable, StyleSheet } from "react-native";
 
 type SmallButtonProps = {
   onPress: () => void;
-  icon: FontAwesomeIconName;
+  icon: FAIconName;
   color?: string;
   borderColor?: string;
   disabled?: boolean;
