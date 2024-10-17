@@ -15,6 +15,8 @@ import {
   useWindowDimensions,
   View,
 } from "react-native";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
+import { getThemedComponents, getBackground } from "@/themes";
 
 export default function SearchScreen() {
   const {
@@ -34,9 +36,12 @@ export default function SearchScreen() {
   const ui = getUI(appLanguage, dialect).search;
   const { width } = useWindowDimensions();
   const wide = width > 720;
+  const { themeName } = useThemeNameContext();
+  const Themed = getThemedComponents(themeName);
 
-  return (
-    <ScrollView
+  return getBackground(
+    themeName,
+    (<ScrollView
       keyboardShouldPersistTaps="always"
       refreshControl={
         <RefreshControl
@@ -72,7 +77,7 @@ export default function SearchScreen() {
           <FwewSearchResults loading={loading} results={results} />
         </View>
       </View>
-    </ScrollView>
+    </ScrollView>), dialect
   );
 }
 

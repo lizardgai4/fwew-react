@@ -5,7 +5,10 @@ import { ListResults } from "@/components/list/ListResults";
 import { useDebounce } from "@/hooks/useDebounce";
 import { useFilterExpression } from "@/hooks/useFilterExpression";
 import { useList } from "@/hooks/useList";
+import { getBackground } from "@/themes";
 import { useTheme } from "@react-navigation/native";
+import { useThemeName } from "@/hooks/useThemeName";
+import { useDialectContext } from "@/context/DialectContext";
 import { useEffect } from "react";
 import {
   RefreshControl,
@@ -22,6 +25,8 @@ export default function ListScreen() {
   const debounce = useDebounce();
   const resultsVisible = filterExpression.length > 0 && results.length > 0;
   const theme = useTheme();
+  const themeName = useThemeName().themeName;
+  const { dialect } = useDialectContext();
   const { width } = useWindowDimensions();
   const wide = width > 720;
 
@@ -37,8 +42,8 @@ export default function ListScreen() {
   }, [filterExpression, incomplete]);
 
   if (wide) {
-    return (
-      <WideLayout
+    return getBackground(themeName,
+      (<WideLayout
         sidebar={
           <ListOptions
             filters={filters}
@@ -66,7 +71,7 @@ export default function ListScreen() {
           getData,
           colors: [theme.colors.primary],
         }}
-      />
+      />), dialect
     );
   }
 

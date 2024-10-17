@@ -1,11 +1,13 @@
 import FwewTheme from "@/themes/fwew";
+import FrutigerAeroTheme from "@/themes/frutigerAero";
 import { type Dialect } from "@/types/common";
 import { type ColorExtension } from "@/types/theme";
 import { type Theme } from "@react-navigation/native";
-import { type ColorSchemeName } from "react-native";
+import { type ColorSchemeName, ViewStyle } from "react-native";
 
 const ThemeMap = {
   fwew: FwewTheme,
+  frutigerAero: FrutigerAeroTheme
 };
 
 export type ThemeName = keyof typeof ThemeMap;
@@ -33,4 +35,20 @@ export function getThemedComponents(themeName: ThemeName) {
 
 export function getPWAThemeUpdater(themeName: ThemeName) {
   return ThemeMap[themeName].updatePWATheme;
+}
+
+export function getTopbar(themeName: ThemeName, dialect: Dialect) {
+  return ThemeMap[themeName].Topbar(dialect);
+}
+
+export function getBottombar(themeName: ThemeName, dialect: Dialect) {
+  return ThemeMap[themeName].Bottombar(dialect);
+}
+
+export function getBackground(themeName: ThemeName, content: JSX.Element, dialect: Dialect) {
+  return ThemeMap[themeName].Background(content, dialect);
+}
+
+export function getButtonBackground(themeName: ThemeName, style:ViewStyle, content: JSX.Element, dialect: Dialect, selected: boolean) {
+  return ThemeMap[themeName].ButtonBackground(content, style, dialect, selected);
 }
