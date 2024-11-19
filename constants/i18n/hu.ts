@@ -1,42 +1,63 @@
 import { CameronWords } from "@/constants/Cameron";
-import type { UITranslation } from "@/types/i18n";
+import type { PartOfSpeech, UITranslation } from "@/types/i18n";
 
-const partOfSpeech = {
-  "adj.": "melléknév",
-  "adp.": "Adposition",
-  "adv.": "Adverb",
-  "conj.": "Conjunction",
-  "inter.": "Kérdő",
-  "intj.": "Közbeszólás",
-  "n.": "Főnév",
-  "szám.": "Szám",
-  "rész.": "Részecske",
-  "ph.": "Kifejezés",
-  "pn.": "Névmás",
-  "prop.n.": "Tulajdonnév",
-  "sbd.": "Beosztott",
-  "vim.": "Intransitív modális ige",
-  "vin.": "Intransitív ige",
-  "vtr.": "Tranzitív ige",
-  "vtrm.": "Tranzitív modális ige",
-  "adj., adv.": "Melléknév, határozószó",
-  "adj., conj.": "melléknév, kötőszó",
-  "adj., intj.": "melléknév, közbeszólás",
-  "adj., n.": "melléknév, főnév",
-  "adv., conj.": "Adverb, Conjuction",
-  "adv., intj.": "Adverb, Interjective",
-  "adv., n.": "határozószó, főnév",
-  "inter., intj.": "Kérdés, közbeszólás",
-  "n., intj.": "Főnév, Közbeszólás",
-  "part., intj.": "Particle, Interjection",
-  "vin., intj.": "Intransitív ige, közbeszólás",
-  "vin., vtr.": "Intransitive Or Transitive Verb",
+const partOfSpeech: PartOfSpeech = {
+  "adj.": { abbr: "adj.", name: "melléknév" },
+  "adp.": { abbr: "adp.", name: "Adposition" },
+  "adv.": { abbr: "adv.", name: "Adverb" },
+  "conj.": { abbr: "conj.", name: "Conjunction" },
+  "inter.": { abbr: "inter.", name: "Kérdő" },
+  "intj.": { abbr: "intj.", name: "Közbeszólás" },
+  "n.": { abbr: "n.", name: "Főnév" },
+  "num.": { abbr: "num.", name: "Szám" },
+  "part.": { abbr: "part.", name: "Részecske" },
+  "ph.": { abbr: "ph.", name: "Kifejezés" },
+  "pn.": { abbr: "pn.", name: "Névmás" },
+  "prop.n.": { abbr: "prop.n.", name: "Tulajdonnév" },
+  "sbd.": { abbr: "sbd.", name: "Beosztott" },
+  "vim.": { abbr: "vim.", name: "Intransitív modális ige" },
+  "vin.": { abbr: "vin.", name: "Intransitív ige" },
+  "vtr.": { abbr: "vtr.", name: "Tranzitív ige" },
+  "vtrm.": { abbr: "vtrm.", name: "Tranzitív modális ige" },
+  "adj., adv.": { abbr: "adj., adv.", name: "Melléknév, határozószó" },
+  "adj., conj.": { abbr: "adj., conj.", name: "melléknév, kötőszó" },
+  "adj., intj.": { abbr: "adj., intj.", name: "melléknév, közbeszólás" },
+  "adj., n.": { abbr: "adj., n.", name: "melléknév, főnév" },
+  "adv., conj.": { abbr: "adv., conj.", name: "Adverb, Conjuction" },
+  "adv., intj.": { abbr: "adv., intj.", name: "Adverb, Interjective" },
+  "adv., n.": { abbr: "adv., n.", name: "határozószó, főnév" },
+  "inter., intj.": { abbr: "inter., intj.", name: "Kérdés, közbeszólás" },
+  "n., intj.": { abbr: "n., intj.", name: "Főnév, Közbeszólás" },
+  "part., intj.": { abbr: "part., intj.", name: "Particle, Interjection" },
+  "vin., intj.": { abbr: "vin., intj.", name: "Intransitív ige, közbeszólás" },
 };
 
-const partOfSpeechList = Object.entries(partOfSpeech).map(([value, name]) => ({
-  value,
-  name,
-}));
+const partOfSpeechList = Object.entries(partOfSpeech).map(
+  ([value, { name }]) => ({ name, value })
+);
+
+const table1Data = [
+  ["Case", "Noun", "", "Clause Wrapper", ""],
+  ["", "", "proximal", "distal", "answer"],
+  ["Subjective", "Tsaw", "Fwa", "Tsawa", "Teynga"],
+  ["Agentive", "Tsal", "Fula", "Tsala", "Teyngla"],
+  ["Patientive", "Tsat", "Futa", "Tsata", "Teyngta"],
+  ["Genitive", "Tseyä", "N/A", "N/A", ""],
+  ["Dative", "Tsar", "Fura", "Tsara", ""],
+  ["Topical", "Tsari", "Furia", "Tsaria", ""],
+];
+
+const table2Data = [
+  ["tsa-", "prefix", "that"],
+  ["tsa'u", "n.", "that (thing)"],
+  ["tsakem", "n.", "that (action)"],
+  ["fmawnta", "sbd.", "that news"],
+  ["fayluta", "sbd.", "these words"],
+  ["tsnì", "sbd.", "that (function word)"],
+  ["tsonta", "conj.", "to (with kxìm)"],
+  ["kuma/akum", "conj.", "that (as a result)"],
+  ["a", "part.", "clause level attributive marker"],
+];
 
 const strings: UITranslation = {
   common: {
@@ -256,6 +277,10 @@ const strings: UITranslation = {
     phonemes: "Fonémafrekvenciák",
     clusters: "Mássalhangzócsoportok",
   },
+  that: {
+    table1Data,
+    table2Data,
+  },
   settings: {
     about: "Névjegy",
     version: "Verzió",
@@ -266,6 +291,8 @@ const strings: UITranslation = {
     translation: "Fordítás",
     appLanguage: "Alkalmazás nyelve",
     resultsLanguage: "Eredmények nyelve",
+    dialect: "Dialektus",
+    theme: "Theme",
   },
 };
 

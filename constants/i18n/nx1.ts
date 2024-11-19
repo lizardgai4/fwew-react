@@ -1,44 +1,65 @@
 import { CameronWords } from "@/constants/Cameron";
-import type { UITranslation } from "@/types/i18n";
+import type { PartOfSpeech, UITranslation } from "@/types/i18n";
 
 // Lì'fya leNa'vi (Wione)
 
-const partOfSpeech = {
-  "adj.": "shonlìu",
-  "adp.": "starlìu",
-  "adv.": "fyalìu",
-  "conj.": "tilìu",
-  "inter.": "tìpawm",
-  "intj.": "tìleym",
-  "n.": "tstxolìu",
-  "num.": "holbay",
-  "part.": "lahea fnel",
-  "ph.": "lìukìngvi",
-  "pn.": "tstxolìu a vll",
-  "prop.n.": "tstxo",
-  "sbd.": "zeya fnetilìu",
-  "vim.": "srungaa kemlìu (kea -l/-t)",
-  "vin.": "kemlìu (kea -l/-t)",
-  "vtr.": "kemlìu (-l/-t)",
-  "vtrm.": "srungaa kemlìu tìlateme",
-  "adj., adv.": "shonlìu, fyalìu",
-  "adj., conj.": "shonlìu, tilìu",
-  "adj., intj.": "shonlìu, tìleym",
-  "adj., n.": "shonlìu, tstxolìu",
-  "adv., conj.": "fyalìu, tilìu",
-  "adv., intj.": "fyalìu, tìleym",
-  "adv., n.": "fyalìu, tstxolìu",
-  "inter., intj.": "tìpawm, tìleym",
-  "n., intj.": "tstxolìu, tìleym",
-  "part., intj.": "lahea fnel, tìleym",
-  "vin., intj.": "kemlìu (kea -l/-t), tìleym",
-  "vin., vtr.": "kemlìu",
+const partOfSpeech: PartOfSpeech = {
+  "adj.": { abbr: "adj.", name: "shonlìu" },
+  "adp.": { abbr: "adp.", name: "starlìu" },
+  "adv.": { abbr: "adv.", name: "fyalìu" },
+  "conj.": { abbr: "conj.", name: "tilìu" },
+  "inter.": { abbr: "inter.", name: "tìpawm" },
+  "intj.": { abbr: "intj.", name: "tìleym" },
+  "n.": { abbr: "n.", name: "tstxolìu" },
+  "num.": { abbr: "num.", name: "holbay" },
+  "part.": { abbr: "part.", name: "lahea fnel" },
+  "ph.": { abbr: "ph.", name: "lìukìngvi" },
+  "pn.": { abbr: "pn.", name: "tstxolìu a vll" },
+  "prop.n.": { abbr: "prop.n.", name: "tstxo" },
+  "sbd.": { abbr: "sbd.", name: "zeya fnetilìu" },
+  "vim.": { abbr: "vim.", name: "srungaa kemlìu (kea -l/-t)" },
+  "vin.": { abbr: "vin.", name: "kemlìu (kea -l/-t)" },
+  "vtr.": { abbr: "vtr.", name: "kemlìu (-l/-t)" },
+  "vtrm.": { abbr: "vtrm.", name: "srungaa kemlìu tìlateme" },
+  "adj., adv.": { abbr: "adj., adv.", name: "shonlìu, fyalìu" },
+  "adj., conj.": { abbr: "adj., conj.", name: "shonlìu, tilìu" },
+  "adj., intj.": { abbr: "adj., intj.", name: "shonlìu, tìleym" },
+  "adj., n.": { abbr: "adj., n.", name: "shonlìu, tstxolìu" },
+  "adv., conj.": { abbr: "adv., conj.", name: "fyalìu, tilìu" },
+  "adv., intj.": { abbr: "adv., intj.", name: "fyalìu, tìleym" },
+  "adv., n.": { abbr: "adv., n.", name: "fyalìu, tstxolìu" },
+  "inter., intj.": { abbr: "inter., intj.", name: "tìpawm, tìleym" },
+  "n., intj.": { abbr: "n., intj.", name: "tstxolìu, tìleym" },
+  "part., intj.": { abbr: "part., intj.", name: "lahea fnel, tìleym" },
+  "vin., intj.": { abbr: "vin., intj.", name: "kemlìu (kea -l/-t), tìleym" },
 };
 
-const partOfSpeechList = Object.entries(partOfSpeech).map(([value, name]) => ({
-  value,
-  name,
-}));
+const partOfSpeechList = Object.entries(partOfSpeech).map(
+  ([value, { name }]) => ({ name, value })
+);
+
+const table1Data = [
+  ["Case", "Noun", "", "Clause Wrapper", ""],
+  ["", "", "proximal", "distal", "answer"],
+  ["Subjective", "Tsaw", "Fwa", "Tsawa", "Teynga"],
+  ["Agentive", "Tsal", "Fula", "Tsala", "Teyngla"],
+  ["Patientive", "Tsat", "Futa", "Tsata", "Teyngta"],
+  ["Genitive", "Tseyä", "N/A", "N/A", ""],
+  ["Dative", "Tsar", "Fura", "Tsara", ""],
+  ["Topical", "Tsari", "Furia", "Tsaria", ""],
+];
+
+const table2Data = [
+  ["tsa-", "prefix", "that"],
+  ["tsa'u", "n.", "that (thing)"],
+  ["tsakem", "n.", "that (action)"],
+  ["fmawnta", "sbd.", "that news"],
+  ["fayluta", "sbd.", "these words"],
+  ["tsnì", "sbd.", "that (function word)"],
+  ["tsonta", "conj.", "to (with kxìm)"],
+  ["kuma/akum", "conj.", "that (as a result)"],
+  ["a", "part.", "clause level attributive marker"],
+];
 
 const strings: UITranslation = {
   common: {
@@ -257,6 +278,10 @@ const strings: UITranslation = {
     phonemes: "Ayfamrelvi",
     clusters: "Aysnao",
   },
+  that: {
+    table1Data,
+    table2Data,
+  },
   settings: {
     about: "Teri Fwew",
     version: "Srey",
@@ -267,6 +292,8 @@ const strings: UITranslation = {
     translation: "Ralpengyu",
     appLanguage: "'Ure lì'fya",
     resultsLanguage: "Kume lì'fya",
+    dialect: "Lì'fyafnel",
+    theme: "Lupra",
   },
 };
 

@@ -3,26 +3,35 @@ import { SearchBar } from "@/components/common/SearchBar";
 import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { useValid } from "@/hooks/useValid";
 import { getThemedComponents } from "@/themes";
-import { ScrollView, StyleSheet, View } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  useWindowDimensions,
+  View,
+} from "react-native";
 
 export default function ValidScreen() {
   const { query, results, loading, search, cancel } = useValid();
   const { themeName } = useThemeNameContext();
   const Themed = getThemedComponents(themeName);
+  const { width } = useWindowDimensions();
+  const wide = width > 720;
 
   return (
     <ScrollView keyboardShouldPersistTaps="always">
-      <View style={styles.container}>
-        <SearchBar query={query} search={search} cancel={cancel} autoFocus />
-        <ResultCount
-          resultCount={results.length}
-          visible={results.length > 0 && !loading}
-        />
-        {results.map((row, index) => (
-          <Themed.CardView key={`vrc_${index}`} style={styles.container}>
-            <Themed.Text>{row}</Themed.Text>
-          </Themed.CardView>
-        ))}
+      <View style={{ alignItems: "center" }}>
+        <View style={[styles.container, { width: wide ? "66%" : "100%" }]}>
+          <SearchBar query={query} search={search} cancel={cancel} autoFocus />
+          <ResultCount
+            resultCount={results.length}
+            visible={results.length > 0 && !loading}
+          />
+          {results.map((row, index) => (
+            <Themed.CardView key={`vrc_${index}`} style={styles.container}>
+              <Themed.Text>{row}</Themed.Text>
+            </Themed.CardView>
+          ))}
+        </View>
       </View>
     </ScrollView>
   );
@@ -34,5 +43,8 @@ const styles = StyleSheet.create({
     gap: 16,
     padding: 16,
     fontSize: 16,
+  },
+  bottomPadded: {
+    paddingBottom: 16,
   },
 });

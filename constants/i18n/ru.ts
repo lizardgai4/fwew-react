@@ -1,42 +1,69 @@
 import { CameronWords } from "@/constants/Cameron";
-import type { UITranslation } from "@/types/i18n";
+import type { PartOfSpeech, UITranslation } from "@/types/i18n";
 
-const partOfSpeech = {
-  "adj.": "прилагательное",
-  "adp.": "предлог",
-  "adv.": "наречие",
-  "conj.": "союз",
-  "inter.": "вопросительное слово",
-  "intj.": "междометие",
-  "n.": "существительное",
-  "num.": "число",
-  "part.": "частица",
-  "ph.": "фраза",
-  "pn.": "местоимение",
-  "prop.n.": "имя собственное",
-  "sbd.": "подчинительный союз",
-  "vim.": "непереходный модальный глагол",
-  "vin.": "непереходный глагол",
-  "vtr.": "переходный глагол",
-  "vtrm.": "переходный модальный глагол",
-  "adj., adv.": "прилагательное, наречие",
-  "adj., conj.": "прилагательное, союз",
-  "adj., intj.": "прилагательное, междометие",
-  "adj., n.": "прилагательное, существительное",
-  "adv., conj.": "наречие, союз",
-  "adv., intj.": "наречие, междометие",
-  "adv., n.": "наречие, имя существительное",
-  "inter., intj.": "вопросительное слово, междометие",
-  "n., intj.": "существительное, междометие",
-  "part., intj.": "частица, междометие",
-  "vin., intj.": "непереходный глагол, междометие",
-  "vin., vtr.": "непереходный или переходный глагол",
+const partOfSpeech: PartOfSpeech = {
+  "adj.": { abbr: "прил.", name: "прилагательное" },
+  "adp.": { abbr: "адл.", name: "предлог" },
+  "adv.": { abbr: "нар.", name: "наречие" },
+  "conj.": { abbr: "союз.", name: "союз" },
+  "inter.": { abbr: "вопр.", name: "вопросительное слово" },
+  "intj.": { abbr: "межд.", name: "междометие" },
+  "n.": { abbr: "сущ.", name: "существительное" },
+  "num.": { abbr: "числ.", name: "число" },
+  "part.": { abbr: "част.", name: "частица" },
+  "ph.": { abbr: "фр.", name: "фраза" },
+  "pn.": { abbr: "мест.", name: "местоимение" },
+  "prop.n.": { abbr: "имя собст.", name: "имя собственное" },
+  "sbd.": { abbr: "подч. союз", name: "подчинительный союз" },
+  "vim.": { abbr: "мод. неп. гл.", name: "непереходный модальный глагол" },
+  "vin.": { abbr: "неп. гл.", name: "непереходный глагол" },
+  "vtr.": { abbr: "пер. гл.", name: "переходный глагол" },
+  "vtrm.": { abbr: "мод. пер. гл.", name: "переходный модальный глагол" },
+  "adj., adv.": { abbr: "прил., нар.", name: "прилагательное, наречие" },
+  "adj., conj.": { abbr: "прил., союз", name: "прилагательное, союз" },
+  "adj., intj.": { abbr: "прил., межд.", name: "прилагательное, междометие" },
+  "adj., n.": { abbr: "прил., сущ.", name: "прилагательное, существительное" },
+  "adv., conj.": { abbr: "нар., союз", name: "наречие, союз" },
+  "adv., intj.": { abbr: "нар., межд.", name: "наречие, междометие" },
+  "adv., n.": { abbr: "нар., сущ.", name: "наречие, имя существительное" },
+  "inter., intj.": {
+    abbr: "вопр., межд.",
+    name: "вопросительное слово, междометие",
+  },
+  "n., intj.": { abbr: "сущ., межд.", name: "существительное, междометие" },
+  "part., intj.": { abbr: "част., межд.", name: "частица, междометие" },
+  "vin., intj.": {
+    abbr: "неп. гл., межд.",
+    name: "непереходный глагол, междометие",
+  },
 };
 
-const partOfSpeechList = Object.entries(partOfSpeech).map(([value, name]) => ({
-  value,
-  name,
-}));
+const partOfSpeechList = Object.entries(partOfSpeech).map(
+  ([value, { name }]) => ({ name, value })
+);
+
+const table1Data = [
+  ["Case", "Noun", "", "Clause Wrapper", ""],
+  ["", "", "proximal", "distal", "answer"],
+  ["Subjective", "Tsaw", "Fwa", "Tsawa", "Teynga"],
+  ["Agentive", "Tsal", "Fula", "Tsala", "Teyngla"],
+  ["Patientive", "Tsat", "Futa", "Tsata", "Teyngta"],
+  ["Genitive", "Tseyä", "N/A", "N/A", ""],
+  ["Dative", "Tsar", "Fura", "Tsara", ""],
+  ["Topical", "Tsari", "Furia", "Tsaria", ""],
+];
+
+const table2Data = [
+  ["tsa-", "prefix", "that"],
+  ["tsa'u", "n.", "that (thing)"],
+  ["tsakem", "n.", "that (action)"],
+  ["fmawnta", "sbd.", "that news"],
+  ["fayluta", "sbd.", "these words"],
+  ["tsnì", "sbd.", "that (function word)"],
+  ["tsonta", "conj.", "to (with kxìm)"],
+  ["kuma/akum", "conj.", "that (as a result)"],
+  ["a", "part.", "clause level attributive marker"],
+];
 
 const getResultText = (count: number) => {
   const lastDigit = count % 10;
@@ -276,6 +303,10 @@ const strings: UITranslation = {
     phonemes: "Phoneme Frequencies", // TODO
     clusters: "Согласные кластеры",
   },
+  that: {
+    table1Data,
+    table2Data,
+  },
   settings: {
     about: "О приложении",
     version: "Версия",
@@ -286,6 +317,8 @@ const strings: UITranslation = {
     translation: "Перевод",
     appLanguage: "Язык интерфейса",
     resultsLanguage: "Язык результатов",
+    dialect: "Диалект",
+    theme: "Theme",
   },
 };
 

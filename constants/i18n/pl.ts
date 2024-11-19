@@ -1,42 +1,69 @@
 import { CameronWords } from "@/constants/Cameron";
-import type { UITranslation } from "@/types/i18n";
+import type { PartOfSpeech, UITranslation } from "@/types/i18n";
 
-const partOfSpeech = {
-  "adj.": "przymiotnik",
-  "adp.": "przyimek",
-  "adv.": "przysłówek",
-  "conj.": "spójnik",
-  "inter.": "zaimek pytający",
-  "intj.": "wykrzyknik",
-  "n.": "rzeczownik",
-  "num.": "liczebnik",
-  "part.": "cząstka",
-  "ph.": "wyrażenie",
-  "pn.": "zaimek",
-  "prop.n.": "nazwa własna",
-  "sbd.": "spójnik podrzędny",
-  "vim.": "czasownik modalny nieprzechodni",
-  "vin.": "czasownik nieprzechodni",
-  "vtr.": "czasownik przechodni",
-  "vtrm.": "czasownik modalny przechodni",
-  "adj., adv.": "przymiotnik, przysłówek",
-  "adj., conj.": "przymiotnik, spójnik",
-  "adj., intj.": "przymiotnik, wykrzyknik",
-  "adj., n.": "przymiotnik, rzeczownik",
-  "adv., conj.": "przysłówek, spójnik",
-  "adv., intj.": "przysłówek, wykrzyknik",
-  "adv., n.": "przysłówek, rzeczownik",
-  "inter., intj.": "zaimek pytający, wykrzyknik",
-  "n., intj.": "rzeczownik, wykrzyknik",
-  "part., intj.": "cząstka, wykrzyknik",
-  "vin., intj.": "czasownik nieprzechodni, wykrzyknik",
-  "vin., vtr.": "czasownik nieprzechodni lub przechodni",
+const partOfSpeech: PartOfSpeech = {
+  "adj.": { abbr: "adj.", name: "przymiotnik" },
+  "adp.": { abbr: "adp.", name: "przyimek" },
+  "adv.": { abbr: "adv.", name: "przysłówek" },
+  "conj.": { abbr: "conj.", name: "spójnik" },
+  "inter.": { abbr: "inter.", name: "zaimek pytający" },
+  "intj.": { abbr: "intj.", name: "wykrzyknik" },
+  "n.": { abbr: "n.", name: "rzeczownik" },
+  "num.": { abbr: "num.", name: "liczebnik" },
+  "part.": { abbr: "part.", name: "cząstka" },
+  "ph.": { abbr: "ph.", name: "wyrażenie" },
+  "pn.": { abbr: "pn.", name: "zaimek" },
+  "prop.n.": { abbr: "prop.n.", name: "nazwa własna" },
+  "sbd.": { abbr: "sbd.", name: "spójnik podrzędny" },
+  "vim.": { abbr: "vim.", name: "czasownik modalny nieprzechodni" },
+  "vin.": { abbr: "vin.", name: "czasownik nieprzechodni" },
+  "vtr.": { abbr: "vtr.", name: "czasownik przechodni" },
+  "vtrm.": { abbr: "vtrm.", name: "czasownik modalny przechodni" },
+  "adj., adv.": { abbr: "adj., adv.", name: "przymiotnik, przysłówek" },
+  "adj., conj.": { abbr: "adj., conj.", name: "przymiotnik, spójnik" },
+  "adj., intj.": { abbr: "adj., intj.", name: "przymiotnik, wykrzyknik" },
+  "adj., n.": { abbr: "adj., n.", name: "przymiotnik, rzeczownik" },
+  "adv., conj.": { abbr: "adv., conj.", name: "przysłówek, spójnik" },
+  "adv., intj.": { abbr: "adv., intj.", name: "przysłówek, wykrzyknik" },
+  "adv., n.": { abbr: "adv., n.", name: "przysłówek, rzeczownik" },
+  "inter., intj.": {
+    abbr: "inter., intj.",
+    name: "zaimek pytający, wykrzyknik",
+  },
+  "n., intj.": { abbr: "n., intj.", name: "rzeczownik, wykrzyknik" },
+  "part., intj.": { abbr: "part., intj.", name: "cząstka, wykrzyknik" },
+  "vin., intj.": {
+    abbr: "vin., intj.",
+    name: "czasownik nieprzechodni, wykrzyknik",
+  },
 };
 
-const partOfSpeechList = Object.entries(partOfSpeech).map(([value, name]) => ({
-  value,
-  name,
-}));
+const partOfSpeechList = Object.entries(partOfSpeech).map(
+  ([value, { name }]) => ({ name, value })
+);
+
+const table1Data = [
+  ["Case", "Noun", "", "Clause Wrapper", ""],
+  ["", "", "proximal", "distal", "answer"],
+  ["Subjective", "Tsaw", "Fwa", "Tsawa", "Teynga"],
+  ["Agentive", "Tsal", "Fula", "Tsala", "Teyngla"],
+  ["Patientive", "Tsat", "Futa", "Tsata", "Teyngta"],
+  ["Genitive", "Tseyä", "N/A", "N/A", ""],
+  ["Dative", "Tsar", "Fura", "Tsara", ""],
+  ["Topical", "Tsari", "Furia", "Tsaria", ""],
+];
+
+const table2Data = [
+  ["tsa-", "prefix", "that"],
+  ["tsa'u", "n.", "that (thing)"],
+  ["tsakem", "n.", "that (action)"],
+  ["fmawnta", "sbd.", "that news"],
+  ["fayluta", "sbd.", "these words"],
+  ["tsnì", "sbd.", "that (function word)"],
+  ["tsonta", "conj.", "to (with kxìm)"],
+  ["kuma/akum", "conj.", "that (as a result)"],
+  ["a", "part.", "clause level attributive marker"],
+];
 
 const strings: UITranslation = {
   common: {
@@ -262,6 +289,10 @@ const strings: UITranslation = {
     phonemes: "Phoneme Frequencies", // TODO
     clusters: "Zbiory spółgłosek",
   },
+  that: {
+    table1Data,
+    table2Data,
+  },
   settings: {
     about: "O aplikacji",
     version: "Wersja",
@@ -272,6 +303,8 @@ const strings: UITranslation = {
     translation: "Tłumaczenie",
     appLanguage: "Język aplikacji",
     resultsLanguage: "Język wyników",
+    dialect: "Dialekt",
+    theme: "Theme",
   },
 };
 

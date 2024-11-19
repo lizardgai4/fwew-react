@@ -1,42 +1,72 @@
 import { CameronWords } from "@/constants/Cameron";
-import type { UITranslation } from "@/types/i18n";
+import type { PartOfSpeech, UITranslation } from "@/types/i18n";
 
-const partOfSpeech = {
-  "adj.": "Bijvoeglijk naamwoord",
-  "adp.": "Adpositie",
-  "adv.": "Bijwoord",
-  "conj.": "Voegwoord",
-  "inter.": "Vragend",
-  "intj.": "Interjectie",
-  "n.": "Naamwoord",
-  "num.": "Nummer",
-  "part.": "Deeltje",
-  "ph.": "Zin",
-  "pn.": "Voornaamwoord",
-  "prop.n.": "Eigennaam",
-  "sbd.": "Subordinator",
-  "vim.": "Intransitief modaal werkwoord",
-  "vin.": "Intransitief werkwoord",
-  "vtr.": "Transitief werkwoord",
-  "vtrm.": "Transitief modaal werkwoord",
-  "adj., adv.": "Bijvoeglijk naamwoord, Bijwoord",
-  "adj., conj.": "Bijvoeglijk naamwoord, Voegwoord",
-  "adj., intj.": "Bijvoeglijk naamwoord, Interjectie",
-  "adj., n.": "Bijvoeglijk naamwoord, Naamwoord",
-  "adv., conj.": "Bijwoord, Voegwoord",
-  "adv., intj.": "Bijwoord, Interjectie",
-  "adv., n.": "Bijwoord, Naamwoord",
-  "inter., intj.": "Vragend, Interjectie",
-  "n., intj.": "Naamwoord, Interjectie",
-  "part., intj.": "Deeltje, Interjectie",
-  "vin., intj.": "Intransitief werkwoord, Interjectie",
-  "vin., vtr.": "Intransitief of transitief werkwoord",
+const partOfSpeech: PartOfSpeech = {
+  "adj.": { abbr: "adj.", name: "Bijvoeglijk naamwoord" },
+  "adp.": { abbr: "adp.", name: "Adpositie" },
+  "adv.": { abbr: "adv.", name: "Bijwoord" },
+  "conj.": { abbr: "conj.", name: "Voegwoord" },
+  "inter.": { abbr: "inter.", name: "Vragend" },
+  "intj.": { abbr: "intj.", name: "Interjectie" },
+  "n.": { abbr: "n.", name: "Naamwoord" },
+  "num.": { abbr: "num.", name: "Nummer" },
+  "part.": { abbr: "part.", name: "Deeltje" },
+  "ph.": { abbr: "ph.", name: "Zin" },
+  "pn.": { abbr: "pn.", name: "Voornaamwoord" },
+  "prop.n.": { abbr: "prop.n.", name: "Eigennaam" },
+  "sbd.": { abbr: "sbd.", name: "Subordinator" },
+  "vim.": { abbr: "vim.", name: "Intransitief modaal werkwoord" },
+  "vin.": { abbr: "vin.", name: "Intransitief werkwoord" },
+  "vtr.": { abbr: "vtr.", name: "Transitief werkwoord" },
+  "vtrm.": { abbr: "vtrm.", name: "Transitief modaal werkwoord" },
+  "adj., adv.": { abbr: "adj., adv.", name: "Bijvoeglijk naamwoord, Bijwoord" },
+  "adj., conj.": {
+    abbr: "adj., conj.",
+    name: "Bijvoeglijk naamwoord, Voegwoord",
+  },
+  "adj., intj.": {
+    abbr: "adj., intj.",
+    name: "Bijvoeglijk naamwoord, Interjectie",
+  },
+  "adj., n.": { abbr: "adj., n.", name: "Bijvoeglijk naamwoord, Naamwoord" },
+  "adv., conj.": { abbr: "adv., conj.", name: "Bijwoord, Voegwoord" },
+  "adv., intj.": { abbr: "adv., intj.", name: "Bijwoord, Interjectie" },
+  "adv., n.": { abbr: "adv., n.", name: "Bijwoord, Naamwoord" },
+  "inter., intj.": { abbr: "inter., intj.", name: "Vragend, Interjectie" },
+  "n., intj.": { abbr: "n., intj.", name: "Naamwoord, Interjectie" },
+  "part., intj.": { abbr: "part., intj.", name: "Deeltje, Interjectie" },
+  "vin., intj.": {
+    abbr: "vin., intj.",
+    name: "Intransitief werkwoord, Interjectie",
+  },
 };
 
-const partOfSpeechList = Object.entries(partOfSpeech).map(([value, name]) => ({
-  value,
-  name,
-}));
+const partOfSpeechList = Object.entries(partOfSpeech).map(
+  ([value, { name }]) => ({ name, value })
+);
+
+const table1Data = [
+  ["Case", "Noun", "", "Clause Wrapper", ""],
+  ["", "", "proximal", "distal", "answer"],
+  ["Subjective", "Tsaw", "Fwa", "Tsawa", "Teynga"],
+  ["Agentive", "Tsal", "Fula", "Tsala", "Teyngla"],
+  ["Patientive", "Tsat", "Futa", "Tsata", "Teyngta"],
+  ["Genitive", "Tseyä", "N/A", "N/A", ""],
+  ["Dative", "Tsar", "Fura", "Tsara", ""],
+  ["Topical", "Tsari", "Furia", "Tsaria", ""],
+];
+
+const table2Data = [
+  ["tsa-", "prefix", "that"],
+  ["tsa'u", "n.", "that (thing)"],
+  ["tsakem", "n.", "that (action)"],
+  ["fmawnta", "sbd.", "that news"],
+  ["fayluta", "sbd.", "these words"],
+  ["tsnì", "sbd.", "that (function word)"],
+  ["tsonta", "conj.", "to (with kxìm)"],
+  ["kuma/akum", "conj.", "that (as a result)"],
+  ["a", "part.", "clause level attributive marker"],
+];
 
 const strings: UITranslation = {
   common: {
@@ -262,6 +292,10 @@ const strings: UITranslation = {
     phonemes: "Phoneme Frequencies", // TODO
     clusters: "Medeklinkerclusters",
   },
+  that: {
+    table1Data,
+    table2Data,
+  },
   settings: {
     about: "Over",
     version: "Versie",
@@ -272,6 +306,8 @@ const strings: UITranslation = {
     translation: "Vertaling",
     appLanguage: "Taal van app",
     resultsLanguage: "Taal van resultaten",
+    dialect: "Dialect",
+    theme: "Theme",
   },
 };
 

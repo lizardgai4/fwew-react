@@ -1,42 +1,73 @@
 import { CameronWords } from "@/constants/Cameron";
-import type { UITranslation } from "@/types/i18n";
+import type { PartOfSpeech, UITranslation } from "@/types/i18n";
 
-const partOfSpeech = {
-  "adj.": "omadussõna",
-  "adp.": "adpositsioon",
-  "adv.": "adverb",
-  "conj.": "sidesõna",
-  "inter.": "interrogatiiv",
-  "intj.": "interjektsioon",
-  "n.": "nimisõna",
-  "num.": "number",
-  "part.": "partikkel",
-  "ph.": "fraas",
-  "pn.": "asemäärsõna",
-  "prop.n.": "pärisnimi",
-  "sbd.": "subordinatiiv",
-  "vim.": "intransitiivne modaalverb",
-  "vin.": "intransitiivne verb",
-  "vtr.": "transitiivne verb",
-  "vtrm.": "transitiivne modaalverb",
-  "adj., adv.": "omadussõna, adverb",
-  "adj., conj.": "omadussõna, sidesõna",
-  "adj., intj.": "omadussõna, interjektsioon",
-  "adj., n.": "omadussõna, nimisõna",
-  "adv., conj.": "adverb, sidesõna",
-  "adv., intj.": "adverb, interjektsioon",
-  "adv., n.": "adverb, nimisõna",
-  "inter., intj.": "interrogatiiv, interjektsioon",
-  "n., intj.": "nimisõna, interjektsioon",
-  "part., intj.": "partikkel, interjektsioon",
-  "vin., intj.": "intransitiivne verb, interjektsioon",
-  "vin., vtr.": "intransitiivne või transitiivne verb",
+const partOfSpeech: PartOfSpeech = {
+  "adj.": { abbr: "adj.", name: "omadussõna" },
+  "adp.": { abbr: "adp.", name: "adpositsioon" },
+  "adv.": { abbr: "adv.", name: "adverb" },
+  "conj.": { abbr: "conj.", name: "sidesõna" },
+  "inter.": { abbr: "inter.", name: "interrogatiiv" },
+  "intj.": { abbr: "intj.", name: "interjektsioon" },
+  "n.": { abbr: "n.", name: "nimisõna" },
+  "num.": { abbr: "num.", name: "number" },
+  "part.": { abbr: "part.", name: "partikkel" },
+  "ph.": { abbr: "ph.", name: "fraas" },
+  "pn.": { abbr: "pn.", name: "asemäärsõna" },
+  "prop.n.": { abbr: "prop.n.", name: "pärisnimi" },
+  "sbd.": { abbr: "sbd.", name: "subordinatiiv" },
+  "vim.": { abbr: "vim.", name: "intransitiivne modaalverb" },
+  "vin.": { abbr: "vin.", name: "intransitiivne verb" },
+  "vtr.": { abbr: "vtr.", name: "transitiivne verb" },
+  "vtrm.": { abbr: "vtrm.", name: "transitiivne modaalverb" },
+  "adj., adv.": { abbr: "adj., adv.", name: "omadussõna, adverb" },
+  "adj., conj.": { abbr: "adj., conj.", name: "omadussõna, sidesõna" },
+  "adj., intj.": { abbr: "adj., intj.", name: "omadussõna, interjektsioon" },
+  "adj., n.": { abbr: "adj., n.", name: "omadussõna, nimisõna" },
+  "adv., conj.": { abbr: "adv., conj.", name: "adverb, sidesõna" },
+  "adv., intj.": { abbr: "adv., intj.", name: "adverb, interjektsioon" },
+  "adv., n.": { abbr: "adv., n.", name: "adverb, nimisõna" },
+  "inter., intj.": {
+    abbr: "inter., intj.",
+    name: "interrogatiiv, interjektsioon",
+  },
+  "n., intj.": { abbr: "n., intj.", name: "nimisõna, interjektsioon" },
+  "part., intj.": { abbr: "part., intj.", name: "partikkel, interjektsioon" },
+  "vin., intj.": {
+    abbr: "vin., intj.",
+    name: "intransitiivne verb, interjektsioon",
+  },
+  "vin., vtr.": {
+    abbr: "vin., vtr.",
+    name: "intransitiivne või transitiivne verb",
+  },
 };
 
-const partOfSpeechList = Object.entries(partOfSpeech).map(([value, name]) => ({
-  value,
-  name,
-}));
+const partOfSpeechList = Object.entries(partOfSpeech).map(
+  ([value, { name }]) => ({ name, value })
+);
+
+const table1Data = [
+  ["Case", "Noun", "", "Clause Wrapper", ""],
+  ["", "", "proximal", "distal", "answer"],
+  ["Subjective", "Tsaw", "Fwa", "Tsawa", "Teynga"],
+  ["Agentive", "Tsal", "Fula", "Tsala", "Teyngla"],
+  ["Patientive", "Tsat", "Futa", "Tsata", "Teyngta"],
+  ["Genitive", "Tseyä", "N/A", "N/A", ""],
+  ["Dative", "Tsar", "Fura", "Tsara", ""],
+  ["Topical", "Tsari", "Furia", "Tsaria", ""],
+];
+
+const table2Data = [
+  ["tsa-", "prefix", "that"],
+  ["tsa'u", "n.", "that (thing)"],
+  ["tsakem", "n.", "that (action)"],
+  ["fmawnta", "sbd.", "that news"],
+  ["fayluta", "sbd.", "these words"],
+  ["tsnì", "sbd.", "that (function word)"],
+  ["tsonta", "conj.", "to (with kxìm)"],
+  ["kuma/akum", "conj.", "that (as a result)"],
+  ["a", "part.", "clause level attributive marker"],
+];
 
 const strings: UITranslation = {
   common: {
@@ -259,6 +290,10 @@ const strings: UITranslation = {
     phonemes: "Foneemi sagedused",
     clusters: "Konsonantide klastrid",
   },
+  that: {
+    table1Data,
+    table2Data,
+  },
   settings: {
     about: "Info",
     version: "Versioon",
@@ -269,6 +304,8 @@ const strings: UITranslation = {
     translation: "Tõlge",
     appLanguage: "Rakenduse keel",
     resultsLanguage: "Tulemuste keel",
+    dialect: "Dialekt",
+    theme: "Theme",
   },
 };
 

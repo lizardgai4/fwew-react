@@ -1,12 +1,14 @@
 import { useResultsLanguageContext } from "@/context/ResultsLanguageContext";
 import { useDebounce } from "@/hooks/useDebounce";
+import { useLocalSearchParams } from "expo-router";
 import type { Word } from "fwew.js";
 import { fwew, search as fwewSearch } from "fwew.js";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 export function useFwew() {
+  const { q } = useLocalSearchParams<{ q?: string }>();
   const { resultsLanguage } = useResultsLanguageContext();
-  const [query, search] = useState("");
+  const [query, search] = useState(q ?? "");
   const [naviOnly, setNaviOnly] = useState(false);
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<Word[][]>([]);

@@ -1,42 +1,69 @@
 import { CameronWords } from "@/constants/Cameron";
-import type { UITranslation } from "@/types/i18n";
+import type { PartOfSpeech, UITranslation } from "@/types/i18n";
 
-const partOfSpeech = {
-  "adj.": "Adjective",
-  "adp.": "Adposition",
-  "adv.": "Adverb",
-  "conj.": "Conjunction",
-  "inter.": "Interrogative",
-  "intj.": "Interjection",
-  "n.": "Noun",
-  "num.": "Number",
-  "part.": "Particle",
-  "ph.": "Phrase",
-  "pn.": "Pronoun",
-  "prop.n.": "Proper Noun",
-  "sbd.": "Subordinator",
-  "vim.": "Intransitive Modal Verb",
-  "vin.": "Intransitive Verb",
-  "vtr.": "Transitive Verb",
-  "vtrm.": "Transitive Modal Verb",
-  "adj., adv.": "Adjective, Adverb",
-  "adj., conj.": "Adjective, Conjunction",
-  "adj., intj.": "Adjective, Interjection",
-  "adj., n.": "Adjective, Noun",
-  "adv., conj.": "Adverb, Conjunction",
-  "adv., intj.": "Adverb, Interjection",
-  "adv., n.": "Adverb, Noun",
-  "inter., intj.": "Interrogative, Interjection",
-  "n., intj.": "Noun, Interjection",
-  "part., intj.": "Particle, Interjection",
-  "vin., intj.": "Intransitive Verb, Interjection",
-  "vin., vtr.": "Intransitive Or Transitive Verb",
+const partOfSpeech: PartOfSpeech = {
+  "adj.": { abbr: "adj.", name: "Adjective" },
+  "adp.": { abbr: "adp.", name: "Adposition" },
+  "adv.": { abbr: "adv.", name: "Adverb" },
+  "conj.": { abbr: "conj.", name: "Conjunction" },
+  "inter.": { abbr: "inter.", name: "Interrogative" },
+  "intj.": { abbr: "intj.", name: "Interjection" },
+  "n.": { abbr: "n.", name: "Noun" },
+  "num.": { abbr: "num.", name: "Number" },
+  "part.": { abbr: "part.", name: "Particle" },
+  "ph.": { abbr: "ph.", name: "Phrase" },
+  "pn.": { abbr: "pn.", name: "Pronoun" },
+  "prop.n.": { abbr: "prop.n.", name: "Proper Noun" },
+  "sbd.": { abbr: "sbd.", name: "Subordinator" },
+  "vim.": { abbr: "vim.", name: "Intransitive Modal Verb" },
+  "vin.": { abbr: "vin.", name: "Intransitive Verb" },
+  "vtr.": { abbr: "vtr.", name: "Transitive Verb" },
+  "vtrm.": { abbr: "vtrm.", name: "Transitive Modal Verb" },
+  "adj., adv.": { abbr: "adj., adv.", name: "Adjective, Adverb" },
+  "adj., conj.": { abbr: "adj., conj.", name: "Adjective, Conjunction" },
+  "adj., intj.": { abbr: "adj., intj.", name: "Adjective, Interjection" },
+  "adj., n.": { abbr: "adj., n.", name: "Adjective, Noun" },
+  "adv., conj.": { abbr: "adv., conj.", name: "Adverb, Conjunction" },
+  "adv., intj.": { abbr: "adv., intj.", name: "Adverb, Interjection" },
+  "adv., n.": { abbr: "adv., n.", name: "Adverb, Noun" },
+  "inter., intj.": {
+    abbr: "inter., intj.",
+    name: "Interrogative, Interjection",
+  },
+  "n., intj.": { abbr: "n., intj.", name: "Noun, Interjection" },
+  "part., intj.": { abbr: "part., intj.", name: "Particle, Interjection" },
+  "vin., intj.": {
+    abbr: "vin., intj.",
+    name: "Intransitive Verb, Interjection",
+  },
 };
 
-const partOfSpeechList = Object.entries(partOfSpeech).map(([value, name]) => ({
-  name,
-  value,
-}));
+const partOfSpeechList = Object.entries(partOfSpeech).map(
+  ([value, { name }]) => ({ name, value })
+);
+
+const table1Data = [
+  ["Case", "Noun", "", "Clause Wrapper", ""],
+  ["", "", "proximal", "distal", "answer"],
+  ["Subjective", "Tsaw", "Fwa", "Tsawa", "Teynga"],
+  ["Agentive", "Tsal", "Fula", "Tsala", "Teyngla"],
+  ["Patientive", "Tsat", "Futa", "Tsata", "Teyngta"],
+  ["Genitive", "Tseyä", "N/A", "N/A", ""],
+  ["Dative", "Tsar", "Fura", "Tsara", ""],
+  ["Topical", "Tsari", "Furia", "Tsaria", ""],
+];
+
+const table2Data = [
+  ["tsa-", "prefix", "that"],
+  ["tsa'u", "n.", "that (thing)"],
+  ["tsakem", "n.", "that (action)"],
+  ["fmawnta", "sbd.", "that news"],
+  ["fayluta", "sbd.", "these words"],
+  ["tsnì", "sbd.", "that (function word)"],
+  ["tsonta", "conj.", "to (with kxìm)"],
+  ["kuma/akum", "conj.", "that (as a result)"],
+  ["a", "part.", "clause level attributive marker"],
+];
 
 const strings: UITranslation = {
   common: {
@@ -256,6 +283,10 @@ const strings: UITranslation = {
     phonemes: "Phoneme Frequencies",
     clusters: "Consonant Clusters",
   },
+  that: {
+    table1Data,
+    table2Data,
+  },
   settings: {
     about: "About Fwew",
     version: "Version",
@@ -266,6 +297,8 @@ const strings: UITranslation = {
     translation: "Translation",
     appLanguage: "App Language",
     resultsLanguage: "Results Language",
+    dialect: "Dialect",
+    theme: "Theme",
   },
 };
 

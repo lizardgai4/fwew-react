@@ -22,7 +22,7 @@ export function useValid() {
     let data: string;
 
     try {
-      data = await valid(query.trim(), {
+      data = await valid(resultsLanguage, query.trim(), {
         signal: abortController.current.signal,
       });
     } catch {
@@ -41,7 +41,7 @@ export function useValid() {
 
     setResults(tempResults);
     setLoading(false);
-  }, [query]);
+  }, [resultsLanguage, query]);
 
   const cancel = () => {
     abortController.current.abort();

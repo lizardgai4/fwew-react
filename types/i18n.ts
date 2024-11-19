@@ -5,7 +5,7 @@ import type { AdjectiveMode, NameEnding, NounMode } from "fwew.js";
 export type SyllableCount = "0" | "1" | "2" | "3" | "4";
 
 export type PartOfSpeech = {
-  [key: string]: string;
+  [key: string]: { abbr: string; name: string };
 };
 
 export type CommonStrings = {
@@ -132,6 +132,11 @@ export type StatsStrings = {
   clusters: string;
 };
 
+export type ThatStrings = {
+  table1Data: string[][];
+  table2Data: string[][];
+};
+
 export type SettingsStrings = {
   about: string;
   version: string;
@@ -142,6 +147,8 @@ export type SettingsStrings = {
   translation: string;
   appLanguage: string;
   resultsLanguage: string;
+  dialect: string;
+  theme: string;
 };
 
 export type UITranslation = {
@@ -158,6 +165,7 @@ export type UITranslation = {
   cameronWords: CameronWordsStrings;
   lenition: LenitionStrings;
   stats: StatsStrings;
+  that: ThatStrings;
   settings: SettingsStrings;
 };
 
