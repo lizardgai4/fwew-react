@@ -37,7 +37,6 @@ export default function SearchScreen() {
   const { width } = useWindowDimensions();
   const wide = width > 720;
   const { themeName } = useThemeNameContext();
-  const Themed = getThemedComponents(themeName);
 
   return getBackground(
     themeName,

@@ -32,13 +32,13 @@ export function ContextProviders({ children }: { children: React.ReactNode }) {
       <ThemeProvider value={theme}>
         <AppLanguageProvider value={appLanguageValue}>
           <ResultsLanguageProvider value={resultsLanguage}>
-          <ActiveWindowProvider value={windowValue}>
-            <DialectProvider value={dialectValue}>
-              <FavoritesProvider value={favorites}>
-                {children}
-              </FavoritesProvider>
-            </DialectProvider>
-          </ActiveWindowProvider>
+            <ActiveWindowProvider value={windowValue}>
+              <DialectProvider value={dialectValue}>
+                <FavoritesProvider value={favorites}>
+                  {children}
+                </FavoritesProvider>
+              </DialectProvider>
+            </ActiveWindowProvider>
           </ResultsLanguageProvider>
         </AppLanguageProvider>
       </ThemeProvider>

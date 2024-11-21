@@ -1,6 +1,7 @@
 import { ThemeName } from "@/themes";
 import { useAsyncStorage } from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
+import { signalChangeTheme } from "@/context/ThemeNameContext";
 
 export function useThemeName() {
   const [themeName, setThemeName] = useState<ThemeName>("fwew");
@@ -14,6 +15,7 @@ export function useThemeName() {
       return;
     }
     setThemeName(value);
+    signalChangeTheme();
   }
 
   useEffect(() => {

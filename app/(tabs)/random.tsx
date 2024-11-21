@@ -26,12 +26,12 @@ export default function RandomScreen() {
     useFilterExpression();
   const { loading, results, execute, cancel } = useRandom();
   const debounce = useDebounce();
-  const theme = useTheme();
-  const themeName = useThemeName().themeName;
   const { dialect } = useDialectContext();
   const resultsVisible = numWords.length > 0 && results.length > 0;
   const { width } = useWindowDimensions();
   const wide = width > 720;
+  const theme = useTheme();
+  const themeName = useThemeName().themeName;
 
   const updateNumWords = useCallback((num: NumericString) => {
     if (num === "") {

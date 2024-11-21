@@ -24,11 +24,11 @@ export default function ListScreen() {
   const { loading, results, execute, cancel } = useList();
   const debounce = useDebounce();
   const resultsVisible = filterExpression.length > 0 && results.length > 0;
-  const theme = useTheme();
-  const themeName = useThemeName().themeName;
   const { dialect } = useDialectContext();
   const { width } = useWindowDimensions();
   const wide = width > 720;
+  const theme = useTheme();
+  const themeName = useThemeName().themeName;
 
   const getData = () => debounce(async () => await execute(filterExpression));
 
@@ -75,7 +75,7 @@ export default function ListScreen() {
     );
   }
 
-  return (
+  return getBackground(themeName, (
     <ScrollView
       keyboardShouldPersistTaps="always"
       refreshControl={
@@ -100,7 +100,7 @@ export default function ListScreen() {
           results={resultsVisible ? results : []}
         />
       </View>
-    </ScrollView>
+    </ScrollView>), dialect
   );
 }
 

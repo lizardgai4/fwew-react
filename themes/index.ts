@@ -12,6 +12,8 @@ const ThemeMap = {
 
 export type ThemeName = keyof typeof ThemeMap;
 
+export const ThemeNamesUser = Object.values(ThemeMap).map(function(theme) {return theme.name})
+
 export const ThemeNames = Object.keys(ThemeMap) as ThemeName[];
 
 export function getTheme(

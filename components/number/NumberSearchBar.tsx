@@ -68,6 +68,6 @@ const styles = StyleSheet.create({
   button: {
     alignItems: "center",
     justifyContent: "center",
-    height: Platform.OS === "web" ? null : 50,
+    height: Platform.OS === "web" ? null : 60,
   },
 });

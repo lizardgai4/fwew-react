@@ -16,9 +16,9 @@ type ThemeNameProviderProps = {
   children: React.ReactNode;
 };
 
-/*export function signalChangeTheme() {
+export function signalChangeTheme() {
   auxthemeKey += 1
-}*/
+}
 
 export function ThemeNameProvider({ value, children }: ThemeNameProviderProps) {
   return (
