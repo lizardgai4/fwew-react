@@ -41,7 +41,7 @@ export function FilterExpressionBuilderList(
       {filters.map((_, i) => (
         <View key={`feb_${i}`}>
           <View
-            style={[styles.febHeader, { backgroundColor: colors.background }]}
+            style={[styles.febHeader]}
           >
             <Themed.Text style={styles.label}>{getHeaderText(i)}</Themed.Text>
             <SmallButton
