@@ -45,9 +45,9 @@ const table1Data = [
   ["기본형", "Tsaw", "Fwa", "Tsawa", "Teynga"],
   ["주어", "Tsal", "Fula", "Tsala", "Teyngla"],
   ["직접목적어", "Tsat", "Futa", "Tsata", "Teyngta"],
-  ["소유", "Tseyä", "N/A", "N/A", ""],
-  ["간접목적어", "Tsar", "Fura", "Tsara", ""],
-  ["주제문", "Tsari", "Furia", "Tsaria", ""],
+  ["소유", "Tseyä", "N/A", "N/A", "Teyngä"],
+  ["간접목적어", "Tsar", "Fura", "Tsara", "Teyngra"],
+  ["주제문", "Tsari", "Furia", "Tsaria", "Teyngria"],
 ];
 
 const table2Data = [
