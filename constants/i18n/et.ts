@@ -54,9 +54,9 @@ const table1Data = [
   ["Subjective", "Tsaw", "Fwa", "Tsawa", "Teynga"],
   ["Agentive", "Tsal", "Fula", "Tsala", "Teyngla"],
   ["Patientive", "Tsat", "Futa", "Tsata", "Teyngta"],
-  ["Genitive", "Tseyä", "N/A", "N/A", ""],
-  ["Dative", "Tsar", "Fura", "Tsara", ""],
-  ["Topical", "Tsari", "Furia", "Tsaria", ""],
+  ["Genitive", "Tseyä", "N/A", "N/A", "Teyngä"],
+  ["Dative", "Tsar", "Fura", "Tsara", "Teyngra"],
+  ["Topical", "Tsari", "Furia", "Tsaria", "Teyngria"],
 ];
 
 const table2Data = [
