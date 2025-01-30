@@ -8,7 +8,7 @@ import { useFilterExpression } from "@/hooks/useFilterExpression";
 import { useRandom } from "@/hooks/useRandom";
 import { NumericString } from "@/types/common";
 import { useTheme } from "@react-navigation/native";
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   RefreshControl,
   ScrollView,
