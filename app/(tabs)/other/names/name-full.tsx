@@ -252,7 +252,7 @@ export default function NameFullScreen() {
     );
   }
 
-  return getBackground(themeName, content, dialect)
+  return content
 }
 
 const styles = StyleSheet.create({

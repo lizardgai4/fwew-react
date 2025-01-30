@@ -213,7 +213,7 @@ export default function NameAluScreen() {
     );
   }
 
-  return getBackground(themeName, content, dialect)
+  return content
 }
 
 const styles = StyleSheet.create({

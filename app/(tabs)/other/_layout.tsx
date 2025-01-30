@@ -5,6 +5,7 @@ import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { Stack } from "expo-router";
 import { Platform, StyleSheet, View } from "react-native";
 import { getBackground, getTopbar } from "@/themes";
+import { ActionButtons } from "@/components/common/ActionButtons";
 
 // https://docs.expo.dev/router/reference/faq/#missing-back-button
 export const unstable_settings = {
@@ -18,14 +19,10 @@ export default function StackLayout() {
   const { screens, names } = getUI(appLanguage, dialect);
   const Topbar = getTopbar(themeName, dialect)
 
-  return (
+  return getBackground(
+    themeName, (
     <Stack
       screenOptions={{
-        headerRight: () => (
-          <View style={styles.actionButton}>
-            <ActionButtons />
-          </View>
-        ),
         headerBackground: () => Topbar,
       }}
     >
@@ -69,5 +66,6 @@ export default function StackLayout() {
       <Stack.Screen name="names/name-full" options={{ title: names.full }} />
       <Stack.Screen name="names/name-alu" options={{ title: names.alu }} />
     </Stack>
+    ), dialect
   );
 }

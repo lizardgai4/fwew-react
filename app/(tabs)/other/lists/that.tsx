@@ -32,7 +32,7 @@ export default function ThatScreen() {
             <ThatTable2 />
           </View>
         </View>
-      </ScrollView>), dialect
+      </ScrollView>
     );
   }
 

@@ -35,7 +35,7 @@ export default function OddballsScreen() {
           <FwewSearchResults loading={loading} results={results} />
         </View>
       </View>
-    </ScrollView>), dialect
+    </ScrollView>
   );
 }
 

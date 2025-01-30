@@ -52,7 +52,7 @@ export default function ValidScreen() {
           ))}
         </View>
       </View>
-    </ScrollView>), dialect
+    </ScrollView>
   );
 }
 

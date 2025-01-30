@@ -22,16 +22,13 @@ export default function StatsScreen() {
   const { dialect } = useDialectContext();
 
   if (loading) {
-    return getBackground(
-      themeName, (
+    return (
       <View style={styles.loadingContainer}>
         <ActivityIndicator color={colors.text} size="large" />
-      </View>), dialect
-    );
+      </View>);
   }
 
-  return getBackground(
-    themeName, (
+  return (
     <ScrollView>
       <View
         style={[
@@ -55,7 +52,7 @@ export default function StatsScreen() {
           <ClusterTable data={clusterMap} />
         </View>
       </View>
-    </ScrollView>), dialect
+    </ScrollView>
   );
 }
 

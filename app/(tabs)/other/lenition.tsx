@@ -46,7 +46,7 @@ export default function LenitionScreen() {
     );
   }
 
-  return getBackground(themeName, content, dialect)
+  return content
 }
 
 function LenitionTable() {

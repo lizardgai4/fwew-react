@@ -13,10 +13,13 @@ import ThatScreen from "./lists/that";
 import NameAluScreen from "./names/name-alu";
 import NameFullScreen from "./names/name-full";
 import NameSingleScreen from "./names/name-single";
-import StatsScreen from "./stats";
+import StatsScreenBG from "./stats";
 import ValidScreen from "./valid";
+import { getBackground } from "@/themes";
+import { useThemeNameContext } from "@/context/ThemeNameContext";
 
 export default function OtherScreen() {
+  const { themeName } = useThemeNameContext();
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const { screens, names } = getUI(appLanguage, dialect);
@@ -25,7 +28,7 @@ export default function OtherScreen() {
     {
       href: "/(tabs)/other/stats",
       title: screens.stats,
-      Component: StatsScreen,
+      Component: StatsScreenBG,
     },
     {
       href: "/(tabs)/other/valid",
