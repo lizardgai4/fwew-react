@@ -23,8 +23,7 @@ export default function CameronScreen() {
     );
   }
 
-  return getBackground(
-    themeName, (
+  return (
     <View style={styles.container}>
       <FlatList
         data={cameronWords.data}
@@ -32,7 +31,7 @@ export default function CameronScreen() {
         renderItem={TitleContentCard}
         keyExtractor={({ key }, i) => `cw_${key}_${i}`}
       />
-    </View>), dialect
+    </View>
   );
 }
 
