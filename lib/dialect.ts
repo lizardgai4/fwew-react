@@ -108,11 +108,20 @@ export function ReefMe(IPA: string, Navi: string): ReefData {
       let secondI = i + 1;
       if (chars[i - 1] === ".") {
         firstI = i - 2;
-      } else if (chars[i + 1] === ".") {
-        secondI = i + 2;
       } else if (chars[i - 1] === "ˈ" && i > 1) {
         firstI = i - 3;
       }
+
+      if (chars[i + 2] === "·" && chars[i + 1] === ".") {
+        // for verbs with infix locations in the IPA
+        secondI = i + 3;
+      } else if (chars[i + 1] === "·") {
+        // for verbs with infix locations in the IPA
+        secondI = i + 2;
+      } else if (chars[i + 1] === ".") {
+        secondI = i + 2;
+      }
+        
       if (vowels.includes(chars[firstI]) && vowels.includes(chars[secondI])) {
         if (chars[firstI] !== chars[secondI]) {
           i += 1;
