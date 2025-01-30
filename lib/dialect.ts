@@ -10,6 +10,7 @@ const nonPhoneticSpellings = new Map<string, string>([
   // ayoeng sounds like ayweng
   ["aj.ˈwɛŋ", "ayoeng"],
   ["nɪ.aj.ˈwɛŋ] or [naj.ˈwɛŋ", "nìayoeng"],
+  ["ˈwɛ.t͡sjɪp̚", "oechìp"],
 ]);
 
 const nonPhoneticVerbs = new Map<string, [string, string]>([
