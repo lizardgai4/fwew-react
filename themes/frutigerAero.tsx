@@ -1,6 +1,6 @@
 import type { Dialect } from "@/types/common";
 import type { ColorExtension, ThemeType } from "@/types/theme";
-import { useTheme, type Theme } from "@react-navigation/native";
+import { DefaultTheme, useTheme, type Theme } from "@react-navigation/native";
 import {
   Text as DefaultText,
   TextInput as DefaultTextInput,
@@ -24,6 +24,9 @@ const FwewDarkTheme: Theme = {
     border: "#3b5778",
     notification: "#ff453a",
   },
+  fonts: {
+      ...DefaultTheme.fonts,
+    },
 };
 
 const FwewDarkReefTheme: Theme = {
@@ -36,6 +39,9 @@ const FwewDarkReefTheme: Theme = {
     border: "#3b786c",
     notification: "#ff453a",
   },
+  fonts: {
+      ...DefaultTheme.fonts,
+    },
 };
 
 const FwewLightTheme: Theme = {
@@ -48,6 +54,9 @@ const FwewLightTheme: Theme = {
     border: "#537aa8",
     notification: "#ff3b30",
   },
+  fonts: {
+      ...DefaultTheme.fonts,
+    },
 };
 
 const FwewLightReefTheme: Theme = {
@@ -60,6 +69,9 @@ const FwewLightReefTheme: Theme = {
     border: "#53a897",
     notification: "#ff3b30",
   },
+  fonts: {
+      ...DefaultTheme.fonts,
+    },
 };
 
 const FwewColorExtension: ColorExtension = {
