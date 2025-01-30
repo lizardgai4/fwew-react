@@ -21,7 +21,7 @@ export default function ThatScreen() {
   const extraWide = width > 1080;
 
   if (landscape && extraWide) {
-    return (
+    return getBackground(themeName, (
       <ScrollView>
         <View style={[styles.container, styles.rowContainer]}>
           <View style={styles.tableContainer}>
@@ -33,10 +33,10 @@ export default function ThatScreen() {
           </View>
         </View>
       </ScrollView>
-    );
+    ), dialect, false);
   }
 
-  return (
+  return getBackground(themeName, (
     <ScrollView>
       <View style={styles.container}>
         <ThatTable1 />
@@ -44,7 +44,7 @@ export default function ThatScreen() {
         <ThatTable2 />
       </View>
     </ScrollView>
-  );
+  ), dialect, true);
 }
 
 type ThatTableProps = {

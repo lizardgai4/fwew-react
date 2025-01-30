@@ -20,6 +20,7 @@ export default function StatsScreen() {
   const { themeName } = useThemeNameContext();
   const Themed = getThemedComponents(themeName);
   const { dialect } = useDialectContext();
+  const wide = width > 720;
 
   if (loading) {
     return (
@@ -28,32 +29,36 @@ export default function StatsScreen() {
       </View>);
   }
 
-  return (
-    <ScrollView>
-      <View
-        style={[
-          styles.container,
-          {
-            flexDirection: landscape ? "row" : "column",
-            flexWrap: landscape ? "wrap" : undefined,
-            paddingTop: landscape ? 16 : 0,
-          },
-        ]}
-      >
-        <View style={{ alignItems: "center" }}>
-          <Themed.Text style={styles.header}>{wordCount}</Themed.Text>
-          <PhonemeTable data={phonemeGrid} />
-        </View>
-
-        <View style={{ alignItems: "center" }}>
-          {clusterMap.length > 0 && (
-            <Themed.Text style={styles.header}>{clusterName}</Themed.Text>
-          )}
-          <ClusterTable data={clusterMap} />
-        </View>
+  const content = (<ScrollView>
+    <View
+      style={[
+        styles.container,
+        {
+          flexDirection: landscape ? "row" : "column",
+          flexWrap: landscape ? "wrap" : undefined,
+          paddingTop: landscape ? 16 : 0,
+        },
+      ]}
+    >
+      <View style={{ alignItems: "center" }}>
+        <Themed.Text style={styles.header}>{wordCount}</Themed.Text>
+        <PhonemeTable data={phonemeGrid} />
       </View>
-    </ScrollView>
-  );
+
+      <View style={{ alignItems: "center" }}>
+        {clusterMap.length > 0 && (
+          <Themed.Text style={styles.header}>{clusterName}</Themed.Text>
+        )}
+        <ClusterTable data={clusterMap} />
+      </View>
+    </View>
+  </ScrollView>);
+
+  if (wide) {
+      return content
+  }
+
+  return getBackground(themeName, content, dialect, true);
 }
 
 function PhonemeTable({ data }: { data: string[][] }) {

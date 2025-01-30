@@ -71,7 +71,7 @@ export default function ListScreen() {
           getData,
           colors: [theme.colors.primary],
         }}
-      />), dialect
+      />), dialect, true
     );
   }
 
@@ -100,7 +100,7 @@ export default function ListScreen() {
           results={resultsVisible ? results : []}
         />
       </View>
-    </ScrollView>), dialect
+    </ScrollView>), dialect, true
   );
 }
 

@@ -107,7 +107,7 @@ export function IndexGrid({ links }: { links: LinkType[] }) {
           </View>
         }
         main={Current?.Component && <Current.Component />}
-      /> ), dialect
+      /> ), dialect, true
     );
   }
 
@@ -118,7 +118,7 @@ export function IndexGrid({ links }: { links: LinkType[] }) {
           <ScreenLinkCard key={`oi_${link.title}`} {...link} />
         ))}
       </View>
-    </ScrollView>), dialect
+    </ScrollView>), dialect, true
   );
 }
 

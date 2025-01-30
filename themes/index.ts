@@ -47,7 +47,10 @@ export function getBottombar(themeName: ThemeName, dialect: Dialect) {
   return ThemeMap[themeName].Bottombar(dialect);
 }
 
-export function getBackground(themeName: ThemeName, content: JSX.Element, dialect: Dialect) {
+export function getBackground(themeName: ThemeName, content: JSX.Element, dialect: Dialect, cancel: boolean) {
+  if (!cancel) {
+    return content
+  }
   return ThemeMap[themeName].Background(content, dialect);
 }
 

@@ -179,7 +179,7 @@ export default function NameSingleScreen() {
     );
   }
 
-  return content
+  return getBackground(themeName, content, dialect, true);
 }
 
 const styles = StyleSheet.create({

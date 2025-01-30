@@ -32,7 +32,7 @@ export default function LenitionScreen() {
   );
 
   if (wide) {
-    content = (
+    return (
       <WideLayout
         containerStyle={{ padding: 0 }}
         sidebar={
@@ -46,7 +46,7 @@ export default function LenitionScreen() {
     );
   }
 
-  return content
+  return getBackground(themeName, content, dialect, true);
 }
 
 function LenitionTable() {

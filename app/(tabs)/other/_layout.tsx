@@ -66,6 +66,6 @@ export default function StackLayout() {
       <Stack.Screen name="names/name-full" options={{ title: names.full }} />
       <Stack.Screen name="names/name-alu" options={{ title: names.alu }} />
     </Stack>
-    ), dialect
+    ), dialect, true
   );
 }

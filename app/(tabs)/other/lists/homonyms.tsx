@@ -19,15 +19,15 @@ export default function HomonymsScreen() {
   const { dialect } = useDialectContext();
 
   if (wide) {
-    return (
+    return getBackground(themeName, (
       <View>
         <ResultCount visible={resultCount > 0} resultCount={resultCount} />
         <FwewSearchResults loading={loading} results={results} />
       </View>
-    );
+    ), dialect, false);
   }
 
-  return (
+  return getBackground(themeName, (
     <ScrollView>
       <View style={{ alignItems: "center" }}>
         <View style={styles.container}>
@@ -36,12 +36,13 @@ export default function HomonymsScreen() {
         </View>
       </View>
     </ScrollView>
-  );
+  ), dialect, true);
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    width: "100%",
   },
 });

@@ -36,7 +36,7 @@ export default function ValidScreen() {
     );
   }
 
-  return (
+  return getBackground(themeName, (
     <ScrollView keyboardShouldPersistTaps="always">
       <View style={{ alignItems: "center" }}>
         <View style={styles.container}>
@@ -53,7 +53,7 @@ export default function ValidScreen() {
         </View>
       </View>
     </ScrollView>
-  );
+  ), dialect, true);
 }
 
 const styles = StyleSheet.create({

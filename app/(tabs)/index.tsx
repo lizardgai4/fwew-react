@@ -76,7 +76,7 @@ export default function SearchScreen() {
           <FwewSearchResults loading={loading} results={results} />
         </View>
       </View>
-    </ScrollView>), dialect
+    </ScrollView>), dialect, true
   );
 }
 

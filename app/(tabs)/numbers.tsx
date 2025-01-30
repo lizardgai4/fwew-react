@@ -26,7 +26,7 @@ export default function NumbersScreen() {
           />
         <NumberResultCard result={result} />
       </View>
-    </View> ), dialect
+    </View> ), dialect, true
   );
 }
 

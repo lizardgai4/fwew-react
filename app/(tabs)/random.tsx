@@ -96,7 +96,7 @@ export default function RandomScreen() {
           colors: [theme.colors.primary],
         }}
       />
-    ), dialect
+    ), dialect, true
   );
   }
 
@@ -135,7 +135,7 @@ export default function RandomScreen() {
         />
       </View>
     </ScrollView>
-  ), dialect
+  ), dialect, true
 );
 }
 

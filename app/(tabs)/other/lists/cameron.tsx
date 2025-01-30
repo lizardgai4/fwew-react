@@ -12,27 +12,21 @@ export default function CameronScreen() {
   const { cameronWords } = getUI(appLanguage, dialect);
   const { width } = useWindowDimensions();
   const wide = width > 720;
+  const { themeName } = useThemeNameContext();
 
-  if (wide) {
-    return (
-      <View style={{ gap: 16 }}>
-        {cameronWords.data.map((cw, i) => (
-          <TitleContentCard key={`cw_${cw.key}_${i}`} item={cw} />
-        ))}
-      </View>
-    );
-  }
-
-  return (
-    <View style={styles.container}>
-      <FlatList
-        data={cameronWords.data}
-        contentContainerStyle={{ gap: 16, padding: 16 }}
-        renderItem={TitleContentCard}
-        keyExtractor={({ key }, i) => `cw_${key}_${i}`}
-      />
+  const content = (
+    <View style={{ gap: 16 }}>
+      {cameronWords.data.map((cw, i) => (
+        <TitleContentCard key={`cw_${cw.key}_${i}`} item={cw} />
+      ))}
     </View>
   );
+
+  if (wide) {
+    return getBackground(themeName, content, dialect, false);
+  }
+
+  return getBackground(themeName, content, dialect, true);
 }
 
 type TCCProps = {
