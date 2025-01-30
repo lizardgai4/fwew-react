@@ -4,7 +4,7 @@ import { Href, Link } from "expo-router";
 import { StyleSheet, View } from "react-native";
 
 type Props = {
-  href: Href<string>;
+  href: Href;
   title: string;
   description?: string;
 };

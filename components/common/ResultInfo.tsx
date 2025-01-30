@@ -13,7 +13,7 @@ import { Romanize } from "@/lib/romanize";
 import { getColorExtension, getThemedComponents } from "@/themes";
 import { useTheme } from "@react-navigation/native";
 import { fwewSimple, type LanguageCode, type Word } from "fwew.js";
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import Autolink from "react-native-autolink";
 
@@ -29,14 +29,34 @@ export function ResultInfo({ word }: ResultInfoProps) {
   const ui = getUI(resultsLanguage, dialect);
   const { themeName } = useThemeNameContext();
   const colorExtension = getColorExtension(themeName);
+  const Themed = getThemedComponents(themeName);
   const forestNavi = word.Navi;
   const { reefNavi, reefInfixDots, reefInfixSlots } = ReefMe(
     word.IPA,
     forestNavi
   );
+  const { abbr, name } = ui.common.partOfSpeech[word.PartOfSpeech];
 
   return (
     <View style={styles.container}>
+      {/* Part Of Speech, Definition */}
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          gap: 16,
+        }}
+      >
+        <Themed.BoldText style={styles.title}>
+          <Themed.ItalicText>
+            {abbr} ({name})
+          </Themed.ItalicText>{" "}
+          — {local}
+        </Themed.BoldText>
+      </View>
+      {/* IPA, Breakdown */}
+      <Pronunciation {...word} />
+      {/* Buttons */}
       <View style={styles.buttonContainer}>
         {/* Audio Button */}
         <Button
@@ -50,37 +70,6 @@ export function ResultInfo({ word }: ResultInfoProps) {
         {/* Favorite Button */}
         <FavoriteButton word={word} />
       </View>
-      {/* Na'vi */}
-      <DetailItem
-        label={ui.search.navi}
-        value={dialect === "reef" ? reefNavi : forestNavi}
-      />
-      {/* Part Of Speech */}
-      <DetailItem
-        label={ui.search.partOfSpeech}
-        value={`${ui.common.partOfSpeech[word.PartOfSpeech].abbr} (${
-          ui.common.partOfSpeech[word.PartOfSpeech].name
-        })`}
-      />
-      {/* Definition */}
-      <DetailItem label={ui.search.definition} value={local} />
-      {/* IPA, Breakdown */}
-      <Pronunciation {...word} />
-      {/* Infix Locations */}
-      {word.PartOfSpeech.startsWith("v") && (
-        <>
-          {/* Dots */}
-          <DetailItem
-            label={ui.search.infixDots}
-            value={dialect === "reef" ? reefInfixDots : word.InfixDots}
-          />
-          {/* Brackets */}
-          <DetailItem
-            label={ui.search.infixSlots}
-            value={dialect === "reef" ? reefInfixSlots : word.InfixLocations}
-          />
-        </>
-      )}
       {/* Prefixes */}
       {word.Affixes.Prefix && (
         <AffixDetail
@@ -90,12 +79,43 @@ export function ResultInfo({ word }: ResultInfoProps) {
         />
       )}
       {/* Infixes */}
-      {word.Affixes.Infix && (
+      {word.PartOfSpeech.startsWith("v") && (
         <AffixDetail
           label={ui.search.infixes}
           value={word.Affixes.Infix}
           type="infix"
-        />
+        >
+          <View
+            style={{
+              flexWrap: "wrap",
+              gap: 16,
+              justifyContent: "space-between",
+            }}
+          >
+            {/* Infix Locations */}
+            {word.PartOfSpeech.startsWith("v") && (
+              <>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: 16,
+                  }}
+                >
+                  {/* Dots */}
+                  <Themed.Text style={styles.value}>
+                    {dialect === "reef" ? reefInfixDots : word.InfixDots}
+                  </Themed.Text>
+                  <Themed.Text>/</Themed.Text>
+                  {/* Brackets */}
+                  <Themed.Text style={styles.value}>
+                    {dialect === "reef" ? reefInfixSlots : word.InfixLocations}
+                  </Themed.Text>
+                </View>
+              </>
+            )}
+          </View>
+        </AffixDetail>
       )}
       {/* Suffixes */}
       {word.Affixes.Suffix && (
@@ -119,8 +139,35 @@ export function ResultInfo({ word }: ResultInfoProps) {
           value={word.Affixes.Comment.join(", ")}
         />
       )}
-      {/* Source */}
-      <DetailItem link label={ui.search.source} value={word.Source} />
+      {/* Source(s) */}
+      <Themed.BoldText style={styles.label}>{ui.search.source}</Themed.BoldText>
+      {word.Source.split(" | ").map((src, i) => {
+        let [source, date] = src.split("(");
+        date = date ? date.replace(")", "") : "";
+        return (
+          <View
+            key={`src_${word.ID}_${i}`}
+            style={{
+              justifyContent: "center",
+              gap: 8,
+            }}
+          >
+            {/* Source Date */}
+            {date && (
+              <Themed.MonoText style={styles.value}>{date}</Themed.MonoText>
+            )}
+            {/* Source Text/Link */}
+            {source && (
+              <Autolink
+                url
+                text={source}
+                style={styles.value}
+                component={Themed.Text}
+              />
+            )}
+          </View>
+        );
+      })}
     </View>
   );
 }
@@ -153,21 +200,25 @@ function FavoriteButton({ word }: { word: Word }) {
 
 type AffixDetailProps = {
   label: string;
-  value: string[];
+  value: string[] | null;
   type: "prefix" | "infix" | "suffix";
+  children?: React.ReactNode;
 };
 
-function AffixDetail({ label, value, type }: AffixDetailProps) {
+function AffixDetail({ label, value, type, children }: AffixDetailProps) {
   const { themeName } = useThemeNameContext();
   const Themed = getThemedComponents(themeName);
 
-  if (value.length === 0) return null;
+  if (value == null) {
+    value = [];
+  }
 
   const affixes = value.map((v) => Affixes[type][v]);
 
   return (
-    <View>
-      <Themed.BoldText style={styles.label}>{label}:</Themed.BoldText>
+    <View style={{ gap: 16 }}>
+      <Themed.BoldText style={styles.label}>{label}</Themed.BoldText>
+      {children}
       {affixes.map((affix, i) => {
         if (affix?.navi) {
           return (
@@ -260,9 +311,7 @@ function DetailItem({ label, value, link }: DetailItemProps) {
 type PronunciationProps = Pick<Word, "IPA" | "Stressed" | "Navi">;
 
 function Pronunciation({ IPA, Stressed, Navi }: PronunciationProps) {
-  const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
-  const ui = getUI(appLanguage, dialect);
   const { themeName } = useThemeNameContext();
   const Themed = getThemedComponents(themeName);
 
@@ -271,32 +320,27 @@ function Pronunciation({ IPA, Stressed, Navi }: PronunciationProps) {
   let ForestSyllables = Romanize(forestIPA);
 
   return (
-    <>
-      <DetailItem
-        label={ui.search.ipa}
-        value={`[${dialect === "reef" ? reefIPA : forestIPA}]`}
-      />
-      <View>
-        <Themed.BoldText style={[styles.label, { userSelect: "text" }]}>
-          {ui.search.breakdown}:
-        </Themed.BoldText>
-        <Themed.Text style={styles.value}>
-          {dialect === "reef" ? (
-            <Breakdown
-              IPA={reefIPA}
-              Stressed={Stressed}
-              Syllables={reefSyllables}
-            />
-          ) : (
-            <Breakdown
-              IPA={IPA}
-              Stressed={Stressed}
-              Syllables={ForestSyllables}
-            />
-          )}
-        </Themed.Text>
-      </View>
-    </>
+    <View style={{ flexDirection: "row", alignItems: "center", gap: 16 }}>
+      <Themed.Text style={styles.value}>
+        {`[${dialect === "reef" ? reefIPA : forestIPA}]`}
+      </Themed.Text>
+      <Themed.Text>/</Themed.Text>
+      <Themed.Text style={styles.value}>
+        {dialect === "reef" ? (
+          <Breakdown
+            IPA={reefIPA}
+            Stressed={Stressed}
+            Syllables={reefSyllables}
+          />
+        ) : (
+          <Breakdown
+            IPA={IPA}
+            Stressed={Stressed}
+            Syllables={ForestSyllables}
+          />
+        )}
+      </Themed.Text>
+    </View>
   );
 }
 
@@ -366,6 +410,7 @@ function Breakdown({ IPA, Stressed, Syllables }: BreakdownProps) {
 const styles = StyleSheet.create({
   container: {
     padding: 16,
+    gap: 16,
   },
   buttonContainer: {
     flexDirection: "row",
@@ -373,13 +418,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     gap: 16,
   },
+  title: {
+    fontSize: 20,
+  },
   label: {
     fontSize: 18,
   },
   value: {
     fontSize: 16,
-    paddingHorizontal: 16,
-    paddingVertical: 8,
     userSelect: "text",
   },
   audioButton: {

@@ -5,13 +5,14 @@ import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
 import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { getColorExtension } from "@/themes";
+import type { FAIconName } from "@/types/icons";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useTheme } from "@react-navigation/native";
 import { Tabs } from "expo-router";
 import { useColorScheme } from "react-native";
 
 type TabBarIconProps = {
-  name: React.ComponentProps<typeof FontAwesome>["name"];
+  name: FAIconName;
   color: string;
 };
 
@@ -37,8 +38,8 @@ export default function TabLayout() {
         headerTintColor: colorExtension.dark.text,
         tabBarActiveTintColor: theme.colors.primary,
         tabBarInactiveTintColor: colors.placeholder,
-        headerLeft: () => <Logo />,
-        headerRight: () => <ActionButtons />,
+        headerLeft: Logo,
+        headerRight: ActionButtons,
       }}
     >
       <Tabs.Screen
@@ -80,7 +81,6 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="ellipsis-h" color={color} />
           ),
-          headerShown: false,
         }}
       />
     </Tabs>

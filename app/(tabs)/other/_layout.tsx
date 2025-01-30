@@ -1,18 +1,16 @@
-import { ActionButtons } from "@/components/common/ActionButtons";
-import { Logo } from "@/components/common/Logo";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
-import { useThemeNameContext } from "@/context/ThemeNameContext";
-import { getColorExtension } from "@/themes";
 import { useTheme } from "@react-navigation/native";
 import { Stack } from "expo-router";
-import { Platform, StyleSheet, View } from "react-native";
+
+// https://docs.expo.dev/router/reference/faq/#missing-back-button
+export const unstable_settings = {
+  initialRouteName: "index",
+};
 
 export default function StackLayout() {
   const theme = useTheme();
-  const { themeName } = useThemeNameContext();
-  const colorExtension = getColorExtension(themeName);
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const { screens, names } = getUI(appLanguage, dialect);
@@ -20,24 +18,15 @@ export default function StackLayout() {
   return (
     <Stack
       screenOptions={{
-        headerStyle: { backgroundColor: theme.colors.primary },
-        headerTintColor: colorExtension.dark.text,
-        headerRight: () => (
-          <View style={styles.actionButton}>
-            <ActionButtons />
-          </View>
-        ),
+        headerStyle: { backgroundColor: theme.colors.card },
+        headerTintColor: theme.colors.text,
       }}
     >
       <Stack.Screen
         name="index"
         options={{
           title: screens.other,
-          headerLeft: () => (
-            <View style={styles.logo}>
-              <Logo />
-            </View>
-          ),
+          headerShown: false,
         }}
       />
       <Stack.Screen name="lenition" options={{ title: screens.lenition }} />
@@ -75,13 +64,3 @@ export default function StackLayout() {
     </Stack>
   );
 }
-
-const styles = StyleSheet.create({
-  logo: {
-    marginLeft: Platform.OS === "web" ? 0 : -16,
-    marginRight: Platform.OS === "web" ? 0 : 16,
-  },
-  actionButton: {
-    marginRight: Platform.OS === "web" ? 0 : -16,
-  },
-});
