@@ -36,15 +36,14 @@ export default function ThatScreen() {
     );
   }
 
-  return getBackground(
-    themeName, (
+  return (
     <ScrollView>
       <View style={styles.container}>
         <ThatTable1 />
         <Divider />
         <ThatTable2 />
       </View>
-    </ScrollView>), dialect
+    </ScrollView>
   );
 }
 
