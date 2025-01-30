@@ -43,18 +43,7 @@ export default function RandomScreen() {
   const getData = () =>
     debounce(async () => await execute(numWords, filterExpression));
 
-  // initial data load
   useEffect(() => {
-    getData();
-    return cancel;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // subsequent data loads
-  useEffect(() => {
-    if (numWords.length === 0 || filterExpression.length === 0 || incomplete) {
-      return;
-    }
     getData();
     return cancel;
     // eslint-disable-next-line react-hooks/exhaustive-deps
