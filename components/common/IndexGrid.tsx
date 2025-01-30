@@ -2,6 +2,7 @@ import { ScreenLinkCard } from "@/components/common/ScreenLinkCard";
 import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { getThemedComponents } from "@/themes";
 import type { LinkType } from "@/types/common";
+import { useTheme } from "@react-navigation/native";
 import { Fragment, useState } from "react";
 import {
   Pressable,
@@ -11,7 +12,6 @@ import {
   View,
 } from "react-native";
 import { WideLayout } from "./WideLayout";
-import { useTheme } from "@react-navigation/native";
 
 export function IndexGrid({ links }: { links: LinkType[] }) {
   const [Current, setCurrent] = useState<LinkType>(links[0]);

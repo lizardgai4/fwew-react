@@ -74,7 +74,7 @@ function DialectButton() {
 }
 
 type ABProps = {
-  href: Href<string>;
+  href: Href;
   icon: FAIconName;
 };
 

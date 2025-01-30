@@ -9,12 +9,12 @@ import HomonymsScreen from "./lists/homonyms";
 import MultiIPAScreen from "./lists/multi-ipa";
 import OddballsScreen from "./lists/oddballs";
 import ProfanityScreen from "./lists/profanity";
+import ThatScreen from "./lists/that";
 import NameAluScreen from "./names/name-alu";
 import NameFullScreen from "./names/name-full";
 import NameSingleScreen from "./names/name-single";
 import StatsScreen from "./stats";
 import ValidScreen from "./valid";
-import ThatScreen from "./lists/that";
 
 export default function OtherScreen() {
   const { appLanguage } = useAppLanguageContext();

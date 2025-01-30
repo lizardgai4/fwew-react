@@ -7,7 +7,7 @@ import { useDialectContext } from "@/context/DialectContext";
 import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { useList } from "@/hooks/useList";
 import { getThemedComponents } from "@/themes";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import {
   ScrollView,
   StyleSheet,
