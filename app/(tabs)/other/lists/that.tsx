@@ -18,9 +18,10 @@ export default function ThatScreen() {
   const { themeName } = useThemeNameContext();
   const { dialect } = useDialectContext();
 
-  if (landscape) {
-    return getBackground(
-      themeName, (
+  const extraWide = width > 1080;
+
+  if (landscape && extraWide) {
+    return (
       <ScrollView>
         <View style={[styles.container, styles.rowContainer]}>
           <View style={styles.tableContainer}>

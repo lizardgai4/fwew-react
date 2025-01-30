@@ -13,6 +13,7 @@ import useNameSingle from "@/hooks/useNameSingle";
 import { getThemedComponents, getBackground, getButtonBackground } from "@/themes";
 import { useTheme } from "@react-navigation/native";
 import * as Clipboard from "expo-clipboard";
+import React from "react";
 import {
   RefreshControl,
   ScrollView,

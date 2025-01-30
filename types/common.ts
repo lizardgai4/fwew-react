@@ -18,8 +18,10 @@ export type DialectDisplayType = {
 };
 
 export type LinkType = {
-  href: Href<string>;
+  href: Href;
   title: string;
+  Component?: () => JSX.Element;
+  links?: LinkType[];
 };
 
 export type ActiveWindow = "search" | "list" | "random" | "numbers" | "other";

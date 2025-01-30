@@ -13,7 +13,7 @@ import { Romanize } from "@/lib/romanize";
 import { getColorExtension, getThemedComponents, getButtonBackground } from "@/themes";
 import { useTheme } from "@react-navigation/native";
 import { fwewSimple, type LanguageCode, type Word } from "fwew.js";
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import Autolink from "react-native-autolink";
 

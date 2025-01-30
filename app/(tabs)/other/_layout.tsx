@@ -1,5 +1,3 @@
-import { ActionButtons } from "@/components/common/ActionButtons";
-import { Logo } from "@/components/common/Logo";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
@@ -35,11 +33,7 @@ export default function StackLayout() {
         name="index"
         options={{
           title: screens.other,
-          headerLeft: () => (
-            <View style={styles.logo}>
-              <Logo />
-            </View>
-          ),
+          headerShown: false,
         }}
       />
       <Stack.Screen name="lenition" options={{ title: screens.lenition }} />
@@ -77,13 +71,3 @@ export default function StackLayout() {
     </Stack>
   );
 }
-
-const styles = StyleSheet.create({
-  logo: {
-    marginLeft: Platform.OS === "web" ? 0 : -16,
-    marginRight: Platform.OS === "web" ? 0 : 16,
-  },
-  actionButton: {
-    marginRight: Platform.OS === "web" ? 0 : -16,
-  },
-});

@@ -26,8 +26,6 @@ export function FilterExpressionBuilder(props: FilterExpressionBuilderProps) {
   const { themeName } = useThemeNameContext();
   const Themed = getThemedComponents(themeName);
 
-  console.log(`FEB: spec=${value.spec} o=${common.partOfSpeech[value.spec]}`);
-
   const whatValues = list.listMenu.whatValues;
   const condValues = value.what
     ? list.listMenu.condValues[value.what.value]

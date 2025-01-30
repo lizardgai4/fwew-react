@@ -5,6 +5,7 @@ import { useDialectContext } from "@/context/DialectContext";
 import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { useVersion } from "@/hooks/useVersion";
 import { getThemedComponents } from "@/themes";
+import React from "react";
 import { StyleSheet, View } from "react-native";
 
 export function Version() {
