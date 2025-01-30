@@ -13,7 +13,7 @@ import ThatScreen from "./lists/that";
 import NameAluScreen from "./names/name-alu";
 import NameFullScreen from "./names/name-full";
 import NameSingleScreen from "./names/name-single";
-import StatsScreenBG from "./stats";
+import StatsScreen from "./stats";
 import ValidScreen from "./valid";
 import { getBackground } from "@/themes";
 import { useThemeNameContext } from "@/context/ThemeNameContext";
@@ -28,7 +28,7 @@ export default function OtherScreen() {
     {
       href: "/(tabs)/other/stats",
       title: screens.stats,
-      Component: StatsScreenBG,
+      Component: StatsScreen,
     },
     {
       href: "/(tabs)/other/valid",
