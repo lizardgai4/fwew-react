@@ -1,6 +1,5 @@
 import { Accordion } from "@/components/common/Accordion";
 import { OptionItem } from "@/components/common/OptionItem";
-import { ColorSchemeNames } from "@/constants/ColorSchemes";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useColorSchemeContext } from "@/context/ColorSchemeContext";
@@ -18,7 +17,6 @@ export function ColorSchemeSelect() {
     useColorSchemeContext();
   const { dialect } = useDialectContext();
   const { appLanguage } = useAppLanguageContext();
-  // TODO: i18n
   const ui = getUI(appLanguage, dialect);
   const theme = useTheme();
   const { themeName } = useThemeNameContext();
@@ -49,31 +47,33 @@ export function ColorSchemeSelect() {
               }
             />
           </View>
-          <Themed.Text style={styles.value}>Color Scheme</Themed.Text>
+          <Themed.Text style={styles.value}>
+            {ui.settings.colorScheme}
+          </Themed.Text>
         </View>
       }
       openedContent={
         <View style={styles.contentContainer}>
-          {ColorSchemeNames.map((csn, i) => (
+          {ui.settings.colorSchemes.map((csn, i) => (
             <View key={`scsn_${i}`}>
               <OptionItem
                 icon={
                   <View style={styles.icon}>
                     <FontAwesome
                       size={24}
-                      name={iconMap[csn]}
+                      name={iconMap[csn.value]}
                       color={
-                        colorSchemeName === csn
+                        colorSchemeName === csn.value
                           ? colorExtension.dark.text
                           : theme.colors.text
                       }
                     />
                   </View>
                 }
-                value={csn}
-                selected={colorSchemeName === csn}
+                value={csn.value}
+                selected={colorSchemeName === csn.value}
                 onSelect={async () => {
-                  await saveColorScheme(csn);
+                  await saveColorScheme(csn.value);
                 }}
               />
             </View>

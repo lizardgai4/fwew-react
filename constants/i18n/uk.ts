@@ -310,6 +310,13 @@ const strings: UITranslation = {
     resultsLanguage: "Мова результату",
     dialect: "Діалект",
     theme: "Тема",
+    colorScheme: "Color Scheme", // TODO
+    colorSchemes: [
+      // TODO
+      { name: "dark", value: "dark" },
+      { name: "light", value: "light" },
+      { name: "auto", value: "auto" },
+    ],
   },
 };
 
