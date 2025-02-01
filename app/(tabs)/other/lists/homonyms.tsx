@@ -13,10 +13,19 @@ export default function HomonymsScreen() {
   const { width } = useWindowDimensions();
   const wide = width > 720;
 
+  if (wide) {
+    return (
+      <View>
+        <ResultCount visible={resultCount > 0} resultCount={resultCount} />
+        <FwewSearchResults loading={loading} results={results} />
+      </View>
+    );
+  }
+
   return (
     <ScrollView>
       <View style={{ alignItems: "center" }}>
-        <View style={[styles.container, { width: wide ? "66%" : "100%" }]}>
+        <View style={styles.container}>
           <ResultCount visible={resultCount > 0} resultCount={resultCount} />
           <FwewSearchResults loading={loading} results={results} />
         </View>

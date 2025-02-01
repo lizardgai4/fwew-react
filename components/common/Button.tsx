@@ -1,6 +1,6 @@
 import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { getColorExtension, getThemedComponents } from "@/themes";
-import type { FontAwesomeIconName } from "@/types/icons";
+import type { FAIconName } from "@/types/icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 import {
@@ -14,7 +14,7 @@ import {
 type ButtonProps = {
   onPress: () => void;
   disabled?: boolean;
-  icon: FontAwesomeIconName;
+  icon: FAIconName;
   text?: string;
   style?: ViewStyle;
   textStyle?: TextStyle;

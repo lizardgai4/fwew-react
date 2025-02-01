@@ -15,8 +15,9 @@ import {
 export default function ThatScreen() {
   const { width, height } = useWindowDimensions();
   const landscape = width > height;
+  const extraWide = width > 1080;
 
-  if (landscape) {
+  if (landscape && extraWide) {
     return (
       <ScrollView>
         <View style={[styles.container, styles.rowContainer]}>
