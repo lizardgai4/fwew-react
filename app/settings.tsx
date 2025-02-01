@@ -1,6 +1,7 @@
 import { WideLayout } from "@/components/common/WideLayout";
 import { About } from "@/components/settings/About";
 import { AppLanguageSelect } from "@/components/settings/AppLanguageSelect";
+import { ColorSchemeSelect } from "@/components/settings/ColorSchemeSelect";
 import { DialectSelect } from "@/components/settings/DialectSelect";
 import { ResultsLanguageSelect } from "@/components/settings/ResultsLanguageSelect";
 import { ThemeSelect } from "@/components/settings/ThemeSelect";
@@ -25,6 +26,7 @@ export default function SettingsScreen() {
             <ResultsLanguageSelect />
             <DialectSelect />
             <ThemeSelect />
+            <ColorSchemeSelect />
           </View>
         }
         main={<About />}
@@ -40,6 +42,7 @@ export default function SettingsScreen() {
         <ResultsLanguageSelect />
         <DialectSelect />
         <ThemeSelect />
+        <ColorSchemeSelect />
         <About />
       </View>
     </ScrollView>

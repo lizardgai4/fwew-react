@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
     gap: 16,
     padding: 16,
     fontSize: 16,
+    width: "100%",
   },
   bottomPadded: {
     paddingBottom: 16,

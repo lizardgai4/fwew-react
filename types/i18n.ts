@@ -1,3 +1,4 @@
+import { ColorSchemeName } from "@/hooks/useColorScheme";
 import type { Dialect, ExtendedLanguageCode, OptionType } from "@/types/common";
 import type { ListMenu } from "@/types/list";
 import type { AdjectiveMode, NameEnding, NounMode } from "fwew.js";
@@ -149,6 +150,8 @@ export type SettingsStrings = {
   resultsLanguage: string;
   dialect: string;
   theme: string;
+  colorScheme: string;
+  colorSchemes: OptionType<ColorSchemeName>[];
 };
 
 export type UITranslation = {
