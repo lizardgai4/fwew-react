@@ -13,6 +13,7 @@
       "backgroundColor": "#7494BA"
     },
     "assetBundlePatterns": ["**/*"],
+    "jsEngine": "hermes",
     "ios": {
       "bundleIdentifier": "app.fwew.react",
       "buildNumber": "4.2.2",
