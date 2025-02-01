@@ -22,11 +22,7 @@ export default function CameronScreen() {
     </ScrollView>
   );
 
-  if (wide) {
-    return getBackground(themeName, content, dialect, false);
-  }
-
-  return getBackground(themeName, content, dialect, true);
+  return getBackground(themeName, content, dialect, !wide);
 }
 
 type TCCProps = {

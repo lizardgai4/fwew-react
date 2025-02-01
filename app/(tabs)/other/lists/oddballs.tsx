@@ -36,7 +36,7 @@ export default function OddballsScreen() {
         </View>
       </View>
     </ScrollView>
-  ), dialect, true);
+  ), dialect, false);
 }
 
 const styles = StyleSheet.create({

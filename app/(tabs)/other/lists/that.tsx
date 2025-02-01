@@ -19,6 +19,7 @@ export default function ThatScreen() {
   const { dialect } = useDialectContext();
 
   const extraWide = width > 1080;
+  const wide = width > 720;
 
   if (landscape && extraWide) {
     return getBackground(themeName, (
@@ -33,7 +34,7 @@ export default function ThatScreen() {
           </View>
         </View>
       </ScrollView>
-    ), dialect, false);
+    ), dialect, !wide);
   }
 
   return getBackground(themeName, (
@@ -44,7 +45,7 @@ export default function ThatScreen() {
         <ThatTable2 />
       </View>
     </ScrollView>
-  ), dialect, true);
+  ), dialect, !wide);
 }
 
 type ThatTableProps = {
