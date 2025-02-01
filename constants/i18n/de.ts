@@ -304,12 +304,11 @@ const strings: UITranslation = {
     resultsLanguage: "Ergebnis-Sprache",
     dialect: "Dialekt",
     theme: "Theme",
-    colorScheme: "Color Scheme", // TODO
+    colorScheme: "Farbschema",
     colorSchemes: [
-      // TODO
-      { name: "dark", value: "dark" },
-      { name: "light", value: "light" },
-      { name: "auto", value: "auto" },
+      { name: "dunkel", value: "dark" },
+      { name: "hell", value: "light" },
+      { name: "automatisch", value: "auto" },
     ],
   },
 };

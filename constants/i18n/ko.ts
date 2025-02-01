@@ -299,13 +299,12 @@ const strings: UITranslation = {
     appLanguage: "앱 언어",
     resultsLanguage: "출력 언어",
     dialect: "지역방언",
-    theme: "Theme",
-    colorScheme: "Color Scheme", // TODO
+    theme: "테마",
+    colorScheme: "색상",
     colorSchemes: [
-      // TODO
-      { name: "dark", value: "dark" },
-      { name: "light", value: "light" },
-      { name: "auto", value: "auto" },
+      { name: "어두운색", value: "dark" },
+      { name: "밝은색", value: "light" },
+      { name: "자동", value: "auto" },
     ],
   },
 };

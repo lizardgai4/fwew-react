@@ -296,11 +296,10 @@ const strings: UITranslation = {
     resultsLanguage: "Kume lì'fya",
     dialect: "Lì'fyafnel",
     theme: "Lupra",
-    colorScheme: "Color Scheme", // TODO
+    colorScheme: "Ayopin",
     colorSchemes: [
-      // TODO
-      { name: "dark", value: "dark" },
-      { name: "light", value: "light" },
+      { name: "vawm", value: "dark" },
+      { name: "neyn", value: "light" },
       { name: "auto", value: "auto" },
     ],
   },
