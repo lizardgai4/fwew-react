@@ -2,7 +2,7 @@
   "expo": {
     "name": "Fwew",
     "slug": "fwew-react",
-    "version": "4.2.2",
+    "version": "4.1.0",
     "orientation": "default",
     "icon": "./assets/images/icon.png",
     "scheme": "fwew",
@@ -15,12 +15,12 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "bundleIdentifier": "app.fwew.react",
-      "buildNumber": "4.2.2",
+      "buildNumber": "4.1.0",
       "supportsTablet": true
     },
     "android": {
       "package": "app.fwew.react",
-      "versionCode": 26,
+      "versionCode": 23,
       "permissions": [],
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-fwew.png",
@@ -49,7 +49,6 @@
       ],
       "expo-font"
     ],
-    "newArchEnabled": true,
     "experiments": {
       "typedRoutes": true,
       "tsconfigPaths": true
@@ -59,9 +58,9 @@
         "origin": false
       },
       "eas": {
-        "projectId": "8dda2b73-89f1-448d-9bd3-b4d8919d2851"
+        "projectId": "15c348a8-f367-4b16-a912-82611a5d3649"
       }
     },
-    "owner": "fwew"
+    "owner": "doctordothraki"
   }
 }

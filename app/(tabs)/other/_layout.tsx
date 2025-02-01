@@ -17,15 +17,10 @@ export default function StackLayout() {
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const { screens, names } = getUI(appLanguage, dialect);
-  const Topbar = getTopbar(themeName, dialect)
 
   return getBackground(
     themeName, (
-    <Stack
-      screenOptions={{
-        headerBackground: () => Topbar,
-      }}
-    >
+    <Stack>
       <Stack.Screen
         name="index"
         options={{
