@@ -24,7 +24,7 @@ export default function OddballsScreen() {
         <ResultCount visible={resultCount > 0} resultCount={resultCount} />
         <FwewSearchResults loading={loading} results={results} />
       </View>
-    ), dialect, true);
+    ), dialect, false);
   }
 
   return getBackground(themeName, (
@@ -36,7 +36,7 @@ export default function OddballsScreen() {
         </View>
       </View>
     </ScrollView>
-  ), dialect, false);
+  ), dialect, true);
 }
 
 const styles = StyleSheet.create({
