@@ -28,7 +28,7 @@ export default function CameronScreen() {
       <FlatList
         data={cameronWords.data}
         contentContainerStyle={{ gap: 16, padding: 16 }}
-        renderItem={TitleContentCard}
+        renderItem={({ item }) => <TitleContentCard item={item} />}
         keyExtractor={({ key }, i) => `cw_${key}_${i}`}
       />
     </View>
