@@ -4,7 +4,7 @@ import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
 import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { getThemedComponents, getBackground } from "@/themes";
-import { FlatList, StyleSheet, useWindowDimensions, View } from "react-native";
+import { FlatList, StyleSheet, useWindowDimensions, View, ScrollView } from "react-native";
 
 export default function CameronScreen() {
   const { appLanguage } = useAppLanguageContext();
@@ -26,7 +26,7 @@ export default function CameronScreen() {
     return getBackground(themeName, content, dialect, false);
   }
 
-  return getBackground(themeName, content, dialect, true);
+  return getBackground(themeName, (<ScrollView style={{padding: 16}}>{content}</ScrollView>), dialect, true);
 }
 
 type TCCProps = {
