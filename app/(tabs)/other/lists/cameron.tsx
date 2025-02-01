@@ -4,7 +4,7 @@ import { useAppLanguageContext } from "@/context/AppLanguageContext";
 import { useDialectContext } from "@/context/DialectContext";
 import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { getThemedComponents, getBackground } from "@/themes";
-import { FlatList, StyleSheet, useWindowDimensions, View, ScrollView } from "react-native";
+import { Platform, FlatList, StyleSheet, useWindowDimensions, View, ScrollView } from "react-native";
 
 export default function CameronScreen() {
   const { appLanguage } = useAppLanguageContext();
@@ -15,18 +15,18 @@ export default function CameronScreen() {
   const { themeName } = useThemeNameContext();
 
   const content = (
-    <View style={{ gap: 16 }}>
+    <ScrollView style={{gap: 16, padding: 16}}>
       {cameronWords.data.map((cw, i) => (
         <TitleContentCard key={`cw_${cw.key}_${i}`} item={cw} />
       ))}
-    </View>
+    </ScrollView>
   );
 
   if (wide) {
     return getBackground(themeName, content, dialect, false);
   }
 
-  return getBackground(themeName, (<ScrollView style={{padding: 16}}>{content}</ScrollView>), dialect, true);
+  return getBackground(themeName, content, dialect, true);
 }
 
 type TCCProps = {
@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
   },
   row: {
     padding: 16,
+    marginBottom: 16,
   },
   col: {
     gap: 8,
