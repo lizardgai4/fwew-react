@@ -46,6 +46,7 @@ export default function ListScreen() {
             remove={remove}
             update={update}
             incomplete={incomplete}
+            initiallyOpen
           />
         }
         header={
