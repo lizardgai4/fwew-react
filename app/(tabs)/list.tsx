@@ -20,7 +20,7 @@ export default function ListScreen() {
     useFilterExpression();
   const { loading, results, execute, cancel } = useList();
   const debounce = useDebounce();
-  const resultsVisible = filterExpression.length > 0 && results.length > 0;
+  const resultsVisible = results.length > 0;
   const theme = useTheme();
   const { width } = useWindowDimensions();
   const wide = width > 720;
@@ -28,7 +28,7 @@ export default function ListScreen() {
   const getData = () => debounce(async () => await execute(filterExpression));
 
   useEffect(() => {
-    if (incomplete || filterExpression.length === 0) {
+    if (incomplete) {
       return;
     }
     getData();
@@ -46,6 +46,7 @@ export default function ListScreen() {
             remove={remove}
             update={update}
             incomplete={incomplete}
+            initiallyOpen
           />
         }
         header={
@@ -88,8 +89,12 @@ export default function ListScreen() {
           remove={remove}
           update={update}
           incomplete={incomplete}
+          initiallyOpen={false}
         />
-        <ResultCount visible={resultsVisible} resultCount={results.length} />
+        <ResultCount
+          visible={!loading && resultsVisible}
+          resultCount={results.length}
+        />
         <ListResults
           loading={loading}
           results={resultsVisible ? results : []}

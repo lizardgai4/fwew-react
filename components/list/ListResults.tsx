@@ -1,5 +1,6 @@
 import { ResultCard } from "@/components/common/ResultCard";
 import type { Word } from "fwew.js";
+import { memo } from "react";
 import { ActivityIndicator, Platform, StyleSheet, View } from "react-native";
 import { NoResults } from "../common/NoResults";
 
@@ -8,7 +9,10 @@ type ListResultsProps = {
   results: Word[] | null;
 };
 
-export function ListResults({ loading, results }: ListResultsProps) {
+export const ListResults = memo(function ListResults({
+  loading,
+  results,
+}: ListResultsProps) {
   if (loading && Platform.OS === "web") {
     return <ActivityIndicator size="large" />;
   }
@@ -28,7 +32,7 @@ export function ListResults({ loading, results }: ListResultsProps) {
       ))}
     </View>
   );
-}
+});
 
 const styles = StyleSheet.create({
   container: {

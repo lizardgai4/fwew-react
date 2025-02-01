@@ -8,7 +8,7 @@ export function useList() {
   const abortController = useRef(new AbortController());
 
   const execute = async (filterExpression: string) => {
-    if (filterExpression.length === 0) return;
+    // if (filterExpression.length === 0) return;
     setLoading(true);
     try {
       const data = await list(filterExpression, {

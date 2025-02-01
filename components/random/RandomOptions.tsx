@@ -19,11 +19,20 @@ type RandomOptionsProps = {
   remove: (index: number) => void;
   update: (index: number, filter: FilterExpressionBuilderValue) => void;
   incomplete: boolean;
+  initiallyOpen?: boolean;
 };
 
 export function RandomOptions(props: RandomOptionsProps) {
-  const { numWords, updateNumWords, filters, add, remove, update, incomplete } =
-    props;
+  const {
+    numWords,
+    updateNumWords,
+    filters,
+    add,
+    remove,
+    update,
+    incomplete,
+    initiallyOpen,
+  } = props;
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const ui = getUI(appLanguage, dialect);
@@ -33,6 +42,7 @@ export function RandomOptions(props: RandomOptionsProps) {
 
   return (
     <Accordion
+      initiallyOpen={initiallyOpen}
       closedContent={<Themed.Text>{ui.random.randomOptions}</Themed.Text>}
       openedContent={
         <View style={{ backgroundColor: theme.colors.background }}>
