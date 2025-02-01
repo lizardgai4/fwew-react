@@ -296,6 +296,13 @@ const strings: UITranslation = {
     resultsLanguage: "Sonuç Dili",
     dialect: "Lehçe",
     theme: "Theme",
+    colorScheme: "Color Scheme", // TODO
+    colorSchemes: [
+      // TODO
+      { name: "dark", value: "dark" },
+      { name: "light", value: "light" },
+      { name: "auto", value: "auto" },
+    ],
   },
 };
 

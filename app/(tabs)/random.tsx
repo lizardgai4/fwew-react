@@ -67,6 +67,7 @@ export default function RandomScreen() {
               remove={remove}
               update={update}
               incomplete={incomplete}
+              initiallyOpen
             />
             <View style={{ paddingTop: 16 }}>
             {getButtonBackground(themeName, {}, (<Button

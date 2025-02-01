@@ -15,10 +15,11 @@ type ListOptionsProps = {
   remove: (index: number) => void;
   update: (index: number, filter: FilterExpressionBuilderValue) => void;
   incomplete: boolean;
+  initiallyOpen?: boolean;
 };
 
 export function ListOptions(props: ListOptionsProps) {
-  const { filters, add, remove, update, incomplete } = props;
+  const { filters, add, remove, update, incomplete, initiallyOpen } = props;
   const { appLanguage } = useAppLanguageContext();
   const { dialect } = useDialectContext();
   const ui = getUI(appLanguage, dialect);
@@ -28,7 +29,7 @@ export function ListOptions(props: ListOptionsProps) {
 
   return (
     <Accordion
-      initiallyOpen
+      initiallyOpen={initiallyOpen}
       closedContent={<Themed.Text>{ui.list.listOptions}</Themed.Text>}
       openedContent={
         <View>

@@ -33,7 +33,10 @@ const partOfSpeech: PartOfSpeech = {
   "adv., intj.": { abbr: "adv., intj.", name: "Bijwoord, Interjectie" },
   "adv., n.": { abbr: "adv., n.", name: "Bijwoord, Naamwoord" },
   "adv., part.": { abbr: "adv., part.", name: "Bijwoord, Deeltje" },
-  "conj., adj.": { abbr: "conj., adj.", name: "Voegwoord, Bijvoeglijk naamwoord" },
+  "conj., adj.": {
+    abbr: "conj., adj.",
+    name: "Voegwoord, Bijvoeglijk naamwoord",
+  },
   "inter., intj.": { abbr: "inter., intj.", name: "Vragend, Interjectie" },
   "n., intj.": { abbr: "n., intj.", name: "Naamwoord, Interjectie" },
   "part., intj.": { abbr: "part., intj.", name: "Deeltje, Interjectie" },
@@ -310,6 +313,13 @@ const strings: UITranslation = {
     resultsLanguage: "Taal van resultaten",
     dialect: "Dialect",
     theme: "Theme",
+    colorScheme: "Color Scheme", // TODO
+    colorSchemes: [
+      // TODO
+      { name: "dark", value: "dark" },
+      { name: "light", value: "light" },
+      { name: "auto", value: "auto" },
+    ],
   },
 };
 
