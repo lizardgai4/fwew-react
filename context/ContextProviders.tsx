@@ -11,7 +11,6 @@ import { useResultsLanguage } from "@/hooks/useResultsLanguage";
 import { useThemeName } from "@/hooks/useThemeName";
 import { getTheme } from "@/themes";
 import { ThemeProvider } from "@react-navigation/native";
-import { useColorScheme } from "react-native";
 import { ActiveWindowProvider } from "@/context/ActiveWindowContext";
 import { useActiveWindow } from "@/hooks/useActiveWindow";
 import { ColorSchemeProvider } from "./ColorSchemeContext";
@@ -42,10 +41,10 @@ export function ContextProviders({ children }: { children: React.ReactNode }) {
                     {children}
                   </FavoritesProvider>
                 </DialectProvider>
-              </ActiveWindowProvider>
-            </ResultsLanguageProvider>
-          </AppLanguageProvider>
-        </ColorSchemeProvider>
+              </ColorSchemeProvider>
+            </ActiveWindowProvider>
+          </ResultsLanguageProvider>
+        </AppLanguageProvider>
       </ThemeProvider>
     </ThemeNameProvider>
   );
