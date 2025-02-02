@@ -2,7 +2,7 @@
   "expo": {
     "name": "Fwew",
     "slug": "fwew-react",
-    "version": "4.3.2",
+    "version": "4.3.3",
     "orientation": "default",
     "icon": "./assets/images/icon.png",
     "scheme": "fwew",
@@ -16,12 +16,12 @@
     "jsEngine": "hermes",
     "ios": {
       "bundleIdentifier": "app.fwew.react",
-      "buildNumber": "4.3.2",
+      "buildNumber": "4.3.3",
       "supportsTablet": true
     },
     "android": {
       "package": "app.fwew.react",
-      "versionCode": 30,
+      "versionCode": 31,
       "permissions": [],
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-fwew.png",
