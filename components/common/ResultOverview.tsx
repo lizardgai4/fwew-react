@@ -1,11 +1,12 @@
 import { getUI } from "@/constants/i18n";
+import { useColorSchemeContext } from "@/context/ColorSchemeContext";
 import { useResultsLanguageContext } from "@/context/ResultsLanguageContext";
 import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { ReefMe } from "@/lib/dialect";
 import { getColorExtension, getThemedComponents } from "@/themes";
 import type { Dialect } from "@/types/common";
 import type { Word } from "fwew.js";
-import { StyleSheet, useColorScheme, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 type ResultOverviewProps = {
   dialect: Dialect;
@@ -16,10 +17,10 @@ type ResultOverviewProps = {
 export function ResultOverview({ dialect, word, local }: ResultOverviewProps) {
   const forestNavi = word.Navi;
   const { reefNavi } = ReefMe(word.IPA, word.Navi);
-  const colorScheme = useColorScheme();
+  const { colorSchemeValue } = useColorSchemeContext();
   const { themeName } = useThemeNameContext();
   const colorExtension = getColorExtension(themeName);
-  const colors = colorExtension[colorScheme ?? "light"];
+  const colors = colorExtension[colorSchemeValue ?? "light"];
   const Themed = getThemedComponents(themeName);
   const { resultsLanguage } = useResultsLanguageContext();
   const ui = getUI(resultsLanguage, dialect);

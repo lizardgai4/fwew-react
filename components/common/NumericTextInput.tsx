@@ -1,8 +1,9 @@
 import { SmallButton } from "@/components/common/SmallButton";
+import { useColorSchemeContext } from "@/context/ColorSchemeContext";
 import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { getColorExtension, getThemedComponents } from "@/themes";
 import type { NumericString } from "@/types/common";
-import { StyleSheet, useColorScheme, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 type NumericTextInputProps = {
   value?: string | NumericString;
@@ -13,10 +14,10 @@ type NumericTextInputProps = {
 
 export function NumericTextInput(props: NumericTextInputProps) {
   const { value, onChangeText, placeholder, autoFocus } = props;
-  const colorScheme = useColorScheme();
+  const { colorSchemeValue } = useColorSchemeContext();
   const { themeName } = useThemeNameContext();
   const colorExtension = getColorExtension(themeName);
-  const colors = colorExtension[colorScheme ?? "light"];
+  const colors = colorExtension[colorSchemeValue ?? "light"];
   const Themed = getThemedComponents(themeName);
 
   return (

@@ -1,7 +1,8 @@
 import { SmallButton } from "@/components/common/SmallButton";
+import { useColorSchemeContext } from "@/context/ColorSchemeContext";
 import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { getColorExtension, getThemedComponents } from "@/themes";
-import { StyleSheet, useColorScheme, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 type AlphaTextInputProps = {
   value?: string | `${number}` | undefined;
@@ -12,10 +13,10 @@ type AlphaTextInputProps = {
 
 export function AlphaTextInput(props: AlphaTextInputProps) {
   const { value, onChangeText, placeholder, autoFocus } = props;
-  const colorScheme = useColorScheme();
+  const { colorSchemeValue } = useColorSchemeContext();
   const { themeName } = useThemeNameContext();
   const colorExtension = getColorExtension(themeName);
-  const colors = colorExtension[colorScheme ?? "light"];
+  const colors = colorExtension[colorSchemeValue ?? "light"];
   const Themed = getThemedComponents(themeName);
 
   return (

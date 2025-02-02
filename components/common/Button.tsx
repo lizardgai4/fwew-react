@@ -1,3 +1,4 @@
+import { useColorSchemeContext } from "@/context/ColorSchemeContext";
 import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { getColorExtension, getThemedComponents } from "@/themes";
 import type { FAIconName } from "@/types/icons";
@@ -6,7 +7,6 @@ import { useTheme } from "@react-navigation/native";
 import {
   Pressable,
   StyleSheet,
-  useColorScheme,
   type TextStyle,
   type ViewStyle,
 } from "react-native";
@@ -22,10 +22,10 @@ type ButtonProps = {
 
 export function Button(props: ButtonProps) {
   const { onPress, disabled, icon, text, style, textStyle } = props;
-  const colorScheme = useColorScheme();
+  const { colorSchemeValue } = useColorSchemeContext();
   const { themeName } = useThemeNameContext();
   const colorExtension = getColorExtension(themeName);
-  const colors = colorExtension[colorScheme ?? "light"];
+  const colors = colorExtension[colorSchemeValue ?? "light"];
   const theme = useTheme();
   const Themed = getThemedComponents(themeName);
 
