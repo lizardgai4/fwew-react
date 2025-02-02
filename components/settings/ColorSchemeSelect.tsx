@@ -67,7 +67,7 @@ export function ColorSchemeSelect() {
                     />
                   </View>
                 }
-                value={csn.value}
+                value={csn.name}
                 selected={colorSchemeName === csn.value}
                 onSelect={async () => {
                   await saveColorScheme(csn.value);
