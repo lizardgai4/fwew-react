@@ -34,9 +34,6 @@ export function ColorSchemeSelect() {
       closedContent={
         <View style={styles.iconContainer}>
           <View style={styles.icon}>
-            {/* <Themed.MonoText style={styles.value}>
-              {colorSchemeName.slice(0, 2).toUpperCase()}
-            </Themed.MonoText> */}
             <FontAwesome
               size={24}
               name={colorSchemeValue === "dark" ? "moon-o" : "sun-o"}
@@ -70,7 +67,7 @@ export function ColorSchemeSelect() {
                     />
                   </View>
                 }
-                value={csn.value}
+                value={csn.name}
                 selected={colorSchemeName === csn.value}
                 onSelect={async () => {
                   await saveColorScheme(csn.value);

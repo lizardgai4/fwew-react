@@ -1,7 +1,8 @@
 import { ExternalLink } from "@/components/common/ExternalLink";
+import { useColorSchemeContext } from "@/context/ColorSchemeContext";
 import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { getColorExtension, getThemedComponents } from "@/themes";
-import { StyleSheet, useColorScheme } from "react-native";
+import { StyleSheet } from "react-native";
 
 type GitDetailsProps = {
   branch?: string;
@@ -9,10 +10,10 @@ type GitDetailsProps = {
 };
 
 export function GitDetails({ branch, commitHash }: GitDetailsProps) {
-  const colorScheme = useColorScheme();
+  const { colorSchemeValue } = useColorSchemeContext();
   const { themeName } = useThemeNameContext();
   const colorExtension = getColorExtension(themeName);
-  const colors = colorExtension[colorScheme ?? "light"];
+  const colors = colorExtension[colorSchemeValue ?? "light"];
   const Themed = getThemedComponents(themeName);
 
   if (!branch || !commitHash) {

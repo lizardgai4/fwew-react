@@ -1,6 +1,6 @@
 import { ScreenLinkCard } from "@/components/common/ScreenLinkCard";
 import { useThemeNameContext } from "@/context/ThemeNameContext";
-import { getThemedComponents } from "@/themes";
+import { getColorExtension, getThemedComponents } from "@/themes";
 import type { LinkType } from "@/types/common";
 import { useTheme } from "@react-navigation/native";
 import { Fragment, useState } from "react";
@@ -21,6 +21,7 @@ export function IndexGrid({ links }: { links: LinkType[] }) {
   const { width } = useWindowDimensions();
   const wide = width > 720;
   const { themeName } = useThemeNameContext();
+  const colorExtension = getColorExtension(themeName);
   const Themed = getThemedComponents(themeName);
   const ratio =
     [
@@ -54,7 +55,15 @@ export function IndexGrid({ links }: { links: LinkType[] }) {
                   >
                     {({ pressed }) => (
                       <View style={{ opacity: pressed ? 0.5 : 1 }}>
-                        <Themed.Text style={{ padding: 16 }}>
+                        <Themed.Text
+                          style={{
+                            padding: 16,
+                            color:
+                              Current?.href === link.href
+                                ? colorExtension.dark.text
+                                : theme.colors.text,
+                          }}
+                        >
                           {link.title}
                         </Themed.Text>
                       </View>
@@ -81,7 +90,15 @@ export function IndexGrid({ links }: { links: LinkType[] }) {
                   >
                     {({ pressed }) => (
                       <View style={{ opacity: pressed ? 0.5 : 1 }}>
-                        <Themed.Text style={{ padding: 16 }}>
+                        <Themed.Text
+                          style={{
+                            padding: 16,
+                            color:
+                              Current?.href === link.href
+                                ? colorExtension.dark.text
+                                : theme.colors.text,
+                          }}
+                        >
                           {link.title}
                         </Themed.Text>
                       </View>

@@ -1,4 +1,4 @@
-import { ColorSchemeName } from "@/hooks/useColorScheme";
+import type { ColorSchemeName } from "@/hooks/useColorScheme";
 import type { Dialect, ExtendedLanguageCode, OptionType } from "@/types/common";
 import type { ListMenu } from "@/types/list";
 import type { AdjectiveMode, NameEnding, NounMode } from "fwew.js";

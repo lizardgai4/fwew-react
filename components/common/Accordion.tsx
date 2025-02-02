@@ -1,8 +1,9 @@
+import { useColorSchemeContext } from "@/context/ColorSchemeContext";
 import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { getColorExtension, getThemedComponents } from "@/themes";
 import { FontAwesome } from "@expo/vector-icons";
 import { useState } from "react";
-import { Pressable, StyleSheet, useColorScheme } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 
 type AccordionProps = {
   closedContent: React.ReactNode;
@@ -13,10 +14,10 @@ type AccordionProps = {
 export function Accordion(props: AccordionProps) {
   const { closedContent, openedContent, initiallyOpen } = props;
   const [expanded, setExpanded] = useState(initiallyOpen ?? false);
-  const colorScheme = useColorScheme();
+  const { colorSchemeValue } = useColorSchemeContext();
   const { themeName } = useThemeNameContext();
   const colorExtension = getColorExtension(themeName);
-  const colors = colorExtension[colorScheme ?? "light"];
+  const colors = colorExtension[colorSchemeValue ?? "light"];
   const Themed = getThemedComponents(themeName);
 
   return (
