@@ -1,7 +1,8 @@
+import { useColorSchemeContext } from "@/context/ColorSchemeContext";
 import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { getColorExtension, getThemedComponents } from "@/themes";
 import { useTheme } from "@react-navigation/native";
-import { StyleSheet, Switch, useColorScheme, View } from "react-native";
+import { StyleSheet, Switch, View } from "react-native";
 
 type SwitchInputProps = {
   leftLabel: string;
@@ -13,10 +14,10 @@ type SwitchInputProps = {
 export function SwitchInput(props: SwitchInputProps) {
   const { leftLabel, rightLabel, value, onValueChange } = props;
   const theme = useTheme();
-  const colorScheme = useColorScheme();
+  const { colorSchemeValue } = useColorSchemeContext();
   const { themeName } = useThemeNameContext();
   const colorExtension = getColorExtension(themeName);
-  const colors = colorExtension[colorScheme ?? "light"];
+  const colors = colorExtension[colorSchemeValue ?? "light"];
   const Themed = getThemedComponents(themeName);
 
   return (

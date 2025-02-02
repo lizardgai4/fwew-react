@@ -7,6 +7,7 @@ import { WideLayout } from "@/components/common/WideLayout";
 import { NameResults } from "@/components/names/NameResults";
 import { getUI } from "@/constants/i18n";
 import { useAppLanguageContext } from "@/context/AppLanguageContext";
+import { useColorSchemeContext } from "@/context/ColorSchemeContext";
 import { useDialectContext } from "@/context/DialectContext";
 import { useThemeNameContext } from "@/context/ThemeNameContext";
 import { useNameFull } from "@/hooks/useNameFull";
@@ -18,7 +19,6 @@ import {
   RefreshControl,
   ScrollView,
   StyleSheet,
-  useColorScheme,
   useWindowDimensions,
   View,
 } from "react-native";
@@ -47,8 +47,8 @@ export default function NameFullScreen() {
   const { themeName } = useThemeNameContext();
   const Themed = getThemedComponents(themeName);
   const colorExtension = getColorExtension(themeName);
-  const colorScheme = useColorScheme();
-  const colors = colorExtension[colorScheme ?? "light"];
+  const { colorSchemeValue } = useColorSchemeContext();
+  const colors = colorExtension[colorSchemeValue ?? "light"];
   const { width } = useWindowDimensions();
   const wide = width > 720;
 
