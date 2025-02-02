@@ -87,7 +87,15 @@ export function IndexGrid({ links }: { links: LinkType[] }) {
                   >
                     {({ pressed }) => (
                       <View style={{ opacity: pressed ? 0.5 : 1 }}>
-                        <Themed.Text style={{ padding: 16 }}>
+                        <Themed.Text
+                          style={{
+                            padding: 16,
+                            color:
+                              Current?.href === link.href
+                                ? colorExtension.dark.text
+                                : theme.colors.text,
+                          }}
+                        >
                           {link.title}
                         </Themed.Text>
                       </View>
