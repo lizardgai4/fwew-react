@@ -15,6 +15,7 @@ import NameFullScreen from "./names/name-full";
 import NameSingleScreen from "./names/name-single";
 import StatsScreen from "./stats";
 import ValidScreen from "./valid";
+import AllScreen from "./lists/all";
 
 export default function OtherScreen() {
   const { appLanguage } = useAppLanguageContext();
@@ -62,6 +63,11 @@ export default function OtherScreen() {
       href: "/(tabs)/other/lists",
       title: screens.lists,
       links: [
+        {
+          href: "/(tabs)/other/lists/all",
+          title: screens.allWords,
+          Component: AllScreen,
+        },
         {
           href: "/(tabs)/other/lists/cameron",
           title: screens.cameronWords,

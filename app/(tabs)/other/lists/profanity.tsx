@@ -24,11 +24,9 @@ export default function ProfanityScreen() {
 
   return (
     <ScrollView>
-      <View style={{ alignItems: "center" }}>
-        <View style={styles.container}>
-          <ResultCount visible={resultCount > 0} resultCount={resultCount} />
-          <FwewSearchResults loading={loading} results={results} />
-        </View>
+      <View style={styles.container}>
+        <ResultCount visible={resultCount > 0} resultCount={resultCount} />
+        <FwewSearchResults loading={loading} results={results} />
       </View>
     </ScrollView>
   );
@@ -38,5 +36,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    gap: 16,
   },
 });

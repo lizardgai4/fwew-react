@@ -80,6 +80,7 @@ const strings: UITranslation = {
     valid: "Érvényes",
     lists: "Listák",
 
+    allWords: "All Words", // TODO
     cameronWords: "Cameron szavak",
     homonyms: "Homonimák",
     multiIPA: "Többszörös IPA",

@@ -81,6 +81,7 @@ const strings: UITranslation = {
     numbers: "Liczby",
     other: "Other",
 
+    allWords: "All Words", // TODO
     lenition: "Lenition", // TODO
     stats: "Stats", // TODO
     valid: "Valid", // TODO

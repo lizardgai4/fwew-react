@@ -101,6 +101,7 @@ const strings: UITranslation = {
     valid: "Valid", // TODO
     lists: "Lists", // TODO
 
+    allWords: "All Words", // TODO
     cameronWords: "Cameron Words", // TODO
     homonyms: "Homonyms", // TODO
     multiIPA: "Multi IPA", // TODO

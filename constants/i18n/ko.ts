@@ -85,6 +85,7 @@ const strings: UITranslation = {
     valid: "발음 유효성 검사",
     lists: "일람표",
 
+    allWords: "All Words", // TODO
     cameronWords: "제임스 카메론 자작 단어",
     homonyms: "동음이의어",
     multiIPA: "다음어",

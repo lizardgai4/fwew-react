@@ -10,6 +10,7 @@ export default function ListsScreen() {
   const { screens } = getUI(appLanguage, dialect);
 
   const links: LinkType[] = [
+    { href: "/other/lists/all", title: screens.allWords },
     { href: "/other/lists/cameron", title: screens.cameronWords },
     { href: "/other/lists/homonyms", title: screens.homonyms },
     { href: "/other/lists/multi-ipa", title: screens.multiIPA },

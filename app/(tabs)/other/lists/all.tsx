@@ -1,6 +1,7 @@
 import { ResultCount } from "@/components/common/ResultCount";
 import { FwewSearchResults } from "@/components/search/FwewSearchResults";
-import { useHomonyms } from "@/hooks/useHomonyms";
+import { useList } from "@/hooks/useList";
+import { useEffect } from "react";
 import {
   ScrollView,
   StyleSheet,
@@ -8,16 +9,22 @@ import {
   View,
 } from "react-native";
 
-export default function HomonymsScreen() {
-  const { results, resultCount, loading } = useHomonyms();
+export default function AllScreen() {
+  const { results, loading, execute } = useList();
+  const resultCount = results.length;
   const { width } = useWindowDimensions();
   const wide = width > 720;
 
+  useEffect(() => {
+    void execute("");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   if (wide) {
     return (
-      <View>
+      <View style={styles.wideContainer}>
         <ResultCount visible={resultCount > 0} resultCount={resultCount} />
-        <FwewSearchResults loading={loading} results={results} />
+        <FwewSearchResults loading={loading} results={[results]} />
       </View>
     );
   }
@@ -26,13 +33,16 @@ export default function HomonymsScreen() {
     <ScrollView>
       <View style={styles.container}>
         <ResultCount visible={resultCount > 0} resultCount={resultCount} />
-        <FwewSearchResults loading={loading} results={results} />
+        <FwewSearchResults loading={loading} results={[results]} />
       </View>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  wideContainer: {
+    gap: 16,
+  },
   container: {
     flex: 1,
     padding: 16,

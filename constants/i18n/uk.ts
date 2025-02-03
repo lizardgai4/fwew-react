@@ -95,6 +95,7 @@ const strings: UITranslation = {
     valid: "Перевірка слів",
     lists: "Додатково",
 
+    allWords: "All Words", // TODO
     cameronWords: "Слова Кемерона",
     homonyms: "Омоніми",
     multiIPA: "IPA (MФА)",
