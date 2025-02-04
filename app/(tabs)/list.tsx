@@ -28,7 +28,6 @@ export default function ListScreen() {
   const theme = useTheme();
   const { width } = useWindowDimensions();
   const wide = width > 720;
-  const theme = useTheme();
   const themeName = useThemeName().themeName;
 
   const getData = () => debounce(async () => await execute(filterExpression));
