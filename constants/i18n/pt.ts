@@ -86,6 +86,7 @@ const strings: UITranslation = {
     valid: "Válido",
     lists: "Listas",
 
+    allWords: "All Words", // TODO
     cameronWords: "Palavras do Cameron",
     homonyms: "Homônimo",
     multiIPA: "IPA Múltiplo",

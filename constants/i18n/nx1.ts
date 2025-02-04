@@ -82,6 +82,7 @@ const strings: UITranslation = {
     valid: "Kangay",
     lists: "Aysestarsìm",
 
+    allWords: "Fralìu",
     cameronWords: "Aylìu Kämerone",
     homonyms: "Pam fkan teng a aylìu aketeng",
     multiIPA: "Melìupam",

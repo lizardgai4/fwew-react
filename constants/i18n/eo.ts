@@ -86,6 +86,7 @@ const strings: UITranslation = {
     valid: "Valida",
     lists: "Listoj",
 
+    allWords: "Ĉiuj Vortoj",
     cameronWords: "Vortoj de Kameron",
     homonyms: "Homonimoj",
     multiIPA: "Multobla IPA",

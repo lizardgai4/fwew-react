@@ -24,7 +24,8 @@ export default function ListScreen() {
   const { loading, results, execute, cancel } = useList();
   const debounce = useDebounce();
   const { dialect } = useDialectContext();
-  const resultsVisible = results.length > 0;
+  const resultsVisible = filterExpression.length > 0 && results.length > 0;
+  const theme = useTheme();
   const { width } = useWindowDimensions();
   const wide = width > 720;
   const theme = useTheme();
@@ -33,7 +34,7 @@ export default function ListScreen() {
   const getData = () => debounce(async () => await execute(filterExpression));
 
   useEffect(() => {
-    if (incomplete) {
+    if (filterExpression.length === 0 || incomplete) {
       return;
     }
     getData();

@@ -86,6 +86,7 @@ const strings: UITranslation = {
     valid: "Valid",
     lists: "Lists",
 
+    allWords: "All Words",
     cameronWords: "Cameron Words",
     homonyms: "Homonyms",
     multiIPA: "Multi IPA",

@@ -90,6 +90,7 @@ const strings: UITranslation = {
     valid: "Kehtiv",
     lists: "Loendid",
 
+    allWords: "All Words", // TODO
     cameronWords: "Cameroni sõnad",
     homonyms: "Homonüümid",
     multiIPA: "Mitu IPA",

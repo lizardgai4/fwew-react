@@ -17,6 +17,7 @@ import StatsScreen from "./stats";
 import ValidScreen from "./valid";
 import { getBackground } from "@/themes";
 import { useThemeNameContext } from "@/context/ThemeNameContext";
+import AllScreen from "./lists/all";
 
 export default function OtherScreen() {
   const { themeName } = useThemeNameContext();
@@ -65,6 +66,11 @@ export default function OtherScreen() {
       href: "/(tabs)/other/lists",
       title: screens.lists,
       links: [
+        {
+          href: "/(tabs)/other/lists/all",
+          title: screens.allWords,
+          Component: AllScreen,
+        },
         {
           href: "/(tabs)/other/lists/cameron",
           title: screens.cameronWords,

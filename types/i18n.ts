@@ -28,6 +28,7 @@ export type ScreenStrings = {
   valid: string;
   lists: string;
 
+  allWords: string;
   cameronWords: string;
   homonyms: string;
   multiIPA: string;
