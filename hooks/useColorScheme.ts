@@ -1,7 +1,7 @@
 import { useAsyncStorage } from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
 import {
-  ColorSchemeName as DefaultColorSchemeName,
+  type ColorSchemeName as DefaultColorSchemeName,
   useColorScheme as useDefaultColorScheme,
 } from "react-native";
 
