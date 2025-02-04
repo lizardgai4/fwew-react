@@ -3,6 +3,7 @@ import { FwewSearchResults } from "@/components/search/FwewSearchResults";
 import { useList } from "@/hooks/useList";
 import { useEffect } from "react";
 import {
+  ActivityIndicator,
   ScrollView,
   StyleSheet,
   useWindowDimensions,
@@ -24,7 +25,11 @@ export default function AllScreen() {
     return (
       <View style={styles.wideContainer}>
         <ResultCount visible={resultCount > 0} resultCount={resultCount} />
-        <FwewSearchResults loading={loading} results={[results]} />
+        {loading ? (
+          <ActivityIndicator />
+        ) : (
+          <FwewSearchResults loading={loading} results={[results]} />
+        )}
       </View>
     );
   }
@@ -33,7 +38,11 @@ export default function AllScreen() {
     <ScrollView>
       <View style={styles.container}>
         <ResultCount visible={resultCount > 0} resultCount={resultCount} />
-        <FwewSearchResults loading={loading} results={[results]} />
+        {loading ? (
+          <ActivityIndicator />
+        ) : (
+          <FwewSearchResults loading={loading} results={[results]} />
+        )}
       </View>
     </ScrollView>
   );
