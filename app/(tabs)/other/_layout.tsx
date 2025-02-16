@@ -32,6 +32,7 @@ export default function StackLayout() {
       <Stack.Screen name="stats" options={{ title: screens.stats }} />
       <Stack.Screen name="valid" options={{ title: screens.valid }} />
       <Stack.Screen name="lists/index" options={{ title: screens.lists }} />
+      <Stack.Screen name="lists/all" options={{ title: screens.allWords }} />
       <Stack.Screen
         name="lists/cameron"
         options={{ title: screens.cameronWords }}
