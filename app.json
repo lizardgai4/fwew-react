@@ -12,7 +12,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#7494BA"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "jsEngine": "hermes",
     "ios": {
       "bundleIdentifier": "app.fwew.react",
@@ -48,7 +50,8 @@
           "android.permission.VIBRATE"
         ]
       ],
-      "expo-font"
+      "expo-font",
+      "expo-web-browser"
     ],
     "newArchEnabled": true,
     "experiments": {
