@@ -25,6 +25,7 @@
       "package": "app.fwew.react",
       "versionCode": 34,
       "permissions": [],
+      "edgeToEdgeEnabled": true,
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-fwew.png",
         "backgroundColor": "#7494ba",
