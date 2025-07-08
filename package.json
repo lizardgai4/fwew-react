@@ -14,6 +14,14 @@
     "eas-build-post-install": "./scripts/expo/post-install",
     "lint": "eslint ."
   },
+  "expo": {
+    "doctor": {
+      "reactNativeDirectoryCheck": {
+        "listUnknownPackages": false
+      }
+    }
+  },
+
   "jest": {
     "preset": "jest-expo",
     "transformIgnorePatterns": [
