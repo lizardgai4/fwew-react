@@ -28,7 +28,7 @@ export function SwitchInput(props: SwitchInputProps) {
         onValueChange={onValueChange}
         trackColor={{
           false: colors.placeholder,
-          true: colors.tint,
+          true: theme.colors.primary,
         }}
         thumbColor={colorExtension.light.background}
         // @ts-ignore
